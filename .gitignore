@@ -33,3 +33,9 @@
 *.nav
 *.toc
 
+#ignore cmake
+src/emulate/cmake-build-debug
+src/emulate/Makefile
+src/emulate/emulate
+
+
