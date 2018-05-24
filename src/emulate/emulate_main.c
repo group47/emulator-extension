@@ -10,6 +10,9 @@ void emulateImpl(struct EmulatorState *state,
                  struct Instruction instructions[],
                  unsigned int instructions_l);
 
+int execute_instruction_data_processing(struct EmulatorState* state, struct DataProcessingInstruction instruction) ;
+int execute_instruction_multiply(struct EmulatorState* state, struct MultiplyInstruction instruction);
+int execute_instruction_single_data_transfer(struct EmulatorState* state, struct SingleDataTransferInstruction instruction);
 void emulate(struct EmulatorState *state,
              int32_t *instructions,
              unsigned int instructions_l) {
@@ -62,6 +65,39 @@ void emulateImpl(struct EmulatorState *state,
   }
 
 #endif
+  state->PC = 0;
 
-  //todo finish implmentation of emulator
+  while (true){
+    (state->PC)++;
+
+  }
+}
+
+int execute_instruction(struct EmulatorState* state, struct Instruction instruction){
+  switch (instruction.type){
+
+    case DATA_PROCESSING:
+      return execute_instruction_data_processing(state,instruction.dataProcessingInstruction);
+    case MULTIPLY:
+      return execute_instruction_multiply(state,instruction.multiplyInstruction);
+    case SINGLE_DATA_TRANSFER:
+      return execute_instruction_single_data_transfer(state,instruction.singleDataTransferInstruction);
+    case BRANCH_INSTRUCTION:break;
+  }
+}
+
+int execute_instruction_data_processing(struct EmulatorState* state, struct DataProcessingInstruction instruction) {
+  //todo
+}
+
+int execute_instruction_multiply(struct EmulatorState* state, struct MultiplyInstruction instruction){
+  //todo
+}
+
+int execute_instruction_single_data_transfer(struct EmulatorState* state, struct SingleDataTransferInstruction instruction){
+  //todo
+}
+
+int execute_instruction_branch(struct EmulatorState* state, struct BranchInstruction instruction){
+  //todo
 }

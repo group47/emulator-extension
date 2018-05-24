@@ -33,10 +33,14 @@ int main(int argc, const char *argv[]) {
   int32_t *rawData = (int32_t *) malloc(sizeof(int32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
   size_t amountRead = sizeof(byte) * read(fileDescriptor,rawData,sizeof(int32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
   assert(amountRead % sizeof(int32_t) == 0);
-  emulate(malloc(sizeof(struct EmulatorState)),
+  struct EmulatorState * state =  malloc(sizeof(struct EmulatorState));
+  emulate(state,
           rawData,
           (unsigned int) (amountRead / sizeof(int32_t)));
   close(fileDescriptor);
+  free(rawData);
+  free(state);
+
 }
 
 #endif
