@@ -14,13 +14,13 @@ enum InstructionType {
 };
 
 
-#define eqCond 0b0000;
-#define neCond 0b0001;
-#define geCond 0b1010;
-#define ltCond 0b1011;
-#define gtCond 0b1100;
-#define leCond 0b1101;
-#define alCond 0b1110;
+#define eqCond 0b0000
+#define neCond 0b0001
+#define geCond 0b1010
+#define ltCond 0b1011
+#define gtCond 0b1100
+#define leCond 0b1101
+#define alCond 0b1110
 
 //todo magic constants:
 struct DataProcessingInstruction {
@@ -28,7 +28,7 @@ struct DataProcessingInstruction {
   uint8_t Rd:4;
   uint8_t Rn: 4;
   bool setConditionCodes: 1;
-  uint8_t opcode : 4;
+  enum OpCode opcode : 4;
   bool immediateOperand: 1;
   uint8_t filler: 2;//The value of the filler should be 0b000
   uint8_t cond : 4;

@@ -8,25 +8,13 @@
 #include "util.h"
 
 #define MEMORY_SIZE 65536
+#define MAX_INSTRUCTION_INPUT_FILE_SIZE 1000
+#define NUM_REGISTERS 17
 
 struct EmulatorState {
   byte memory[MEMORY_SIZE];
   //todo registers should go here etc.:
-  int32_t r0;
-  int32_t r1;
-  int32_t r2;
-  int32_t r3;
-  int32_t r4;
-  int32_t r5;
-  int32_t r6;
-  int32_t r7;
-  int32_t r8;
-  int32_t r9;
-  int32_t r10;
-  int32_t r11;
-  int32_t r12;
-  int32_t r13;
-  int32_t r14;
+  int32_t registers[NUM_REGISTERS-2];
   int32_t PC;
   int32_t CPSR;
 };
