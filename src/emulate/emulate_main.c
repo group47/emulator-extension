@@ -249,14 +249,14 @@ void print_registers(struct EmulatorState *state) {
 int main(int argc, char **argv) {
   if (argc != 2) {
     fprintf(stderr,
-            "the end of the world has come, or you entered the wrong number of arguments");
+            "the end of the world has come, or you entered the wrong number of arguments\n");
     return -100000;
   }
   const char *filename = argv[1];
   int fileDescriptor = open(filename, O_RDONLY);
   if (fileDescriptor == -1) {
     fprintf(stderr,
-            "the end of the world has come, or you entered the wrong filename");
+            "the end of the world has come, or you entered the wrong filename\n");
     return -100000;
   }
 

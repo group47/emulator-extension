@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/homes/qs4617/arm11_47/src/emulate/emulate_main.c
+stdint-gcc.h
+-
+assert.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+fcntl.h
+-
+zconf.h
+-
+emulate_main.h
+/homes/qs4617/arm11_47/src/emulate/emulate_main.h
+instructions.h
+/homes/qs4617/arm11_47/src/emulate/instructions.h
+
+/homes/qs4617/arm11_47/src/emulate/emulate_main.h
+
+/homes/qs4617/arm11_47/src/emulate/instructions.c
+
+/homes/qs4617/arm11_47/src/emulate/instructions.h
+stdbool.h
+-
+elf.h
+-
+
