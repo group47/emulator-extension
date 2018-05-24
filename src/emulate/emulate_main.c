@@ -9,23 +9,17 @@
 #include "emulate_main.h"
 #include "instructions.h"
 
+int execute_instruction_data_processing(struct EmulatorState *,struct DataProcessingInstruction);
+int execute_instruction_multiply(struct EmulatorState *,struct MultiplyInstruction);
+int execute_instruction_single_data_transfer(struct EmulatorState *, struct SingleDataTransferInstruction);
+int execute_instruction(struct EmulatorState *, struct Instruction);
+void print_registers(struct EmulatorState *);
+void load_program_into_ram(struct EmulatorState *, uint32_t *, unsigned int);
 
 void emulateImpl(struct EmulatorState *state,
                  struct Instruction instructions[],
                  unsigned int instructions_l);
 
-int execute_instruction_data_processing(struct EmulatorState *state,
-                                        struct DataProcessingInstruction instruction);
-int execute_instruction_multiply(struct EmulatorState *state,
-                                 struct MultiplyInstruction instruction);
-int execute_instruction_single_data_transfer(struct EmulatorState *state,
-                                             struct SingleDataTransferInstruction instruction);
-int execute_instruction(struct EmulatorState *state,
-                        struct Instruction instruction);
-void print_registers(struct EmulatorState *state);
-void load_program_into_ram(struct EmulatorState *pState,
-                           uint32_t *instructs,
-                           unsigned int l);
 void emulate(struct EmulatorState *state,
              uint32_t *instructions,
              unsigned int instructions_l) {
@@ -242,7 +236,7 @@ void print_registers(struct EmulatorState *state) {
     if(state->memory[i] != 0){
 //      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
       //swap endiannes to match test cases
-      printf("0x%08x: 0x%x\n",4*i,__bswap_32(state->memory[i]));
+      printf("0x%08x: 0x%08x\n",4*i,__bswap_32(state->memory[i]));
     }
   }
 }
