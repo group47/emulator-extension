@@ -22,10 +22,10 @@ int execute_instruction(struct EmulatorState *state,
                         struct Instruction instruction);
 void print_registers(struct EmulatorState *state);
 void load_program_into_ram(struct EmulatorState *pState,
-                           int32_t *pInt,
+                           uint32_t *instructs,
                            unsigned int l);
 void emulate(struct EmulatorState *state,
-             int32_t *instructions,
+             uint32_t *instructions,
              unsigned int instructions_l) {
   load_program_into_ram(state,instructions,instructions_l);
   struct Instruction instructionsWithType[instructions_l];
@@ -68,9 +68,9 @@ void emulate(struct EmulatorState *state,
   emulateImpl(state, instructionsWithType, instructions_l);
 }
 void load_program_into_ram(struct EmulatorState *pState,
-int32_t *instructs,
+uint32_t *instructs,
 unsigned int l) {
-  memcpy(pState->memory,instructs,l*sizeof(int32_t));
+  memcpy(pState->memory,instructs,l*sizeof(uint32_t));
 
 }
 
@@ -258,14 +258,14 @@ int main(int argc, char **argv) {
     return -100000;
   }
 
-  int32_t *rawData = (int32_t *) malloc(sizeof(int32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
-  size_t amountRead = sizeof(byte) * read(fileDescriptor,rawData,sizeof(int32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
-  assert(amountRead % sizeof(int32_t) == 0);
+  uint32_t *rawData = (uint32_t *) malloc(sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
+  size_t amountRead = sizeof(byte) * read(fileDescriptor,rawData,sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
+  assert(amountRead % sizeof(uint32_t) == 0);
   struct EmulatorState* emulatorState = malloc(sizeof(struct EmulatorState));
   memset(rawData,0, sizeof(struct EmulatorState));
   emulate(emulatorState,
           rawData,
-          (unsigned int) (amountRead / sizeof(int32_t)));
+          (unsigned int) (amountRead / sizeof(uint32_t)));
   close(fileDescriptor);
   free(emulatorState);
   free(rawData);

@@ -15,10 +15,10 @@
 #include "instructions.h"
 
 int main(int argc, const char *argv[]) {
-  assert(sizeof(struct DataProcessingInstruction) == sizeof(int32_t));
-  assert(sizeof(struct BranchInstruction) == sizeof(int32_t));
-  assert(sizeof(struct MultiplyInstruction) == sizeof(int32_t));
-  assert(sizeof(struct SingleDataTransferInstruction) == sizeof(int32_t));
+  assert(sizeof(struct DataProcessingInstruction) == sizeof(uint32_t));
+  assert(sizeof(struct BranchInstruction) == sizeof(uint32_t));
+  assert(sizeof(struct MultiplyInstruction) == sizeof(uint32_t));
+  assert(sizeof(struct SingleDataTransferInstruction) == sizeof(uint32_t));
 
   assert(argc == 2);
   printf("%s\n", argv[1]);
@@ -30,14 +30,14 @@ int main(int argc, const char *argv[]) {
     return -100000;
   }
 
-  int32_t *rawData = (int32_t *) malloc(sizeof(int32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
-  size_t amountRead = sizeof(byte) * read(fileDescriptor,rawData,sizeof(int32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
-  assert(amountRead % sizeof(int32_t) == 0);
+  uint32_t *rawData = (uint32_t *) malloc(sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
+  size_t amountRead = sizeof(byte) * read(fileDescriptor,rawData,sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
+  assert(amountRead % sizeof(uint32_t) == 0);
   struct EmulatorState * state =  malloc(sizeof(struct EmulatorState));
-  rawData[amountRead / sizeof(int32_t)] = 0;
+  rawData[amountRead / sizeof(uint32_t)] = 0;
   emulate(state,
           rawData,
-          (unsigned int) (amountRead / sizeof(int32_t)) + 1);
+          (unsigned int) (amountRead / sizeof(uint32_t)) + 1);
   close(fileDescriptor);
   free(rawData);
   free(state);
