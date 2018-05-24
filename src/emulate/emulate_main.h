@@ -9,10 +9,12 @@
 
 #define MEMORY_SIZE 65536
 
-struct EmulatorState{
-    byte memory[MEMORY_SIZE];
-    //todo registers should go here etc.:
+struct EmulatorState {
+  byte memory[MEMORY_SIZE];
+  //todo registers should go here etc.:
 };
-void emulate(struct EmulatorState* state,int32_t instructions[],unsigned int instructions_l);
+void emulate(struct EmulatorState *state,
+             int32_t instructions[],
+             unsigned int instructions_l);
 
 #endif //EMULATE_EMULATE_MAIN_H
