@@ -29,11 +29,10 @@ int main(int argc , const char *argv[]){
         return -100000;
     }
 
-    int32_t* rawData = (int32_t*) malloc(sizeof(int32_t[1000]));
-    //todo magic nnumber, todo what if theres more
-    int amountRead = sizeof(byte)*read(fileDescriptor, rawData, sizeof(int32_t[1000]));// todo warning
+    int32_t* rawData = (int32_t*) malloc(sizeof(int32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
+    size_t amountRead = sizeof(byte)*read(fileDescriptor, rawData, sizeof(int32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
     assert(amountRead % sizeof(int32_t) == 0);
-    emulate(malloc(sizeof(struct EmulatorState)),rawData,amountRead/ sizeof(int32_t));
+    emulate(malloc(sizeof(struct EmulatorState)), rawData, (unsigned int) (amountRead / sizeof(int32_t)));
     close(fileDescriptor);
 }
 
