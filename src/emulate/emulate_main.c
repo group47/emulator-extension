@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <fcntl.h>
+#include <zconf.h>
 #include "emulate_main.h"
 #include "instructions.h"
 
@@ -235,6 +237,7 @@ void print_registers(struct EmulatorState *state) {
   }
   printf("PC  : %10d (0x%08x)\n", state->PC, state->PC);
   printf("CPSR: %10d (0x%08x)\n", state->CPSR, state->CPSR);
+  printf("Non-zero memory:\n");
   for (int i = 0; i < MEMORY_SIZE/4; i++) {
     if(state->memory[i] != 0){
 //      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
@@ -251,7 +254,6 @@ int main(int argc, char **argv) {
             "the end of the world has come, or you entered the wrong number of arguments");
     return -100000;
   }
-  printf("%s\n", argv[1]);
   const char *filename = argv[1];
   int fileDescriptor = open(filename, O_RDONLY);
   if (fileDescriptor == -1) {
@@ -263,14 +265,12 @@ int main(int argc, char **argv) {
   uint32_t *rawData = (uint32_t *) malloc(sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
   size_t amountRead = sizeof(byte) * read(fileDescriptor,rawData,sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
   assert(amountRead % sizeof(uint32_t) == 0);
-  struct EmulatorState* emulatorState = malloc(sizeof(struct EmulatorState));
-  memset(rawData,0, sizeof(struct EmulatorState));
-  emulate(emulatorState,
+  struct EmulatorState * state =  malloc(sizeof(struct EmulatorState));
+  rawData[amountRead / sizeof(uint32_t)] = 0;
+  emulate(state,
           rawData,
-          (unsigned int) (amountRead / sizeof(uint32_t)));
+          (unsigned int) (amountRead / sizeof(uint32_t)) + 1);
   close(fileDescriptor);
-  free(emulatorState);
-  free(rawData);
 }
 
 #endif
