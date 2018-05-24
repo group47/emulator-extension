@@ -9,10 +9,14 @@
 #include <elf.h>
 
 enum InstructionType {
-  DATA_PROCESSING, MULTIPLY, SINGLE_DATA_TRANSFER, BRANCH_INSTRUCTION,TERMINATE
+  DATA_PROCESSING,
+  MULTIPLY,
+  SINGLE_DATA_TRANSFER,
+  BRANCH_INSTRUCTION,
+  TERMINATE
 };
 
-enum Cond{
+enum Cond {
   eq = 0b0000,
   ne = 0b0001,
   ge = 0b1010,
@@ -65,8 +69,8 @@ struct BranchInstruction {
   enum Cond cond:4;
 }__attribute__((packed));
 
-struct TerminateInstruction{
-  u_int32_t filler : 32;
+struct TerminateInstruction {
+  uint32_t filler : 32;
 };
 
 struct Instruction {

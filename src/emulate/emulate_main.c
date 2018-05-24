@@ -9,9 +9,12 @@
 #include "emulate_main.h"
 #include "instructions.h"
 
-int execute_instruction_data_processing(struct EmulatorState *,struct DataProcessingInstruction);
-int execute_instruction_multiply(struct EmulatorState *,struct MultiplyInstruction);
-int execute_instruction_single_data_transfer(struct EmulatorState *, struct SingleDataTransferInstruction);
+int execute_instruction_data_processing(struct EmulatorState *,
+                                        struct DataProcessingInstruction);
+int execute_instruction_multiply(struct EmulatorState *,
+                                 struct MultiplyInstruction);
+int execute_instruction_single_data_transfer(struct EmulatorState *,
+                                             struct SingleDataTransferInstruction);
 int execute_instruction(struct EmulatorState *, struct Instruction);
 void print_registers(struct EmulatorState *);
 void load_program_into_ram(struct EmulatorState *, uint32_t *, unsigned int);
@@ -23,7 +26,7 @@ void emulateImpl(struct EmulatorState *state,
 void emulate(struct EmulatorState *state,
              uint32_t *instructions,
              unsigned int instructions_l) {
-  load_program_into_ram(state,instructions,instructions_l);
+  load_program_into_ram(state, instructions, instructions_l);
   struct Instruction instructionsWithType[instructions_l];
   for (int i = 0; i < instructions_l; ++i) {
     const struct BranchInstruction branchInstruction =
@@ -37,11 +40,10 @@ void emulate(struct EmulatorState *state,
     const struct TerminateInstruction terminateInstruction =
         *((const struct TerminateInstruction *) (&(instructions[i])));
     //todo magic constants
-        if(instructions[i] == 0){
-            instructionsWithType[i].terminateInstruction = terminateInstruction;
-            instructionsWithType[i].type = TERMINATE;
-        }
-    else if (branchInstruction.filler1 == 0b0
+    if (instructions[i] == 0) {
+      instructionsWithType[i].terminateInstruction = terminateInstruction;
+      instructionsWithType[i].type = TERMINATE;
+    } else if (branchInstruction.filler1 == 0b0
         && branchInstruction.filler2 == 0b101) {
       instructionsWithType[i].branchInstruction = branchInstruction;
       instructionsWithType[i].type = BRANCH_INSTRUCTION;
@@ -64,9 +66,9 @@ void emulate(struct EmulatorState *state,
   emulateImpl(state, instructionsWithType, instructions_l);
 }
 void load_program_into_ram(struct EmulatorState *pState,
-uint32_t *instructs,
-unsigned int l) {
-  memcpy(pState->memory,instructs,l*sizeof(uint32_t));
+                           uint32_t *instructs,
+                           unsigned int l) {
+  memcpy(pState->memory, instructs, l * sizeof(uint32_t));
 
 }
 
@@ -130,24 +132,24 @@ bool should_execute(struct EmulatorState *state, enum Cond cond) {
   const bool NequalsV =
       (bool) ((state->CPSR) & CPSR_N == (state->CPSR) & CPSR_V);
   const bool Zset = (bool) ((state->CPSR) & CPSR_Z);
-  if (cond == eq) {
-    //Z set
-    return Zset;
-  } else if (cond == ne) {
-    //Z clear
-    return !Zset;
-  } else if (cond == ge) {
-    return NequalsV;
-  } else if (cond == lt) {
-    return (bool) ((state->CPSR) & CPSR_N != (state->CPSR) & CPSR_V);
-  } else if (cond == gt) {
-    return (!Zset) && NequalsV;
-  } else if (cond == le) {
-    return Zset || (!NequalsV);
-  } else if (cond == al) {
-    return true;
-  } else {
-    assert(false);
+  switch (cond) {
+
+    case eq:
+      return Zset;
+    case ne:
+      return !Zset;
+    case ge:
+      return NequalsV;
+    case lt:
+      return (bool) ((state->CPSR) & CPSR_N != (state->CPSR) & CPSR_V);
+    case gt:
+      return (!Zset) && NequalsV;
+    case le:
+      return Zset || (!NequalsV);
+    case al:
+      return true;
+    default:
+      assert(false);
   }
 }
 
@@ -227,23 +229,26 @@ int execute_instruction_branch(struct EmulatorState *state,
 void print_registers(struct EmulatorState *state) {
   printf("Registers:\n");
   for (int i = 0; i < 13; ++i) {
-    printf("$%-3d:%11d (0x%08x)\n", i, state->registers[i], state->registers[i]);
+    printf("$%-3d:%11d (0x%08x)\n",
+           i,
+           state->registers[i],
+           state->registers[i]);
   }
   printf("PC  : %10d (0x%08x)\n", state->PC, state->PC);
   printf("CPSR: %10d (0x%08x)\n", state->CPSR, state->CPSR);
   printf("Non-zero memory:\n");
-  for (int i = 0; i < MEMORY_SIZE/4; i++) {
-    if(state->memory[i] != 0){
+  for (int i = 0; i < MEMORY_SIZE / 4; i++) {
+    if (state->memory[i] != 0) {
 //      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
       //swap endiannes to match test cases
-      printf("0x%08x: 0x%08x\n",4*i,__bswap_32(state->memory[i]));
+      printf("0x%08x: 0x%08x\n", 4 * i, __bswap_32(state->memory[i]));
     }
   }
 }
 
 #ifdef USE_EMULATE_MAIN
 int main(int argc, char **argv) {
-  if(argc != 2){
+  if (argc != 2) {
     fprintf(stderr,
             "the end of the world has come, or you entered the wrong number of arguments");
     return -100000;
@@ -256,10 +261,13 @@ int main(int argc, char **argv) {
     return -100000;
   }
 
-  uint32_t *rawData = (uint32_t *) malloc(sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
-  size_t amountRead = sizeof(unsigned char) * read(fileDescriptor,rawData,sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
+  uint32_t *rawData =
+      (uint32_t *) malloc(sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
+  size_t amountRead = sizeof(unsigned char) * read(fileDescriptor,
+                                                   rawData,
+                                                   sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
   assert(amountRead % sizeof(uint32_t) == 0);
-  struct EmulatorState * state =  malloc(sizeof(struct EmulatorState));
+  struct EmulatorState *state = malloc(sizeof(struct EmulatorState));
   rawData[amountRead / sizeof(uint32_t)] = 0;
   emulate(state,
           rawData,
