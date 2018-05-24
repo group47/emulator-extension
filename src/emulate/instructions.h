@@ -26,8 +26,8 @@ enum InstructionType {
 //todo magic constants:
 struct DataProcessingInstruction{
     uint16_t secondOperand : 12;
-    uint8_t destinationRegister:4;
-    uint8_t firstOperandRegister: 4;
+    uint8_t Rd:4;
+    uint8_t Rn: 4;
     bool setConditionCodes: 1;
     uint8_t opcode : 4;
     bool immediateOperand: 1;
@@ -39,7 +39,7 @@ struct MultiplyInstruction{
     uint8_t Rm : 4;
     uint8_t filler2:4;//should equal 0b1001
     uint8_t Rs:4;
-    uint8_t Rn:4;//todo inconsistent naming
+    uint8_t Rn:4;
     uint8_t destinationRegister:4;
     bool setConditionCodes: 1;
     bool accumulate: 1;
