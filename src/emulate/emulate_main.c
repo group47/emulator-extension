@@ -125,26 +125,26 @@ int execute_instruction(struct EmulatorState *state,
   }
 }
 
-bool should_execute(struct EmulatorState *state, uint8_t cond) {
+bool should_execute(struct EmulatorState *state, enum Cond cond) {
   //todo switch
   const bool NequalsV =
       (bool) ((state->CPSR) & CPSR_N == (state->CPSR) & CPSR_V);
   const bool Zset = (bool) ((state->CPSR) & CPSR_Z);
-  if (cond == eqCond) {
+  if (cond == eq) {
     //Z set
     return Zset;
-  } else if (cond == neCond) {
+  } else if (cond == ne) {
     //Z clear
     return !Zset;
-  } else if (cond == geCond) {
+  } else if (cond == ge) {
     return NequalsV;
-  } else if (cond == ltCond) {
+  } else if (cond == lt) {
     return (bool) ((state->CPSR) & CPSR_N != (state->CPSR) & CPSR_V);
-  } else if (cond == gtCond) {
+  } else if (cond == gt) {
     return (!Zset) && NequalsV;
-  } else if (cond == leCond) {
+  } else if (cond == le) {
     return Zset || (!NequalsV);
-  } else if (cond == alCond) {
+  } else if (cond == al) {
     return true;
   } else {
     assert(false);
