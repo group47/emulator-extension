@@ -133,7 +133,6 @@ bool should_execute(struct EmulatorState *state, enum Cond cond) {
       (bool) ((state->CPSR) & CPSR_N == (state->CPSR) & CPSR_V);
   const bool Zset = (bool) ((state->CPSR) & CPSR_Z);
   switch (cond) {
-
     case eq:
       return Zset;
     case ne:
