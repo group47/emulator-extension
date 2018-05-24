@@ -237,7 +237,9 @@ void print_registers(struct EmulatorState *state) {
   printf("CPSR: %10d (0x%08x)\n", state->CPSR, state->CPSR);
   for (int i = 0; i < MEMORY_SIZE/4; i++) {
     if(state->memory[i] != 0){
-      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
+//      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
+      //swap endiannes to match test cases
+      printf("0x%08x: 0x%x\n",4*i,__bswap_32(state->memory[i]));
     }
   }
 }
