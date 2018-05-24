@@ -15,14 +15,13 @@ enum InstructionType {
 
 
 
-//todo should we be consistent with usage of const and #define?
-/*const byte*/#define eqCond = 0b0000;
-/*const byte*/#define neCond = 0b0001;
-/*const byte*/#define geCond = 0b1010;
-/*const byte*/#define ltCond = 0b1011;
-/*const byte*/#define gtCond = 0b1100;
-/*const byte*/#define leCond = 0b1101;
-/*const byte*/#define alCond = 0b1110;
+#define eqCond 0b0000;
+#define neCond 0b0001;
+#define geCond 0b1010;
+#define ltCond 0b1011;
+#define gtCond 0b1100;
+#define leCond 0b1101;
+#define alCond 0b1110;
 
 //todo magic constants:
 struct DataProcessingInstruction{

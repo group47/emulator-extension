@@ -48,5 +48,5 @@ void emulateImpl(struct EmulatorState* state,struct Instruction instructions[],u
 
     #endif
 
-    //todo
+    //todo finish implmentation of emulator
 }
