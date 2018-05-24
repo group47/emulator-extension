@@ -8,6 +8,7 @@
 #include <zconf.h>
 #include "emulate_main.h"
 #include "instructions.h"
+#include "cpsr_overflow_detection.h"
 
 int execute_instruction_data_processing(struct EmulatorState *,
                                         struct DataProcessingInstruction);
@@ -22,6 +23,8 @@ void load_program_into_ram(struct EmulatorState *, uint32_t *, unsigned int);
 void emulateImpl(struct EmulatorState *state,
                  struct Instruction instructions[],
                  unsigned int instructions_l);
+int
+setCPSR(struct EmulatorState *state, struct DataProcessingInstruction instruction, bool b, bool b1);
 
 void emulate(struct EmulatorState *state,
              uint32_t *instructions,
@@ -155,6 +158,10 @@ bool should_execute(struct EmulatorState *state, enum Cond cond) {
 int execute_instruction_data_processing(struct EmulatorState *state,
                                         struct DataProcessingInstruction instruction) {
   //todo duplication
+
+  bool overflow_occurred = false;
+  bool borrow_occurred = true;
+
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
@@ -170,19 +177,28 @@ int execute_instruction_data_processing(struct EmulatorState *state,
     case and:
       (state->registers)[instruction.Rd] = (rnVal
           & operand2Val);//not sure if this should be bitwise or not. the spec isn't clear todo
-      return 1;
+      break;
     case eor:
       (state->registers)[instruction.Rd] = (rnVal ^ operand2Val);
       return 1;
     case sub:
+      if (does_borrow_occur(rnVal, operand2Val)) {
+        borrow_occurred = true;
+      }
       (state->registers)[instruction.Rd] = (rnVal - operand2Val);
-      return 1;
+      break;
     case rsb:
+      if (does_borrow_occur(operand2Val, rnVal)) {
+        borrow_occurred = true;
+      }
       (state->registers)[instruction.Rd] = (operand2Val - rnVal);
-      return 1;
+      break;
     case add:
+      if (does_overflow_occur(operand2Val, rnVal)) {
+        overflow_occurred = true;
+      }
       (state->registers)[instruction.Rd] = (operand2Val + rnVal);
-      return 1;
+      break;
     case tst:
       //todo
       break;
@@ -190,7 +206,9 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       //todo
       break;
     case cmp:
-      //todo
+      if (does_borrow_occur(rnVal, operand2Val)) {
+        borrow_occurred = true;
+      }//todo duplication with sub, use fallthrough
       break;
     case orr:
       (state->registers)[instruction.Rd] = (rnVal | operand2Val);
@@ -199,28 +217,44 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       state->registers[instruction.Rd] = operand2Val;
       break;
   }
-  //set cpsr
-  if(instruction.setConditionCodes){
+  return setCPSR(state, instruction, borrow_occurred, overflow_occurred);
+}
+int setCPSR(struct EmulatorState *state,
+            struct DataProcessingInstruction instruction,
+            bool borrow,
+            bool overflow) {//set cpsr
+  if (instruction.setConditionCodes) {
     //set c bit
-    if(is_arithmetic(instruction.opcode)){
-
-    }else if(is_logical(instruction.opcode)){
-
-    }
-    else{
+    if (is_arithmetic((instruction).opcode)) {
+      if ((instruction).opcode == add) {
+        if (overflow)
+          state->CPSR |= CPSR_C;
+        else
+          state->CPSR &= ~CPSR_C;
+      } else {
+        if (borrow) {
+          state->CPSR &= ~CPSR_C;
+        } else {
+          state->CPSR |= CPSR_C;
+        }
+      }
+    } else if (is_logical((instruction).opcode)) {
+      //todo
+    } else {
       assert(false);
     }
     //set z bit
-    if(state->registers[instruction.Rd] == 0){
+    if (state->registers[(instruction).Rd] == 0) {
       state->CPSR |= CPSR_Z;
     }
     //set n bit
-    if(state->registers[instruction.Rd] | CPSR_N){// CPSR_N is the 31st bit mask
+    if (state->registers[(instruction).Rd] | CPSR_N) {// CPSR_N is the 31st bit mask
       state->CPSR |= CPSR_N;
-    }else{
+    } else {
       state->CPSR &= ~CPSR_N;
     }
   }
+  return 1;
 }
 
 int execute_instruction_multiply(struct EmulatorState *state,
