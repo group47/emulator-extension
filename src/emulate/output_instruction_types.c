@@ -3,7 +3,7 @@
 //
 
 #ifdef INSTRUCTION_TYPES_TEST
-
+#undef USE_EMULATE_MAIN
 #include <assert.h>
 #include <stdio.h>
 #include <stdint-gcc.h>
@@ -34,9 +34,10 @@ int main(int argc, const char *argv[]) {
   size_t amountRead = sizeof(byte) * read(fileDescriptor,rawData,sizeof(int32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
   assert(amountRead % sizeof(int32_t) == 0);
   struct EmulatorState * state =  malloc(sizeof(struct EmulatorState));
+  rawData[amountRead / sizeof(int32_t)] = 0;
   emulate(state,
           rawData,
-          (unsigned int) (amountRead / sizeof(int32_t)));
+          (unsigned int) (amountRead / sizeof(int32_t)) + 1);
   close(fileDescriptor);
   free(rawData);
   free(state);

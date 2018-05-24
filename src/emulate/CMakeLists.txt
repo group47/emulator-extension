@@ -14,5 +14,5 @@ set_target_properties(emulate_main
 
 add_executable(output_instruction_types emulate_main.c emulate_main.h registers.cpp registers.h instructions.c instructions.h util.c util.h output_instruction_types.c output_instruction_types.h)
 set_target_properties(output_instruction_types
-        PROPERTIES COMPILE_FLAGS "-DUSE_EMULATE_MAIN")
+        PROPERTIES COMPILE_FLAGS "-DINSTRUCTION_TYPES_TEST")
 #add_definitions("-DINSTRUCTION_TYPES_TEST")

@@ -10,7 +10,7 @@
 #include "util.h"
 
 enum InstructionType {
-  DATA_PROCESSING, MULTIPLY, SINGLE_DATA_TRANSFER, BRANCH_INSTRUCTION
+  DATA_PROCESSING, MULTIPLY, SINGLE_DATA_TRANSFER, BRANCH_INSTRUCTION,TERMINATE
 };
 
 
@@ -65,6 +65,10 @@ struct BranchInstruction {
   uint8_t cond:4;
 }__attribute__((packed));
 
+struct TerminateInstruction{
+  u_int32_t filler : 32;
+};
+
 struct Instruction {
   enum InstructionType type;
   union {
@@ -72,6 +76,7 @@ struct Instruction {
     struct MultiplyInstruction multiplyInstruction;
     struct SingleDataTransferInstruction singleDataTransferInstruction;
     struct BranchInstruction branchInstruction;
+    struct TerminateInstruction terminateInstruction;
   };
 
 };

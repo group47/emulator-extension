@@ -2,12 +2,7 @@
 #include <stdint-gcc.h>
 #include <assert.h>
 #include <stdio.h>
-#include <assert.h>
-#include <stdio.h>
-#include <stdint-gcc.h>
 #include <stdlib.h>
-#include <zconf.h>
-#include <fcntl.h>
 #include <string.h>
 #include "emulate_main.h"
 #include "instructions.h"
@@ -17,14 +12,22 @@ void emulateImpl(struct EmulatorState *state,
                  struct Instruction instructions[],
                  unsigned int instructions_l);
 
-int execute_instruction_data_processing(struct EmulatorState* state, struct DataProcessingInstruction instruction) ;
-int execute_instruction_multiply(struct EmulatorState* state, struct MultiplyInstruction instruction);
-int execute_instruction_single_data_transfer(struct EmulatorState* state, struct SingleDataTransferInstruction instruction);
-int execute_instruction(struct EmulatorState* state, struct Instruction instruction);
-void print_registers(struct EmulatorState* state);
+int execute_instruction_data_processing(struct EmulatorState *state,
+                                        struct DataProcessingInstruction instruction);
+int execute_instruction_multiply(struct EmulatorState *state,
+                                 struct MultiplyInstruction instruction);
+int execute_instruction_single_data_transfer(struct EmulatorState *state,
+                                             struct SingleDataTransferInstruction instruction);
+int execute_instruction(struct EmulatorState *state,
+                        struct Instruction instruction);
+void print_registers(struct EmulatorState *state);
+void load_program_into_ram(struct EmulatorState *pState,
+                           int32_t *pInt,
+                           unsigned int l);
 void emulate(struct EmulatorState *state,
              int32_t *instructions,
              unsigned int instructions_l) {
+  load_program_into_ram(state,instructions,instructions_l);
   struct Instruction instructionsWithType[instructions_l];
   for (int i = 0; i < instructions_l; ++i) {
     const struct BranchInstruction branchInstruction =
@@ -35,8 +38,14 @@ void emulate(struct EmulatorState *state,
         *((const struct SingleDataTransferInstruction *) (&(instructions[i])));
     const struct DataProcessingInstruction dataProcessingInstruction =
         *((const struct DataProcessingInstruction *) (&(instructions[i])));
+    const struct TerminateInstruction terminateInstruction =
+        *((const struct TerminateInstruction *) (&(instructions[i])));
     //todo magic constants
-    if (branchInstruction.filler1 == 0b0
+        if(instructions[i] == 0){
+            instructionsWithType[i].terminateInstruction = terminateInstruction;
+            instructionsWithType[i].type = TERMINATE;
+        }
+    else if (branchInstruction.filler1 == 0b0
         && branchInstruction.filler2 == 0b101) {
       instructionsWithType[i].branchInstruction = branchInstruction;
       instructionsWithType[i].type = BRANCH_INSTRUCTION;
@@ -58,6 +67,12 @@ void emulate(struct EmulatorState *state,
   }
   emulateImpl(state, instructionsWithType, instructions_l);
 }
+void load_program_into_ram(struct EmulatorState *pState,
+int32_t *instructs,
+unsigned int l) {
+  memcpy(pState->memory,instructs,l*sizeof(int32_t));
+
+}
 
 void emulateImpl(struct EmulatorState *state,
                  struct Instruction instructions[],
@@ -66,7 +81,7 @@ void emulateImpl(struct EmulatorState *state,
 
   const char *instructionTypeNames[] =
       {"DATA_PROCESSING", "MULTIPLY", "SINGLE_DATA_TRANSFER",
-       "BRANCH_INSTRUCTION"};
+       "BRANCH_INSTRUCTION","TERMINATE"};
   for (int i = 0; i < instructions_l; i++) {
     printf("Instruction #%d, Instruction type:%s\n",
            i,
@@ -75,68 +90,89 @@ void emulateImpl(struct EmulatorState *state,
 
 #endif
   state->PC = 0;
-  execute_instruction(state,instructions[0]);
+  struct Instruction *fetched = NULL;
+  struct Instruction *decoded = NULL;
+  while (true) {
+    assert(state->PC % 4 == 0);
+    if (fetched != NULL)
+      if (execute_instruction(state, *fetched) == -1) {
+        break;
+      }
+    fetched = decoded;
+    if ((state->PC) / 4 < instructions_l)
+      decoded = &(instructions[(state->PC) / 4]);
+    else
+      decoded = NULL;
+    (state->PC) += 4;
+  }
+
   print_registers(state);
-//  while (true){
-//
-//    (state->PC)++;
-//
-//  }
+
 }
 
-int execute_instruction(struct EmulatorState* state, struct Instruction instruction){
-  switch (instruction.type){
+int execute_instruction(struct EmulatorState *state,
+                        struct Instruction instruction) {
+  switch (instruction.type) {
     case DATA_PROCESSING:
-      return execute_instruction_data_processing(state,instruction.dataProcessingInstruction);
+      return execute_instruction_data_processing(state,
+                                                 instruction.dataProcessingInstruction);
     case MULTIPLY:
-      return execute_instruction_multiply(state,instruction.multiplyInstruction);
+      return execute_instruction_multiply(state,
+                                          instruction.multiplyInstruction);
     case SINGLE_DATA_TRANSFER:
-      return execute_instruction_single_data_transfer(state,instruction.singleDataTransferInstruction);
-    case BRANCH_INSTRUCTION:break;
+      return execute_instruction_single_data_transfer(state,
+                                                      instruction.singleDataTransferInstruction);
+    case BRANCH_INSTRUCTION:
+      break;
+    case TERMINATE:
+      return -1;
   }
 }
 
-bool should_execute(struct  EmulatorState* state,uint8_t cond){
+bool should_execute(struct EmulatorState *state, uint8_t cond) {
   //todo switch
   const bool NequalsV =
       (bool) ((state->CPSR) & CPSR_N == (state->CPSR) & CPSR_V);
   const bool Zset = (bool) ((state->CPSR) & CPSR_Z);
-  if(cond == eqCond){
+  if (cond == eqCond) {
     //Z set
     return Zset;
-  }else if(cond == neCond){
+  } else if (cond == neCond) {
     //Z clear
     return !Zset;
-  }else if(cond == geCond){
+  } else if (cond == geCond) {
     return NequalsV;
-  }else if(cond == ltCond){
+  } else if (cond == ltCond) {
     return (bool) ((state->CPSR) & CPSR_N != (state->CPSR) & CPSR_V);
-  }else if(cond ==gtCond){
+  } else if (cond == gtCond) {
     return (!Zset) && NequalsV;
-  }else if(cond == leCond){
+  } else if (cond == leCond) {
     return Zset || (!NequalsV);
-  }else if(cond == alCond){
+  } else if (cond == alCond) {
     return true;
-  } else{
+  } else {
     assert(false);
   }
 }
 
-int execute_instruction_data_processing(struct EmulatorState* state, struct DataProcessingInstruction instruction) {
+int execute_instruction_data_processing(struct EmulatorState *state,
+                                        struct DataProcessingInstruction instruction) {
   //todo duplication
-  if(!should_execute(state,instruction.cond)){
+  if (!should_execute(state, instruction.cond)) {
     return 0;
   }
-  const int32_t rnVal = (state->registers)[instruction.Rn];
-  int32_t operand2Val;
-  if(instruction.immediateOperand){
+  const uint32_t rnVal = (state->registers)[instruction.Rn];
+  uint32_t operand2Val;
+  if (instruction.immediateOperand) {
     operand2Val = instruction.secondOperand;
-  } else{
-    operand2Val = (state->registers)[(instruction.secondOperand) << 8];//no way this works todo
+  } else {
+    operand2Val = (state->registers)[(instruction.secondOperand)
+        << 8];//no way this works todo
   }
-  switch (instruction.opcode){
+  switch (instruction.opcode) {
     case and:
-      (state->registers)[instruction.Rd] = (rnVal & operand2Val);//notsure if this should be bitwise or not. the spec isn't clear todo
+      (state->registers)[instruction.Rd] = (rnVal
+          & operand2Val);//not sure if this should be bitwise or not. the spec isn't clear todo
       return 1;
     case eor:
       (state->registers)[instruction.Rd] = (rnVal ^ operand2Val);
@@ -163,40 +199,47 @@ int execute_instruction_data_processing(struct EmulatorState* state, struct Data
       (state->registers)[instruction.Rd] = (rnVal | operand2Val);
       return 1;
     case mov:
-      //todo
+      state->registers[instruction.Rd] = operand2Val;
       break;
   }
   //todo set cpsr
 }
 
-int execute_instruction_multiply(struct EmulatorState* state, struct MultiplyInstruction instruction){
-  if(!should_execute(state,instruction.cond)){
+int execute_instruction_multiply(struct EmulatorState *state,
+                                 struct MultiplyInstruction instruction) {
+  if (!should_execute(state, instruction.cond)) {
     return 0;
   }
 }
 
-int execute_instruction_single_data_transfer(struct EmulatorState* state, struct SingleDataTransferInstruction instruction){
-  if(!should_execute(state,instruction.cond)){
+int execute_instruction_single_data_transfer(struct EmulatorState *state,
+                                             struct SingleDataTransferInstruction instruction) {
+  if (!should_execute(state, instruction.cond)) {
     return 0;
   }
 }
 
-int execute_instruction_branch(struct EmulatorState* state, struct BranchInstruction instruction){
-  if(!should_execute(state,instruction.cond)){
+int execute_instruction_branch(struct EmulatorState *state,
+                               struct BranchInstruction instruction) {
+  if (!should_execute(state, instruction.cond)) {
     return 0;
   }
 
 }
 
 
-void print_registers(struct EmulatorState* state){
+void print_registers(struct EmulatorState *state) {
   printf("Registers:\n");
   for (int i = 0; i < 13; ++i) {
-    printf("$%d:%d (%x)\n",i,state->registers[i],state->registers[i]);
+    printf("$%-3d:%11d (0x%08x)\n", i, state->registers[i], state->registers[i]);
   }
-  printf("PC  : %d (%x)\n");
-  printf("CPSR: %d (%x)\n");
-  //todo non-zero memory.
+  printf("PC  : %10d (0x%08x)\n", state->PC, state->PC);
+  printf("CPSR: %10d (0x%08x)\n", state->CPSR, state->CPSR);
+  for (int i = 0; i < MEMORY_SIZE/4; i++) {
+    if(state->memory[i] != 0){
+      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
+    }
+  }
 }
 
 #ifdef USE_EMULATE_MAIN
