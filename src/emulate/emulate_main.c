@@ -210,6 +210,17 @@ int execute_instruction_multiply(struct EmulatorState *state,
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
+
+  instructions.Rd = instructions.Rm * instructions.Rs;
+  
+  if (instructions.accumulate) {
+      instructions.Rd += instructions.Rn;
+  }
+
+  if (instructions.setConditionCodes) {
+      //todo set cpsr
+  }
+
 }
 
 int execute_instruction_single_data_transfer(struct EmulatorState *state,
