@@ -129,7 +129,6 @@ int execute_instruction(struct EmulatorState *state,
 }
 
 bool should_execute(struct EmulatorState *state, enum Cond cond) {
-  //todo switch
   const bool NequalsV =
       (bool) ((state->CPSR) & CPSR_N == (state->CPSR) & CPSR_V);
   const bool Zset = (bool) ((state->CPSR) & CPSR_Z);
