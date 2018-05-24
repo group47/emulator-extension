@@ -6,7 +6,6 @@
 #define EMULATE_INSTRUCTIONS_H
 
 #include <stdbool.h>
-#include <elf.h>
 
 enum InstructionType {
   DATA_PROCESSING,
