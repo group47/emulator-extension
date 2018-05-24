@@ -72,6 +72,7 @@ void load_program_into_ram(struct EmulatorState *pState,
 
 }
 
+//The instruction parameter needs to be removed since the instructions need to be in main memory
 void emulateImpl(struct EmulatorState *state,
                  struct Instruction instructions[],
                  unsigned int instructions_l) {

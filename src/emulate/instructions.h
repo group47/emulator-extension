@@ -73,6 +73,8 @@ struct TerminateInstruction {
   uint32_t filler : 32;
 };
 
+// Can't have the InstructionType in the struct bcuase the structs need to be
+// in main memory with a size of 32 bits. Also need to be interpreted from main memory.
 struct Instruction {
   enum InstructionType type;
   union {
