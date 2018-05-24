@@ -199,7 +199,28 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       state->registers[instruction.Rd] = operand2Val;
       break;
   }
-  //todo set cpsr
+  //set cpsr
+  if(instruction.setConditionCodes){
+    //set c bit
+    if(is_arithmetic(instruction.opcode)){
+
+    }else if(is_logical(instruction.opcode)){
+
+    }
+    else{
+      assert(false);
+    }
+    //set z bit
+    if(state->registers[instruction.Rd] == 0){
+      state->CPSR |= CPSR_Z;
+    }
+    //set n bit
+    if(state->registers[instruction.Rd] | CPSR_N){// CPSR_N is the 31st bit mask
+      state->CPSR |= CPSR_N;
+    }else{
+      state->CPSR &= ~CPSR_N;
+    }
+  }
 }
 
 int execute_instruction_multiply(struct EmulatorState *state,

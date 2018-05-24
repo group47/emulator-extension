@@ -7,6 +7,11 @@
 
 #include <stdbool.h>
 
+bool is_logical(enum OpCode opCode);
+bool is_arithmetic(enum OpCode opCode);
+
+
+
 enum InstructionType {
   DATA_PROCESSING,
   MULTIPLY,
