@@ -7,7 +7,6 @@
 
 #include <stdbool.h>
 #include <elf.h>
-#include "util.h"
 
 enum InstructionType {
   DATA_PROCESSING, MULTIPLY, SINGLE_DATA_TRANSFER, BRANCH_INSTRUCTION,TERMINATE
