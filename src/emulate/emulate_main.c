@@ -7,9 +7,6 @@
 #include "util.h"
 #include "instructions.h"
 
-//todo messy, cleanup:
-#define INSTRUCTION_TYPES_TEST
-
 
 void emulateImpl(struct EmulatorState* state,struct Instruction instructions[],unsigned int instructions_l);
 

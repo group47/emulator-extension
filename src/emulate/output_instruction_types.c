@@ -2,6 +2,8 @@
 // Created by francis on 5/24/18.
 //
 
+#ifdef INSTRUCTION_TYPES_TEST
+
 #include <assert.h>
 #include <stdio.h>
 #include <stdint-gcc.h>
@@ -34,3 +36,5 @@ int main(int argc , const char *argv[]){
     emulate(malloc(sizeof(struct EmulatorState)),rawData,amountRead/ sizeof(int32_t));
     close(fileDescriptor);
 }
+
+#endif
