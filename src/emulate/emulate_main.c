@@ -43,6 +43,8 @@ uint32_t extract_rotate(uint16_t secondOperand);
 
 uint32_t extract_shift(uint16_t secondOperand);
 
+int execute_instruction_branch(struct EmulatorState *state,
+                               const struct BranchInstruction instruction);
 struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction) {
   struct Instruction res;
   const struct BranchInstruction branchInstruction = rawInstruction.branchInstruction;
@@ -101,10 +103,17 @@ void emulateImpl(struct EmulatorState *state) {
   bool decode_valid = false;
   while (true) {
     assert(state->PC % 4 == 0);
-    if (fetched_valid)
-      if (execute_instruction(state, rawInstructionToInstruction(fetched)) == -1) {
+    if (fetched_valid) {
+      const int executionResult =
+          execute_instruction(state, rawInstructionToInstruction(fetched));
+      if(executionResult == -2){//todo magic constants
+        fetched_valid = false;
+        decode_valid = false;
+      }
+      if (executionResult == -1) {
         break;
       }
+    }
     fetched = decoded;
     fetched_valid = decode_valid;
     if (state->PC / 4 < MEMORY_SIZE) {
@@ -133,7 +142,7 @@ int execute_instruction(struct EmulatorState *state,
       return execute_instruction_single_data_transfer(state,
                                                       instruction.rawInstruction.singleDataTransferInstruction);
     case BRANCH_INSTRUCTION:
-      break;
+      return execute_instruction_branch(state, instruction.rawInstruction.branchInstruction);
     case TERMINATE:
       return -1;
   }
@@ -190,10 +199,10 @@ uint32_t getOperand2Val(struct EmulatorState *state,
           res = ((uint32_t) immediateFalse.Rm) >> immediateFalse.shift;
           break;
         case asr:
-          res = (int32_t)(((int32_t) immediateFalse.Rm) >> immediateFalse.shift);
+          res = (int32_t) (((int32_t) immediateFalse.Rm) >> immediateFalse.shift);
           break;
         case ror:
-          res = __rord((uint32_t)immediateFalse.Rm,immediateFalse.shift);
+          res = __rord((uint32_t) immediateFalse.Rm, immediateFalse.shift);
           break;
       }
       res = state->registers[res];
@@ -215,7 +224,8 @@ int execute_instruction_data_processing(struct EmulatorState *state,
     return 0;
   }
   const uint32_t rnVal = (state->registers)[instruction.Rn];
-  uint32_t operand2Val = getOperand2Val(state,instruction.secondOperand,instruction.immediateOperand,0);
+  uint32_t operand2Val =
+      getOperand2Val(state, instruction.secondOperand, instruction.immediateOperand, 0);
   // for distinguishing between operator thing
   // Maybe we could use a utility function
   // The operation on them is the same for single data transfer as well
@@ -223,7 +233,7 @@ int execute_instruction_data_processing(struct EmulatorState *state,
   switch (instruction.opcode) {
     case and:
       (state->registers)[instruction.Rd] = (rnVal
-            & operand2Val);
+          & operand2Val);
       break;
     case eor:
       (state->registers)[instruction.Rd] = (rnVal ^ operand2Val);
@@ -287,6 +297,7 @@ int setCPSR(struct EmulatorState *state,
       }
     } else if (is_logical((instruction).opcode)) {
       //todo
+      assert(false);
     } else {
       assert(false);
     }
@@ -359,7 +370,7 @@ uint32_t compute_secondOperand(struct EmulatorState *state,
         operand2Val = ((int) operand2Val) >> shiftAmount;
         break;
       case ror:
-        // spec is uncleared about the rotation amount
+        // spec is uncleared about the rotation amount todo
         break;
     }
   }
@@ -434,7 +445,9 @@ int execute_instruction_branch(struct EmulatorState *state,
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
-  //todo
+  const int32_t offset = instruction.offset * 2;
+  state->PC += offset;
+  return -2;
 }
 
 
