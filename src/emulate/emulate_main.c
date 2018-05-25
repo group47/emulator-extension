@@ -12,14 +12,14 @@
 #include "cpsr_overflow_detection.h"
 
 int execute_instruction_data_processing(struct EmulatorState *,
-                                        struct DataProcessingInstruction);
+                                        const struct DataProcessingInstruction);
 int execute_instruction_multiply(struct EmulatorState *,
-                                 struct MultiplyInstruction);
+                                 const struct MultiplyInstruction);
 int execute_instruction_single_data_transfer(struct EmulatorState *,
-                                             struct SingleDataTransferInstruction);
-int execute_instruction(struct EmulatorState *, struct Instruction);
+                                             const struct SingleDataTransferInstruction);
+int execute_instruction(struct EmulatorState *, const struct Instruction);
 void print_registers(struct EmulatorState *);
-void load_program_into_ram(struct EmulatorState *, uint32_t *, unsigned int);
+void load_program_into_ram(struct EmulatorState *, const uint32_t *, unsigned int);
 
 void emulateImpl(struct EmulatorState *state);
 int
@@ -72,7 +72,7 @@ struct Instruction rawInstructionToInstruction(union RawInstruction rawInstructi
 }
 
 void load_program_into_ram(struct EmulatorState *pState,
-                           uint32_t *instructs,
+                           const uint32_t *instructs,
                            unsigned int l) {
   memcpy(pState->memory, instructs, l * sizeof(uint32_t));
 
@@ -119,7 +119,7 @@ void emulateImpl(struct EmulatorState *state) {
 }
 
 int execute_instruction(struct EmulatorState *state,
-                        struct Instruction instruction) {
+                        const struct Instruction instruction) {
   switch (instruction.type) {
     case DATA_PROCESSING:
       return execute_instruction_data_processing(state,
@@ -137,7 +137,7 @@ int execute_instruction(struct EmulatorState *state,
   }
 }
 
-bool should_execute(struct EmulatorState *state, enum Cond cond) {
+bool should_execute(const struct EmulatorState *state, const enum Cond cond) {
   const bool NequalsV =
       (bool) (((state->CPSR) & CPSR_N) == ((state->CPSR) & CPSR_V));
   const bool Zset = (bool) ((state->CPSR) & CPSR_Z);
@@ -162,7 +162,7 @@ bool should_execute(struct EmulatorState *state, enum Cond cond) {
 }
 
 int execute_instruction_data_processing(struct EmulatorState *state,
-                                        struct DataProcessingInstruction instruction) {
+                                        const struct DataProcessingInstruction instruction) {
   //todo duplication
 
   bool overflow_occurred = false;
@@ -241,9 +241,9 @@ int execute_instruction_data_processing(struct EmulatorState *state,
   return setCPSR(state, instruction, borrow_occurred, overflow_occurred);
 }
 int setCPSR(struct EmulatorState *state,
-            struct DataProcessingInstruction instruction,
-            bool borrow,
-            bool overflow) {//set cpsr
+            const struct DataProcessingInstruction instruction,
+            const bool borrow,
+            const bool overflow) {//set cpsr
   if (instruction.setConditionCodes) {
     //set c bit
     if (is_arithmetic((instruction).opcode)) {
@@ -287,7 +287,7 @@ uint32_t extract_shift(uint16_t secondOperand) {
 }
 
 uint32_t compute_secondOperand(struct EmulatorState *state,
-                               uint32_t secondOperand, 
+                               uint32_t secondOperand,
                                bool immediateFlag, 
                                bool immediateVal) {
   // The condition for data processing is opposite with the
@@ -389,7 +389,7 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
 
 
 int execute_instruction_branch(struct EmulatorState *state,
-                               struct BranchInstruction instruction) {
+                               const struct BranchInstruction instruction) {
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
