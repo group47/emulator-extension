@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
-#include <zconf.h>
+#include "unistd.h"
 #include "emulate_main.h"
 #include "instructions.h"
 #include "cpsr_overflow_detection.h"
