@@ -33,10 +33,10 @@ enum Cond {
 
 // added by rory
 enum ShiftType {
-  lsl = 0b00;
-  lsr = 0b01;
-  asr = 0b10;
-  ror = 0b11;
+  lsl = 0b00,
+  lsr = 0b01,
+  asr = 0b10,
+  ror = 0b11
 };
 
 
