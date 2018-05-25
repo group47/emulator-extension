@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
+#include <x86intrin.h>
 #include "unistd.h"
 #include "emulate_main.h"
 #include "instructions.h"
@@ -30,7 +31,6 @@ void emulate(struct EmulatorState *state,
   load_program_into_ram(state, instructions, instructions_l);
   emulateImpl(state);
 }
-
 
 // Newly added declaration for function 
 
@@ -179,10 +179,21 @@ int execute_instruction_data_processing(struct EmulatorState *state,
   const uint32_t rnVal = (state->registers)[instruction.Rn];
   uint32_t operand2Val;
   if (instruction.immediateOperand) {
-    operand2Val = instruction.secondOperand;
+    uint16_t secondOperand = instruction.secondOperand;
+    struct ImmediateTrue immediateTrue = *(struct ImmediateTrue *)&secondOperand;
+    //rotate stack overflow community wiki:
+      //https://stackoverflow.com/questions/776508/best-practices-for-circular-shift-rotate-operations-in-c
+    uint32_t  imm = immediateTrue.Imm;
+    operand2Val = __rord(imm,2*immediateTrue.rotate);
   } else {
-    operand2Val = (state->registers)[(instruction.secondOperand)
-        << 8];//no way this works todo
+    uint16_t secondOperand = instruction.secondOperand;
+    struct ImmediateFalse immediateFalse = *(struct ImmediateFalse *)&secondOperand;
+    if(immediateFalse.shift_by_register){
+      //todo
+      assert(false);//not implemented
+    } else{
+      operand2Val = immediateFalse.Rm << immediateFalse.shift;
+    }
   }
   // for distinguishing between operator thing
   // Maybe we could use a utility function
