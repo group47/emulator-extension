@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
+#include <x86intrin.h>
 #include "unistd.h"
 #include "emulate_main.h"
 #include "instructions.h"
@@ -168,14 +169,15 @@ int execute_instruction_data_processing(struct EmulatorState *state,
     uint16_t secondOperand = instruction.secondOperand;
     struct ImmediateTrue immediateTrue = *(struct ImmediateTrue *)&secondOperand;
     //rotate stack overflow community wiki:
-    //https://stackoverflow.com/questions/776508/best-practices-for-circular-shift-rotate-operations-in-c
+      //https://stackoverflow.com/questions/776508/best-practices-for-circular-shift-rotate-operations-in-c
     uint32_t  imm = immediateTrue.Imm;
-    operand2Val = imm << 2*immediateTrue.rotate | imm >> 2*immediateTrue.rotate;
+    operand2Val = __rord(imm,2*immediateTrue.rotate);
   } else {
     uint16_t secondOperand = instruction.secondOperand;
     struct ImmediateFalse immediateFalse = *(struct ImmediateFalse *)&secondOperand;
     if(immediateFalse.shift_by_register){
       //todo
+      assert(false);//not implemented
     } else{
       operand2Val = immediateFalse.Rm << immediateFalse.shift;
     }
