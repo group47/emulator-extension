@@ -30,10 +30,6 @@ void emulate(struct EmulatorState *state,
   emulateImpl(state);
 }
 
-<<<<<<< HEAD
-struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction) {
-=======
-
 // Newly added declaration for function 
 
 uint32_t compute_secondOperand(struct EmulatorState *state,
@@ -46,7 +42,6 @@ uint32_t extract_rotate(uint16_t secondOperand);
 uint32_t extract_shift(uint16_t secondOperand);
 
 struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction){
->>>>>>> rory2
   struct Instruction res;
   const struct BranchInstruction branchInstruction =
       *((const struct BranchInstruction *) (&(rawInstruction)));

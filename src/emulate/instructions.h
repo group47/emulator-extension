@@ -48,13 +48,6 @@ struct ImmediateTrue{
 }__attribute__((packed));
 
 
-enum ShiftType{
-  lsl = 0b00,
-  lsr = 0b01,
-  asr = 0b10,
-  ror = 0b11
-};
-
 struct ImmediateFalse{
   uint8_t Rm : 4;
   bool shift_by_register: 1;
