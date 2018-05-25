@@ -157,7 +157,7 @@ int execute_instruction_data_processing(struct EmulatorState *state,
   //todo duplication
 
   bool overflow_occurred = false;
-  bool borrow_occurred = true;
+  bool borrow_occurred = false;
 
   if (!should_execute(state, instruction.cond)) {
     return 0;
@@ -165,9 +165,20 @@ int execute_instruction_data_processing(struct EmulatorState *state,
   const uint32_t rnVal = (state->registers)[instruction.Rn];
   uint32_t operand2Val;
   if (instruction.immediateOperand) {
-    operand2Val = instruction.secondOperand;
+    uint16_t secondOperand = instruction.secondOperand;
+    struct ImmediateTrue immediateTrue = *(struct ImmediateTrue *)&secondOperand;
+    //rotate stack overflow community wiki:
+    //https://stackoverflow.com/questions/776508/best-practices-for-circular-shift-rotate-operations-in-c
+    uint32_t  imm = immediateTrue.Imm;
+    operand2Val = imm << 2*immediateTrue.rotate | imm >> 2*immediateTrue.rotate;
   } else {
-    operand2Val = (state->registers)[instruction.secondOperand];//no way this works todo
+    uint16_t secondOperand = instruction.secondOperand;
+    struct ImmediateFalse immediateFalse = *(struct ImmediateFalse *)&secondOperand;
+    if(immediateFalse.shift_by_register){
+      //todo
+    } else{
+      operand2Val = immediateFalse.Rm << immediateFalse.shift;
+    }
   }
   switch (instruction.opcode) {
     case and:
@@ -310,6 +321,8 @@ int main(int argc, char **argv) {
             "the end of the world has come, or you entered the wrong filename\n");
     return -100000;
   }
+
+  assert(sizeof(struct DataProcessingInstruction) == sizeof(uint32_t));
 
   uint32_t *rawData =
       (uint32_t *) malloc(sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));

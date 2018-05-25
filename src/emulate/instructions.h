@@ -31,6 +31,27 @@ enum Cond {
 };
 
 //todo magic constants:
+
+struct ImmediateTrue{
+  uint8_t Imm: 8;
+  uint8_t rotate: 4;
+}__attribute__((packed));
+
+
+enum ShiftType{
+  lsl = 0b00,
+  lsr = 0b01,
+  asr = 0b10,
+  ror = 0b11
+};
+
+struct ImmediateFalse{
+  uint8_t Rm : 4;
+  bool shift_by_register: 1;
+  uint8_t shift_type: 2;
+  uint8_t shift : 7;
+}__attribute__((packed));
+
 struct DataProcessingInstruction {
   uint16_t secondOperand : 12;
   uint8_t Rd:4;
