@@ -160,7 +160,7 @@ bool should_execute(const struct EmulatorState *state, const enum Cond cond) {
     case ge:
       return NequalsV;
     case lt:
-      return (bool) (((state->CPSR) & CPSR_N) != ((state->CPSR) & CPSR_V));
+      return !NequalsV;
     case gt:
       return (!Zset) && NequalsV;
     case le:
@@ -287,6 +287,7 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       //todo
       break;
     case cmp:
+      computation_res = rnVal - operand2Val;
       if (does_borrow_occur(rnVal, operand2Val)) {
         borrow_occurred = true;
       }//todo duplication with sub, use fallthrough
@@ -317,10 +318,11 @@ int setCPSR(struct EmulatorState *state,
           state->CPSR &= ~CPSR_C;
       } else {
         if (borrow) {
-          state->CPSR |= CPSR_C;
-        } else {
           state->CPSR &= ~CPSR_C;
+        } else {
+          state->CPSR |= CPSR_C;
         }
+       
       }
     } else if (is_logical(instruction.opcode)) {
       state->CPSR |= shiftCarryOut;
@@ -328,16 +330,11 @@ int setCPSR(struct EmulatorState *state,
       assert(false);
     }
     //set z bit
-    /*
-    if (computation_res == 0 || borrow) {
-      state->CPSR |= CPSR_Z;
-    }
-    */
     if (computation_res == 0) {
         state->CPSR |= CPSR_Z;
     }
     //set n bit
-    if (computation_res | CPSR_N) {// CPSR_N is the 31st bit mask
+    if (computation_res & CPSR_N) {// CPSR_N is the 31st bit mask
       state->CPSR |= CPSR_N;
     } else {
       state->CPSR &= ~CPSR_N;

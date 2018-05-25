@@ -6,7 +6,6 @@
 #include <elf.h>
 #include "cpsr_overflow_detection.h"
 
-
 bool does_overflow_occur(uint32_t a, uint32_t b) {
   uint64_t overflowable_res = ((uint64_t)a) + ((uint64_t)b);
   if (overflowable_res < a) {
@@ -19,6 +18,5 @@ bool does_overflow_occur(uint32_t a, uint32_t b) {
 
 
 bool does_borrow_occur(uint32_t a, uint32_t b) {
-  const int64_t res = a - b;
-  return res < 0;
+  return a - b;
 }
