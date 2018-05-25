@@ -38,7 +38,7 @@ struct DataProcessingInstruction {
   bool setConditionCodes: 1;
   enum OpCode opcode : 4;
   bool immediateOperand: 1;
-  uint8_t filler: 2;//The value of the filler should be 0b000
+  uint8_t filler: 2;//The value of the filler should be 0b00
   enum Cond cond : 4;
 }__attribute__((packed));//the attribute is required for the compiler to properly place data types
 

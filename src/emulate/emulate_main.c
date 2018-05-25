@@ -19,10 +19,8 @@ int execute_instruction_single_data_transfer(struct EmulatorState *,
 int execute_instruction(struct EmulatorState *, struct Instruction);
 void print_registers(struct EmulatorState *);
 void load_program_into_ram(struct EmulatorState *, uint32_t *, unsigned int);
-
 void emulateImpl(struct EmulatorState *state);
-int
-setCPSR(struct EmulatorState *state, struct DataProcessingInstruction instruction, bool b, bool b1);
+int setCPSR(struct EmulatorState *, struct DataProcessingInstruction, bool, bool);
 
 void emulate(struct EmulatorState *state,
              uint32_t *instructions,
@@ -31,7 +29,7 @@ void emulate(struct EmulatorState *state,
   emulateImpl(state);
 }
 
-struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction){
+struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction) {
   struct Instruction res;
   const struct BranchInstruction branchInstruction =
       *((const struct BranchInstruction *) (&(rawInstruction)));
@@ -44,7 +42,7 @@ struct Instruction rawInstructionToInstruction(union RawInstruction rawInstructi
   const struct TerminateInstruction terminateInstruction =
       *((const struct TerminateInstruction *) (&(rawInstruction)));
   const uint32_t asInt = *((uint32_t *) (&(rawInstruction)));
-  memcpy(&(res.rawInstruction),&(rawInstruction), sizeof(union RawInstruction));
+  memcpy(&(res.rawInstruction), &(rawInstruction), sizeof(union RawInstruction));
   //todo magic constants
   if (asInt == 0) {
     res.type = TERMINATE;
@@ -56,12 +54,12 @@ struct Instruction rawInstructionToInstruction(union RawInstruction rawInstructi
   } else if (multiplyInstruction.filler == 0b000000
       && multiplyInstruction.filler2 == 0b1001) {
     res.type = MULTIPLY;
-  } else if (dataProcessingInstruction.filler == 0b000) {
+  } else if (dataProcessingInstruction.filler == 0b00) {
     res.type = DATA_PROCESSING;
   } else {
     assert(false);
   }
-  return  res;
+  return res;
 }
 
 void load_program_into_ram(struct EmulatorState *pState,
@@ -98,10 +96,10 @@ void emulateImpl(struct EmulatorState *state) {
       }
     fetched = decoded;
     fetched_valid = decode_valid;
-    if (state->PC/4 < MEMORY_SIZE) {
-      decoded = *(union RawInstruction *)&((state->memory)[(state->PC)/4]);
+    if (state->PC / 4 < MEMORY_SIZE) {
+      decoded = *(union RawInstruction *) &((state->memory)[(state->PC) / 4]);
       decode_valid = true;
-    }else{
+    } else {
       assert(false);
     }
     (state->PC) += 4;
@@ -169,8 +167,7 @@ int execute_instruction_data_processing(struct EmulatorState *state,
   if (instruction.immediateOperand) {
     operand2Val = instruction.secondOperand;
   } else {
-    operand2Val = (state->registers)[(instruction.secondOperand)
-        << 8];//no way this works todo
+    operand2Val = (state->registers)[instruction.secondOperand];//no way this works todo
   }
   switch (instruction.opcode) {
     case and:
