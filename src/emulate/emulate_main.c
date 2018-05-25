@@ -4,79 +4,75 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <fcntl.h>
+#include "unistd.h"
 #include "emulate_main.h"
 #include "instructions.h"
+#include "cpsr_overflow_detection.h"
 
+int execute_instruction_data_processing(struct EmulatorState *,
+                                        struct DataProcessingInstruction);
+int execute_instruction_multiply(struct EmulatorState *,
+                                 struct MultiplyInstruction);
+int execute_instruction_single_data_transfer(struct EmulatorState *,
+                                             struct SingleDataTransferInstruction);
+int execute_instruction(struct EmulatorState *, struct Instruction);
+void print_registers(struct EmulatorState *);
+void load_program_into_ram(struct EmulatorState *, uint32_t *, unsigned int);
 
-void emulateImpl(struct EmulatorState *state,
-                 struct Instruction instructions[],
-                 unsigned int instructions_l);
+void emulateImpl(struct EmulatorState *state);
+int
+setCPSR(struct EmulatorState *state, struct DataProcessingInstruction instruction, bool b, bool b1);
 
-int execute_instruction_data_processing(struct EmulatorState *state,
-                                        struct DataProcessingInstruction instruction);
-int execute_instruction_multiply(struct EmulatorState *state,
-                                 struct MultiplyInstruction instruction);
-int execute_instruction_single_data_transfer(struct EmulatorState *state,
-                                             struct SingleDataTransferInstruction instruction);
-int execute_instruction(struct EmulatorState *state,
-                        struct Instruction instruction);
-void print_registers(struct EmulatorState *state);
-void load_program_into_ram(struct EmulatorState *pState,
-                           uint32_t *instructs,
-                           unsigned int l);
 void emulate(struct EmulatorState *state,
              uint32_t *instructions,
              unsigned int instructions_l) {
-  load_program_into_ram(state,instructions,instructions_l);
-  struct Instruction instructionsWithType[instructions_l];
-  for (int i = 0; i < instructions_l; ++i) {
-    const struct BranchInstruction branchInstruction =
-        *((const struct BranchInstruction *) (&(instructions[i])));
-    const struct MultiplyInstruction multiplyInstruction =
-        *((const struct MultiplyInstruction *) (&(instructions[i])));
-    const struct SingleDataTransferInstruction singleDataTransferInstruction =
-        *((const struct SingleDataTransferInstruction *) (&(instructions[i])));
-    const struct DataProcessingInstruction dataProcessingInstruction =
-        *((const struct DataProcessingInstruction *) (&(instructions[i])));
-    const struct TerminateInstruction terminateInstruction =
-        *((const struct TerminateInstruction *) (&(instructions[i])));
-    //todo magic constants
-        if(instructions[i] == 0){
-            instructionsWithType[i].terminateInstruction = terminateInstruction;
-            instructionsWithType[i].type = TERMINATE;
-        }
-    else if (branchInstruction.filler1 == 0b0
-        && branchInstruction.filler2 == 0b101) {
-      instructionsWithType[i].branchInstruction = branchInstruction;
-      instructionsWithType[i].type = BRANCH_INSTRUCTION;
-    } else if (singleDataTransferInstruction.filler == 0b01) {
-      instructionsWithType[i].singleDataTransferInstruction =
-          singleDataTransferInstruction;
-      instructionsWithType[i].type = SINGLE_DATA_TRANSFER;
-    } else if (multiplyInstruction.filler == 0b000000
-        && multiplyInstruction.filler2 == 0b1001) {
-      instructionsWithType[i].multiplyInstruction = multiplyInstruction;
-      instructionsWithType[i].type = MULTIPLY;
-    } else if (dataProcessingInstruction.filler == 0b000) {
-      instructionsWithType[i].dataProcessingInstruction =
-          dataProcessingInstruction;
-      instructionsWithType[i].type = DATA_PROCESSING;
-    } else {
-      assert(false);
-    }
+  load_program_into_ram(state, instructions, instructions_l);
+  emulateImpl(state);
+}
+
+struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction){
+  struct Instruction res;
+  const struct BranchInstruction branchInstruction =
+      *((const struct BranchInstruction *) (&(rawInstruction)));
+  const struct MultiplyInstruction multiplyInstruction =
+      *((const struct MultiplyInstruction *) (&(rawInstruction)));
+  const struct SingleDataTransferInstruction singleDataTransferInstruction =
+      *((const struct SingleDataTransferInstruction *) (&(rawInstruction)));
+  const struct DataProcessingInstruction dataProcessingInstruction =
+      *((const struct DataProcessingInstruction *) (&(rawInstruction)));
+  const struct TerminateInstruction terminateInstruction =
+      *((const struct TerminateInstruction *) (&(rawInstruction)));
+  const uint32_t asInt = *((uint32_t *) (&(rawInstruction)));
+  memcpy(&(res.rawInstruction),&(rawInstruction), sizeof(union RawInstruction));
+  //todo magic constants
+  if (asInt == 0) {
+    res.type = TERMINATE;
+  } else if (branchInstruction.filler1 == 0b0
+      && branchInstruction.filler2 == 0b101) {
+    res.type = BRANCH_INSTRUCTION;
+  } else if (singleDataTransferInstruction.filler == 0b01) {
+    res.type = SINGLE_DATA_TRANSFER;
+  } else if (multiplyInstruction.filler == 0b000000
+      && multiplyInstruction.filler2 == 0b1001) {
+    res.type = MULTIPLY;
+  } else if (dataProcessingInstruction.filler == 0b000) {
+    res.type = DATA_PROCESSING;
+  } else {
+    assert(false);
   }
-  emulateImpl(state, instructionsWithType, instructions_l);
+  return  res;
 }
+
 void load_program_into_ram(struct EmulatorState *pState,
-uint32_t *instructs,
-unsigned int l) {
-  memcpy(pState->memory,instructs,l*sizeof(uint32_t));
+                           uint32_t *instructs,
+                           unsigned int l) {
+  memcpy(pState->memory, instructs, l * sizeof(uint32_t));
 
 }
 
-void emulateImpl(struct EmulatorState *state,
-                 struct Instruction instructions[],
-                 unsigned int instructions_l) {
+//The instruction parameter needs to be removed since the instructions need to be in main memory
+void emulateImpl(struct EmulatorState *state) {
 #ifdef INSTRUCTION_TYPES_TEST
 
   const char *instructionTypeNames[] =
@@ -90,19 +86,24 @@ void emulateImpl(struct EmulatorState *state,
 
 #endif
   state->PC = 0;
-  struct Instruction *fetched = NULL;
-  struct Instruction *decoded = NULL;
+  union RawInstruction fetched;
+  bool fetched_valid = false;
+  union RawInstruction decoded;
+  bool decode_valid = false;
   while (true) {
     assert(state->PC % 4 == 0);
-    if (fetched != NULL)
-      if (execute_instruction(state, *fetched) == -1) {
+    if (fetched_valid)
+      if (execute_instruction(state, rawInstructionToInstruction(fetched)) == -1) {
         break;
       }
     fetched = decoded;
-    if ((state->PC) / 4 < instructions_l)
-      decoded = &(instructions[(state->PC) / 4]);
-    else
-      decoded = NULL;
+    fetched_valid = decode_valid;
+    if (state->PC/4 < MEMORY_SIZE) {
+      decoded = *(union RawInstruction *)&((state->memory)[(state->PC)/4]);
+      decode_valid = true;
+    }else{
+      assert(false);
+    }
     (state->PC) += 4;
   }
 
@@ -115,13 +116,13 @@ int execute_instruction(struct EmulatorState *state,
   switch (instruction.type) {
     case DATA_PROCESSING:
       return execute_instruction_data_processing(state,
-                                                 instruction.dataProcessingInstruction);
+                                                 instruction.rawInstruction.dataProcessingInstruction);
     case MULTIPLY:
       return execute_instruction_multiply(state,
-                                          instruction.multiplyInstruction);
+                                          instruction.rawInstruction.multiplyInstruction);
     case SINGLE_DATA_TRANSFER:
       return execute_instruction_single_data_transfer(state,
-                                                      instruction.singleDataTransferInstruction);
+                                                      instruction.rawInstruction.singleDataTransferInstruction);
     case BRANCH_INSTRUCTION:
       break;
     case TERMINATE:
@@ -129,35 +130,37 @@ int execute_instruction(struct EmulatorState *state,
   }
 }
 
-bool should_execute(struct EmulatorState *state, uint8_t cond) {
-  //todo switch
+bool should_execute(struct EmulatorState *state, enum Cond cond) {
   const bool NequalsV =
       (bool) ((state->CPSR) & CPSR_N == (state->CPSR) & CPSR_V);
   const bool Zset = (bool) ((state->CPSR) & CPSR_Z);
-  if (cond == eqCond) {
-    //Z set
-    return Zset;
-  } else if (cond == neCond) {
-    //Z clear
-    return !Zset;
-  } else if (cond == geCond) {
-    return NequalsV;
-  } else if (cond == ltCond) {
-    return (bool) ((state->CPSR) & CPSR_N != (state->CPSR) & CPSR_V);
-  } else if (cond == gtCond) {
-    return (!Zset) && NequalsV;
-  } else if (cond == leCond) {
-    return Zset || (!NequalsV);
-  } else if (cond == alCond) {
-    return true;
-  } else {
-    assert(false);
+  switch (cond) {
+    case eq:
+      return Zset;
+    case ne:
+      return !Zset;
+    case ge:
+      return NequalsV;
+    case lt:
+      return (bool) ((state->CPSR) & CPSR_N != (state->CPSR) & CPSR_V);
+    case gt:
+      return (!Zset) && NequalsV;
+    case le:
+      return Zset || (!NequalsV);
+    case al:
+      return true;
+    default:
+      assert(false);
   }
 }
 
 int execute_instruction_data_processing(struct EmulatorState *state,
                                         struct DataProcessingInstruction instruction) {
   //todo duplication
+
+  bool overflow_occurred = false;
+  bool borrow_occurred = true;
+
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
@@ -173,19 +176,28 @@ int execute_instruction_data_processing(struct EmulatorState *state,
     case and:
       (state->registers)[instruction.Rd] = (rnVal
           & operand2Val);//not sure if this should be bitwise or not. the spec isn't clear todo
-      return 1;
+      break;
     case eor:
       (state->registers)[instruction.Rd] = (rnVal ^ operand2Val);
       return 1;
     case sub:
+      if (does_borrow_occur(rnVal, operand2Val)) {
+        borrow_occurred = true;
+      }
       (state->registers)[instruction.Rd] = (rnVal - operand2Val);
-      return 1;
+      break;
     case rsb:
+      if (does_borrow_occur(operand2Val, rnVal)) {
+        borrow_occurred = true;
+      }
       (state->registers)[instruction.Rd] = (operand2Val - rnVal);
-      return 1;
+      break;
     case add:
+      if (does_overflow_occur(operand2Val, rnVal)) {
+        overflow_occurred = true;
+      }
       (state->registers)[instruction.Rd] = (operand2Val + rnVal);
-      return 1;
+      break;
     case tst:
       //todo
       break;
@@ -193,7 +205,9 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       //todo
       break;
     case cmp:
-      //todo
+      if (does_borrow_occur(rnVal, operand2Val)) {
+        borrow_occurred = true;
+      }//todo duplication with sub, use fallthrough
       break;
     case orr:
       (state->registers)[instruction.Rd] = (rnVal | operand2Val);
@@ -202,7 +216,44 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       state->registers[instruction.Rd] = operand2Val;
       break;
   }
-  //todo set cpsr
+  return setCPSR(state, instruction, borrow_occurred, overflow_occurred);
+}
+int setCPSR(struct EmulatorState *state,
+            struct DataProcessingInstruction instruction,
+            bool borrow,
+            bool overflow) {//set cpsr
+  if (instruction.setConditionCodes) {
+    //set c bit
+    if (is_arithmetic((instruction).opcode)) {
+      if ((instruction).opcode == add) {
+        if (overflow)
+          state->CPSR |= CPSR_C;
+        else
+          state->CPSR &= ~CPSR_C;
+      } else {
+        if (borrow) {
+          state->CPSR &= ~CPSR_C;
+        } else {
+          state->CPSR |= CPSR_C;
+        }
+      }
+    } else if (is_logical((instruction).opcode)) {
+      //todo
+    } else {
+      assert(false);
+    }
+    //set z bit
+    if (state->registers[(instruction).Rd] == 0) {
+      state->CPSR |= CPSR_Z;
+    }
+    //set n bit
+    if (state->registers[(instruction).Rd] | CPSR_N) {// CPSR_N is the 31st bit mask
+      state->CPSR |= CPSR_N;
+    } else {
+      state->CPSR &= ~CPSR_N;
+    }
+  }
+  return 1;
 }
 
 int execute_instruction_multiply(struct EmulatorState *state,
@@ -242,44 +293,50 @@ int execute_instruction_branch(struct EmulatorState *state,
 void print_registers(struct EmulatorState *state) {
   printf("Registers:\n");
   for (int i = 0; i < 13; ++i) {
-    printf("$%-3d:%11d (0x%08x)\n", i, state->registers[i], state->registers[i]);
+    printf("$%-3d:%11d (0x%08x)\n",
+           i,
+           state->registers[i],
+           state->registers[i]);
   }
   printf("PC  : %10d (0x%08x)\n", state->PC, state->PC);
   printf("CPSR: %10d (0x%08x)\n", state->CPSR, state->CPSR);
-  for (int i = 0; i < MEMORY_SIZE/4; i++) {
-    if(state->memory[i] != 0){
-      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
+  printf("Non-zero memory:\n");
+  for (int i = 0; i < MEMORY_SIZE / 4; i++) {
+    if (state->memory[i] != 0) {
+//      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
+      //swap endiannes to match test cases
+      printf("0x%08x: 0x%08x\n", 4 * i, __bswap_32(state->memory[i]));
     }
   }
 }
 
 #ifdef USE_EMULATE_MAIN
 int main(int argc, char **argv) {
-  if(argc != 2){
+  if (argc != 2) {
     fprintf(stderr,
-            "the end of the world has come, or you entered the wrong number of arguments");
+            "the end of the world has come, or you entered the wrong number of arguments\n");
     return -100000;
   }
-  printf("%s\n", argv[1]);
   const char *filename = argv[1];
   int fileDescriptor = open(filename, O_RDONLY);
   if (fileDescriptor == -1) {
     fprintf(stderr,
-            "the end of the world has come, or you entered the wrong filename");
+            "the end of the world has come, or you entered the wrong filename\n");
     return -100000;
   }
 
-  uint32_t *rawData = (uint32_t *) malloc(sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
-  size_t amountRead = sizeof(byte) * read(fileDescriptor,rawData,sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
+  uint32_t *rawData =
+      (uint32_t *) malloc(sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
+  size_t amountRead = sizeof(unsigned char) * read(fileDescriptor,
+                                                   rawData,
+                                                   sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
   assert(amountRead % sizeof(uint32_t) == 0);
-  struct EmulatorState* emulatorState = malloc(sizeof(struct EmulatorState));
-  memset(rawData,0, sizeof(struct EmulatorState));
-  emulate(emulatorState,
+  struct EmulatorState *state = malloc(sizeof(struct EmulatorState));
+  rawData[amountRead / sizeof(uint32_t)] = 0;
+  emulate(state,
           rawData,
-          (unsigned int) (amountRead / sizeof(uint32_t)));
+          (unsigned int) (amountRead / sizeof(uint32_t)) + 1);
   close(fileDescriptor);
-  free(emulatorState);
-  free(rawData);
 }
 
 #endif

@@ -5,24 +5,27 @@
 #ifndef EMULATE_EMULATE_MAIN_H
 #define EMULATE_EMULATE_MAIN_H
 
-#include "util.h"
-
 #define MEMORY_SIZE 65536
 #define MAX_INSTRUCTION_INPUT_FILE_SIZE 1000
 #define NUM_REGISTERS 17
+#include "stdint-gcc.h"
 
 struct EmulatorState {
   uint32_t memory[MEMORY_SIZE/4];
   //todo registers should go here etc.:
   uint32_t registers[NUM_REGISTERS-2];
+  //conceptual bug:, register 15 is a valid register, but will overflow the array access
+  //luck since this packed in a struct, the overflowed access still gets the correct register, but this is by chance only
   uint32_t PC;
   uint32_t CPSR;
 };
 
-#define CPSR_N 0b10000000000000000000000000000000   //todo hex
-#define CPSR_Z 0b01000000000000000000000000000000
-#define CPSR_C 0b00100000000000000000000000000000
-#define CPSR_V 0b00010000000000000000000000000000
+enum CPSR{
+  CPSR_N = 0b10000000000000000000000000000000,   //todo hex
+  CPSR_Z = 0b01000000000000000000000000000000,
+  CPSR_C = 0b00100000000000000000000000000000,
+  CPSR_V = 0b00010000000000000000000000000000
+};
 
 enum OpCode{
   and = 0b0000,

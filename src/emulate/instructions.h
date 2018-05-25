@@ -6,21 +6,29 @@
 #define EMULATE_INSTRUCTIONS_H
 
 #include <stdbool.h>
-#include <elf.h>
-#include "util.h"
+
+bool is_logical(enum OpCode opCode);
+bool is_arithmetic(enum OpCode opCode);
+
+
 
 enum InstructionType {
-  DATA_PROCESSING, MULTIPLY, SINGLE_DATA_TRANSFER, BRANCH_INSTRUCTION,TERMINATE
+  DATA_PROCESSING,
+  MULTIPLY,
+  SINGLE_DATA_TRANSFER,
+  BRANCH_INSTRUCTION,
+  TERMINATE
 };
 
-
-#define eqCond 0b0000
-#define neCond 0b0001
-#define geCond 0b1010
-#define ltCond 0b1011
-#define gtCond 0b1100
-#define leCond 0b1101
-#define alCond 0b1110
+enum Cond {
+  eq = 0b0000,
+  ne = 0b0001,
+  ge = 0b1010,
+  lt = 0b1011,
+  gt = 0b1100,
+  le = 0b1101,
+  al = 0b1110
+};
 
 //todo magic constants:
 struct DataProcessingInstruction {
@@ -31,7 +39,7 @@ struct DataProcessingInstruction {
   enum OpCode opcode : 4;
   bool immediateOperand: 1;
   uint8_t filler: 2;//The value of the filler should be 0b000
-  uint8_t cond : 4;
+  enum Cond cond : 4;
 }__attribute__((packed));//the attribute is required for the compiler to properly place data types
 
 struct MultiplyInstruction {
@@ -43,7 +51,7 @@ struct MultiplyInstruction {
   bool setConditionCodes: 1;
   bool accumulate: 1;
   uint8_t filler : 6;//should be 0b000000
-  uint8_t cond : 4;
+  enum Cond cond : 4;
 }__attribute__((packed));
 
 struct SingleDataTransferInstruction {
@@ -55,29 +63,33 @@ struct SingleDataTransferInstruction {
   bool prePostIndexingBit:1;
   bool immediateOffset:1;
   uint8_t filler:2; //should be 0b01
-  uint8_t cond:4;
+  enum Cond cond:4;
 }__attribute__((packed));
 
 struct BranchInstruction {
   int offset:24;
   uint8_t filler1 : 1;// should be 0b0
   uint8_t filler2: 3;//should be 0b101
-  uint8_t cond:4;
+  enum Cond cond:4;
 }__attribute__((packed));
 
-struct TerminateInstruction{
-  u_int32_t filler : 32;
+struct TerminateInstruction {
+  uint32_t filler : 32;
+};
+
+// Can't have the InstructionType in the struct becuase the structs need to be
+// in main memory with a size of 32 bits. Also need to be interpreted from main memory.
+union RawInstruction{
+  struct DataProcessingInstruction dataProcessingInstruction;
+  struct MultiplyInstruction multiplyInstruction;
+  struct SingleDataTransferInstruction singleDataTransferInstruction;
+  struct BranchInstruction branchInstruction;
+  struct TerminateInstruction terminateInstruction;
 };
 
 struct Instruction {
   enum InstructionType type;
-  union {
-    struct DataProcessingInstruction dataProcessingInstruction;
-    struct MultiplyInstruction multiplyInstruction;
-    struct SingleDataTransferInstruction singleDataTransferInstruction;
-    struct BranchInstruction branchInstruction;
-    struct TerminateInstruction terminateInstruction;
-  };
+  union RawInstruction rawInstruction;
 
 };
 
