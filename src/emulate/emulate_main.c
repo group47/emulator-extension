@@ -20,9 +20,7 @@ int execute_instruction(struct EmulatorState *, struct Instruction);
 void print_registers(struct EmulatorState *);
 void load_program_into_ram(struct EmulatorState *, uint32_t *, unsigned int);
 
-void emulateImpl(struct EmulatorState *state,
-                 struct Instruction instructions[],
-                 unsigned int instructions_l);
+void emulateImpl(struct EmulatorState *state);
 int
 setCPSR(struct EmulatorState *state, struct DataProcessingInstruction instruction, bool b, bool b1);
 
@@ -30,44 +28,42 @@ void emulate(struct EmulatorState *state,
              uint32_t *instructions,
              unsigned int instructions_l) {
   load_program_into_ram(state, instructions, instructions_l);
-  struct Instruction instructionsWithType[instructions_l];
-  for (int i = 0; i < instructions_l; ++i) {
-    const struct BranchInstruction branchInstruction =
-        *((const struct BranchInstruction *) (&(instructions[i])));
-    const struct MultiplyInstruction multiplyInstruction =
-        *((const struct MultiplyInstruction *) (&(instructions[i])));
-    const struct SingleDataTransferInstruction singleDataTransferInstruction =
-        *((const struct SingleDataTransferInstruction *) (&(instructions[i])));
-    const struct DataProcessingInstruction dataProcessingInstruction =
-        *((const struct DataProcessingInstruction *) (&(instructions[i])));
-    const struct TerminateInstruction terminateInstruction =
-        *((const struct TerminateInstruction *) (&(instructions[i])));
-    //todo magic constants
-    if (instructions[i] == 0) {
-      instructionsWithType[i].terminateInstruction = terminateInstruction;
-      instructionsWithType[i].type = TERMINATE;
-    } else if (branchInstruction.filler1 == 0b0
-        && branchInstruction.filler2 == 0b101) {
-      instructionsWithType[i].branchInstruction = branchInstruction;
-      instructionsWithType[i].type = BRANCH_INSTRUCTION;
-    } else if (singleDataTransferInstruction.filler == 0b01) {
-      instructionsWithType[i].singleDataTransferInstruction =
-          singleDataTransferInstruction;
-      instructionsWithType[i].type = SINGLE_DATA_TRANSFER;
-    } else if (multiplyInstruction.filler == 0b000000
-        && multiplyInstruction.filler2 == 0b1001) {
-      instructionsWithType[i].multiplyInstruction = multiplyInstruction;
-      instructionsWithType[i].type = MULTIPLY;
-    } else if (dataProcessingInstruction.filler == 0b000) {
-      instructionsWithType[i].dataProcessingInstruction =
-          dataProcessingInstruction;
-      instructionsWithType[i].type = DATA_PROCESSING;
-    } else {
-      assert(false);
-    }
-  }
-  emulateImpl(state, instructionsWithType, instructions_l);
+  emulateImpl(state);
 }
+
+struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction){
+  struct Instruction res;
+  const struct BranchInstruction branchInstruction =
+      *((const struct BranchInstruction *) (&(rawInstruction)));
+  const struct MultiplyInstruction multiplyInstruction =
+      *((const struct MultiplyInstruction *) (&(rawInstruction)));
+  const struct SingleDataTransferInstruction singleDataTransferInstruction =
+      *((const struct SingleDataTransferInstruction *) (&(rawInstruction)));
+  const struct DataProcessingInstruction dataProcessingInstruction =
+      *((const struct DataProcessingInstruction *) (&(rawInstruction)));
+  const struct TerminateInstruction terminateInstruction =
+      *((const struct TerminateInstruction *) (&(rawInstruction)));
+  const uint32_t asInt = *((uint32_t *) (&(rawInstruction)));
+  memcpy(&(res.rawInstruction),&(rawInstruction), sizeof(union RawInstruction));
+  //todo magic constants
+  if (asInt == 0) {
+    res.type = TERMINATE;
+  } else if (branchInstruction.filler1 == 0b0
+      && branchInstruction.filler2 == 0b101) {
+    res.type = BRANCH_INSTRUCTION;
+  } else if (singleDataTransferInstruction.filler == 0b01) {
+    res.type = SINGLE_DATA_TRANSFER;
+  } else if (multiplyInstruction.filler == 0b000000
+      && multiplyInstruction.filler2 == 0b1001) {
+    res.type = MULTIPLY;
+  } else if (dataProcessingInstruction.filler == 0b000) {
+    res.type = DATA_PROCESSING;
+  } else {
+    assert(false);
+  }
+  return  res;
+}
+
 void load_program_into_ram(struct EmulatorState *pState,
                            uint32_t *instructs,
                            unsigned int l) {
@@ -76,9 +72,7 @@ void load_program_into_ram(struct EmulatorState *pState,
 }
 
 //The instruction parameter needs to be removed since the instructions need to be in main memory
-void emulateImpl(struct EmulatorState *state,
-                 struct Instruction instructions[],
-                 unsigned int instructions_l) {
+void emulateImpl(struct EmulatorState *state) {
 #ifdef INSTRUCTION_TYPES_TEST
 
   const char *instructionTypeNames[] =
@@ -92,19 +86,24 @@ void emulateImpl(struct EmulatorState *state,
 
 #endif
   state->PC = 0;
-  struct Instruction *fetched = NULL;
-  struct Instruction *decoded = NULL;
+  union RawInstruction fetched;
+  bool fetched_valid = false;
+  union RawInstruction decoded;
+  bool decode_valid = false;
   while (true) {
     assert(state->PC % 4 == 0);
-    if (fetched != NULL)
-      if (execute_instruction(state, *fetched) == -1) {
+    if (fetched_valid)
+      if (execute_instruction(state, rawInstructionToInstruction(fetched)) == -1) {
         break;
       }
     fetched = decoded;
-    if ((state->PC) / 4 < instructions_l)
-      decoded = &(instructions[(state->PC) / 4]);
-    else
-      decoded = NULL;
+    fetched_valid = decode_valid;
+    if (state->PC/4 < MEMORY_SIZE) {
+      decoded = *(union RawInstruction *)&((state->memory)[(state->PC)/4]);
+      decode_valid = true;
+    }else{
+      assert(false);
+    }
     (state->PC) += 4;
   }
 
@@ -117,13 +116,13 @@ int execute_instruction(struct EmulatorState *state,
   switch (instruction.type) {
     case DATA_PROCESSING:
       return execute_instruction_data_processing(state,
-                                                 instruction.dataProcessingInstruction);
+                                                 instruction.rawInstruction.dataProcessingInstruction);
     case MULTIPLY:
       return execute_instruction_multiply(state,
-                                          instruction.multiplyInstruction);
+                                          instruction.rawInstruction.multiplyInstruction);
     case SINGLE_DATA_TRANSFER:
       return execute_instruction_single_data_transfer(state,
-                                                      instruction.singleDataTransferInstruction);
+                                                      instruction.rawInstruction.singleDataTransferInstruction);
     case BRANCH_INSTRUCTION:
       break;
     case TERMINATE:

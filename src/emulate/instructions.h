@@ -77,17 +77,19 @@ struct TerminateInstruction {
   uint32_t filler : 32;
 };
 
-// Can't have the InstructionType in the struct bcuase the structs need to be
+// Can't have the InstructionType in the struct becuase the structs need to be
 // in main memory with a size of 32 bits. Also need to be interpreted from main memory.
+union RawInstruction{
+  struct DataProcessingInstruction dataProcessingInstruction;
+  struct MultiplyInstruction multiplyInstruction;
+  struct SingleDataTransferInstruction singleDataTransferInstruction;
+  struct BranchInstruction branchInstruction;
+  struct TerminateInstruction terminateInstruction;
+};
+
 struct Instruction {
   enum InstructionType type;
-  union {
-    struct DataProcessingInstruction dataProcessingInstruction;
-    struct MultiplyInstruction multiplyInstruction;
-    struct SingleDataTransferInstruction singleDataTransferInstruction;
-    struct BranchInstruction branchInstruction;
-    struct TerminateInstruction terminateInstruction;
-  };
+  union RawInstruction rawInstruction;
 
 };
 
