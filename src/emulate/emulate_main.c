@@ -45,16 +45,11 @@ uint32_t extract_shift(uint16_t secondOperand);
 
 struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction){
   struct Instruction res;
-  const struct BranchInstruction branchInstruction =
-      *((const struct BranchInstruction *) (&(rawInstruction)));
-  const struct MultiplyInstruction multiplyInstruction =
-      *((const struct MultiplyInstruction *) (&(rawInstruction)));
-  const struct SingleDataTransferInstruction singleDataTransferInstruction =
-      *((const struct SingleDataTransferInstruction *) (&(rawInstruction)));
-  const struct DataProcessingInstruction dataProcessingInstruction =
-      *((const struct DataProcessingInstruction *) (&(rawInstruction)));
-  const struct TerminateInstruction terminateInstruction =
-      *((const struct TerminateInstruction *) (&(rawInstruction)));
+  const struct BranchInstruction branchInstruction = rawInstruction.branchInstruction;
+  const struct MultiplyInstruction multiplyInstruction = rawInstruction.multiplyInstruction;
+  const struct SingleDataTransferInstruction singleDataTransferInstruction = rawInstruction.singleDataTransferInstruction;
+  const struct DataProcessingInstruction dataProcessingInstruction = rawInstruction.dataProcessingInstruction;
+  const struct TerminateInstruction terminateInstruction = rawInstruction.terminateInstruction;
   const uint32_t asInt = *((uint32_t *) (&(rawInstruction)));
   memcpy(&(res.rawInstruction),&(rawInstruction), sizeof(union RawInstruction));
   //todo magic constants
@@ -68,7 +63,7 @@ struct Instruction rawInstructionToInstruction(union RawInstruction rawInstructi
   } else if (multiplyInstruction.filler == 0b000000
       && multiplyInstruction.filler2 == 0b1001) {
     res.type = MULTIPLY;
-  } else if (dataProcessingInstruction.filler == 0b000) {
+  } else if (dataProcessingInstruction.filler == 0b00) {
     res.type = DATA_PROCESSING;
   } else {
     assert(false);
@@ -144,7 +139,7 @@ int execute_instruction(struct EmulatorState *state,
 
 bool should_execute(struct EmulatorState *state, enum Cond cond) {
   const bool NequalsV =
-      (bool) ((state->CPSR) & CPSR_N == (state->CPSR) & CPSR_V);
+      (bool) (((state->CPSR) & CPSR_N) == ((state->CPSR) & CPSR_V));
   const bool Zset = (bool) ((state->CPSR) & CPSR_Z);
   switch (cond) {
     case eq:
@@ -154,7 +149,7 @@ bool should_execute(struct EmulatorState *state, enum Cond cond) {
     case ge:
       return NequalsV;
     case lt:
-      return (bool) ((state->CPSR) & CPSR_N != (state->CPSR) & CPSR_V);
+      return (bool) (((state->CPSR) & CPSR_N) != ((state->CPSR) & CPSR_V));
     case gt:
       return (!Zset) && NequalsV;
     case le:
@@ -301,14 +296,15 @@ uint32_t compute_secondOperand(struct EmulatorState *state,
   uint32_t operand2Val;
   if (immediateFlag == immediateVal) {
     unsigned int rotateVal = extract_rotate(secondOperand);
-    rotateVal = rotateVal % 4;
-    operand2Val = secondOperand & 0x0ff;
-
-    for (int i = 0; i < rotateVal; i++) {
-        uint32_t rightMostByte = (operand2Val & 0x0003) << 30;
-        operand2Val >>= 2;
-        operand2Val = operand2Val | rightMostByte;
-    }
+//    rotateVal = rotateVal % 4;
+//    operand2Val = secondOperand & 0x0ff;
+//
+//    for (int i = 0; i < rotateVal; i++) {
+//        uint32_t rightMostByte = (operand2Val & 0x0003) << 30;
+//        operand2Val >>= 2;
+//        operand2Val = operand2Val | rightMostByte;
+//    }
+    operand2Val = __rord(secondOperand & 0x0ff,2*rotateVal);
   } else {
       operand2Val = (state->registers)[(secondOperand & 0x00f)];
       uint8_t shiftField = operand2Val >> 4;
@@ -344,11 +340,12 @@ uint32_t compute_secondOperand(struct EmulatorState *state,
   return operand2Val;
 }
 
-int execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruction instruction) {
+int execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruction instruction){
                             
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
+  //todo
 
   uint32_t result = state->registers[instruction.Rm] * state->registers[instruction.Rs];
 
@@ -412,7 +409,7 @@ int execute_instruction_branch(struct EmulatorState *state,
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
-
+  //todo
 }
 
 

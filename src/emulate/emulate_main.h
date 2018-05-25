@@ -14,8 +14,8 @@ struct EmulatorState {
   uint32_t memory[MEMORY_SIZE/4];
   //todo registers should go here etc.:
   uint32_t registers[NUM_REGISTERS-2];
-  //conceptual bug:, register 15 is a valid register, but will overflow the array access
-  //luck since this packed in a struct, the overflowed access still gets the correct register, but this is by chance only
+  //conceptual bug:, register 15 is a valid register, but will overflow the array access, but still get the right register
+  //by luck since this packed in a struct, the overflowed access still gets the correct register, but this is by chance only
   uint32_t PC;
   uint32_t CPSR;
 };
