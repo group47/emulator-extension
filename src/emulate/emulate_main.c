@@ -23,7 +23,7 @@ void load_program_into_ram(struct EmulatorState *, const uint32_t *, unsigned in
 
 void emulateImpl(struct EmulatorState *state);
 int
-setCPSR(struct EmulatorState *state, struct DataProcessingInstruction instruction, bool b, bool b1,uint32_t);
+setCPSR(struct EmulatorState *state, struct DataProcessingInstruction instruction, bool b, bool b1,uint32_t, uint32_t);
 
 void emulate(struct EmulatorState *state,
              uint32_t *instructions,
@@ -34,7 +34,7 @@ void emulate(struct EmulatorState *state,
 
 // Newly added declaration for function 
 
-uint32_t compute_secondOperand(struct EmulatorState *state,
+uint32_t* compute_secondOperand(struct EmulatorState *state,
                                uint32_t secondOperand,
                                bool immediateFlag,
                                bool immediateVal);
@@ -173,11 +173,13 @@ bool should_execute(const struct EmulatorState *state, const enum Cond cond) {
 }
 
 
-uint32_t getOperand2Val(struct EmulatorState *state,
+uint32_t* getOperand2Val(struct EmulatorState *state,
                         const uint16_t secondOperand,
                         const bool immediate,
                         const bool flag) {
   uint32_t res;
+  uint32_t carry_out = 0;
+
   if (immediate) {
 
     struct ImmediateTrue immediateTrue = *(struct ImmediateTrue *) &secondOperand;
@@ -193,23 +195,33 @@ uint32_t getOperand2Val(struct EmulatorState *state,
     } else {
       switch (immediateFalse.shift_type) {
         case lsl:
+          carry_out = immediateFalse.shift == 0 ? 0 :
+              (((0x1) << (32 - immediateFalse.shift) & immediateFalse.Rm) % 2);
           res = ((uint32_t) immediateFalse.Rm) << immediateFalse.shift;
           break;
         case lsr:
+          carry_out = immediateFalse.shift == 0 ? 0 :
+              (((0x1) << (immediateFalse.shift - 1) & immediateFalse.Rm) % 2);
           res = ((uint32_t) immediateFalse.Rm) >> immediateFalse.shift;
           break;
         case asr:
+          carry_out = immediateFalse.shift == 0 ? 0 :
+              (((0x1) << (immediateFalse.shift - 1) & immediateFalse.Rm) % 2);
           res = (int32_t) (((int32_t) immediateFalse.Rm) >> immediateFalse.shift);
           break;
         case ror:
+          carry_out = immediateFalse.shift == 0 ? 0 :
+              (((0x1) << (immediateFalse.shift - 1) & immediateFalse.Rm) % 2);
           res = __rord((uint32_t) immediateFalse.Rm, immediateFalse.shift);
           break;
       }
       res = state->registers[res];
     }
   }
-  return res;
-
+  uint32_t* result = malloc(2*sizeof(uint32_t));
+  *result = res;
+  *(result + 1) = carry_out << 29;
+  return result;
 }
 
 
@@ -218,14 +230,19 @@ int execute_instruction_data_processing(struct EmulatorState *state,
   //todo duplication
 
   bool overflow_occurred = false;
-  bool borrow_occurred = true;
+  bool borrow_occurred = false;
 
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
   const uint32_t rnVal = (state->registers)[instruction.Rn];
-  uint32_t operand2Val =
+  uint32_t* result = 
       getOperand2Val(state, instruction.secondOperand, instruction.immediateOperand, 0);
+  uint32_t operand2Val = result[0];
+  uint32_t shiftCarryOut = result[1];
+  
+  free(result);
+
   uint32_t computation_res;
   // for distinguishing between operator thing
   // Maybe we could use a utility function
@@ -281,13 +298,15 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       state->registers[instruction.Rd] = operand2Val;
       break;
   }
-  return setCPSR(state, instruction, borrow_occurred, overflow_occurred,computation_res);
+  return setCPSR(state, instruction, borrow_occurred, overflow_occurred,computation_res,
+          shiftCarryOut);
 }
 int setCPSR(struct EmulatorState *state,
             const struct DataProcessingInstruction instruction,
             const bool borrow,
             const bool overflow,
-            const uint32_t computation_res) {//set cpsr
+            const uint32_t computation_res,
+            const uint32_t shiftCarryOut) {//set cpsr
   if (instruction.setConditionCodes) {
     //set c bit
     if (is_arithmetic((instruction).opcode)) {
@@ -304,14 +323,18 @@ int setCPSR(struct EmulatorState *state,
         }
       }
     } else if (is_logical(instruction.opcode)) {
-      //todo
-      assert(false);
+      state->CPSR |= shiftCarryOut;
     } else {
       assert(false);
     }
     //set z bit
+    /*
     if (computation_res == 0 || borrow) {
       state->CPSR |= CPSR_Z;
+    }
+    */
+    if (computation_res == 0) {
+        state->CPSR |= CPSR_Z;
     }
     //set n bit
     if (computation_res | CPSR_N) {// CPSR_N is the 31st bit mask
@@ -367,7 +390,9 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
   if (instruction.immediateOffset == 0) {
       offset = instruction.offset;
   } else {
-      offset = getOperand2Val(state, instruction.offset, instruction.immediateOffset, 0);
+      uint32_t* result = getOperand2Val(state, instruction.offset, instruction.immediateOffset, 0);
+      offset = result[0];
+      free(result);
   }
 
   // pre indexing
@@ -430,7 +455,7 @@ void print_registers(struct EmulatorState *state) {
     if (state->memory[i] != 0) {
 //      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
       //swap endiannes to match test cases
-      printf("0x%08x: 0x%08x\n", 4 * i, state->memory[i]);
+      printf("0x%08x: 0x%08x\n", 4 * i, __bswap_32(state->memory[i]));
     }
   }
 }
