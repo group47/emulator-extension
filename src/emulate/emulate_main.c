@@ -30,7 +30,23 @@ void emulate(struct EmulatorState *state,
   emulateImpl(state);
 }
 
+<<<<<<< HEAD
 struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction) {
+=======
+
+// Newly added declaration for function 
+
+uint32_t compute_secondOperand(struct EmulatorState *state,
+                               uint32_t secondOperand, 
+                               bool immediateFlag, 
+                               bool immediateVal);
+
+uint32_t extract_rotate(uint16_t secondOperand);
+
+uint32_t extract_shift(uint16_t secondOperand);
+
+struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction){
+>>>>>>> rory2
   struct Instruction res;
   const struct BranchInstruction branchInstruction =
       *((const struct BranchInstruction *) (&(rawInstruction)));
@@ -182,6 +198,10 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       operand2Val = immediateFalse.Rm << immediateFalse.shift;
     }
   }
+  // for distinguishing between operator thing
+  // Maybe we could use a utility function
+  // The operation on them is the same for single data transfer as well
+
   switch (instruction.opcode) {
     case and:
       (state->registers)[instruction.Rd] = (rnVal
@@ -266,11 +286,73 @@ int setCPSR(struct EmulatorState *state,
   return 1;
 }
 
+uint32_t extract_rotate(uint16_t secondOperand) {
+    return secondOperand >> 8;
+}
+
+uint32_t extract_shift(uint16_t secondOperand) {
+    return (secondOperand & 0xff0) >> 4;
+}
+
+uint32_t compute_secondOperand(struct EmulatorState *state,
+                               uint32_t secondOperand, 
+                               bool immediateFlag, 
+                               bool immediateVal) {
+  // The condition for data processing is opposite with the
+  // single data transfer
+
+  uint32_t operand2Val;
+  if (immediateFlag == immediateVal) {
+    unsigned int rotateVal = extract_rotate(secondOperand);
+    rotateVal = rotateVal % 4;
+    operand2Val = secondOperand & 0x0ff;
+
+    for (int i = 0; i < rotateVal; i++) {
+        uint32_t rightMostByte = (operand2Val & 0x0003) << 30;
+        operand2Val >>= 2;
+        operand2Val = operand2Val | rightMostByte;
+    }
+  } else {
+      operand2Val = (state->registers)[(secondOperand & 0x00f)];
+      uint8_t shiftField = operand2Val >> 4;
+      bool bit4 = shiftField & 0x01;
+      unsigned int shiftAmount;
+      uint8_t shiftType;
+      if (!bit4) {
+          // shift by a constant amount
+          shiftAmount = shiftField & 0xf0;
+          shiftType = shiftField & 0x0e;
+      } else {
+          // shift by a register
+          // the spec just give one example
+          // but didn't elaborate further
+          shiftType = shiftField & 0x0e;
+      }
+
+      switch (shiftType) {
+          case lsl:
+              operand2Val <<= shiftAmount;
+              break;
+          case lsr:
+              operand2Val >>= shiftAmount;
+              break;
+          case asr:
+              operand2Val = ((int)operand2Val) >> shiftAmount;
+              break;
+          case ror:
+              // spec is uncleared about the rotation amount 
+              break;
+      }
+  }
+  return operand2Val;
+}
+
 int execute_instruction_multiply(struct EmulatorState *state,
                                  struct MultiplyInstruction instruction) {
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
+
 }
 
 int execute_instruction_single_data_transfer(struct EmulatorState *state,
@@ -278,7 +360,39 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
+
+  
+  uint32_t computed_offset = compute_secondOperand(state, instruction.offset, instruction.immediateOffset, 0);
+  
+  // pre indexing
+  if (instruction.prePostIndexingBit) {
+      if (instruction.upBit) {
+          instruction.Rn += computed_offset;
+      } else {
+          instruction.Rn -= computed_offset;
+      }
+  }
+
+  if (instruction.loadStore) {
+   state->registers[instruction.Rd] = state->memory[instruction.Rn/4];
+  } else {
+   state->memory[instruction.Rn/4] = state->registers[instruction.Rd];
+  }
+
+  // I need a better solution for this duplication
+  // post indexing
+  if (!instruction.prePostIndexingBit) {
+      if (instruction.upBit) {
+          instruction.Rn += computed_offset;
+      } else {
+          instruction.Rn -= computed_offset;
+      } 
+  }
+
+  return 0;
 }
+
+
 
 int execute_instruction_branch(struct EmulatorState *state,
                                struct BranchInstruction instruction) {
