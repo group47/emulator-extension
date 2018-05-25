@@ -444,6 +444,8 @@ int main(int argc, char **argv) {
           rawData,
           (unsigned int) (amountRead / sizeof(uint32_t)) + 1);
   close(fileDescriptor);
+  free(state);
+  free(rawData);
 }
 
 #endif
