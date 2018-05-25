@@ -144,7 +144,7 @@ int execute_instruction(struct EmulatorState *state,
 
 bool should_execute(struct EmulatorState *state, enum Cond cond) {
   const bool NequalsV =
-      (bool) ((state->CPSR) & CPSR_N == (state->CPSR) & CPSR_V);
+      (bool) (((state->CPSR) & CPSR_N) == ((state->CPSR) & CPSR_V));
   const bool Zset = (bool) ((state->CPSR) & CPSR_Z);
   switch (cond) {
     case eq:
@@ -154,7 +154,7 @@ bool should_execute(struct EmulatorState *state, enum Cond cond) {
     case ge:
       return NequalsV;
     case lt:
-      return (bool) ((state->CPSR) & CPSR_N != (state->CPSR) & CPSR_V);
+      return (bool) (((state->CPSR) & CPSR_N) != ((state->CPSR) & CPSR_V));
     case gt:
       return (!Zset) && NequalsV;
     case le:
@@ -301,14 +301,15 @@ uint32_t compute_secondOperand(struct EmulatorState *state,
   uint32_t operand2Val;
   if (immediateFlag == immediateVal) {
     unsigned int rotateVal = extract_rotate(secondOperand);
-    rotateVal = rotateVal % 4;
-    operand2Val = secondOperand & 0x0ff;
-
-    for (int i = 0; i < rotateVal; i++) {
-        uint32_t rightMostByte = (operand2Val & 0x0003) << 30;
-        operand2Val >>= 2;
-        operand2Val = operand2Val | rightMostByte;
-    }
+//    rotateVal = rotateVal % 4;
+//    operand2Val = secondOperand & 0x0ff;
+//
+//    for (int i = 0; i < rotateVal; i++) {
+//        uint32_t rightMostByte = (operand2Val & 0x0003) << 30;
+//        operand2Val >>= 2;
+//        operand2Val = operand2Val | rightMostByte;
+//    }
+    operand2Val = __rord(secondOperand & 0x0ff,2*rotateVal);
   } else {
       operand2Val = (state->registers)[(secondOperand & 0x00f)];
       uint8_t shiftField = operand2Val >> 4;
@@ -344,11 +345,12 @@ uint32_t compute_secondOperand(struct EmulatorState *state,
   return operand2Val;
 }
 
-int execute_instruction_multiply(struct EmulatorState *state,
+int execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruction instruction){
                             
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
+  //todo
 
 }
 
@@ -396,7 +398,7 @@ int execute_instruction_branch(struct EmulatorState *state,
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
-
+  //todo
 }
 
 
