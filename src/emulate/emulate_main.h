@@ -27,6 +27,15 @@ enum CPSR{
   CPSR_V = 0b00010000000000000000000000000000
 };
 
+/*
+enum CPSR {
+    CPSR_N = 0x8000;
+    CPSR_Z = 0x4000;
+    CPSR_C = 0x2000;
+    CPSR_V = 0x1000;
+};
+*/
+
 enum OpCode{
   and = 0b0000,
   eor = 0b0001,

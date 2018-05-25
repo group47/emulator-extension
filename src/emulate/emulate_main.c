@@ -19,8 +19,10 @@ int execute_instruction_single_data_transfer(struct EmulatorState *,
 int execute_instruction(struct EmulatorState *, struct Instruction);
 void print_registers(struct EmulatorState *);
 void load_program_into_ram(struct EmulatorState *, uint32_t *, unsigned int);
+
 void emulateImpl(struct EmulatorState *state);
-int setCPSR(struct EmulatorState *, struct DataProcessingInstruction, bool, bool);
+int
+setCPSR(struct EmulatorState *state, struct DataProcessingInstruction instruction, bool b, bool b1);
 
 void emulate(struct EmulatorState *state,
              uint32_t *instructions,
@@ -29,9 +31,6 @@ void emulate(struct EmulatorState *state,
   emulateImpl(state);
 }
 
-<<<<<<< HEAD
-struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction) {
-=======
 
 // Newly added declaration for function 
 
@@ -45,7 +44,6 @@ uint32_t extract_rotate(uint16_t secondOperand);
 uint32_t extract_shift(uint16_t secondOperand);
 
 struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction){
->>>>>>> rory2
   struct Instruction res;
   const struct BranchInstruction branchInstruction =
       *((const struct BranchInstruction *) (&(rawInstruction)));
@@ -58,7 +56,7 @@ struct Instruction rawInstructionToInstruction(union RawInstruction rawInstructi
   const struct TerminateInstruction terminateInstruction =
       *((const struct TerminateInstruction *) (&(rawInstruction)));
   const uint32_t asInt = *((uint32_t *) (&(rawInstruction)));
-  memcpy(&(res.rawInstruction), &(rawInstruction), sizeof(union RawInstruction));
+  memcpy(&(res.rawInstruction),&(rawInstruction), sizeof(union RawInstruction));
   //todo magic constants
   if (asInt == 0) {
     res.type = TERMINATE;
@@ -70,12 +68,12 @@ struct Instruction rawInstructionToInstruction(union RawInstruction rawInstructi
   } else if (multiplyInstruction.filler == 0b000000
       && multiplyInstruction.filler2 == 0b1001) {
     res.type = MULTIPLY;
-  } else if (dataProcessingInstruction.filler == 0b00) {
+  } else if (dataProcessingInstruction.filler == 0b000) {
     res.type = DATA_PROCESSING;
   } else {
     assert(false);
   }
-  return res;
+  return  res;
 }
 
 void load_program_into_ram(struct EmulatorState *pState,
@@ -112,10 +110,10 @@ void emulateImpl(struct EmulatorState *state) {
       }
     fetched = decoded;
     fetched_valid = decode_valid;
-    if (state->PC / 4 < MEMORY_SIZE) {
-      decoded = *(union RawInstruction *) &((state->memory)[(state->PC) / 4]);
+    if (state->PC/4 < MEMORY_SIZE) {
+      decoded = *(union RawInstruction *)&((state->memory)[(state->PC)/4]);
       decode_valid = true;
-    } else {
+    }else{
       assert(false);
     }
     (state->PC) += 4;
@@ -173,7 +171,7 @@ int execute_instruction_data_processing(struct EmulatorState *state,
   //todo duplication
 
   bool overflow_occurred = false;
-  bool borrow_occurred = false;
+  bool borrow_occurred = true;
 
   if (!should_execute(state, instruction.cond)) {
     return 0;
@@ -181,20 +179,10 @@ int execute_instruction_data_processing(struct EmulatorState *state,
   const uint32_t rnVal = (state->registers)[instruction.Rn];
   uint32_t operand2Val;
   if (instruction.immediateOperand) {
-    uint16_t secondOperand = instruction.secondOperand;
-    struct ImmediateTrue immediateTrue = *(struct ImmediateTrue *)&secondOperand;
-    //rotate stack overflow community wiki:
-    //https://stackoverflow.com/questions/776508/best-practices-for-circular-shift-rotate-operations-in-c
-    uint32_t  imm = immediateTrue.Imm;
-    operand2Val = imm << 2*immediateTrue.rotate | imm >> 2*immediateTrue.rotate;
+    operand2Val = instruction.secondOperand;
   } else {
-    uint16_t secondOperand = instruction.secondOperand;
-    struct ImmediateFalse immediateFalse = *(struct ImmediateFalse *)&secondOperand;
-    if(immediateFalse.shift_by_register){
-      //todo
-    } else{
-      operand2Val = immediateFalse.Rm << immediateFalse.shift;
-    }
+    operand2Val = (state->registers)[(instruction.secondOperand)
+        << 8];//no way this works todo
   }
   // for distinguishing between operator thing
   // Maybe we could use a utility function
@@ -346,7 +334,7 @@ uint32_t compute_secondOperand(struct EmulatorState *state,
 }
 
 int execute_instruction_multiply(struct EmulatorState *state,
-                                 struct MultiplyInstruction instruction) {
+                            
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
@@ -435,8 +423,6 @@ int main(int argc, char **argv) {
             "the end of the world has come, or you entered the wrong filename\n");
     return -100000;
   }
-
-  assert(sizeof(struct DataProcessingInstruction) == sizeof(uint32_t));
 
   uint32_t *rawData =
       (uint32_t *) malloc(sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
