@@ -23,7 +23,7 @@ void load_program_into_ram(struct EmulatorState *, const uint32_t *, unsigned in
 
 void emulateImpl(struct EmulatorState *state);
 int
-setCPSR(struct EmulatorState *state, struct DataProcessingInstruction instruction, bool b, bool b1);
+setCPSR(struct EmulatorState *state, struct DataProcessingInstruction instruction, bool b, bool b1,uint32_t);
 
 void emulate(struct EmulatorState *state,
              uint32_t *instructions,
@@ -43,6 +43,8 @@ uint32_t extract_rotate(uint16_t secondOperand);
 
 uint32_t extract_shift(uint16_t secondOperand);
 
+int execute_instruction_branch(struct EmulatorState *state,
+                               const struct BranchInstruction instruction);
 struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction) {
   struct Instruction res;
   const struct BranchInstruction branchInstruction = rawInstruction.branchInstruction;
@@ -101,10 +103,17 @@ void emulateImpl(struct EmulatorState *state) {
   bool decode_valid = false;
   while (true) {
     assert(state->PC % 4 == 0);
-    if (fetched_valid)
-      if (execute_instruction(state, rawInstructionToInstruction(fetched)) == -1) {
+    if (fetched_valid) {
+      const int executionResult =
+          execute_instruction(state, rawInstructionToInstruction(fetched));
+      if(executionResult == -2){//todo magic constants
+        fetched_valid = false;
+        decode_valid = false;
+      }
+      if (executionResult == -1) {
         break;
       }
+    }
     fetched = decoded;
     fetched_valid = decode_valid;
     if (state->PC / 4 < MEMORY_SIZE) {
@@ -133,7 +142,7 @@ int execute_instruction(struct EmulatorState *state,
       return execute_instruction_single_data_transfer(state,
                                                       instruction.rawInstruction.singleDataTransferInstruction);
     case BRANCH_INSTRUCTION:
-      break;
+      return execute_instruction_branch(state, instruction.rawInstruction.branchInstruction);
     case TERMINATE:
       return -1;
   }
@@ -190,10 +199,10 @@ uint32_t getOperand2Val(struct EmulatorState *state,
           res = ((uint32_t) immediateFalse.Rm) >> immediateFalse.shift;
           break;
         case asr:
-          res = (int32_t)(((int32_t) immediateFalse.Rm) >> immediateFalse.shift);
+          res = (int32_t) (((int32_t) immediateFalse.Rm) >> immediateFalse.shift);
           break;
         case ror:
-          res = __rord((uint32_t)immediateFalse.Rm,immediateFalse.shift);
+          res = __rord((uint32_t) immediateFalse.Rm, immediateFalse.shift);
           break;
       }
       res = state->registers[res];
@@ -215,41 +224,49 @@ int execute_instruction_data_processing(struct EmulatorState *state,
     return 0;
   }
   const uint32_t rnVal = (state->registers)[instruction.Rn];
-  uint32_t operand2Val = getOperand2Val(state,instruction.secondOperand,instruction.immediateOperand,0);
+  uint32_t operand2Val =
+      getOperand2Val(state, instruction.secondOperand, instruction.immediateOperand, 0);
+  uint32_t computation_res;
   // for distinguishing between operator thing
   // Maybe we could use a utility function
   // The operation on them is the same for single data transfer as well
 
   switch (instruction.opcode) {
     case and:
-      (state->registers)[instruction.Rd] = (rnVal
-            & operand2Val);
+      computation_res = rnVal & operand2Val;
+      (state->registers)[instruction.Rd] = computation_res;
       break;
     case eor:
-      (state->registers)[instruction.Rd] = (rnVal ^ operand2Val);
+      computation_res = rnVal ^ operand2Val;
+      (state->registers)[instruction.Rd] = computation_res;
       return 1;
     case sub:
+      computation_res = rnVal - operand2Val;
       if (does_borrow_occur(rnVal, operand2Val)) {
         borrow_occurred = true;
       }
-      (state->registers)[instruction.Rd] = (rnVal - operand2Val);
+      (state->registers)[instruction.Rd] = computation_res;
       break;
     case rsb:
+      computation_res = operand2Val - rnVal;
       if (does_borrow_occur(operand2Val, rnVal)) {
         borrow_occurred = true;
       }
-      (state->registers)[instruction.Rd] = (operand2Val - rnVal);
+      (state->registers)[instruction.Rd] = computation_res;
       break;
     case add:
+      computation_res = operand2Val + rnVal;
       if (does_overflow_occur(operand2Val, rnVal)) {
         overflow_occurred = true;
       }
-      (state->registers)[instruction.Rd] = (operand2Val + rnVal);
+      (state->registers)[instruction.Rd] = computation_res;
       break;
     case tst:
+      computation_res = rnVal & operand2Val;
       //todo
       break;
     case teq:
+      computation_res = rnVal ^ operand2Val;
       //todo
       break;
     case cmp:
@@ -264,12 +281,13 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       state->registers[instruction.Rd] = operand2Val;
       break;
   }
-  return setCPSR(state, instruction, borrow_occurred, overflow_occurred);
+  return setCPSR(state, instruction, borrow_occurred, overflow_occurred,computation_res);
 }
 int setCPSR(struct EmulatorState *state,
             const struct DataProcessingInstruction instruction,
             const bool borrow,
-            const bool overflow) {//set cpsr
+            const bool overflow,
+            const uint32_t computation_res) {//set cpsr
   if (instruction.setConditionCodes) {
     //set c bit
     if (is_arithmetic((instruction).opcode)) {
@@ -280,22 +298,23 @@ int setCPSR(struct EmulatorState *state,
           state->CPSR &= ~CPSR_C;
       } else {
         if (borrow) {
-          state->CPSR &= ~CPSR_C;
-        } else {
           state->CPSR |= CPSR_C;
+        } else {
+          state->CPSR &= ~CPSR_C;
         }
       }
-    } else if (is_logical((instruction).opcode)) {
+    } else if (is_logical(instruction.opcode)) {
       //todo
+      assert(false);
     } else {
       assert(false);
     }
     //set z bit
-    if (state->registers[(instruction).Rd] == 0) {
+    if (computation_res == 0 || borrow) {
       state->CPSR |= CPSR_Z;
     }
     //set n bit
-    if (state->registers[(instruction).Rd] | CPSR_N) {// CPSR_N is the 31st bit mask
+    if (computation_res | CPSR_N) {// CPSR_N is the 31st bit mask
       state->CPSR |= CPSR_N;
     } else {
       state->CPSR &= ~CPSR_N;
@@ -311,7 +330,6 @@ uint32_t extract_rotate(uint16_t secondOperand) {
 uint32_t extract_shift(uint16_t secondOperand) {
   return (secondOperand & 0xff0) >> 4;
 }
-
 
 int
 execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruction instruction) {
@@ -391,7 +409,9 @@ int execute_instruction_branch(struct EmulatorState *state,
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
-  //todo
+  const int32_t offset = instruction.offset * 2;
+  state->PC += offset;
+  return -2;
 }
 
 

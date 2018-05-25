@@ -92,7 +92,7 @@ struct SingleDataTransferInstruction {
 }__attribute__((packed));
 
 struct BranchInstruction {
-  int offset:24;
+  int32_t offset:24;
   uint8_t filler1 : 1;// should be 0b0
   uint8_t filler2: 3;//should be 0b101
   enum Cond cond:4;
