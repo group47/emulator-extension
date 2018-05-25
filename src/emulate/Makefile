@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /homes/qs4617/arm11_47/src/emulate
+CMAKE_SOURCE_DIR = /homes/qs4617/Arm/arm11_47/src/emulate
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /homes/qs4617/arm11_47/src/emulate
+CMAKE_BINARY_DIR = /homes/qs4617/Arm/arm11_47/src/emulate
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /homes/qs4617/arm11_47/src/emulate/CMakeFiles /homes/qs4617/arm11_47/src/emulate/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /homes/qs4617/Arm/arm11_47/src/emulate/CMakeFiles /homes/qs4617/Arm/arm11_47/src/emulate/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /homes/qs4617/arm11_47/src/emulate/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /homes/qs4617/Arm/arm11_47/src/emulate/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,6 +122,33 @@ emulate: cmake_check_build_system
 emulate/fast:
 	$(MAKE) -f CMakeFiles/emulate.dir/build.make CMakeFiles/emulate.dir/build
 .PHONY : emulate/fast
+
+cpsr_overflow_detection.o: cpsr_overflow_detection.c.o
+
+.PHONY : cpsr_overflow_detection.o
+
+# target to build an object file
+cpsr_overflow_detection.c.o:
+	$(MAKE) -f CMakeFiles/emulate.dir/build.make CMakeFiles/emulate.dir/cpsr_overflow_detection.c.o
+.PHONY : cpsr_overflow_detection.c.o
+
+cpsr_overflow_detection.i: cpsr_overflow_detection.c.i
+
+.PHONY : cpsr_overflow_detection.i
+
+# target to preprocess a source file
+cpsr_overflow_detection.c.i:
+	$(MAKE) -f CMakeFiles/emulate.dir/build.make CMakeFiles/emulate.dir/cpsr_overflow_detection.c.i
+.PHONY : cpsr_overflow_detection.c.i
+
+cpsr_overflow_detection.s: cpsr_overflow_detection.c.s
+
+.PHONY : cpsr_overflow_detection.s
+
+# target to generate assembly for a file
+cpsr_overflow_detection.c.s:
+	$(MAKE) -f CMakeFiles/emulate.dir/build.make CMakeFiles/emulate.dir/cpsr_overflow_detection.c.s
+.PHONY : cpsr_overflow_detection.c.s
 
 emulate_main.o: emulate_main.c.o
 
@@ -186,6 +213,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... emulate"
+	@echo "... cpsr_overflow_detection.o"
+	@echo "... cpsr_overflow_detection.i"
+	@echo "... cpsr_overflow_detection.s"
 	@echo "... emulate_main.o"
 	@echo "... emulate_main.i"
 	@echo "... emulate_main.s"

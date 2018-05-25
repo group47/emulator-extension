@@ -30,6 +30,16 @@ enum Cond {
   al = 0b1110
 };
 
+
+// added by rory
+enum ShiftType {
+  lsl = 0b00;
+  lsr = 0b01;
+  asr = 0b10;
+  ror = 0b11;
+};
+
+
 //todo magic constants:
 struct DataProcessingInstruction {
   uint16_t secondOperand : 12;
