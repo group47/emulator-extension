@@ -344,12 +344,28 @@ uint32_t compute_secondOperand(struct EmulatorState *state,
   return operand2Val;
 }
 
-int execute_instruction_multiply(struct EmulatorState *state,
+int execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruction instruction) {
                             
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
 
+  uint32_t result = state->registers[instruction.Rm] * state->registers[instruction.Rs];
+
+  if (instruction.accumulate) {
+      result += state->registers[instruction.Rn];
+  }
+
+  if (result == 0) {
+      // set z bit
+      state->CPSR |= CPSR_Z;
+      // set n bit
+      state->CPSR != (result & CPSR_N);
+  }
+
+  state->registers[instruction.destinationRegister] = result;
+
+  return 1;
 }
 
 int execute_instruction_single_data_transfer(struct EmulatorState *state,
