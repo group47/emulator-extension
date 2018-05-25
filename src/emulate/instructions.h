@@ -83,6 +83,7 @@ struct SingleDataTransferInstruction {
   uint8_t Rd:4;
   uint8_t Rn:4;
   bool loadStore : 1;
+  uint8_t filler2: 2;
   bool upBit:1;
   bool prePostIndexingBit:1;
   bool immediateOffset:1;

@@ -345,7 +345,6 @@ int execute_instruction_multiply(struct EmulatorState *state, struct MultiplyIns
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
-  //todo
 
   uint32_t result = state->registers[instruction.Rm] * state->registers[instruction.Rs];
 
@@ -370,16 +369,15 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
-
-  
-  uint32_t computed_offset = compute_secondOperand(state, instruction.offset, instruction.immediateOffset, 0);
+ 
+  uint32_t offset = compute_secondOperand(state, instruction.offset, instruction.immediateOffset, 0);
   
   // pre indexing
   if (instruction.prePostIndexingBit) {
       if (instruction.upBit) {
-          instruction.Rn += computed_offset;
+          instruction.Rn += offset;
       } else {
-          instruction.Rn -= computed_offset;
+          instruction.Rn -= offset;
       }
   }
 
@@ -393,9 +391,9 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
   // post indexing
   if (!instruction.prePostIndexingBit) {
       if (instruction.upBit) {
-          instruction.Rn += computed_offset;
+          instruction.Rn += offset;
       } else {
-          instruction.Rn -= computed_offset;
+          instruction.Rn -= offset;
       } 
   }
 
