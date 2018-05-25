@@ -45,16 +45,11 @@ uint32_t extract_shift(uint16_t secondOperand);
 
 struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction){
   struct Instruction res;
-  const struct BranchInstruction branchInstruction =
-      *((const struct BranchInstruction *) (&(rawInstruction)));
-  const struct MultiplyInstruction multiplyInstruction =
-      *((const struct MultiplyInstruction *) (&(rawInstruction)));
-  const struct SingleDataTransferInstruction singleDataTransferInstruction =
-      *((const struct SingleDataTransferInstruction *) (&(rawInstruction)));
-  const struct DataProcessingInstruction dataProcessingInstruction =
-      *((const struct DataProcessingInstruction *) (&(rawInstruction)));
-  const struct TerminateInstruction terminateInstruction =
-      *((const struct TerminateInstruction *) (&(rawInstruction)));
+  const struct BranchInstruction branchInstruction = rawInstruction.branchInstruction;
+  const struct MultiplyInstruction multiplyInstruction = rawInstruction.multiplyInstruction;
+  const struct SingleDataTransferInstruction singleDataTransferInstruction = rawInstruction.singleDataTransferInstruction;
+  const struct DataProcessingInstruction dataProcessingInstruction = rawInstruction.dataProcessingInstruction;
+  const struct TerminateInstruction terminateInstruction = rawInstruction.terminateInstruction;
   const uint32_t asInt = *((uint32_t *) (&(rawInstruction)));
   memcpy(&(res.rawInstruction),&(rawInstruction), sizeof(union RawInstruction));
   //todo magic constants
@@ -68,7 +63,7 @@ struct Instruction rawInstructionToInstruction(union RawInstruction rawInstructi
   } else if (multiplyInstruction.filler == 0b000000
       && multiplyInstruction.filler2 == 0b1001) {
     res.type = MULTIPLY;
-  } else if (dataProcessingInstruction.filler == 0b000) {
+  } else if (dataProcessingInstruction.filler == 0b00) {
     res.type = DATA_PROCESSING;
   } else {
     assert(false);
