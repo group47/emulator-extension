@@ -51,7 +51,7 @@ struct ImmediateTrue{
 struct ImmediateFalse{
   uint8_t Rm : 4;
   bool shift_by_register: 1;
-  uint8_t shift_type: 2;
+  enum ShiftType shift_type: 2;
   uint8_t shift : 7;
 }__attribute__((packed));
 
