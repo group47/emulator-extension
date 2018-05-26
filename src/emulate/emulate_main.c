@@ -19,14 +19,14 @@ int execute_instruction_single_data_transfer(struct EmulatorState *,
                                              const struct SingleDataTransferInstruction);
 int execute_instruction(struct EmulatorState *, const struct Instruction);
 void print_registers(struct EmulatorState *);
-void load_program_into_ram(struct EmulatorState *, const uint32_t *, unsigned int);
+void load_program_into_ram(struct EmulatorState *, const uint8_t *, unsigned int);
 
 void emulateImpl(struct EmulatorState *state);
 int
 setCPSR(struct EmulatorState *state, struct DataProcessingInstruction instruction, bool b, bool b1,uint32_t, uint32_t);
 
 void emulate(struct EmulatorState *state,
-             uint32_t *instructions,
+             uint8_t *instructions,
              unsigned int instructions_l) {
   memset(state,0, sizeof(struct EmulatorState));
   load_program_into_ram(state, instructions, instructions_l);
@@ -77,7 +77,7 @@ struct Instruction rawInstructionToInstruction(union RawInstruction rawInstructi
 }
 
 void load_program_into_ram(struct EmulatorState *pState,
-                           const uint32_t *instructs,
+                           const uint8_t *instructs,
                            unsigned int l) {
   memcpy(pState->memory, instructs, l * sizeof(uint32_t));
 
@@ -322,7 +322,9 @@ int setCPSR(struct EmulatorState *state,
       } else {
         if (borrow) {
           state->CPSR &= ~CPSR_C;
+          //printf("have borrow\n");
         } else {
+          //printf("no borrow\n");
           state->CPSR |= CPSR_C;
         }
 
@@ -405,11 +407,24 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
   }
 
   if (instruction.loadStore) {
-    uint32_t val = state->memory[instruction.Rn];
-    uint32_t higher = val >> 16;
-    uint32_t lower = val << 16;
-    printf("%d\n", instruction.Rn);
-    state->registers[instruction.Rd] = higher | lower;
+    //printf("register value now: %d\n", state->registers[instruction.Rn]);
+    uint32_t result = 0; 
+    for (int i = 0; i < 4; i++) {
+        /*
+        printf("Looping: 0x%08x\n", state->memory[state ->registers[instruction.Rn] + i]);
+        printf("Looping2: 0x%08x\n", 
+                ((uint32_t) state->memory[state->registers[instruction.Rn] + i]) << (8*i)); 
+
+                */
+        result |= ((uint32_t) state->memory[state->registers[instruction.Rn] + i]) << (8*i) ;
+        //result[1] = state->memory[instruction.Rn + i+1];
+    }
+    /*
+    for (int i = 0; i < 8; i++) {
+        printf("0x%08x\n", state->memory[i]);
+    }
+    */
+    state->registers[instruction.Rd] = result;
   } else {
     state->memory[instruction.Rn] = state->registers[instruction.Rd];
   }
@@ -456,6 +471,8 @@ void print_registers(struct EmulatorState *state) {
 //      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
       //swap endiannes to match test cases
       printf("0x%08x: 0x%08x\n", i, __bswap_32(*(uint32_t *)&state->memory[i]));
+      // printf("0x%08x: 0x%08x\n", i, *(uint32_t *)&state->memory[i]);
+
     }
   }
 }

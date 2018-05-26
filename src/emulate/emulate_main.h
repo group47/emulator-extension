@@ -56,7 +56,7 @@ enum OpCode{
 };
 
 void emulate(struct EmulatorState *state,
-             uint32_t instructions[],
+             uint8_t instructions[],
              unsigned int instructions_l);
 
 #endif //EMULATE_EMULATE_MAIN_H
