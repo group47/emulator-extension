@@ -470,7 +470,7 @@ void print_registers(struct EmulatorState *state) {
     if ((state->memory_as_uints)[i/4] != 0 && i % 4 == 0) {
 //      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
       //swap endiannes to match test cases
-      printf("0x%08x: 0x%08x\n", i, __bswap_32(*(uint32_t *)&state->memory[i]));
+      printf("0x%08x: 0x%08x\n", i, __bswap_32(state->memory_as_uints[i]));
       // printf("0x%08x: 0x%08x\n", i, *(uint32_t *)&state->memory[i]);
 
     }
