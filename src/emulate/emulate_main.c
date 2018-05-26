@@ -343,6 +343,8 @@ int setCPSR(struct EmulatorState *state,
     //set z bit
     if (computation_res == 0) {
       state->CPSR |= CPSR_Z;
+    }else{
+      state->CPSR &= ~CPSR_Z;
     }
     //set n bit
     if (computation_res & CPSR_N) {// CPSR_N is the 31st bit mask
