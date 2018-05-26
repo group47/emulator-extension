@@ -458,7 +458,7 @@ int execute_instruction_branch(struct EmulatorState *state,
   if (!should_execute(state, instruction.cond)) {
     return 0;
   }
-  const int32_t offset = instruction.offset * 2;
+  const int32_t offset = instruction.offset * 4;
   state->PC += offset;
   return -2;
 }
