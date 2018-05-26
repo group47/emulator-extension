@@ -23,22 +23,27 @@ void load_program_into_ram(struct EmulatorState *, const uint8_t *, unsigned int
 
 void emulateImpl(struct EmulatorState *state);
 int
-setCPSR(struct EmulatorState *state, struct DataProcessingInstruction instruction, bool b, bool b1,uint32_t, uint32_t);
+setCPSR(struct EmulatorState *state,
+        struct DataProcessingInstruction instruction,
+        bool b,
+        bool b1,
+        uint32_t,
+        uint32_t);
 
 void emulate(struct EmulatorState *state,
              uint8_t *instructions,
              unsigned int instructions_l) {
-  memset(state,0, sizeof(struct EmulatorState));
+  memset(state, 0, sizeof(struct EmulatorState));
   load_program_into_ram(state, instructions, instructions_l);
   emulateImpl(state);
 }
 
 // Newly added declaration for function 
 
-uint32_t* compute_secondOperand(struct EmulatorState *state,
-                               uint32_t secondOperand,
-                               bool immediateFlag,
-                               bool immediateVal);
+uint32_t *compute_secondOperand(struct EmulatorState *state,
+                                uint32_t secondOperand,
+                                bool immediateFlag,
+                                bool immediateVal);
 
 uint32_t extract_rotate(uint16_t secondOperand);
 
@@ -107,7 +112,7 @@ void emulateImpl(struct EmulatorState *state) {
     if (fetched_valid) {
       const int executionResult =
           execute_instruction(state, rawInstructionToInstruction(fetched));
-      if(executionResult == -2){//todo magic constants
+      if (executionResult == -2) {//todo magic constants
         fetched_valid = false;
         decode_valid = false;
       }
@@ -146,6 +151,8 @@ int execute_instruction(struct EmulatorState *state,
       return execute_instruction_branch(state, instruction.rawInstruction.branchInstruction);
     case TERMINATE:
       return -1;
+    default:
+      assert(false);
   }
 }
 
@@ -174,10 +181,10 @@ bool should_execute(const struct EmulatorState *state, const enum Cond cond) {
 }
 
 
-uint32_t* getOperand2Val(struct EmulatorState *state,
-                        const uint16_t secondOperand,
-                        const bool immediate,
-                        const bool flag) {
+uint32_t *getOperand2Val(struct EmulatorState *state,
+                         const uint16_t secondOperand,
+                         const bool immediate,
+                         const bool flag) {
   uint32_t res;
   uint32_t carry_out = 0;
 
@@ -189,37 +196,36 @@ uint32_t* getOperand2Val(struct EmulatorState *state,
     uint32_t imm = immediateTrue.Imm;
     res = __rord(imm, 2 * immediateTrue.rotate);
   } else {
-    struct ImmediateFalse immediateFalse = *(struct ImmediateFalse *) &secondOperand;
+    struct ImmediateFalseShiftByRegisterFalse immediateFalse = *(struct ImmediateFalseShiftByRegisterFalse *) &secondOperand;
     if (immediateFalse.shift_by_register) {
-//todo
+      //todo
       assert(false);//not implemented
     } else {
       switch (immediateFalse.shift_type) {
         case lsl:
-          carry_out = immediateFalse.shift == 0 ? 0 :
-              (((0x1) << (32 - immediateFalse.shift) & immediateFalse.Rm) % 2);
-          res = ((uint32_t) immediateFalse.Rm) << immediateFalse.shift;
+          carry_out = immediateFalse.integer == 0 ? 0 :
+                      (((0x1) << (32 - immediateFalse.integer) & immediateFalse.Rm) % 2);
+          res = (state->registers[immediateFalse.Rm]) << immediateFalse.integer;
           break;
         case lsr:
-          carry_out = immediateFalse.shift == 0 ? 0 :
-              (((0x1) << (immediateFalse.shift - 1) & immediateFalse.Rm) % 2);
-          res = ((uint32_t) immediateFalse.Rm) >> immediateFalse.shift;
+          carry_out = immediateFalse.integer == 0 ? 0 :
+                      (((0x1) << (immediateFalse.integer - 1) & immediateFalse.Rm) % 2);
+          res = (state->registers[immediateFalse.Rm]) >> immediateFalse.integer;
           break;
         case asr:
-          carry_out = immediateFalse.shift == 0 ? 0 :
-              (((0x1) << (immediateFalse.shift - 1) & immediateFalse.Rm) % 2);
-          res = (int32_t) (((int32_t) immediateFalse.Rm) >> immediateFalse.shift);
+          carry_out = immediateFalse.integer == 0 ? 0 :
+                      (((0x1) << (immediateFalse.integer - 1) & immediateFalse.Rm) % 2);
+          res = (int32_t) ((state->registers[immediateFalse.Rm]) >> immediateFalse.integer);
           break;
         case ror:
-          carry_out = immediateFalse.shift == 0 ? 0 :
-              (((0x1) << (immediateFalse.shift - 1) & immediateFalse.Rm) % 2);
-          res = __rord((uint32_t) immediateFalse.Rm, immediateFalse.shift);
+          carry_out = immediateFalse.integer == 0 ? 0 :
+                      (((0x1) << (immediateFalse.integer - 1) & immediateFalse.Rm) % 2);
+          res = __rord((uint32_t) immediateFalse.Rm, immediateFalse.integer);
           break;
       }
-      res = state->registers[res];
     }
   }
-  uint32_t* result = malloc(2*sizeof(uint32_t));
+  uint32_t *result = malloc(2 * sizeof(uint32_t));
   *result = res;
   *(result + 1) = carry_out << 29;
   return result;
@@ -237,7 +243,7 @@ int execute_instruction_data_processing(struct EmulatorState *state,
     return 0;
   }
   const uint32_t rnVal = (state->registers)[instruction.Rn];
-  uint32_t* result =
+  uint32_t *result =
       getOperand2Val(state, instruction.secondOperand, instruction.immediateOperand, 1);
   uint32_t operand2Val = result[0];
   uint32_t shiftCarryOut = result[1];
@@ -302,8 +308,8 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       state->registers[instruction.Rd] = operand2Val;
       break;
   }
-  return setCPSR(state, instruction, borrow_occurred, overflow_occurred,computation_res,
-          shiftCarryOut);
+  return setCPSR(state, instruction, borrow_occurred, overflow_occurred, computation_res,
+                 shiftCarryOut);
 }
 int setCPSR(struct EmulatorState *state,
             const struct DataProcessingInstruction instruction,
@@ -381,6 +387,9 @@ execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruc
   return 1;
 }
 
+void handle_out_of_bounds(uint32_t index);
+
+
 int execute_instruction_single_data_transfer(struct EmulatorState *state,
                                              struct SingleDataTransferInstruction instruction) {
   if (!should_execute(state, instruction.cond)) {
@@ -390,16 +399,16 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
   uint32_t offset;
 
   if (instruction.immediateOffset == 0) {
-      offset = instruction.offset;
+    offset = instruction.offset;
   } else {
-      uint32_t* result = getOperand2Val(state, instruction.offset, instruction.immediateOffset, 0);
-      offset = result[0];
-      free(result);
+    uint32_t *result = getOperand2Val(state, instruction.offset, instruction.immediateOffset, 0);
+    offset = result[0];
+    free(result);
   }
 
   // pre indexing
   uint32_t address = state->registers[instruction.Rn];
-  
+
   if (instruction.prePostIndexingBit) {
     if (instruction.upBit) {
       address += offset;
@@ -412,36 +421,28 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
     uint32_t result = 0;
     bool access_was_successful = true;
     for (int i = 0; i < 4; i++) {
-     const uint32_t memory_access_index = address + i;
-      if(memory_access_index < MEMORY_SIZE){
-        result |= ((uint32_t) state->memory[memory_access_index]) << (8*i) ;
-      }
-      else{
+      const uint32_t memory_access_index = address + i;
+      if (memory_access_index < MEMORY_SIZE) {
+        result |= ((uint32_t) state->memory[memory_access_index]) << (8 * i);
+      } else {
         access_was_successful = false;
       }
     }
-    if(!access_was_successful){
-      printf("Error: Out of bounds memory access at address 0x%08x\n",address);
+    if (!access_was_successful) {
+      handle_out_of_bounds(address);
     }
-   
+
     state->registers[instruction.Rd] = result;
   } else {
-      /*
-  printf("offset: 0x%08x\n", offset);
-  printf("base register: 0x%08x\n", state->registers[instruction.Rn]);
-
-   printf("ADDRESS: 0x%08x\n", address);
-*/
     for (int i = 0; i < 4; i++) {
-       // printf("address: 0x%08x\n", address + i);
-        const uint32_t mask = (0xff) << (8*i);
-        const uint32_t memory_access_index = address + i;
-        if (memory_access_index < MEMORY_SIZE) {
-          state->memory[memory_access_index] =
-              (((uint32_t)state->registers[instruction.Rd]) & mask) >> (8*i);
-        } else {
-            printf("Error: Out of bounds memory access at address 0x%08x\n",memory_access_index);
-        }
+      const uint32_t mask = (0xff) << (8 * i);
+      const uint32_t memory_access_index = address + i;
+      if (memory_access_index < MEMORY_SIZE) {
+        state->memory[memory_access_index] =
+            (((uint32_t) state->registers[instruction.Rd]) & mask) >> (8 * i);
+      } else {
+        handle_out_of_bounds(memory_access_index);
+      }
     }
   }
 
@@ -459,6 +460,22 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
 }
 
 
+void handle_out_of_bounds(uint32_t index) {
+  //todo magic constants
+  if (index >= 0x20200000 && index < 0x20200012) {
+    if(index < 0x20200004 && index >= 0x20200000){
+      printf("One GPIO pin from 0 to 9 has been accessed\n");
+    }
+    if(index < 0x20200008 && index >= 0x20200004){
+      printf("One GPIO pin from 10 to 19 has been accessed\n");
+    }
+    if(index > 0x20200008){
+      printf("One GPIO pin from 20 to 29 has been accessed\n");
+    }
+  } else
+    printf("Error: Out of bounds memory access at address 0x%08x\n", index);
+}
+
 
 int execute_instruction_branch(struct EmulatorState *state,
                                const struct BranchInstruction instruction) {
@@ -469,8 +486,6 @@ int execute_instruction_branch(struct EmulatorState *state,
   state->PC += offset;
   return -2;
 }
-
-
 void print_registers(struct EmulatorState *state) {
   printf("Registers:\n");
   for (int i = 0; i < 13; ++i) {
@@ -482,11 +497,11 @@ void print_registers(struct EmulatorState *state) {
   printf("PC  : %10d (0x%08x)\n", state->PC, state->PC);
   printf("CPSR: %10d (0x%08x)\n", state->CPSR, state->CPSR);
   printf("Non-zero memory:\n");
-  for (int i = 0; i < MEMORY_SIZE/4; i++) {
-    if ((state->memory_as_uints)[i] != 0 ) {
+  for (int i = 0; i < MEMORY_SIZE / 4; i++) {
+    if ((state->memory_as_uints)[i] != 0) {
 //      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
       //swap endiannes to match test cases
-      printf("0x%08x: 0x%08x\n", 4*i, __bswap_32(state->memory_as_uints[i]));
+      printf("0x%08x: 0x%08x\n", 4 * i, __bswap_32(state->memory_as_uints[i]));
       // printf("0x%08x: 0x%08x\n", i, *(uint32_t *)&state->memory[i]);
 
     }
@@ -505,6 +520,8 @@ int main(int argc, char **argv) {
   assert(sizeof(struct MultiplyInstruction) == sizeof(int32_t));
   assert(sizeof(struct DataProcessingInstruction) == sizeof(int32_t));
   assert(sizeof(struct BranchInstruction) == sizeof(int32_t));
+  assert(sizeof(struct ImmediateFalseShiftByRegisterFalse) == 2*sizeof(unsigned char));
+  assert(sizeof(struct ImmediateFalseShiftByRegisterTrue) == 2*sizeof(unsigned char));
 
   const char *filename = argv[1];
   int fileDescriptor = open(filename, O_RDONLY);

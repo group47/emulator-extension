@@ -48,12 +48,21 @@ struct ImmediateTrue{
 }__attribute__((packed));
 
 
-struct ImmediateFalse{
+struct ImmediateFalseShiftByRegisterTrue{
   uint8_t Rm : 4;
-  bool shift_by_register: 1;
+  bool shift_by_register: 1;//should be true
   enum ShiftType shift_type: 2;
-  uint8_t shift : 7;
+  bool filler:1;
+  uint8_t Rs:4;
 }__attribute__((packed));
+
+struct ImmediateFalseShiftByRegisterFalse{
+  uint8_t Rm : 4;
+  bool shift_by_register: 1;//should be 0
+  enum ShiftType shift_type: 2;
+  uint8_t integer: 5;
+}__attribute__((packed));
+
 
 struct DataProcessingInstruction {
   uint16_t secondOperand : 12;
