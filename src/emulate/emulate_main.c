@@ -485,7 +485,8 @@ int main(int argc, char **argv) {
                                                    sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
   assert(amountRead % sizeof(uint32_t) == 0);
   struct EmulatorState *state = malloc(sizeof(struct EmulatorState));
-  rawData[amountRead / sizeof(uint32_t)] = 0;
+  memset(rawData + amountRead / sizeof(uint32_t), 0, 4);
+  //rawData[amountRead / sizeof(uint32_t)] = 0;
   emulate(state,
           rawData,
           (unsigned int) (amountRead / sizeof(uint32_t)) + 1);
