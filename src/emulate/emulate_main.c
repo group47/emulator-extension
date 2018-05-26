@@ -169,7 +169,7 @@ bool should_execute(const struct EmulatorState *state, const enum Cond cond) {
     case al:
       return true;
     default:
-      assert(false);
+      return false;
   }
 }
 
