@@ -11,7 +11,11 @@
 #include "stdint-gcc.h"
 
 struct EmulatorState {
-  uint32_t memory[MEMORY_SIZE/4];
+  union {
+    uint8_t memory[MEMORY_SIZE];
+    uint32_t memory_as_uints[MEMORY_SIZE/4];
+  };
+
   //todo registers should go here etc.:
   uint32_t registers[NUM_REGISTERS-2];
   //conceptual bug:, register 15 is a valid register, but will overflow the array access, but still get the right register
@@ -26,6 +30,7 @@ enum CPSR{
   CPSR_C = 0b00100000000000000000000000000000,
   CPSR_V = 0b00010000000000000000000000000000
 //         0b01100000000000000000000000000000
+//         0b11000000000000000000000000000000
 };
 
 /*

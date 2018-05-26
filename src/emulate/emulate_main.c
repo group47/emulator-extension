@@ -28,6 +28,7 @@ setCPSR(struct EmulatorState *state, struct DataProcessingInstruction instructio
 void emulate(struct EmulatorState *state,
              uint32_t *instructions,
              unsigned int instructions_l) {
+  memset(state,0, sizeof(struct EmulatorState));
   load_program_into_ram(state, instructions, instructions_l);
   emulateImpl(state);
 }
@@ -116,8 +117,8 @@ void emulateImpl(struct EmulatorState *state) {
     }
     fetched = decoded;
     fetched_valid = decode_valid;
-    if (state->PC / 4 < MEMORY_SIZE) {
-      decoded = *(union RawInstruction *) &((state->memory)[(state->PC) / 4]);
+    if (state->PC < MEMORY_SIZE) {
+      decoded = *(union RawInstruction *) &((state->memory)[state->PC]);
       decode_valid = true;
     } else {
       assert(false);
@@ -236,11 +237,11 @@ int execute_instruction_data_processing(struct EmulatorState *state,
     return 0;
   }
   const uint32_t rnVal = (state->registers)[instruction.Rn];
-  uint32_t* result = 
+  uint32_t* result =
       getOperand2Val(state, instruction.secondOperand, instruction.immediateOperand, 0);
   uint32_t operand2Val = result[0];
   uint32_t shiftCarryOut = result[1];
-  
+
   free(result);
 
   uint32_t computation_res;
@@ -293,9 +294,11 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       }//todo duplication with sub, use fallthrough
       break;
     case orr:
+      computation_res = rnVal | operand2Val;
       (state->registers)[instruction.Rd] = (rnVal | operand2Val);
-      return 1;
+      break;
     case mov:
+      computation_res = operand2Val;
       state->registers[instruction.Rd] = operand2Val;
       break;
   }
@@ -322,7 +325,7 @@ int setCPSR(struct EmulatorState *state,
         } else {
           state->CPSR |= CPSR_C;
         }
-       
+
       }
     } else if (is_logical(instruction.opcode)) {
       state->CPSR |= shiftCarryOut;
@@ -331,7 +334,7 @@ int setCPSR(struct EmulatorState *state,
     }
     //set z bit
     if (computation_res == 0) {
-        state->CPSR |= CPSR_Z;
+      state->CPSR |= CPSR_Z;
     }
     //set n bit
     if (computation_res & CPSR_N) {// CPSR_N is the 31st bit mask
@@ -448,11 +451,11 @@ void print_registers(struct EmulatorState *state) {
   printf("PC  : %10d (0x%08x)\n", state->PC, state->PC);
   printf("CPSR: %10d (0x%08x)\n", state->CPSR, state->CPSR);
   printf("Non-zero memory:\n");
-  for (int i = 0; i < MEMORY_SIZE / 4; i++) {
-    if (state->memory[i] != 0) {
+  for (int i = 0; i < MEMORY_SIZE; i++) {
+    if ((state->memory_as_uints)[i/4] != 0 && i % 4 == 0) {
 //      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
       //swap endiannes to match test cases
-      printf("0x%08x: 0x%08x\n", 4 * i, __bswap_32(state->memory[i]));
+      printf("0x%08x: 0x%08x\n", i, __bswap_32(*(uint32_t *)&state->memory[i]));
     }
   }
 }
