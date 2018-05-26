@@ -17,7 +17,7 @@ enum InstructionType {
   MULTIPLY,
   SINGLE_DATA_TRANSFER,
   BRANCH_INSTRUCTION,
-  TERMINATE
+  TERMINATE_INSTRUCTION
 };
 
 enum Cond {
@@ -40,7 +40,7 @@ enum ShiftType {
 };
 
 
-//todo magic constants:
+//todo ImmediateFalseShiftByRegisterTrue:
 
 struct ImmediateTrue{
   uint8_t Imm: 8;

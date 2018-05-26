@@ -8,41 +8,31 @@
 #define MEMORY_SIZE 65536
 #define MAX_INSTRUCTION_INPUT_FILE_SIZE 1000
 #define NUM_REGISTERS 17
+#include <stdbool.h>
 #include "stdint-gcc.h"
+
 
 struct EmulatorState {
   union {
     uint8_t memory[MEMORY_SIZE];
-    uint32_t memory_as_uints[MEMORY_SIZE/4];
+    uint32_t memory_as_uints[MEMORY_SIZE / 4];
   };
 
-  //todo registers should go here etc.:
-  uint32_t registers[NUM_REGISTERS-2];
+  uint32_t registers[NUM_REGISTERS - 2];
   //conceptual bug:, register 15 is a valid register, but will overflow the array access, but still get the right register
   //by luck since this packed in a struct, the overflowed access still gets the correct register, but this is by chance only
   uint32_t PC;
   uint32_t CPSR;
 };
 
-enum CPSR{
-  CPSR_N = 0b10000000000000000000000000000000,   //todo hex
-  CPSR_Z = 0b01000000000000000000000000000000,
-  CPSR_C = 0b00100000000000000000000000000000,
-  CPSR_V = 0b00010000000000000000000000000000
-//         0b01100000000000000000000000000000
-//         0b11000000000000000000000000000000
-};
-
-/*
 enum CPSR {
-    CPSR_N = 0x8000;
-    CPSR_Z = 0x4000;
-    CPSR_C = 0x2000;
-    CPSR_V = 0x1000;
+  CPSR_N = 0x80000000,
+  CPSR_Z = 0x40000000,
+  CPSR_C = 0x20000000,
+  CPSR_V = 0x10000000
 };
-*/
 
-enum OpCode{
+enum OpCode {
   and = 0b0000,
   eor = 0b0001,
   sub = 0b0010,
@@ -53,6 +43,10 @@ enum OpCode{
   cmp = 0b1010,
   orr = 0b1100,
   mov = 0b1101
+};
+
+enum ExecutionExitCode{
+  BRANCH = -2,TERMINATE = -1,OK = 0
 };
 
 void emulate(struct EmulatorState *state,

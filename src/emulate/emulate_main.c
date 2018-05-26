@@ -64,7 +64,7 @@ struct Instruction rawInstructionToInstruction(union RawInstruction rawInstructi
   memcpy(&(res.rawInstruction), &(rawInstruction), sizeof(union RawInstruction));
   //todo magic constants
   if (asInt == 0) {
-    res.type = TERMINATE;
+    res.type = TERMINATE_INSTRUCTION;
   } else if (branchInstruction.filler1 == 0b0
       && branchInstruction.filler2 == 0b101) {
     res.type = BRANCH_INSTRUCTION;
@@ -90,18 +90,6 @@ void load_program_into_ram(struct EmulatorState *pState,
 
 //The instruction parameter needs to be removed since the instructions need to be in main memory
 void emulateImpl(struct EmulatorState *state) {
-#ifdef INSTRUCTION_TYPES_TEST
-
-  const char *instructionTypeNames[] =
-      {"DATA_PROCESSING", "MULTIPLY", "SINGLE_DATA_TRANSFER",
-       "BRANCH_INSTRUCTION","TERMINATE"};
-  for (int i = 0; i < instructions_l; i++) {
-    printf("Instruction #%d, Instruction type:%s\n",
-           i,
-           instructionTypeNames[instructions[i].type]);
-  }
-
-#endif
   state->PC = 0;
   union RawInstruction fetched;
   bool fetched_valid = false;
@@ -112,11 +100,11 @@ void emulateImpl(struct EmulatorState *state) {
     if (fetched_valid) {
       const int executionResult =
           execute_instruction(state, rawInstructionToInstruction(fetched));
-      if (executionResult == -2) {//todo magic constants
+      if (executionResult == BRANCH) {//todo magic constants
         fetched_valid = false;
         decode_valid = false;
       }
-      if (executionResult == -1) {
+      if (executionResult == TERMINATE) {
         break;
       }
     }
@@ -149,8 +137,8 @@ int execute_instruction(struct EmulatorState *state,
                                                       instruction.rawInstruction.singleDataTransferInstruction);
     case BRANCH_INSTRUCTION:
       return execute_instruction_branch(state, instruction.rawInstruction.branchInstruction);
-    case TERMINATE:
-      return -1;
+    case TERMINATE_INSTRUCTION:
+      return TERMINATE;
     default:
       assert(false);
   }
@@ -196,7 +184,8 @@ uint32_t *getOperand2Val(struct EmulatorState *state,
     uint32_t imm = immediateTrue.Imm;
     res = __rord(imm, 2 * immediateTrue.rotate);
   } else {
-    struct ImmediateFalseShiftByRegisterFalse immediateFalse = *(struct ImmediateFalseShiftByRegisterFalse *) &secondOperand;
+    struct ImmediateFalseShiftByRegisterFalse
+        immediateFalse = *(struct ImmediateFalseShiftByRegisterFalse *) &secondOperand;
     if (immediateFalse.shift_by_register) {
       //todo
       assert(false);//not implemented
@@ -287,11 +276,9 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       break;
     case tst:
       computation_res = rnVal & operand2Val;
-      //todo
       break;
     case teq:
       computation_res = rnVal ^ operand2Val;
-      //todo
       break;
     case cmp:
       computation_res = rnVal - operand2Val;
@@ -343,7 +330,7 @@ int setCPSR(struct EmulatorState *state,
     //set z bit
     if (computation_res == 0) {
       state->CPSR |= CPSR_Z;
-    }else{
+    } else {
       state->CPSR &= ~CPSR_Z;
     }
     //set n bit
@@ -465,13 +452,13 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
 void handle_out_of_bounds(uint32_t index) {
   //todo magic constants
   if (index >= 0x20200000 && index < 0x20200012) {
-    if(index < 0x20200004 && index >= 0x20200000){
+    if (index < 0x20200004 && index >= 0x20200000) {
       printf("One GPIO pin from 0 to 9 has been accessed\n");
     }
-    if(index < 0x20200008 && index >= 0x20200004){
+    if (index < 0x20200008 && index >= 0x20200004) {
       printf("One GPIO pin from 10 to 19 has been accessed\n");
     }
-    if(index > 0x20200008){
+    if (index > 0x20200008) {
       printf("One GPIO pin from 20 to 29 has been accessed\n");
     }
   } else
@@ -486,7 +473,7 @@ int execute_instruction_branch(struct EmulatorState *state,
   }
   const int32_t offset = instruction.offset * 4;
   state->PC += offset;
-  return -2;
+  return BRANCH;
 }
 void print_registers(struct EmulatorState *state) {
   printf("Registers:\n");
@@ -522,8 +509,8 @@ int main(int argc, char **argv) {
   assert(sizeof(struct MultiplyInstruction) == sizeof(int32_t));
   assert(sizeof(struct DataProcessingInstruction) == sizeof(int32_t));
   assert(sizeof(struct BranchInstruction) == sizeof(int32_t));
-  assert(sizeof(struct ImmediateFalseShiftByRegisterFalse) == 2*sizeof(unsigned char));
-  assert(sizeof(struct ImmediateFalseShiftByRegisterTrue) == 2*sizeof(unsigned char));
+  assert(sizeof(struct ImmediateFalseShiftByRegisterFalse) == 2 * sizeof(unsigned char));
+  assert(sizeof(struct ImmediateFalseShiftByRegisterTrue) == 2 * sizeof(unsigned char));
 
   const char *filename = argv[1];
   int fileDescriptor = open(filename, O_RDONLY);
