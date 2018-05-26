@@ -149,7 +149,7 @@ int execute_instruction(struct EmulatorState *state,
   }
 }
 
-bool should_execute(const struct EmulatorState *state, const enum Cond cond) {
+int should_execute(const struct EmulatorState *state, const enum Cond cond) {
   const bool NequalsV =
       (bool) (((state->CPSR) & CPSR_N) == ((state->CPSR) & CPSR_V));
   const bool Zset = (bool) ((state->CPSR) & CPSR_Z);
@@ -169,7 +169,7 @@ bool should_execute(const struct EmulatorState *state, const enum Cond cond) {
     case al:
       return true;
     default:
-      return false;
+      return -3;
   }
 }
 
@@ -233,9 +233,11 @@ int execute_instruction_data_processing(struct EmulatorState *state,
   bool overflow_occurred = false;
   bool borrow_occurred = false;
 
-  if (!should_execute(state, instruction.cond)) {
-    return 0;
+  int shouldExecute = should_execute(state, instruction.cond);
+  if (shouldExecute != 1) { 
+    return shouldExecute;
   }
+  
   const uint32_t rnVal = (state->registers)[instruction.Rn];
   uint32_t* result =
       getOperand2Val(state, instruction.secondOperand, instruction.immediateOperand, 0);
@@ -359,10 +361,11 @@ uint32_t extract_shift(uint16_t secondOperand) {
 int
 execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruction instruction) {
 
-  if (!should_execute(state, instruction.cond)) {
-    return 0;
+  int shouldExecute = should_execute(state, instruction.cond);
+  if (shouldExecute != 1) { 
+    return shouldExecute;
   }
-
+  
   uint32_t result = state->registers[instruction.Rm] * state->registers[instruction.Rs];
 
   if (instruction.accumulate) {
@@ -383,8 +386,10 @@ execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruc
 
 int execute_instruction_single_data_transfer(struct EmulatorState *state,
                                              struct SingleDataTransferInstruction instruction) {
-  if (!should_execute(state, instruction.cond)) {
-    return 0;
+ 
+  int shouldExecute = should_execute(state, instruction.cond);
+  if (shouldExecute != 1) { 
+    return shouldExecute;
   }
 
   uint32_t offset;
@@ -398,44 +403,35 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
   }
 
   // pre indexing
-  uint32_t address = state->registers[instruction.Rn];
-  
   if (instruction.prePostIndexingBit) {
     if (instruction.upBit) {
-      address += offset;
+      state->registers[instruction.Rn] += offset;
     } else {
-      address -= offset;
+      state->registers[instruction.Rn] -= offset;
     }
   }
 
   if (instruction.loadStore) {
-    uint32_t result = 0;
-    bool access_was_successful = true;
+    //printf("register value now: %d\n", state->registers[instruction.Rn]);
+    uint32_t result = 0; 
     for (int i = 0; i < 4; i++) {
-     const uint32_t memory_access_index = address + i;
-      if(memory_access_index < MEMORY_SIZE){
-        result |= ((uint32_t) state->memory[memory_access_index]) << (8*i) ;
-      }
-      else{
-        access_was_successful = false;
-      }
+        /*
+        printf("Looping: 0x%08x\n", state->memory[state ->registers[instruction.Rn] + i]);
+        printf("Looping2: 0x%08x\n", 
+                ((uint32_t) state->memory[state->registers[instruction.Rn] + i]) << (8*i)); 
+
+                */
+        result |= ((uint32_t) state->memory[state->registers[instruction.Rn] + i]) << (8*i) ;
+        //result[1] = state->memory[instruction.Rn + i+1];
     }
-    if(!access_was_successful){
-      printf("Error: Out of bounds memory access at address 0x%08x\n",address);
+    /*
+    for (int i = 0; i < 8; i++) {
+        printf("0x%08x\n", state->memory[i]);
     }
-   
+    */
     state->registers[instruction.Rd] = result;
   } else {
-    for (int i = 0; i < 4; i++) {
-        const uint32_t mask = (0xff) << (8*i);
-        const uint32_t memory_access_index = address + i;
-        if (memory_access_index < MEMORY_SIZE) {
-          state->memory[memory_access_index] =
-              (((uint32_t)state->registers[instruction.Rd]) & mask) >> (8*i);
-        } else {
-            printf("Error: Out of bounds memory access at address 0x%08x\n",memory_access_index);
-        }
-    }
+    state->memory[instruction.Rn] = state->registers[instruction.Rd];
   }
 
   // I need a better solution for this duplication
@@ -455,9 +451,12 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
 
 int execute_instruction_branch(struct EmulatorState *state,
                                const struct BranchInstruction instruction) {
-  if (!should_execute(state, instruction.cond)) {
-    return 0;
+  
+  int shouldExecute = should_execute(state, instruction.cond);
+  if (shouldExecute != 1) { 
+    return shouldExecute;
   }
+
   const int32_t offset = instruction.offset * 2;
   state->PC += offset;
   return -2;
@@ -475,11 +474,11 @@ void print_registers(struct EmulatorState *state) {
   printf("PC  : %10d (0x%08x)\n", state->PC, state->PC);
   printf("CPSR: %10d (0x%08x)\n", state->CPSR, state->CPSR);
   printf("Non-zero memory:\n");
-  for (int i = 0; i < MEMORY_SIZE/4; i++) {
-    if ((state->memory_as_uints)[i] != 0 ) {
+  for (int i = 0; i < MEMORY_SIZE; i++) {
+    if ((state->memory_as_uints)[i/4] != 0 && i % 4 == 0) {
 //      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
       //swap endiannes to match test cases
-      printf("0x%08x: 0x%08x\n", 4*i, __bswap_32(state->memory_as_uints[i]));
+      printf("0x%08x: 0x%08x\n", i, __bswap_32(*(uint32_t *)&state->memory[i]));
       // printf("0x%08x: 0x%08x\n", i, *(uint32_t *)&state->memory[i]);
 
     }
