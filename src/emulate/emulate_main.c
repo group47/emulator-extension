@@ -181,7 +181,7 @@ uint32_t* getOperand2Val(struct EmulatorState *state,
   uint32_t res;
   uint32_t carry_out = 0;
 
-  if (immediate) {
+  if (immediate == flag) {
 
     struct ImmediateTrue immediateTrue = *(struct ImmediateTrue *) &secondOperand;
     //rotate stack overflow community wiki:
@@ -238,7 +238,7 @@ int execute_instruction_data_processing(struct EmulatorState *state,
   }
   const uint32_t rnVal = (state->registers)[instruction.Rn];
   uint32_t* result =
-      getOperand2Val(state, instruction.secondOperand, instruction.immediateOperand, 0);
+      getOperand2Val(state, instruction.secondOperand, instruction.immediateOperand, 1);
   uint32_t operand2Val = result[0];
   uint32_t shiftCarryOut = result[1];
 
@@ -426,7 +426,14 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
    
     state->registers[instruction.Rd] = result;
   } else {
+      /*
+  printf("offset: 0x%08x\n", offset);
+  printf("base register: 0x%08x\n", state->registers[instruction.Rn]);
+
+   printf("ADDRESS: 0x%08x\n", address);
+*/
     for (int i = 0; i < 4; i++) {
+       // printf("address: 0x%08x\n", address + i);
         const uint32_t mask = (0xff) << (8*i);
         const uint32_t memory_access_index = address + i;
         if (memory_access_index < MEMORY_SIZE) {
