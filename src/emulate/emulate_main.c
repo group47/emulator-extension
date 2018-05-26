@@ -408,7 +408,8 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
 
   if (instruction.loadStore) {
     //printf("register value now: %d\n", state->registers[instruction.Rn]);
-    uint32_t result = 0; 
+    uint32_t result = 0;
+    bool acsess_was_successful = true;
     for (int i = 0; i < 4; i++) {
         /*
         printf("Looping: 0x%08x\n", state->memory[state ->registers[instruction.Rn] + i]);
@@ -416,8 +417,17 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
                 ((uint32_t) state->memory[state->registers[instruction.Rn] + i]) << (8*i)); 
 
                 */
-        result |= ((uint32_t) state->memory[state->registers[instruction.Rn] + i]) << (8*i) ;
+      const uint32_t memory_access_index = state->registers[instruction.Rn] + i;
+      if(memory_access_index < MEMORY_SIZE){
+        result |= ((uint32_t) state->memory[memory_access_index]) << (8*i) ;
+      }
+      else{
+        acsess_was_successful = false;
+      }
         //result[1] = state->memory[instruction.Rn + i+1];
+    }
+    if(!acsess_was_successful){
+      printf("Error: Out of bounds memory access at address 0x%08x\n",state->registers[instruction.Rn]);
     }
     /*
     for (int i = 0; i < 8; i++) {
@@ -466,11 +476,11 @@ void print_registers(struct EmulatorState *state) {
   printf("PC  : %10d (0x%08x)\n", state->PC, state->PC);
   printf("CPSR: %10d (0x%08x)\n", state->CPSR, state->CPSR);
   printf("Non-zero memory:\n");
-  for (int i = 0; i < MEMORY_SIZE; i++) {
-    if ((state->memory_as_uints)[i/4] != 0 && i % 4 == 0) {
+  for (int i = 0; i < MEMORY_SIZE/4; i++) {
+    if ((state->memory_as_uints)[i] != 0 ) {
 //      printf("0x%08x: 0x%x\n",4*i,state->memory[i]);
       //swap endiannes to match test cases
-      printf("0x%08x: 0x%08x\n", i, __bswap_32(state->memory_as_uints[i]));
+      printf("0x%08x: 0x%08x\n", 4*i, __bswap_32(state->memory_as_uints[i]));
       // printf("0x%08x: 0x%08x\n", i, *(uint32_t *)&state->memory[i]);
 
     }
