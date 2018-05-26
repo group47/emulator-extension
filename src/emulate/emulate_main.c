@@ -409,7 +409,7 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
   if (instruction.loadStore) {
     //printf("register value now: %d\n", state->registers[instruction.Rn]);
     uint32_t result = 0;
-    bool acsess_was_successful = true;
+    bool access_was_successful = true;
     for (int i = 0; i < 4; i++) {
         /*
         printf("Looping: 0x%08x\n", state->memory[state ->registers[instruction.Rn] + i]);
@@ -422,11 +422,11 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
         result |= ((uint32_t) state->memory[memory_access_index]) << (8*i) ;
       }
       else{
-        acsess_was_successful = false;
+        access_was_successful = false;
       }
         //result[1] = state->memory[instruction.Rn + i+1];
     }
-    if(!acsess_was_successful){
+    if(!access_was_successful){
       printf("Error: Out of bounds memory access at address 0x%08x\n",state->registers[instruction.Rn]);
     }
     /*
@@ -436,7 +436,12 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
     */
     state->registers[instruction.Rd] = result;
   } else {
-    state->memory[instruction.Rn] = state->registers[instruction.Rd];
+    const uint32_t memory_access_index = state->registers[instruction.Rn];
+    if(memory_access_index < MEMORY_SIZE) {
+      state->memory[memory_access_index] = state->registers[instruction.Rd];
+    }else{
+      printf("Error: Out of bounds memory access at address 0x%08x\n",memory_access_index);
+    }
   }
 
   // I need a better solution for this duplication
