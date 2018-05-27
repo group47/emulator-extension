@@ -165,6 +165,7 @@ int getOperand2Val(struct EmulatorState *state,
       //todo
       assert(false);//not implemented
     } else {
+      /*
       switch (immediateFalse.shift_type) {
         case lsl:
           *carryOut = immediateFalse.integer == 0 ? 0 :
@@ -176,7 +177,7 @@ int getOperand2Val(struct EmulatorState *state,
                       (((0x1) << (immediateFalse.integer - 1) & immediateFalse.Rm) % 2);
           *operand2 = (state->registers[immediateFalse.Rm]) >> immediateFalse.integer;
           break;
-        case asr:
+        case asr: //This looks wrong
           *carryOut = immediateFalse.integer == 0 ? 0 :
                       (((0x1) << (immediateFalse.integer - 1) & immediateFalse.Rm) % 2);
           *operand2 = (int32_t) ((state->registers[immediateFalse.Rm]) >> immediateFalse.integer);
@@ -187,6 +188,36 @@ int getOperand2Val(struct EmulatorState *state,
           *operand2 = __rord((uint32_t) immediateFalse.Rm, immediateFalse.integer);
           break;
         default: assert(false);
+      }*/
+      *operand2 = state->registers[immediateFalse.Rm];
+      uint32_t ar_bit;
+      if (immediateFalse.integer != 0) {
+        switch (immediateFalse.shift_type) {
+          case lsl:
+            *operand2 <<= immediateFalse.integer - 1;
+            *carryOut = (*operand2 >> 31) & 0b1;
+            *operand2 <<= 1;
+            break;
+          case lsr:
+            *operand2 >>= immediateFalse.integer - 1;
+            *carryOut = *operand2 & 0b1;
+            *operand2 >>= 1;
+            break;
+          case asr:
+            ar_bit = *operand2 & (0b1 << 31);
+            for (int i = 0; i < immediateFalse.integer - 1; ++i) {
+              *operand2 = (*operand2 >> 1) | ar_bit;
+            }
+            *carryOut = *operand2 & 0b1;
+            *operand2 = (*operand2 >> 1) | ar_bit;
+            break;
+          case ror:
+            *operand2 = __rord(*operand2, immediateFalse.integer - 1);
+            *carryOut = *operand2 & 0b1;
+            *operand2 = __rord(*operand2, 1);
+            break;
+          default: assert(false);
+        }
       }
     }
   }
@@ -271,7 +302,7 @@ void handle_out_of_bounds(uint32_t index) {
 void print_registers(struct EmulatorState *state) {
   printf("Registers:\n");
   for (int i = 0; i < 13; ++i) {
-    printf("$%-3d:%11d (0x%08x)\n",
+    printf("$%-3d: %10d (0x%08x)\n",
            i,
            state->registers[i],
            state->registers[i]);
