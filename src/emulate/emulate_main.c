@@ -143,7 +143,13 @@ bool should_execute(const struct EmulatorState *state, const enum Cond cond) {
   }
 }
 
+//work around clang not being gcc
 
+uint32_t ror_hack(uint32_t x, int L)
+{
+  uint32_t lsbs = x & ((1 << L) - 1);
+  return (x >> L) | (lsbs << (32-L));
+}
 uint32_t *getOperand2Val(struct EmulatorState *state,
                          uint16_t secondOperand,
                          bool immediate,
@@ -157,7 +163,7 @@ uint32_t *getOperand2Val(struct EmulatorState *state,
     //rotate stack overflow community wiki:
     //https://stackoverflow.com/questions/776508/best-practices-for-circular-shift-rotate-operations-in-c
     uint32_t imm = immediateTrue.Imm;
-    res = __rord(imm, 2 * immediateTrue.rotate);
+    res = ror_hack(imm, 2 * immediateTrue.rotate);
   } else {
     struct ImmediateFalseShiftByRegisterFalse
         immediateFalse = *(struct ImmediateFalseShiftByRegisterFalse *) &secondOperand;
@@ -184,7 +190,7 @@ uint32_t *getOperand2Val(struct EmulatorState *state,
         case ror:
           carry_out = immediateFalse.integer == 0 ? 0 :
                       (((0x1) << (immediateFalse.integer - 1) & immediateFalse.Rm) % 2);
-          res = __rord((uint32_t) immediateFalse.Rm, immediateFalse.integer);
+          res = ror_hack((uint32_t) immediateFalse.Rm, immediateFalse.integer);
           break;
       }
     }
