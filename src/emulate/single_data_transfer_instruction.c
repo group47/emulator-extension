@@ -19,9 +19,9 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
   if (instruction.immediateOffset == 0) {
     offset = instruction.offset;
   } else {
-    uint32_t *result = getOperand2Val(state, instruction.offset, instruction.immediateOffset, 0);
-    offset = result[0];
-    free(result);
+    uint32_t dummy;
+    getOperand2Val(state, instruction.offset, instruction.immediateOffset, 0, &offset, &dummy);
+    dummy = 0;
   }
 
   // pre indexing
