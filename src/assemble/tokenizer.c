@@ -18,6 +18,9 @@ const int MAX_TOKENS = 32;
 
 struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable) {
     printf("%s\n", instruction);
+    if (instruction == NULL){
+        assert(false);
+    }
 
     // Breaking the lines into tokens
     char** tokensFirstPass = malloc(sizeof(char*)*100);
@@ -58,15 +61,31 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable) {
         token = malloc(sizeof(struct Token));
         token->label = tokensSecondPass[0];
     } else {
+        if (tokensSecondPass[0] == NULL) {
+            return NULL;
+        }
         struct Entry *entry = find(symbolTable, tokensSecondPass[0]);
         if (entry == NULL) {
             return NULL;
             assert(false);
         }
         token = entry->rawEntry.instructionInfo.tokenize(tokensSecondPass, entry);
-
     }
 
+    return token;
+}
+
+struct Token* initializeToken() {
+    // Clearing the field is necessary, as not all of them are assigned
+    struct Token* token = malloc(sizeof(struct Token));
+    token->Rd = 0;
+    token->Rn = 0;
+    token->offset = 0;
+    token->Rm = 0;
+    token->Rs = 0;
+    token->operand2 = 0;
+    token->operand2IsImmediate = false;
+    token->label = NULL;
     return token;
 }
 

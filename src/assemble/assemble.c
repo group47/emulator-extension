@@ -19,23 +19,38 @@ void assembleDataProcessingInstruction(FILE* fpOutput, struct Token* token) {
     uint32_t binary = 0;
     binary |= ((uint32_t)token->instructionInfo->condCode) << 28;
 
+    // set I bit
+    if (token->operand2IsImmediate) {
+        binary |= (0x1) << 25;
+    }
+
     // set opcode
-    binary |= token->instructionInfo->opCode << 24;
+    binary |= (token->instructionInfo->opCode) << 21;
 
     // set S bit
-    if (token->instructionInfo->opCode == tst || token->instructionInfo->opCode == teq || token->instructionInfo->opCode == cmp) {
-        binary |= MASK20;
+    if (token->instructionInfo->opCode == tst
+        || token->instructionInfo->opCode == teq
+        || token->instructionInfo->opCode == cmp) {
+        binary |= (0x1) << 20;
     }
+
     char dummy[100];
 
-    binary |= ((uint8_t)token->Rn) << 19;
-    binary |= ((uint8_t)token->Rd) << 15;
-    binary |= ((uint32_t)token->operand2) << 11;
+    binary |= ((uint8_t)token->Rn) << 16;
+    binary |= ((uint8_t)token->Rd) << 12;
+    binary |= getOperand2Immediate(token->operand2);
 
     char binaryArray[32];
     //sprintf(binaryArray, "%lu",binary);
     //fwrite(binaryArray, 32, 1, fpOutput);
     binary_file_writer32(fpOutput, binary);
+}
+
+
+//todo : determine whether the value is representable
+uint8_t getOperand2Immediate(uint32_t operand2Val) {
+    uint32_t mask = 0x0001;
+    return operand2Val;
 }
 
 
@@ -51,10 +66,15 @@ void assembleBranchInstruction(FILE* fpOutput, struct Token* token) {
 struct Token* tokenizeDataProcessing1(char** tokens, struct InstructionInfo* instructionInfo) {
     assert(strlen(tokens) >= 4);
     char dummy[500];
-    struct Token* token = malloc(sizeof(struct Token));
+    struct Token* token = initializeToken();
     token->instructionInfo = instructionInfo;
-    token->Rn = strtol(tokens[1]+1, dummy, 10);
-    token->Rd = strtol(tokens[2]+1, dummy, 10);
+    if (tokens[3][0] == '#') {
+        token->operand2IsImmediate = true;
+    } else {
+        token->operand2IsImmediate = false;
+    }
+    token->Rd = strtol(tokens[1]+1, dummy, 10);
+    token->Rn = strtol(tokens[2]+1, dummy, 10);
     // Handling expression case only
     token->operand2 = strtol(tokens[3]+1, dummy, 10);
     return token;
@@ -63,10 +83,16 @@ struct Token* tokenizeDataProcessing1(char** tokens, struct InstructionInfo* ins
 struct Token* tokenizeDataProcessing2(char** tokens, struct InstructionInfo* instructionInfo) {
     assert(strlen(tokens) >=3);
     char dummy[500];
-    struct Token* token = malloc(sizeof(struct Token));
+    struct Token* token = initializeToken();
     token->instructionInfo = instructionInfo;
-    token->Rn = strtol(tokens[1]+1, dummy, 10);
+    token->Rn = 0;
+    token->Rd = (uint8_t)strtol(tokens[1]+1, dummy, 10);
     // Handling expression case only
+    if (tokens[2][0] == '#') {
+        token->operand2IsImmediate = true;
+    } else {
+        token->operand2IsImmediate = false;
+    }
     token->operand2 = strtol(tokens[2]+1, dummy, 10);
     return token;
 }

@@ -16,8 +16,10 @@ struct Token {
     uint8_t Rm;
     uint32_t operand2;
     uint32_t offset;
+    bool operand2IsImmediate;
 };
 
 struct Token* tokenizer(char*, struct SymbolTable*);
+struct Token* initializeToken();
 
 #endif //ASSEMBLE_TOKENIZER_H

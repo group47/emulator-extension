@@ -68,7 +68,7 @@ bool addInstruction(struct SymbolTable* symbolTable,
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.condCode = condCode;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.opCode = opCode;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.operandCount = operandCount;
-    symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.tokenize= tokenize;
+    symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.tokenize = tokenize;
     /*
 
     struct Entry *entry = malloc(sizeof(struct Entry));
