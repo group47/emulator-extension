@@ -85,6 +85,8 @@ stdbool.h
 -
 
 /Users/ryro/Arm/arm11_47/src/assemble/tokenizer.c
+stdio.h
+-
 string.h
 -
 stdlib.h

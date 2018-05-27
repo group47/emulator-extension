@@ -58,7 +58,7 @@ bool addInstruction(struct SymbolTable* symbolTable,
                     uint8_t condCode,
                     uint8_t opCode,
                     uint8_t operandCount,
-                    struct Token* (*tokenize) (char*, struct InstructionInfo*)) {
+                    struct Token* (*tokenize) (char**, struct InstructionInfo*)) {
 
     assert (symbolTable->size <= 511);
 

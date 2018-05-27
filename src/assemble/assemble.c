@@ -33,8 +33,9 @@ void assembleDataProcessingInstruction(FILE* fpOutput, struct Token* token) {
     binary |= ((uint32_t)token->operand2) << 11;
 
     char binaryArray[32];
-    sprintf(binaryArray, "%lu",binary);
-    fwrite(binaryArray, 32, 1, fpOutput);
+    //sprintf(binaryArray, "%lu",binary);
+    //fwrite(binaryArray, 32, 1, fpOutput);
+    binary_file_writer32(fpOutput, binary);
 }
 
 
@@ -161,6 +162,9 @@ int main(int argc, char** argv) {
         //assert(instructionLength == INSTRUCTION_LENGTH);
 
         struct Token* token = tokenizer(instruction, instructionCode);
+        if (token == NULL) {
+            break;
+        }
         /*
         if (strlen(tokens) == 1) {
             char* label = malloc(8*strlen(tokens[0]-1)); // remove the : in the end

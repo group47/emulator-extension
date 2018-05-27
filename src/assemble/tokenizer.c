@@ -2,6 +2,7 @@
 // Created by ryro on 2018/5/26.
 //
 
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "symbol_table.h"
@@ -16,10 +17,11 @@ const int MAX_TOKENS = 32;
 
 
 struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable) {
+    printf("%s\n", instruction);
 
     // Breaking the lines into tokens
-    char* tokensFirstPass[MAX_TOKENS];
-    char* tokensSecondPass[MAX_TOKENS];
+    char** tokensFirstPass = malloc(sizeof(char*)*100);
+    char** tokensSecondPass = malloc(sizeof(char*)*100);
 
     char* token1;
     char* token2;
@@ -40,6 +42,7 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable) {
     for (int i = 0; i < countFirstPass; i++) {
         token2 = strtok(tokensFirstPass[i], " ");
         while (token2 != NULL) {
+            printf("%s\n", token2);
             tokensSecondPass[countSecondPass] = malloc(511);
             memcpy(tokensSecondPass[countSecondPass], token2, strlen(token2));
             token2 = strtok(NULL, " ");
@@ -56,6 +59,10 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable) {
         token->label = tokensSecondPass[0];
     } else {
         struct Entry *entry = find(symbolTable, tokensSecondPass[0]);
+        if (entry == NULL) {
+            return NULL;
+            assert(false);
+        }
         token = entry->rawEntry.instructionInfo.tokenize(tokensSecondPass, entry);
 
     }
