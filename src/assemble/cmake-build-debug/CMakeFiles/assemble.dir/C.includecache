@@ -35,8 +35,6 @@ symbol_table.h
 /Users/ryro/Arm/arm11_47/src/assemble/symbol_table.h
 
 /Users/ryro/Arm/arm11_47/src/assemble/binary_file_writer.c
-ntsid.h
--
 stdint.h
 -
 binary_file_writer.h

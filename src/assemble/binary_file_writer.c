@@ -2,7 +2,6 @@
 // Created by ryro on 2018/5/26.
 //
 
-#include <ntsid.h>
 #include <stdint.h>
 #include "binary_file_writer.h"
 
