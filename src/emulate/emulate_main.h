@@ -46,7 +46,7 @@ enum OpCode {
 };
 
 enum ExecutionExitCode{
-  BRANCH = -2,TERMINATE = -1,OK = 0
+  BRANCH = -2,TERMINATE = -1,DIDNT_EXECUTE = 0, OK = 1
 };
 
 void emulate(struct EmulatorState *state,

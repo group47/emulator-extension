@@ -229,7 +229,7 @@ int execute_instruction_data_processing(struct EmulatorState *state,
   bool borrow_occurred = false;
 
   if (!should_execute(state, instruction.cond)) {
-    return 0;
+    return DIDNT_EXECUTE;
   }
   const uint32_t rnVal = (state->registers)[instruction.Rn];
   uint32_t *result =
@@ -340,7 +340,7 @@ int setCPSR(struct EmulatorState *state,
       state->CPSR &= ~CPSR_N;
     }
   }
-  return 1;
+  return OK;
 }
 
 uint32_t extract_rotate(uint16_t secondOperand) {
@@ -355,7 +355,7 @@ int
 execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruction instruction) {
 
   if (!should_execute(state, instruction.cond)) {
-    return 0;
+    return DIDNT_EXECUTE;
   }
 
   uint32_t result = state->registers[instruction.Rm] * state->registers[instruction.Rs];
@@ -373,7 +373,7 @@ execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruc
 
   state->registers[instruction.destinationRegister] = result;
 
-  return 1;
+  return OK;
 }
 
 void handle_out_of_bounds(uint32_t index);
@@ -382,7 +382,7 @@ void handle_out_of_bounds(uint32_t index);
 int execute_instruction_single_data_transfer(struct EmulatorState *state,
                                              struct SingleDataTransferInstruction instruction) {
   if (!should_execute(state, instruction.cond)) {
-    return 0;
+    return DIDNT_EXECUTE;
   }
 
   uint32_t offset;
@@ -469,7 +469,7 @@ void handle_out_of_bounds(uint32_t index) {
 int execute_instruction_branch(struct EmulatorState *state,
                                const struct BranchInstruction instruction) {
   if (!should_execute(state, instruction.cond)) {
-    return 0;
+    return DIDNT_EXECUTE;
   }
   const int32_t offset = instruction.offset * 4;
   state->PC += offset;
