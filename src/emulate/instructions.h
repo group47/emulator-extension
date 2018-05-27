@@ -5,13 +5,6 @@
 #ifndef EMULATE_INSTRUCTIONS_H
 #define EMULATE_INSTRUCTIONS_H
 
-#include <stdbool.h>
-
-bool is_logical(enum OpCode opCode);
-bool is_arithmetic(enum OpCode opCode);
-
-
-
 enum InstructionType {
   DATA_PROCESSING,
   MULTIPLY,
@@ -39,6 +32,15 @@ enum ShiftType {
   ror = 0b11
 };
 
+#include <stdbool.h>
+#include <stdint-gcc.h>
+#include "emulate_main.h"
+#include "data_processing_instruction.h"
+#include "multiply_instruction.h"
+#include "single_data_transfer_instruction.h"
+#include "branch_instruction.h"
+
+
 
 //todo ImmediateFalseShiftByRegisterTrue:
 
@@ -64,49 +66,6 @@ struct ImmediateFalseShiftByRegisterFalse{
 }__attribute__((packed));
 
 
-struct DataProcessingInstruction {
-  uint16_t secondOperand : 12;
-  uint8_t Rd:4;
-  uint8_t Rn: 4;
-  bool setConditionCodes: 1;
-  enum OpCode opcode : 4;
-  bool immediateOperand: 1;
-  uint8_t filler: 2;//The value of the filler should be 0b000
-  enum Cond cond : 4;
-}__attribute__((packed));//the attribute is required for the compiler to properly place data types
-
-struct MultiplyInstruction {
-  uint8_t Rm : 4;
-  uint8_t filler2:4;//should equal 0b1001
-  uint8_t Rs:4;
-  uint8_t Rn:4;
-  uint8_t destinationRegister:4;
-  bool setConditionCodes: 1;
-  bool accumulate: 1;
-  uint8_t filler : 6;//should be 0b000000
-  enum Cond cond : 4;
-}__attribute__((packed));
-
-struct SingleDataTransferInstruction {
-  short offset:12;
-  uint8_t Rd:4;
-  uint8_t Rn:4;
-  bool loadStore : 1;
-  uint8_t filler2: 2;
-  bool upBit:1;
-  bool prePostIndexingBit:1;
-  bool immediateOffset:1;
-  uint8_t filler:2; //should be 0b01
-  enum Cond cond:4;
-}__attribute__((packed));
-
-struct BranchInstruction {
-  int32_t offset:24;
-  uint8_t filler1 : 1;// should be 0b0
-  uint8_t filler2: 3;//should be 0b101
-  enum Cond cond:4;
-}__attribute__((packed));
-
 struct TerminateInstruction {
   uint32_t filler : 32;
 };
@@ -127,4 +86,6 @@ struct Instruction {
 
 };
 
+bool is_logical(enum OpCode opCode);
+bool is_arithmetic(enum OpCode opCode);
 #endif //EMULATE_INSTRUCTIONS_H

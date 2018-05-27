@@ -9,26 +9,11 @@
 #include "unistd.h"
 #include "emulate_main.h"
 #include "instructions.h"
-#include "cpsr_overflow_detection.h"
+#include "data_processing_instruction.h"
+#include "single_data_transfer_instruction.h"
+#include "multiply_instruction.h"
+#include "branch_instruction.h"
 
-int execute_instruction_data_processing(struct EmulatorState *,
-                                        const struct DataProcessingInstruction);
-int execute_instruction_multiply(struct EmulatorState *,
-                                 const struct MultiplyInstruction);
-int execute_instruction_single_data_transfer(struct EmulatorState *,
-                                             const struct SingleDataTransferInstruction);
-int execute_instruction(struct EmulatorState *, const struct Instruction);
-void print_registers(struct EmulatorState *);
-void load_program_into_ram(struct EmulatorState *, const uint8_t *, unsigned int);
-
-void emulateImpl(struct EmulatorState *state);
-int
-setCPSR(struct EmulatorState *state,
-        struct DataProcessingInstruction instruction,
-        bool b,
-        bool b1,
-        uint32_t,
-        uint32_t);
 
 void emulate(struct EmulatorState *state,
              uint8_t *instructions,
@@ -40,17 +25,7 @@ void emulate(struct EmulatorState *state,
 
 // Newly added declaration for function 
 
-uint32_t *compute_secondOperand(struct EmulatorState *state,
-                                uint32_t secondOperand,
-                                bool immediateFlag,
-                                bool immediateVal);
 
-uint32_t extract_rotate(uint16_t secondOperand);
-
-uint32_t extract_shift(uint16_t secondOperand);
-
-int execute_instruction_branch(struct EmulatorState *state,
-                               const struct BranchInstruction instruction);
 struct Instruction rawInstructionToInstruction(union RawInstruction rawInstruction) {
   struct Instruction res;
   const struct BranchInstruction branchInstruction = rawInstruction.branchInstruction;
@@ -170,9 +145,9 @@ bool should_execute(const struct EmulatorState *state, const enum Cond cond) {
 
 
 uint32_t *getOperand2Val(struct EmulatorState *state,
-                         const uint16_t secondOperand,
-                         const bool immediate,
-                         const bool flag) {
+                         uint16_t secondOperand,
+                         bool immediate,
+                         bool flag) {
   uint32_t res;
   uint32_t carry_out = 0;
 
@@ -221,83 +196,6 @@ uint32_t *getOperand2Val(struct EmulatorState *state,
 }
 
 
-int execute_instruction_data_processing(struct EmulatorState *state,
-                                        const struct DataProcessingInstruction instruction) {
-  //todo duplication
-
-  bool overflow_occurred = false;
-  bool borrow_occurred = false;
-
-  if (!should_execute(state, instruction.cond)) {
-    return DIDNT_EXECUTE;
-  }
-  const uint32_t rnVal = (state->registers)[instruction.Rn];
-  uint32_t *result =
-      getOperand2Val(state, instruction.secondOperand, instruction.immediateOperand, 1);
-  uint32_t operand2Val = result[0];
-  uint32_t shiftCarryOut = result[1];
-
-  free(result);
-
-  uint32_t computation_res;
-  // for distinguishing between operator thing
-  // Maybe we could use a utility function
-  // The operation on them is the same for single data transfer as well
-
-  switch (instruction.opcode) {
-    case and:
-      computation_res = rnVal & operand2Val;
-      (state->registers)[instruction.Rd] = computation_res;
-      break;
-    case eor:
-      computation_res = rnVal ^ operand2Val;
-      (state->registers)[instruction.Rd] = computation_res;
-      return 1;
-    case sub:
-      computation_res = rnVal - operand2Val;
-      if (does_borrow_occur(rnVal, operand2Val)) {
-        borrow_occurred = true;
-      }
-      (state->registers)[instruction.Rd] = computation_res;
-      break;
-    case rsb:
-      computation_res = operand2Val - rnVal;
-      if (does_borrow_occur(operand2Val, rnVal)) {
-        borrow_occurred = true;
-      }
-      (state->registers)[instruction.Rd] = computation_res;
-      break;
-    case add:
-      computation_res = operand2Val + rnVal;
-      if (does_overflow_occur(operand2Val, rnVal)) {
-        overflow_occurred = true;
-      }
-      (state->registers)[instruction.Rd] = computation_res;
-      break;
-    case tst:
-      computation_res = rnVal & operand2Val;
-      break;
-    case teq:
-      computation_res = rnVal ^ operand2Val;
-      break;
-    case cmp:
-      computation_res = rnVal - operand2Val;
-      if (does_borrow_occur(rnVal, operand2Val)) {
-        borrow_occurred = true;
-      }//todo duplication with sub, use fallthrough
-      break;
-    case orr:
-      computation_res = rnVal | operand2Val;
-      (state->registers)[instruction.Rd] = (rnVal | operand2Val);
-      break;
-    case mov:
-      computation_res = operand2Val;
-      state->registers[instruction.Rd] = operand2Val;
-      break;
-  }
-  return setCPSR(state, instruction, borrow_occurred, overflow_occurred, computation_res,
-                 shiftCarryOut);
-}
 int setCPSR(struct EmulatorState *state,
             const struct DataProcessingInstruction instruction,
             const bool borrow,
@@ -351,102 +249,7 @@ uint32_t extract_shift(uint16_t secondOperand) {
   return (secondOperand & 0xff0) >> 4;
 }
 
-int
-execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruction instruction) {
-
-  if (!should_execute(state, instruction.cond)) {
-    return DIDNT_EXECUTE;
-  }
-
-  uint32_t result = state->registers[instruction.Rm] * state->registers[instruction.Rs];
-
-  if (instruction.accumulate) {
-    result += state->registers[instruction.Rn];
-  }
-
-  if (result == 0) {
-    // set z bit
-    state->CPSR |= CPSR_Z;
-    // set n bit
-    state->CPSR != (result & CPSR_N);
-  }
-
-  state->registers[instruction.destinationRegister] = result;
-
-  return OK;
-}
-
 void handle_out_of_bounds(uint32_t index);
-
-
-int execute_instruction_single_data_transfer(struct EmulatorState *state,
-                                             struct SingleDataTransferInstruction instruction) {
-  if (!should_execute(state, instruction.cond)) {
-    return DIDNT_EXECUTE;
-  }
-
-  uint32_t offset;
-
-  if (instruction.immediateOffset == 0) {
-    offset = instruction.offset;
-  } else {
-    uint32_t *result = getOperand2Val(state, instruction.offset, instruction.immediateOffset, 0);
-    offset = result[0];
-    free(result);
-  }
-
-  // pre indexing
-  uint32_t address = state->registers[instruction.Rn];
-
-  if (instruction.prePostIndexingBit) {
-    if (instruction.upBit) {
-      address += offset;
-    } else {
-      address -= offset;
-    }
-  }
-
-  if (instruction.loadStore) {
-    uint32_t result = 0;
-    bool access_was_successful = true;
-    for (int i = 0; i < 4; i++) {
-      const uint32_t memory_access_index = address + i;
-      if (memory_access_index < MEMORY_SIZE) {
-        result |= ((uint32_t) state->memory[memory_access_index]) << (8 * i);
-      } else {
-        access_was_successful = false;
-      }
-    }
-    if (!access_was_successful) {
-      handle_out_of_bounds(address);
-    }
-
-    state->registers[instruction.Rd] = result;
-  } else {
-    for (int i = 0; i < 4; i++) {
-      const uint32_t mask = (0xff) << (8 * i);
-      const uint32_t memory_access_index = address + i;
-      if (memory_access_index < MEMORY_SIZE) {
-        state->memory[memory_access_index] =
-            (((uint32_t) state->registers[instruction.Rd]) & mask) >> (8 * i);
-      } else {
-        handle_out_of_bounds(memory_access_index);
-      }
-    }
-  }
-
-  // I need a better solution for this duplication
-  // post indexing
-  if (!instruction.prePostIndexingBit) {
-    if (instruction.upBit) {
-      state->registers[instruction.Rn] += offset;
-    } else {
-      state->registers[instruction.Rn] -= offset;
-    }
-  }
-
-  return 0;
-}
 
 
 void handle_out_of_bounds(uint32_t index) {
@@ -466,15 +269,6 @@ void handle_out_of_bounds(uint32_t index) {
 }
 
 
-int execute_instruction_branch(struct EmulatorState *state,
-                               const struct BranchInstruction instruction) {
-  if (!should_execute(state, instruction.cond)) {
-    return DIDNT_EXECUTE;
-  }
-  const int32_t offset = instruction.offset * 4;
-  state->PC += offset;
-  return BRANCH;
-}
 void print_registers(struct EmulatorState *state) {
   printf("Registers:\n");
   for (int i = 0; i < 13; ++i) {
