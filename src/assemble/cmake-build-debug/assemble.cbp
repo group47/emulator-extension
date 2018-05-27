@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="assemble"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="assemble">
+				<Option output="/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/assemble" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 assemble"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="assemble/fast">
+				<Option output="/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/assemble" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 assemble/fast"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/ryro/Arm/arm11_47/src/assemble/assemble.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/Users/ryro/Arm/arm11_47/src/assemble/assemble.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/Users/ryro/Arm/arm11_47/src/assemble/binary_file_writer.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/Users/ryro/Arm/arm11_47/src/assemble/binary_file_writer.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/Users/ryro/Arm/arm11_47/src/assemble/list.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/Users/ryro/Arm/arm11_47/src/assemble/list.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/Users/ryro/Arm/arm11_47/src/assemble/symbol_table.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/Users/ryro/Arm/arm11_47/src/assemble/symbol_table.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/Users/ryro/Arm/arm11_47/src/assemble/tokenizer.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/Users/ryro/Arm/arm11_47/src/assemble/tokenizer.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/Users/ryro/Arm/arm11_47/src/assemble/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

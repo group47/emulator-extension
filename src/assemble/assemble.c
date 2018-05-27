@@ -2,118 +2,125 @@
 // Created by ryro on 2018/5/26.
 //
 
-
-
 #include "stdio.h"
 #include <fcntl.h>
-#include <assert.h>
 #include <string.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include "symbol_table.h"
 #include "tokenizer.h"
 #include "list.h"
-#include "binary_file_writer.h"
+#include "assemble.h"
 
-#define MAX_SOURCE_FILE_SIZE = 10000
-#define INSTRUCTION_LENGTH = 32
-/*
-const uint32_t DATAPROCESSING_INSTRUCTION_SIZE = 10;
-const uint32_t MULTIPLY_INSTRUCTION_SIZE = 2;
-const uint32_t SINGLE_DATA_TRANSFER_INSTRUCTION_SIZE = 2;
-const uint32_t BRANCH_INSTRUCTION_SIZE = 7;
-const uint32_t SPECIAL_INSTRUCTION_SIZE = 2;
-
-const int DATAPROCESSING_INSTRUCTION_BASE = 0;
-const int MULTIPLY_INSTRUCTION_BASE = DATAPROCESSING_INSTRUCTION_BASE + DATAPROCESSING_INSTRUCTION_SIZE;
-const int SINGLE_DATA_TRANSFER_INSTRUCTION_BASE = MULTIPLY_INSTRUCTION_BASE + MULTIPLY_INSTRUCTION_SIZE;
-const int BRNACH_INSTRUCTION_BASE = SINGLE_DATA_TRANSFER_INSTRUCTION_BASE + SINGLE_DATA_TRANSFER_INSTRUCTION_SIZE;
-const int SPECIAL_INSTRUCTION_BASE = BRNACH_INSTRUCTION_BASE + BRANCH_INSTRUCTION_SIZE;
-const int MAX_BASE = SPECIAL_INSTRUCTION_BASE + SPECIAL_INSTRUCTION_SIZE;
- */
-
-/*
-char* add = "add";
-char* sub = "sub";
-char* rsb = "rsb";
-char* and = "and";
-char* eor = "eor";
-char* orr = "orr";
-char* mov = "mov";
-char* tst = "tst";
-char* teq = "teq";
-char* cmp = "cmp";
-char* mul = "mul";
-char* mla = "mla";
-char* ldr = "ldr";
-char* str = "str";
-char* beq = "beq";
-char* bne = "bne";
-char* bge = "bge";
-char* blt = "blt";
-char* bgt = "bgt";
-char* ble = "ble";
-char* b   = "b";
-char* lsl = "lsl";
-char* andeq = "andeq";
- */
 
 const uint32_t MASK20 = 0b00000000000100000000000000000000;
 
-void assembleDataProcessingInstruction(FILE* fpOutput, char** tokens, struct InstructionInfo*);
-void assembleMultiplyInstruction(FILE* fpOutput, char** tokens, struct InstructionInfo*);
-void assembleSingleDataInstruction(FILE* fpOutput, char** tokens, struct InstructionInfo*);
-void assembleBranchInstruction(FILE* fpOutput, char** tokens, struct InstructionInfo*, struct List* list);
+void assembleDataProcessingInstruction(FILE* fpOutput, struct Token* token) {
+    uint32_t binary = 0;
+    binary |= ((uint32_t)token->instructionInfo->condCode) << 28;
 
-
-void assembleDataProcessingInstruction(FILE* fpOutput, char** tokens, struct InstructionInfo* entry) {
-    uint32_t binaryFormat = 0;
-    binaryFormat |= ((uint32_t)entry->condCode) << 28;
+    // set opcode
+    binary |= token->instructionInfo->opCode << 24;
 
     // set S bit
-    if (entry->opCode == tst || entry->opCode == teq || entry->opCode == cmp) {
-        binaryFormat |= MASK20;
+    if (token->instructionInfo->opCode == tst || token->instructionInfo->opCode == teq || token->instructionInfo->opCode == cmp) {
+        binary |= MASK20;
     }
+    char dummy[100];
 
+    binary |= ((uint8_t)token->Rn) << 19;
+    binary |= ((uint8_t)token->Rd) << 15;
+    binary |= ((uint32_t)token->operand2) << 11;
 
-}
-
-void assembleMultiplyInstruction(FILE* fpOutput, char** tokens, struct InstructionInfo* entry) {
-
-}
-
-void assembleSingleDataInstruction(FILE* fpOutput, char** tokens, struct InstructionInfo* entry) {
-
-}
-
-void assembleBranchInstruction(FILE* fpOutput, char** tokens, struct InstructionInfo* entry, struct List* list) {
-
+    char binaryArray[32];
+    sprintf(binaryArray, "%lu",binary);
+    fwrite(binaryArray, 32, 1, fpOutput);
 }
 
 
-void initializeInstructionCodeTable(struct SymbolTable* instructionCodeTable) {
-    addInstruction(instructionCodeTable, "add", DATAPROCESSING, al, add, 3);
-    addInstruction(instructionCodeTable, "sub", DATAPROCESSING, al, sub, 3);
-    addInstruction(instructionCodeTable, "rsb", DATAPROCESSING, al, rsb, 3);
-    addInstruction(instructionCodeTable, "and", DATAPROCESSING, al, and, 3);
-    addInstruction(instructionCodeTable, "eor", DATAPROCESSING, al, eor, 3);
-    addInstruction(instructionCodeTable, "orr", DATAPROCESSING, al, orr, 3);
-    addInstruction(instructionCodeTable, "mov", DATAPROCESSING, al, mov, 2);
-    addInstruction(instructionCodeTable, "tst", DATAPROCESSING, al, tst, 2);
-    addInstruction(instructionCodeTable, "teq", DATAPROCESSING, al, teq, 2);
-    addInstruction(instructionCodeTable, "cmp", DATAPROCESSING, al, cmp, 2);
-    addInstruction(instructionCodeTable, "mul", MULTIPLY, al, 0, 3);
-    addInstruction(instructionCodeTable, "mla", MULTIPLY, al, 0, 4);
-    addInstruction(instructionCodeTable, "ldr", SINGLEDATATRANSFER, 0, 0, 2);
-    addInstruction(instructionCodeTable, "str", SINGLEDATATRANSFER, 0, 0, 2);
-    addInstruction(instructionCodeTable, "beq", BRANCH, eq, 0, 1);
-    addInstruction(instructionCodeTable, "bne", BRANCH, ne, 0, 1);
-    addInstruction(instructionCodeTable, "bge", BRANCH, ge, 0, 1);
-    addInstruction(instructionCodeTable, "blt", BRANCH, lt, 0, 1);
-    addInstruction(instructionCodeTable, "ble", BRANCH, le, 0, 1);
-    addInstruction(instructionCodeTable, "b",   BRANCH, gt, 0, 1);
-    addInstruction(instructionCodeTable, "lsl", SPECIAL, al, 0, 2);
-    addInstruction(instructionCodeTable, "andeq", SPECIAL, eq, 0, 3);
+void assembleMultiplyInstruction(FILE* fpOutput, struct Token* token) {
+}
+
+void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
+}
+
+void assembleBranchInstruction(FILE* fpOutput, struct Token* token) {
+}
+
+struct Token* tokenizeDataProcessing1(char** tokens, struct InstructionInfo* instructionInfo) {
+    assert(strlen(tokens) >= 4);
+    char dummy[500];
+    struct Token* token = malloc(sizeof(struct Token));
+    token->instructionInfo = instructionInfo;
+    token->Rn = strtol(tokens[1]+1, dummy, 10);
+    token->Rd = strtol(tokens[2]+1, dummy, 10);
+    // Handling expression case only
+    token->operand2 = strtol(tokens[3]+1, dummy, 10);
+    return token;
+}
+
+struct Token* tokenizeDataProcessing2(char** tokens, struct InstructionInfo* instructionInfo) {
+    assert(strlen(tokens) >=3);
+    char dummy[500];
+    struct Token* token = malloc(sizeof(struct Token));
+    token->instructionInfo = instructionInfo;
+    token->Rn = strtol(tokens[1]+1, dummy, 10);
+    // Handling expression case only
+    token->operand2 = strtol(tokens[2]+1, dummy, 10);
+    return token;
+}
+
+struct Token* tokenizeDataProcessing3(char** tokens, struct InstructionInfo* instructionInfo) {
+    return NULL;
+}
+
+struct Token* tokenizeMultiply1(char** tokens, struct InstructionInfo* instructionInfo) {
+    return NULL;
+}
+
+struct Token* tokenizeMultiply2(char** tokens, struct InstructionInfo* instructionInfo) {
+    return NULL;
+}
+
+struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo* instructionInfo) {
+    return NULL;
+}
+
+struct Token* tokenizeBranch1(char** tokens, struct InstructionInfo* instructionInfo) {
+    return NULL;
+}
+
+struct Token* tokenizeSpecial1(char** tokens, struct InstructionInfo* instructionInfo) {
+    return NULL;
+}
+
+
+struct SymbolTable* initializeInstructionCodeTable() {
+    struct SymbolTable* instructionCodeTable = malloc(sizeof(struct SymbolTable));
+    instructionCodeTable->size = 0;
+    addInstruction(instructionCodeTable, DATAPROCESSING, "add", al, add, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATAPROCESSING, "sub", al, sub, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATAPROCESSING, "rsb", al, rsb, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATAPROCESSING, "and", al, and, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATAPROCESSING, "eor", al, eor, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATAPROCESSING, "orr", al, orr, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATAPROCESSING, "mov", al, mov, 2, &tokenizeDataProcessing2);
+    addInstruction(instructionCodeTable, DATAPROCESSING, "tst", al, tst, 2, &tokenizeDataProcessing3);
+    addInstruction(instructionCodeTable, DATAPROCESSING, "teq", al, teq, 2, &tokenizeDataProcessing3);
+    addInstruction(instructionCodeTable, DATAPROCESSING, "cmp", al, cmp, 2, &tokenizeDataProcessing3);
+    addInstruction(instructionCodeTable, MULTIPLY, "mul", al, 0, 3, &tokenizeMultiply1);
+    addInstruction(instructionCodeTable, MULTIPLY, "mla", al, 0, 4, &tokenizeMultiply2);
+    addInstruction(instructionCodeTable, SINGLEDATATRANSFER, "ldr", 0, 0, 2, &tokenizeSingleDataTransfer1);
+    addInstruction(instructionCodeTable, SINGLEDATATRANSFER, "str", 0, 0, 2, &tokenizeSingleDataTransfer1);
+    addInstruction(instructionCodeTable, BRANCH, "beq", eq, 0, 1, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH, "bne", ne, 0, 1, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH, "bge", ge, 0, 1, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH,"blt", lt, 0, 1, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH, "ble", le, 0, 1, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH,"b", gt, 0, 1, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, SPECIAL,"lsl", al, 0, 2, &tokenizeSpecial1);
+    addInstruction(instructionCodeTable, SPECIAL, "andeq", eq, 0, 3, &tokenizeSpecial1);
+    return instructionCodeTable;
 }
 
 int main(int argc, char** argv) {
@@ -127,8 +134,8 @@ int main(int argc, char** argv) {
     const char* sourceFileName = argv[1];
     const char* outputFileName = argv[2];
 
-    FILE* fpSource = fopen(sourceFileName, O_RDONLY);
-    FILE* fpOutput = fopen(outputFileName, O_WRONLY);
+    FILE* fpSource = fopen(sourceFileName, "r");
+    FILE* fpOutput = fopen(outputFileName, "w");
 
     if (fpSource == NULL) {
         fprintf(stderr,
@@ -142,25 +149,25 @@ int main(int argc, char** argv) {
 
     char* instruction = NULL;
     size_t instructionLength = 0;
-    struct SymbolTable instructionCode;
+    struct SymbolTable* instructionCode = initializeInstructionCodeTable();
     struct SymbolTable labelAddress;
-    
-
-    struct List list;
-    initializeInstructionCodeTable(&instructionCode);
+    struct ForwardReferenceList* forwardReferenceLabels;
 
     FILE* fpOutputHead = fpOutput;
     uint16_t offset = 0;
 
 
     while (getline(&instruction, &instructionLength, fpSource)) {
-        assert(instructionLength == INSTRUCTION_LENGTH);
+        //assert(instructionLength == INSTRUCTION_LENGTH);
 
-        char** tokens = tokenizer(instruction);
+        struct Token* token = tokenizer(instruction, instructionCode);
+        /*
         if (strlen(tokens) == 1) {
+            char* label = malloc(8*strlen(tokens[0]-1)); // remove the : in the end
+
+
             // It is a label
-            // todo: add label to the symbol table
-            writeAddress(&list, tokens[0], offset);
+            writeAddress(&forwardReferenceLabels, tokens[0], offset);
             addLabel(&labelAddress, tokens[0], offset);
         } else {
             // It is an instruction
@@ -173,24 +180,27 @@ int main(int argc, char** argv) {
             if (entry->entryType != INSTRUCTION_INFO) {
                 assert(false);
             }
+
             
             struct InstructionInfo* instructionInfo = &entry->rawEntry;
+            */
 
-            if (instructionInfo->instructionType == DATAPROCESSING) {
-                assembleDataProcessingInstruction(fpOutput, tokens, instructionInfo);
-            } else if (instructionInfo->instructionType == MULTIPLY) {
-                assembleMultiplyInstruction(fpOutput, tokens, instructionInfo);
-            } else if (instructionInfo->instructionType == SINGLEDATATRANSFER) {
-                assembleSingleDataInstruction(fpOutput, tokens, instructionInfo);
-            } else if (instructionInfo->instructionType == BRANCH) {
-                assembleBranchInstruction(fpOutput, tokens, instructionInfo, &list);
-            } else if (instructionInfo->instructionType == SPECIAL) {
+            if (token->instructionInfo->instructionType == DATAPROCESSING) {
+                assembleDataProcessingInstruction(fpOutput, token);
+            } else if (token->instructionInfo->instructionType == MULTIPLY) {
+                assembleMultiplyInstruction(fpOutput, token);
+            } else if (token->instructionInfo->instructionType == SINGLEDATATRANSFER) {
+                assembleSingleDataInstruction(fpOutput, token);
+            } else if (token->instructionInfo->instructionType == BRANCH) {
+                assembleBranchInstruction(fpOutput, token);
+            } else if (token->instructionInfo->instructionType == SPECIAL) {
                 assert(false);
             }
-            
-        }
         offset += 4;
     }
+
+    fclose(fpSource);
+    fclose(fpOutput);
     return 0;
 }
 

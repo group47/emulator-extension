@@ -2,8 +2,7 @@
 // Created by ryro on 2018/5/27.
 //
 
-#include <ntsid.h>
-#include <z3.h>
+#include <stdio.h>
 
 #ifndef ASSEMBLE_BINARY_FILE_WRITER_H
 #define ASSEMBLE_BINARY_FILE_WRITER_H
