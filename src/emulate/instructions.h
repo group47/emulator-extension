@@ -33,7 +33,7 @@ enum ShiftType {
 };
 
 #include <stdbool.h>
-#include <stdint-gcc.h>
+#include <stdint.h>
 #include "emulate_main.h"
 #include "data_processing_instruction.h"
 #include "multiply_instruction.h"
