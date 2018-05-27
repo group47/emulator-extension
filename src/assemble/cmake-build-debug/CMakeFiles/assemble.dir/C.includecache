@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/ryro/Arm/arm11_47/src/assemble/assemble.c
+stdio.h
+/Users/ryro/Arm/arm11_47/src/assemble/stdio.h
+fcntl.h
+-
+
