@@ -36,7 +36,7 @@ uint16_t getOperand2Immediate(uint32_t operand2Val) {
 
 //todo: handle case where opereand2 is a register
 uint16_t getOperand2ShiftRegister(uint32_t operand2Val) {
-    return operand2Val;
+    assert(false); //extension
 }
 
 
