@@ -22,5 +22,5 @@ struct DataProcessingInstruction {
 }__attribute__((packed));//the attribute is required for the compiler to properly place data types
 
 int execute_instruction_data_processing(struct EmulatorState *,
-                                        const struct DataProcessingInstruction);
+                                        struct DataProcessingInstruction);
 #endif //EMULATE_DATA_PROCESSING_INSTRUCTION_H

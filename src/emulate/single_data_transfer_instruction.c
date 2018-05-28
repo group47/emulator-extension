@@ -43,15 +43,16 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
         result |= ((uint32_t) state->memory[memory_access_index]) << (8 * i);
       } else {
         access_was_successful = false;
-        //do you mean to break here?
       }
     }
     if (!access_was_successful) {
-      handle_out_of_bounds(address);
+      result = handle_out_of_bounds(state, address, false, (uint32_t) -1);
+
     }
 
     state->registers[instruction.Rd] = result;
   } else {
+    bool access_was_succesful = true;
     for (int i = 0; i < 4; i++) {
       const uint32_t mask = (0xff) << (8 * i);
       const uint32_t memory_access_index = address + i;
@@ -59,8 +60,11 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
         state->memory[memory_access_index] =
             (((uint32_t) state->registers[instruction.Rd]) & mask) >> (8 * i);
       } else {
-        handle_out_of_bounds(memory_access_index);
+        access_was_succesful = false;
       }
+    }
+    if(!access_was_succesful){
+      handle_out_of_bounds(state,address,true,state->registers[instruction.Rd]);
     }
   }
 
