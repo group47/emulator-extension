@@ -24,8 +24,8 @@ void assembleMultiplyInstruction(FILE* fpOutput, struct Token*);
 void assembleSingleDataInstruction(FILE* fpOutput, struct Token*);
 void assembleBranchInstruction(FILE* fpOutput, struct Token*);
 
-uint8_t getOperand2Immediate(uint32_t operand2Val);
-
+uint16_t getOperand2Immediate(uint32_t operand2Val);
+uint16_t getOperand2ShiftRegister(uint32_t operand2Val);
 struct SymbolTable* initializeInstructionCodeTable();
 
 
