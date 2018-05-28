@@ -315,7 +315,7 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
 
 // branch syntax 1 : b <cond> <expression>
 struct Token* tokenizeBranch1(char** tokens, struct InstructionInfo* instructionInfo) {
-    assert(instructionInfo->instructionType == BRANCH);
+    assert(instructionInfo->instructionType == BRANCH_INSTRUCTION);
     struct Token* token = initializeToken();
     token->instructionInfo = instructionInfo;
     // todo: figure out how to combine labelling process with tokenization
@@ -352,12 +352,12 @@ struct SymbolTable* initializeInstructionCodeTable() {
     addInstruction(instructionCodeTable, MULTIPLY, "mla", al, 0, 4, &tokenizeMultiply2);
     addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "ldr", 0, 0, 2, &tokenizeSingleDataTransfer1);
     addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "str", 0, 0, 2, &tokenizeSingleDataTransfer1);
-    addInstruction(instructionCodeTable, BRANCH, "beq", eq, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH, "bne", ne, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH, "bge", ge, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH,"blt", lt, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH, "ble", le, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH,"b", gt, 0, 1, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "beq", eq, 0, 1, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "bne", ne, 0, 1, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "bge", ge, 0, 1, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"blt", lt, 0, 1, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "ble", le, 0, 1, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"b", gt, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, SPECIAL,"lsl", al, 0, 2, &tokenizeDataProcessing2);
     addInstruction(instructionCodeTable, SPECIAL, "andeq", eq, 0, 3, &tokenizeDataProcessing1);
     return instructionCodeTable;
@@ -430,7 +430,7 @@ int main(int argc, char** argv) {
 
         struct Token* token = tokenizer(instruction, instructionCode,&labelAddress,current_address);
         if (token == NULL) {
-            break;
+            continue;
         }
         current_address++;
         /*
@@ -463,7 +463,7 @@ int main(int argc, char** argv) {
                 assembleMultiplyInstruction(fpOutput, token);
             } else if (token->instructionInfo->instructionType == SINGLE_DATA_TRANSFER) {
                 assembleSingleDataInstruction(fpOutput, token);
-            } else if (token->instructionInfo->instructionType == BRANCH) {
+            } else if (token->instructionInfo->instructionType == BRANCH_INSTRUCTION) {
                 assembleBranchInstruction(fpOutput, token);
             } else if (token->instructionInfo->instructionType == SPECIAL) {
                 assert(false);
