@@ -279,23 +279,39 @@ uint32_t extract_shift(uint16_t secondOperand) {
   return (secondOperand & 0xff0) >> 4;
 }
 
-void handle_out_of_bounds(uint32_t index);
 
 
-void handle_out_of_bounds(uint32_t index) {
+uint32_t handle_out_of_bounds(struct EmulatorState* state,uint32_t index,bool writeq,uint32_t val) {
   //todo magic constants
   if (index >= 0x20200000 && index < 0x20200012) {
+    state->pinControlBits[index - 0x20200000] |= val;
     if (index < 0x20200004 && index >= 0x20200000) {
       printf("One GPIO pin from 0 to 9 has been accessed\n");
     }
     if (index < 0x20200008 && index >= 0x20200004) {
       printf("One GPIO pin from 10 to 19 has been accessed\n");
     }
-    if (index > 0x20200008) {
+    if (index >= 0x20200008) {
       printf("One GPIO pin from 20 to 29 has been accessed\n");
     }
-  } else
+    return index;
+  } else if(index == 0x20200028){
+    //todo check control bits are set correctly
+    if(writeq){
+      printf("PIN OFF\n");
+    }
+    return index;
+  }
+  else if(index == 0x2020001C){
+    if(writeq){
+      printf("PIN ON\n");
+    }
+    return index;
+  }
+  else{
     printf("Error: Out of bounds memory access at address 0x%08x\n", index);
+    return 0;
+  }
 }
 
 

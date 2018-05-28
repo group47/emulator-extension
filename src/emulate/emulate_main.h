@@ -38,6 +38,9 @@ struct EmulatorState {
   //by luck since this packed in a struct, the overflowed access still gets the correct register, but this is by chance only
   uint32_t PC;
   uint32_t CPSR;
+  uint8_t pinControlBits[3*4];
+  uint8_t pinClearingBits[4];
+  uint8_t pinTurnOnBits[4];
 };
 #include <stdbool.h>
 #include "../shared/instructions.h"
@@ -67,7 +70,7 @@ int getOperand2Val(struct EmulatorState *,
                          uint32_t *,
                          uint32_t *);
 
-void handle_out_of_bounds(uint32_t );
+uint32_t handle_out_of_bounds(struct EmulatorState*,uint32_t ,bool,uint32_t);
 
 enum ExecutionExitCode{
   BRANCH = -2,TERMINATE = -1,DIDNT_EXECUTE = 0, OK = 1

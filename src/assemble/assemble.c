@@ -90,7 +90,7 @@ void assembleMultiplyInstruction(FILE* fpOutput, struct Token* token) {
 
     binary_file_writer32(fpOutput, *(uint32_t*)&binary);
 }
-
+//todo convert string to numbers w/ bitfields
 void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
     struct SingleDataTransferInstruction binary;
     binary.cond = token->instructionInfo->condCode;
