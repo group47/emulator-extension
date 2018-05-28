@@ -17,7 +17,6 @@ const int MAX_TOKENS = 32;
 
 
 struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable) {
-    printf("%s\n", instruction);
     if (instruction == NULL){
         assert(false);
     }
@@ -45,7 +44,7 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable) {
     for (int i = 0; i < countFirstPass; i++) {
         token2 = strtok(tokensFirstPass[i], " ");
         while (token2 != NULL) {
-            printf("%s\n", token2);
+            //printf("%s\n", token2);
             tokensSecondPass[countSecondPass] = malloc(511);
             memcpy(tokensSecondPass[countSecondPass], token2, strlen(token2));
             token2 = strtok(NULL, " ");
@@ -85,6 +84,7 @@ struct Token* initializeToken() {
     token->Rs = 0;
     token->operand2 = 0;
     token->operand2IsImmediate = false;
+    token->isPreIndexing = false;
     token->label = NULL;
     return token;
 }

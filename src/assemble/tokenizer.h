@@ -18,6 +18,7 @@ struct Token {
     uint32_t operand2;
     uint32_t offset;
     bool operand2IsImmediate;
+    bool isPreIndexing;
 };
 
 struct Token* tokenizer(char*, struct SymbolTable*);

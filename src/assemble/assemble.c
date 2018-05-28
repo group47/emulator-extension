@@ -15,8 +15,36 @@
 
 const uint32_t MASK20 = 0b00000000000100000000000000000000;
 
+//todo : determine whether the value is representable
+uint16_t getOperand2Immediate(uint32_t operand2Val) {
+    uint32_t mask = 0x00000001;
+    uint32_t tmpOperand2Val = operand2Val;
+    while ((tmpOperand2Val & mask) == 0 && tmpOperand2Val != 0) {
+        if (((tmpOperand2Val >> 1) << 1) != tmpOperand2Val) {
+            // operand2Val is not representable
+            // cannot preserve original bit field by doing even rotation
+            assert(false);
+        }
+        tmpOperand2Val >>= 2;
+    }
+    if ((tmpOperand2Val & 0x000000ff) != tmpOperand2Val) {
+        // operand2Val is not representable
+        // original bit field cannot fit in 8-bit memory
+        assert(false);
+    }
+    //return (uint8_t) (tmpOperand2Val == 0? operand2Val : tmpOperand2Val);
+    return 0x0fff & (uint16_t)operand2Val;
+}
+
+//todo: handle case where opereand2 is a register
+uint16_t getOperand2ShiftRegister(uint32_t operand2Val) {
+    return operand2Val;
+}
+
+
 void assembleDataProcessingInstruction(FILE* fpOutput, struct Token* token) {
     uint32_t binary = 0;
+    // set cond code
     binary |= ((uint32_t)token->instructionInfo->condCode) << 28;
 
     // set I bit
@@ -34,83 +62,219 @@ void assembleDataProcessingInstruction(FILE* fpOutput, struct Token* token) {
         binary |= (0x1) << 20;
     }
 
-    char dummy[100];
-
+    // set Rn
     binary |= ((uint8_t)token->Rn) << 16;
+    // set Rd
     binary |= ((uint8_t)token->Rd) << 12;
-    binary |= getOperand2Immediate(token->operand2);
+    // set Operand2
+    binary |= token->operand2;
 
     binary_file_writer32(fpOutput, binary);
 }
 
-
-//todo : determine whether the value is representable
-uint8_t getOperand2Immediate(uint32_t operand2Val) {
-    uint32_t mask = 0x0001;
-    return operand2Val;
-}
-
-
 void assembleMultiplyInstruction(FILE* fpOutput, struct Token* token) {
+    uint32_t binary = 0;
+    // set cond code
+    binary |= ((uint32_t)token->instructionInfo->condCode) << 28;
+
+    // set A bit
+    if (strcmp((char*)token->instructionInfo->mnemonics, "mla") == 0) {
+        binary |= (0x1) << 21;
+    }
+
+    // set S bit -> S bit is always zero
+
+    // set Rd
+    binary |= ((uint8_t)token->Rd) << 16;
+    // set Rn
+    binary |= ((uint8_t)token->Rn) << 12;
+    // set Rs
+    binary |= ((uint8_t)token->Rs) << 8;
+    // set special 1001 bit
+    binary |= (0x9 << 4);
+    // set Rm
+    binary |= ((uint8_t)token->Rm);
+
+    binary_file_writer32(fpOutput, binary);
 }
 
 void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
+    uint32_t binary = 0;
+    // set cond code
+    binary |= ((uint32_t)token->instructionInfo->condCode) << 28;
+
+    // set special 01 bit
+    binary |= (0x1) << 26;
+    // set P bit
+    if (token->isPreIndexing) {
+        binary |= (0x1) << 24;
+    }
+    // set U bit
+
+    // set L bit
+    if (strcmp(token->instructionInfo->mnemonics, "ldr") == 0) {
+        binary |= (0x1) << 20;
+    }
+    // set Rn
+    binary |= token->Rn << 16;
+    // set Rd
+    binary |= token->Rd << 12;
+    // set Offset
+    binary |= 0x0fff & token->offset;
+
+    binary_file_writer32(fpOutput, binary);
 }
 
 void assembleBranchInstruction(FILE* fpOutput, struct Token* token) {
 }
 
+//data processing syntax1 :<opcode> Rd, Rn, <Operand2>
 struct Token* tokenizeDataProcessing1(char** tokens, struct InstructionInfo* instructionInfo) {
-    assert(strlen(tokens) >= 4);
+    //assert(sizeof(tokens)/sizeof(tokens[0]) >= 4);
+
     char dummy[500][500];
     struct Token* token = initializeToken();
     token->instructionInfo = instructionInfo;
-    if (tokens[3][0] == '#') {
-        token->operand2IsImmediate = true;
-    } else {
-        token->operand2IsImmediate = false;
-    }
     token->Rd = strtol(tokens[1]+1, dummy, 10);
     token->Rn = strtol(tokens[2]+1, dummy, 10);
-    // Handling expression case only
-    token->operand2 = strtol(tokens[3]+1, dummy, 10);
-    return token;
+    if (tokens[3][0] == '#') {
+        token->operand2IsImmediate = true;
+        if (tokens[3][1] == '0') {
+            // hex representation
+            token->operand2 = getOperand2Immediate(strtol(tokens[3]+1, dummy, 16));
+        } else {
+            // 10 representation
+            token->operand2 = getOperand2Immediate(strtol(tokens[3] + 1, dummy, 10));
+        }
+    } else {
+        token->operand2IsImmediate = false;
+        token->operand2 = getOperand2ShiftRegister(strtol(tokens[3]+1, dummy, 10));
+    }
+
+   return token;
 }
 
+//data processing syntax 2 : mov Rd, <Operand2>
 struct Token* tokenizeDataProcessing2(char** tokens, struct InstructionInfo* instructionInfo) {
-    assert(strlen(tokens) >=3);
+    //assert(sizeof(tokens)/sizeof(tokens[0]) >= 3);
+
     char dummy[500];
     struct Token* token = initializeToken();
     token->instructionInfo = instructionInfo;
-    token->Rn = 0;
     token->Rd = (uint8_t)strtol(tokens[1]+1, dummy, 10);
     // Handling expression case only
     if (tokens[2][0] == '#') {
         token->operand2IsImmediate = true;
+        if (tokens[2][1] == '0') {
+            token->operand2 = getOperand2Immediate(strtol(tokens[2] + 1, dummy, 16));
+        } else {
+            token->operand2 = getOperand2Immediate(strtol(tokens[2] + 1, dummy, 10));
+        }
     } else {
         token->operand2IsImmediate = false;
+        //printf("doing wrong stuff");
+        token->operand2 = getOperand2ShiftRegister(strtol(tokens[2]+1, dummy, 10));
     }
-    token->operand2 = strtol(tokens[2]+1, dummy, 10);
     return token;
 }
 
+//data processing syntax 3: <opcode> Rn, <Operand2>
 struct Token* tokenizeDataProcessing3(char** tokens, struct InstructionInfo* instructionInfo) {
-    return NULL;
+    //assert(sizeof(tokens)/sizeof(tokens[0]) >= 3);
+
+    char dummy[500];
+    struct Token* token = initializeToken();
+    token->instructionInfo = instructionInfo;
+    token->Rn = (uint8_t)strtol(tokens[1]+1, dummy, 10);
+
+    if (tokens[2][0] == '#') {
+        token->operand2IsImmediate = true;
+        token->operand2 = getOperand2Immediate(strtol(tokens[2]+1, dummy, 10));
+    } else {
+        token->operand2IsImmediate = false;
+        token->operand2 = getOperand2ShiftRegister(strtol(tokens[2]+1, dummy, 10));
+    }
+    return token;
 }
 
+// multiply syntax 1 : mul Rd, Rm, Rs
 struct Token* tokenizeMultiply1(char** tokens, struct InstructionInfo* instructionInfo) {
-    return NULL;
+    char dummy[500];
+    struct Token* token = initializeToken();
+    token->instructionInfo = instructionInfo;
+    token->Rd = (uint8_t)strtol(tokens[1]+1, dummy, 10);
+    token->Rm = (uint8_t)strtol(tokens[2]+1, dummy, 10);
+    token->Rs = (uint8_t)strtol(tokens[3]+1, dummy, 10);
+    return token;
 }
 
+// multiply syntax 2 : mla Rd, Rm, Rs, Rn
 struct Token* tokenizeMultiply2(char** tokens, struct InstructionInfo* instructionInfo) {
-    return NULL;
+    char dummy[500];
+    struct Token* token = initializeToken();
+    token->instructionInfo = instructionInfo;
+    token->Rd = (uint8_t)strtol(tokens[1]+1, dummy, 10);
+    token->Rm = (uint8_t)strtol(tokens[2]+1, dummy, 10);
+    token->Rs = (uint8_t)strtol(tokens[3]+1, dummy, 10);
+    token->Rn = (uint8_t)strtol(tokens[4]+1, dummy, 10);
+    return token;
 }
 
+// single data transfer syntax 1 : <ldr/str> Rd, <address>
 struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo* instructionInfo) {
-    return NULL;
+    char dummy[500];
+    uint32_t offset = 0;
+    bool isPreIndexAddress = false;
+    uint8_t Rn = 0;
+
+    if (tokens[2] == NULL) {
+        offset = 0;
+    } else if (tokens[2][0] == '=') {
+        offset = (uint32_t) strtol(tokens[2] + 1, dummy, 16);
+        // I don't see any test cases involving offset of base ten
+    } else if (tokens[2][0] == '[') {
+        Rn = (uint8_t) strtol(tokens[2] + 1, dummy, 10);
+        if (tokens[3] == NULL) {
+            isPreIndexAddress = true;
+            offset = 0;
+        } else if (tokens[3][0] == '#') {
+            if (tokens[3][strlen(tokens[3])-2] == ']') {
+                isPreIndexAddress = true;
+            } else {
+                isPreIndexAddress = false;
+            }
+
+            //todo: duplication of parsing a base10 constant and a base16 constant
+            if (tokens[3][1] == '0') {
+                offset = (uint32_t)strtol(tokens[3] + 1, dummy, 16);
+            } else {
+                offset = (uint32_t)strtol(tokens[3] + 1, dummy, 10);
+            }
+        }
+
+    } else {
+        assert(false);
+    }
+
+    if (offset < 0x00ff && strcmp(instructionInfo->mnemonics, "ldr") == 0) {
+        return tokenizeDataProcessing2(tokens, &find(instructionInfo->symbolTable, "mov")->rawEntry.instructionInfo);
+    }
+
+    struct Token* token = initializeToken();
+
+    token->instructionInfo = instructionInfo;
+    token->Rd = (uint8_t)strtol(tokens[1]+1, dummy, 10);
+    token->Rn = Rn;
+    token->offset = offset;
+    token ->isPreIndexing = isPreIndexAddress;
+
+    return token;
 }
 
+// branch syntax 1 : b <cond> <expression>
 struct Token* tokenizeBranch1(char** tokens, struct InstructionInfo* instructionInfo) {
+    struct Token* token = initializeToken();
+    // todo: figure out how to combine labelling process with tokenization
     return NULL;
 }
 
@@ -181,7 +345,7 @@ int main(int argc, char** argv) {
     uint16_t offset = 0;
 
 
-    while (getline(&instruction, &instructionLength, fpSource)) {
+    while (getline(&instruction, &instructionLength, fpSource)!= -1) {
         //assert(instructionLength == INSTRUCTION_LENGTH);
 
         struct Token* token = tokenizer(instruction, instructionCode);
