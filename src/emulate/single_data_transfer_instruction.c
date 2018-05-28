@@ -3,9 +3,9 @@
 //
 
 #include <stdlib.h>
-#include "instructions.h"
+#include "../shared/instructions.h"
 #include "emulate_main.h"
-#include "single_data_transfer_instruction.h"
+#include "../shared/single_data_transfer_instruction.h"
 
 
 int execute_instruction_single_data_transfer(struct EmulatorState *state,

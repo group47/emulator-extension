@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <x86intrin.h>
+#include "../shared/branch_instruction.h"
 #include "symbol_table.h"
 #include "tokenizer.h"
 #include "list.h"
@@ -153,6 +154,12 @@ void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
 }
 
 void assembleBranchInstruction(FILE* fpOutput, struct Token* token) {
+    struct BranchInstruction binary;
+    binary.offset =token->offset;
+    binary.cond =  token->instructionInfo->condCode;
+    binary.filler1 = 0b0;
+    binary.filler2 = 0b101;
+    binary_file_writer32(fpOutput,*(uint32_t*)&binary);
 }
 
 //data processing syntax1 :<opcode> Rd, Rn, <Operand2>
@@ -308,29 +315,43 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
 
 // branch syntax 1 : b <cond> <expression>
 struct Token* tokenizeBranch1(char** tokens, struct InstructionInfo* instructionInfo) {
+    assert(instructionInfo->instructionType == BRANCH);
     struct Token* token = initializeToken();
+    token->instructionInfo = instructionInfo;
     // todo: figure out how to combine labelling process with tokenization
-    return NULL;
+    char* label= tokens[1];
+    //remove newline:
+    label[strlen(label) - 1] = '\0';
+    struct Entry* entry = find(instructionInfo->labelAddress,label);
+    if(entry == NULL){
+        //must be in first pass, and this value is unused
+        return token;
+    }
+    assert(entry->entryType ==  LABEL);
+    const uint32_t  target_address = 4*entry->rawEntry.label.address;
+    const int32_t offset = (target_address - 4*instructionInfo->address - 8)/4;
+    token->offset= offset;
+    return token;
 }
 
 
 struct SymbolTable* initializeInstructionCodeTable() {
     struct SymbolTable* instructionCodeTable = malloc(sizeof(struct SymbolTable));
     instructionCodeTable->size = 0;
-    addInstruction(instructionCodeTable, DATAPROCESSING, "add", al, add, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "sub", al, sub, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "rsb", al, rsb, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "and", al, and, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "eor", al, eor, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "orr", al, orr, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "mov", al, mov, 2, &tokenizeDataProcessing2);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "tst", al, tst, 2, &tokenizeDataProcessing3);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "teq", al, teq, 2, &tokenizeDataProcessing3);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "cmp", al, cmp, 2, &tokenizeDataProcessing3);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "add", al, add, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "sub", al, sub, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "rsb", al, rsb, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "and", al, and, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "eor", al, eor, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "orr", al, orr, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "mov", al, mov, 2, &tokenizeDataProcessing2);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "tst", al, tst, 2, &tokenizeDataProcessing3);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "teq", al, teq, 2, &tokenizeDataProcessing3);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "cmp", al, cmp, 2, &tokenizeDataProcessing3);
     addInstruction(instructionCodeTable, MULTIPLY, "mul", al, 0, 3, &tokenizeMultiply1);
     addInstruction(instructionCodeTable, MULTIPLY, "mla", al, 0, 4, &tokenizeMultiply2);
-    addInstruction(instructionCodeTable, SINGLEDATATRANSFER, "ldr", al, 0, 2, &tokenizeSingleDataTransfer1);
-    addInstruction(instructionCodeTable, SINGLEDATATRANSFER, "str", al, 0, 2, &tokenizeSingleDataTransfer1);
+    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "ldr", 0, 0, 2, &tokenizeSingleDataTransfer1);
+    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "str", 0, 0, 2, &tokenizeSingleDataTransfer1);
     addInstruction(instructionCodeTable, BRANCH, "beq", eq, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH, "bne", ne, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH, "bge", ge, 0, 1, &tokenizeBranch1);
@@ -341,6 +362,10 @@ struct SymbolTable* initializeInstructionCodeTable() {
     addInstruction(instructionCodeTable, SPECIAL, "andeq", eq, 0, 3, &tokenizeDataProcessing1);
     return instructionCodeTable;
 }
+bool secondToLastCharIs(const char *target, char c) {
+  return target[strlen(target) - 2] == c;
+}
+
 
 int main(int argc, char** argv) {
 
@@ -370,19 +395,44 @@ int main(int argc, char** argv) {
     size_t instructionLength = 0;
     struct SymbolTable* instructionCode = initializeInstructionCodeTable();
     struct SymbolTable labelAddress;
+    memset(&labelAddress,0, sizeof(struct SymbolTable));
     struct ForwardReferenceList* forwardReferenceLabels;
 
-    FILE* fpOutputHead = fpOutput;
     uint16_t offset = 0;
+    uint16_t current_address = 0;
+    // build labelAddress table
+    while(getline(&instruction, &instructionLength, fpSource)!= -1){
+        struct Token* token = tokenizer(instruction, instructionCode,&labelAddress,current_address);
+        if (token == NULL) {
+            if(secondToLastCharIs(instruction, ':')){
+                char colonRemoved[100];
+                int i = 0;
+                while (i < strlen(instruction) - 2) {
+                    colonRemoved[i] = instruction[i];
+                    ++i;
+                }
+                colonRemoved[i] = '\0';
+                addLabel(&labelAddress,colonRemoved,current_address);
+            } else{
+                assert(false);
+            }
+        } else{
+            current_address++;
+        }
+    }
+    fclose(fpSource);
 
-
-    while (getline(&instruction, &instructionLength, fpSource)!= -1) {
+    FILE* fpOutputHead = fpOutput;
+    FILE* fpSource2 = fopen(sourceFileName, "r");
+    current_address = 0;
+    while (getline(&instruction, &instructionLength, fpSource2)!= -1) {
         //assert(instructionLength == INSTRUCTION_LENGTH);
 
-        struct Token* token = tokenizer(instruction, instructionCode);
+        struct Token* token = tokenizer(instruction, instructionCode,&labelAddress,current_address);
         if (token == NULL) {
             break;
         }
+        current_address++;
         /*
         if (strlen(tokens) == 1) {
             char* label = malloc(8*strlen(tokens[0]-1)); // remove the : in the end
@@ -407,11 +457,11 @@ int main(int argc, char** argv) {
             struct InstructionInfo* instructionInfo = &entry->rawEntry;
             */
 
-            if (token->instructionInfo->instructionType == DATAPROCESSING) {
+            if (token->instructionInfo->instructionType == DATA_PROCESSING) {
                 assembleDataProcessingInstruction(fpOutput, token);
             } else if (token->instructionInfo->instructionType == MULTIPLY) {
                 assembleMultiplyInstruction(fpOutput, token);
-            } else if (token->instructionInfo->instructionType == SINGLEDATATRANSFER) {
+            } else if (token->instructionInfo->instructionType == SINGLE_DATA_TRANSFER) {
                 assembleSingleDataInstruction(fpOutput, token);
             } else if (token->instructionInfo->instructionType == BRANCH) {
                 assembleBranchInstruction(fpOutput, token);
@@ -421,7 +471,7 @@ int main(int argc, char** argv) {
         offset += 4;
     }
 
-    fclose(fpSource);
+    fclose(fpSource2);
     fclose(fpOutput);
     return 0;
 }

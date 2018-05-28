@@ -17,20 +17,20 @@ add_executable( assemble
         assemble/symbol_table.c
         assemble/symbol_table.h
         assemble/tokenizer.c
-        assemble/tokenizer.h)
+        assemble/tokenizer.h shared/enums.h)
 
 add_executable( emulate
         emulate/branch_instruction.c
-        emulate/branch_instruction.h
+        shared/branch_instruction.h
         emulate/cpsr_overflow_detection.c
         emulate/cpsr_overflow_detection.h
         emulate/data_processing_instruction.c
-        emulate/data_processing_instruction.h
+        shared/data_processing_instruction.h
         emulate/emulate_main.c
         emulate/emulate_main.h
         emulate/instructions.c
-        emulate/instructions.h
+        shared/instructions.h
         emulate/multiply_instruction.c
-        emulate/multiply_instruction.h
+        shared/multiply_instruction.h
         emulate/single_data_transfer_instruction.c
-        emulate/single_data_transfer_instruction.h)
+        shared/single_data_transfer_instruction.h shared/enums.h)

@@ -4,6 +4,7 @@
 
 #ifndef EMULATE_BRANCH_INSTRUCTION_H
 #define EMULATE_BRANCH_INSTRUCTION_H
+#include "enums.h"
 struct BranchInstruction {
   int32_t offset:24;
   uint8_t filler1 : 1;// should be 0b0
