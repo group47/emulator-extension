@@ -303,6 +303,10 @@ bool secondToLastCharIs(const char *target, char c) {
 }
 
 
+uint32_t extra_data_location;
+uint32_t extra_data[100];
+
+
 int main(int argc, char** argv) {
 
     if (argc != 3) {
@@ -356,7 +360,7 @@ int main(int argc, char** argv) {
         }
     }
     fclose(fpSource);
-
+    extra_data_location = current_address;
     FILE* fpSource2 = fopen(sourceFileName, "r");
     current_address = 0;
     while (getline(&instruction, &instructionLength, fpSource2)!= -1) {
