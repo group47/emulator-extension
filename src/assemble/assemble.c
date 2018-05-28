@@ -19,6 +19,35 @@ const uint32_t MASK20 = 0b00000000000100000000000000000000;
 
 //todo : clean up
 uint16_t getOperand2Immediate(uint32_t operand2Val) {
+    /*
+    if (operand2Val < 0xff) {
+        return (uint16_t)operand2Val;
+    }
+    uint32_t mask = 0x00000001;
+    uint32_t tmpOperand2Val = operand2Val;
+    while ((tmpOperand2Val & mask) == 0 && tmpOperand2Val != 0) {
+        tmpOperand2Val >>= 2;
+    }
+
+    if ((tmpOperand2Val & 0x000000ff) != tmpOperand2Val) {
+        // operand2Val is not representable
+        // original bit field cannot fit in 8-bit memory
+        assert(false);
+    }
+
+    int rotateCount = 0;
+    uint32_t ttmpOperand2Val = tmpOperand2Val;
+
+    while (ttmpOperand2Val != operand2Val && ttmpOperand2Val != 0) {
+        ttmpOperand2Val = __rord(ttmpOperand2Val, 2);
+        rotateCount++;
+    }
+
+    uint16_t result = (uint8_t) (tmpOperand2Val == 0? operand2Val : tmpOperand2Val);
+    result |= (0x0f & rotateCount) << 8;
+    return result;
+    //return (0x0fff & (uint16_t)operand2Val);
+     */
     bool found = false;
     uint32_t result = operand2Val;
     uint32_t count;
@@ -36,7 +65,7 @@ uint16_t getOperand2Immediate(uint32_t operand2Val) {
 
 //todo: handle case where opereand2 is a register
 uint16_t getOperand2ShiftRegister(uint32_t operand2Val) {
-    assert(false); //extension
+    return operand2Val;
 }
 
 
@@ -71,7 +100,7 @@ void assembleMultiplyInstruction(FILE* fpOutput, struct Token* token) {
 
     binary_file_writer32(fpOutput, *(uint32_t*)&binary);
 }
-//todo convert string to numbers w/ bitfields
+
 void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
     struct SingleDataTransferInstruction binary;
     binary.cond = token->instructionInfo->condCode;
