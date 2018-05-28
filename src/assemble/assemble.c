@@ -60,97 +60,47 @@ uint16_t getOperand2ShiftRegister(uint32_t operand2Val) {
 
 
 void assembleDataProcessingInstruction(FILE* fpOutput, struct Token* token) {
-    uint32_t binary = 0;
-    if (strcmp(token->instructionInfo->mnemonics, "andeq") != 0) {
-        // set cond code
-        binary |= ((uint32_t) token->instructionInfo->condCode) << 28;
-
-        // set I bit
-        if (token->operand2IsImmediate) {
-            binary |= (0x1) << 25;
-        }
-
-        // set opcode
-        binary |= (token->instructionInfo->opCode) << 21;
-
-        // set S bit
-        if (token->instructionInfo->opCode == tst
+    struct DataProcessingInstruction binary;
+    binary.cond = token->instructionInfo->condCode;
+    binary.opcode = token->instructionInfo->opCode;
+    binary.setConditionCodes =
+            token->instructionInfo->opCode == tst
             || token->instructionInfo->opCode == teq
-            || token->instructionInfo->opCode == cmp) {
-            binary |= (0x1) << 20;
-        }
-
-        // set Rn
-        binary |= ((uint8_t) token->Rn) << 16;
-        // set Rd
-        binary |= ((uint8_t) token->Rd) << 12;
-        // set Operand2
-        binary |= token->operand2;
-    }
-
-    binary_file_writer32(fpOutput, binary);
+            || token->instructionInfo->opCode == cmp;
+    binary.Rn = token->Rn;
+    binary.Rd = token->Rd;
+    binary.secondOperand = token->operand2;
+    binary_file_writer32(fpOutput, *(uint32_t*)&binary);
 }
 
 void assembleMultiplyInstruction(FILE* fpOutput, struct Token* token) {
-    uint32_t binary = 0;
-    // set cond code
-    binary |= ((uint32_t)token->instructionInfo->condCode) << 28;
+    struct MultiplyInstruction binary;
+    binary.cond = token->instructionInfo->condCode;
+    binary.accumulate =
+      strcmp((char*)token->instructionInfo->mnemonics, "mla") == 0;
+    binary.destinationRegister = token->Rd;
+    binary.Rn = token->Rn;
+    binary.Rs = token->Rs;
+    binary.filler2 = 0b1001;
+    binary.Rm = token->Rm;
 
-    // set A bit
-    if (strcmp((char*)token->instructionInfo->mnemonics, "mla") == 0) {
-        binary |= (0x1) << 21;
-    }
-
-    // set S bit -> S bit is always zero
-
-    // set Rd
-    binary |= ((uint8_t)token->Rd) << 16;
-    // set Rn
-    binary |= ((uint8_t)token->Rn) << 12;
-    // set Rs
-    binary |= ((uint8_t)token->Rs) << 8;
-    // set special 1001 bit
-    binary |= (0x9 << 4);
-    // set Rm
-    binary |= ((uint8_t)token->Rm);
-
-    binary_file_writer32(fpOutput, binary);
+    binary_file_writer32(fpOutput, *(uint32_t*)&binary);
 }
 
 void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
-    uint32_t binary = 0;
-    // set cond code
-    binary |= ((uint32_t)token->instructionInfo->condCode) << 28;
+    struct SingleDataTransferInstruction binary;
+    binary.cond = token->instructionInfo->condCode;
+    binary.filler = 0b01;
+    binary.immediateOffset = token->offsetIsImmediate;
+    binary.prePostIndexingBit = token->isPreIndexing;
+    binary.upBit = !token->offsetIsNegative;
+    binary.loadStore =
+            strcmp(token->instructionInfo->mnemonics, "ldr") == 0;
+    binary.Rn = token->Rn;
+    binary.Rd = token->Rd;
+    binary.offset = 0x0fff & token->offset;
 
-    // set special 01 bit
-    binary |= (0x1) << 26;
-
-    // set I bit
-    if (token->isOffsetShifted) {
-        binary |= (0x1) << 25;
-    }
-
-    // set P bit
-    if (token->isPreIndexing) {
-        binary |= (0x1) << 24;
-    }
-    // set U bit
-    if (!token->offsetIsNegative) {
-        binary |= (0x1) << 23;
-    }
-
-    // set L bit
-    if (strcmp(token->instructionInfo->mnemonics, "ldr") == 0) {
-        binary |= (0x1) << 20;
-    }
-    // set Rn
-    binary |= token->Rn << 16;
-    // set Rd
-    binary |= token->Rd << 12;
-    // set Offset
-    binary |= 0x0fff & token->offset;
-
-    binary_file_writer32(fpOutput, binary);
+    binary_file_writer32(fpOutput, *(uint32_t*)&binary);
 }
 
 void assembleBranchInstruction(FILE* fpOutput, struct Token* token) {
