@@ -102,18 +102,25 @@ void assembleMultiplyInstruction(FILE* fpOutput, struct Token* token) {
 }
 
 void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
+
     struct SingleDataTransferInstruction binary;
-    binary.cond = token->instructionInfo->condCode;
-    binary.filler = 0b01;
-    binary.filler2 = 0b00;
-    binary.immediateOffset = token->offsetIsImmediate;
-    binary.prePostIndexingBit = token->isPreIndexing;
-    binary.upBit = !token->offsetIsNegative;
-    binary.loadStore =
+    if(token->offset != 0){
+
+    }
+    else
+    {
+        binary.cond = token->instructionInfo->condCode;
+        binary.filler = 0b01;
+        binary.filler2 = 0b00;
+        binary.immediateOffset = token->offsetIsImmediate;
+        binary.prePostIndexingBit = token->isPreIndexing;
+        binary.upBit = !token->offsetIsNegative;
+        binary.loadStore =
             strcmp(token->instructionInfo->mnemonics, "ldr") == 0;
-    binary.Rn = token->Rn;
-    binary.Rd = token->Rd;
-    binary.offset = 0x0fff & token->offset;
+        binary.Rn = token->Rn;
+        binary.Rd = token->Rd;
+        binary.offset = 0x0fff & token->offset;
+    }
 
     binary_file_writer32(fpOutput, *(uint32_t*)&binary);
 }
@@ -324,7 +331,7 @@ struct SymbolTable* initializeInstructionCodeTable() {
     addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "ble", le, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"b", al, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, SPECIAL,"lsl", al, 0, 2, &tokenizeDataProcessing2);
-    addInstruction(instructionCodeTable, SPECIAL, "andeq", eq, 0, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "andeq", eq, 0, 3, &tokenizeDataProcessing1);
     return instructionCodeTable;
 }
 bool secondToLastCharIs(const char *target, char c) {
@@ -395,6 +402,7 @@ int main(int argc, char** argv) {
     while (getline(&instruction, &instructionLength, fpSource2)!= -1) {
         //assert(instructionLength == INSTRUCTION_LENGTH);
 
+        bool andeq = false;
         struct Token* token = tokenizer(instruction, instructionCode,&labelAddress,current_address);
         if (token == NULL) {
             continue;
@@ -415,12 +423,12 @@ int main(int argc, char** argv) {
             if (entry == NULL) {
                 assert(false);
             }
-            
+
             if (entry->entryType != INSTRUCTION_INFO) {
                 assert(false);
             }
 
-            
+
             struct InstructionInfo* instructionInfo = &entry->rawEntry;
             */
 
@@ -433,7 +441,7 @@ int main(int argc, char** argv) {
             } else if (token->instructionInfo->instructionType == BRANCH_INSTRUCTION) {
                 assembleBranchInstruction(fpOutput, token);
             } else if (token->instructionInfo->instructionType == SPECIAL) {
-                assert(false);
+              assert(false);
             }
         offset += 4;
     }
