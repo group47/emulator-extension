@@ -8,6 +8,7 @@
 
 #include <stdbool.h>
 #include <stdint-gcc.h>
+#include "enums.h"
 //todo ImmediateFalseShiftByRegisterTrue:
 #include "enums.h"
 
