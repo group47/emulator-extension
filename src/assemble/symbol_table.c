@@ -60,7 +60,7 @@ struct InstructionInfo* intializeInstructionInfo() {
 bool addInstruction(struct SymbolTable* symbolTable,
                     enum InstructionType instructionType,
                     uint8_t* mnemonics,
-                    uint8_t condCode,
+                    enum Cond condCode,
                     uint8_t opCode,
                     uint8_t operandCount,
                     struct Token* (*tokenize) (char**, struct InstructionInfo*)) {

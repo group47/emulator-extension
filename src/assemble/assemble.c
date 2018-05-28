@@ -350,8 +350,8 @@ struct SymbolTable* initializeInstructionCodeTable() {
     addInstruction(instructionCodeTable, DATA_PROCESSING, "cmp", al, cmp, 2, &tokenizeDataProcessing3);
     addInstruction(instructionCodeTable, MULTIPLY, "mul", al, 0, 3, &tokenizeMultiply1);
     addInstruction(instructionCodeTable, MULTIPLY, "mla", al, 0, 4, &tokenizeMultiply2);
-    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "ldr", 0, 0, 2, &tokenizeSingleDataTransfer1);
-    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "str", 0, 0, 2, &tokenizeSingleDataTransfer1);
+    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "ldr", al, 0, 2, &tokenizeSingleDataTransfer1);
+    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "str", al, 0, 2, &tokenizeSingleDataTransfer1);
     addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "beq", eq, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "bne", ne, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "bge", ge, 0, 1, &tokenizeBranch1);
