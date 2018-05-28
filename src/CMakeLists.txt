@@ -12,9 +12,9 @@ add_executable( assemble
         assemble/assemble.c
         assemble/binary_file_writer.c
         assemble/binary_file_writer.h
-        assemble/instruction_assembler.c
         assemble/list.c
         assemble/list.h
+        assemble/symbol_table.c
         assemble/symbol_table.h
         assemble/tokenizer.c
         assemble/tokenizer.h)
