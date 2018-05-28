@@ -5,11 +5,13 @@
 #ifndef ASSEMBLE_SYMBOL_TABLE_H
 #define ASSEMBLE_SYMBOL_TABLE_H
 
-#define MAX_LABEL_LENGTH = 511
-#define MAX_NUM_SYMBOL = 1000
+
+//const int MAX_NUM_SYMBOL = 1000;
 
 #include <assert.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 enum InstructionType {
     DATAPROCESSING,
@@ -42,76 +44,24 @@ enum Cond {
     al = 0b1110
 };
 
-/*
-struct SymbolTable {
-    struct Entry** entries;
-    size_t size;
-};
-
-struct Entry {
-    char* string;
-    int integer;
-};
-
-
-int find(struct SymbolTable* symbolTable, char* key) {
-    for (int i = 0; i < symbolTable->size; i++) {
-        struct Entry* entry = symbolTable->entries[symbolTable->size];
-        if (entry != NULL) {
-            if (strcmp(entry->string, key) == 0) {
-                // honestly, I think we could just encode all the operation
-                // so that we don't have to compare it for every search
-                return entry->integer;
-            }
-        }
-    }
-    return -100000;
-}
-
-
-int addToSymbolTable(struct SymbolTable* symbolTable, const char* key, int val) {
-
-}
-
-struct SymbolTable* initializeMnemonicsToOpCode() {
-    struct SymbolTable* symbolTable;
-    addToSymbolTable(symbolTable, "add", add);
-}
-
-struct SymbolTable* initializeMnemonicsToCondCode() {
-
-}
-*/
-
-
-struct SymbolTable {
-    size_t size;
-    struct Entry* entries: sizeof(struct Entry) * MAX_NUM_SYMBOL;
-};
-
-
 struct InstructionInfo {
     uint8_t* mnemonics;
     enum InstructionType instructionType;
     uint8_t condCode;
     uint8_t opCode;
     uint8_t operandCount;
-    int (*operationPointer) (int);
+    struct Token* (*tokenize) (char*, struct InstructionInfo*);
 };
 
+//
 struct Label {
     uint8_t* label;
     uint16_t address;
 };
 
 union RawEntry {
-    struct InstructionInfo;
-    struct Label;
-};
-
-struct Entry {
-    union RawEntry rawEntry;
-    enum EntryType entryType;
+    struct InstructionInfo instructionInfo;
+    struct Label label;
 };
 
 enum EntryType {
@@ -119,62 +69,26 @@ enum EntryType {
     LABEL
 };
 
-bool addLabel(struct SymbolTable* symbolTable, uint8_t* label, uint16_t address) {
-    struct Label* labelEntry = malloc(sizeof(struct Label));
-    labelEntry->label = label; // concern: the original object might be destroyed
-    labelEntry->address = address;
+struct Entry {
+    union RawEntry rawEntry;
+    enum EntryType entryType;
+};
 
-    struct Entry entry;
-    entry.rawEntry = *((union RawEntry*) labelEntry);
-    entry.entryType = LABEL;
-    symbolTable->entries[symbolTable->size] = entry;
+struct SymbolTable {
+    size_t size;
+    struct Entry entries[100];
+};
 
-    symbolTable->size++;
-    return true;
-}
 
+bool addLabel(struct SymbolTable* symbolTable, uint8_t* label, uint16_t address);
+struct InstructionInfo* intializeInstructionInfo();
+struct Entry* find(struct SymbolTable* symbolTable, uint8_t* target);
 bool addInstruction(struct SymbolTable* symbolTable,
-              enum InstructionType instructionType,
-              uint8_t* mnemonics,
-              uint8_t condCode,
-              uint8_t opCode,
-              uint8_t operandCount) {
-
-    assert (symbolTable->size <= MAX_LABEL_LENGTH);
-
-    struct InstructionInfo* instructionInfo = malloc(sizeof(struct InstructionInfo));
-    instructionInfo->mnemonics = mnemonics;
-    instructionInfo->condCode = condCode;
-    instructionInfo->opCode = opCode;
-    instructionInfo->operandCount = operandCount;
-
-    struct Entry entry;
-    entry.rawEntry = *((union RawEntry*) instructionInfo);
-    entry.entryType = INSTRUCTION_INFO;
-    symbolTable->entries[symbolTable->size] = entry;
-
-    symbolTable->size++;
-    return true;
-}
-
-
-struct Entry* find(struct SymbolTable* symbolTable, uint8_t* target) {
-    for (int i = 0; i < symbolTable->size; i++) {
-        uint8_t* key;
-        if (symbolTable->entries[i].entryType == INSTRUCTION_INFO) {
-            struct InstructionInfo* instructionInfo = &symbolTable->entries[i].rawEntry;
-            key = instructionInfo->mnemonics;
-        } else if (symbolTable->entries[i].entryType == LABEL) {
-            struct Label* label = &symbolTable->entries[i].rawEntry;
-            key = label->label;
-        }
-
-        if (strcmp(key, target) == 0) {
-            return &symbolTable->entries[i];
-        }
-      }
-    return NULL;
-}
-
+                    enum InstructionType instructionType,
+                    uint8_t* mnemonics,
+                    uint8_t condCode,
+                    uint8_t opCode,
+                    uint8_t operandCount,
+                    struct Token* (*tokenize) (char**, struct InstructionInfo*));
 
 #endif //ASSEMBLE_SYMBOL_TABLE_H

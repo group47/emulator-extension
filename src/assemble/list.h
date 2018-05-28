@@ -7,41 +7,33 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-
-#define MAX_LABEL_LENGTH = 511
-
-void writeAddress(struct List* list, char* label, uint16_t address);
-bool findLabel(struct List* list, char* label);
-void addAddress(struct List* list, char* label);
-void addNode(struct List* list, struct Node* node);
-void deleteNode(struct List* list);
+#include <string.h>
+#include <stdlib.h>
+#include "symbol_table.h"
+#include "binary_file_writer.h"
 
 
-struct List {
-    struct Node* head;
-    struct Node* tail;
-};
+#define MAX_FORWARD_REFERENCE_LIST_LENGTH 200
+#define  MAX_ADDRESS_LIST_LENGTH  200
 
-struct Node {
-    union NodeVal;
-    struct Node* nextNode;
-};
-
-struct Label {
-    uint8_t* label: 32;
-};
-
-struct Address {
-    uint16_t address : 16;
-    uint16_t filler : 16;
-};
-
-union NodeVal {
-    struct Label;
-    struct Address;
+struct ForwardReferenceLabel {
+    char* label[511];
+    uint32_t* addressList[MAX_ADDRESS_LIST_LENGTH];
+    size_t size;
 };
 
 
+struct ForwardReferenceList {
+    struct ForwardReferenceLabel labelList[MAX_FORWARD_REFERENCE_LIST_LENGTH];
+    size_t size;
+
+};
+
+
+
+struct ForwardReferenceLabel* findLabel(struct ForwardReferenceList*, char*);
+void addForwardReferenceLabel(struct ForwardReferenceList*, char*);
+void addAddress(struct ForwardReferenceList*, char*, uint32_t);
 
 
 

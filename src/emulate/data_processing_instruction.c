@@ -17,12 +17,11 @@ int execute_instruction_data_processing(struct EmulatorState *state,
     return DIDNT_EXECUTE;
   }
   const uint32_t rnVal = (state->registers)[instruction.Rn];
-  uint32_t *result =
-      getOperand2Val(state, instruction.secondOperand, instruction.immediateOperand, 1);
-  uint32_t operand2Val = result[0];
-  uint32_t shiftCarryOut = result[1];
 
-  free(result);
+  uint32_t operand2Val;
+  uint32_t shiftCarryOut = 0;
+  getOperand2Val(state, instruction.secondOperand, instruction.immediateOperand, 1, &operand2Val, &shiftCarryOut);
+
 
   uint32_t computation_res;
   // for distinguishing between operator thing
@@ -79,6 +78,7 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       computation_res = operand2Val;
       state->registers[instruction.Rd] = operand2Val;
       break;
+    //default?
   }
   return setCPSR(state, instruction, borrow_occurred, overflow_occurred, computation_res,
                  shiftCarryOut);

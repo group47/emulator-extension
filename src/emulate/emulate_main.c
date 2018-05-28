@@ -144,12 +144,12 @@ bool should_execute(const struct EmulatorState *state, const enum Cond cond) {
 }
 
 
-uint32_t *getOperand2Val(struct EmulatorState *state,
+int getOperand2Val(struct EmulatorState *state,
                          uint16_t secondOperand,
                          bool immediate,
-                         bool flag) {
-  uint32_t res;
-  uint32_t carry_out = 0;
+                         bool flag,
+                         uint32_t *operand2,
+                         uint32_t *carryOut) {
 
   if (immediate == flag) {
 
@@ -157,7 +157,7 @@ uint32_t *getOperand2Val(struct EmulatorState *state,
     //rotate stack overflow community wiki:
     //https://stackoverflow.com/questions/776508/best-practices-for-circular-shift-rotate-operations-in-c
     uint32_t imm = immediateTrue.Imm;
-    res = __rord(imm, 2 * immediateTrue.rotate);
+    *operand2 = __rord(imm, 2 * immediateTrue.rotate);
   } else {
     struct ImmediateFalseShiftByRegisterFalse
         immediateFalse = *(struct ImmediateFalseShiftByRegisterFalse *) &secondOperand;
@@ -165,34 +165,64 @@ uint32_t *getOperand2Val(struct EmulatorState *state,
       //todo
       assert(false);//not implemented
     } else {
+      /*
       switch (immediateFalse.shift_type) {
         case lsl:
-          carry_out = immediateFalse.integer == 0 ? 0 :
+          *carryOut = immediateFalse.integer == 0 ? 0 :
                       (((0x1) << (32 - immediateFalse.integer) & immediateFalse.Rm) % 2);
-          res = (state->registers[immediateFalse.Rm]) << immediateFalse.integer;
+          *operand2 = (state->registers[immediateFalse.Rm]) << immediateFalse.integer;
           break;
         case lsr:
-          carry_out = immediateFalse.integer == 0 ? 0 :
+          *carryOut = immediateFalse.integer == 0 ? 0 :
                       (((0x1) << (immediateFalse.integer - 1) & immediateFalse.Rm) % 2);
-          res = (state->registers[immediateFalse.Rm]) >> immediateFalse.integer;
+          *operand2 = (state->registers[immediateFalse.Rm]) >> immediateFalse.integer;
           break;
-        case asr:
-          carry_out = immediateFalse.integer == 0 ? 0 :
+        case asr: //This looks wrong
+          *carryOut = immediateFalse.integer == 0 ? 0 :
                       (((0x1) << (immediateFalse.integer - 1) & immediateFalse.Rm) % 2);
-          res = (int32_t) ((state->registers[immediateFalse.Rm]) >> immediateFalse.integer);
+          *operand2 = (int32_t) ((state->registers[immediateFalse.Rm]) >> immediateFalse.integer);
           break;
         case ror:
-          carry_out = immediateFalse.integer == 0 ? 0 :
+          *carryOut = immediateFalse.integer == 0 ? 0 :
                       (((0x1) << (immediateFalse.integer - 1) & immediateFalse.Rm) % 2);
-          res = __rord((uint32_t) immediateFalse.Rm, immediateFalse.integer);
+          *operand2 = __rord((uint32_t) immediateFalse.Rm, immediateFalse.integer);
           break;
+        default: assert(false);
+      }*/
+      *operand2 = state->registers[immediateFalse.Rm];
+      uint32_t ar_bit;
+      if (immediateFalse.integer != 0) {
+        switch (immediateFalse.shift_type) {
+          case lsl:
+            *operand2 <<= immediateFalse.integer - 1;
+            *carryOut = (*operand2 >> 31) & 0b1;
+            *operand2 <<= 1;
+            break;
+          case lsr:
+            *operand2 >>= immediateFalse.integer - 1;
+            *carryOut = *operand2 & 0b1;
+            *operand2 >>= 1;
+            break;
+          case asr:
+            ar_bit = *operand2 & (0b1 << 31);
+            for (int i = 0; i < immediateFalse.integer - 1; ++i) {
+              *operand2 = (*operand2 >> 1) | ar_bit;
+            }
+            *carryOut = *operand2 & 0b1;
+            *operand2 = (*operand2 >> 1) | ar_bit;
+            break;
+          case ror:
+            *operand2 = __rord(*operand2, immediateFalse.integer - 1);
+            *carryOut = *operand2 & 0b1;
+            *operand2 = __rord(*operand2, 1);
+            break;
+          default: assert(false);
+        }
       }
     }
   }
-  uint32_t *result = malloc(2 * sizeof(uint32_t));
-  *result = res;
-  *(result + 1) = carry_out << 29;
-  return result;
+  *carryOut <<= 29;
+  return 0;
 }
 
 
@@ -272,7 +302,7 @@ void handle_out_of_bounds(uint32_t index) {
 void print_registers(struct EmulatorState *state) {
   printf("Registers:\n");
   for (int i = 0; i < 13; ++i) {
-    printf("$%-3d:%11d (0x%08x)\n",
+    printf("$%-3d: %10d (0x%08x)\n",
            i,
            state->registers[i],
            state->registers[i]);

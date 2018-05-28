@@ -60,10 +60,12 @@ uint32_t extract_rotate(uint16_t );
 uint32_t extract_shift(uint16_t );
 bool should_execute(const struct EmulatorState *, enum Cond );
 
-uint32_t *getOperand2Val(struct EmulatorState *,
+int getOperand2Val(struct EmulatorState *,
                          uint16_t ,
                          bool ,
-                         bool );
+                         bool ,
+                         uint32_t *,
+                         uint32_t *);
 
 void handle_out_of_bounds(uint32_t );
 

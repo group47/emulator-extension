@@ -19,9 +19,8 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
   if (instruction.immediateOffset == 0) {
     offset = instruction.offset;
   } else {
-    uint32_t *result = getOperand2Val(state, instruction.offset, instruction.immediateOffset, 0);
-    offset = result[0];
-    free(result);
+    uint32_t dummy;
+    getOperand2Val(state, instruction.offset, instruction.immediateOffset, 0, &offset, &dummy);
   }
 
   // pre indexing
@@ -44,6 +43,7 @@ int execute_instruction_single_data_transfer(struct EmulatorState *state,
         result |= ((uint32_t) state->memory[memory_access_index]) << (8 * i);
       } else {
         access_was_successful = false;
+        //do you mean to break here?
       }
     }
     if (!access_was_successful) {

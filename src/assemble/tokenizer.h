@@ -5,6 +5,22 @@
 #ifndef ASSEMBLE_TOKENIZER_H
 #define ASSEMBLE_TOKENIZER_H
 
-char** tokenizer(char*);
+#include "symbol_table.h"
+#include "stdint.h"
+
+struct Token {
+    struct InstructionInfo* instructionInfo;
+    char* label;
+    uint8_t Rn;
+    uint8_t Rd;
+    uint8_t Rs;
+    uint8_t Rm;
+    uint32_t operand2;
+    uint32_t offset;
+    bool operand2IsImmediate;
+};
+
+struct Token* tokenizer(char*, struct SymbolTable*);
+struct Token* initializeToken();
 
 #endif //ASSEMBLE_TOKENIZER_H

@@ -3,27 +3,34 @@
 //
 
 #include <stdint.h>
+#include <stdio.h>
 #include "list.h"
 
-#define MAX_LABEL_LENGTH = 511
 
-
-void writeAddress(struct List* list, char* label, uint16_t address) {
-
+struct ForwardRefereceList* initializeForwardReferenceList() {
+    struct ForwardReferenceList* forwardReferenceList = malloc(sizeof(struct ForwardReferenceList));
+    forwardReferenceList->size = 0;
 }
 
-void findLabel(struct List* list, char* label) {
-
+struct ForwardReferenceLabel* findLabel(struct ForwardReferenceList* forwardReferenceList, char* label) {
+    for (int i = 0; i < forwardReferenceList->size; i++) {
+        if (strcmp(forwardReferenceList->labelList[i].label, label) == 0) {
+            return &forwardReferenceList->labelList[i];
+        }
+    }
 }
 
-void addAddress(struct List* list, char* label) {
-
+void addForwardReferenceLabel(struct ForwardReferenceList* forwardReferenceList, char* label) {
+    if (findLabel(forwardReferenceList, label) == NULL) {
+        memcpy(forwardReferenceList->labelList[forwardReferenceList->size].label, label, sizeof(label));
+        forwardReferenceList->size++;
+    }
 }
 
-void addNode(struct List* list, struct Node* node) {
-
-}
-
-void deleteNode(struct List* list) {
-
+void addAddress(struct ForwardReferenceList* forwardReferenceList, char* label, uint32_t address) {
+    struct ForwardReferenceLabel* forwardReferenceLabel = findLabel(forwardReferenceList, label);
+    if (forwardReferenceLabel != NULL) {
+        forwardReferenceLabel->addressList[forwardReferenceLabel->size] = address;
+        forwardReferenceLabel->size++;
+    }
 }
