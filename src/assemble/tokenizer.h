@@ -22,6 +22,7 @@ struct Token {
     bool offsetIsNegative;
     bool isOffsetShifted;
     bool isPreIndexing;
+    bool use_extra_data;
 };
 
 struct Token* tokenizer(char*, struct SymbolTable*,struct SymbolTable*,uint16_t);

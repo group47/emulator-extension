@@ -13,6 +13,7 @@
 #include "tokenizer.h"
 #include "list.h"
 #include "assemble.h"
+#include "extra_data.h"
 
 
 const uint32_t MASK20 = 0b00000000000100000000000000000000;
@@ -102,23 +103,21 @@ void assembleMultiplyInstruction(FILE* fpOutput, struct Token* token) {
 }
 
 void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
-
     struct SingleDataTransferInstruction binary;
-    if(token->offset != 0){
+    binary.cond = token->instructionInfo->condCode;
+    binary.filler = 0b01;
+    binary.filler2 = 0b00;
+    binary.immediateOffset = token->offsetIsImmediate;
+    binary.prePostIndexingBit = token->isPreIndexing;
+    binary.upBit = !token->offsetIsNegative;
+    binary.loadStore = strcmp(token->instructionInfo->mnemonics, "ldr") == 0;
+    binary.Rn = token->Rn;
+    binary.Rd = token->Rd;
+    if(token->use_extra_data){
+        assert(token->offset > 0x00ff );
+        binary.offset = add_extra_data(token->offset);
 
-    }
-    else
-    {
-        binary.cond = token->instructionInfo->condCode;
-        binary.filler = 0b01;
-        binary.filler2 = 0b00;
-        binary.immediateOffset = token->offsetIsImmediate;
-        binary.prePostIndexingBit = token->isPreIndexing;
-        binary.upBit = !token->offsetIsNegative;
-        binary.loadStore =
-            strcmp(token->instructionInfo->mnemonics, "ldr") == 0;
-        binary.Rn = token->Rn;
-        binary.Rd = token->Rd;
+    } else{
         binary.offset = 0x0fff & token->offset;
     }
 
@@ -268,11 +267,17 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
         assert(false);
     }
 
-    if (offset < 0x00ff && tokens[2][0] == '=' && strcmp(instructionInfo->mnemonics, "ldr") == 0) {
-        return tokenizeDataProcessing2(tokens, &find(instructionInfo->symbolTable, "mov")->rawEntry.instructionInfo);
+    struct Token* token = initializeToken();
+    if (tokens[2][0] == '=') {
+        if (offset <= 0x00ff && strcmp(instructionInfo->mnemonics, "ldr") == 0) {
+            return tokenizeDataProcessing2(tokens,
+                                           &find(instructionInfo->symbolTable,
+                                                 "mov")->rawEntry.instructionInfo);
+        }else{
+            token->use_extra_data = true;
+        }
     }
 
-    struct Token* token = initializeToken();
 
     token->instructionInfo = instructionInfo;
     token->Rd = (uint8_t)strtol(tokens[1]+1, dummy, 10);
@@ -337,10 +342,6 @@ struct SymbolTable* initializeInstructionCodeTable() {
 bool secondToLastCharIs(const char *target, char c) {
   return target[strlen(target) - 2] == c;
 }
-
-
-uint32_t extra_data_location;
-uint32_t extra_data[100];
 
 
 int main(int argc, char** argv) {
@@ -445,6 +446,8 @@ int main(int argc, char** argv) {
             }
         offset += 4;
     }
+
+    write_extra_data(fpOutput);
 
     fclose(fpSource2);
     fclose(fpOutput);
