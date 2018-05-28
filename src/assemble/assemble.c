@@ -357,7 +357,7 @@ struct SymbolTable* initializeInstructionCodeTable() {
     addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "bge", ge, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"blt", lt, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "ble", le, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"b", gt, 0, 1, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"b", al, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, SPECIAL,"lsl", al, 0, 2, &tokenizeDataProcessing2);
     addInstruction(instructionCodeTable, SPECIAL, "andeq", eq, 0, 3, &tokenizeDataProcessing1);
     return instructionCodeTable;
