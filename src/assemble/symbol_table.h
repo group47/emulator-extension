@@ -11,6 +11,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 enum InstructionType {
     DATAPROCESSING,
@@ -42,50 +43,6 @@ enum Cond {
     le = 0b1101,
     al = 0b1110
 };
-
-/*
-struct SymbolTable {
-    struct Entry** entries;
-    size_t size;
-};
-
-struct Entry {
-    char* string;
-    int integer;
-};
-
-
-int find(struct SymbolTable* symbolTable, char* key) {
-    for (int i = 0; i < symbolTable->size; i++) {
-        struct Entry* entry = symbolTable->entries[symbolTable->size];
-        if (entry != NULL) {
-            if (strcmp(entry->string, key) == 0) {
-                // honestly, I think we could just encode all the operation
-                // so that we don't have to compare it for every search
-                return entry->integer;
-            }
-        }
-    }
-    return -100000;
-}
-
-
-int addToSymbolTable(struct SymbolTable* symbolTable, const char* key, int val) {
-
-}
-
-struct SymbolTable* initializeMnemonicsToOpCode() {
-    struct SymbolTable* symbolTable;
-    addToSymbolTable(symbolTable, "add", add);
-}
-
-struct SymbolTable* initializeMnemonicsToCondCode() {
-
-}
-*/
-
-
-
 
 struct InstructionInfo {
     uint8_t* mnemonics;

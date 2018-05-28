@@ -40,9 +40,6 @@ void assembleDataProcessingInstruction(FILE* fpOutput, struct Token* token) {
     binary |= ((uint8_t)token->Rd) << 12;
     binary |= getOperand2Immediate(token->operand2);
 
-    char binaryArray[32];
-    //sprintf(binaryArray, "%lu",binary);
-    //fwrite(binaryArray, 32, 1, fpOutput);
     binary_file_writer32(fpOutput, binary);
 }
 
@@ -65,7 +62,7 @@ void assembleBranchInstruction(FILE* fpOutput, struct Token* token) {
 
 struct Token* tokenizeDataProcessing1(char** tokens, struct InstructionInfo* instructionInfo) {
     assert(strlen(tokens) >= 4);
-    char dummy[500];
+    char dummy[500][500];
     struct Token* token = initializeToken();
     token->instructionInfo = instructionInfo;
     if (tokens[3][0] == '#') {

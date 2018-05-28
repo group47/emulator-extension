@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include "tokenizer.h"
 #include "symbol_table.h"
+#include "stdint.h"
 
 struct Token* tokenizeDataProcessing1(char**, struct InstructionInfo*);
 struct Token* tokenizeDataProcessing2(char**, struct InstructionInfo*);

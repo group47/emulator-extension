@@ -6,6 +6,7 @@
 #define ASSEMBLE_TOKENIZER_H
 
 #include "symbol_table.h"
+#include "stdint.h"
 
 struct Token {
     struct InstructionInfo* instructionInfo;

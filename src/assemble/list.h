@@ -13,57 +13,27 @@
 #include "binary_file_writer.h"
 
 
-//const int MAX_FORWARD_REFERENCE_LIST_LENGTH = 200;
-//const int MAX_ADDRESS_LIST_LENGTH = 200;
-
-struct ForwardReferenceList {
-    struct ForwardReferenceLabel* headLabel;
-    struct ForwardReferenceLabel* tailLabel;
-};
+#define MAX_FORWARD_REFERENCE_LIST_LENGTH 200
+#define  MAX_ADDRESS_LIST_LENGTH  200
 
 struct ForwardReferenceLabel {
-    char* label;
-    struct ForwardReferenceLabel* prevLabel;
-    struct ForwardReferenceLabel* nextLabel;
-    struct Address* addressList;
+    char* label[511];
+    uint32_t* addressList[MAX_ADDRESS_LIST_LENGTH];
+    size_t size;
 };
 
-struct Address {
-    uint32_t address;
-    struct Label* nextAddress;
+
+struct ForwardReferenceList {
+    struct ForwardReferenceLabel labelList[MAX_FORWARD_REFERENCE_LIST_LENGTH];
+    size_t size;
+
 };
 
-struct ForwardRefereceList* initializeForwardReferenceList();
+
+
 struct ForwardReferenceLabel* findLabel(struct ForwardReferenceList*, char*);
-void addLabelAndAddress(struct ForwardReferenceList*, char*, uint16_t);
-void deleteLabel(struct ForwardReferenceLabel*);
-void addAddress(struct ForwardReferenceLabel*, uint32_t);
-void writeAddress(struct ForwardReferenceList*, FILE*, char*);
-
-
-
-/*
-
-struct ForwardReferenceList {
-    struct ForwardReferenceLabel* labelList;
-
-};
-
-struct Address {
-    uint32_t address;
-};
-
-struct ForwardReferenceLabel {
-    char* label;
-};
-
-struct ForwardRefereceList* initializeForwardReferenceList() {
-    struct ForwardReferenceList* forwardReferenceList = malloc(sizeof(struct ForwardReferenceList));
-    forwardReferenceList->labelList = malloc(MAX_FORWARD_REFERENCE_LIST_LENGTH*sizeof(struct ForwardReferenceLabel));
-}
-
-struct ForwardReferenceLabel findLabel();
- */
+void addForwardReferenceLabel(struct ForwardReferenceList*, char*);
+void addAddress(struct ForwardReferenceList*, char*, uint32_t);
 
 
 
