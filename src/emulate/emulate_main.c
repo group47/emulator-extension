@@ -8,11 +8,11 @@
 #include <x86intrin.h>
 #include "unistd.h"
 #include "emulate_main.h"
-#include "instructions.h"
-#include "data_processing_instruction.h"
-#include "single_data_transfer_instruction.h"
-#include "multiply_instruction.h"
-#include "branch_instruction.h"
+#include "../shared/instructions.h"
+#include "../shared/data_processing_instruction.h"
+#include "../shared/single_data_transfer_instruction.h"
+#include "../shared/multiply_instruction.h"
+#include "../shared/branch_instruction.h"
 
 
 void emulate(struct EmulatorState *state,

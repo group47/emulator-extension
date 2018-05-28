@@ -7,7 +7,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include <branch_instruction.h>
+#include "../shared/branch_instruction.h"
 #include "symbol_table.h"
 #include "tokenizer.h"
 #include "list.h"
@@ -307,20 +307,20 @@ struct Token* tokenizeSpecial1(char** tokens, struct InstructionInfo* instructio
 struct SymbolTable* initializeInstructionCodeTable() {
     struct SymbolTable* instructionCodeTable = malloc(sizeof(struct SymbolTable));
     instructionCodeTable->size = 0;
-    addInstruction(instructionCodeTable, DATAPROCESSING, "add", al, add, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "sub", al, sub, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "rsb", al, rsb, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "and", al, and, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "eor", al, eor, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "orr", al, orr, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "mov", al, mov, 2, &tokenizeDataProcessing2);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "tst", al, tst, 2, &tokenizeDataProcessing3);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "teq", al, teq, 2, &tokenizeDataProcessing3);
-    addInstruction(instructionCodeTable, DATAPROCESSING, "cmp", al, cmp, 2, &tokenizeDataProcessing3);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "add", al, add, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "sub", al, sub, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "rsb", al, rsb, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "and", al, and, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "eor", al, eor, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "orr", al, orr, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "mov", al, mov, 2, &tokenizeDataProcessing2);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "tst", al, tst, 2, &tokenizeDataProcessing3);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "teq", al, teq, 2, &tokenizeDataProcessing3);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "cmp", al, cmp, 2, &tokenizeDataProcessing3);
     addInstruction(instructionCodeTable, MULTIPLY, "mul", al, 0, 3, &tokenizeMultiply1);
     addInstruction(instructionCodeTable, MULTIPLY, "mla", al, 0, 4, &tokenizeMultiply2);
-    addInstruction(instructionCodeTable, SINGLEDATATRANSFER, "ldr", 0, 0, 2, &tokenizeSingleDataTransfer1);
-    addInstruction(instructionCodeTable, SINGLEDATATRANSFER, "str", 0, 0, 2, &tokenizeSingleDataTransfer1);
+    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "ldr", 0, 0, 2, &tokenizeSingleDataTransfer1);
+    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "str", 0, 0, 2, &tokenizeSingleDataTransfer1);
     addInstruction(instructionCodeTable, BRANCH, "beq", eq, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH, "bne", ne, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH, "bge", ge, 0, 1, &tokenizeBranch1);
@@ -426,11 +426,11 @@ int main(int argc, char** argv) {
             struct InstructionInfo* instructionInfo = &entry->rawEntry;
             */
 
-            if (token->instructionInfo->instructionType == DATAPROCESSING) {
+            if (token->instructionInfo->instructionType == DATA_PROCESSING) {
                 assembleDataProcessingInstruction(fpOutput, token);
             } else if (token->instructionInfo->instructionType == MULTIPLY) {
                 assembleMultiplyInstruction(fpOutput, token);
-            } else if (token->instructionInfo->instructionType == SINGLEDATATRANSFER) {
+            } else if (token->instructionInfo->instructionType == SINGLE_DATA_TRANSFER) {
                 assembleSingleDataInstruction(fpOutput, token);
             } else if (token->instructionInfo->instructionType == BRANCH) {
                 assembleBranchInstruction(fpOutput, token);

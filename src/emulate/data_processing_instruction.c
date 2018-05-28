@@ -2,9 +2,9 @@
 // Created by francis on 5/27/18.
 //
 
-#include "instructions.h"
+#include "../shared/instructions.h"
 #include "emulate_main.h"
-#include "data_processing_instruction.h"
+#include "../shared/data_processing_instruction.h"
 
 int execute_instruction_data_processing(struct EmulatorState *state,
                                         const struct DataProcessingInstruction instruction) {

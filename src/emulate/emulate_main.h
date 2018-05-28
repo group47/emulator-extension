@@ -40,8 +40,8 @@ struct EmulatorState {
   uint32_t CPSR;
 };
 #include <stdbool.h>
-#include "instructions.h"
-#include "data_processing_instruction.h"
+#include "../shared/instructions.h"
+#include "../shared/data_processing_instruction.h"
 
 int execute_instruction(struct EmulatorState *, struct Instruction);
 void print_registers(struct EmulatorState *);
