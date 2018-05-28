@@ -8,7 +8,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g -DUSE_EMULATE_MAIN")
 include_directories(assemble)
 include_directories(emulate)
 
-add_executable( assemble
+add_executable(assemble
         assemble/assemble.c
         assemble/binary_file_writer.c
         assemble/binary_file_writer.h
@@ -17,9 +17,14 @@ add_executable( assemble
         assemble/symbol_table.c
         assemble/symbol_table.h
         assemble/tokenizer.c
-        assemble/tokenizer.h shared/enums.h)
+        assemble/tokenizer.h
+        shared/enums.h
+        shared/branch_instruction.h
+        shared/data_processing_instruction.h
+        shared/instructions.h
+        shared/single_data_transfer_instruction.h)
 
-add_executable( emulate
+add_executable(emulate
         emulate/branch_instruction.c
         shared/branch_instruction.h
         emulate/cpsr_overflow_detection.c

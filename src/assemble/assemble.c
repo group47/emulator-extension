@@ -396,7 +396,6 @@ int main(int argc, char** argv) {
     struct SymbolTable* instructionCode = initializeInstructionCodeTable();
     struct SymbolTable labelAddress;
     memset(&labelAddress,0, sizeof(struct SymbolTable));
-    struct ForwardReferenceList* forwardReferenceLabels;
 
     uint16_t offset = 0;
     uint16_t current_address = 0;
@@ -414,7 +413,7 @@ int main(int argc, char** argv) {
                 colonRemoved[i] = '\0';
                 addLabel(&labelAddress,colonRemoved,current_address);
             } else{
-                assert(false);
+//                assert(false);
             }
         } else{
             current_address++;
@@ -422,7 +421,6 @@ int main(int argc, char** argv) {
     }
     fclose(fpSource);
 
-    FILE* fpOutputHead = fpOutput;
     FILE* fpSource2 = fopen(sourceFileName, "r");
     current_address = 0;
     while (getline(&instruction, &instructionLength, fpSource2)!= -1) {
