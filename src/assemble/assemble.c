@@ -99,6 +99,30 @@ void assembleMultiplyInstruction(FILE* fpOutput, struct Token* token) {
 }
 
 void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
+    uint32_t binary = 0;
+    // set cond code
+    binary |= ((uint32_t)token->instructionInfo->condCode) << 28;
+
+    // set special 01 bit
+    binary |= (0x1) << 26;
+    // set P bit
+    if (token->isPreIndexing) {
+        binary |= (0x1) << 24;
+    }
+    // set U bit
+
+    // set L bit
+    if (strcmp(token->instructionInfo->mnemonics, "ldr") == 0) {
+        binary |= (0x1) << 20;
+    }
+    // set Rn
+    binary |= token->Rn << 16;
+    // set Rd
+    binary |= token->Rd << 12;
+    // set Offset
+    binary |= 0x0fff & token->offset;
+
+    binary_file_writer32(fpOutput, binary);
 }
 
 void assembleBranchInstruction(FILE* fpOutput, struct Token* token) {
@@ -196,9 +220,55 @@ struct Token* tokenizeMultiply2(char** tokens, struct InstructionInfo* instructi
     return token;
 }
 
-
+// single data transfer syntax 1 : <ldr/str> Rd, <address>
 struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo* instructionInfo) {
-    return NULL;
+    char dummy[500];
+    uint32_t offset = 0;
+    bool isPreIndexAddress = false;
+    uint8_t Rn = 0;
+
+    if (tokens[2] == NULL) {
+        offset = 0;
+    } else if (tokens[2][0] == '=') {
+        offset = (uint32_t) strtol(tokens[2] + 1, dummy, 16);
+        // I don't see any test cases involving offset of base ten
+    } else if (tokens[2][0] == '[') {
+        Rn = (uint8_t) strtol(tokens[2] + 1, dummy, 10);
+        if (tokens[3] == NULL) {
+            isPreIndexAddress = true;
+            offset = 0;
+        } else if (tokens[3][0] == '#') {
+            if (tokens[3][strlen(tokens[3])-2] == ']') {
+                isPreIndexAddress = true;
+            } else {
+                isPreIndexAddress = false;
+            }
+
+            //todo: duplication of parsing a base10 constant and a base16 constant
+            if (tokens[3][1] == '0') {
+                offset = (uint32_t)strtol(tokens[3] + 1, dummy, 16);
+            } else {
+                offset = (uint32_t)strtol(tokens[3] + 1, dummy, 10);
+            }
+        }
+
+    } else {
+        assert(false);
+    }
+
+    if (offset < 0x00ff && strcmp(instructionInfo->mnemonics, "ldr") == 0) {
+        return tokenizeDataProcessing2(tokens, &find(instructionInfo->symbolTable, "mov")->rawEntry.instructionInfo);
+    }
+
+    struct Token* token = initializeToken();
+
+    token->instructionInfo = instructionInfo;
+    token->Rd = (uint8_t)strtol(tokens[1]+1, dummy, 10);
+    token->Rn = Rn;
+    token->offset = offset;
+    token ->isPreIndexing = isPreIndexAddress;
+
+    return token;
 }
 
 // branch syntax 1 : b <cond> <expression>

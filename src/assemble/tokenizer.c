@@ -84,6 +84,7 @@ struct Token* initializeToken() {
     token->Rs = 0;
     token->operand2 = 0;
     token->operand2IsImmediate = false;
+    token->isPreIndexing = false;
     token->label = NULL;
     return token;
 }
