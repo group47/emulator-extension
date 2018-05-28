@@ -115,8 +115,10 @@ void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
     binary.Rd = token->Rd;
     if(token->use_extra_data){
         assert(token->offset > 0x00ff );
-        binary.offset = add_extra_data(token->offset);
-
+        assert(!binary.immediateOffset);
+        binary.Rn = 0b1111;//the program counter
+        uint32_t  extra_data_address = 4*add_extra_data(token->offset);
+        binary.offset = (extra_data_address - 4*token->instructionInfo->address - 8);//todo check
     } else{
         binary.offset = 0x0fff & token->offset;
     }
@@ -389,61 +391,33 @@ int main(int argc, char** argv) {
                 }
                 colonRemoved[i] = '\0';
                 addLabel(&labelAddress,colonRemoved,current_address);
-            } else{
-//                assert(false);
             }
         } else{
             current_address++;
         }
     }
     fclose(fpSource);
-    extra_data_location = current_address;
+    set_extra_data_location(current_address);
     FILE* fpSource2 = fopen(sourceFileName, "r");
     current_address = 0;
     while (getline(&instruction, &instructionLength, fpSource2)!= -1) {
-        //assert(instructionLength == INSTRUCTION_LENGTH);
-
-        bool andeq = false;
         struct Token* token = tokenizer(instruction, instructionCode,&labelAddress,current_address);
         if (token == NULL) {
             continue;
         }
         current_address++;
-        /*
-        if (strlen(tokens) == 1) {
-            char* label = malloc(8*strlen(tokens[0]-1)); // remove the : in the end
 
-
-            // It is a label
-            writeAddress(&forwardReferenceLabels, tokens[0], offset);
-            addLabel(&labelAddress, tokens[0], offset);
-        } else {
-            // It is an instruction
-            char* mnemonic = tokens[0];
-            struct Entry* entry = find(&instructionCode, mnemonic);
-            if (entry == NULL) {
-                assert(false);
-            }
-
-            if (entry->entryType != INSTRUCTION_INFO) {
-                assert(false);
-            }
-
-
-            struct InstructionInfo* instructionInfo = &entry->rawEntry;
-            */
-
-            if (token->instructionInfo->instructionType == DATA_PROCESSING) {
-                assembleDataProcessingInstruction(fpOutput, token);
-            } else if (token->instructionInfo->instructionType == MULTIPLY) {
-                assembleMultiplyInstruction(fpOutput, token);
-            } else if (token->instructionInfo->instructionType == SINGLE_DATA_TRANSFER) {
-                assembleSingleDataInstruction(fpOutput, token);
-            } else if (token->instructionInfo->instructionType == BRANCH_INSTRUCTION) {
-                assembleBranchInstruction(fpOutput, token);
-            } else if (token->instructionInfo->instructionType == SPECIAL) {
-              assert(false);
-            }
+        if (token->instructionInfo->instructionType == DATA_PROCESSING) {
+            assembleDataProcessingInstruction(fpOutput, token);
+        } else if (token->instructionInfo->instructionType == MULTIPLY) {
+            assembleMultiplyInstruction(fpOutput, token);
+        } else if (token->instructionInfo->instructionType == SINGLE_DATA_TRANSFER) {
+            assembleSingleDataInstruction(fpOutput, token);
+        } else if (token->instructionInfo->instructionType == BRANCH_INSTRUCTION) {
+            assembleBranchInstruction(fpOutput, token);
+        } else if (token->instructionInfo->instructionType == SPECIAL) {
+          assert(false);
+        }
         offset += 4;
     }
 

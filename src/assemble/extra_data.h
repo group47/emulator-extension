@@ -7,7 +7,7 @@
 
 #include <stdint.h>
 
-static uint32_t extra_data_location;
+void set_extra_data_location(uint32_t val);
 static uint32_t extra_data_i = 0;
 static uint32_t extra_data[100];
 

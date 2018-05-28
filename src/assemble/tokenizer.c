@@ -44,7 +44,6 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable, stru
     for (int i = 0; i < countFirstPass; i++) {
         token2 = strtok(tokensFirstPass[i], " ");
         while (token2 != NULL) {
-            //printf("%s\n", token2);
             tokensSecondPass[countSecondPass] = malloc(511);
             memcpy(tokensSecondPass[countSecondPass], token2, strlen(token2));
             token2 = strtok(NULL, " ");
@@ -67,7 +66,6 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable, stru
         struct InstructionInfo instructionInfo;
         if (entry == NULL) {
             return NULL;
-            assert(false);
         }
         instructionInfo = entry->rawEntry.instructionInfo;
         instructionInfo.symbolTable = symbolTable;
