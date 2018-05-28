@@ -9,7 +9,7 @@
 #include <stdbool.h>
 #include <stdint-gcc.h>
 //todo ImmediateFalseShiftByRegisterTrue:
-
+#include "enums.h"
 
 
 struct ImmediateTrue{

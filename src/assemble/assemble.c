@@ -62,7 +62,9 @@ uint16_t getOperand2ShiftRegister(uint32_t operand2Val) {
 void assembleDataProcessingInstruction(FILE* fpOutput, struct Token* token) {
     struct DataProcessingInstruction binary;
     binary.cond = token->instructionInfo->condCode;
+    binary.filler = 0b00;
     binary.opcode = token->instructionInfo->opCode;
+    binary.immediateOperand = token->operand2IsImmediate;
     binary.setConditionCodes =
             token->instructionInfo->opCode == tst
             || token->instructionInfo->opCode == teq
@@ -76,6 +78,7 @@ void assembleDataProcessingInstruction(FILE* fpOutput, struct Token* token) {
 void assembleMultiplyInstruction(FILE* fpOutput, struct Token* token) {
     struct MultiplyInstruction binary;
     binary.cond = token->instructionInfo->condCode;
+    binary.filler = 0b000000;
     binary.accumulate =
       strcmp((char*)token->instructionInfo->mnemonics, "mla") == 0;
     binary.destinationRegister = token->Rd;
@@ -83,6 +86,7 @@ void assembleMultiplyInstruction(FILE* fpOutput, struct Token* token) {
     binary.Rs = token->Rs;
     binary.filler2 = 0b1001;
     binary.Rm = token->Rm;
+    binary.setConditionCodes = 0b0;
 
     binary_file_writer32(fpOutput, *(uint32_t*)&binary);
 }
@@ -91,6 +95,7 @@ void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
     struct SingleDataTransferInstruction binary;
     binary.cond = token->instructionInfo->condCode;
     binary.filler = 0b01;
+    binary.filler2 = 0b00;
     binary.immediateOffset = token->offsetIsImmediate;
     binary.prePostIndexingBit = token->isPreIndexing;
     binary.upBit = !token->offsetIsNegative;

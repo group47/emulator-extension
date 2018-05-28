@@ -61,7 +61,7 @@ bool addInstruction(struct SymbolTable* symbolTable,
                     enum InstructionType instructionType,
                     uint8_t* mnemonics,
                     enum Cond condCode,
-                    uint8_t opCode,
+                    enum OpCode opCode,
                     uint8_t operandCount,
                     struct Token* (*tokenize) (char**, struct InstructionInfo*)) {
 
