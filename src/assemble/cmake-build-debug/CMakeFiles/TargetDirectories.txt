@@ -1,3 +1,0 @@
-/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/ryro/Arm/arm11_47/src/assemble/cmake-build-debug/CMakeFiles/assemble.dir
