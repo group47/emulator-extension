@@ -7,6 +7,7 @@
 #include "tokenizer.h"
 
 
+bool secondToLastCharIs(const char *target, char c);
 struct Entry* find(struct SymbolTable* symbolTable, uint8_t* target) {
     for (int i = 0; i < symbolTable->size; i++) {
         uint8_t* key;
@@ -17,7 +18,7 @@ struct Entry* find(struct SymbolTable* symbolTable, uint8_t* target) {
             struct Label* label = &symbolTable->entries[i].rawEntry;
             key = label->label;
         } else {
-            assert(false);
+//            assert(false);
         }
 
         if (strcmp(key, target) == 0) {
@@ -38,8 +39,12 @@ bool addLabel(struct SymbolTable* symbolTable, uint8_t* label, uint16_t address)
     entry->rawEntry = *((union RawEntry*) labelEntry);
     entry->entryType = LABEL;
      */
-    symbolTable->entries[symbolTable->size].rawEntry.label.label = label;
+    uint8_t * label_copy = malloc(100*sizeof(uint8_t));//todo memory leak
+    memcpy(label_copy,label,strlen(label)* sizeof(uint8_t));
+
+    symbolTable->entries[symbolTable->size].rawEntry.label.label = label_copy;
     symbolTable->entries[symbolTable->size].rawEntry.label.address = address;
+    symbolTable->entries[symbolTable->size].entryType = LABEL;
     symbolTable->size++;
     return true;
 }

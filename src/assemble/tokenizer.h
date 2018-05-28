@@ -21,7 +21,7 @@ struct Token {
     bool isPreIndexing;
 };
 
-struct Token* tokenizer(char*, struct SymbolTable*);
+struct Token* tokenizer(char*, struct SymbolTable*,struct SymbolTable*,uint16_t);
 struct Token* initializeToken();
 
 #endif //ASSEMBLE_TOKENIZER_H

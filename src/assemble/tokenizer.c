@@ -16,7 +16,7 @@ const int MAX_TOKENS = 32;
 // Might need to distinguish them later
 
 
-struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable) {
+struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable, struct SymbolTable* labelAddress,uint16_t current_address) {
     if (instruction == NULL){
         assert(false);
     }
@@ -64,11 +64,16 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable) {
             return NULL;
         }
         struct Entry *entry = find(symbolTable, tokensSecondPass[0]);
+        struct InstructionInfo instructionInfo;
         if (entry == NULL) {
             return NULL;
             assert(false);
         }
-        token = entry->rawEntry.instructionInfo.tokenize(tokensSecondPass, entry);
+        instructionInfo = entry->rawEntry.instructionInfo;
+        instructionInfo.symbolTable = symbolTable;
+        instructionInfo.labelAddress = labelAddress;
+        instructionInfo.address = current_address;
+        token = entry->rawEntry.instructionInfo.tokenize(tokensSecondPass, &instructionInfo);
     }
 
     return token;

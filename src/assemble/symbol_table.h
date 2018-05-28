@@ -52,6 +52,8 @@ struct InstructionInfo {
     uint8_t operandCount;
     struct Token* (*tokenize) (char*, struct InstructionInfo*);
     struct SymbolTable* symbolTable;
+    struct SymbolTable* labelAddress;
+    uint16_t address;
 };
 
 //
