@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <x86intrin.h>
 #include "symbol_table.h"
 #include "tokenizer.h"
 #include "list.h"
@@ -15,8 +16,11 @@
 
 const uint32_t MASK20 = 0b00000000000100000000000000000000;
 
-//todo : determine whether the value is representable
+//todo : clean up
 uint16_t getOperand2Immediate(uint32_t operand2Val) {
+    if (operand2Val < 0xff) {
+        return (uint16_t)operand2Val;
+    }
     uint32_t mask = 0x00000001;
     uint32_t tmpOperand2Val = operand2Val;
     while ((tmpOperand2Val & mask) == 0 && tmpOperand2Val != 0) {
@@ -27,13 +31,25 @@ uint16_t getOperand2Immediate(uint32_t operand2Val) {
         }
         tmpOperand2Val >>= 2;
     }
+
     if ((tmpOperand2Val & 0x000000ff) != tmpOperand2Val) {
         // operand2Val is not representable
         // original bit field cannot fit in 8-bit memory
         assert(false);
     }
-    //return (uint8_t) (tmpOperand2Val == 0? operand2Val : tmpOperand2Val);
-    return 0x0fff & (uint16_t)operand2Val;
+
+    int rotateCount = 0;
+    uint32_t ttmpOperand2Val = tmpOperand2Val;
+
+    while (ttmpOperand2Val != operand2Val && ttmpOperand2Val != 0) {
+        ttmpOperand2Val = __rord(ttmpOperand2Val, 2);
+        rotateCount++;
+    }
+
+    uint16_t result = (uint8_t) (tmpOperand2Val == 0? operand2Val : tmpOperand2Val);
+    result |= (0x0f & rotateCount) << 8;
+    return result;
+    //return (0x0fff & (uint16_t)operand2Val);
 }
 
 //todo: handle case where opereand2 is a register
@@ -44,30 +60,32 @@ uint16_t getOperand2ShiftRegister(uint32_t operand2Val) {
 
 void assembleDataProcessingInstruction(FILE* fpOutput, struct Token* token) {
     uint32_t binary = 0;
-    // set cond code
-    binary |= ((uint32_t)token->instructionInfo->condCode) << 28;
+    if (strcmp(token->instructionInfo->mnemonics, "andeq") != 0) {
+        // set cond code
+        binary |= ((uint32_t) token->instructionInfo->condCode) << 28;
 
-    // set I bit
-    if (token->operand2IsImmediate) {
-        binary |= (0x1) << 25;
+        // set I bit
+        if (token->operand2IsImmediate) {
+            binary |= (0x1) << 25;
+        }
+
+        // set opcode
+        binary |= (token->instructionInfo->opCode) << 21;
+
+        // set S bit
+        if (token->instructionInfo->opCode == tst
+            || token->instructionInfo->opCode == teq
+            || token->instructionInfo->opCode == cmp) {
+            binary |= (0x1) << 20;
+        }
+
+        // set Rn
+        binary |= ((uint8_t) token->Rn) << 16;
+        // set Rd
+        binary |= ((uint8_t) token->Rd) << 12;
+        // set Operand2
+        binary |= token->operand2;
     }
-
-    // set opcode
-    binary |= (token->instructionInfo->opCode) << 21;
-
-    // set S bit
-    if (token->instructionInfo->opCode == tst
-        || token->instructionInfo->opCode == teq
-        || token->instructionInfo->opCode == cmp) {
-        binary |= (0x1) << 20;
-    }
-
-    // set Rn
-    binary |= ((uint8_t)token->Rn) << 16;
-    // set Rd
-    binary |= ((uint8_t)token->Rd) << 12;
-    // set Operand2
-    binary |= token->operand2;
 
     binary_file_writer32(fpOutput, binary);
 }
@@ -105,11 +123,20 @@ void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
 
     // set special 01 bit
     binary |= (0x1) << 26;
+
+    // set I bit
+    if (token->isOffsetShifted) {
+        binary |= (0x1) << 25;
+    }
+
     // set P bit
     if (token->isPreIndexing) {
         binary |= (0x1) << 24;
     }
     // set U bit
+    if (!token->offsetIsNegative) {
+        binary |= (0x1) << 23;
+    }
 
     // set L bit
     if (strcmp(token->instructionInfo->mnemonics, "ldr") == 0) {
@@ -163,7 +190,8 @@ struct Token* tokenizeDataProcessing2(char** tokens, struct InstructionInfo* ins
     token->instructionInfo = instructionInfo;
     token->Rd = (uint8_t)strtol(tokens[1]+1, dummy, 10);
     // Handling expression case only
-    if (tokens[2][0] == '#') {
+    // = is for ldr instruction
+    if (tokens[2][0] == '#' || tokens[2][0] == '=') {
         token->operand2IsImmediate = true;
         if (tokens[2][1] == '0') {
             token->operand2 = getOperand2Immediate(strtol(tokens[2] + 1, dummy, 16));
@@ -172,7 +200,6 @@ struct Token* tokenizeDataProcessing2(char** tokens, struct InstructionInfo* ins
         }
     } else {
         token->operand2IsImmediate = false;
-        //printf("doing wrong stuff");
         token->operand2 = getOperand2ShiftRegister(strtol(tokens[2]+1, dummy, 10));
     }
     return token;
@@ -225,19 +252,25 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
     char dummy[500];
     uint32_t offset = 0;
     bool isPreIndexAddress = false;
+    bool isOffsetNegative = false;
+    bool isOffsetShifted = false;
     uint8_t Rn = 0;
 
     if (tokens[2] == NULL) {
         offset = 0;
     } else if (tokens[2][0] == '=') {
+        isPreIndexAddress = true;
         offset = (uint32_t) strtol(tokens[2] + 1, dummy, 16);
         // I don't see any test cases involving offset of base ten
     } else if (tokens[2][0] == '[') {
-        Rn = (uint8_t) strtol(tokens[2] + 1, dummy, 10);
+        Rn = (uint8_t) strtol(tokens[2] + 2, dummy, 10);
         if (tokens[3] == NULL) {
             isPreIndexAddress = true;
             offset = 0;
         } else if (tokens[3][0] == '#') {
+            if (tokens[3][1] == '-') {
+                isOffsetNegative = true;
+            }
             if (tokens[3][strlen(tokens[3])-2] == ']') {
                 isPreIndexAddress = true;
             } else {
@@ -256,7 +289,7 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
         assert(false);
     }
 
-    if (offset < 0x00ff && strcmp(instructionInfo->mnemonics, "ldr") == 0) {
+    if (offset < 0x00ff && tokens[2][0] == '=' && strcmp(instructionInfo->mnemonics, "ldr") == 0) {
         return tokenizeDataProcessing2(tokens, &find(instructionInfo->symbolTable, "mov")->rawEntry.instructionInfo);
     }
 
@@ -267,6 +300,8 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
     token->Rn = Rn;
     token->offset = offset;
     token ->isPreIndexing = isPreIndexAddress;
+    token->offsetIsNegative = isOffsetNegative;
+    token->isOffsetShifted = isOffsetShifted;
 
     return token;
 }
@@ -275,10 +310,6 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
 struct Token* tokenizeBranch1(char** tokens, struct InstructionInfo* instructionInfo) {
     struct Token* token = initializeToken();
     // todo: figure out how to combine labelling process with tokenization
-    return NULL;
-}
-
-struct Token* tokenizeSpecial1(char** tokens, struct InstructionInfo* instructionInfo) {
     return NULL;
 }
 
@@ -298,16 +329,16 @@ struct SymbolTable* initializeInstructionCodeTable() {
     addInstruction(instructionCodeTable, DATAPROCESSING, "cmp", al, cmp, 2, &tokenizeDataProcessing3);
     addInstruction(instructionCodeTable, MULTIPLY, "mul", al, 0, 3, &tokenizeMultiply1);
     addInstruction(instructionCodeTable, MULTIPLY, "mla", al, 0, 4, &tokenizeMultiply2);
-    addInstruction(instructionCodeTable, SINGLEDATATRANSFER, "ldr", 0, 0, 2, &tokenizeSingleDataTransfer1);
-    addInstruction(instructionCodeTable, SINGLEDATATRANSFER, "str", 0, 0, 2, &tokenizeSingleDataTransfer1);
+    addInstruction(instructionCodeTable, SINGLEDATATRANSFER, "ldr", al, 0, 2, &tokenizeSingleDataTransfer1);
+    addInstruction(instructionCodeTable, SINGLEDATATRANSFER, "str", al, 0, 2, &tokenizeSingleDataTransfer1);
     addInstruction(instructionCodeTable, BRANCH, "beq", eq, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH, "bne", ne, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH, "bge", ge, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH,"blt", lt, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH, "ble", le, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH,"b", gt, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, SPECIAL,"lsl", al, 0, 2, &tokenizeSpecial1);
-    addInstruction(instructionCodeTable, SPECIAL, "andeq", eq, 0, 3, &tokenizeSpecial1);
+    addInstruction(instructionCodeTable, SPECIAL,"lsl", al, 0, 2, &tokenizeDataProcessing2);
+    addInstruction(instructionCodeTable, SPECIAL, "andeq", eq, 0, 3, &tokenizeDataProcessing1);
     return instructionCodeTable;
 }
 

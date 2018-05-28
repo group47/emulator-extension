@@ -18,6 +18,9 @@ struct Token {
     uint32_t operand2;
     uint32_t offset;
     bool operand2IsImmediate;
+    bool offsetIsImmediate;
+    bool offsetIsNegative;
+    bool isOffsetShifted;
     bool isPreIndexing;
 };
 
