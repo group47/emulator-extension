@@ -1,5 +1,5 @@
 
-#include <stdint-gcc.h>
+#include <stdint.h>
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>

@@ -26,7 +26,7 @@ enum CPSR {
 #define MEMORY_SIZE 65536
 #define MAX_INSTRUCTION_INPUT_FILE_SIZE 1000
 #define NUM_REGISTERS 17
-#include "stdint-gcc.h"
+#include <stdint.h>
 struct EmulatorState {
   union {
     uint8_t memory[MEMORY_SIZE];
