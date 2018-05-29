@@ -253,7 +253,12 @@ struct Token* tokenizeDataProcessing3(char** tokens, struct InstructionInfo* ins
 
     if (tokens[2][0] == '#') {
         token->operand2IsImmediate = true;
-        token->operand2 = getOperand2Immediate(strtol(tokens[2]+1, dummy, 10));
+        if (tokens[2][1] == '0') {
+            token->operand2 = getOperand2Immediate(strtol(tokens[2] + 1, dummy, 16));
+        } else {
+            token->operand2 = getOperand2Immediate(strtol(tokens[2] + 1, dummy, 10));
+        }
+        //token->operand2 = getOperand2Immediate(strtol(tokens[2]+1, dummy, 10));
     } else {
         token->operand2IsImmediate = false;
         uint8_t Rm = (uint8_t) strtol(tokens[2]+1, dummy, 10);
