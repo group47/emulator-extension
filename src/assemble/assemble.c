@@ -18,6 +18,7 @@
 
 const uint32_t MASK20 = 0b00000000000100000000000000000000;
 
+
 //todo : clean up
 uint16_t getOperand2Immediate(uint32_t operand2Val) {
     /*
@@ -49,6 +50,8 @@ uint16_t getOperand2Immediate(uint32_t operand2Val) {
     return result;
     //return (0x0fff & (uint16_t)operand2Val);
      */
+
+
     bool found = false;
     uint32_t result = operand2Val;
     uint32_t count;
@@ -59,14 +62,63 @@ uint16_t getOperand2Immediate(uint32_t operand2Val) {
         }
         result = __rold(result, 2);
     }
-    assert(found);
+    //assert(found);
     result |= count << 8;
     return (uint16_t) result;
+
+
 }
 
 //todo: handle case where opereand2 is a register
 uint16_t getOperand2ShiftRegister(uint32_t operand2Val) {
     return operand2Val;
+}
+
+uint32_t getShiftedRegister(char* shiftname, char* registerOrExpression, uint8_t Rm) {
+
+    enum ShiftType shiftType = lsl;
+    uint16_t shiftedRegister = 0;
+    if (shiftname != NULL) {
+        char dummy[500][500];
+        if (strcmp(shiftname, "lsl") == 0) {
+            shiftType = lsl;
+        } else if (strcmp(shiftname, "lsr") == 0) {
+            shiftType = lsr;
+        } else if (strcmp(shiftname, "asr") == 0) {
+            shiftType = asr;
+        } else if (strcmp(shiftname, "ror") == 0) {
+            shiftType = ror;
+        } else {
+            assert(false);
+        }
+
+        if (registerOrExpression != NULL) {
+            int base = 10;
+            if (registerOrExpression[1] == '0') {
+                base = 16;
+            }
+            if (registerOrExpression[0] == 'r') {
+                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->filler = 0;
+                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->shift_type = shiftType;
+                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->Rm = Rm;
+                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->shift_by_register = true;
+                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->Rs =
+                        (uint8_t) strtol(registerOrExpression + 1, dummy, 10);
+            } else if (registerOrExpression[0] == '#') {
+                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->shift_type = shiftType;
+                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->Rm = Rm;
+                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->shift_by_register = false;
+                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->integer =
+                        (uint8_t) strtol(registerOrExpression + 1, dummy, base);
+            } else {
+                assert(false);
+            }
+        }
+    } else {
+        shiftedRegister = Rm;
+    }
+
+    return shiftedRegister;
 }
 
 
@@ -155,7 +207,9 @@ struct Token* tokenizeDataProcessing1(char** tokens, struct InstructionInfo* ins
         }
     } else {
         token->operand2IsImmediate = false;
-        token->operand2 = getOperand2ShiftRegister(strtol(tokens[3]+1, dummy, 10));
+        uint8_t Rm = (uint8_t)strtol(tokens[3]+1, dummy, 10);
+        token->operand2 = (uint16_t) getShiftedRegister(tokens[4], tokens[5], Rm);
+        //token->operand2 = getOperand2Immediate(strtol(tokens[3]+1, dummy, 10));
     }
 
    return token;
@@ -180,7 +234,10 @@ struct Token* tokenizeDataProcessing2(char** tokens, struct InstructionInfo* ins
         }
     } else {
         token->operand2IsImmediate = false;
-        token->operand2 = getOperand2ShiftRegister(strtol(tokens[2]+1, dummy, 10));
+        uint8_t Rm = (uint8_t) strtol(tokens[2]+1, dummy, 10);
+        token->operand2 = (uint16_t) getShiftedRegister(tokens[3], tokens[4], Rm);
+        //token->operand2 = Rm;
+        //token->operand2 = getOperand2Immediate(strtol(tokens[2]+1, dummy, 10));
     }
     return token;
 }
@@ -199,7 +256,9 @@ struct Token* tokenizeDataProcessing3(char** tokens, struct InstructionInfo* ins
         token->operand2 = getOperand2Immediate(strtol(tokens[2]+1, dummy, 10));
     } else {
         token->operand2IsImmediate = false;
-        token->operand2 = getOperand2ShiftRegister(strtol(tokens[2]+1, dummy, 10));
+        uint8_t Rm = (uint8_t) strtol(tokens[2]+1, dummy, 10);
+        token->operand2 = (uint16_t) getShiftedRegister(tokens[3], tokens[4], Rm);
+        //token->operand2 = getOperand2ShiftRegister(strtol(tokens[2]+1, dummy, 10));
     }
     return token;
 }
@@ -230,39 +289,50 @@ struct Token* tokenizeMultiply2(char** tokens, struct InstructionInfo* instructi
 // single data transfer syntax 1 : <ldr/str> Rd, <address>
 struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo* instructionInfo) {
     char dummy[500];
-    uint32_t offset = 0;
+    long offset = 0;
     bool isPreIndexAddress = false;
-    bool isOffsetNegative = false;
-    bool isOffsetShifted = false;
+    bool offsetIsNegative = false;
+    bool offsetIsImmediate = false;
     uint8_t Rn = 0;
 
-    if (tokens[2] == NULL) {
-        offset = 0;
-    } else if (tokens[2][0] == '=') {
+    if (tokens[2][0] == '=') {
+
         isPreIndexAddress = true;
+        offsetIsImmediate = false;
         offset = (uint32_t) strtol(tokens[2] + 1, dummy, 16);
-        // I don't see any test cases involving offset of base ten
+
     } else if (tokens[2][0] == '[') {
         Rn = (uint8_t) strtol(tokens[2] + 2, dummy, 10);
+
         if (tokens[3] == NULL) {
             isPreIndexAddress = true;
             offset = 0;
+            offsetIsImmediate = false;
         } else if (tokens[3][0] == '#') {
-            if (tokens[3][1] == '-') {
-                isOffsetNegative = true;
-            }
-            if (tokens[3][strlen(tokens[3])-2] == ']') {
-                isPreIndexAddress = true;
+            offsetIsImmediate = false;
+            isPreIndexAddress = !(tokens[2][strlen(tokens[2])-1] == ']' || tokens[2][strlen(tokens[2])-2] == ']');
+            offsetIsNegative = tokens[3][1] == '-';
+
+            char* hexPointer = strstr(tokens[3]+1, "0x");
+            if (hexPointer) {
+                offset = (uint16_t) strtol(hexPointer, dummy, 16);
             } else {
-                isPreIndexAddress = false;
+                offset = (uint16_t) strtol(tokens[3] + 1, dummy, 10);
             }
 
-            //todo: duplication of parsing a base10 constant and a base16 constant
-            if (tokens[3][1] == '0') {
-                offset = (uint32_t)strtol(tokens[3] + 1, dummy, 16);
+        } else {
+            offsetIsImmediate = true;
+            isPreIndexAddress = !(tokens[2][strlen(tokens[2])-1] == ']' || tokens[2][strlen(tokens[2])-2] == ']');
+           //todo: duplication
+            uint8_t Rm = 0;
+            if (tokens[3][0] == '-') {
+                offsetIsNegative = true;
+                Rm = (uint8_t)strtol(tokens[3]+2, dummy, 10);
             } else {
-                offset = (uint32_t)strtol(tokens[3] + 1, dummy, 10);
+                offsetIsNegative = false;
+                Rm = (uint8_t)strtol(tokens[3]+1, dummy, 10);
             }
+            offset = (uint16_t) getShiftedRegister(tokens[4], tokens[5], Rm);
         }
 
     } else {
@@ -275,7 +345,7 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
             return tokenizeDataProcessing2(tokens,
                                            &find(instructionInfo->symbolTable,
                                                  "mov")->rawEntry.instructionInfo);
-        }else{
+        } else {
             token->use_extra_data = true;
         }
     }
@@ -286,8 +356,8 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
     token->Rn = Rn;
     token->offset = offset;
     token ->isPreIndexing = isPreIndexAddress;
-    token->offsetIsNegative = isOffsetNegative;
-    token->isOffsetShifted = isOffsetShifted;
+    token->offsetIsNegative = offsetIsNegative;
+    token->offsetIsImmediate = offsetIsImmediate;
 
     return token;
 }
@@ -313,6 +383,19 @@ struct Token* tokenizeBranch1(char** tokens, struct InstructionInfo* instruction
     return token;
 }
 
+// for lsl
+struct Token* tokenizeSpecial1(char** tokens, struct InstructionInfo* instructionInfo) {
+    char** tokensRestructure = malloc(sizeof(char*)*20);
+    for (int i = 0; i < 5; i++) {
+        tokensRestructure[i] = malloc(sizeof(char)*10);
+    }
+    memcpy(tokensRestructure[0], "mov", strlen("mov"));
+    tokensRestructure[1] = tokens[1];
+    tokensRestructure[2] = tokens[1];
+    memcpy(tokensRestructure[3], "lsl", strlen("lsl"));
+    tokensRestructure[4] = tokens[2];
+    return tokenizeDataProcessing2(tokensRestructure, &(find(instructionInfo->symbolTable, "mov")->rawEntry.instructionInfo));
+}
 
 struct SymbolTable* initializeInstructionCodeTable() {
     struct SymbolTable* instructionCodeTable = malloc(sizeof(struct SymbolTable));
@@ -337,7 +420,7 @@ struct SymbolTable* initializeInstructionCodeTable() {
     addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"blt", lt, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "ble", le, 0, 1, &tokenizeBranch1);
     addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"b", al, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, SPECIAL,"lsl", al, 0, 2, &tokenizeDataProcessing2);
+    addInstruction(instructionCodeTable, DATA_PROCESSING,"lsl", al, 0, 2, &tokenizeSpecial1);
     addInstruction(instructionCodeTable, DATA_PROCESSING, "andeq", eq, 0, 3, &tokenizeDataProcessing1);
     return instructionCodeTable;
 }

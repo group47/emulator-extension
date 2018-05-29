@@ -1,0 +1,4 @@
+/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/CMakeFiles/edit_cache.dir
+/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/CMakeFiles/emulate.dir
+/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/CMakeFiles/assemble.dir

@@ -91,7 +91,6 @@ struct Token* initializeToken() {
     token->isPreIndexing = false;
     token->label = NULL;
     token->offsetIsNegative = false;
-    token->isOffsetShifted = false;
     return token;
 }
 

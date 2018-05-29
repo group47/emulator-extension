@@ -15,12 +15,11 @@ struct Token {
     uint8_t Rd;
     uint8_t Rs;
     uint8_t Rm;
-    uint32_t operand2;
+    uint16_t operand2 : 12;
     uint32_t offset;
     bool operand2IsImmediate;
     bool offsetIsImmediate;
     bool offsetIsNegative;
-    bool isOffsetShifted;
     bool isPreIndexing;
     bool use_extra_data;
 };

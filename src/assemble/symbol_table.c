@@ -76,30 +76,6 @@ bool addInstruction(struct SymbolTable* symbolTable,
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.operandCount = operandCount;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.tokenize = tokenize;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.symbolTable = symbolTable;
-    /*
-
-    struct Entry *entry = malloc(sizeof(struct Entry));
-    entry->rawEntry.instructionInfo.mnemonics = malloc(2000);
-    memcpy(entry->rawEntry.instructionInfo.mnemonics, mnemonics, strlen(mnemonics));
-    entry->rawEntry.instructionInfo.condCode = condCode;
-    entry->rawEntry.instructionInfo.opCode = opCode;
-    entry->rawEntry.instructionInfo.operandCount = operandCount;
-    symbolTable->entries[symbolTable->size] = entry;
-    */
-
-    /*
-
-    struct InstructionInfo* instructionInfo = intializeInstructionInfo();
-    memcpy(instructionInfo->mnemonics, mnemonics, strlen(mnemonics));
-    instructionInfo->condCode = condCode;
-    instructionInfo->opCode = opCode;
-    instructionInfo->operandCount = operandCount;
-
-    struct Entry *entry = malloc(sizeof(struct Entry));
-    entry->rawEntry = *((union RawEntry*) instructionInfo);
-    entry->entryType = INSTRUCTION_INFO;
-    symbolTable->entries[symbolTable->size] = malloc(sizeof(struct Entry));
-     */
 
     symbolTable->size++;
     return true;
