@@ -162,8 +162,27 @@ int getOperand2Val(struct EmulatorState *state,
     struct ImmediateFalseShiftByRegisterFalse
         immediateFalse = *(struct ImmediateFalseShiftByRegisterFalse *) &secondOperand;
     if (immediateFalse.shift_by_register) {
-      //todo
-      assert(false);//not implemented
+      struct ImmediateFalseShiftByRegisterTrue shiftByRegister = *(struct ImmediateFalseShiftByRegisterTrue *)&secondOperand;
+      uint8_t rs = shiftByRegister.Rs;
+      uint32_t rs_val = state->registers[rs];
+      uint32_t shift_amount = (rs_val & 0b11111111);
+      uint32_t rm_val = state->registers[shiftByRegister.Rm];
+      switch (shiftByRegister.shift_type){
+        case lsl:
+          *operand2 = rm_val << shift_amount;
+          //todo carry
+          break;
+        case lsr:
+          *operand2 = rm_val >> shift_amount;
+          break;
+        case asr:
+          //todo implement
+          assert(false);
+          break;
+        case ror:
+          *operand2 = __rord(rm_val,shift_amount);
+          break;
+      }
     } else {
       /*
       switch (immediateFalse.shift_type) {
