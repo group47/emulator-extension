@@ -7,8 +7,5 @@
 
 #include <stdint.h>
 
-uint32_t rotr(uint32_t x, uint32_t n)
-{
-  return (x>>n) | (x<<(32-n));
-}
+uint32_t rotr(uint32_t x, uint32_t n);
 #endif //SRC_ROTATE_RIGHT_H
