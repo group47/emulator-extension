@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 project(src C)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g -DUSE_EMULATE_MAIN")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g -DUSE_EMULATE_MAIN -fsanitize=fuzzer,address")
 
 
 include_directories(assemble)
@@ -38,4 +38,5 @@ add_executable(emulate
         emulate/multiply_instruction.c
         shared/multiply_instruction.h
         emulate/single_data_transfer_instruction.c
-        shared/single_data_transfer_instruction.h shared/enums.h)
+        shared/single_data_transfer_instruction.h shared/enums.h
+        emulate/fuzzing_emmulate.c)
