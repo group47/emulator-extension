@@ -16,43 +16,11 @@
 
 #include "../shared/enums.h"
 
-//enum InstructionType {
-//    DATAPROCESSING,
-//    MULTIPLY,
-//    SINGLEDATATRANSFER,
-//    BRANCH,
-//    SPECIAL
-//};
-
-//enum opCode {
-//    and = 0b0000,
-//    eor = 0b0001,
-//    sub = 0b0010,
-//    rsb = 0b0011,
-//    add = 0b0100,
-//    orr = 0b1100,
-//    mov = 0b1101,
-//    tst = 0b1000,
-//    teq = 0b1001,
-//    cmp = 0b1010
-//};
-
-//enum Cond {
-//    eq = 0b0000,
-//    ne = 0b0001,
-//    ge = 0b1010,
-//    lt = 0b1011,
-//    gt = 0b1100,
-//    le = 0b1101,
-//    al = 0b1110
-//};
-
 struct InstructionInfo {
     uint8_t* mnemonics;
     enum InstructionType instructionType;
     enum Cond condCode;
     enum OpCode opCode;
-    uint8_t operandCount;
     uint16_t address;
     struct Token* (*tokenize) (char**, struct InstructionInfo*);
     struct SymbolTable* symbolTable;
@@ -94,7 +62,6 @@ bool addInstruction(struct SymbolTable* symbolTable,
                     uint8_t* mnemonics,
                     enum Cond condCode,
                     enum OpCode opCode,
-                    uint8_t operandCount,
                     struct Token* (*tokenize) (char**, struct InstructionInfo*));
 
 #endif //ASSEMBLE_SYMBOL_TABLE_H

@@ -24,6 +24,11 @@ struct Token {
     bool use_extra_data;
 };
 
+union Token2 {
+    struct DataProcessingInstruction dataProcessingInstruction;
+};
+
+
 struct Token* tokenizer(char*, struct SymbolTable*,struct SymbolTable*,uint16_t);
 struct Token* initializeToken();
 

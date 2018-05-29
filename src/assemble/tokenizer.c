@@ -20,7 +20,6 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable, stru
     if (instruction == NULL){
         assert(false);
     }
-
     // Breaking the lines into tokens
     char** tokensFirstPass = malloc(sizeof(char*)*100);
 
@@ -38,29 +37,26 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable, stru
     }
 
     // Structure them according to their operation
-
     struct Token* token;
 
     if (countFirstPass == 1) {
-        token = malloc(sizeof(struct Token));
-        token->label = tokensFirstPass[0];
         return NULL;
-    } else {
-        if (tokensFirstPass[0] == NULL) {
-            return NULL;
-        }
-        struct Entry *entry = find(symbolTable, tokensFirstPass[0]);
-        struct InstructionInfo instructionInfo;
-        if (entry == NULL) {
-            return NULL;
-        }
-        instructionInfo = entry->rawEntry.instructionInfo;
-        instructionInfo.symbolTable = symbolTable;
-        instructionInfo.labelAddress = labelAddress;
-        instructionInfo.address = current_address;
-        token = entry->rawEntry.instructionInfo.tokenize(tokensFirstPass, &instructionInfo);
     }
 
+    if (tokensFirstPass[0] == NULL) {
+        return NULL;
+    }
+
+    struct Entry *entry = find(symbolTable, tokensFirstPass[0]);
+    struct InstructionInfo instructionInfo;
+    if (entry == NULL) {
+        return NULL;
+    }
+    instructionInfo = entry->rawEntry.instructionInfo;
+    instructionInfo.symbolTable = symbolTable;
+    instructionInfo.labelAddress = labelAddress;
+    instructionInfo.address = current_address;
+    token = entry->rawEntry.instructionInfo.tokenize(tokensFirstPass, &instructionInfo);
 
     return token;
 }
