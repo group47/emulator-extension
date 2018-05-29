@@ -13,6 +13,7 @@
 #include "../shared/single_data_transfer_instruction.h"
 #include "../shared/multiply_instruction.h"
 #include "../shared/branch_instruction.h"
+#include "rotate_right.h"
 
 
 void emulate(struct EmulatorState *state,
@@ -157,7 +158,7 @@ int getOperand2Val(struct EmulatorState *state,
     //rotate stack overflow community wiki:
     //https://stackoverflow.com/questions/776508/best-practices-for-circular-shift-rotate-operations-in-c
     uint32_t imm = immediateTrue.Imm;
-    *operand2 = __rord(imm, 2 * immediateTrue.rotate);
+    *operand2 = rotr(imm, 2 * immediateTrue.rotate);
   } else {
     struct ImmediateFalseShiftByRegisterFalse
         immediateFalse = *(struct ImmediateFalseShiftByRegisterFalse *) &secondOperand;
@@ -180,7 +181,7 @@ int getOperand2Val(struct EmulatorState *state,
           assert(false);
           break;
         case ror:
-          *operand2 = __rord(rm_val,shift_amount);
+          *operand2 = rotr(rm_val,shift_amount);
           break;
       }
     } else {
@@ -231,9 +232,9 @@ int getOperand2Val(struct EmulatorState *state,
             *operand2 = (*operand2 >> 1) | ar_bit;
             break;
           case ror:
-            *operand2 = __rord(*operand2, immediateFalse.integer - 1);
+            *operand2 = rotr(*operand2, immediateFalse.integer - 1);
             *carryOut = *operand2 & 0b1;
-            *operand2 = __rord(*operand2, 1);
+            *operand2 = rotr(*operand2, 1);
             break;
           default: assert(false);
         }

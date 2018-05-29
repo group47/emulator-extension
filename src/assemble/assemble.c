@@ -14,6 +14,7 @@
 #include "list.h"
 #include "assemble.h"
 #include "extra_data.h"
+#include "rotate_right.h"
 
 
 const uint32_t MASK20 = 0b00000000000100000000000000000000;
@@ -60,7 +61,7 @@ uint16_t getOperand2Immediate(uint32_t operand2Val) {
             found = true;
             break;
         }
-        result = __rold(result, 2);
+        result = rotr(result, 2);
     }
     //assert(found);
     result |= count << 8;

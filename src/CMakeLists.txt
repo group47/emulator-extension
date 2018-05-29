@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 project(src C)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g -fsanitize=fuzzer,address")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g ")
 
 
 include_directories(assemble)
@@ -39,4 +39,4 @@ add_executable(emulate
         shared/multiply_instruction.h
         emulate/single_data_transfer_instruction.c
         shared/single_data_transfer_instruction.h shared/enums.h
-        emulate/fuzzing_emulate.c)
+        emulate/fuzzing_emulate.c emulate/rotate_right.c emulate/rotate_right.h)
