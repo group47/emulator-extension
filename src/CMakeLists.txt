@@ -39,4 +39,4 @@ add_executable(emulate
         shared/multiply_instruction.h
         emulate/single_data_transfer_instruction.c
         shared/single_data_transfer_instruction.h shared/enums.h
-        emulate/fuzzing_emmulate.c)
+        emulate/fuzzing_emulate.c)
