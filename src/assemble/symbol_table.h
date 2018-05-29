@@ -54,7 +54,7 @@ struct InstructionInfo {
     enum OpCode opCode;
     uint8_t operandCount;
     uint16_t address;
-    struct Token* (*tokenize) (char*, struct InstructionInfo*);
+    struct Token* (*tokenize) (char**, struct InstructionInfo*);
     struct SymbolTable* symbolTable;
     struct SymbolTable* labelAddress;
 };

@@ -23,46 +23,33 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable, stru
 
     // Breaking the lines into tokens
     char** tokensFirstPass = malloc(sizeof(char*)*100);
-    char** tokensSecondPass = malloc(sizeof(char*)*100);
 
     char* token1;
-    char* token2;
 
-    token1 = strtok(instruction, ",");
+    token1 = strtok(instruction, ", ");
 
     int countFirstPass = 0;
 
     while (token1 != NULL) {
         tokensFirstPass[countFirstPass] = malloc(511);
         memcpy(tokensFirstPass[countFirstPass], token1, strlen(token1));
-        token1 = strtok(NULL, ",");
+        token1 = strtok(NULL, ", ");
         countFirstPass++;
-    }
-
-    int countSecondPass = 0;
-
-    for (int i = 0; i < countFirstPass; i++) {
-        token2 = strtok(tokensFirstPass[i], " ");
-        while (token2 != NULL) {
-            tokensSecondPass[countSecondPass] = malloc(511);
-            memcpy(tokensSecondPass[countSecondPass], token2, strlen(token2));
-            token2 = strtok(NULL, " ");
-            countSecondPass++;
-        }
     }
 
     // Structure them according to their operation
 
     struct Token* token;
 
-    if (strlen(tokensSecondPass) == 1) {
+    if (countFirstPass == 1) {
         token = malloc(sizeof(struct Token));
-        token->label = tokensSecondPass[0];
+        token->label = tokensFirstPass[0];
+        return NULL;
     } else {
-        if (tokensSecondPass[0] == NULL) {
+        if (tokensFirstPass[0] == NULL) {
             return NULL;
         }
-        struct Entry *entry = find(symbolTable, tokensSecondPass[0]);
+        struct Entry *entry = find(symbolTable, tokensFirstPass[0]);
         struct InstructionInfo instructionInfo;
         if (entry == NULL) {
             return NULL;
@@ -71,8 +58,9 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable, stru
         instructionInfo.symbolTable = symbolTable;
         instructionInfo.labelAddress = labelAddress;
         instructionInfo.address = current_address;
-        token = entry->rawEntry.instructionInfo.tokenize(tokensSecondPass, &instructionInfo);
+        token = entry->rawEntry.instructionInfo.tokenize(tokensFirstPass, &instructionInfo);
     }
+
 
     return token;
 }
