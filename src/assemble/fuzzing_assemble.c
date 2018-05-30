@@ -24,7 +24,7 @@ int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
   return 0;  // Non-zero return values are reserved for future use.
 }
 
-#if 1
+#if 0
 
 int main(int argc, char** data){
   LLVMFuzzerTestOneInput(data[1],strlen(data[1]));
