@@ -20,7 +20,7 @@ const uint32_t MASK20 = 0b00000000000100000000000000000000;
 
 
 //todo : clean up
-uint16_t getOperand2Immediate(uint32_t operand2Val) {
+uint16_t getOperand2Immediate(long operand2Val) {
     /*
     if (operand2Val < 0xff) {
         return (uint16_t)operand2Val;
