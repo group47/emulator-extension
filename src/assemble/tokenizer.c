@@ -17,19 +17,6 @@ const int MAX_TOKENS = 32;
 
 
 
-void separateCharacters(char** tokens, int numTokens, char* characters) {
-    char** newTokens = malloc(sizeof(char*) * 10);
-
-    int count = 0;
-    for (int i = 0; i < numTokens; i++) {
-        char* p = strpbrk(tokens[i], characters);
-        if (p != NULL) {
-            if (tokens[i
-        }
-
-    }
-}
-
 struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable, struct SymbolTable* labelAddress,uint16_t current_address) {
     if (instruction == NULL){
         assert(false);
@@ -45,7 +32,7 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable, stru
 
     while (token1 != NULL) {
         tokensFirstPass[countFirstPass] = malloc(511);
-        memcpy(tokensFirstPass[countFirstPass], token1, strlen(token1));
+        memcpy(tokensFirstPass[countFirstPass], token1, strlen(token1) + 1);
         token1 = strtok(NULL, ", ");
         countFirstPass++;
     }
