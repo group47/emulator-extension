@@ -22,7 +22,7 @@ add_executable(assemble
         shared/branch_instruction.h
         shared/data_processing_instruction.h
         shared/instructions.h
-        shared/single_data_transfer_instruction.h assemble/extra_data.c assemble/extra_data.h)
+        shared/single_data_transfer_instruction.h assemble/extra_data.c assemble/extra_data.h assemble/utility.c assemble/utility.h)
 
 add_executable(emulate
         emulate/branch_instruction.c

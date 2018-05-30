@@ -22,7 +22,7 @@ struct InstructionInfo {
     enum Cond condCode;
     enum OpCode opCode;
     uint16_t address;
-    struct Token* (*tokenize) (char**, int, struct Token*);
+    struct Instruction (*tokenize) (char**, int, struct Token*);
     struct SymbolTable* symbolTable;
     struct SymbolTable* labelAddress;
 };
@@ -62,6 +62,6 @@ bool addInstruction(struct SymbolTable* symbolTable,
                     uint8_t* mnemonics,
                     enum Cond condCode,
                     enum OpCode opCode,
-                    struct Token* (*tokenize) (char**, struct InstructionInfo*));
+                    struct Instruction (*tokenize) (char**,int, struct InstructionInfo*));
 
 #endif //ASSEMBLE_SYMBOL_TABLE_H

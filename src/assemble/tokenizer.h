@@ -29,7 +29,7 @@ union Token2 {
 };
 
 
-struct Token* tokenizer(char*, struct SymbolTable*,struct SymbolTable*,uint16_t);
-struct Token* initializeToken();
+struct Instruction tokenizer(char*, struct SymbolTable*,struct SymbolTable*,uint16_t);
+struct Token* initializeToken(struct Token *);
 
 #endif //ASSEMBLE_TOKENIZER_H

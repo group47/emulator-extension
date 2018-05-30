@@ -45,11 +45,11 @@ bool addInstruction(struct SymbolTable* symbolTable,
                     uint8_t* mnemonics,
                     enum Cond condCode,
                     enum OpCode opCode,
-                    struct Token* (*tokenize) (char**, struct InstructionInfo*)) {
+                    struct Instruction (*tokenize) (char**,int,struct InstructionInfo*)) {
 
     assert (symbolTable->size <= 511);
 
-    symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics = malloc(400);
+    symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics = malloc(400);//todo
 
     memcpy(symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics, mnemonics, strlen(mnemonics));
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.instructionType = instructionType;

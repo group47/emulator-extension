@@ -16,26 +16,12 @@ const int MAX_TOKENS = 32;
 // Might need to distinguish them later
 
 
-
-void separateCharacters(char** tokens, int numTokens, char* characters) {
-    char** newTokens = malloc(sizeof(char*) * 10);
-
-    int count = 0;
-    for (int i = 0; i < numTokens; i++) {
-        char* p = strpbrk(tokens[i], characters);
-        if (p != NULL) {
-            if (tokens[i
-        }
-
-    }
-}
-
-struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable, struct SymbolTable* labelAddress,uint16_t current_address) {
+struct Instruction tokenizer(char* instruction, struct SymbolTable *symbolTable, struct SymbolTable* labelAddress,uint16_t current_address) {
     if (instruction == NULL){
         assert(false);
     }
     // Breaking the lines into tokens
-    char** tokensFirstPass = malloc(sizeof(char*)*100);
+    char** tokens = malloc(sizeof(char*)*100);//todo
 
     char* token1;
 
@@ -44,27 +30,30 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable, stru
     int countFirstPass = 0;
 
     while (token1 != NULL) {
-        tokensFirstPass[countFirstPass] = malloc(511);
-        memcpy(tokensFirstPass[countFirstPass], token1, strlen(token1));
+        tokens[countFirstPass] = malloc(511);
+        memcpy(tokens[countFirstPass], token1, strlen(token1));
         token1 = strtok(NULL, ", ");
         countFirstPass++;
     }
 
     // Structure them according to their operation
-    struct Token* token;
+
+
+    struct Instruction badValue;
+    badValue.type = INVALID;
 
     if (countFirstPass == 1) {
-        return NULL;
+        return badValue;
     }
 
-    if (tokensFirstPass[0] == NULL) {
-        return NULL;
+    if (tokens[0] == NULL) {
+        return badValue;
     }
 
-    struct Entry *entry = find(symbolTable, tokensFirstPass[0]);
+    struct Entry *entry = find(symbolTable, tokens[0]);
     struct InstructionInfo instructionInfo;
     if (entry == NULL) {
-        return NULL;
+        return badValue;
     }
 
 
@@ -72,16 +61,14 @@ struct Token* tokenizer(char* instruction, struct SymbolTable* symbolTable, stru
     instructionInfo.symbolTable = symbolTable;
     instructionInfo.labelAddress = labelAddress;
     instructionInfo.address = current_address;
-    struct Token* newToken = initializeToken();
-    newToken->instructionInfo = &instructionInfo;
-    token = entry->rawEntry.instructionInfo.tokenize(tokensFirstPass, 1, newToken);
-
-    return token;
+    struct Token newToken;
+    initializeToken(&newToken);
+    newToken.instructionInfo = &instructionInfo;
+    return entry->rawEntry.instructionInfo.tokenize(tokens, 1, &newToken);
 }
 
-struct Token* initializeToken() {
+struct Token* initializeToken(struct Token* token) {
     // Clearing the field is necessary, as not all of them are assigned
-    struct Token* token = malloc(sizeof(struct Token));
     token->Rd = 0;
     token->Rn = 0;
     token->offset = 0;
@@ -93,6 +80,7 @@ struct Token* initializeToken() {
     token->isPreIndexing = false;
     token->label = NULL;
     token->offsetIsNegative = false;
+    token->use_extra_data = false;
     return token;
 }
 

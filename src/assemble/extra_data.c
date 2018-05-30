@@ -16,7 +16,7 @@ void set_extra_data_location(uint32_t val){
 
 uint32_t add_extra_data(uint32_t val){
   if(extra_data_location == (uint32_t)-1){
-    assert(false);
+      return -1;
   }
   extra_data[extra_data_i] = val;
   extra_data_i++;
