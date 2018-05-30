@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "assemble.h"
 
 int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
@@ -16,9 +17,16 @@ int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
   fwrite(Data,Size,1,fp);
   fclose(fp);
 
-  char* arr[3] = {"","/tmp/test","/temp/out"};
+  char* arr[3] = {"","/tmp/test","/tmp/output234567"};
 
   main2(3,arr);
 
   return 0;  // Non-zero return values are reserved for future use.
 }
+
+#if 1
+
+int main(int argc, char** data){
+  LLVMFuzzerTestOneInput(data[1],strlen(data[1]));
+}
+#endif

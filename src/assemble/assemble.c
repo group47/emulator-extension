@@ -447,7 +447,7 @@ int main2(int argc, char** argv) {
     const char* outputFileName = argv[2];
 
     FILE* fpSource = fopen(sourceFileName, "r");
-    FILE* fpOutput = fopen(outputFileName, "w");
+    FILE* fpOutput = fopen(outputFileName, "w+");
 
     if (fpSource == NULL) {
         fprintf(stderr,
