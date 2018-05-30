@@ -5,9 +5,9 @@
 #ifndef ASSEMBLE_TOKENIZER_H
 #define ASSEMBLE_TOKENIZER_H
 
-#include "symbol_table.h"
-#include "stdint.h"
 
+#include <stdint-gcc.h>
+#include "symbol_table.h"
 struct Token {
     struct InstructionInfo* instructionInfo;
     char* label;
@@ -31,5 +31,7 @@ union Token2 {
 
 struct Instruction tokenizer(char*, struct SymbolTable*,struct SymbolTable*,uint16_t);
 struct Token* initializeToken(struct Token *);
+int separateString2(char**, char*, char*);
+int separateSpecialCharacters(char**, char**, int, char*);
 
 #endif //ASSEMBLE_TOKENIZER_H

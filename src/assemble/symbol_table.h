@@ -15,6 +15,7 @@
 #include <emulate_main.h>
 
 #include "../shared/enums.h"
+#include "../shared/instructions.h"
 
 struct InstructionInfo {
     uint8_t* mnemonics;
@@ -23,6 +24,7 @@ struct InstructionInfo {
     enum OpCode opCode;
     uint16_t address;
     struct Instruction (*tokenize) (char**, int, struct Token*);
+    struct Instruction (*assemble)(struct Token*);
     struct SymbolTable* symbolTable;
     struct SymbolTable* labelAddress;
 };
@@ -54,14 +56,15 @@ struct SymbolTable {
 };
 
 
-bool addLabel(struct SymbolTable* symbolTable, uint8_t* label, uint16_t address);
+bool addLabel(struct SymbolTable*, uint8_t*, uint16_t);
 struct InstructionInfo* intializeInstructionInfo();
-struct Entry* find(struct SymbolTable* symbolTable, uint8_t* target);
-bool addInstruction(struct SymbolTable* symbolTable,
-                    enum InstructionType instructionType,
-                    uint8_t* mnemonics,
-                    enum Cond condCode,
-                    enum OpCode opCode,
-                    struct Instruction (*tokenize) (char**,int, struct InstructionInfo*));
+struct Entry* find(struct SymbolTable*, uint8_t*);
+bool addInstruction(struct SymbolTable*,
+                    enum InstructionType,
+                    uint8_t*,
+                    enum Cond,
+                    enum OpCode,
+                    struct Instruction (*tokenize) (char**,int, struct Token*),
+                    struct Instruction (*assemble)(struct Token*));
 
 #endif //ASSEMBLE_SYMBOL_TABLE_H

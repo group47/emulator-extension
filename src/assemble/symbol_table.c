@@ -2,9 +2,22 @@
 // Created by ryro on 2018/5/27.
 //
 
-#include <string.h>
+
+#include <assert.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <stdint-gcc.h>
+#include <memory.h>
+#include "../shared/enums.h"
+#include "../shared/instructions.h"
 #include "symbol_table.h"
 #include "tokenizer.h"
+#include <parseUtility.h>
+#include <parseSingleDataTransfer.h>
+#include <parseDataProcessing.h>
+#include <parseBranch.h>
+#include <parseMultiply.h>
+#include <parseSpecial.h>
 
 
 bool secondToLastCharIs(const char *target, char c);
@@ -45,7 +58,8 @@ bool addInstruction(struct SymbolTable* symbolTable,
                     uint8_t* mnemonics,
                     enum Cond condCode,
                     enum OpCode opCode,
-                    struct Instruction (*tokenize) (char**,int,struct InstructionInfo*)) {
+                    struct Instruction (*tokenize) (char**,int,struct Token*),
+                    struct Instruction (*assemble)(struct Token*)) {
 
     assert (symbolTable->size <= 511);
 
@@ -56,7 +70,9 @@ bool addInstruction(struct SymbolTable* symbolTable,
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.condCode = condCode;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.opCode = opCode;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.tokenize = tokenize;
+    symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.assemble = assemble;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.symbolTable = symbolTable;
+
 
     symbolTable->size++;
     return true;

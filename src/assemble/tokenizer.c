@@ -16,11 +16,63 @@ const int MAX_TOKENS = 32;
 // Might need to distinguish them later
 
 
+int separateString2(char** tokens, char* str, char* characters) {
+    char* buffer = malloc(sizeof(char)*10);
+    int count = 0;
+    int bufferLength = 0;
+    int strLength = strlen(str);
+    for (int i = 0; i < strLength; i++) {
+        char *p = strchr(characters, *str);
+        if (p != NULL) {
+            if (bufferLength > 0) {
+                buffer[bufferLength + 1] = '\0';
+                tokens[count] = buffer;
+                buffer = malloc(sizeof(char *) * 10);
+                bufferLength = 0;
+                count++;
+            }
+            tokens[count][0] = *p;
+            tokens[count][1] = '\0';
+            count++;
+        } else {
+            buffer[bufferLength] = *str;
+            bufferLength++;
+        }
+        str++;
+    }
+
+    if (bufferLength == 0) {
+        free(buffer);
+    } else {
+        tokens[count] = buffer;
+        count++;
+    }
+    return count;
+}
+
+
+int separateSpecialCharacters(char** newTokens,
+                              char** tokens,
+                              int numTokens,
+                              char* characters) {
+    int n = 0;
+    int sum = 0;
+    for (int i = 0; i < numTokens; i++) {
+        int k = separateString2(newTokens,tokens[i], characters);
+        newTokens += k;
+        sum += k;
+    }
+    *newTokens = NULL;
+    return sum;
+}
+
 struct Instruction tokenizer(char* instruction, struct SymbolTable *symbolTable, struct SymbolTable* labelAddress,uint16_t current_address) {
     if (instruction == NULL){
         assert(false);
     }
     // Breaking the lines into tokens
+
+    char* symbols = "-=#[]";
     char** tokens = malloc(sizeof(char*)*100);//todo
 
     char* token1;
@@ -34,6 +86,18 @@ struct Instruction tokenizer(char* instruction, struct SymbolTable *symbolTable,
         memcpy(tokens[countFirstPass], token1, strlen(token1));
         token1 = strtok(NULL, ", ");
         countFirstPass++;
+    }
+
+    char** tokens2 = malloc(sizeof(char*)*100);
+    for (int i = 0; i < 100; i++) {
+        tokens2[i] = malloc(sizeof(char)*100);
+    }
+
+
+    separateSpecialCharacters(tokens2,tokens, countFirstPass, symbols);
+
+    for (int i = 0; i < 100; i++) {
+        free(tokens[i]);
     }
 
     // Structure them according to their operation
@@ -64,7 +128,12 @@ struct Instruction tokenizer(char* instruction, struct SymbolTable *symbolTable,
     struct Token newToken;
     initializeToken(&newToken);
     newToken.instructionInfo = &instructionInfo;
-    return entry->rawEntry.instructionInfo.tokenize(tokens, 1, &newToken);
+    //tokens = separateSpecialCharacters(tokens2, countFirstPass, accepted, 5);
+    struct Instruction result = entry->rawEntry.instructionInfo.tokenize(tokens2, 1, &newToken);
+    for (int i = 0; i < 100; i++) {
+        free(tokens2[i]);
+    }
+    return result;
 }
 
 struct Token* initializeToken(struct Token* token) {
