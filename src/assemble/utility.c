@@ -11,6 +11,7 @@
 #include <x86intrin.h>
 #include "../shared/enums.h"
 #include "../shared/instructions.h"
+#include "../emulate/rotate_right.h"
 
 long strtolWrapper(char* str) {
     while (!isdigit(*str)) {
@@ -35,7 +36,7 @@ uint16_t getOperand2Immediate(long operand2Val) {
             found = true;
             break;
         }
-        result = __rold(result, 2);
+        result = rotr(result, 2);
     }
     assert(found);
     result |= count << 8;
