@@ -13,7 +13,8 @@ enum OpCode {
   teq = 0b1001,
   cmp = 0b1010,
   orr = 0b1100,
-  mov = 0b1101
+  mov = 0b1101,
+  invalidOpcode
 };
 
 enum CPSR {

@@ -3,7 +3,6 @@
 //
 
 #include "stdio.h"
-#include <fcntl.h>
 #include <string.h>
 #include <stdint.h>
 #include <stdbool.h>
@@ -15,7 +14,7 @@
 #include "assemble.h"
 #include "extra_data.h"
 #include "rotate_right.h"
-
+#include "utility.h"
 
 const uint32_t MASK20 = 0b00000000000100000000000000000000;
 
@@ -163,7 +162,7 @@ void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
     binary.immediateOffset = token->offsetIsImmediate;
     binary.prePostIndexingBit = token->isPreIndexing;
     binary.upBit = !token->offsetIsNegative;
-    binary.loadStore = strcmp(token->instructionInfo->mnemonics, "ldr") == 0;
+    binary.loadStore = strcmp((char*)token->instructionInfo->mnemonics, "ldr") == 0;
     binary.Rn = token->Rn;
     binary.Rd = token->Rd;
     if(token->use_extra_data){
@@ -171,9 +170,9 @@ void assembleSingleDataInstruction(FILE* fpOutput, struct Token* token) {
         assert(!binary.immediateOffset);
         binary.Rn = 0b1111;//the program counter
         uint32_t  extra_data_address = 4*add_extra_data(token->offset);
-        binary.offset = (extra_data_address - 4*token->instructionInfo->address - 8);//todo check
+        binary.offset = (short)(extra_data_address - 4*token->instructionInfo->address - 8);//todo check
     } else{
-        binary.offset = 0x0fff & token->offset;
+        binary.offset = (short)(0x0fff & token->offset);
     }
 
     binary_file_writer32(fpOutput, *(uint32_t*)&binary);
@@ -190,111 +189,61 @@ void assembleBranchInstruction(FILE* fpOutput, struct Token* token) {
 
 //data processing syntax1 :<opcode> Rd, Rn, <Operand2>
 struct Token* tokenizeDataProcessing1(char** tokens, struct InstructionInfo* instructionInfo) {
-    //assert(sizeof(tokens)/sizeof(tokens[0]) >= 4);
-
-    char dummy[500][500];
     struct Token* token = initializeToken();
     token->instructionInfo = instructionInfo;
-    token->Rd = strtol(tokens[1]+1, dummy, 10);
-    token->Rn = strtol(tokens[2]+1, dummy, 10);
-    if (tokens[3][0] == '#') {
-        token->operand2IsImmediate = true;
-        if (tokens[3][1] == '0') {
-            // hex representation
-            token->operand2 = getOperand2Immediate(strtol(tokens[3]+1, dummy, 16));
-        } else {
-            // 10 representation
-            token->operand2 = getOperand2Immediate(strtol(tokens[3] + 1, dummy, 10));
-        }
-    } else {
-        token->operand2IsImmediate = false;
-        uint8_t Rm = (uint8_t)strtol(tokens[3]+1, dummy, 10);
-        token->operand2 = (uint16_t) getShiftedRegister(tokens[4], tokens[5], Rm);
-        //token->operand2 = getOperand2Immediate(strtol(tokens[3]+1, dummy, 10));
-    }
-
+    token->Rd = (uint8_t)strtolWrapper(tokens[1]);
+    token->Rn = (uint8_t)strtolWrapper(tokens[2]);
+    bool immediateFlag = true;
+    token->operand2 = (uint16_t) assembleExpressionOrShiftedRegister(&immediateFlag, tokens[3], tokens[4], tokens[5]);
+    token->operand2IsImmediate = immediateFlag;
    return token;
 }
 
 //data processing syntax 2 : mov Rd, <Operand2>
 struct Token* tokenizeDataProcessing2(char** tokens, struct InstructionInfo* instructionInfo) {
-    //assert(sizeof(tokens)/sizeof(tokens[0]) >= 3);
-
-    char dummy[500];
     struct Token* token = initializeToken();
     token->instructionInfo = instructionInfo;
-    token->Rd = (uint8_t)strtol(tokens[1]+1, dummy, 10);
-    // Handling expression case only
-    // = is for ldr instruction
-    if (tokens[2][0] == '#' || tokens[2][0] == '=') {
-        token->operand2IsImmediate = true;
-        if (tokens[2][1] == '0') {
-            token->operand2 = getOperand2Immediate(strtol(tokens[2] + 1, dummy, 16));
-        } else {
-            token->operand2 = getOperand2Immediate(strtol(tokens[2] + 1, dummy, 10));
-        }
-    } else {
-        token->operand2IsImmediate = false;
-        uint8_t Rm = (uint8_t) strtol(tokens[2]+1, dummy, 10);
-        token->operand2 = (uint16_t) getShiftedRegister(tokens[3], tokens[4], Rm);
-        //token->operand2 = Rm;
-        //token->operand2 = getOperand2Immediate(strtol(tokens[2]+1, dummy, 10));
-    }
+    token->Rd = (uint8_t)strtolWrapper(tokens[1]);
+    bool immediateFlag = true;
+    token->operand2 = (uint16_t) assembleExpressionOrShiftedRegister(&immediateFlag, tokens[2], tokens[3], tokens[4]);
+    token->operand2IsImmediate = immediateFlag;
     return token;
 }
 
 //data processing syntax 3: <opcode> Rn, <Operand2>
 struct Token* tokenizeDataProcessing3(char** tokens, struct InstructionInfo* instructionInfo) {
-    //assert(sizeof(tokens)/sizeof(tokens[0]) >= 3);
-
-    char dummy[500];
     struct Token* token = initializeToken();
     token->instructionInfo = instructionInfo;
-    token->Rn = (uint8_t)strtol(tokens[1]+1, dummy, 10);
-
-    if (tokens[2][0] == '#') {
-        token->operand2IsImmediate = true;
-        if (tokens[2][1] == '0') {
-            token->operand2 = getOperand2Immediate(strtol(tokens[2] + 1, dummy, 16));
-        } else {
-            token->operand2 = getOperand2Immediate(strtol(tokens[2] + 1, dummy, 10));
-        }
-        //token->operand2 = getOperand2Immediate(strtol(tokens[2]+1, dummy, 10));
-    } else {
-        token->operand2IsImmediate = false;
-        uint8_t Rm = (uint8_t) strtol(tokens[2]+1, dummy, 10);
-        token->operand2 = (uint16_t) getShiftedRegister(tokens[3], tokens[4], Rm);
-        //token->operand2 = getOperand2ShiftRegister(strtol(tokens[2]+1, dummy, 10));
-    }
+    token->Rn = (uint8_t) strtolWrapper(tokens[1]);
+    bool immediateFlag = true;
+    token->operand2 = (uint16_t) assembleExpressionOrShiftedRegister(&immediateFlag, tokens[2], tokens[3], tokens[4]);
+    token->operand2IsImmediate = immediateFlag;
     return token;
 }
 
 // multiply syntax 1 : mul Rd, Rm, Rs
 struct Token* tokenizeMultiply1(char** tokens, struct InstructionInfo* instructionInfo) {
-    char dummy[500];
     struct Token* token = initializeToken();
     token->instructionInfo = instructionInfo;
-    token->Rd = (uint8_t)strtol(tokens[1]+1, dummy, 10);
-    token->Rm = (uint8_t)strtol(tokens[2]+1, dummy, 10);
-    token->Rs = (uint8_t)strtol(tokens[3]+1, dummy, 10);
+    token->Rd = (uint8_t)strtolWrapper(tokens[1]);
+    token->Rm = (uint8_t)strtolWrapper(tokens[2]);
+    token->Rs = (uint8_t)strtolWrapper(tokens[3]);
     return token;
 }
 
 // multiply syntax 2 : mla Rd, Rm, Rs, Rn
 struct Token* tokenizeMultiply2(char** tokens, struct InstructionInfo* instructionInfo) {
-    char dummy[500];
     struct Token* token = initializeToken();
     token->instructionInfo = instructionInfo;
-    token->Rd = (uint8_t)strtol(tokens[1]+1, dummy, 10);
-    token->Rm = (uint8_t)strtol(tokens[2]+1, dummy, 10);
-    token->Rs = (uint8_t)strtol(tokens[3]+1, dummy, 10);
-    token->Rn = (uint8_t)strtol(tokens[4]+1, dummy, 10);
+    token->Rd = (uint8_t)strtolWrapper(tokens[1]);
+    token->Rm = (uint8_t)strtolWrapper(tokens[2]);
+    token->Rs = (uint8_t)strtolWrapper(tokens[3]);
+    token->Rn = (uint8_t)strtolWrapper(tokens[4]);
     return token;
 }
 
 // single data transfer syntax 1 : <ldr/str> Rd, <address>
 struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo* instructionInfo) {
-    char dummy[500];
     long offset = 0;
     bool isPreIndexAddress = false;
     bool offsetIsNegative = false;
@@ -302,52 +251,35 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
     uint8_t Rn = 0;
 
     if (tokens[2][0] == '=') {
-
         isPreIndexAddress = true;
         offsetIsImmediate = false;
-        offset = (uint32_t) strtol(tokens[2] + 1, dummy, 16);
-
+        offset = (uint32_t) strtolWrapper(tokens[2]);
     } else if (tokens[2][0] == '[') {
-        Rn = (uint8_t) strtol(tokens[2] + 2, dummy, 10);
-
+        Rn = (uint8_t) strtolWrapper(tokens[2]);
         if (tokens[3] == NULL) {
             isPreIndexAddress = true;
+            offsetIsImmediate = false;
             offset = 0;
-            offsetIsImmediate = false;
-        } else if (tokens[3][0] == '#') {
-            offsetIsImmediate = false;
-            isPreIndexAddress = !(tokens[2][strlen(tokens[2])-1] == ']' || tokens[2][strlen(tokens[2])-2] == ']');
-            offsetIsNegative = tokens[3][1] == '-';
-
-            char* hexPointer = strstr(tokens[3]+1, "0x");
-            if (hexPointer) {
-                offset = (uint16_t) strtol(hexPointer, dummy, 16);
-            } else {
-                offset = (uint16_t) strtol(tokens[3] + 1, dummy, 10);
-            }
-
         } else {
-            offsetIsImmediate = true;
             isPreIndexAddress = !(tokens[2][strlen(tokens[2])-1] == ']' || tokens[2][strlen(tokens[2])-2] == ']');
-           //todo: duplication
-            uint8_t Rm = 0;
-            if (tokens[3][0] == '-') {
-                offsetIsNegative = true;
-                Rm = (uint8_t)strtol(tokens[3]+2, dummy, 10);
+            offsetIsNegative = isNegative(tokens[3]);
+            if (tokens[3][0] == '#') {
+                offsetIsImmediate = false;
+                offset = strtolWrapper(tokens[3]+1);
             } else {
-                offsetIsNegative = false;
-                Rm = (uint8_t)strtol(tokens[3]+1, dummy, 10);
+                offsetIsImmediate = true;
+                uint8_t Rm = (uint8_t)strtolWrapper(tokens[3]);
+                offset = (uint16_t) getShiftedRegister(tokens[4], tokens[5], Rm);
             }
-            offset = (uint16_t) getShiftedRegister(tokens[4], tokens[5], Rm);
         }
-
     } else {
         assert(false);
     }
 
     struct Token* token = initializeToken();
     if (tokens[2][0] == '=') {
-        if (offset <= 0x00ff && strcmp(instructionInfo->mnemonics, "ldr") == 0) {
+        if (offset <= 0x00ff && strcmp((char*)instructionInfo->mnemonics, "ldr") == 0) {
+            tokens[2][0] = '#';
             return tokenizeDataProcessing2(tokens,
                                            &find(instructionInfo->symbolTable,
                                                  "mov")->rawEntry.instructionInfo);
@@ -356,11 +288,10 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
         }
     }
 
-
     token->instructionInfo = instructionInfo;
-    token->Rd = (uint8_t)strtol(tokens[1]+1, dummy, 10);
+    token->Rd = (uint8_t)strtolWrapper(tokens[1]+1);
     token->Rn = Rn;
-    token->offset = offset;
+    token->offset = (uint32_t)offset;
     token ->isPreIndexing = isPreIndexAddress;
     token->offsetIsNegative = offsetIsNegative;
     token->offsetIsImmediate = offsetIsImmediate;
@@ -368,9 +299,9 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
     return token;
 }
 
-// branch syntax 1 : b <cond> <expression>
 struct Token* tokenizeBranch1(char** tokens, struct InstructionInfo* instructionInfo) {
     assert(instructionInfo->instructionType == BRANCH_INSTRUCTION);
+    assert(instructionInfo != NULL);
     struct Token* token = initializeToken();
     token->instructionInfo = instructionInfo;
     // todo: figure out how to combine labelling process with tokenization
@@ -395,10 +326,10 @@ struct Token* tokenizeSpecial1(char** tokens, struct InstructionInfo* instructio
     for (int i = 0; i < 5; i++) {
         tokensRestructure[i] = malloc(sizeof(char)*10);
     }
-    memcpy(tokensRestructure[0], "mov", strlen("mov"));
+    memcpy(tokensRestructure[0], "mov", 3);
     tokensRestructure[1] = tokens[1];
     tokensRestructure[2] = tokens[1];
-    memcpy(tokensRestructure[3], "lsl", strlen("lsl"));
+    memcpy(tokensRestructure[3], "lsl", 3);
     tokensRestructure[4] = tokens[2];
     return tokenizeDataProcessing2(tokensRestructure, &(find(instructionInfo->symbolTable, "mov")->rawEntry.instructionInfo));
 }
@@ -406,34 +337,30 @@ struct Token* tokenizeSpecial1(char** tokens, struct InstructionInfo* instructio
 struct SymbolTable* initializeInstructionCodeTable() {
     struct SymbolTable* instructionCodeTable = malloc(sizeof(struct SymbolTable));
     instructionCodeTable->size = 0;
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "add", al, add, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "sub", al, sub, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "rsb", al, rsb, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "and", al, and, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "eor", al, eor, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "orr", al, orr, 3, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "mov", al, mov, 2, &tokenizeDataProcessing2);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "tst", al, tst, 2, &tokenizeDataProcessing3);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "teq", al, teq, 2, &tokenizeDataProcessing3);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "cmp", al, cmp, 2, &tokenizeDataProcessing3);
-    addInstruction(instructionCodeTable, MULTIPLY, "mul", al, 0, 3, &tokenizeMultiply1);
-    addInstruction(instructionCodeTable, MULTIPLY, "mla", al, 0, 4, &tokenizeMultiply2);
-    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "ldr", al, 0, 2, &tokenizeSingleDataTransfer1);
-    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "str", al, 0, 2, &tokenizeSingleDataTransfer1);
-    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "beq", eq, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "bne", ne, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "bge", ge, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"blt", lt, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "ble", le, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"b", al, 0, 1, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING,"lsl", al, 0, 2, &tokenizeSpecial1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "andeq", eq, 0, 3, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "add", al, add, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "sub", al, sub, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "rsb", al, rsb, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "and", al, and, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "eor", al, eor, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "orr", al, orr, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "mov", al, mov, &tokenizeDataProcessing2);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "tst", al, tst, &tokenizeDataProcessing3);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "teq", al, teq, &tokenizeDataProcessing3);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "cmp", al, cmp, &tokenizeDataProcessing3);
+    addInstruction(instructionCodeTable, MULTIPLY, "mul", al, invalidOpcode,   &tokenizeMultiply1);
+    addInstruction(instructionCodeTable, MULTIPLY, "mla", al, invalidOpcode, &tokenizeMultiply2);
+    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "ldr", al, invalidOpcode, &tokenizeSingleDataTransfer1);
+    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "str", al, invalidOpcode, &tokenizeSingleDataTransfer1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "beq", eq, invalidOpcode, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "bne", ne, invalidOpcode, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "bge", ge, invalidOpcode, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"blt", lt, invalidOpcode, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "ble", le, invalidOpcode, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"b", al, invalidOpcode, &tokenizeBranch1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING,"lsl", al, invalidOpcode, &tokenizeSpecial1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "andeq", eq, and, &tokenizeDataProcessing1);
     return instructionCodeTable;
 }
-bool secondToLastCharIs(const char *target, char c) {
-  return target[strlen(target) - 2] == c;
-}
-
 
 int main2(int argc, char** argv) {
 
@@ -490,10 +417,11 @@ int main2(int argc, char** argv) {
     FILE* fpSource2 = fopen(sourceFileName, "r");
     current_address = 0;
     while (getline(&instruction, &instructionLength, fpSource2)!= -1) {
+        fprintf(stderr, "%s\n", instruction);
+        instruction[strlen(instruction)] = '\0';
         struct Token* token = tokenizer(instruction, instructionCode,&labelAddress,current_address);
-        if (token == NULL) {
-            continue;
-        }
+
+        if (token == NULL) { continue; }
         current_address++;
 
         if (token->instructionInfo->instructionType == DATA_PROCESSING) {
@@ -514,6 +442,7 @@ int main2(int argc, char** argv) {
 
     fclose(fpSource2);
     fclose(fpOutput);
+    free(instructionCode);
     return 0;
 }
 

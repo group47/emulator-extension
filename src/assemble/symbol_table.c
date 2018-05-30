@@ -30,15 +30,6 @@ struct Entry* find(struct SymbolTable* symbolTable, uint8_t* target) {
 
 
 bool addLabel(struct SymbolTable* symbolTable, uint8_t* label, uint16_t address) {
-    /*
-    struct Label* labelEntry = malloc(sizeof(struct Label));
-    labelEntry->label = label; // concern: the original object might be destroyed
-    labelEntry->address = address;
-
-    struct Entry* entry = malloc(sizeof(struct Entry));
-    entry->rawEntry = *((union RawEntry*) labelEntry);
-    entry->entryType = LABEL;
-     */
     uint8_t * label_copy = malloc(100*sizeof(uint8_t));//todo memory leak
     memcpy(label_copy,label,strlen(label)* sizeof(uint8_t));
 
@@ -49,20 +40,11 @@ bool addLabel(struct SymbolTable* symbolTable, uint8_t* label, uint16_t address)
     return true;
 }
 
-struct InstructionInfo* intializeInstructionInfo() {
-    struct InstructionInfo* instructionInfo = malloc(sizeof(instructionInfo));
-    instructionInfo->mnemonics = malloc(8*511);
-    return instructionInfo;
-}
-
-
-
 bool addInstruction(struct SymbolTable* symbolTable,
                     enum InstructionType instructionType,
                     uint8_t* mnemonics,
                     enum Cond condCode,
                     enum OpCode opCode,
-                    uint8_t operandCount,
                     struct Token* (*tokenize) (char**, struct InstructionInfo*)) {
 
     assert (symbolTable->size <= 511);
@@ -73,7 +55,6 @@ bool addInstruction(struct SymbolTable* symbolTable,
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.instructionType = instructionType;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.condCode = condCode;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.opCode = opCode;
-    symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.operandCount = operandCount;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.tokenize = tokenize;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.symbolTable = symbolTable;
 

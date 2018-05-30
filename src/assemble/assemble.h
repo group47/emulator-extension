@@ -10,6 +10,8 @@
 #include "symbol_table.h"
 #include "stdint.h"
 
+
+
 struct Token* tokenizeDataProcessing1(char**, struct InstructionInfo*);
 struct Token* tokenizeDataProcessing2(char**, struct InstructionInfo*);
 struct Token* tokenizeDataProcessing3(char**, struct InstructionInfo*);
@@ -24,7 +26,7 @@ void assembleMultiplyInstruction(FILE* fpOutput, struct Token*);
 void assembleSingleDataInstruction(FILE* fpOutput, struct Token*);
 void assembleBranchInstruction(FILE* fpOutput, struct Token*);
 
-uint16_t getOperand2Immediate(uint32_t operand2Val);
+uint16_t getOperand2Immediate(long operand2Val);
 uint16_t getOperand2ShiftRegister(uint32_t operand2Val);
 struct SymbolTable* initializeInstructionCodeTable();
 
