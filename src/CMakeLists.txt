@@ -22,7 +22,7 @@ add_executable(assemble
         shared/branch_instruction.h
         shared/data_processing_instruction.h
         shared/instructions.h
-        shared/single_data_transfer_instruction.h assemble/extra_data.c assemble/extra_data.h assemble/fuzzing_assemble.c)
+        shared/single_data_transfer_instruction.h emulate/rotate_right.c assemble/extra_data.c assemble/extra_data.h assemble/fuzzing_assemble.c emulate/rotate_right.h)
 
 add_executable(emulate
         emulate/branch_instruction.c
