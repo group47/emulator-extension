@@ -15,6 +15,7 @@
 #include "extra_data.h"
 #include "utility.h"
 
+
 void assembleDataProcessingInstruction(FILE* fpOutput, struct Token* token) {
     struct DataProcessingInstruction binary;
     binary.cond = token->instructionInfo->condCode;
@@ -81,62 +82,121 @@ void assembleBranchInstruction(FILE* fpOutput, struct Token* token) {
 }
 
 //data processing syntax1 :<opcode> Rd, Rn, <Operand2>
-struct Token* tokenizeDataProcessing1(char** tokens, struct InstructionInfo* instructionInfo) {
-    struct Token* token = initializeToken();
-    token->instructionInfo = instructionInfo;
-    token->Rd = (uint8_t)strtolWrapper(tokens[1]);
-    token->Rn = (uint8_t)strtolWrapper(tokens[2]);
+struct Token *parseDataProcessing1(char **tokens, int tokenOffset, struct Token * token) {
+
+    if (!(isRegister(*(tokens + tokenOffset)))) {
+        fprintf(stderr, "Rd is not a register for data processing");
+        assert(false);
+    }
+
+    if (!(isRegister(*(tokens + tokenOffset + 1)))) {
+        fprintf(stderr, "Rn is not a register for data processing");
+        assert(false);
+    }
+
+    token->Rd = (uint8_t)strtolWrapper(*(tokens + tokenOffset));
+    token->Rn = (uint8_t)strtolWrapper(*(tokens + tokenOffset + 1));
     bool immediateFlag = true;
-    token->operand2 = (uint16_t) assembleExpressionOrShiftedRegister(&immediateFlag, tokens[3], tokens[4], tokens[5]);
+    token->operand2 = (uint16_t) parseDataProcessingOperand2(&immediateFlag,
+                                                             *(tokens + tokenOffset + 2),
+                                                             *(tokens + tokenOffset + 3),
+                                                             *(tokens + tokenOffset + 4));
     token->operand2IsImmediate = immediateFlag;
    return token;
 }
 
 //data processing syntax 2 : mov Rd, <Operand2>
-struct Token* tokenizeDataProcessing2(char** tokens, struct InstructionInfo* instructionInfo) {
-    struct Token* token = initializeToken();
-    token->instructionInfo = instructionInfo;
-    token->Rd = (uint8_t)strtolWrapper(tokens[1]);
+struct Token *parseDataProcessing2(char **tokens, int tokenOffset, struct Token * token) {
+
+    if (!(isRegister(*(tokens + tokenOffset)))) {
+        fprintf(stderr, "Rd is not a register for data processing");
+        assert(false);
+    }
+
+    token->Rd = (uint8_t)strtolWrapper(*(tokens + tokenOffset));
     bool immediateFlag = true;
-    token->operand2 = (uint16_t) assembleExpressionOrShiftedRegister(&immediateFlag, tokens[2], tokens[3], tokens[4]);
+    token->operand2 = (uint16_t) parseDataProcessingOperand2(&immediateFlag,
+                                                             *(tokens + tokenOffset + 1),
+                                                             *(tokens + tokenOffset + 2),
+                                                             *(tokens + tokenOffset + 3));
     token->operand2IsImmediate = immediateFlag;
     return token;
 }
 
 //data processing syntax 3: <opcode> Rn, <Operand2>
-struct Token* tokenizeDataProcessing3(char** tokens, struct InstructionInfo* instructionInfo) {
-    struct Token* token = initializeToken();
-    token->instructionInfo = instructionInfo;
-    token->Rn = (uint8_t) strtolWrapper(tokens[1]);
+struct Token *parseDataProcessing3(char **tokens, int tokenOffset, struct Token * token) {
+
+    if (!(isRegister(*(tokens + tokenOffset)))) {
+        fprintf(stderr, "Rn is not a register for data processing");
+        assert(false);
+    }
+
+    token->Rn = (uint8_t) strtolWrapper(*(tokens + tokenOffset));
     bool immediateFlag = true;
-    token->operand2 = (uint16_t) assembleExpressionOrShiftedRegister(&immediateFlag, tokens[2], tokens[3], tokens[4]);
+    token->operand2 = (uint16_t) parseDataProcessingOperand2(&immediateFlag,
+                                                             *(tokens + tokenOffset + 1),
+                                                             *(tokens + tokenOffset + 2),
+                                                             *(tokens + tokenOffset + 3));
     token->operand2IsImmediate = immediateFlag;
     return token;
 }
 
 // multiply syntax 1 : mul Rd, Rm, Rs
-struct Token* tokenizeMultiply1(char** tokens, struct InstructionInfo* instructionInfo) {
-    struct Token* token = initializeToken();
-    token->instructionInfo = instructionInfo;
-    token->Rd = (uint8_t)strtolWrapper(tokens[1]);
-    token->Rm = (uint8_t)strtolWrapper(tokens[2]);
-    token->Rs = (uint8_t)strtolWrapper(tokens[3]);
+struct Token *parseMultiply1(char **tokens, int tokenOffset, struct Token * token) {
+
+    if (!(isRegister(*(tokens + tokenOffset)))) {
+        fprintf(stderr, "Rd is not a register for data processing");
+        assert(false);
+    }
+
+    if (!(isRegister(*(tokens + tokenOffset + 1)))) {
+        fprintf(stderr, "Rm is not a register for data processing");
+        assert(false);
+    }
+
+    if (!(isRegister(*(tokens + tokenOffset + 2)))) {
+        fprintf(stderr, "Rs is not a register for data processing");
+        assert(false);
+    }
+
+    token->Rd = (uint8_t)strtolWrapper(*(tokens + tokenOffset));
+    token->Rm = (uint8_t)strtolWrapper(*(tokens + tokenOffset + 1));
+    token->Rs = (uint8_t)strtolWrapper(*(tokens + tokenOffset + 2));
     return token;
 }
 
 // multiply syntax 2 : mla Rd, Rm, Rs, Rn
-struct Token* tokenizeMultiply2(char** tokens, struct InstructionInfo* instructionInfo) {
-    struct Token* token = initializeToken();
-    token->instructionInfo = instructionInfo;
-    token->Rd = (uint8_t)strtolWrapper(tokens[1]);
-    token->Rm = (uint8_t)strtolWrapper(tokens[2]);
-    token->Rs = (uint8_t)strtolWrapper(tokens[3]);
-    token->Rn = (uint8_t)strtolWrapper(tokens[4]);
+struct Token *tokenizeMultiply2(char **tokens, int tokenOffset, struct Token * token) {
+
+    if (!(isRegister(*(tokens + tokenOffset)))) {
+        fprintf(stderr, "Rd is not a register for data processing");
+        assert(false);
+    }
+
+    if (!(isRegister(*(tokens + tokenOffset + 1)))) {
+        fprintf(stderr, "Rm is not a register for data processing");
+        assert(false);
+    }
+
+    if (!(isRegister(*(tokens + tokenOffset + 2)))) {
+        fprintf(stderr, "Rs is not a register for data processing");
+        assert(false);
+    }
+
+    if (!(isRegister(*(tokens + tokenOffset + 3)))) {
+        fprintf(stderr, "Rn is not a register for data processing");
+        assert(false);
+    }
+
+    token->Rd = (uint8_t)strtolWrapper(*(tokens + tokenOffset));
+    token->Rm = (uint8_t)strtolWrapper(*(tokens + tokenOffset + 1));
+    token->Rs = (uint8_t)strtolWrapper(*(tokens + tokenOffset + 2));
+    token->Rn = (uint8_t)strtolWrapper(*(tokens + tokenOffset + 3));
     return token;
 }
 
 // single data transfer syntax 1 : <ldr/str> Rd, <address>
-struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo* instructionInfo) {
+struct Token *parseSingleDataTransfer1(char **tokens, int tokenOffset, struct Token * token) {
     long offset = 0;
     bool isPreIndexAddress = false;
     bool offsetIsNegative = false;
@@ -169,19 +229,16 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
         assert(false);
     }
 
-    struct Token* token = initializeToken();
     if (tokens[2][0] == '=') {
-        if (offset <= 0x00ff && strcmp((char*)instructionInfo->mnemonics, "ldr") == 0) {
+        if (offset <= 0x00ff && strcmp((char*)(token->instructionInfo->mnemonics), "ldr") == 0) {
             tokens[2][0] = '#';
-            return tokenizeDataProcessing2(tokens,
-                                           &find(instructionInfo->symbolTable,
-                                                 "mov")->rawEntry.instructionInfo);
+            token->instructionInfo = &find(token->instructionInfo->symbolTable, "mov")->rawEntry.instructionInfo;
+            return parseDataProcessing2(tokens, 1, token);
         } else {
             token->use_extra_data = true;
         }
     }
 
-    token->instructionInfo = instructionInfo;
     token->Rd = (uint8_t)strtolWrapper(tokens[1]+1);
     token->Rn = Rn;
     token->offset = (uint32_t)offset;
@@ -192,29 +249,27 @@ struct Token* tokenizeSingleDataTransfer1(char** tokens, struct InstructionInfo*
     return token;
 }
 
-struct Token* tokenizeBranch1(char** tokens, struct InstructionInfo* instructionInfo) {
-    assert(instructionInfo->instructionType == BRANCH_INSTRUCTION);
-    assert(instructionInfo != NULL);
-    struct Token* token = initializeToken();
-    token->instructionInfo = instructionInfo;
+struct Token *parseBranch1(char **tokens, int tokenOffset, struct Token * token) {
+    assert(token->instructionInfo->instructionType == BRANCH_INSTRUCTION);
+    assert(token->instructionInfo != NULL);
     // todo: figure out how to combine labelling process with tokenization
     char* label= tokens[1];
     //remove newline:
     label[strlen(label) - 1] = '\0';
-    struct Entry* entry = find(instructionInfo->labelAddress,label);
+    struct Entry* entry = find(token->instructionInfo->labelAddress,label);
     if(entry == NULL){
         //must be in first pass, and this value is unused
         return token;
     }
     assert(entry->entryType ==  LABEL);
     const uint32_t  target_address = 4*entry->rawEntry.label.address;
-    const int32_t offset = (target_address - 4*instructionInfo->address - 8)/4;
+    const int32_t offset = (target_address - 4*token->instructionInfo->address - 8)/4;
     token->offset= offset;
     return token;
 }
 
 // for lsl
-struct Token* tokenizeSpecial1(char** tokens, struct InstructionInfo* instructionInfo) {
+struct Token *parseSpecial1(char **tokens, int tokenOffset, struct Token * token) {
     char** tokensRestructure = malloc(sizeof(char*)*20);
     for (int i = 0; i < 5; i++) {
         tokensRestructure[i] = malloc(sizeof(char)*10);
@@ -224,34 +279,37 @@ struct Token* tokenizeSpecial1(char** tokens, struct InstructionInfo* instructio
     tokensRestructure[2] = tokens[1];
     memcpy(tokensRestructure[3], "lsl", 3);
     tokensRestructure[4] = tokens[2];
-    return tokenizeDataProcessing2(tokensRestructure, &(find(instructionInfo->symbolTable, "mov")->rawEntry.instructionInfo));
+
+    token->instructionInfo = &find(token->instructionInfo->symbolTable, "mov")->rawEntry.instructionInfo;
+
+    return parseDataProcessing2(tokensRestructure, 1, token);
 }
 
 struct SymbolTable* initializeInstructionCodeTable() {
     struct SymbolTable* instructionCodeTable = malloc(sizeof(struct SymbolTable));
     instructionCodeTable->size = 0;
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "add", al, add, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "sub", al, sub, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "rsb", al, rsb, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "and", al, and, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "eor", al, eor, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "orr", al, orr, &tokenizeDataProcessing1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "mov", al, mov, &tokenizeDataProcessing2);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "tst", al, tst, &tokenizeDataProcessing3);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "teq", al, teq, &tokenizeDataProcessing3);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "cmp", al, cmp, &tokenizeDataProcessing3);
-    addInstruction(instructionCodeTable, MULTIPLY, "mul", al, invalidOpcode,   &tokenizeMultiply1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "add", al, add, &parseDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "sub", al, sub, &parseDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "rsb", al, rsb, &parseDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "and", al, and, &parseDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "eor", al, eor, &parseDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "orr", al, orr, &parseDataProcessing1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "mov", al, mov, &parseDataProcessing2);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "tst", al, tst, &parseDataProcessing3);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "teq", al, teq, &parseDataProcessing3);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "cmp", al, cmp, &parseDataProcessing3);
+    addInstruction(instructionCodeTable, MULTIPLY, "mul", al, invalidOpcode, &parseMultiply1);
     addInstruction(instructionCodeTable, MULTIPLY, "mla", al, invalidOpcode, &tokenizeMultiply2);
-    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "ldr", al, invalidOpcode, &tokenizeSingleDataTransfer1);
-    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "str", al, invalidOpcode, &tokenizeSingleDataTransfer1);
-    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "beq", eq, invalidOpcode, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "bne", ne, invalidOpcode, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "bge", ge, invalidOpcode, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"blt", lt, invalidOpcode, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "ble", le, invalidOpcode, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"b", al, invalidOpcode, &tokenizeBranch1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING,"lsl", al, invalidOpcode, &tokenizeSpecial1);
-    addInstruction(instructionCodeTable, DATA_PROCESSING, "andeq", eq, and, &tokenizeDataProcessing1);
+    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "ldr", al, invalidOpcode, &parseSingleDataTransfer1);
+    addInstruction(instructionCodeTable, SINGLE_DATA_TRANSFER, "str", al, invalidOpcode, &parseSingleDataTransfer1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "beq", eq, invalidOpcode, &parseBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "bne", ne, invalidOpcode, &parseBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "bge", ge, invalidOpcode, &parseBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"blt", lt, invalidOpcode, &parseBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION, "ble", le, invalidOpcode, &parseBranch1);
+    addInstruction(instructionCodeTable, BRANCH_INSTRUCTION,"b", al, invalidOpcode, &parseBranch1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING,"lsl", al, invalidOpcode, &parseSpecial1);
+    addInstruction(instructionCodeTable, DATA_PROCESSING, "andeq", eq, and, &parseDataProcessing1);
     return instructionCodeTable;
 }
 

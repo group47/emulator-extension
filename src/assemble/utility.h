@@ -17,7 +17,8 @@ bool secondToLastCharIs(const char *target, char c);
 
 // Specific function for assembling overlapping section between instruction
 uint32_t getShiftedRegister(char*, char*, uint8_t);
-long assembleExpressionOrShiftedRegister(bool*, char*, char*, char*);
+long parseDataProcessingOperand2(bool *, char *, char *, char *);
+bool isRegister(char* token);
 
 
 #endif //SRC_UTILITY_H

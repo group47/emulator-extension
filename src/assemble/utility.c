@@ -13,6 +13,7 @@
 #include "../shared/instructions.h"
 
 long strtolWrapper(char* str) {
+    fprintf(stderr, "%s", str);
     while (!isdigit(*str)) {
         assert(*str != '\0');
         str++;
@@ -101,7 +102,8 @@ uint32_t getShiftedRegister(char* shiftname, char* registerOrExpression, uint8_t
 
 // pre-condition
 // For data processing only, immediate flag should be true
-long assembleExpressionOrShiftedRegister(bool* immediateFlag, char* registerOrExpression, char* shiftname, char* shiftedRegisterOrExpression) {
+long parseDataProcessingOperand2(bool *immediateFlag, char *registerOrExpression, char *shiftname,
+                                 char *shiftedRegisterOrExpression) {
     uint32_t result;
     if (registerOrExpression[0] == '#') {
         result = getOperand2Immediate(strtolWrapper(registerOrExpression));
@@ -111,3 +113,11 @@ long assembleExpressionOrShiftedRegister(bool* immediateFlag, char* registerOrEx
     }
     return result;
 }
+
+// post-condition: true for formats as 'r0' and '-r0'
+bool isRegister(char* token) {
+    return token[0] == 'r' || token[1] == 'r';
+}
+
+
+

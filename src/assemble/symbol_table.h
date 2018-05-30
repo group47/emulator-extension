@@ -22,7 +22,7 @@ struct InstructionInfo {
     enum Cond condCode;
     enum OpCode opCode;
     uint16_t address;
-    struct Token* (*tokenize) (char**, struct InstructionInfo*);
+    struct Token* (*tokenize) (char**, int, struct Token*);
     struct SymbolTable* symbolTable;
     struct SymbolTable* labelAddress;
 };
