@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 project(src C)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g -fsanitize=fuzzer,address")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g -fsanitize=fuzzer,address" )
 
 
 include_directories(assemble)
@@ -22,7 +22,7 @@ add_executable(assemble
         shared/branch_instruction.h
         shared/data_processing_instruction.h
         shared/instructions.h
-        shared/single_data_transfer_instruction.h assemble/extra_data.c assemble/extra_data.h)
+        shared/single_data_transfer_instruction.h assemble/extra_data.c assemble/extra_data.h assemble/fuzzing_assemble.c)
 
 add_executable(emulate
         emulate/branch_instruction.c

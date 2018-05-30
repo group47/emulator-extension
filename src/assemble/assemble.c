@@ -435,7 +435,7 @@ bool secondToLastCharIs(const char *target, char c) {
 }
 
 
-int main(int argc, char** argv) {
+int main2(int argc, char** argv) {
 
     if (argc != 3) {
         fprintf(stderr,

@@ -29,7 +29,7 @@ uint16_t getOperand2ShiftRegister(uint32_t operand2Val);
 struct SymbolTable* initializeInstructionCodeTable();
 
 
-
+int main2(int,char**);
 
 
 
