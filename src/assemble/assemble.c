@@ -18,108 +18,108 @@
 
 const uint32_t MASK20 = 0b00000000000100000000000000000000;
 
-
-//todo : clean up
-uint16_t getOperand2Immediate(long operand2Val) {
-    /*
-    if (operand2Val < 0xff) {
-        return (uint16_t)operand2Val;
-    }
-    uint32_t mask = 0x00000001;
-    uint32_t tmpOperand2Val = operand2Val;
-    while ((tmpOperand2Val & mask) == 0 && tmpOperand2Val != 0) {
-        tmpOperand2Val >>= 2;
-    }
-
-    if ((tmpOperand2Val & 0x000000ff) != tmpOperand2Val) {
-        // operand2Val is not representable
-        // original bit field cannot fit in 8-bit memory
-        assert(false);
-    }
-
-    int rotateCount = 0;
-    uint32_t ttmpOperand2Val = tmpOperand2Val;
-
-    while (ttmpOperand2Val != operand2Val && ttmpOperand2Val != 0) {
-        ttmpOperand2Val = __rord(ttmpOperand2Val, 2);
-        rotateCount++;
-    }
-
-    uint16_t result = (uint8_t) (tmpOperand2Val == 0? operand2Val : tmpOperand2Val);
-    result |= (0x0f & rotateCount) << 8;
-    return result;
-    //return (0x0fff & (uint16_t)operand2Val);
-     */
-
-
-    bool found = false;
-    uint32_t result = operand2Val;
-    uint32_t count;
-    for (count = 0; count < 16; ++count) {
-        if ((0x000000ff & result) == result) {
-            found = true;
-            break;
-        }
-        result = rotr(result, 2);
-    }
-    //assert(found);
-    result |= count << 8;
-    return (uint16_t) result;
-
-
-}
+//
+////todo : clean up
+//uint16_t getOperand2Immediate(long operand2Val) {
+//    /*
+//    if (operand2Val < 0xff) {
+//        return (uint16_t)operand2Val;
+//    }
+//    uint32_t mask = 0x00000001;
+//    uint32_t tmpOperand2Val = operand2Val;
+//    while ((tmpOperand2Val & mask) == 0 && tmpOperand2Val != 0) {
+//        tmpOperand2Val >>= 2;
+//    }
+//
+//    if ((tmpOperand2Val & 0x000000ff) != tmpOperand2Val) {
+//        // operand2Val is not representable
+//        // original bit field cannot fit in 8-bit memory
+//        assert(false);
+//    }
+//
+//    int rotateCount = 0;
+//    uint32_t ttmpOperand2Val = tmpOperand2Val;
+//
+//    while (ttmpOperand2Val != operand2Val && ttmpOperand2Val != 0) {
+//        ttmpOperand2Val = __rord(ttmpOperand2Val, 2);
+//        rotateCount++;
+//    }
+//
+//    uint16_t result = (uint8_t) (tmpOperand2Val == 0? operand2Val : tmpOperand2Val);
+//    result |= (0x0f & rotateCount) << 8;
+//    return result;
+//    //return (0x0fff & (uint16_t)operand2Val);
+//     */
+//
+//
+//    bool found = false;
+//    uint32_t result = operand2Val;
+//    uint32_t count;
+//    for (count = 0; count < 16; ++count) {
+//        if ((0x000000ff & result) == result) {
+//            found = true;
+//            break;
+//        }
+//        result = rotr(result, 2);
+//    }
+//    //assert(found);
+//    result |= count << 8;
+//    return (uint16_t) result;
+//
+//
+//}
 
 //todo: handle case where opereand2 is a register
 uint16_t getOperand2ShiftRegister(uint32_t operand2Val) {
     return operand2Val;
 }
 
-uint32_t getShiftedRegister(char* shiftname, char* registerOrExpression, uint8_t Rm) {
-
-    enum ShiftType shiftType = lsl;
-    uint16_t shiftedRegister = 0;
-    if (shiftname != NULL) {
-        char dummy[500][500];
-        if (strcmp(shiftname, "lsl") == 0) {
-            shiftType = lsl;
-        } else if (strcmp(shiftname, "lsr") == 0) {
-            shiftType = lsr;
-        } else if (strcmp(shiftname, "asr") == 0) {
-            shiftType = asr;
-        } else if (strcmp(shiftname, "ror") == 0) {
-            shiftType = ror;
-        } else {
-            assert(false);
-        }
-
-        if (registerOrExpression != NULL) {
-            int base = 10;
-            if (registerOrExpression[1] == '0') {
-                base = 16;
-            }
-            if (registerOrExpression[0] == 'r') {
-                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->filler = 0;
-                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->shift_type = shiftType;
-                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->Rm = Rm;
-                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->shift_by_register = true;
-                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->Rs =
-                        (uint8_t) strtol(registerOrExpression + 1, dummy, 10);
-            } else if (registerOrExpression[0] == '#') {
-                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->shift_type = shiftType;
-                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->Rm = Rm;
-                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->shift_by_register = false;
-                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->integer =
-                        (uint8_t) strtol(registerOrExpression + 1, dummy, base);
-            } else {
-                assert(false);
-            }
-        }
-    } else {
-        shiftedRegister = Rm;
-    }
-
-    return shiftedRegister;
-}
+//uint32_t getShiftedRegister(char* shiftname, char* registerOrExpression, uint8_t Rm) {
+//
+//    enum ShiftType shiftType = lsl;
+//    uint16_t shiftedRegister = 0;
+//    if (shiftname != NULL) {
+//        char dummy[500][500];
+//        if (strcmp(shiftname, "lsl") == 0) {
+//            shiftType = lsl;
+//        } else if (strcmp(shiftname, "lsr") == 0) {
+//            shiftType = lsr;
+//        } else if (strcmp(shiftname, "asr") == 0) {
+//            shiftType = asr;
+//        } else if (strcmp(shiftname, "ror") == 0) {
+//            shiftType = ror;
+//        } else {
+//            assert(false);
+//        }
+//
+//        if (registerOrExpression != NULL) {
+//            int base = 10;
+//            if (registerOrExpression[1] == '0') {
+//                base = 16;
+//            }
+//            if (registerOrExpression[0] == 'r') {
+//                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->filler = 0;
+//                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->shift_type = shiftType;
+//                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->Rm = Rm;
+//                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->shift_by_register = true;
+//                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->Rs =
+//                        (uint8_t) strtol(registerOrExpression + 1, dummy, 10);
+//            } else if (registerOrExpression[0] == '#') {
+//                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->shift_type = shiftType;
+//                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->Rm = Rm;
+//                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->shift_by_register = false;
+//                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->integer =
+//                        (uint8_t) strtol(registerOrExpression + 1, dummy, base);
+//            } else {
+//                assert(false);
+//            }
+//        }
+//    } else {
+//        shiftedRegister = Rm;
+//    }
+//
+//    return shiftedRegister;
+//}
 
 
 void assembleDataProcessingInstruction(FILE* fpOutput, struct Token* token) {
