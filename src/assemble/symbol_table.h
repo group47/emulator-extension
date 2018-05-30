@@ -66,5 +66,6 @@ bool addInstruction(struct SymbolTable*,
                     enum OpCode,
                     struct Instruction (*tokenize) (char**,int, struct Token*),
                     struct Instruction (*assemble)(struct Token*));
+void initializeInstructionCodeTable(struct SymbolTable *);
 
 #endif //ASSEMBLE_SYMBOL_TABLE_H

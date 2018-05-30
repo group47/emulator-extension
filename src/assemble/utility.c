@@ -17,7 +17,6 @@
 long strtolWrapper(char* str) {
     fprintf(stderr, "%s", str);
     while (!isdigit(*str)) {
-        assert(*str != '\0');
         str++;
     }
     long result;
@@ -40,7 +39,7 @@ uint16_t getOperand2Immediate(long operand2Val) {
         }
         result = __rold(result, 2);
     }
-    assert(found);
+    //assert(found);
     result |= count << 8;
     return (uint16_t) result;
 

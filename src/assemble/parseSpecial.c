@@ -4,9 +4,9 @@
 
 
 #include <memory.h>
+#include "symbol_table.h"
 #include "tokenizer.h"
 #include "parseDataProcessing.h"
-#include "symbol_table.h"
 
 // for lsl
 struct Instruction parseSpecial1(char **tokens, int tokenOffset, struct Token * token) {
@@ -18,7 +18,7 @@ struct Instruction parseSpecial1(char **tokens, int tokenOffset, struct Token * 
     tokensRestructure[1] = tokens[1];
     tokensRestructure[2] = tokens[1];
     memcpy(tokensRestructure[3], "lsl", 3);
-    tokensRestructure[4] = tokens[2];
+    tokensRestructure[4] = tokens[3];
 
     token->instructionInfo = &find(token->instructionInfo->symbolTable, "mov")->rawEntry.instructionInfo;
 

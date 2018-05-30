@@ -27,7 +27,7 @@ int separateString2(char** tokens, char* str, char* characters) {
             if (bufferLength > 0) {
                 buffer[bufferLength + 1] = '\0';
                 tokens[count] = buffer;
-                buffer = malloc(sizeof(char *) * 10);
+                buffer = malloc(sizeof(char) * 10);
                 bufferLength = 0;
                 count++;
             }
@@ -44,6 +44,7 @@ int separateString2(char** tokens, char* str, char* characters) {
     if (bufferLength == 0) {
         free(buffer);
     } else {
+        buffer[bufferLength] = '\0';
         tokens[count] = buffer;
         count++;
     }
@@ -73,7 +74,7 @@ struct Instruction tokenizer(char* instruction, struct SymbolTable *symbolTable,
     // Breaking the lines into tokens
 
     char* symbols = "-=#[]";
-    char** tokens = malloc(sizeof(char*)*100);//todo
+    char** tokens = malloc(sizeof(char*)*20);//todo
 
     char* token1;
 
@@ -82,23 +83,29 @@ struct Instruction tokenizer(char* instruction, struct SymbolTable *symbolTable,
     int countFirstPass = 0;
 
     while (token1 != NULL) {
-        tokens[countFirstPass] = malloc(511);
+        tokens[countFirstPass] = malloc(sizeof(char)*511);
         memcpy(tokens[countFirstPass], token1, strlen(token1));
         token1 = strtok(NULL, ", ");
         countFirstPass++;
     }
 
-    char** tokens2 = malloc(sizeof(char*)*100);
-    for (int i = 0; i < 100; i++) {
-        tokens2[i] = malloc(sizeof(char)*100);
+    char** tokens2 = malloc(sizeof(char*)*20);
+    for (int i = 0; i < 20; i++) {
+        tokens2[i] = malloc(sizeof(char)*511);
     }
 
 
-    separateSpecialCharacters(tokens2,tokens, countFirstPass, symbols);
-
-    for (int i = 0; i < 100; i++) {
-        free(tokens[i]);
+    //if (countFirstPass > 1) {
+        separateSpecialCharacters(tokens2, tokens, countFirstPass, symbols);
+    //}
+    /*
+    for (int i = 0; i < 511; i++) {
+        if (tokens[i] != NULL) {
+            free(tokens[i]);
+        }
     }
+    free(tokens);
+     */
 
     // Structure them according to their operation
 
@@ -110,11 +117,11 @@ struct Instruction tokenizer(char* instruction, struct SymbolTable *symbolTable,
         return badValue;
     }
 
-    if (tokens[0] == NULL) {
+    if (tokens2[0] == NULL) {
         return badValue;
     }
 
-    struct Entry *entry = find(symbolTable, tokens[0]);
+    struct Entry *entry = find(symbolTable, tokens2[0]);
     struct InstructionInfo instructionInfo;
     if (entry == NULL) {
         return badValue;
@@ -130,9 +137,14 @@ struct Instruction tokenizer(char* instruction, struct SymbolTable *symbolTable,
     newToken.instructionInfo = &instructionInfo;
     //tokens = separateSpecialCharacters(tokens2, countFirstPass, accepted, 5);
     struct Instruction result = entry->rawEntry.instructionInfo.tokenize(tokens2, 1, &newToken);
-    for (int i = 0; i < 100; i++) {
-        free(tokens2[i]);
+    /*
+    for (int i = 0; i < 511; i++) {
+        if (tokens2[i] != NULL) {
+            free(tokens2[i]);
+        }
     }
+    free(tokens2);
+     */
     return result;
 }
 

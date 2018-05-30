@@ -3,9 +3,12 @@
 //
 
 #include <assert.h>
+#include <memory.h>
+#include "../shared/enums.h"
+#include "../shared/instructions.h"
+#include "symbol_table.h"
 #include "tokenizer.h"
 #include "parseDataProcessing.h"
-#include "../shared/instructions.h"
 #include "utility.h"
 #include "parseUtility.h"
 
@@ -27,7 +30,7 @@ struct Instruction assembleDataProcessingInstruction(struct Token* token) {
     return instruction;
 }
 struct Instruction parseDataProcessingOperand2(char** tokens, int tokenOffset, struct Token* token) {
-    if ((*(tokens + tokenOffset))[0] == '#') {
+    if (strcmp(*(tokens + tokenOffset), "#") == 0) {
         token->operand2IsImmediate = true;
         return parseExpression(tokens, tokenOffset + 1, token);
     }

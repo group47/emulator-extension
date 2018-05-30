@@ -7,6 +7,7 @@
 #include <memory.h>
 #include <assert.h>
 #include "../shared/instructions.h"
+#include "symbol_table.h"
 #include "utility.h"
 #include "tokenizer.h"
 

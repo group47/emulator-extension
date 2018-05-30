@@ -10,15 +10,13 @@
 #include <memory.h>
 #include "../shared/enums.h"
 #include "../shared/instructions.h"
-#include "symbol_table.h"
 #include "tokenizer.h"
-#include <parseUtility.h>
-#include <parseSingleDataTransfer.h>
-#include <parseDataProcessing.h>
-#include <parseBranch.h>
-#include <parseMultiply.h>
-#include <parseSpecial.h>
-
+#include "parseDataProcessing.h"
+#include "parseMultiply.h"
+#include "parseSingleDataTransfer.h"
+#include "parseBranch.h"
+#include "parseSpecial.h"
+#include "symbol_table.h"
 
 bool secondToLastCharIs(const char *target, char c);
 struct Entry* find(struct SymbolTable* symbolTable, uint8_t* target) {
@@ -78,3 +76,29 @@ bool addInstruction(struct SymbolTable* symbolTable,
     return true;
 }
 
+
+void initializeInstructionCodeTable(struct SymbolTable * table) {
+    table->size = 0;
+    addInstruction(table, DATA_PROCESSING, "add", al, add, &parseDataProcessing1, &assembleDataProcessingInstruction);
+    addInstruction(table, DATA_PROCESSING, "sub", al, sub, &parseDataProcessing1, &assembleDataProcessingInstruction);
+    addInstruction(table, DATA_PROCESSING, "rsb", al, rsb, &parseDataProcessing1, &assembleDataProcessingInstruction);
+    addInstruction(table, DATA_PROCESSING, "and", al, and, &parseDataProcessing1, &assembleDataProcessingInstruction);
+    addInstruction(table, DATA_PROCESSING, "eor", al, eor, &parseDataProcessing1, &assembleDataProcessingInstruction);
+    addInstruction(table, DATA_PROCESSING, "orr", al, orr, &parseDataProcessing1, &assembleDataProcessingInstruction);
+    addInstruction(table, DATA_PROCESSING, "mov", al, mov, &parseDataProcessing2, &assembleDataProcessingInstruction);
+    addInstruction(table, DATA_PROCESSING, "tst", al, tst, &parseDataProcessing3, &assembleDataProcessingInstruction);
+    addInstruction(table, DATA_PROCESSING, "teq", al, teq, &parseDataProcessing3, &assembleDataProcessingInstruction);
+    addInstruction(table, DATA_PROCESSING, "cmp", al, cmp, &parseDataProcessing3, &assembleDataProcessingInstruction);
+    addInstruction(table, MULTIPLY, "mul", al, invalidOpcode, &parseMultiply1, &assembleMultiplyInstruction);
+    addInstruction(table, MULTIPLY, "mla", al, invalidOpcode, &parseMultiply2, &assembleMultiplyInstruction);
+    addInstruction(table, SINGLE_DATA_TRANSFER, "ldr", al, invalidOpcode, &parseSingleDataTransfer1, &assembleSingleDataInstruction);
+    addInstruction(table, SINGLE_DATA_TRANSFER, "str", al, invalidOpcode, &parseSingleDataTransfer1, &assembleSingleDataInstruction);
+    addInstruction(table, BRANCH_INSTRUCTION, "beq", eq, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
+    addInstruction(table, BRANCH_INSTRUCTION, "bne", ne, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
+    addInstruction(table, BRANCH_INSTRUCTION, "bge", ge, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
+    addInstruction(table, BRANCH_INSTRUCTION,"blt", lt, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
+    addInstruction(table, BRANCH_INSTRUCTION, "ble", le, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
+    addInstruction(table, BRANCH_INSTRUCTION,"b", al, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
+    addInstruction(table, DATA_PROCESSING,"lsl", al, invalidOpcode, &parseSpecial1, NULL);
+    addInstruction(table, DATA_PROCESSING, "andeq", eq, and, &parseDataProcessing1, &assembleDataProcessingInstruction);
+}

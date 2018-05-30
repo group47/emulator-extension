@@ -4,7 +4,7 @@
 
 #include <assert.h>
 #include <stdbool.h>
-#include "stdio.h"
+#include <stdio.h>
 #include "extra_data.h"
 #include "binary_file_writer.h"
 

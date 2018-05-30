@@ -5,9 +5,9 @@
 #ifndef ASSEMBLE_TOKENIZER_H
 #define ASSEMBLE_TOKENIZER_H
 
-
+#include <stdbool.h>
 #include <stdint-gcc.h>
-#include "symbol_table.h"
+#include "../shared/enums.h"
 struct Token {
     struct InstructionInfo* instructionInfo;
     char* label;
@@ -24,9 +24,6 @@ struct Token {
     bool use_extra_data;
 };
 
-union Token2 {
-    struct DataProcessingInstruction dataProcessingInstruction;
-};
 
 
 struct Instruction tokenizer(char*, struct SymbolTable*,struct SymbolTable*,uint16_t);

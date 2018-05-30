@@ -1,16 +1,15 @@
 //
 // Created by qs4617 on 30/05/18.
 //
-
+#include <stdio.h>
 #include <memory.h>
 #include <assert.h>
-#include "tokenizer.h"
-#include "parseSingleDataTransfer.h"
-#include "../shared/instructions.h"
 #include "extra_data.h"
 #include "utility.h"
-#include "parseUtility.h"
 #include "symbol_table.h"
+#include "tokenizer.h"
+#include "parseSingleDataTransfer.h"
+#include "parseUtility.h"
 #include "parseDataProcessing.h"
 
 struct Instruction assembleSingleDataInstruction(struct Token* token) {
@@ -54,7 +53,7 @@ struct Instruction parseSingleDataTransfer1(char **tokens, int tokenOffset, stru
 // For data processing only, immediate flag should be true
 
 struct Instruction parseSingleDataTransferAddress(char** tokens, int tokenOffset, struct Token* token) {
-    if ((*(tokens + tokenOffset)[0] == '=')) {
+    if (strcmp(*(tokens + tokenOffset), "=") == 0) {
         token->isPreIndexing = true;
         token->offsetIsImmediate = false;
         parseExpression(tokens, tokenOffset, token);
@@ -78,9 +77,9 @@ struct Instruction parseSingleDataTransferAddress(char** tokens, int tokenOffset
         fprintf(stderr, "Rn is not a register for single data transfer\n");
     }
 
-    token->Rn = (uint8_t) strtolWrapper(*(tokens + tokenOffset + 1));
-    if (strcmp(*(tokens + tokenOffset + 2), "]") == 0) {
-        if (*(tokens + tokenOffset + 3) == NULL) {
+    token->Rn = (uint8_t) strtolWrapper(*(tokens + tokenOffset + 2));
+    if (strcmp(*(tokens + tokenOffset + 3), "]") == 0) {
+        if (*(tokens + tokenOffset + 4) == NULL) {
             token->offsetIsImmediate = false;
             token->isPreIndexing = true;
             token->offset = 0;
@@ -92,18 +91,18 @@ struct Instruction parseSingleDataTransferAddress(char** tokens, int tokenOffset
         token->isPreIndexing = true;
     }
 
-    if (strcmp(*(tokens + tokenOffset + 2), "#") == 0) {
+    if (strcmp(*(tokens + tokenOffset + 3), "#") == 0) {
         token->offsetIsImmediate = false;
-        parseExpression(tokens, tokenOffset + 3, token);
+        parseExpression(tokens, tokenOffset + 4, token);
     } else {
         token->offsetIsImmediate = true;
-        if (strcmp(*(tokens + tokenOffset + 2), "-") == 0) {
+        if (strcmp(*(tokens + tokenOffset + 3), "-") == 0) {
             token->offsetIsNegative = true;
             tokenOffset++;
         } else {
             token->offsetIsNegative = false;
         }
-        parseRmShiftedRegister(tokens, tokenOffset + 2, token);
+        parseRmShiftedRegister(tokens, tokenOffset + 3, token);
     }
     return token->instructionInfo->assemble(token);
 }
