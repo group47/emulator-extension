@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Group 47 Report}
+\date{\vspace{-5ex}}
+\begin{document}
+\maketitle
+
+\section{Contribution}
+
+One group member made a skeleton for the emulator, which defined basic structs and functions for interpreting specific instructions. We then split up the implementation of various functions among group members. Discussion and work are done in lab for better team work and coordination. Each member also worked individually at home.
+
+\section{Group}
+
+In the beginning, work was done more slowly, because some members were not familiar with C. Additionally a group member was unable to work due to illness. For the later part, we expect everyone in the group to become more skilled at c, and more able to contribute. In order to coordinate the whole group we use a group chat.
+
+\section{Emulator}
+
+Our emulator uses several packed structs with bitfields. This allows us to easily extract values from the binary. Using the values extracted by the packed structs, we interpret each instruction in accordance with the specification. Different types of instructions are separated in different sources. The header files contain functions and struct declarations, while the source files contain a function for interpreting the instruction. The state of the emulator is represented in a struct containing the contents of ram, and register values. Our memory is represented as an array in the struct. Likewise, the first 15 registers are stored in an array, while the program counter and CSPR register are stored as struct members.The condition code and opcode of instructions are represented using enums.  We have an initial working implementation of the assembler. In our initial implementation we reused our packed structs, in order to easily output a binary, as well as reusing our enums.
+
+\section{Assembler}
+
+Implementing the assembler included working with IO and tokenizing inputs, which adds more bugs and more complex error handling. Although we are allowed to make assumptions about the inputs, we need to concern ourselves about how to handle those inputs, which includes adding more checks and potentially imposes pre-condition and post-condition on functions.
+
+The second challenge is memory usage and string manipulation. During the process of tokenizing string, we need to dynamically allocate memory to contain the tokens, which might then be passed to parsing process. Hence, we must be careful with keeping track of the pointers to enable the memory to be freed. We intend to design the assembler in a way so that all the memory allocation and deallocation happen as close to the top of the call stack as possible. This idea was tested during the first implementation of the assembler, which we hope will reduce the number of memory leaks.
+
+A third challenge relates to the design of tokenizing, parsing and assembling part. We intend to write the program in a way so that each of the logic and tasks of these parts are separated, which make the program more manageable. This is difficult since we are initially not that familiar with assembly so it takes time to learn the language. In addition, since assembly is different than higher level programming languages, we need to also consider how to manage the special cases instructions, andeq and lsl, in a way that doesn't compromise the whole structure. We intend to manage it by creating struct that contains all the necessary information.
+
+\end{document}
