@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="src"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/homes/qs4617/Arm/arm11_47/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/homes/qs4617/Arm/arm11_47/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/homes/qs4617/Arm/arm11_47/src/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="emulate">
+				<Option output="/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/emulate" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/homes/qs4617/Arm/arm11_47/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/homes/qs4617/Arm/arm11_47/src/assemble"/>
+					<Add directory="/homes/qs4617/Arm/arm11_47/src/emulate"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 emulate"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="emulate/fast">
+				<Option output="/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/emulate" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/homes/qs4617/Arm/arm11_47/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/homes/qs4617/Arm/arm11_47/src/assemble"/>
+					<Add directory="/homes/qs4617/Arm/arm11_47/src/emulate"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 emulate/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="assemble">
+				<Option output="/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/assemble" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/homes/qs4617/Arm/arm11_47/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/homes/qs4617/Arm/arm11_47/src/assemble"/>
+					<Add directory="/homes/qs4617/Arm/arm11_47/src/emulate"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 assemble"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="assemble/fast">
+				<Option output="/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/assemble" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/homes/qs4617/Arm/arm11_47/src/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/homes/qs4617/Arm/arm11_47/src/assemble"/>
+					<Add directory="/homes/qs4617/Arm/arm11_47/src/emulate"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 assemble/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/homes/qs4617/Arm/arm11_47/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/assemble.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/assemble.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/binary_file_writer.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/binary_file_writer.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/extra_data.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/extra_data.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/list.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/list.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/parseBranch.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/parseBranch.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/parseDataProcessing.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/parseDataProcessing.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/parseMultiply.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/parseMultiply.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/parseSingleDataTransfer.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/parseSingleDataTransfer.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/parseSpecial.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/parseSpecial.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/parseUtility.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/parseUtility.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/symbol_table.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/symbol_table.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/tokenizer.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/tokenizer.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/utility.c">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/assemble/utility.h">
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/emulate/branch_instruction.c">
+			<Option target="emulate"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/emulate/cpsr_overflow_detection.c">
+			<Option target="emulate"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/emulate/cpsr_overflow_detection.h">
+			<Option target="emulate"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/emulate/data_processing_instruction.c">
+			<Option target="emulate"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/emulate/emulate_main.c">
+			<Option target="emulate"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/emulate/emulate_main.h">
+			<Option target="emulate"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/emulate/instructions.c">
+			<Option target="emulate"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/emulate/multiply_instruction.c">
+			<Option target="emulate"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/emulate/single_data_transfer_instruction.c">
+			<Option target="emulate"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/shared/branch_instruction.h">
+			<Option target="emulate"/>
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/shared/data_processing_instruction.h">
+			<Option target="emulate"/>
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/shared/enums.h">
+			<Option target="emulate"/>
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/shared/instructions.h">
+			<Option target="emulate"/>
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/shared/multiply_instruction.h">
+			<Option target="emulate"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/shared/single_data_transfer_instruction.h">
+			<Option target="emulate"/>
+			<Option target="assemble"/>
+		</Unit>
+		<Unit filename="/homes/qs4617/Arm/arm11_47/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

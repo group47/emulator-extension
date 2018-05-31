@@ -3,6 +3,7 @@ project(src C)
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g -DUSE_EMULATE_MAIN")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g -DUSE_EMULATE_MAIN -fsanitize=address")
 
 
 include_directories(assemble)
@@ -14,15 +15,31 @@ add_executable(assemble
         assemble/binary_file_writer.h
         assemble/list.c
         assemble/list.h
-        assemble/symbol_table.c
-        assemble/symbol_table.h
         assemble/tokenizer.c
         assemble/tokenizer.h
         shared/enums.h
         shared/branch_instruction.h
         shared/data_processing_instruction.h
         shared/instructions.h
-        shared/single_data_transfer_instruction.h assemble/extra_data.c assemble/extra_data.h assemble/utility.c assemble/utility.h)
+        assemble/symbol_table.h
+        assemble/symbol_table.c
+        shared/single_data_transfer_instruction.h
+        assemble/extra_data.c
+        assemble/extra_data.h
+        assemble/utility.c
+        assemble/utility.h
+        assemble/parseDataProcessing.c
+        assemble/parseDataProcessing.h
+        assemble/parseSingleDataTransfer.c
+        assemble/parseSingleDataTransfer.h
+        assemble/parseBranch.c
+        assemble/parseBranch.h
+        assemble/parseMultiply.c
+        assemble/parseMultiply.h
+        assemble/parseSpecial.c
+        assemble/parseSpecial.h
+        assemble/parseUtility.c
+        assemble/parseUtility.h)
 
 add_executable(emulate
         emulate/branch_instruction.c
