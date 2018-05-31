@@ -41,7 +41,7 @@ struct Entry* find(struct SymbolTable* symbolTable, char* target) {
 
 
 bool addLabel(struct SymbolTable* symbolTable, char* label, uint16_t address) {
-    char * label_copy = malloc(100*sizeof(char));//todo memory leak
+    char * label_copy = calloc(100, sizeof(char));//todo memory leak
     memcpy(label_copy,label,(strlen(label)+1)* sizeof(char));
 
     symbolTable->entries[symbolTable->size].rawEntry.label.label = label_copy;
@@ -62,7 +62,7 @@ bool addInstruction(struct SymbolTable* symbolTable,
     assert (symbolTable->size <= 511);
 
     symbolTable->entries[symbolTable->size].entryType = INSTRUCTION_INFO;
-    symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics = malloc(400);//todo
+    symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics = calloc(400, sizeof(char));//todo
 
     memcpy(symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics, mnemonics, strlen(mnemonics) + 1);
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.instructionType = instructionType;

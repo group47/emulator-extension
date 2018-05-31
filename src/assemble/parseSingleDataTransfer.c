@@ -80,7 +80,7 @@ struct Instruction parseSingleDataTransferAddress(char** tokens, int tokenOffset
 
     token->Rn = (uint8_t) strtolWrapper(*(tokens + tokenOffset + 1));
     if (strcmp(*(tokens + tokenOffset + 2), "]") == 0) {
-        if (*(tokens + tokenOffset + 3) == NULL || strcmp(*(tokens + tokenOffset + 3), "\n") == 0) {
+        if (*(tokens + tokenOffset + 3)[0] == '\0' || strcmp(*(tokens + tokenOffset + 3), "\n") == 0) {
             //todo : fix the tokenizing so that newline character is removed
             token->offsetIsImmediate = false;
             token->isPreIndexing = true;

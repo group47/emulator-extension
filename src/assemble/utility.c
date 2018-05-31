@@ -15,7 +15,6 @@
 #include "assemble.h"
 
 long strtolWrapper(char* str) {
-    fprintf(stderr, "%s\n", str);
     while (!isdigit(*str)) {
         str++;
     }
@@ -58,6 +57,8 @@ bool isNegative(char* number) {
 }
 
 bool secondToLastCharIs(const char *target, char c) {
+    if(strlen(target) < 2)
+        return false;
     return target[strlen(target) - 2] == c;
 }
 

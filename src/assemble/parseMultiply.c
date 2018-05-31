@@ -6,6 +6,7 @@
 
 #include <memory.h>
 #include <assert.h>
+#include <stdio.h>
 #include "../shared/instructions.h"
 #include "symbol_table.h"
 #include "utility.h"

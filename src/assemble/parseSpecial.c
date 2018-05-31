@@ -12,12 +12,12 @@
 struct Instruction parseSpecial1(char **tokens, int tokenOffset, struct Token * token) {
 
 
-    char* op = malloc(sizeof(char)*20);
-    char* Rn1 = malloc(sizeof(char)*20);
-    char* Rn2 = malloc(sizeof(char)*20);
-    char* shiftname = malloc(sizeof(char)*20);
-    char* sharp = malloc(sizeof(char)*20);
-    char* expr = malloc(sizeof(char)*20);
+    char* op = calloc(20, sizeof(char));
+    char* Rn1 = calloc(20, sizeof(char));
+    char* Rn2 = calloc(20, sizeof(char));
+    char* shiftname = calloc(20, sizeof(char));
+    char* sharp = calloc(20, sizeof(char));
+    char* expr = calloc(20, sizeof(char));
     memcpy(op, "mov", 4);
     memcpy(Rn1, tokens[1], strlen(tokens[1])+1);
     memcpy(Rn2, tokens[1], strlen(tokens[1])+1);
@@ -25,7 +25,7 @@ struct Instruction parseSpecial1(char **tokens, int tokenOffset, struct Token * 
     memcpy(sharp, "#", 2);
     memcpy(expr, tokens[3], strlen(tokens[3])+1);
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 6; i++) {
         free(tokens[i]);
     }
 

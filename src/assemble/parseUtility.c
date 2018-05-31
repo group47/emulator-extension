@@ -28,7 +28,7 @@ struct Instruction parseShiftedRegister(char** tokens, int tokenOffset, struct T
     uint16_t shiftedRegister = token->Rm;
     char* shiftname = *(tokens + tokenOffset);
     char* registerOrExpression = *(tokens + tokenOffset + 1);
-    if (shiftname != NULL && shiftname[0] != '\n' && shiftname[0] != ']') {
+    if (shiftname[0] != '\0' && shiftname[0] != '\n' && shiftname[0] != ']') {
         // todo: remove those special cases
         if (strcmp(shiftname, "lsl") == 0) {
             shiftType = lsl;
@@ -42,7 +42,7 @@ struct Instruction parseShiftedRegister(char** tokens, int tokenOffset, struct T
             assert(false);
         }
 
-        if (registerOrExpression != NULL) {
+        if (registerOrExpression[0] != '\0') {
             if (registerOrExpression[0] == 'r') {
                 shiftedRegister = 0;
                 ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->filler = 0;

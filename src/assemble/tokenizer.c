@@ -17,7 +17,7 @@ const int MAX_TOKENS = 32;
 
 
 int separateString2(char** tokens, char* str, char* characters) {
-    char* buffer = malloc(sizeof(char)*200);
+    char* buffer = calloc(200, sizeof(char));
     int count = 0;
     int bufferLength = 0;
     int strLength = strlen(str);
@@ -26,8 +26,9 @@ int separateString2(char** tokens, char* str, char* characters) {
         if (p != NULL) {
             if (bufferLength > 0) {
                 buffer[bufferLength] = '\0';
+                free(tokens[count]);
                 tokens[count] = buffer;
-                buffer = malloc(sizeof(char) * 200);
+                buffer = calloc(200, sizeof(char));
                 bufferLength = 0;
                 count++;
             }
@@ -46,6 +47,7 @@ int separateString2(char** tokens, char* str, char* characters) {
     } else {
         buffer[bufferLength] = '\0';
         //buffer[bufferLength-1] = '\0';
+        free(tokens[count]);
         tokens[count] = buffer;
         count++;
     }
@@ -65,7 +67,7 @@ int separateSpecialCharacters(char** newTokens,
         newTokens += k;
         sum += k;
     }
-    *newTokens = NULL;
+    *(newTokens[0]) = '\0';
     return sum;
 }
 
@@ -80,7 +82,7 @@ struct Instruction tokenizer(struct Token* token,
     // Breaking the lines into tokens
 
     char* symbols = "-=#[]";
-    char** tokens = malloc(sizeof(char*)*100);//todo
+    char** tokens = calloc(100, sizeof(char*));//todo
 
     char* token1;
 
@@ -89,7 +91,7 @@ struct Instruction tokenizer(struct Token* token,
     int countFirstPass = 0;
 
     while (token1 != NULL) {
-        tokens[countFirstPass] = malloc(sizeof(char)*511);
+        tokens[countFirstPass] = calloc(511, sizeof(char));
         memcpy(tokens[countFirstPass], token1, strlen(token1) + 1);
         token1 = strtok(NULL, ", ");
         countFirstPass++;
@@ -103,9 +105,7 @@ struct Instruction tokenizer(struct Token* token,
 
     if (countFirstPass == 1) {
         for (int i = 0; i < countFirstPass; i++) {
-            if (tokens[i] != NULL) {
-                free(tokens[i]);
-            }
+            free(tokens[i]);
         }
         free(tokens);
         return badValue;
@@ -113,9 +113,7 @@ struct Instruction tokenizer(struct Token* token,
 
     if (tokens[0] == NULL) {
         for (int i = 0; i < countFirstPass; i++) {
-            if (tokens[i] != NULL) {
                 free(tokens[i]);
-            }
         }
         free(tokens);
         return badValue;
@@ -127,17 +125,18 @@ struct Instruction tokenizer(struct Token* token,
     struct InstructionInfo instructionInfo;
     if (entry == NULL) {
         for (int i = 0; i < countFirstPass; i++) {
-            if (tokens[i] != NULL) {
                 free(tokens[i]);
-            }
         }
         free(tokens);
         return badValue;
     }
 
-    char** tokens2 = malloc(sizeof(char*)*100);
+    char** tokens2 = calloc(100,sizeof(char*));
+    memset(tokens2,NULL,100*sizeof(char));
     for (int i = 0; i < 100; i++) {
-        tokens2[i] = malloc(sizeof(char)*511);
+        tokens2[i] = calloc(500, sizeof(char));
+        memset(tokens2[i],'\0',500*sizeof(char));
+        assert(tokens2[i] != NULL);
     }
 
     int numTokens = separateSpecialCharacters(tokens2, tokens, countFirstPass, symbols);
@@ -153,16 +152,13 @@ struct Instruction tokenizer(struct Token* token,
     struct Instruction result = entry->rawEntry.instructionInfo.tokenize(tokens2, 1, token);
 
     for (int i = 0; i < countFirstPass; i++) {
-        if (tokens[i] != NULL) {
             free(tokens[i]);
-        }
     }
     free(tokens);
 
     for (int i = 0; i < 100; i++) {
-        if (tokens2[i] != NULL) {
-            free(tokens2[i]);
-        }
+        assert(tokens2[i] != NULL);
+        free(tokens2[i]);
     }
     free(tokens2);
 

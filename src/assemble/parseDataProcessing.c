@@ -4,6 +4,7 @@
 
 #include <assert.h>
 #include <memory.h>
+#include <stdio.h>
 #include "../shared/enums.h"
 #include "../shared/instructions.h"
 #include "symbol_table.h"

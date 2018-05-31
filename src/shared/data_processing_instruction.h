@@ -5,7 +5,6 @@
 #ifndef EMULATE_DATA_PROCESSING_INSTRUCTION_H
 #define EMULATE_DATA_PROCESSING_INSTRUCTION_H
 
-#include <malloc.h>
 #include <stdbool.h>
 #include "cpsr_overflow_detection.h"
 #include "instructions.h"
