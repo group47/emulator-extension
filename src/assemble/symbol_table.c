@@ -61,6 +61,7 @@ bool addInstruction(struct SymbolTable* symbolTable,
 
     assert (symbolTable->size <= 511);
 
+    symbolTable->entries[symbolTable->size].entryType = INSTRUCTION_INFO;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics = malloc(400);//todo
 
     memcpy(symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics, mnemonics, strlen(mnemonics));
