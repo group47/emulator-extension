@@ -96,11 +96,11 @@ int main(int argc, char** argv) {
 void free_symbol_table(struct SymbolTable table) {
     for (int i = 0; i < table.size; ++i) {
         if(table.entries[i].entryType == INSTRUCTION_INFO){
-            uint8_t * ptr = table.entries[i].rawEntry.instructionInfo.mnemonics;
+            char * ptr = table.entries[i].rawEntry.instructionInfo.mnemonics;
             if(ptr != NULL)
                 free(ptr);
         }else if(table.entries[i].entryType == LABEL){
-            uint8_t *ptr = table.entries[i].rawEntry.label.label;
+            char *ptr = table.entries[i].rawEntry.label.label;
             if(ptr != NULL)
                 free(ptr);
         } else{

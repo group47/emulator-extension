@@ -19,9 +19,9 @@
 #include "symbol_table.h"
 
 bool secondToLastCharIs(const char *target, char c);
-struct Entry* find(struct SymbolTable* symbolTable, uint8_t* target) {
+struct Entry* find(struct SymbolTable* symbolTable, char* target) {
     for (int i = 0; i < symbolTable->size; i++) {
-        uint8_t* key;
+        char* key;
         if (symbolTable->entries[i].entryType == INSTRUCTION_INFO) {
             struct InstructionInfo* instructionInfo = &symbolTable->entries[i].rawEntry;
             key = instructionInfo->mnemonics;
@@ -40,9 +40,9 @@ struct Entry* find(struct SymbolTable* symbolTable, uint8_t* target) {
 }
 
 
-bool addLabel(struct SymbolTable* symbolTable, uint8_t* label, uint16_t address) {
-    uint8_t * label_copy = malloc(100*sizeof(uint8_t));//todo memory leak
-    memcpy(label_copy,label,(strlen(label)+1)* sizeof(uint8_t));
+bool addLabel(struct SymbolTable* symbolTable, char* label, uint16_t address) {
+    char * label_copy = malloc(100*sizeof(char));//todo memory leak
+    memcpy(label_copy,label,(strlen(label)+1)* sizeof(char));
 
     symbolTable->entries[symbolTable->size].rawEntry.label.label = label_copy;
     symbolTable->entries[symbolTable->size].rawEntry.label.address = address;
@@ -53,7 +53,7 @@ bool addLabel(struct SymbolTable* symbolTable, uint8_t* label, uint16_t address)
 
 bool addInstruction(struct SymbolTable* symbolTable,
                     enum InstructionType instructionType,
-                    uint8_t* mnemonics,
+                    char* mnemonics,
                     enum Cond condCode,
                     enum OpCode opCode,
                     struct Instruction (*tokenize) (char**,int,struct Token*),
@@ -64,7 +64,7 @@ bool addInstruction(struct SymbolTable* symbolTable,
     symbolTable->entries[symbolTable->size].entryType = INSTRUCTION_INFO;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics = malloc(400);//todo
 
-    memcpy(symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics, mnemonics, strlen(mnemonics));
+    memcpy(symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics, mnemonics, strlen(mnemonics) + 1);
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.instructionType = instructionType;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.condCode = condCode;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.opCode = opCode;

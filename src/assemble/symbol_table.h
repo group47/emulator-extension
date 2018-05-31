@@ -18,7 +18,7 @@
 #include "../shared/instructions.h"
 
 struct InstructionInfo {
-    uint8_t* mnemonics;
+    char* mnemonics;
     enum InstructionType instructionType;
     enum Cond condCode;
     enum OpCode opCode;
@@ -31,7 +31,7 @@ struct InstructionInfo {
 
 //
 struct Label {
-    uint8_t* label;
+    char* label;
     uint16_t address;
 };
 
@@ -56,12 +56,12 @@ struct SymbolTable {
 };
 
 
-bool addLabel(struct SymbolTable*, uint8_t*, uint16_t);
+bool addLabel(struct SymbolTable*, char*, uint16_t);
 struct InstructionInfo* intializeInstructionInfo();
-struct Entry* find(struct SymbolTable*, uint8_t*);
+struct Entry* find(struct SymbolTable*, char*);
 bool addInstruction(struct SymbolTable*,
                     enum InstructionType,
-                    uint8_t*,
+                    char*,
                     enum Cond,
                     enum OpCode,
                     struct Instruction (*tokenize) (char**,int, struct Token*),
