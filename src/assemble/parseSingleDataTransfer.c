@@ -56,12 +56,12 @@ struct Instruction parseSingleDataTransferAddress(char** tokens, int tokenOffset
     if (strcmp(*(tokens + tokenOffset), "=") == 0) {
         token->isPreIndexing = true;
         token->offsetIsImmediate = false;
-        parseExpression(tokens, tokenOffset, token);
+        parseExpression(tokens, tokenOffset + 1, token);
 
         if (token->offset <= 0x00ff && strcmp((char *) (token->instructionInfo->mnemonics), "ldr") == 0) {
             tokens[2][0] = '#';
             token->instructionInfo = &find(token->instructionInfo->symbolTable, "mov")->rawEntry.instructionInfo;
-            parseDataProcessing2(tokens, 1, token);
+            return parseDataProcessing2(tokens, 1, token);
         } else {
             token->use_extra_data = true;
         }
@@ -75,11 +75,13 @@ struct Instruction parseSingleDataTransferAddress(char** tokens, int tokenOffset
 
     if (!isRegister(*(tokens + tokenOffset + 1))) {
         fprintf(stderr, "Rn is not a register for single data transfer\n");
+        assert(false);
     }
 
-    token->Rn = (uint8_t) strtolWrapper(*(tokens + tokenOffset + 2));
-    if (strcmp(*(tokens + tokenOffset + 3), "]") == 0) {
-        if (*(tokens + tokenOffset + 4) == NULL) {
+    token->Rn = (uint8_t) strtolWrapper(*(tokens + tokenOffset + 1));
+    if (strcmp(*(tokens + tokenOffset + 2), "]") == 0) {
+        if (*(tokens + tokenOffset + 3) == NULL || strcmp(*(tokens + tokenOffset + 3), "\n") == 0) {
+            //todo : fix the tokenizing so that newline character is removed
             token->offsetIsImmediate = false;
             token->isPreIndexing = true;
             token->offset = 0;
@@ -91,18 +93,24 @@ struct Instruction parseSingleDataTransferAddress(char** tokens, int tokenOffset
         token->isPreIndexing = true;
     }
 
-    if (strcmp(*(tokens + tokenOffset + 3), "#") == 0) {
-        token->offsetIsImmediate = false;
-        parseExpression(tokens, tokenOffset + 4, token);
-    } else {
-        token->offsetIsImmediate = true;
+    if (strcmp(*(tokens + tokenOffset + 2), "#") == 0) {
         if (strcmp(*(tokens + tokenOffset + 3), "-") == 0) {
             token->offsetIsNegative = true;
             tokenOffset++;
         } else {
             token->offsetIsNegative = false;
         }
-        parseRmShiftedRegister(tokens, tokenOffset + 3, token);
+        token->offsetIsImmediate = false;
+        return parseExpression(tokens, tokenOffset + 3, token);
+    } else {
+        token->offsetIsImmediate = true;
+        if (strcmp(*(tokens + tokenOffset + 2), "-") == 0) {
+            token->offsetIsNegative = true;
+            tokenOffset++;
+        } else {
+            token->offsetIsNegative = false;
+        }
+        return parseRmShiftedRegister(tokens, tokenOffset + 2, token);
     }
     return token->instructionInfo->assemble(token);
 }

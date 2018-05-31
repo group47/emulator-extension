@@ -15,7 +15,7 @@
 #include "assemble.h"
 
 long strtolWrapper(char* str) {
-    fprintf(stderr, "%s", str);
+    fprintf(stderr, "%s\n", str);
     while (!isdigit(*str)) {
         str++;
     }

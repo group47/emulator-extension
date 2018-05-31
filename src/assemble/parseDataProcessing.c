@@ -27,6 +27,7 @@ struct Instruction assembleDataProcessingInstruction(struct Token* token) {
     binary.Rd = token->Rd;
     binary.secondOperand = (uint16_t) token->operand2;
     instruction.rawInstruction =  *(union RawInstruction *)&binary;
+    instruction.type = DATA_PROCESSING;
     return instruction;
 }
 struct Instruction parseDataProcessingOperand2(char** tokens, int tokenOffset, struct Token* token) {

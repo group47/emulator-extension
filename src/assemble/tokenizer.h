@@ -26,7 +26,7 @@ struct Token {
 
 
 
-struct Instruction tokenizer(char*, struct SymbolTable*,struct SymbolTable*,uint16_t);
+struct Instruction tokenizer(struct Token*, const char*, struct SymbolTable*,struct SymbolTable*,uint16_t);
 struct Token* initializeToken(struct Token *);
 int separateString2(char**, char*, char*);
 int separateSpecialCharacters(char**, char**, int, char*);

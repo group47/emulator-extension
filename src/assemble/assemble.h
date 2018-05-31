@@ -6,4 +6,7 @@
 #define ASSEMBLE_ASSEMBLE_H
 
 
+void free_symbol_table(struct SymbolTable);
+bool is_label(char *);
+
 #endif //ASSEMBLE_ASSEMBLE_H

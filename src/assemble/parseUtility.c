@@ -12,15 +12,24 @@
 #include "parseUtility.h"
 
 struct Instruction parseExpression(char** tokens, int tokenOffset, struct Token* token) {
-    token->operand2 = getOperand2Immediate(strtolWrapper(*(tokens+tokenOffset)));
-    return token->instructionInfo->assemble(token);
+    switch (token->instructionInfo->instructionType) {
+        case DATA_PROCESSING:
+            token->operand2 = (uint16_t) getOperand2Immediate(strtolWrapper(*(tokens + tokenOffset)));
+            return token->instructionInfo->assemble(token);
+        case SINGLE_DATA_TRANSFER:
+            token->offset = (uint32_t ) strtolWrapper(*(tokens + tokenOffset));
+            return token->instructionInfo->assemble(token);
+        default:
+            assert(false);
+    }
 }
 struct Instruction parseShiftedRegister(char** tokens, int tokenOffset, struct Token* token) {
     enum ShiftType shiftType = lsl;
     uint16_t shiftedRegister = token->Rm;
-    char* shiftname = *(tokens + tokenOffset + 1);
-    char* registerOrExpression = *(tokens + tokenOffset + 2);
-    if (shiftname != NULL && strlen(shiftname) > 0) {
+    char* shiftname = *(tokens + tokenOffset);
+    char* registerOrExpression = *(tokens + tokenOffset + 1);
+    if (shiftname != NULL && shiftname[0] != '\n' && shiftname[0] != ']') {
+        // todo: remove those special cases
         if (strcmp(shiftname, "lsl") == 0) {
             shiftType = lsl;
         } else if (strcmp(shiftname, "lsr") == 0) {
@@ -35,13 +44,18 @@ struct Instruction parseShiftedRegister(char** tokens, int tokenOffset, struct T
 
         if (registerOrExpression != NULL) {
             if (registerOrExpression[0] == 'r') {
+                shiftedRegister = 0;
                 ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->filler = 0;
                 ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->shift_type = shiftType;
+                ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->Rm = token->Rm;
                 ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->shift_by_register = true;
                 ((struct ImmediateFalseShiftByRegisterTrue *) &shiftedRegister)->Rs =
                         (uint8_t) strtolWrapper(registerOrExpression);
-            } else if (registerOrExpression[0] == '#') {
+            } else if (strcmp(registerOrExpression, "#") == 0) {
+                registerOrExpression = *(tokens + tokenOffset + 2);
+                shiftedRegister = 0;
                 ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->shift_type = shiftType;
+                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->Rm = token->Rm;
                 ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->shift_by_register = false;
                 ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->integer =
                         (uint8_t) strtolWrapper(registerOrExpression);

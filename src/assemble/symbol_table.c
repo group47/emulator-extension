@@ -29,7 +29,7 @@ struct Entry* find(struct SymbolTable* symbolTable, uint8_t* target) {
             struct Label* label = &symbolTable->entries[i].rawEntry;
             key = label->label;
         } else {
-//            assert(false);
+            assert(false);
         }
 
         if (strcmp(key, target) == 0) {
@@ -42,7 +42,7 @@ struct Entry* find(struct SymbolTable* symbolTable, uint8_t* target) {
 
 bool addLabel(struct SymbolTable* symbolTable, uint8_t* label, uint16_t address) {
     uint8_t * label_copy = malloc(100*sizeof(uint8_t));//todo memory leak
-    memcpy(label_copy,label,strlen(label)* sizeof(uint8_t));
+    memcpy(label_copy,label,(strlen(label)+1)* sizeof(uint8_t));
 
     symbolTable->entries[symbolTable->size].rawEntry.label.label = label_copy;
     symbolTable->entries[symbolTable->size].rawEntry.label.address = address;
