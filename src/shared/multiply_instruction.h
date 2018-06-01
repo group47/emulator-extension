@@ -17,6 +17,6 @@ struct MultiplyInstruction {
 }__attribute__((packed));
 #include <stdbool.h>
 #include "emulate_main.h"
-int execute_instruction_multiply(struct EmulatorState *,
+int execute_instruction_multiply(struct CPUState *,
                                  const struct MultiplyInstruction);
 #endif //EMULATE_MULTIPLY_INSTRUCTION_H

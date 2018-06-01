@@ -7,7 +7,7 @@
 #include "../shared/multiply_instruction.h"
 
 int
-execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruction instruction) {
+execute_instruction_multiply(struct CPUState *state, struct MultiplyInstruction instruction) {
 
   if (!should_execute(state, instruction.cond)) {
     return DIDNT_EXECUTE;

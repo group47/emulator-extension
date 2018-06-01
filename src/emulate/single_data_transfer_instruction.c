@@ -8,7 +8,7 @@
 #include "../shared/single_data_transfer_instruction.h"
 
 
-int execute_instruction_single_data_transfer(struct EmulatorState *state,
+int execute_instruction_single_data_transfer(struct CPUState *state,
                                              struct SingleDataTransferInstruction instruction) {
   if (!should_execute(state, instruction.cond)) {
     return DIDNT_EXECUTE;

@@ -21,6 +21,6 @@ struct DataProcessingInstruction {
   enum Cond cond : 4;
 }__attribute__((packed));//the attribute is required for the compiler to properly place data types
 
-int execute_instruction_data_processing(struct EmulatorState *,
+int execute_instruction_data_processing(struct CPUState *,
                                         struct DataProcessingInstruction);
 #endif //EMULATE_DATA_PROCESSING_INSTRUCTION_H

@@ -6,7 +6,7 @@
 #include "emulate_main.h"
 #include "../shared/data_processing_instruction.h"
 
-int execute_instruction_data_processing(struct EmulatorState *state,
+int execute_instruction_data_processing(struct CPUState *state,
                                         const struct DataProcessingInstruction instruction) {
   //todo duplication
 

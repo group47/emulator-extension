@@ -28,7 +28,7 @@ enum CPSR {
 #define MAX_INSTRUCTION_INPUT_FILE_SIZE 1000
 #define NUM_REGISTERS 17
 #include "stdint-gcc.h"
-struct EmulatorState {
+struct CPUState {
   union {
     uint8_t memory[MEMORY_SIZE];
     uint32_t memory_as_uints[MEMORY_SIZE / 4];
@@ -47,37 +47,37 @@ struct EmulatorState {
 #include "../shared/instructions.h"
 #include "../shared/data_processing_instruction.h"
 
-int execute_instruction(struct EmulatorState *, struct Instruction);
-void print_registers(struct EmulatorState *);
-void load_program_into_ram(struct EmulatorState *, const uint8_t *, unsigned int);
+int execute_instruction(struct CPUState *, struct Instruction);
+void print_registers(struct CPUState *);
+void load_program_into_ram(struct CPUState *, const uint8_t *, unsigned int);
 
-void emulateImpl(struct EmulatorState *state);
+void emulateImpl(struct CPUState *state);
 
 int
-setCPSR(struct EmulatorState *, struct DataProcessingInstruction , bool , bool , uint32_t, uint32_t);
-uint32_t *compute_secondOperand(struct EmulatorState *,
+setCPSR(struct CPUState *, struct DataProcessingInstruction , bool , bool , uint32_t, uint32_t);
+uint32_t *compute_secondOperand(struct CPUState *,
                                 uint32_t ,
                                 bool ,
                                 bool );
 
 uint32_t extract_rotate(uint16_t );
 uint32_t extract_shift(uint16_t );
-bool should_execute(const struct EmulatorState *, enum Cond );
+bool should_execute(const struct CPUState *, enum Cond );
 
-int getOperand2Val(struct EmulatorState *,
+int getOperand2Val(struct CPUState *,
                          uint16_t ,
                          bool ,
                          bool ,
                          uint32_t *,
                          uint32_t *);
 
-uint32_t handle_out_of_bounds(struct EmulatorState*,uint32_t ,bool,uint32_t);
+uint32_t handle_out_of_bounds(struct CPUState*,uint32_t ,bool,uint32_t);
 
 enum ExecutionExitCode{
   BRANCH = -2,TERMINATE = -1,DIDNT_EXECUTE = 0, OK = 1
 };
 
-void emulate(struct EmulatorState *state,
+void emulate(struct CPUState *state,
              uint8_t instructions[],
              unsigned int instructions_l);
 

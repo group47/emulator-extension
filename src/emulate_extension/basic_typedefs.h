@@ -15,7 +15,7 @@ typedef uint32_t Word;
 typedef uint16_t HalfWord;
 typedef uint8_t  Byte;
 typedef ByteAddress Address;
-
+typedef uint8_t RegisterAddress;
 
 
 

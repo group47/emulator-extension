@@ -15,10 +15,10 @@
 #include "../shared/branch_instruction.h"
 
 
-void emulate(struct EmulatorState *state,
+void emulate(struct CPUState *state,
              uint8_t *instructions,
              unsigned int instructions_l) {
-  memset(state, 0, sizeof(struct EmulatorState));
+  memset(state, 0, sizeof(struct CPUState));
   load_program_into_ram(state, instructions, instructions_l);
   emulateImpl(state);
 }
@@ -56,7 +56,7 @@ struct Instruction rawInstructionToInstruction(union RawInstruction rawInstructi
   return res;
 }
 
-void load_program_into_ram(struct EmulatorState *pState,
+void load_program_into_ram(struct CPUState *pState,
                            const uint8_t *instructs,
                            unsigned int l) {
   memcpy(pState->memory, instructs, l * sizeof(uint32_t));
@@ -64,7 +64,7 @@ void load_program_into_ram(struct EmulatorState *pState,
 }
 
 //The instruction parameter needs to be removed since the instructions need to be in main memory
-void emulateImpl(struct EmulatorState *state) {
+void emulateImpl(struct CPUState *state) {
   state->PC = 0;
   union RawInstruction fetched;
   bool fetched_valid = false;
@@ -98,7 +98,7 @@ void emulateImpl(struct EmulatorState *state) {
 
 }
 
-int execute_instruction(struct EmulatorState *state,
+int execute_instruction(struct CPUState *state,
                         const struct Instruction instruction) {
   switch (instruction.type) {
     case DATA_PROCESSING:
@@ -119,7 +119,7 @@ int execute_instruction(struct EmulatorState *state,
   }
 }
 
-bool should_execute(const struct EmulatorState *state, const enum Cond cond) {
+bool should_execute(const struct CPUState *state, const enum Cond cond) {
   const bool NequalsV =
       (bool) (((state->CPSR) & CPSR_N) == ((state->CPSR) & CPSR_V));
   const bool Zset = (bool) ((state->CPSR) & CPSR_Z);
@@ -144,7 +144,7 @@ bool should_execute(const struct EmulatorState *state, const enum Cond cond) {
 }
 
 
-int getOperand2Val(struct EmulatorState *state,
+int getOperand2Val(struct CPUState *state,
                          uint16_t secondOperand,
                          bool immediate,
                          bool flag,
@@ -245,7 +245,7 @@ int getOperand2Val(struct EmulatorState *state,
 }
 
 
-int setCPSR(struct EmulatorState *state,
+int setCPSR(struct CPUState *state,
             const struct DataProcessingInstruction instruction,
             const bool borrow,
             const bool overflow,
@@ -300,7 +300,7 @@ uint32_t extract_shift(uint16_t secondOperand) {
 
 
 
-uint32_t handle_out_of_bounds(struct EmulatorState* state,uint32_t index,bool writeq,uint32_t val) {
+uint32_t handle_out_of_bounds(struct CPUState* state,uint32_t index,bool writeq,uint32_t val) {
   //todo magic constants
   if (index >= 0x20200000 && index < 0x20200012) {
     state->pinControlBits[index - 0x20200000] |= val;
@@ -334,7 +334,7 @@ uint32_t handle_out_of_bounds(struct EmulatorState* state,uint32_t index,bool wr
 }
 
 
-void print_registers(struct EmulatorState *state) {
+void print_registers(struct CPUState *state) {
   printf("Registers:\n");
   for (int i = 0; i < 13; ++i) {
     printf("$%-3d: %10d (0x%08x)\n",
@@ -385,7 +385,7 @@ int main(int argc, char **argv) {
                                                    rawData,
                                                    sizeof(uint32_t[MAX_INSTRUCTION_INPUT_FILE_SIZE]));
   assert(amountRead % sizeof(uint32_t) == 0);
-  struct EmulatorState *state = malloc(sizeof(struct EmulatorState));
+  struct CPUState *state = malloc(sizeof(struct CPUState));
   memset(rawData + amountRead / sizeof(uint32_t), 0, 4);
   //rawData[amountRead / sizeof(uint32_t)] = 0;
   emulate(state,
