@@ -58,4 +58,4 @@ add_executable(emulate
         shared/single_data_transfer_instruction.h shared/enums.h)
 
 
-add_executable(emulate_extension emulate_extension/emulator_main.c emulate_extension/emulator_main.h emulate_extension/memory.c emulate_extension/memory.h)
+add_executable(emulate_extension emulate_extension/emulator_main.c emulate_extension/emulator_main.h emulate_extension/memory.c emulate_extension/memory.h emulate_extension/basic_typedefs.h)

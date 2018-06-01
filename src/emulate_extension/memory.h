@@ -6,15 +6,8 @@
 #define SRC_MEMORY_H
 
 
-#include <stdint-gcc.h>
+#include "basic_typedefs.h"
 
-typedef uint32_t ByteAddress;
-typedef uint32_t HalfWordAddress;
-typedef uint32_t WordAddress;
-typedef uint32_t Word;
-typedef uint16_t HalfWord;
-typedef uint8_t  Byte;
-typedef ByteAddress Address;
 
 enum Mode{
   BIG_ENDIAN,LITTLE_ENDIAN
@@ -35,6 +28,8 @@ uint32_t get_byte_from_memory(ByteAddress address);
 uint32_t set_word_from_memory(Address address,Word val);
 uint32_t set_half_word_from_memory(HalfWordAddress address,HalfWord val);
 uint32_t set_byte_from_memory(ByteAddress address,Address val);
+
+void set_mode(enum Mode mode);
 
 
 #endif //SRC_MEMORY_H
