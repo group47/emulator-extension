@@ -56,3 +56,6 @@ add_executable(emulate
         shared/multiply_instruction.h
         emulate/single_data_transfer_instruction.c
         shared/single_data_transfer_instruction.h shared/enums.h)
+
+
+add_executable(emulate_extension emulate_extension/emulator_main.c emulate_extension/emulator_main.h)
