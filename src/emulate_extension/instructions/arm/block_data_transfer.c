@@ -24,7 +24,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
 
     int numOfRegisterUsed = 0;
     bool R15InRegisterList = instruction.registerList & maskPC;
-    enum Mode oldMode = state.mode;
+    enum OperatingMode oldMode = state.operatingMode;
     bool userBankTransfer = (!instruction.loadStoreBit
                             && instruction.psrAndForceUserBit
                             && R15InRegisterList) ||
@@ -39,7 +39,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
     }
 
     if (userBankTransfer) {
-        change_mode(usr);
+        change_operating_mode(usr);
     }
 
     // todo: check if the transfer of banking of register actually fit the specication for this instruction
@@ -93,6 +93,6 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
 
     // todo: cycle thing
 
-    change_mode(oldMode);
+    change_operating_mode(oldMode);
 
 }
