@@ -7,7 +7,6 @@
 
 enum ExecutionExitCode execute_instruction_push_pop_registers(struct PushPopRegistersInstruction instruction) {
 
-    int numOfRegisters = 0;
     for (int i = 0; i < NUM_GENERAL_PURPOSE_REGISTERS_THUMB; i++) {
 
         if (instruction.registerList & 0x1 << i) {
@@ -40,4 +39,5 @@ enum ExecutionExitCode execute_instruction_push_pop_registers(struct PushPopRegi
                                  get_word_from_register(STACK_POINTER_ADDRESS) + 4);
         }
     }
+    return OK;
 }

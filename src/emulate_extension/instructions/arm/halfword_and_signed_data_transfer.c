@@ -140,5 +140,5 @@ enum ExecutionExitCode execute_halfword_and_signed_data_transfer_immediate_offse
 }
 
 const ByteAddress get_offset(struct HalfWordAndSignedDataTransferImmediateOffset instruction) {
-    return instruction.offsetHighNibble << 4 + instruction.offsetLowNibble;
+    return (instruction.offsetHighNibble << 4) + instruction.offsetLowNibble;
 }
