@@ -17,7 +17,7 @@ enum ExecutionExitCode execute_move_shifted_register(struct MoveShiftedRegister 
             set_word_in_register(instruction.Rd,get_word_from_register(instruction.Rs) >> instruction.offset5);
             break;
         case THUMB_SHIFTED_REGISTER_ASR:
-            set_word_in_register(instruction.Rd,arithmeticRightShift(get_word_from_register(instruction.Rs),instruction.offset5));//todo vheck casting occurs correctly
+            set_word_in_register(instruction.Rd,arithmeticRightShift(get_word_from_register(instruction.Rs),instruction.offset5));//todo check casting occurs correctly
             break;
     }
     return OK;

@@ -85,6 +85,6 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
     default:
       assert(false);
   }
-  high_level_set_CPSR(instruction, borrow_occurred, overflow_occurred, computation_res, shiftCarryOut);
+  high_level_set_CPSR_data_processing(instruction, borrow_occurred, overflow_occurred, computation_res, shiftCarryOut);
   return OK;
 }
