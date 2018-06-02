@@ -91,7 +91,7 @@ void init_rand(void) {
     struct timespec spec;
 
     clock_gettime(CLOCK_REALTIME, &spec);
-    srand(seed + (spec.tv_nsec << 10));
+    srand48(seed + (spec.tv_nsec << 10));
 }
 
 

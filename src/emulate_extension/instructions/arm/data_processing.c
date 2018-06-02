@@ -24,7 +24,7 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
 
   uint32_t operand2Val;
   uint32_t shiftCarryOut = 0;
-    get_operand2(instruction.secondOperand, instruction.immediateOperand, 1, &operand2Val, &shiftCarryOut);
+  get_operand2(instruction.secondOperand, instruction.immediateOperand, 1, &operand2Val, &shiftCarryOut);
 
 
   uint32_t computation_res;
@@ -40,7 +40,7 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
     case eor:
       computation_res = rnVal ^ operand2Val;
       set_word_in_register(instruction.Rd, computation_res);
-      return 1;
+      return 1; //break instead?
     case sub:
       computation_res = rnVal - operand2Val;
       if (does_borrow_occur(rnVal, operand2Val)) {
