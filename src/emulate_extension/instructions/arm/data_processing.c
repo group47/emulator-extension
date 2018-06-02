@@ -35,32 +35,32 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
   switch (instruction.opcode) {
     case and:
       computation_res = rnVal & operand2Val;
-          set_word_in_register(instruction.Rd, computation_res);
+      set_word_in_register(instruction.Rd, computation_res);
       break;
     case eor:
       computation_res = rnVal ^ operand2Val;
-          set_word_in_register(instruction.Rd, computation_res);
+      set_word_in_register(instruction.Rd, computation_res);
       return 1;
     case sub:
       computation_res = rnVal - operand2Val;
       if (does_borrow_occur(rnVal, operand2Val)) {
         borrow_occurred = true;
       }
-          set_word_in_register(instruction.Rd, computation_res);
+      set_word_in_register(instruction.Rd, computation_res);
       break;
     case rsb:
       computation_res = operand2Val - rnVal;
       if (does_borrow_occur(operand2Val, rnVal)) {
         borrow_occurred = true;
       }
-          set_word_in_register(instruction.Rd, computation_res);
+      set_word_in_register(instruction.Rd, computation_res);
       break;
     case add:
       computation_res = operand2Val + rnVal;
       if (does_overflow_occur(operand2Val, rnVal)) {
         overflow_occurred = true;
       }
-          set_word_in_register(instruction.Rd, computation_res);
+      set_word_in_register(instruction.Rd, computation_res);
       break;
     case tst:
       computation_res = rnVal & operand2Val;

@@ -15,7 +15,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
 
     assert(instruction.registerList != 0);
     assert(instruction.Rn != PC_ADDRESS);
-    assert(instruction.psrAndForceUserBit && state.mode != usr); // from ARM_doc, 4.11.4
+    assert(instruction.psrAndForceUserBit && state.operatingMode != usr); // from ARM_doc, 4.11.4
 
     WordAddress address = get_word_from_register(instruction.Rn);
 
@@ -94,5 +94,5 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
     // todo: cycle thing
 
     change_operating_mode(oldMode);
-
+    return OK;
 }
