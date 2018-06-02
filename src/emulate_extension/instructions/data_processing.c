@@ -7,6 +7,7 @@
 #include "data_processing.h"
 #include "../util/cpsr_util.h"
 #include "../util/overflow_util.h"
+#include "../util/operand_two_util.h"
 
 
 enum ExecutionExitCode execute_instruction_data_processing(const struct DataProcessingInstruction instruction) {
