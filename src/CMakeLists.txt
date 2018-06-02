@@ -155,4 +155,4 @@ add_executable(emulate_extension
         emulate_extension/instructions/thumb/alu_operation.c
         emulate_extension/instructions/thumb/alu_operation.h
         emulate_extension/instructions/thumb/software_interrupt_thumb.c
-        emulate_extension/instructions/thumb/software_interrupt_thumb.h emulate_extension/instructions/thumb/load_store_register_offset.c emulate_extension/instructions/thumb/load_store_register_offset.h emulate_extension/instructions/thumb/load_store_halfword.c emulate_extension/instructions/thumb/load_store_halfword.h)
+        emulate_extension/instructions/thumb/software_interrupt_thumb.h emulate_extension/instructions/thumb/load_store_register_offset.c emulate_extension/instructions/thumb/load_store_register_offset.h emulate_extension/instructions/thumb/load_store_halfword.c emulate_extension/instructions/thumb/load_store_halfword.h emulate_extension/instructions/arm/coprocessor_register_transfer.c emulate_extension/instructions/arm/coprocessor_register_transfer.h)
