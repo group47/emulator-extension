@@ -7,6 +7,7 @@
 #include "../../util/cpsr_util.h"
 #include "../../util/operand_two_util.h"
 #include "../../util/address.h"
+#include "../../util/operand_two_util.h"
 
 #define IMMEDIATE_BIT_FLAG_SINGLE_DATE_TRANSFER 0
 
@@ -16,9 +17,9 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
     }
 
     // from ARM_doc, 4.9.4
-    assert(instruction.Rn == PC && instruction.writeBackBit);
+    assert(instruction.Rn == PC_ADDRESS && instruction.writeBackBit);
     assert(!instruction.immediateOffsetBit &&
-           ((struct ShiftRegister*) &instruction.offset)->Rm != PC);
+           ((struct ImmediateFalseShiftByRegisterTrue*) &instruction.offset)->Rm != PC_ADDRESS);
 
 
     uint32_t offset;
@@ -54,7 +55,7 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
         }
     } else {
         // from ARM_doc, 4.9.4
-        if (instruction.Rd == PC) {
+        if (instruction.Rd == PC_ADDRESS) {
             set_word_from_memory(address, get_current_instruction_address());
         } else {
             if (instruction.byteWordBit) {
