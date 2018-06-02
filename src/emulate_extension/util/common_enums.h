@@ -18,4 +18,12 @@ enum ExecutionExitCode{
   BRANCH = -2,TERMINATE = -1,DIDNT_EXECUTE = 0, OK = 1
 };
 
+enum LoadStore{
+    LOAD = 0b1,STORE = 0b0
+};
+
+enum PrePostIndexing{
+    PRE = 0b1,POST = 0b0
+};
+
 #endif //SRC_COMMON_ENUMS_H
