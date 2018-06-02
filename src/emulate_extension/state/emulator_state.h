@@ -35,8 +35,11 @@ enum ExceptionFlag {
 };
 
 
-#define NUM_GENERAL_PURPOSE_REGISTERS 16
-#define PC_REGISTER 15
+#define NUM_GENERAL_PURPOSE_REGISTERS_ARM 16
+#define NUM_GENERAL_PURPOSE_REGISTERS_THUMB 8
+#define PC_ADDRESS 15
+#define LR_ADDRESS 14
+#define STACK_POINTER_ADDRESS 13
 
 struct CPSR_Struct {
   enum OperatingMode M;
@@ -59,7 +62,7 @@ struct CPSR_Struct {
 
 
 struct CPUState {
-  Word general_registers[NUM_GENERAL_PURPOSE_REGISTERS];
+  Word general_registers[NUM_GENERAL_PURPOSE_REGISTERS_ARM];
   Word fiq_banked[NUM_FIQ_BANKED];
   Word svc_banked[NUM_SVC_BANKED];
   Word abt_banked[NUM_ABT_BANKED];

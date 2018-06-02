@@ -6,9 +6,10 @@
 #include "multiply.h"
 #include "../../util/cpsr_util.h"
 
-#define PC_REGISTER 15
-
 enum ExecutionExitCode execute_instruction_multiply(const struct MultiplyInstruction instruction) {
+
+  assert(instruction.filler == 0b000000);
+  assert(instruction.filler2 == 0b1001);
 
   //execute condition
   if (!should_execute(instruction.cond)) {
@@ -17,10 +18,10 @@ enum ExecutionExitCode execute_instruction_multiply(const struct MultiplyInstruc
 
   //operand restriction
   assert(instruction.Rd != instruction.Rm);
-  assert(instruction.Rm != PC_REGISTER);
-  assert(instruction.Rs != PC_REGISTER);
-  assert(instruction.Rn != PC_REGISTER);
-  assert(instruction.Rd != PC_REGISTER);
+  assert(instruction.Rm != PC_ADDRESS);
+  assert(instruction.Rs != PC_ADDRESS);
+  assert(instruction.Rn != PC_ADDRESS);
+  assert(instruction.Rd != PC_ADDRESS);
 
   //execution
   const int32_t Rm = get_word_from_register(instruction.Rm);

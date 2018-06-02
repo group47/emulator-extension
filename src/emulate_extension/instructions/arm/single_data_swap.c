@@ -12,7 +12,7 @@ enum ExecutionExitCode execute_instruction_single_data_swap(struct SingleDataSwa
         return DIDNT_EXECUTE;
     }
 
-    assert(instruction.Rd != PC_REGISTER && instruction.Rn != PC_REGISTER);
+    assert(instruction.Rd != PC_ADDRESS && instruction.Rn != PC_ADDRESS);
 
     if (instruction.byteWordBit) {
         ByteAddress swapAddress = get_word_from_register(instruction.Rn);

@@ -18,10 +18,10 @@ enum ExecutionExitCode execute_instruction_multiply_long(const struct MultiplyLo
   assert(instruction.RdHi != instruction.Rm);
   assert(instruction.RdHi != instruction.RdLo);
   assert(instruction.RdLo != instruction.Rm);
-  assert(instruction.Rm != PC_REGISTER);
-  assert(instruction.Rs != PC_REGISTER);
-  assert(instruction.RdLo != PC_REGISTER);
-  assert(instruction.RdHi != PC_REGISTER);
+  assert(instruction.Rm != PC_ADDRESS);
+  assert(instruction.Rs != PC_ADDRESS);
+  assert(instruction.RdLo != PC_ADDRESS);
+  assert(instruction.RdHi != PC_ADDRESS);
 
   //execution
   if (instruction.signedVal) {
