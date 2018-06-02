@@ -20,6 +20,7 @@ struct Memory {
   enum MemoryFormat mode;
 };
 
+// todo: add memory checks here for out of bound
 void init_memory(uint32_t size, enum MemoryFormat mode);
 
 Word get_word_from_memory(Address address);

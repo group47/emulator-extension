@@ -13,24 +13,24 @@ enum ExecutionExitCode execute_instruction_add_subtract(const struct AddSubtract
   Word res;
   if(instruction.immediate){
     if(instruction.op == ADD){
-      res = instruction.RnOffset3 + get_register(instruction.Rs);
+      res = instruction.RnOffset3 + get_byte_from_register(instruction.Rs);
     }
     else if(instruction.op == SUB){
-      res = get_register(instruction.Rs) - instruction.RnOffset3;
+      res = get_byte_from_register(instruction.Rs) - instruction.RnOffset3;
     }
     else{
       assert(false);
     }
   }else{
     if(instruction.op == ADD){
-      res = get_register(instruction.RnOffset3) + get_register(instruction.Rs);
+      res = get_byte_from_register(instruction.RnOffset3) + get_byte_from_register(instruction.Rs);
     }
     else if(instruction.op == SUB){
-      res = get_register(instruction.Rs) - get_register(instruction.RnOffset3);
+      res = get_byte_from_register(instruction.Rs) - get_byte_from_register(instruction.RnOffset3);
     } else{
       assert(false);
     }
   }
-  set_register(instruction.Rd,res);
+  set_word_in_register(instruction.Rd, res);
   return OK;
 }

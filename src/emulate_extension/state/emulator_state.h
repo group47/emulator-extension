@@ -36,7 +36,7 @@ enum ExceptionFlag {
 
 
 #define NUM_GENERAL_PURPOSE_REGISTERS 16
-
+#define PC 15
 
 struct CPSR_Struct {
   enum OperatingMode M;
@@ -77,15 +77,20 @@ struct CPUState {
   bool locked;//todo handle this see 4.12
 };
 
+//todo: do nothing if exception flag is set
+Byte get_byte_from_register(RegisterAddress address);
 
+Word get_word_from_register(RegisterAddress address);
 
-Word get_register(RegisterAddress address);
+Word set_byte_in_register(RegisterAddress address, Byte byte);
 
-Word set_register(RegisterAddress address,Word val);
+Word set_word_in_register(RegisterAddress address, Word val);
 
 void change_mode(enum Mode newMode);
 
 enum Mode get_mode();
+
+struct CPSR_Struct* get_SPSR_by_mode();
 
 void change_operating_mode(enum OperatingMode newOperatingMode);
 
