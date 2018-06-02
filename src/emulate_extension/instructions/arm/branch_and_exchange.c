@@ -16,7 +16,15 @@ enum ExecutionExitCode execute_instruction_branch_and_exchange_instruction(struc
 
     // todo: the instruction will cause a pipeline flush
 
+    set_word_in_register(PC_ADDRESS, get_word_from_register(instruction.Rn));
 
 
+    if (instruction.Rn & 0x1) {
+        change_mode(THUMB);
+    } else {
+        change_mode(ARM);
+    }
+
+    return OK;
 
 }
