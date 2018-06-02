@@ -121,4 +121,4 @@ add_executable(emulate_extension
         emulate_extension/instructions/arm/branch.c
         emulate_extension/instructions/arm/branch.h
         emulate_extension/instructions/arm/branch_and_exchange.c
-        emulate_extension/instructions/arm/branch_and_exchange.h)
+        emulate_extension/instructions/arm/branch_and_exchange.h emulate_extension/instructions/thumb/move_shifted_register.c emulate_extension/instructions/thumb/move_shifted_register.h emulate_extension/util/shift_util.c emulate_extension/util/shift_util.h)

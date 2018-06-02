@@ -7,7 +7,6 @@
 #include "../../util/cpsr_util.h"
 #include "../../util/operand_two_util.h"
 #include "../../util/address.h"
-#include "../../util/operand_two_util.h"
 
 #define IMMEDIATE_BIT_FLAG_SINGLE_DATE_TRANSFER 0
 
@@ -20,7 +19,7 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
     assert(instruction.Rn == PC_ADDRESS && instruction.writeBackBit);
     short assert_var = instruction.offset;
     assert(!instruction.immediateOffsetBit &&
-           ((struct ImmediateFalseShiftByRegisterTrue*) &assert_var)->Rm != PC_ADDRESS);
+           ((struct ImmediateFalseShiftByRegisterTrue*) &assert_var)->Rm != PC_ADDRESS);//todo not sure this is correct
 
 
     uint32_t offset;
