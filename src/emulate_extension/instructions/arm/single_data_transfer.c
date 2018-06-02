@@ -18,8 +18,9 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
 
     // from ARM_doc, 4.9.4
     assert(instruction.Rn == PC_ADDRESS && instruction.writeBackBit);
+    short assert_var = instruction.offset;
     assert(!instruction.immediateOffsetBit &&
-           ((struct ImmediateFalseShiftByRegisterTrue*) &instruction.offset)->Rm != PC_ADDRESS);
+           ((struct ImmediateFalseShiftByRegisterTrue*) &assert_var)->Rm != PC_ADDRESS);
 
 
     uint32_t offset;

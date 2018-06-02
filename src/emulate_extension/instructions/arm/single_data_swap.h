@@ -8,9 +8,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "../../../shared/enums.h"
 #include "../../basic_typedefs.h"
-#include "../../../emulate/emulate_main.h"
 
 struct SingleDataSwapInstruction {
     RegisterAddress Rm : 4;
