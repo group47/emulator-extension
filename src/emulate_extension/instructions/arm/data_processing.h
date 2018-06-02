@@ -5,8 +5,9 @@
 #ifndef SRC_DATA_PROCESSING_H
 #define SRC_DATA_PROCESSING_H
 
-#include "../util/common_enums.h"
-#include "../basic_typedefs.h"
+#include "../../util/common_enums.h"
+#include "../../basic_typedefs.h"
+#include <stdbool.h>
 
 
 enum OpCode {

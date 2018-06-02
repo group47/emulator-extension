@@ -4,10 +4,11 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <assert.h>
 #include "data_processing.h"
-#include "../util/cpsr_util.h"
-#include "../util/overflow_util.h"
-#include "../util/operand_two_util.h"
+#include "../../util/cpsr_util.h"
+#include "../../util/overflow_util.h"
+#include "../../util/operand_two_util.h"
 
 
 enum ExecutionExitCode execute_instruction_data_processing(const struct DataProcessingInstruction instruction) {
@@ -81,7 +82,8 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
       computation_res = operand2Val;
       set_register(instruction.Rd,operand2Val);
       break;
-      //default?
+    default:
+      assert(false);
   }
   high_level_set_CPSR(instruction, borrow_occurred, overflow_occurred, computation_res, shiftCarryOut);
   return OK;

@@ -84,6 +84,8 @@ Word set_register(RegisterAddress address,Word val);
 
 void change_mode(enum Mode newMode);
 
+enum Mode get_mode();
+
 void change_operating_mode(enum OperatingMode newOperatingMode);
 
 void add_exception_flag(enum ExceptionFlag flag);

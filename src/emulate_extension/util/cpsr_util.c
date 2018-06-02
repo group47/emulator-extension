@@ -4,7 +4,7 @@
 
 #include <assert.h>
 #include "cpsr_util.h"
-#include "../instructions/data_processing.h"
+#include "../instructions/arm/data_processing.h"
 bool is_logical(enum OpCode code);
 bool is_arithmetic(enum OpCode code);
 bool should_execute(enum Cond cond){
