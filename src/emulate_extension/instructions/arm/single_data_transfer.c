@@ -17,9 +17,9 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
     }
 
     // from ARM_doc, 4.9.4
-    assert(instruction.Rn == PC_ADDRESS && instruction.writeBackBit);
+    assert(instruction.Rn == PC_REGISTER && instruction.writeBackBit);
     assert(!instruction.immediateOffsetBit &&
-           ((struct ImmediateFalseShiftByRegisterTrue*) &instruction.offset)->Rm != PC_ADDRESS);
+           ((struct ImmediateFalseShiftByRegisterTrue*) &instruction.offset)->Rm != PC_REGISTER);
 
 
     uint32_t offset;
@@ -55,7 +55,7 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
         }
     } else {
         // from ARM_doc, 4.9.4
-        if (instruction.Rd == PC_ADDRESS) {
+        if (instruction.Rd == PC_REGISTER) {
             set_word_from_memory(address, get_current_instruction_address());
         } else {
             if (instruction.byteWordBit) {
