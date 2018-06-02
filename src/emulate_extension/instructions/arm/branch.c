@@ -13,7 +13,7 @@ enum ExecutionExitCode execute_instruction_branch(struct BranchInstruction instr
 
     if (instruction.linkBit) {
         set_word_in_register(PC_ADDRESS, get_word_from_register(PC_ADDRESS) +
-                                         (uint32_t) instruction.offset << 2);
+                                         (uint32_t) instruction.offset << 2 - 8);
     } else {
         assert(false);
     }
