@@ -15,13 +15,24 @@ enum ShiftType {
   ror = 0b11
 };
 
+struct ShiftRegister {
+    RegisterAddress Rm;
+    union Shift;
+};
+
+union Shift {
+    struct ImmediateFalseShiftByRegisterFalse immediateFalseShiftByRegisterFalse;
+    struct ImmediateFalseShiftByRegisterTrue immediateFalseShiftByRegisterTrue;
+};
+
 struct ImmediateTrue{
   uint8_t Imm: 8;
   uint8_t rotate: 4;
 }__attribute__((packed));
 
+
 struct ImmediateFalseShiftByRegisterTrue{
-  RegisterAddress Rm : 4;
+  //RegisterAddress Rm : 4;
   bool shift_by_register: 1;//should be true
   enum ShiftType shift_type: 2;
   bool filler:1;
@@ -30,17 +41,17 @@ struct ImmediateFalseShiftByRegisterTrue{
 
 
 struct ImmediateFalseShiftByRegisterFalse{
-  RegisterAddress Rm : 4;
+  //RegisterAddress Rm : 4;
   bool shift_by_register: 1;//should be false
   enum ShiftType shift_type: 2;
   uint8_t shift_amount: 5;
 }__attribute__((packed));
 
 
-int getOperand2Val(uint16_t secondOperand,
-                   bool immediate,
-                   bool flag,
-                   uint32_t *operand2_val,
-                   uint32_t *carry_out);
+int get_operand2(uint16_t secondOperand,
+                 bool immediate,
+                 bool flag,
+                 uint32_t *operand2_val,
+                 uint32_t *carry_out);
 
 #endif //SRC_OPERAND_TWO_UTIL_H

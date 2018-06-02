@@ -10,11 +10,11 @@
 #include "common_enums.h"
 #include "../state/emulator_state.h"
 
-int getOperand2Val(uint16_t secondOperand,
-                   bool immediate,
-                   bool flag,
-                   uint32_t *operand2_val,
-                   uint32_t *carry_out) {
+int get_operand2(uint16_t secondOperand,
+                 bool immediate,
+                 bool flag,
+                 uint32_t *operand2_val,
+                 uint32_t *carry_out) {
   //todo this needs change in main emulator.
   if (immediate == flag) {
 
@@ -32,13 +32,13 @@ int getOperand2Val(uint16_t secondOperand,
     if (immediateFalse.shift_by_register) {
       struct ImmediateFalseShiftByRegisterTrue
           shiftByRegister = *(struct ImmediateFalseShiftByRegisterTrue *) &secondOperand;
-      shift_amount = (uint8_t) (get_register(shiftByRegister.Rs & 0xff)); //last byte//todo is this correct
+      shift_amount = (uint8_t) (get_byte_from_register(shiftByRegister.Rs & 0xff)); //last byte//todo is this correct
       shift_type = shiftByRegister.shift_type;
-      *operand2_val = get_register(shiftByRegister.Rm);
+      *operand2_val = get_byte_from_register(shiftByRegister.Rm);
     } else {
       shift_amount = immediateFalse.shift_amount;
       shift_type = immediateFalse.shift_type;
-      *operand2_val = get_register(immediateFalse.Rm);
+      *operand2_val = get_byte_from_register(immediateFalse.Rm);
     }
 
     //compute immediate false's value
