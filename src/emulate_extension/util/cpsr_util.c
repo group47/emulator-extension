@@ -5,8 +5,8 @@
 #include <assert.h>
 #include "cpsr_util.h"
 #include "../instructions/arm/data_processing.h"
-bool is_logical(enum OpCode code);
-bool is_arithmetic(enum OpCode code);
+
+
 bool should_execute(enum Cond cond){
   //todo check this is correct with main spec
   const bool NequalsV =
@@ -32,16 +32,25 @@ bool should_execute(enum Cond cond){
   }
 }
 
-void high_level_set_CPSR(const struct DataProcessingInstruction instruction,
-            const bool borrow,
-            const bool overflow,
-            const uint32_t computation_res,
-            const uint32_t shiftCarryOut) {
+
+void high_level_set_CPSR_data_processing(const struct DataProcessingInstruction instruction,
+                         const bool borrow,
+                         const bool overflow,
+                         const uint32_t computation_res,
+                         const uint32_t shiftCarryOut) {
+  return high_level_set_CPSR(instruction.setConditionCodes,is_arithmetic(instruction.opcode),instruction.opcode == add,is_logical(instruction.opcode),borrow,overflow,computation_res,shiftCarryOut);
+}
+
+void high_level_set_CPSR(bool set_condition_codes,bool is_arithmetic,bool is_add,bool is_logical,
+            bool borrow,
+            bool overflow,
+            uint32_t computation_res,
+            uint32_t shiftCarryOut) {
   struct CPSR_Struct final_res = getCPSR();
-  if (instruction.setConditionCodes) {
+  if (set_condition_codes) {
     //set c bit
-    if (is_arithmetic((instruction).opcode)) {
-      if ((instruction).opcode == add) {
+    if (is_arithmetic) {
+      if (is_add) {
         if (overflow)
           final_res.C = true;
         else
@@ -54,7 +63,7 @@ void high_level_set_CPSR(const struct DataProcessingInstruction instruction,
         }
 
       }
-    } else if (is_logical(instruction.opcode)) {
+    } else if (is_logical) {
       *((uint32_t *)&final_res) |= shiftCarryOut;//todo sketchy
     } else {
       assert(false);
@@ -81,3 +90,7 @@ bool is_logical(enum OpCode opCode) {
   return !is_arithmetic(opCode);
 }
 
+void high_level_set_CPSR_thumb_move_compare_add_sub(struct MoveCompareAddSubtract subtract, bool occurred,
+bool overflow_occurred, uint32_t res, int carryOut) {
+    return;high_level_set_CPSR(true,true,subtract.op == ADD,false,occurred,overflow_occurred,res,carryOut);
+}
