@@ -7,7 +7,6 @@
 
 #include <stdbool.h>
 #include "../state/emulator_state.h"
-#include "../util/common_enums.h"
 #include "../instructions/arm/data_processing.h"
 bool should_execute(enum Cond cond);
 

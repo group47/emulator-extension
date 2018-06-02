@@ -3,8 +3,8 @@
 //
 
 #include <assert.h>
-#include "single_data_swap.h"
 #include "../../util/cpsr_util.h"
+#include "single_data_swap.h"
 
 
 enum ExecutionExitCode execute_instruction_single_data_swap(struct SingleDataSwapInstruction instruction) {
