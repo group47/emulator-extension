@@ -153,4 +153,6 @@ add_executable(emulate_extension
         emulate_extension/instructions/thumb/move_compare_add_subtract.c
         emulate_extension/instructions/thumb/move_compare_add_subtract.h
         emulate_extension/instructions/thumb/alu_operation.c
-        emulate_extension/instructions/thumb/alu_operation.h)
+        emulate_extension/instructions/thumb/alu_operation.h
+        emulate_extension/instructions/thumb/software_interrupt_thumb.c
+        emulate_extension/instructions/thumb/software_interrupt_thumb.h)
