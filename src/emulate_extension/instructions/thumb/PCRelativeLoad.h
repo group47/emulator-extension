@@ -7,7 +7,6 @@
 
 
 #include <stdint.h>
-#include "../../../emulate/emulate_main.h"
 
 struct PCRelativeLoadInstruction {
     uint8_t word8 : 8;
