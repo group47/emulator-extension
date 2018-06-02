@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 project(src C)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g -DUSE_EMULATE_MAIN -fsanitize=address")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -g -DUSE_EMULATE_MAIN -fsanitize=address -Wno-")
 
 add_executable(assemble
         assemble/assemble.c
@@ -155,4 +155,4 @@ add_executable(emulate_extension
         emulate_extension/instructions/thumb/alu_operation.c
         emulate_extension/instructions/thumb/alu_operation.h
         emulate_extension/instructions/thumb/software_interrupt_thumb.c
-        emulate_extension/instructions/thumb/software_interrupt_thumb.h emulate_extension/instructions/thumb/load_store_register_offset.c emulate_extension/instructions/thumb/load_store_register_offset.h)
+        emulate_extension/instructions/thumb/software_interrupt_thumb.h emulate_extension/instructions/thumb/load_store_register_offset.c emulate_extension/instructions/thumb/load_store_register_offset.h emulate_extension/instructions/thumb/load_store_halfword.c emulate_extension/instructions/thumb/load_store_halfword.h)
