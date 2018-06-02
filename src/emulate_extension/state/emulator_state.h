@@ -74,6 +74,7 @@ struct CPUState {
   enum OperatingMode operatingMode;
   enum Mode mode;
   enum ExceptionFlag flags;
+  bool locked;//todo handle this see 4.12
 };
 
 //todo: do nothing if exception flag is set
