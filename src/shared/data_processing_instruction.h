@@ -10,6 +10,7 @@
 #include "cpsr_overflow_detection.h"
 #include "instructions.h"
 #include "emulate_main.h"
+#include "common_enums.h"
 struct DataProcessingInstruction {
   uint16_t secondOperand : 12;
   uint8_t Rd:4;

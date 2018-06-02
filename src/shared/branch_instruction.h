@@ -13,6 +13,7 @@ struct BranchInstruction {
   enum Cond cond:4;
 }__attribute__((packed));
 #include "emulate_main.h"
+#include "common_enums.h"
 int execute_instruction_branch(struct CPUState *state,
                                struct BranchInstruction instruction);
 

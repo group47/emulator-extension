@@ -90,4 +90,8 @@ void add_exception_flag(enum ExceptionFlag flag);
 
 void remove_exception_flag(enum ExceptionFlag flag);
 
+struct CPSR_Struct getCPSR();
+
+void setCPSR(struct CPSR_Struct toSet);
+
 #endif //SRC_EMULATOR_STATE_H

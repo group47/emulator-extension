@@ -13,6 +13,8 @@
 #include "../shared/single_data_transfer_instruction.h"
 #include "../shared/multiply_instruction.h"
 #include "../shared/branch_instruction.h"
+#include "common_enums.h"
+#include "../emulate_extension/util/common_enums.h"
 
 
 void emulate(struct CPUState *state,

@@ -9,8 +9,8 @@
 #include "../basic_typedefs.h"
 
 
-enum MemoryFormat{
-  BIG_ENDIAN,LITTLE_ENDIAN
+enum MemoryFormat {
+  BIG_ENDIAN_,LITTLE_ENDIAN_// cundrescores are placed after names, becuase BIG_ENDIAN is used internally in libc
 };
 
 struct Memory {

@@ -5,10 +5,6 @@ set(CMAKE_C_STANDARD 99)
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g -DUSE_EMULATE_MAIN")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g -DUSE_EMULATE_MAIN -fsanitize=address")
 
-
-include_directories(assemble)
-include_directories(emulate)
-
 add_executable(assemble
         assemble/assemble.c
         assemble/binary_file_writer.c
@@ -58,4 +54,4 @@ add_executable(emulate
         shared/single_data_transfer_instruction.h shared/enums.h)
 
 
-add_executable(emulate_extension emulate_extension/emulator_main.c emulate_extension/emulator_main.h emulate_extension/state/memory.c emulate_extension/state/memory.h emulate_extension/basic_typedefs.h emulate_extension/instructions/data_processing.c emulate_extension/instructions/data_processing.h emulate_extension/instructions/multiply.c emulate_extension/instructions/multiply.h emulate_extension/instructions/multiply_long.c emulate_extension/instructions/multiply_long.h emulate_extension/instructions/single_data_swap.c emulate_extension/instructions/single_data_swap.h emulate_extension/state/emulator_state.c emulate_extension/state/emulator_state.h)
+add_executable(emulate_extension emulate_extension/emulator_main.c emulate_extension/emulator_main.h emulate_extension/state/memory.c emulate_extension/state/memory.h emulate_extension/basic_typedefs.h emulate_extension/instructions/data_processing.c emulate_extension/instructions/data_processing.h emulate_extension/instructions/multiply.c emulate_extension/instructions/multiply.h emulate_extension/instructions/multiply_long.c emulate_extension/instructions/multiply_long.h emulate_extension/instructions/single_data_swap.c emulate_extension/instructions/single_data_swap.h emulate_extension/state/emulator_state.c emulate_extension/state/emulator_state.h emulate_extension/util/overflow_util.c emulate_extension/util/overflow_util.h emulate_extension/util/cpsr_util.c emulate_extension/util/cpsr_util.h emulate_extension/util/operand_two_util.c emulate_extension/util/operand_two_util.h emulate_extension/util/common_enums.c emulate_extension/util/common_enums.h)
