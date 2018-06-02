@@ -5,6 +5,7 @@
 #include "../shared/instructions.h"
 #include "emulate_main.h"
 #include "../shared/data_processing_instruction.h"
+#include "cpsr_overflow_detection.h"
 
 int execute_instruction_data_processing(struct EmulatorState *state,
                                         const struct DataProcessingInstruction instruction) {

@@ -11,7 +11,7 @@
 
 struct PushPopRegistersInstruction {
     uint8_t registerList : 8;
-    bool PCLRBit : 1
+    bool PCLRBit : 1;
     uint8_t filler10_position10 : 2;
     enum LoadStore loadStoreBit: 1;
     uint8_t filler1011_position15 : 4;
