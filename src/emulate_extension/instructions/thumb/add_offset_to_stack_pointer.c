@@ -4,6 +4,7 @@
 
 #include "add_offset_to_stack_pointer.h"
 #include "../../state/emulator_state.h"
+#include "../../util/common_enums.h"
 
 enum ExecutionExitCode execution_instruction_add_offset_to_stack_pointer(struct AddOffsetToStackPointerInstruction instruction) {
     if (instruction.signFlag) {

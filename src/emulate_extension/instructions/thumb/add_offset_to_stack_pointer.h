@@ -7,7 +7,6 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "../../../emulate/emulate_main.h"
 
 struct AddOffsetToStackPointerInstruction {
     uint8_t sword7 : 7;
