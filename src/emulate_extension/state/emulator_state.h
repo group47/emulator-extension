@@ -39,7 +39,7 @@ enum ExceptionFlag {
 #define NUM_GENERAL_PURPOSE_REGISTERS_THUMB 8
 #define PC_ADDRESS 15
 #define LR_ADDRESS 14
-#define STACK_POINTER_ADDRESS 13
+#define SP_ADDRESS 13
 
 struct CPSR_Struct {
   enum OperatingMode M;
