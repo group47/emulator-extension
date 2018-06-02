@@ -17,8 +17,8 @@ enum ExecutionExitCode execute_halfword_and_signed_data_transfer_register_offset
     if(!should_execute(instruction.cond)){
         return DIDNT_EXECUTE;
     }
-    const ByteAddress baseAddress = get_register(instruction.Rn);
-    const ByteAddress offset = get_register(instruction.Rm);
+    const ByteAddress baseAddress = get_word_from_register(instruction.Rn);
+    const ByteAddress offset = get_word_from_register(instruction.Rm);
 
     ByteAddress final_address = baseAddress;
     if(instruction.indexing == PRE){
@@ -27,29 +27,29 @@ enum ExecutionExitCode execute_halfword_and_signed_data_transfer_register_offset
     if(instruction.loadStore == LOAD){
         if(instruction.halfword) {
             if(instruction.signed_){
-                set_register(instruction.Rd,get_half_word_from_memory_sign_extended(final_address));
+                set_word_in_register(instruction.Rd,get_half_word_from_memory_sign_extended(final_address));
             }else{
-                set_register(instruction.Rd,get_half_word_from_memory(final_address));
+                set_word_in_register(instruction.Rd,get_half_word_from_memory(final_address));
             }
         }
         else{
             if(instruction.signed_){
-                set_register(instruction.Rd,get_byte_from_memory_sign_extended(final_address));
+                set_word_in_register(instruction.Rd,get_byte_from_memory_sign_extended(final_address));
             }else{
-                set_register(instruction.Rd,get_byte_from_memory(final_address));
+                set_word_in_register(instruction.Rd,get_byte_from_memory(final_address));
             }
         }
     }else if (instruction.loadStore == STORE){
         if(instruction.halfword) {
             if(instruction.signed_){
-                set_half_word_from_memory_sign_extended(final_address,get_register(instruction.Rd));
+                set_half_word_from_memory_sign_extended(final_address,get_word_from_register(instruction.Rd));
             }else{
-                set_half_word_from_memory(final_address,get_register(instruction.Rd));
+                set_half_word_from_memory(final_address,get_word_from_register(instruction.Rd));
             }
         }
         else{
             if(instruction.signed_){
-                set_byte_from_memory_sign_extended(final_address,get_register(instruction.Rd));
+                set_byte_from_memory_sign_extended(final_address,get_word_from_register(instruction.Rd));
             }else{
                 assert(false);
             }
@@ -62,7 +62,7 @@ enum ExecutionExitCode execute_halfword_and_signed_data_transfer_register_offset
         final_address = getFinalAddress(instruction.upDown, baseAddress, offset);
     }
     if(instruction.writeBack){
-        set_register(instruction.Rn,final_address);
+        set_word_in_register(instruction.Rn,final_address);
     }
     return OK;
 
@@ -89,7 +89,7 @@ enum ExecutionExitCode execute_halfword_and_signed_data_transfer_immediate_offse
     if(!should_execute(instruction.cond)){
         return DIDNT_EXECUTE;
     }
-    const ByteAddress baseAddress = get_register(instruction.Rn);
+    const ByteAddress baseAddress = get_word_from_register(instruction.Rn);
     const ByteAddress offset = get_offset(instruction);
 
     ByteAddress final_address = baseAddress;
@@ -99,29 +99,29 @@ enum ExecutionExitCode execute_halfword_and_signed_data_transfer_immediate_offse
     if(instruction.loadStore == LOAD){
         if(instruction.halfword) {
             if(instruction.signed_){
-                set_register(instruction.Rd,get_half_word_from_memory_sign_extended(final_address));
+                set_word_in_register(instruction.Rd,get_half_word_from_memory_sign_extended(final_address));
             }else{
-                set_register(instruction.Rd,get_half_word_from_memory(final_address));
+                set_word_in_register(instruction.Rd,get_half_word_from_memory(final_address));
             }
         }
         else{
             if(instruction.signed_){
-                set_register(instruction.Rd,get_byte_from_memory_sign_extended(final_address));
+                set_word_in_register(instruction.Rd,get_byte_from_memory_sign_extended(final_address));
             }else{
-                set_register(instruction.Rd,get_byte_from_memory(final_address));
+                set_word_in_register(instruction.Rd,get_byte_from_memory(final_address));
             }
         }
     }else if (instruction.loadStore == STORE){
         if(instruction.halfword) {
             if(instruction.signed_){
-                set_half_word_from_memory_sign_extended(final_address,get_register(instruction.Rd));
+                set_half_word_from_memory_sign_extended(final_address,get_word_from_register(instruction.Rd));
             }else{
-                set_half_word_from_memory(final_address,get_register(instruction.Rd));
+                set_half_word_from_memory(final_address,get_word_from_register(instruction.Rd));
             }
         }
         else{
             if(instruction.signed_){
-                set_byte_from_memory_sign_extended(final_address,get_register(instruction.Rd));
+                set_byte_from_memory_sign_extended(final_address,get_word_from_register(instruction.Rd));
             }else{
                 assert(false);
             }
@@ -134,7 +134,7 @@ enum ExecutionExitCode execute_halfword_and_signed_data_transfer_immediate_offse
         final_address = getFinalAddress(instruction.upDown, baseAddress, offset);
     }
     if(instruction.writeBack){
-        set_register(instruction.Rn,final_address);
+        set_word_in_register(instruction.Rn,final_address);
     }
     return OK;
 }
