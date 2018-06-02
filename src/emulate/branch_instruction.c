@@ -7,7 +7,7 @@
 #include "../shared/branch_instruction.h"
 
 
-int execute_instruction_branch(struct CPUState *state,
+int execute_instruction_branch(struct EmulatorState *state,
                                const struct BranchInstruction instruction) {
   if (!should_execute(state, instruction.cond)) {
     return DIDNT_EXECUTE;

@@ -16,7 +16,6 @@
 
 #include "../shared/enums.h"
 #include "../shared/instructions.h"
-#include "common_enums.h"
 
 struct InstructionInfo {
     char* mnemonics;

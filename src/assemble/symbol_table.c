@@ -17,7 +17,6 @@
 #include "parseBranch.h"
 #include "parseSpecial.h"
 #include "symbol_table.h"
-#include "common_enums.h"
 
 bool secondToLastCharIs(const char *target, char c);
 struct Entry* find(struct SymbolTable* symbolTable, char* target) {

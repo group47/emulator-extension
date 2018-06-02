@@ -18,8 +18,7 @@ struct SingleDataTransferInstruction {
 }__attribute__((packed));
 #include <stdbool.h>
 #include "emulate_main.h"
-#include "common_enums.h"
-int execute_instruction_single_data_transfer(struct CPUState *,
+int execute_instruction_single_data_transfer(struct EmulatorState *,
                                              const struct SingleDataTransferInstruction);
 
 #endif //EMULATE_SINGLE_DATA_TRANSFER_INSTRUCTION_H

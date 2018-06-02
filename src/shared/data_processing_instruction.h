@@ -10,7 +10,6 @@
 #include "cpsr_overflow_detection.h"
 #include "instructions.h"
 #include "emulate_main.h"
-#include "common_enums.h"
 struct DataProcessingInstruction {
   uint16_t secondOperand : 12;
   uint8_t Rd:4;
@@ -22,6 +21,6 @@ struct DataProcessingInstruction {
   enum Cond cond : 4;
 }__attribute__((packed));//the attribute is required for the compiler to properly place data types
 
-int execute_instruction_data_processing(struct CPUState *,
+int execute_instruction_data_processing(struct EmulatorState *,
                                         struct DataProcessingInstruction);
 #endif //EMULATE_DATA_PROCESSING_INSTRUCTION_H

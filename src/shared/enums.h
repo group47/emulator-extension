@@ -14,6 +14,16 @@ enum InstructionType {
   BRANCH_INSTRUCTION_INVALID
 };
 
+enum Cond {
+  eq = 0b0000,
+  ne = 0b0001,
+  ge = 0b1010,
+  lt = 0b1011,
+  gt = 0b1100,
+  le = 0b1101,
+  al = 0b1110
+};
+
 
 // added by rory
 enum ShiftType {
