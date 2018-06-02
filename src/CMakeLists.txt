@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 project(src C)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g -DUSE_EMULATE_MAIN -fsanitize=address")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -g -mno- -DUSE_EMULATE_MAIN -fsanitize=address")
 
 add_executable(assemble
         assemble/assemble.c
@@ -121,4 +121,4 @@ add_executable(emulate_extension
         emulate_extension/instructions/arm/branch.c
         emulate_extension/instructions/arm/branch.h
         emulate_extension/instructions/arm/branch_and_exchange.c
-        emulate_extension/instructions/arm/branch_and_exchange.h emulate_extension/instructions/thumb/move_shifted_register.c emulate_extension/instructions/thumb/move_shifted_register.h emulate_extension/util/shift_util.c emulate_extension/util/shift_util.h emulate_extension/instructions/thumb/move_compare_add_subtract.c emulate_extension/instructions/thumb/move_compare_add_subtract.h)
+        emulate_extension/instructions/arm/branch_and_exchange.h emulate_extension/instructions/thumb/move_shifted_register.c emulate_extension/instructions/thumb/move_shifted_register.h emulate_extension/util/shift_util.c emulate_extension/util/shift_util.h emulate_extension/instructions/thumb/move_compare_add_subtract.c emulate_extension/instructions/thumb/move_compare_add_subtract.h emulate_extension/instructions/thumb/alu_operation.c emulate_extension/instructions/thumb/alu_operation.h)
