@@ -36,7 +36,7 @@ enum ExceptionFlag {
 
 
 #define NUM_GENERAL_PURPOSE_REGISTERS 16
-#define PC_REGISTER 15
+#define PC_ADDRESS 15
 
 struct CPSR_Struct {
   enum OperatingMode M;

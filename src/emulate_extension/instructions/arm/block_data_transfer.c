@@ -14,7 +14,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
     }
 
     assert(instruction.registerList != 0);
-    assert(instruction.Rn != PC_REGISTER);
+    assert(instruction.Rn != PC_ADDRESS);
     assert(instruction.psrAndForceUserBit && state.mode != usr); // from ARM_doc, 4.11.4
 
     WordAddress address = get_word_from_register(instruction.Rn);
@@ -49,15 +49,15 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
     for (uint8_t i = 0; i < NUM_REGISTER_IN_REGISTER_LIST; i++) {
         if (instruction.registerList & (0x1 << i)) {
 
-            R15InRegisterList = i == PC_REGISTER ? true : R15InRegisterList;
+            R15InRegisterList = i == PC_ADDRESS ? true : R15InRegisterList;
 
             if (instruction.loadStoreBit) {
                 set_word_in_register(i, get_word_from_memory(address));
-                if (instruction.psrAndForceUserBit && i == PC_REGISTER) {
+                if (instruction.psrAndForceUserBit && i == PC_ADDRESS) {
                     setCPSR(*get_SPSR_by_mode());
                 }
             } else {
-                if (i == PC_REGISTER) {
+                if (i == PC_ADDRESS) {
                     set_word_from_memory((Address)i * 4 + address, get_current_instruction_address() + 12);
                 } else {
                     set_word_from_memory((Address)i * 4 + address, get_word_from_register(i));

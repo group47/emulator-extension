@@ -9,26 +9,27 @@
 
 bool should_execute(enum Cond cond){
   //todo check this is correct with main spec
-  const bool NequalsV =
-      (bool) (getCPSR().N == getCPSR().V);
-  const bool Zset = (bool) (getCPSR().Z);
+  const bool unsignedHigher = getCPSR().C && !getCPSR().Z;
+  const bool greaterOrEqual = getCPSR().N == getCPSR().V;
+  const bool greater        = !getCPSR().Z && greaterOrEqual;
   switch (cond) {
-    case eq:
-      return Zset;
-    case ne:
-      return !Zset;
-    case ge:
-      return NequalsV;
-    case lt:
-      return !NequalsV;
-    case gt:
-      return (!Zset) && NequalsV;
-    case le:
-      return Zset || (!NequalsV);
-    case al:
-      return true;
+    case eq: return getCPSR().Z;
+    case ne: return !getCPSR().Z;
+    case cs: return getCPSR().C;
+    case cc: return !getCPSR().C;
+    case mi: return getCPSR().N;
+    case pl: return !getCPSR().N;
+    case vs: return getCPSR().V;
+    case vc: return !getCPSR().V;
+    case hi: return unsignedHigher;
+    case ls: return !unsignedHigher;
+    case ge: return greaterOrEqual;
+    case lt: return !greaterOrEqual;
+    case gt: return greater;
+    case le: return !greater;
+    case al: return true;
     default:
-      return false;
+      return false; //assert false as never is interruption
   }
 }
 
