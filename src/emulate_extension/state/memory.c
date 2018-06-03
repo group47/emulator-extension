@@ -5,3 +5,7 @@
 #include "memory.h"
 
 static struct Memory memory;
+
+Word get_word_from_memory(Address address) {
+
+}
