@@ -4,7 +4,7 @@
 
 #include <assert.h>
 #include "exception.h"
-#include "emulator_state.c"
+#include "emulator_state.h"
 
 /*
  * MONSTER COMMENT
@@ -52,13 +52,13 @@ void handle_exception() {
         offset = 8;
 
     } else if (has_exception_flag(FIQ)) {
-        assert(get_mode() != usr);
+        assert(get_operating_mode() != usr);
         newMode = fiq;
         offset = 4;
         oldCPSR.F = 0;
         setCPSR(oldCPSR);
     } else if (has_exception_flag(IRQ)) {
-        assert(get_mode() != usr);
+        assert(get_operating_mode() != usr);
         newMode = irq;
         offset = 4;
         oldCPSR.I = 0;
@@ -77,7 +77,11 @@ void handle_exception() {
     }
 
 
-    setSPSR(state.CPSR, *get_SPSR_by_mode());
+    setSPSR(getCPSR(), *get_SPSR_by_mode());
 
 
+}
+
+bool has_exceptions(){
+    assert(false);//todo
 }

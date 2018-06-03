@@ -6,7 +6,7 @@
 #include "block_data_transfer.h"
 #include "../../util/cpsr_util.h"
 #include "../../util/address.h"
-#include "../../state/emulator_state.c"
+#include "../../state/emulator_state.h"
 
 enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataTransferInstruction instruction) {
     if (!should_execute(instruction.cond)) {
@@ -65,7 +65,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
             }
 
             // Handle aborts
-            if (state.flags) {
+            if (has_exception_flag(DATA_ABORT) || has_exception_flag(PREFETCH_ABORT)) {
                 if (instruction.loadStoreBit) {
                     if (instruction.writeBackBit) {
                         set_word_in_register(instruction.Rn, address);
