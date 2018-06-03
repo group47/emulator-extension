@@ -12,7 +12,7 @@
 struct CoprocessorDataOperationsInstruction {
     RegisterAddress CoOperandRegister_position3 : 4; // Coprocessor operand register
     uint8_t filler0_position4 : 1;
-    RegisterAddress CoInformation :4; // Coprocessor information
+    RegisterAddress CoInformation :3; // Coprocessor information
     RegisterAddress CoNumber : 4; // Coprocessor number
     RegisterAddress CoDestinationRegister : 4; // Coprocessor destination register
     RegisterAddress CoOperandRegister_position19 : 4; // Coprocessor operand register

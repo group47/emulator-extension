@@ -55,6 +55,7 @@ enum ArmInstructionType{
     ARM_SINGLE_DATA_TRANSFER = 12,
     ARM_SOFTWARE_INTERRUPT = 13,
     ARM_UNDEFINED = 14,
+    ARM_INVALID = 15
 };
 
 

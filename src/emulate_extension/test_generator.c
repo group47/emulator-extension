@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "test_generator.h"
 #include "instructions/arm/arm_instruction.h"
+#include "util/static_asserts.h"
 
 
 //enum ArmInstructionType{
@@ -52,7 +53,7 @@ uint32_t get_rand_num(void) {
 
 union RawArmInstruction get_rand_raw_instruction(void) {
     const uint32_t val = get_rand_num();
-    return *((union RawArmInstruction *) &val);
+    return *(union RawArmInstruction *) &val;
 }
 
 
@@ -90,7 +91,8 @@ enum ArmInstructionType fromString(const char* str){
 
 #ifdef TEST_SCRIPT_MAIN
 
-int main(const char **argv, uint32_t argc) {
+int main(uint32_t argc, const char **argv) {
+    do_asserts();
     assert(argc > 3);
     output_file = argv[1];
     assert(strtol(argv[2],NULL,10) > 0);
@@ -106,6 +108,8 @@ int main(const char **argv, uint32_t argc) {
         instructions[i] = get_rand_instruction_of_types(types,argc - 3);
     }
     write_instructions_to_file(output_file,instructions,num_instructions);
+    free(types);
+    free(instructions);
     return 0;
 
 }

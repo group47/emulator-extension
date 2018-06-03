@@ -20,7 +20,7 @@ struct SingleDataSwapInstruction {
     bool byteWordBit : 1;
     uint8_t filler00010_position27 : 5; // should be 00010
     enum Cond cond: 4;
-};
+}__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_single_data_swap(struct SingleDataSwapInstruction);
 #endif //SRC_SINGLE_DATA_SWAP_H
