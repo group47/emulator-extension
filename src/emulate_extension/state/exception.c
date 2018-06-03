@@ -77,7 +77,7 @@ void handle_exception() {
     }
 
 
-    setSPSR(getCPSR(), *get_SPSR_by_mode());
+    setSPSR(getCPSR());
 
 
 }
