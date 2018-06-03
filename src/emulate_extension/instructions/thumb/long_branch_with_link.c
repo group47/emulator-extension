@@ -34,5 +34,7 @@ enum ExecutionExitCode execute_instruction_long_branch_with_link(const struct Lo
     set_word_in_register(LR_ADDRESS, PC_result);
   }
 
-  return OK;
+  add_exception_flag(BRANCH_EXCEPTION);
+
+  return BRANCH;
 }

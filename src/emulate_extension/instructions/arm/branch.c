@@ -18,5 +18,6 @@ enum ExecutionExitCode execute_instruction_branch(struct BranchInstruction instr
         assert(false);
     }
 
-    return OK;
+    add_exception_flag(BRANCH_EXCEPTION);
+    return BRANCH;
 }

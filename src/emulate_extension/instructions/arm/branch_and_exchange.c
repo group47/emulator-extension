@@ -25,6 +25,8 @@ enum ExecutionExitCode execute_instruction_branch_and_exchange_instruction(struc
         change_mode(ARM);
     }
 
-    return OK;
+    add_exception_flag(BRANCH_EXCEPTION);
+
+    return BRANCH;
 
 }
