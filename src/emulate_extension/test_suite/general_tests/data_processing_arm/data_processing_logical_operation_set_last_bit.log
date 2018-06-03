@@ -1,0 +1,4 @@
+/home/pi/.gdbinit:5: Error in sourced command file:
+bob.c: No such file or directory.
+data_processing_logical_operation_set_last_bit.gdbinit: No such file or directory.
+(gdb) quit
