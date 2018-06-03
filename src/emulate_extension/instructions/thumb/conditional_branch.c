@@ -8,7 +8,7 @@
 
 enum ExecutionExitCode execute_instruction_conditional_branch(const struct ConditionalBranchInstruction instruction) {
 
-  assert(instruction.filler == 0b1101);
+  assert(instruction.filler1101 == 0b1101);
 
   if (!should_execute(instruction.cond)) {
     return DIDNT_EXECUTE;

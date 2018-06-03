@@ -8,7 +8,7 @@
 
 enum ExecutionExitCode execute_instruction_long_branch_with_link(const struct LongBranchWithLinkInstruction instruction) {
 
-  assert(instruction.filler == 0b1111);
+  assert(instruction.filler1111 == 0b1111);
 
   int32_t offset = instruction.offset & 0x7ff;
   Address PC_result;
