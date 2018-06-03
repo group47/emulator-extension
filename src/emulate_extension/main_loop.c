@@ -19,10 +19,10 @@ void main_loop(enum CommandLineFlags flags){
 
         if(fetched_valid){
             if(get_mode() == ARM){
-                const enum ExecutionExitCode exitCode = execute_arm_instruction(get_fetched_arm());
+                const enum ExecutionExitCode exitCode = execute_arm_instruction(ARMfromRaw(get_fetched_arm()));
             }
             else if(get_mode() == THUMB){
-                const enum ExecutionExitCode exitCode = execute_thumb_instruction(get_fetched_thumb());
+                const enum ExecutionExitCode exitCode = execute_thumb_instruction(ThumbFromRaw(get_fetched_thumb()));
             } else {
                 assert(false);
             }
