@@ -8,8 +8,8 @@
 
 enum ExecutionExitCode execute_instruction_multiply(const struct MultiplyInstruction instruction) {
 
-  assert(instruction.filler == 0b000000);
-  assert(instruction.filler2 == 0b1001);
+  assert(instruction.filler000000 == 0b000000);
+  assert(instruction.filler1001 == 0b1001);
 
   //execute condition
   if (!should_execute(instruction.cond)) {

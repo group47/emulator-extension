@@ -22,4 +22,6 @@ struct CoProcessorRegisterTransfer{
     enum Cond cond:4;
 };
 
+enum ExecutionExitCode execute_copprocessor_register_transfer(struct CoProcessorRegisterTransfer instruction);
+
 #endif //SRC_COPROCESSOR_REGISTER_TRANSFER_H

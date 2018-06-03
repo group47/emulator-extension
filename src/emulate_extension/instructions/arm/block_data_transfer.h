@@ -20,10 +20,11 @@ struct BlockDataTransferInstruction {
     bool psrAndForceUserBit : 1;
     bool upDownBit : 1;
     bool prePostIndexingBit : 1;
-    uint8_t filler : 3;
+    uint8_t filler100 : 3;
     enum Cond cond : 4;
 }__attribute__((packed));
 
+enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataTransferInstruction instruction);
 
 
 #endif //SRC_BLOCK_DATA_TRANSFER_H

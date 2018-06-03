@@ -55,7 +55,7 @@ void exception_handler() {
         newMode = svc;
         offset = get_mode() == ARM ? 4 : 2;
     }
-    else if(has_exception_flag(BRANCH)){
+    else if(has_exception_flag(BRANCH_EXCEPTION)){
         //todo
     }
 

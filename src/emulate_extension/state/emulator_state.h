@@ -110,4 +110,6 @@ void setCPSR(struct CPSR_Struct toSet);
 
 void setSPSR(struct CPSR_Struct old, struct CPSR_Struct new);
 
+void init_cpu(void);
+
 #endif //SRC_EMULATOR_STATE_H

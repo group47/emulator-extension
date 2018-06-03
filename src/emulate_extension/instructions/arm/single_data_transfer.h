@@ -19,7 +19,7 @@ struct SingleDataTransferInstruction {
     bool upDownBit : 1;
     bool prePostBit : 1;
     bool immediateOffsetBit:1;
-    uint8_t filler:2; //should be 0b01
+    uint8_t filler01:2; //should be 0b01
     enum Cond cond:4;
 }__attribute__((packed));
 
