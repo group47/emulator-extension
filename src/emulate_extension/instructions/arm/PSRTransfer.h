@@ -22,7 +22,7 @@ struct TransferPSRContentsToRegister {
 
 struct TransferRegisterContentsToPSR {
     RegisterAddress Rm : 4;
-    uint16_t filler1010_0111_1100_0000_00_position_21 : 18;
+    uint32_t filler1010_0111_1100_0000_00_position_21 : 18;
     bool destinationPSR : 1;
     uint8_t filler00010_position27 : 5;
     enum Cond cond : 4;

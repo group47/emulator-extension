@@ -54,7 +54,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
             if (instruction.loadStoreBit) {
                 set_word_in_register(i, get_word_from_memory(address));
                 if (instruction.psrAndForceUserBit && i == PC_ADDRESS) {
-                    setCPSR(*get_SPSR_by_mode());
+                    setCPSR(get_SPSR_by_mode());
                 }
             } else {
                 if (i == PC_ADDRESS) {

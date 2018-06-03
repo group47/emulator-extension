@@ -30,7 +30,7 @@ enum Mode get_mode() {
     assert(false);
 }
 
-struct CPSR_Struct *get_SPSR_by_mode() {
+struct CPSR_Struct get_SPSR_by_mode() {
     assert(false);
 }
 
@@ -62,7 +62,7 @@ void setCPSR(struct CPSR_Struct toSet) {
     assert(false);
 }
 
-void setSPSR(struct CPSR_Struct old, struct CPSR_Struct new) {
+void setSPSR(struct CPSR_Struct toSet) {
     assert(false);
 }
 
