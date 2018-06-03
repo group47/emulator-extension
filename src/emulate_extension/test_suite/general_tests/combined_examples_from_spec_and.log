@@ -19,6 +19,7 @@ lr             0x0	0
 pc             0x1009c	0x1009c
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x1009c:	add	r2, r3, #4
 r0             0x0	0
 r1             0x6	6
 r2             0x4	4
@@ -37,6 +38,7 @@ lr             0x0	0
 pc             0x100a0	0x100a0
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x100a0:	add	r3, r1, #6
 r0             0x0	0
 r1             0x6	6
 r2             0x4	4
@@ -55,6 +57,7 @@ lr             0x0	0
 pc             0x100a4	0x100a4
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x100a4:	add	r0, r1, #5
 r0             0xb	11
 r1             0x6	6
 r2             0x4	4

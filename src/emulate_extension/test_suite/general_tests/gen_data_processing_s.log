@@ -19,6 +19,7 @@ lr             0x0	0
 pc             0x1009c	0x1009c
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x1009c:	orrs	r8, r10, r8, asr r2
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -37,6 +38,7 @@ lr             0x0	0
 pc             0x100a0	0x100a0
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x100a0:	subsle	r5, r10, #193	; 0xc1
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -55,6 +57,7 @@ lr             0x0	0
 pc             0x100a4	0x100a4
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x100a4:	rsbsvs	r8, r3, r6, asr r7
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -73,6 +76,7 @@ lr             0x0	0
 pc             0x100a8	0x100a8
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x100a8:	addshi	r3, r4, r1, ror r1
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -109,6 +113,7 @@ lr             0x0	0
 pc             0x100b0	0x100b0
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x100b0:	cmpvc	r2, r10, asr r0
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -127,6 +132,7 @@ lr             0x0	0
 pc             0x100b4	0x100b4
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x100b4:	addseq	r2, r9, r4, lsr r10
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -145,6 +151,7 @@ lr             0x0	0
 pc             0x100b8	0x100b8
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x100b8:	eorseq	r11, r0, r11, lsl r8
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -163,6 +170,7 @@ lr             0x0	0
 pc             0x100bc	0x100bc
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x100bc:	movhi	r1, #192	; 0xc0
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -199,6 +207,7 @@ lr             0x0	0
 pc             0x100c4	0x100c4
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x100c4:	orrsvc	r0, r11, r12, asr r1
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -217,6 +226,7 @@ lr             0x0	0
 pc             0x100c8	0x100c8
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x100c8:	teqlt	r5, r7, asr r2
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -235,6 +245,7 @@ lr             0x0	0
 pc             0x100cc	0x100cc
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x100cc:	adcscc	r7, r11, r12, asr r0
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -253,6 +264,7 @@ lr             0x0	0
 pc             0x100d0	0x100d0
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x100d0:	adcs	r4, r12, #100	; 0x64
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -289,6 +301,7 @@ lr             0x0	0
 pc             0x100d8	0x100d8
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x100d8:	orrs	r0, r2, #121	; 0x79
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -307,6 +320,7 @@ lr             0x0	0
 pc             0x100dc	0x100dc
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x100dc:	subsle	r4, r8, r11, ror r1
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -343,6 +357,7 @@ lr             0x0	0
 pc             0x100e4	0x100e4
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x100e4:	tstcs	r6, r6, lsl r4
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -379,6 +394,7 @@ lr             0x0	0
 pc             0x100ec	0x100ec
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x100ec:	orrsgt	r8, r9, r6, asr r7
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -397,6 +413,7 @@ lr             0x0	0
 pc             0x100f0	0x100f0
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x100f0:	lslvs	r3, r7, r0
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -415,6 +432,7 @@ lr             0x0	0
 pc             0x100f4	0x100f4
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x100f4:	rsccs	r4, r10, #171	; 0xab
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -433,6 +451,7 @@ lr             0x0	0
 pc             0x100f8	0x100f8
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x100f8:	eormi	r4, r5, #132	; 0x84
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -469,6 +488,7 @@ lr             0x0	0
 pc             0x10100	0x10100
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x10100:	eorshi	r8, r11, r4, lsr r4
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -487,6 +507,7 @@ lr             0x0	0
 pc             0x10104	0x10104
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x10104:	adcs	r5, r9, #6
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -505,6 +526,7 @@ lr             0x0	0
 pc             0x10108	0x10108
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10108:	biceq	r5, r10, #182	; 0xb6
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -523,6 +545,7 @@ lr             0x0	0
 pc             0x1010c	0x1010c
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x1010c:	rscspl	r8, r1, #195	; 0xc3
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -541,6 +564,7 @@ lr             0x0	0
 pc             0x10110	0x10110
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10110:	cmphi	r6, r6, lsl r5
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -559,6 +583,7 @@ lr             0x0	0
 pc             0x10114	0x10114
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x10114:	tstvs	r9, r5, asr r0
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -577,6 +602,7 @@ lr             0x0	0
 pc             0x10118	0x10118
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x10118:	cmpvs	r11, r11, lsr r7
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -595,6 +621,7 @@ lr             0x0	0
 pc             0x1011c	0x1011c
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x1011c:	bicgt	r1, r10, #95	; 0x5f
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -613,6 +640,7 @@ lr             0x0	0
 pc             0x10120	0x10120
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x10120:	rsbcs	r2, r8, r8, lsl r12
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -631,6 +659,7 @@ lr             0x0	0
 pc             0x10124	0x10124
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x10124:	lslsle	r10, r9, r4
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -667,6 +696,7 @@ lr             0x0	0
 pc             0x1012c	0x1012c
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x1012c:	subspl	r12, r1, r10, ror r10
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -685,6 +715,7 @@ lr             0x0	0
 pc             0x10130	0x10130
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x10130:	asrmi	r4, r11, r11
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -703,6 +734,7 @@ lr             0x0	0
 pc             0x10134	0x10134
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x10134:	teqvs	r9, r10, ror r2
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -721,6 +753,7 @@ lr             0x0	0
 pc             0x10138	0x10138
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x10138:	teqmi	r8, #119	; 0x77
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -739,6 +772,7 @@ lr             0x0	0
 pc             0x1013c	0x1013c
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x1013c:	subshi	r5, r8, r9, ror r7
 r0             0x79	121
 r1             0x0	0
 r2             0x0	0
@@ -793,6 +827,7 @@ lr             0x0	0
 pc             0x10148	0x10148
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10148:	orrspl	r8, r1, #190	; 0xbe
 r0             0x1	1
 r1             0x0	0
 r2             0x0	0
@@ -811,6 +846,7 @@ lr             0x0	0
 pc             0x1014c	0x1014c
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x1014c:	teqcs	r9, r6, asr r1
 r0             0x1	1
 r1             0x0	0
 r2             0x0	0
@@ -829,6 +865,7 @@ lr             0x0	0
 pc             0x10150	0x10150
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x10150:	add	r8, r10, #48	; 0x30
 r0             0x1	1
 r1             0x0	0
 r2             0x0	0
@@ -847,6 +884,7 @@ lr             0x0	0
 pc             0x10154	0x10154
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x10154:	movsge	r12, #49	; 0x31
 r0             0x1	1
 r1             0x0	0
 r2             0x0	0
@@ -865,6 +903,7 @@ lr             0x0	0
 pc             0x10158	0x10158
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10158:	cmpgt	r6, r6, asr r8
 r0             0x1	1
 r1             0x0	0
 r2             0x0	0
@@ -883,6 +922,7 @@ lr             0x0	0
 pc             0x1015c	0x1015c
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x1015c:	orrcs	r9, r0, r6, lsr r7
 r0             0x1	1
 r1             0x0	0
 r2             0x0	0
@@ -937,6 +977,7 @@ lr             0x0	0
 pc             0x10168	0x10168
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10168:	rscsvc	r5, r12, r12, asr r8
 r0             0x1	1
 r1             0x0	0
 r2             0x0	0
@@ -955,6 +996,7 @@ lr             0x0	0
 pc             0x1016c	0x1016c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1016c:	addsvc	r2, r0, #96	; 0x60
 r0             0x1	1
 r1             0x0	0
 r2             0x61	97
@@ -973,6 +1015,7 @@ lr             0x0	0
 pc             0x10170	0x10170
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10170:	adcspl	r5, r5, #81	; 0x51
 r0             0x1	1
 r1             0x0	0
 r2             0x61	97
@@ -991,6 +1034,7 @@ lr             0x0	0
 pc             0x10174	0x10174
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10174:	rorgt	r1, r4, r6
 r0             0x1	1
 r1             0xab	171
 r2             0x61	97
@@ -1009,6 +1053,7 @@ lr             0x0	0
 pc             0x10178	0x10178
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10178:	cmpls	r10, #83	; 0x53
 r0             0x1	1
 r1             0xab	171
 r2             0x61	97
@@ -1027,6 +1072,7 @@ lr             0x0	0
 pc             0x1017c	0x1017c
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x1017c:	cmp	r4, r2, lsl r5
 r0             0x1	1
 r1             0xab	171
 r2             0x61	97
@@ -1045,6 +1091,7 @@ lr             0x0	0
 pc             0x10180	0x10180
 cpsr           0x90000010	-1879048176
 fpscr          0x0	0
+=> 0x10180:	cmphi	r11, #42	; 0x2a
 r0             0x1	1
 r1             0xab	171
 r2             0x61	97
@@ -1063,6 +1110,7 @@ lr             0x0	0
 pc             0x10184	0x10184
 cpsr           0x90000010	-1879048176
 fpscr          0x0	0
+=> 0x10184:	rsbsgt	r0, r10, #37	; 0x25
 r0             0x25	37
 r1             0xab	171
 r2             0x61	97
@@ -1081,6 +1129,7 @@ lr             0x0	0
 pc             0x10188	0x10188
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10188:	rsbgt	r1, r6, #65	; 0x41
 r0             0x25	37
 r1             0x41	65
 r2             0x61	97
@@ -1099,6 +1148,7 @@ lr             0x0	0
 pc             0x1018c	0x1018c
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x1018c:	addsvs	r0, r7, r1, asr r4
 r0             0x25	37
 r1             0x41	65
 r2             0x61	97
@@ -1117,6 +1167,7 @@ lr             0x0	0
 pc             0x10190	0x10190
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10190:	rsbsgt	r3, r5, r9, ror r12
 r0             0x25	37
 r1             0x41	65
 r2             0x61	97
@@ -1135,6 +1186,7 @@ lr             0x0	0
 pc             0x10194	0x10194
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10194:	rsbvc	r1, r8, #195	; 0xc3
 r0             0x25	37
 r1             0x93	147
 r2             0x61	97
@@ -1153,6 +1205,7 @@ lr             0x0	0
 pc             0x10198	0x10198
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10198:	sub	r8, r3, r9, asr r10
 r0             0x25	37
 r1             0x93	147
 r2             0x61	97
@@ -1171,6 +1224,7 @@ lr             0x0	0
 pc             0x1019c	0x1019c
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x1019c:	teqlt	r0, r3, lsl r11
 r0             0x25	37
 r1             0x93	147
 r2             0x61	97
@@ -1189,6 +1243,7 @@ lr             0x0	0
 pc             0x101a0	0x101a0
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x101a0:	eorshi	r3, r7, r3, lsr r1
 r0             0x25	37
 r1             0x93	147
 r2             0x61	97
@@ -1207,6 +1262,7 @@ lr             0x0	0
 pc             0x101a4	0x101a4
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x101a4:	bicsvc	r2, r5, #162	; 0xa2
 r0             0x25	37
 r1             0x93	147
 r2             0x1d	29
@@ -1225,6 +1281,7 @@ lr             0x0	0
 pc             0x101a8	0x101a8
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x101a8:	subspl	r7, r12, r5, asr r7
 r0             0x25	37
 r1             0x93	147
 r2             0x1d	29
@@ -1243,6 +1300,7 @@ lr             0x0	0
 pc             0x101ac	0x101ac
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x101ac:	cmp	r3, r4, asr r1
 r0             0x25	37
 r1             0x93	147
 r2             0x1d	29
@@ -1261,6 +1319,7 @@ lr             0x0	0
 pc             0x101b0	0x101b0
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x101b0:	submi	r7, r7, r1, asr r11
 r0             0x25	37
 r1             0x93	147
 r2             0x1d	29
@@ -1279,6 +1338,7 @@ lr             0x0	0
 pc             0x101b4	0x101b4
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x101b4:	sbcscs	r1, r11, r3, lsl r9
 r0             0x25	37
 r1             0x0	0
 r2             0x1d	29
@@ -1297,6 +1357,7 @@ lr             0x0	0
 pc             0x101b8	0x101b8
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x101b8:	rsbge	r0, r1, r6, lsl r5
 r0             0x0	0
 r1             0x0	0
 r2             0x1d	29
@@ -1333,6 +1394,7 @@ lr             0x0	0
 pc             0x101c0	0x101c0
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x101c0:	rsbscc	r2, r12, r5, asr r7
 r0             0x0	0
 r1             0x0	0
 r2             0x1d	29
@@ -1387,6 +1449,7 @@ lr             0x0	0
 pc             0x101cc	0x101cc
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x101cc:	orrhi	r12, r0, r2, asr r5
 r0             0x0	0
 r1             0x0	0
 r2             0x1d	29
@@ -1405,6 +1468,7 @@ lr             0x0	0
 pc             0x101d0	0x101d0
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x101d0:	tstvs	r1, r6, lsr r10
 r0             0x0	0
 r1             0x0	0
 r2             0x1d	29
@@ -1423,6 +1487,7 @@ lr             0x0	0
 pc             0x101d4	0x101d4
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x101d4:	bics	r1, r2, r7, ror r9
 r0             0x0	0
 r1             0x1d	29
 r2             0x1d	29
@@ -1441,6 +1506,7 @@ lr             0x0	0
 pc             0x101d8	0x101d8
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x101d8:	bicsge	r12, r3, r5, lsr r11
 r0             0x0	0
 r1             0x1d	29
 r2             0x1d	29
@@ -1459,6 +1525,7 @@ lr             0x0	0
 pc             0x101dc	0x101dc
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x101dc:	eorsge	r11, r7, r6, asr r11
 r0             0x0	0
 r1             0x1d	29
 r2             0x1d	29
@@ -1495,6 +1562,7 @@ lr             0x0	0
 pc             0x101e4	0x101e4
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x101e4:	asrslt	r2, r7, r8
 r0             0x0	0
 r1             0x1d	29
 r2             0x1d	29
@@ -1513,6 +1581,7 @@ lr             0x0	0
 pc             0x101e8	0x101e8
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x101e8:	subs	r0, r4, r10, lsr r6
 r0             0xab	171
 r1             0x1d	29
 r2             0x1d	29
@@ -1531,6 +1600,7 @@ lr             0x0	0
 pc             0x101ec	0x101ec
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x101ec:	cmp	r12, r10, lsl r12
 r0             0xab	171
 r1             0x1d	29
 r2             0x1d	29
@@ -1549,6 +1619,7 @@ lr             0x0	0
 pc             0x101f0	0x101f0
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x101f0:	tstvs	r5, r2, ror r0
 r0             0xab	171
 r1             0x1d	29
 r2             0x1d	29
@@ -1567,6 +1638,7 @@ lr             0x0	0
 pc             0x101f4	0x101f4
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x101f4:	rorgt	r11, r7, r11
 r0             0xab	171
 r1             0x1d	29
 r2             0x1d	29
@@ -1585,6 +1657,7 @@ lr             0x0	0
 pc             0x101f8	0x101f8
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x101f8:	teqvc	r0, #140	; 0x8c
 r0             0xab	171
 r1             0x1d	29
 r2             0x1d	29
@@ -1603,6 +1676,7 @@ lr             0x0	0
 pc             0x101fc	0x101fc
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x101fc:	orr	r4, r3, r2, asr r9
 r0             0xab	171
 r1             0x1d	29
 r2             0x1d	29
@@ -1621,6 +1695,7 @@ lr             0x0	0
 pc             0x10200	0x10200
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10200:	subspl	r4, r9, #32
 r0             0xab	171
 r1             0x1d	29
 r2             0x1d	29
@@ -1639,6 +1714,7 @@ lr             0x0	0
 pc             0x10204	0x10204
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10204:	teqls	r6, r5, asr r2
 r0             0xab	171
 r1             0x1d	29
 r2             0x1d	29
@@ -1657,6 +1733,7 @@ lr             0x0	0
 pc             0x10208	0x10208
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10208:	orr	r2, r5, r0, asr r8
 r0             0xab	171
 r1             0x1d	29
 r2             0x1f	31
@@ -1675,6 +1752,7 @@ lr             0x0	0
 pc             0x1020c	0x1020c
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x1020c:	sbcs	r12, r3, r4, lsr r8
 r0             0xab	171
 r1             0x1d	29
 r2             0x1f	31
@@ -1693,6 +1771,7 @@ lr             0x0	0
 pc             0x10210	0x10210
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x10210:	rsbseq	r7, r4, r0, asr r1
 r0             0xab	171
 r1             0x1d	29
 r2             0x1f	31
@@ -1711,6 +1790,7 @@ lr             0x0	0
 pc             0x10214	0x10214
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10214:	rorle	r6, r2, r5
 r0             0xab	171
 r1             0x1d	29
 r2             0x1f	31
@@ -1729,6 +1809,7 @@ lr             0x0	0
 pc             0x10218	0x10218
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10218:	lslshi	r2, r10, r6
 r0             0xab	171
 r1             0x1d	29
 r2             0x1f	31
@@ -1747,6 +1828,7 @@ lr             0x0	0
 pc             0x1021c	0x1021c
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x1021c:	add	r4, r6, r7, asr r11
 r0             0xab	171
 r1             0x1d	29
 r2             0x1f	31
@@ -1801,6 +1883,7 @@ lr             0x0	0
 pc             0x10228	0x10228
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10228:	submi	r0, r1, #105	; 0x69
 r0             0xab	171
 r1             0x1d	29
 r2             0x1f	31
@@ -1819,6 +1902,7 @@ lr             0x0	0
 pc             0x1022c	0x1022c
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x1022c:	bicls	r2, r4, #139	; 0x8b
 r0             0xab	171
 r1             0x1d	29
 r2             0x0	0
@@ -1855,6 +1939,7 @@ lr             0x0	0
 pc             0x10234	0x10234
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10234:	cmp	r5, r1, ror r11
 r0             0xab	171
 r1             0x1d	29
 r2             0x0	0
@@ -1873,6 +1958,7 @@ lr             0x0	0
 pc             0x10238	0x10238
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10238:	bicscc	r4, r11, r4, ror r8
 r0             0xab	171
 r1             0x1d	29
 r2             0x0	0
@@ -1891,6 +1977,7 @@ lr             0x0	0
 pc             0x1023c	0x1023c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1023c:	subs	r10, r10, r11, ror r6
 r0             0xab	171
 r1             0x1d	29
 r2             0x0	0
@@ -1927,6 +2014,7 @@ lr             0x0	0
 pc             0x10244	0x10244
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10244:	teq	r10, #160	; 0xa0
 r0             0xab	171
 r1             0x1d	29
 r2             0x0	0
@@ -1981,6 +2069,7 @@ lr             0x0	0
 pc             0x10250	0x10250
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10250:	bicgt	r10, r9, r1, lsr r3
 r0             0xab	171
 r1             0x1d	29
 r2             0x0	0
@@ -2017,6 +2106,7 @@ lr             0x0	0
 pc             0x10258	0x10258
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10258:	rscge	r2, r3, r4, ror r10
 r0             0xab	171
 r1             0x1d	29
 r2             0x3fffffe6	1073741798
@@ -2035,6 +2125,7 @@ lr             0x0	0
 pc             0x1025c	0x1025c
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x1025c:	subsgt	r3, r8, #71	; 0x47
 r0             0xab	171
 r1             0x1d	29
 r2             0x3fffffe6	1073741798
@@ -2071,6 +2162,7 @@ lr             0x0	0
 pc             0x10264	0x10264
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10264:	sbcspl	r12, r4, r12, lsr r8
 r0             0xab	171
 r1             0x1d	29
 r2             0x3fffffe6	1073741798
@@ -2089,6 +2181,7 @@ lr             0x0	0
 pc             0x10268	0x10268
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10268:	eorseq	r4, r12, r1, lsl r5
 r0             0xab	171
 r1             0x1d	29
 r2             0x3fffffe6	1073741798
@@ -2107,6 +2200,7 @@ lr             0x0	0
 pc             0x1026c	0x1026c
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x1026c:	teqeq	r1, r11, lsr r12
 r0             0xab	171
 r1             0x1d	29
 r2             0x3fffffe6	1073741798
@@ -2161,6 +2255,7 @@ lr             0x0	0
 pc             0x10278	0x10278
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10278:	rsc	r2, r3, r5, asr r10
 r0             0xab	171
 r1             0x1d	29
 r2             0x3d	61
@@ -2179,6 +2274,7 @@ lr             0x0	0
 pc             0x1027c	0x1027c
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x1027c:	rorspl	r11, r8, r5
 r0             0xab	171
 r1             0x1d	29
 r2             0x3d	61
@@ -2233,6 +2329,7 @@ lr             0x0	0
 pc             0x10288	0x10288
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10288:	teqmi	r0, r9, lsl r0
 r0             0xab	171
 r1             0xc000002a	3221225514
 r2             0xffffff6b	4294967147
@@ -2269,6 +2366,7 @@ lr             0x0	0
 pc             0x10290	0x10290
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10290:	eorsle	r5, r5, r9, ror r12
 r0             0x60	96
 r1             0xc000002a	3221225514
 r2             0xffffff6b	4294967147
@@ -2287,6 +2385,7 @@ lr             0x0	0
 pc             0x10294	0x10294
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10294:	addscs	r11, r2, r5, asr r11
 r0             0x60	96
 r1             0xc000002a	3221225514
 r2             0xffffff6b	4294967147
@@ -2341,6 +2440,7 @@ lr             0x0	0
 pc             0x102a0	0x102a0
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102a0:	tstvc	r6, r3, lsr r7
 r0             0x60	96
 r1             0xc000002a	3221225514
 r2             0xffffff6b	4294967147
@@ -2359,6 +2459,7 @@ lr             0x0	0
 pc             0x102a4	0x102a4
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x102a4:	subsge	r4, r0, r9, ror r6
 r0             0x60	96
 r1             0xc000002a	3221225514
 r2             0xffffff6b	4294967147
@@ -2377,6 +2478,7 @@ lr             0x0	0
 pc             0x102a8	0x102a8
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102a8:	eors	r11, r7, r6, lsl r0
 r0             0x60	96
 r1             0xc000002a	3221225514
 r2             0xffffff6b	4294967147
@@ -2413,6 +2515,7 @@ lr             0x0	0
 pc             0x102b0	0x102b0
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102b0:	rorscs	r2, r10, r10
 r0             0x60	96
 r1             0xc000002a	3221225514
 r2             0xffffff6b	4294967147
@@ -2431,6 +2534,7 @@ lr             0x0	0
 pc             0x102b4	0x102b4
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102b4:	addmi	r8, r3, r7, lsl r9
 r0             0x60	96
 r1             0xc000002a	3221225514
 r2             0xffffff6b	4294967147
@@ -2449,6 +2553,7 @@ lr             0x0	0
 pc             0x102b8	0x102b8
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102b8:	adccs	r4, r6, #144	; 0x90
 r0             0x60	96
 r1             0xc000002a	3221225514
 r2             0xffffff6b	4294967147
@@ -2467,6 +2572,7 @@ lr             0x0	0
 pc             0x102bc	0x102bc
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102bc:	sbcseq	r9, r3, #164	; 0xa4
 r0             0x60	96
 r1             0xc000002a	3221225514
 r2             0xffffff6b	4294967147
@@ -2521,6 +2627,7 @@ lr             0x0	0
 pc             0x102c8	0x102c8
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102c8:	sbcpl	r0, r5, r0, lsl r3
 r0             0x1e	30
 r1             0xc000002a	3221225514
 r2             0xffffff6b	4294967147
@@ -2557,6 +2664,7 @@ lr             0x0	0
 pc             0x102d0	0x102d0
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102d0:	adds	r1, r8, r3, asr r10
 r0             0x1e	30
 r1             0x7fffffc3	2147483587
 r2             0xffffff6b	4294967147
@@ -2629,6 +2737,7 @@ lr             0x0	0
 pc             0x102e0	0x102e0
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x102e0:	cmple	r5, r6, asr r4
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffff6b	4294967147
@@ -2647,6 +2756,7 @@ lr             0x0	0
 pc             0x102e4	0x102e4
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x102e4:	subeq	r9, r7, r9, lsr r6
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffff6b	4294967147
@@ -2665,6 +2775,7 @@ lr             0x0	0
 pc             0x102e8	0x102e8
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x102e8:	subshi	r10, r0, #171	; 0xab
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffff6b	4294967147
@@ -2683,6 +2794,7 @@ lr             0x0	0
 pc             0x102ec	0x102ec
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x102ec:	eors	r4, r10, #150	; 0x96
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffff6b	4294967147
@@ -2737,6 +2849,7 @@ lr             0x0	0
 pc             0x102f8	0x102f8
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x102f8:	eorseq	r0, r0, #111	; 0x6f
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -2755,6 +2868,7 @@ lr             0x0	0
 pc             0x102fc	0x102fc
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x102fc:	cmpeq	r10, r3, ror r10
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -2791,6 +2905,7 @@ lr             0x0	0
 pc             0x10304	0x10304
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10304:	rsbge	r7, r8, r10, ror r10
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -2809,6 +2924,7 @@ lr             0x0	0
 pc             0x10308	0x10308
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10308:	tstvc	r7, r12, lsr r5
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -2827,6 +2943,7 @@ lr             0x0	0
 pc             0x1030c	0x1030c
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x1030c:	addpl	r11, r2, r12, asr r0
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -2845,6 +2962,7 @@ lr             0x0	0
 pc             0x10310	0x10310
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10310:	orrle	r0, r0, r0, asr r8
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -2881,6 +2999,7 @@ lr             0x0	0
 pc             0x10318	0x10318
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10318:	rscsgt	r12, r5, r12, asr r11
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -2899,6 +3018,7 @@ lr             0x0	0
 pc             0x1031c	0x1031c
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x1031c:	addsgt	r10, r3, #27
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -2917,6 +3037,7 @@ lr             0x0	0
 pc             0x10320	0x10320
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10320:	rsclt	r8, r0, r11, lsl r3
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -2935,6 +3056,7 @@ lr             0x0	0
 pc             0x10324	0x10324
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10324:	eormi	r8, r3, #50	; 0x32
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -2953,6 +3075,7 @@ lr             0x0	0
 pc             0x10328	0x10328
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10328:	rscmi	r6, r5, r11, asr r12
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -2971,6 +3094,7 @@ lr             0x0	0
 pc             0x1032c	0x1032c
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x1032c:	eorsls	r1, r8, #8
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -2989,6 +3113,7 @@ lr             0x0	0
 pc             0x10330	0x10330
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10330:	cmpls	r7, r8, lsr r10
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -3007,6 +3132,7 @@ lr             0x0	0
 pc             0x10334	0x10334
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10334:	movsge	r10, #128	; 0x80
 r0             0x2	2
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -3025,6 +3151,7 @@ lr             0x0	0
 pc             0x10338	0x10338
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10338:	sbchi	r0, r7, #51	; 0x33
 r0             0x52	82
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -3043,6 +3170,7 @@ lr             0x0	0
 pc             0x1033c	0x1033c
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x1033c:	cmple	r11, r1, asr r12
 r0             0x52	82
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -3097,6 +3225,7 @@ lr             0x0	0
 pc             0x10348	0x10348
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10348:	rscsmi	r10, r8, r3, lsr r8
 r0             0x52	82
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -3115,6 +3244,7 @@ lr             0x0	0
 pc             0x1034c	0x1034c
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x1034c:	rscgt	r0, r5, r0, asr r11
 r0             0x52	82
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -3133,6 +3263,7 @@ lr             0x0	0
 pc             0x10350	0x10350
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10350:	sbcsvs	r8, r2, r1, ror r7
 r0             0x52	82
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -3169,6 +3300,7 @@ lr             0x0	0
 pc             0x10358	0x10358
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10358:	eorhi	r9, r12, r10, lsr r12
 r0             0x52	82
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -3187,6 +3319,7 @@ lr             0x0	0
 pc             0x1035c	0x1035c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1035c:	bicspl	r12, r5, r6, asr r11
 r0             0x52	82
 r1             0x7fffffc3	2147483587
 r2             0xffffffc5	4294967237
@@ -3277,6 +3410,7 @@ lr             0x0	0
 pc             0x10370	0x10370
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10370:	subsvs	r11, r7, #141	; 0x8d
 r0             0x52	82
 r1             0x7fffffe7	2147483623
 r2             0xffffffc5	4294967237
@@ -3295,6 +3429,7 @@ lr             0x0	0
 pc             0x10374	0x10374
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10374:	biccs	r5, r0, r8, asr r10
 r0             0x52	82
 r1             0x7fffffe7	2147483623
 r2             0xffffffc5	4294967237
@@ -3313,6 +3448,7 @@ lr             0x0	0
 pc             0x10378	0x10378
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10378:	orrmi	r5, r5, #33	; 0x21
 r0             0x52	82
 r1             0x7fffffe7	2147483623
 r2             0xffffffc5	4294967237
@@ -3349,6 +3485,7 @@ lr             0x0	0
 pc             0x10380	0x10380
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10380:	sbcshi	r12, r7, r4, asr r3
 r0             0x52	82
 r1             0x7fffffe7	2147483623
 r2             0xffffffc5	4294967237
@@ -3367,6 +3504,7 @@ lr             0x0	0
 pc             0x10384	0x10384
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10384:	sbcls	r8, r4, r6, ror r10
 r0             0x52	82
 r1             0x7fffffe7	2147483623
 r2             0xffffffc5	4294967237
@@ -3403,6 +3541,7 @@ lr             0x0	0
 pc             0x1038c	0x1038c
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x1038c:	orrseq	r9, r1, #69	; 0x45
 r0             0x52	82
 r1             0x7fffffe7	2147483623
 r2             0xffffffc5	4294967237
@@ -3421,6 +3560,7 @@ lr             0x0	0
 pc             0x10390	0x10390
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10390:	bicsvc	r5, r10, r8, asr r10
 r0             0x52	82
 r1             0x7fffffe7	2147483623
 r2             0xffffffc5	4294967237
@@ -3439,6 +3579,7 @@ lr             0x0	0
 pc             0x10394	0x10394
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10394:	adcls	r3, r3, r1, asr r10
 r0             0x52	82
 r1             0x7fffffe7	2147483623
 r2             0xffffffc5	4294967237
@@ -3457,6 +3598,7 @@ lr             0x0	0
 pc             0x10398	0x10398
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10398:	adclt	r8, r11, #140	; 0x8c
 r0             0x52	82
 r1             0x7fffffe7	2147483623
 r2             0xffffffc5	4294967237
@@ -3475,6 +3617,7 @@ lr             0x0	0
 pc             0x1039c	0x1039c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1039c:	lslsgt	r0, r1, r7
 r0             0x52	82
 r1             0x7fffffe7	2147483623
 r2             0xffffffc5	4294967237
@@ -3511,6 +3654,7 @@ lr             0x0	0
 pc             0x103a4	0x103a4
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x103a4:	teqls	r3, r6, asr r0
 r0             0x52	82
 r1             0x7fffffe7	2147483623
 r2             0xffffffc5	4294967237
@@ -3529,6 +3673,7 @@ lr             0x0	0
 pc             0x103a8	0x103a8
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x103a8:	orrcs	r6, r11, r0, lsr r5
 r0             0x52	82
 r1             0x7fffffe7	2147483623
 r2             0xffffffc5	4294967237
@@ -3547,6 +3692,7 @@ lr             0x0	0
 pc             0x103ac	0x103ac
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x103ac:	sbcsls	r2, r8, r1, asr r12
 r0             0x52	82
 r1             0x7fffffe7	2147483623
 r2             0xffffffc5	4294967237
@@ -3583,6 +3729,7 @@ lr             0x0	0
 pc             0x103b4	0x103b4
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x103b4:	rsbcs	r7, r12, r9, lsr r2
 r0             0x52	82
 r1             0x75	117
 r2             0xffffffc5	4294967237

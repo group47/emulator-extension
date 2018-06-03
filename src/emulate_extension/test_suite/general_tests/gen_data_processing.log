@@ -37,6 +37,7 @@ lr             0x0	0
 pc             0x100a0	0x100a0
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x100a0:	adc	r10, r5, #169	; 0xa9
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -55,6 +56,7 @@ lr             0x0	0
 pc             0x100a4	0x100a4
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x100a4:	adc	r3, r9, #153	; 0x99
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -73,6 +75,7 @@ lr             0x0	0
 pc             0x100a8	0x100a8
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x100a8:	adc	r11, r1, r11, lsr r6
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -91,6 +94,7 @@ lr             0x0	0
 pc             0x100ac	0x100ac
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x100ac:	cmp	r4, #105	; 0x69
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -109,6 +113,7 @@ lr             0x0	0
 pc             0x100b0	0x100b0
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x100b0:	mov	r4, #39	; 0x27
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -127,6 +132,7 @@ lr             0x0	0
 pc             0x100b4	0x100b4
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x100b4:	rsb	r10, r1, r9, lsl r0
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -145,6 +151,7 @@ lr             0x0	0
 pc             0x100b8	0x100b8
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x100b8:	cmp	r8, #44	; 0x2c
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -163,6 +170,7 @@ lr             0x0	0
 pc             0x100bc	0x100bc
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x100bc:	rsc	r12, r0, #25
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -181,6 +189,7 @@ lr             0x0	0
 pc             0x100c0	0x100c0
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x100c0:	eor	r1, r9, r2, lsr r10
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -199,6 +208,7 @@ lr             0x0	0
 pc             0x100c4	0x100c4
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x100c4:	teq	r10, r5, lsl r3
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -217,6 +227,7 @@ lr             0x0	0
 pc             0x100c8	0x100c8
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x100c8:	cmp	r1, r6, asr r5
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -235,6 +246,7 @@ lr             0x0	0
 pc             0x100cc	0x100cc
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x100cc:	bic	r8, r12, #75	; 0x4b
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -253,6 +265,7 @@ lr             0x0	0
 pc             0x100d0	0x100d0
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x100d0:	adc	r2, sp, #88	; 0x58
 r0             0x0	0
 r1             0x0	0
 r2             0xbefff309	3204444937
@@ -271,6 +284,7 @@ lr             0x0	0
 pc             0x100d4	0x100d4
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x100d4:	tst	r9, r6, asr r0
 r0             0x0	0
 r1             0x0	0
 r2             0xbefff309	3204444937
@@ -307,6 +321,7 @@ lr             0x0	0
 pc             0x100dc	0x100dc
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x100dc:	sub	r5, r6, #148	; 0x94
 r0             0x0	0
 r1             0x0	0
 r2             0xbefff309	3204444937
@@ -325,6 +340,7 @@ lr             0x0	0
 pc             0x100e0	0x100e0
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x100e0:	rsb	r12, r6, #143	; 0x8f
 r0             0x0	0
 r1             0x0	0
 r2             0xbefff309	3204444937
@@ -343,6 +359,7 @@ lr             0x0	0
 pc             0x100e4	0x100e4
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x100e4:	eor	r3, sp, r12, lsr r5
 r0             0x0	0
 r1             0x0	0
 r2             0xbefff309	3204444937
@@ -361,6 +378,7 @@ lr             0x0	0
 pc             0x100e8	0x100e8
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x100e8:	rsb	r3, r12, r11, lsl r5
 r0             0x0	0
 r1             0x0	0
 r2             0xbefff309	3204444937
@@ -379,6 +397,7 @@ lr             0x0	0
 pc             0x100ec	0x100ec
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x100ec:	cmp	r12, #17
 r0             0x0	0
 r1             0x0	0
 r2             0xbefff309	3204444937
@@ -397,6 +416,7 @@ lr             0x0	0
 pc             0x100f0	0x100f0
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x100f0:	bic	r3, r5, #138	; 0x8a
 r0             0x0	0
 r1             0x0	0
 r2             0xbefff309	3204444937
@@ -415,6 +435,7 @@ lr             0x0	0
 pc             0x100f4	0x100f4
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x100f4:	sbc	r1, r2, r0, lsl r7
 r0             0x0	0
 r1             0xbefff309	3204444937
 r2             0xbefff309	3204444937
@@ -433,6 +454,7 @@ lr             0x0	0
 pc             0x100f8	0x100f8
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x100f8:	rsb	sp, r3, #182	; 0xb6
 r0             0x0	0
 r1             0xbefff309	3204444937
 r2             0xbefff309	3204444937
@@ -451,6 +473,7 @@ lr             0x0	0
 pc             0x100fc	0x100fc
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x100fc:	add	r0, r8, #12
 r0             0xc	12
 r1             0xbefff309	3204444937
 r2             0xbefff309	3204444937
@@ -469,6 +492,7 @@ lr             0x0	0
 pc             0x10100	0x10100
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10100:	lsr	r2, r8, r12
 r0             0xc	12
 r1             0xbefff309	3204444937
 r2             0x0	0
@@ -487,6 +511,7 @@ lr             0x0	0
 pc             0x10104	0x10104
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10104:	eor	r11, r11, sp, asr r9
 r0             0xc	12
 r1             0xbefff309	3204444937
 r2             0x0	0
@@ -505,6 +530,7 @@ lr             0x0	0
 pc             0x10108	0x10108
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10108:	bic	r7, r7, sp, lsl r5
 r0             0xc	12
 r1             0xbefff309	3204444937
 r2             0x0	0
@@ -523,6 +549,7 @@ lr             0x0	0
 pc             0x1010c	0x1010c
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x1010c:	orr	r4, r0, r0, ror r8
 r0             0xc	12
 r1             0xbefff309	3204444937
 r2             0x0	0
@@ -559,6 +586,7 @@ lr             0x0	0
 pc             0x10114	0x10114
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10114:	rsc	r4, r6, r1, asr r12
 r0             0xfffffff3	4294967283
 r1             0xbefff309	3204444937
 r2             0x0	0
@@ -577,6 +605,7 @@ lr             0x0	0
 pc             0x10118	0x10118
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10118:	orr	r8, sp, sp, asr r8
 r0             0xfffffff3	4294967283
 r1             0xbefff309	3204444937
 r2             0x0	0
@@ -595,6 +624,7 @@ lr             0x0	0
 pc             0x1011c	0x1011c
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x1011c:	eor	r4, r1, #55	; 0x37
 r0             0xfffffff3	4294967283
 r1             0xbefff309	3204444937
 r2             0x0	0
@@ -631,6 +661,7 @@ lr             0x0	0
 pc             0x10124	0x10124
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10124:	rsc	r1, sp, #177	; 0xb1
 r0             0xfffffff3	4294967283
 r1             0xffffff5e	4294967134
 r2             0x0	0
@@ -649,6 +680,7 @@ lr             0x0	0
 pc             0x10128	0x10128
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10128:	eor	r2, r4, r2, asr r0
 r0             0xfffffff3	4294967283
 r1             0xffffff5e	4294967134
 r2             0xbefff33e	3204444990
@@ -667,6 +699,7 @@ lr             0x0	0
 pc             0x1012c	0x1012c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1012c:	bic	r7, r10, r3, ror r10
 r0             0xfffffff3	4294967283
 r1             0xffffff5e	4294967134
 r2             0xbefff33e	3204444990
@@ -685,6 +718,7 @@ lr             0x0	0
 pc             0x10130	0x10130
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10130:	rsb	r4, r5, r4, ror r4
 r0             0xfffffff3	4294967283
 r1             0xffffff5e	4294967134
 r2             0xbefff33e	3204444990
@@ -703,6 +737,7 @@ lr             0x0	0
 pc             0x10134	0x10134
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10134:	bic	r1, r9, #6
 r0             0xfffffff3	4294967283
 r1             0x0	0
 r2             0xbefff33e	3204444990
@@ -721,6 +756,7 @@ lr             0x0	0
 pc             0x10138	0x10138
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10138:	sbc	sp, r0, r9, asr r1
 r0             0xfffffff3	4294967283
 r1             0x0	0
 r2             0xbefff33e	3204444990
@@ -739,6 +775,7 @@ lr             0x0	0
 pc             0x1013c	0x1013c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1013c:	tst	r7, r12, asr r7
 r0             0xfffffff3	4294967283
 r1             0x0	0
 r2             0xbefff33e	3204444990
@@ -775,6 +812,7 @@ lr             0x0	0
 pc             0x10144	0x10144
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10144:	rsc	r2, r4, r3, asr r3
 r0             0xfffffff3	4294967283
 r1             0x0	0
 r2             0x4003270	67121776
@@ -793,6 +831,7 @@ lr             0x0	0
 pc             0x10148	0x10148
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10148:	bic	sp, r8, r1, ror r11
 r0             0xfffffff3	4294967283
 r1             0x0	0
 r2             0x4003270	67121776
@@ -847,6 +886,7 @@ lr             0x0	0
 pc             0x10154	0x10154
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10154:	adc	r3, r8, sp, ror r8
 r0             0x0	0
 r1             0x0	0
 r2             0x4003270	67121776
@@ -865,6 +905,7 @@ lr             0x0	0
 pc             0x10158	0x10158
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10158:	cmp	r4, sp, lsr r2
 r0             0x0	0
 r1             0x0	0
 r2             0x4003270	67121776
@@ -883,6 +924,7 @@ lr             0x0	0
 pc             0x1015c	0x1015c
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x1015c:	rsb	r7, r4, r7, ror r10
 r0             0x0	0
 r1             0x0	0
 r2             0x4003270	67121776
@@ -901,6 +943,7 @@ lr             0x0	0
 pc             0x10160	0x10160
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10160:	orr	r1, r1, r5, lsl r4
 r0             0x0	0
 r1             0x0	0
 r2             0x4003270	67121776
@@ -919,6 +962,7 @@ lr             0x0	0
 pc             0x10164	0x10164
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10164:	bic	sp, r1, r6, lsr r11
 r0             0x0	0
 r1             0x0	0
 r2             0x4003270	67121776
@@ -937,6 +981,7 @@ lr             0x0	0
 pc             0x10168	0x10168
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10168:	eor	sp, r4, #91	; 0x5b
 r0             0x0	0
 r1             0x0	0
 r2             0x4003270	67121776
@@ -955,6 +1000,7 @@ lr             0x0	0
 pc             0x1016c	0x1016c
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x1016c:	orr	r7, r0, r10, asr r8
 r0             0x0	0
 r1             0x0	0
 r2             0x4003270	67121776
@@ -991,6 +1037,7 @@ lr             0x0	0
 pc             0x10174	0x10174
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10174:	adc	r2, r5, #32
 r0             0x0	0
 r1             0x0	0
 r2             0xffffff8d	4294967181
@@ -1045,6 +1092,7 @@ lr             0x0	0
 pc             0x10180	0x10180
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10180:	rsc	r9, r7, r10, asr r11
 r0             0x0	0
 r1             0x0	0
 r2             0xffffff8d	4294967181
@@ -1081,6 +1129,7 @@ lr             0x0	0
 pc             0x10188	0x10188
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10188:	sbc	sp, r3, #106	; 0x6a
 r0             0x0	0
 r1             0x0	0
 r2             0xffffff8d	4294967181
@@ -1099,6 +1148,7 @@ lr             0x0	0
 pc             0x1018c	0x1018c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1018c:	sbc	r10, r0, r4, lsl r9
 r0             0x0	0
 r1             0x0	0
 r2             0xffffff8d	4294967181
@@ -1117,6 +1167,7 @@ lr             0x0	0
 pc             0x10190	0x10190
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10190:	orr	r5, r0, r5, ror r11
 r0             0x0	0
 r1             0x0	0
 r2             0xffffff8d	4294967181
@@ -1135,6 +1186,7 @@ lr             0x0	0
 pc             0x10194	0x10194
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10194:	bic	r9, r11, r8, asr sp
 r0             0x0	0
 r1             0x0	0
 r2             0xffffff8d	4294967181
@@ -1171,6 +1223,7 @@ lr             0x0	0
 pc             0x1019c	0x1019c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1019c:	add	r2, r10, r6, lsl r1
 r0             0x0	0
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1189,6 +1242,7 @@ lr             0x0	0
 pc             0x101a0	0x101a0
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x101a0:	add	r0, sp, #186	; 0xba
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1207,6 +1261,7 @@ lr             0x0	0
 pc             0x101a4	0x101a4
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x101a4:	rsc	r9, r12, r10, lsr r12
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1225,6 +1280,7 @@ lr             0x0	0
 pc             0x101a8	0x101a8
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x101a8:	cmp	r12, #117	; 0x75
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1243,6 +1299,7 @@ lr             0x0	0
 pc             0x101ac	0x101ac
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x101ac:	cmp	r12, #41	; 0x29
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1279,6 +1336,7 @@ lr             0x0	0
 pc             0x101b4	0x101b4
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x101b4:	sbc	r5, sp, r4, ror r11
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1297,6 +1355,7 @@ lr             0x0	0
 pc             0x101b8	0x101b8
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x101b8:	tst	r9, r7, lsr sp
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1333,6 +1392,7 @@ lr             0x0	0
 pc             0x101c0	0x101c0
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x101c0:	cmp	r6, r8, lsr r7
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1351,6 +1411,7 @@ lr             0x0	0
 pc             0x101c4	0x101c4
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x101c4:	sub	r11, r12, r1, asr r1
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1387,6 +1448,7 @@ lr             0x0	0
 pc             0x101cc	0x101cc
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x101cc:	bic	r8, r6, r7, asr r0
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1405,6 +1467,7 @@ lr             0x0	0
 pc             0x101d0	0x101d0
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x101d0:	rsb	r8, r12, #55	; 0x37
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1423,6 +1486,7 @@ lr             0x0	0
 pc             0x101d4	0x101d4
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x101d4:	rsc	r4, r9, r9, asr r0
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1441,6 +1505,7 @@ lr             0x0	0
 pc             0x101d8	0x101d8
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x101d8:	add	r6, sp, r8, ror r1
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1459,6 +1524,7 @@ lr             0x0	0
 pc             0x101dc	0x101dc
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x101dc:	tst	r8, r4, asr r0
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1477,6 +1543,7 @@ lr             0x0	0
 pc             0x101e0	0x101e0
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x101e0:	rsc	r12, r7, #54	; 0x36
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1495,6 +1562,7 @@ lr             0x0	0
 pc             0x101e4	0x101e4
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x101e4:	orr	r4, r11, r4, asr r12
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1513,6 +1581,7 @@ lr             0x0	0
 pc             0x101e8	0x101e8
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x101e8:	add	r3, r2, #99	; 0x63
 r0             0x5481a1	5538209
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1549,6 +1618,7 @@ lr             0x0	0
 pc             0x101f0	0x101f0
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x101f0:	adc	r10, r11, r9, lsl r6
 r0             0x41	65
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1567,6 +1637,7 @@ lr             0x0	0
 pc             0x101f4	0x101f4
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x101f4:	add	r7, r0, r7, lsr sp
 r0             0x41	65
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1585,6 +1656,7 @@ lr             0x0	0
 pc             0x101f8	0x101f8
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x101f8:	orr	r5, r4, r11, asr r7
 r0             0x41	65
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1603,6 +1675,7 @@ lr             0x0	0
 pc             0x101fc	0x101fc
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x101fc:	adc	r12, r9, #101	; 0x65
 r0             0x41	65
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1621,6 +1694,7 @@ lr             0x0	0
 pc             0x10200	0x10200
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10200:	bic	r3, r5, r1, asr r9
 r0             0x41	65
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1639,6 +1713,7 @@ lr             0x0	0
 pc             0x10204	0x10204
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10204:	sub	r5, r6, r1, ror r1
 r0             0x41	65
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1657,6 +1732,7 @@ lr             0x0	0
 pc             0x10208	0x10208
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10208:	tst	r10, r0, asr r7
 r0             0x41	65
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1675,6 +1751,7 @@ lr             0x0	0
 pc             0x1020c	0x1020c
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x1020c:	add	r8, r4, r9, asr sp
 r0             0x41	65
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1693,6 +1770,7 @@ lr             0x0	0
 pc             0x10210	0x10210
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10210:	sbc	r8, r1, #125	; 0x7d
 r0             0x41	65
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1711,6 +1789,7 @@ lr             0x0	0
 pc             0x10214	0x10214
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10214:	tst	r4, sp, asr r4
 r0             0x41	65
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1729,6 +1808,7 @@ lr             0x0	0
 pc             0x10218	0x10218
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10218:	cmp	r0, #114	; 0x72
 r0             0x41	65
 r1             0x0	0
 r2             0x4003271	67121777
@@ -1747,6 +1827,7 @@ lr             0x0	0
 pc             0x1021c	0x1021c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1021c:	adc	r2, r7, r9, ror r10
 r0             0x41	65
 r1             0x0	0
 r2             0xffffffb1	4294967217
@@ -1783,6 +1864,7 @@ lr             0x0	0
 pc             0x10224	0x10224
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10224:	rsb	r7, r11, r6, asr r7
 r0             0x41	65
 r1             0x0	0
 r2             0xffffffb1	4294967217
@@ -1801,6 +1883,7 @@ lr             0x0	0
 pc             0x10228	0x10228
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10228:	rsb	r0, r0, r1, lsr r2
 r0             0xffffffbf	4294967231
 r1             0x0	0
 r2             0xffffffb1	4294967217
@@ -1819,6 +1902,7 @@ lr             0x0	0
 pc             0x1022c	0x1022c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1022c:	rsc	r7, r6, #48	; 0x30
 r0             0xffffffbf	4294967231
 r1             0x0	0
 r2             0xffffffb1	4294967217
@@ -1855,6 +1939,7 @@ lr             0x0	0
 pc             0x10234	0x10234
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10234:	orr	sp, r4, r2, lsl r2
 r0             0xffffffbf	4294967231
 r1             0x0	0
 r2             0xffffffb1	4294967217
@@ -1873,6 +1958,7 @@ lr             0x0	0
 pc             0x10238	0x10238
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10238:	sbc	r8, r12, r0, ror r3
 r0             0xffffffbf	4294967231
 r1             0x0	0
 r2             0xffffffb1	4294967217
@@ -1891,6 +1977,7 @@ lr             0x0	0
 pc             0x1023c	0x1023c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1023c:	cmp	r0, r8, asr r5
 r0             0xffffffbf	4294967231
 r1             0x0	0
 r2             0xffffffb1	4294967217
@@ -1909,6 +1996,7 @@ lr             0x0	0
 pc             0x10240	0x10240
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10240:	bic	r7, r6, r9, ror r6
 r0             0xffffffbf	4294967231
 r1             0x0	0
 r2             0xffffffb1	4294967217
@@ -1927,6 +2015,7 @@ lr             0x0	0
 pc             0x10244	0x10244
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10244:	bic	r0, r8, #56	; 0x38
 r0             0x5	5
 r1             0x0	0
 r2             0xffffffb1	4294967217
@@ -1963,6 +2052,7 @@ lr             0x0	0
 pc             0x1024c	0x1024c
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x1024c:	add	r12, r7, #29
 r0             0x5	5
 r1             0x14	20
 r2             0xffffffb1	4294967217
@@ -1981,6 +2071,7 @@ lr             0x0	0
 pc             0x10250	0x10250
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10250:	sub	r10, r2, r5, lsl r8
 r0             0x5	5
 r1             0x14	20
 r2             0xffffffb1	4294967217
@@ -1999,6 +2090,7 @@ lr             0x0	0
 pc             0x10254	0x10254
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10254:	sbc	r1, r10, r11, lsl r4
 r0             0x5	5
 r1             0xdc3fffb1	3695181745
 r2             0xffffffb1	4294967217
@@ -2017,6 +2109,7 @@ lr             0x0	0
 pc             0x10258	0x10258
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10258:	cmp	r8, #68	; 0x44
 r0             0x5	5
 r1             0xdc3fffb1	3695181745
 r2             0xffffffb1	4294967217
@@ -2035,6 +2128,7 @@ lr             0x0	0
 pc             0x1025c	0x1025c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1025c:	orr	r10, r4, r1, ror sp
 r0             0x5	5
 r1             0xdc3fffb1	3695181745
 r2             0xffffffb1	4294967217
@@ -2053,6 +2147,7 @@ lr             0x0	0
 pc             0x10260	0x10260
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10260:	lsr	sp, r3, r8
 r0             0x5	5
 r1             0xdc3fffb1	3695181745
 r2             0xffffffb1	4294967217
@@ -2071,6 +2166,7 @@ lr             0x0	0
 pc             0x10264	0x10264
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10264:	rsc	r0, r10, r1, asr r6
 r0             0x23c0004d	599785549
 r1             0xdc3fffb1	3695181745
 r2             0xffffffb1	4294967217
@@ -2089,6 +2185,7 @@ lr             0x0	0
 pc             0x10268	0x10268
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10268:	ror	r2, r1, sp
 r0             0x23c0004d	599785549
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2107,6 +2204,7 @@ lr             0x0	0
 pc             0x1026c	0x1026c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1026c:	bic	r3, r12, r2, ror r2
 r0             0x23c0004d	599785549
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2125,6 +2223,7 @@ lr             0x0	0
 pc             0x10270	0x10270
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10270:	rsb	r0, r3, #164	; 0xa4
 r0             0x84	132
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2143,6 +2242,7 @@ lr             0x0	0
 pc             0x10274	0x10274
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10274:	adc	r5, r1, r12, lsl r4
 r0             0x84	132
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2161,6 +2261,7 @@ lr             0x0	0
 pc             0x10278	0x10278
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10278:	rsb	r10, r7, #131	; 0x83
 r0             0x84	132
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2179,6 +2280,7 @@ lr             0x0	0
 pc             0x1027c	0x1027c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1027c:	adc	r0, r9, r12, lsr r3
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2197,6 +2299,7 @@ lr             0x0	0
 pc             0x10280	0x10280
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10280:	adc	r2, r4, #75	; 0x4b
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x4b	75
@@ -2233,6 +2336,7 @@ lr             0x0	0
 pc             0x10288	0x10288
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10288:	sub	r10, r1, r6, asr r3
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x4b	75
@@ -2251,6 +2355,7 @@ lr             0x0	0
 pc             0x1028c	0x1028c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1028c:	cmp	r7, r10, lsl r8
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x4b	75
@@ -2269,6 +2374,7 @@ lr             0x0	0
 pc             0x10290	0x10290
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10290:	rsb	r5, r3, r3, lsl r1
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x4b	75
@@ -2287,6 +2393,7 @@ lr             0x0	0
 pc             0x10294	0x10294
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10294:	sub	r12, r10, sp, asr r4
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x4b	75
@@ -2305,6 +2412,7 @@ lr             0x0	0
 pc             0x10298	0x10298
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10298:	tst	r12, r11, lsl r11
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x4b	75
@@ -2323,6 +2431,7 @@ lr             0x0	0
 pc             0x1029c	0x1029c
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x1029c:	eor	r6, r1, r5, asr r11
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x4b	75
@@ -2341,6 +2450,7 @@ lr             0x0	0
 pc             0x102a0	0x102a0
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x102a0:	teq	r1, #94	; 0x5e
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x4b	75
@@ -2359,6 +2469,7 @@ lr             0x0	0
 pc             0x102a4	0x102a4
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x102a4:	adc	r11, sp, r5, asr r10
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x4b	75
@@ -2377,6 +2488,7 @@ lr             0x0	0
 pc             0x102a8	0x102a8
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x102a8:	add	r5, r1, r8, asr r10
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x4b	75
@@ -2395,6 +2507,7 @@ lr             0x0	0
 pc             0x102ac	0x102ac
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x102ac:	asr	r2, r9, r12
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xffffffff	4294967295
@@ -2431,6 +2544,7 @@ lr             0x0	0
 pc             0x102b4	0x102b4
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102b4:	cmp	r6, r0, asr r7
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xffffffff	4294967295
@@ -2449,6 +2563,7 @@ lr             0x0	0
 pc             0x102b8	0x102b8
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102b8:	add	r8, r9, r4, asr r10
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xffffffff	4294967295
@@ -2467,6 +2582,7 @@ lr             0x0	0
 pc             0x102bc	0x102bc
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102bc:	adc	r2, r1, r4, lsl r8
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2485,6 +2601,7 @@ lr             0x0	0
 pc             0x102c0	0x102c0
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102c0:	sbc	r6, r2, r4, lsr r7
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2521,6 +2638,7 @@ lr             0x0	0
 pc             0x102c8	0x102c8
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102c8:	lsr	sp, r2, r6
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2539,6 +2657,7 @@ lr             0x0	0
 pc             0x102cc	0x102cc
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102cc:	tst	r4, sp, lsr r7
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2557,6 +2676,7 @@ lr             0x0	0
 pc             0x102d0	0x102d0
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x102d0:	add	r1, r12, r7, lsl r3
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2593,6 +2713,7 @@ lr             0x0	0
 pc             0x102d8	0x102d8
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x102d8:	sub	r4, r7, r3, ror r5
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2611,6 +2732,7 @@ lr             0x0	0
 pc             0x102dc	0x102dc
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x102dc:	adc	r5, r11, #120	; 0x78
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2629,6 +2751,7 @@ lr             0x0	0
 pc             0x102e0	0x102e0
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x102e0:	tst	sp, #188	; 0xbc
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb1	3695181745
@@ -2647,6 +2770,7 @@ lr             0x0	0
 pc             0x102e4	0x102e4
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102e4:	rsc	r2, r11, #127	; 0x7f
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x7f	127
@@ -2665,6 +2789,7 @@ lr             0x0	0
 pc             0x102e8	0x102e8
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102e8:	rsb	r2, r6, sp, ror r1
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x2398ee6f	597225071
@@ -2683,6 +2808,7 @@ lr             0x0	0
 pc             0x102ec	0x102ec
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x102ec:	teq	r3, #117	; 0x75
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x2398ee6f	597225071
@@ -2719,6 +2845,7 @@ lr             0x0	0
 pc             0x102f4	0x102f4
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x102f4:	sub	r4, r4, r12, ror r0
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x2398ee6f	597225071
@@ -2737,6 +2864,7 @@ lr             0x0	0
 pc             0x102f8	0x102f8
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x102f8:	rsb	r9, r6, r11, asr r0
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x2398ee6f	597225071
@@ -2773,6 +2901,7 @@ lr             0x0	0
 pc             0x10300	0x10300
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10300:	sbc	r2, r1, r9, lsl r2
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb0	3695181744
@@ -2791,6 +2920,7 @@ lr             0x0	0
 pc             0x10304	0x10304
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10304:	rsb	r4, r6, r1, asr r1
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb0	3695181744
@@ -2809,6 +2939,7 @@ lr             0x0	0
 pc             0x10308	0x10308
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10308:	add	r6, r4, r4, lsr r8
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb0	3695181744
@@ -2881,6 +3012,7 @@ lr             0x0	0
 pc             0x10318	0x10318
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10318:	sbc	sp, r5, r2, ror r1
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb0	3695181744
@@ -2917,6 +3049,7 @@ lr             0x0	0
 pc             0x10320	0x10320
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10320:	sbc	r4, r3, r0, asr r7
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb0	3695181744
@@ -2935,6 +3068,7 @@ lr             0x0	0
 pc             0x10324	0x10324
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x10324:	tst	r10, r11, asr r10
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xdc3fffb0	3695181744
@@ -2971,6 +3105,7 @@ lr             0x0	0
 pc             0x1032c	0x1032c
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x1032c:	rsb	r2, r6, r8, asr r5
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xca87116a	3397849450
@@ -2989,6 +3124,7 @@ lr             0x0	0
 pc             0x10330	0x10330
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10330:	eor	r4, r6, r4, ror r7
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xca87116a	3397849450
@@ -3007,6 +3143,7 @@ lr             0x0	0
 pc             0x10334	0x10334
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10334:	adc	r3, r0, #167	; 0xa7
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xca87116a	3397849450
@@ -3025,6 +3162,7 @@ lr             0x0	0
 pc             0x10338	0x10338
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10338:	asr	r4, r8, r10
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xca87116a	3397849450
@@ -3043,6 +3181,7 @@ lr             0x0	0
 pc             0x1033c	0x1033c
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x1033c:	sub	r9, r7, r10, asr r2
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xca87116a	3397849450
@@ -3061,6 +3200,7 @@ lr             0x0	0
 pc             0x10340	0x10340
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10340:	tst	r5, #133	; 0x85
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xca87116a	3397849450
@@ -3079,6 +3219,7 @@ lr             0x0	0
 pc             0x10344	0x10344
 cpsr           0x60000010	1610612752
 fpscr          0x0	0
+=> 0x10344:	cmp	r11, r6, lsl r5
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xca87116a	3397849450
@@ -3097,6 +3238,7 @@ lr             0x0	0
 pc             0x10348	0x10348
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x10348:	tst	sp, #59	; 0x3b
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xca87116a	3397849450
@@ -3115,6 +3257,7 @@ lr             0x0	0
 pc             0x1034c	0x1034c
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x1034c:	rsc	r12, r9, r1, asr r5
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0xca87116a	3397849450
@@ -3133,6 +3276,7 @@ lr             0x0	0
 pc             0x10350	0x10350
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10350:	ror	r2, r9, r6
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3151,6 +3295,7 @@ lr             0x0	0
 pc             0x10354	0x10354
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10354:	rsb	sp, r3, #58	; 0x3a
 r0             0xffffff70	4294967152
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3169,6 +3314,7 @@ lr             0x0	0
 pc             0x10358	0x10358
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10358:	rsc	r0, r5, #163	; 0xa3
 r0             0xa3	163
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3187,6 +3333,7 @@ lr             0x0	0
 pc             0x1035c	0x1035c
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x1035c:	orr	r12, r9, r7, lsr r6
 r0             0xa3	163
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3205,6 +3352,7 @@ lr             0x0	0
 pc             0x10360	0x10360
 cpsr           0x20000010	536870928
 fpscr          0x0	0
+=> 0x10360:	tst	r3, r12, lsl r12
 r0             0xa3	163
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3223,6 +3371,7 @@ lr             0x0	0
 pc             0x10364	0x10364
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10364:	adc	r3, r0, sp, asr r12
 r0             0xa3	163
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3241,6 +3390,7 @@ lr             0x0	0
 pc             0x10368	0x10368
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10368:	sbc	r4, r8, #26
 r0             0xa3	163
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3259,6 +3409,7 @@ lr             0x0	0
 pc             0x1036c	0x1036c
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x1036c:	tst	r11, r5, lsl r1
 r0             0xa3	163
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3277,6 +3428,7 @@ lr             0x0	0
 pc             0x10370	0x10370
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10370:	adc	r3, r1, #158	; 0x9e
 r0             0xa3	163
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3295,6 +3447,7 @@ lr             0x0	0
 pc             0x10374	0x10374
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10374:	sub	r9, r8, #166	; 0xa6
 r0             0xa3	163
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3313,6 +3466,7 @@ lr             0x0	0
 pc             0x10378	0x10378
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10378:	ror	r9, r10, r10
 r0             0xa3	163
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3331,6 +3485,7 @@ lr             0x0	0
 pc             0x1037c	0x1037c
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x1037c:	rsb	r7, r11, #81	; 0x51
 r0             0xa3	163
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3349,6 +3504,7 @@ lr             0x0	0
 pc             0x10380	0x10380
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10380:	rsc	r0, r3, #199	; 0xc7
 r0             0x23c00077	599785591
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3367,6 +3523,7 @@ lr             0x0	0
 pc             0x10384	0x10384
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10384:	tst	r2, r5, asr r11
 r0             0x23c00077	599785591
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3385,6 +3542,7 @@ lr             0x0	0
 pc             0x10388	0x10388
 cpsr           0x40000010	1073741840
 fpscr          0x0	0
+=> 0x10388:	teq	r7, r8, asr r4
 r0             0x23c00077	599785591
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3421,6 +3579,7 @@ lr             0x0	0
 pc             0x10390	0x10390
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10390:	rsb	r5, r11, #142	; 0x8e
 r0             0x23c00077	599785591
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3439,6 +3598,7 @@ lr             0x0	0
 pc             0x10394	0x10394
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10394:	sub	r6, r5, r11, lsr r6
 r0             0x23c00077	599785591
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3457,6 +3617,7 @@ lr             0x0	0
 pc             0x10398	0x10398
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x10398:	cmp	r9, r9, asr r0
 r0             0x23c00077	599785591
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3475,6 +3636,7 @@ lr             0x0	0
 pc             0x1039c	0x1039c
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
+=> 0x1039c:	cmp	r9, r11, lsl r6
 r0             0x23c00077	599785591
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3493,6 +3655,7 @@ lr             0x0	0
 pc             0x103a0	0x103a0
 cpsr           0xa0000010	-1610612720
 fpscr          0x0	0
+=> 0x103a0:	cmp	r0, r9, asr sp
 r0             0x23c00077	599785591
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3511,6 +3674,7 @@ lr             0x0	0
 pc             0x103a4	0x103a4
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x103a4:	eor	r0, r12, #167	; 0xa7
 r0             0xa6	166
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3529,6 +3693,7 @@ lr             0x0	0
 pc             0x103a8	0x103a8
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x103a8:	tst	r1, #155	; 0x9b
 r0             0xa6	166
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3547,6 +3712,7 @@ lr             0x0	0
 pc             0x103ac	0x103ac
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x103ac:	rsb	r10, r0, r10, lsl r4
 r0             0xa6	166
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3565,6 +3731,7 @@ lr             0x0	0
 pc             0x103b0	0x103b0
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x103b0:	tst	r9, r3, ror r7
 r0             0xa6	166
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
@@ -3583,6 +3750,7 @@ lr             0x0	0
 pc             0x103b4	0x103b4
 cpsr           0x10	16
 fpscr          0x0	0
+=> 0x103b4:	add	r5, r2, r10, lsl r7
 r0             0xa6	166
 r1             0xdc3fffb1	3695181745
 r2             0x400	1024
