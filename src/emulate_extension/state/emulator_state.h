@@ -10,6 +10,8 @@
 #include <stdbool.h>
 #include "../basic_typedefs.h"
 #include "memory.h"
+#include "../instructions/arm/arm_instruction.h"
+
 enum Mode {
   THUMB, ARM
 };
@@ -43,7 +45,7 @@ enum ExceptionFlag {
 #define SP_ADDRESS 13
 
 struct CPSR_Struct {
-  enum OperatingMode M;
+  enum OperatingMode M : 5;
   bool T:1;
   bool F:1;
   bool I:1;
@@ -75,10 +77,14 @@ struct CPUState {
   struct CPSR_Struct SPSR_fiq;
   struct CPSR_Struct SPSR_abt;
   struct CPSR_Struct SPSR_und;
-  enum OperatingMode operatingMode;
-  enum Mode mode;
+//  enum OperatingMode operatingMode; // actually in cpsr
+  //enum Mode mode;// acctually encoded in cpsr t bit
   enum ExceptionFlag flags;
   bool locked;//todo handle this see 4.12
+  uint32_t fetched;
+  uint32_t decoded;
+  bool decoded_valid;//= false
+  bool fetched_valid;//= false
 };
 
 //todo: do nothing if exception flag is set
@@ -90,7 +96,7 @@ Word set_byte_in_register(RegisterAddress address, Byte byte);
 
 Word set_word_in_register(RegisterAddress address, Word val);
 
-void change_mode(enum Mode newMode);
+void change_mode(enum Mode newMode);//make sure to trash pipeline
 
 enum Mode get_mode();
 
@@ -111,5 +117,21 @@ void setCPSR(struct CPSR_Struct toSet);
 void setSPSR(struct CPSR_Struct old, struct CPSR_Struct new);
 
 void init_cpu(void);
+
+struct ArmInstruction get_fetched_arm();
+
+struct ThumbInstruction get_fetched_thumb();
+
+struct ArmInstruction get_decoded_arm();
+
+struct ThumbInstruction get_decoded_thumb();
+
+bool fetched_valid();
+
+bool decoded_valid();
+
+void transfer_decoded_to_fetched_and_load_decoded();//todo
+
+void print_registers();
 
 #endif //SRC_EMULATOR_STATE_H

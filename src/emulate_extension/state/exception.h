@@ -9,5 +9,6 @@
 #include <stdbool.h>
 
 bool has_exceptions();
+void handle_exception();
 
 #endif //SRC_EXCEPTION_H

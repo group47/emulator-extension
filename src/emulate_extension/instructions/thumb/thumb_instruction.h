@@ -74,4 +74,8 @@ struct ThumbInstruction {
     enum ThumbInstructionType type;
 };
 
+enum ExecutionExitCode execute_thumb_instruction(struct ThumbInstruction thumbInstruction);
+struct ThumbInstruction ThumbFromRaw(union RawThumbInstruction instruction);
+
+
 #endif //SRC_THUMB_INSTRUCTION_H

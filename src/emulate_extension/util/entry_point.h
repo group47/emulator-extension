@@ -6,7 +6,7 @@
 #define SRC_ENTRY_POINT_H
 
 enum CommandLineFlags{
-    NONE = 0
+    NONE = 0,DEBUG_PRINT_REGISTER
 };
 
 
