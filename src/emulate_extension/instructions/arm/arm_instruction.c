@@ -76,7 +76,12 @@ struct ArmInstruction ARMfromRaw(union RawArmInstruction raw){
     }else if(raw.coProcessorRegisterTransfer.filler1 == 0b1 && raw.coProcessorRegisterTransfer.filler1110 == 0b1110){
         res.type = ARM_COPROCESSOR_REGISTER_TRANSFER;
     }else {
+#ifndef TEST_SCRIPT_MAIN
         assert(false);
+#endif
+#ifdef TEST_SCRIPT_MAIN
+        res.type = ARM_INVALID;
+#endif
     }
 
     return res;

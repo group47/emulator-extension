@@ -13,8 +13,8 @@ enum AddSubtractOp{
 };
 
 struct AddSubtractInstruction{
-  RegisterAddress Rd : 4;
-  RegisterAddress Rs : 4;
+  RegisterAddress Rd : 3;
+  RegisterAddress Rs : 3;
   uint8_t RnOffset3: 3;
   enum AddSubtractOp op: 1;
   bool immediate : 1;

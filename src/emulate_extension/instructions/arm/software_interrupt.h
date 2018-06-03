@@ -12,7 +12,7 @@
 struct SoftWareInterruptInstruction {
     uint32_t commentField : 24;
     uint8_t filler1111_position27 : 4;
-    enum Cond cond;
+    enum Cond cond:4;
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_software_interrupt(struct SoftWareInterruptInstruction);

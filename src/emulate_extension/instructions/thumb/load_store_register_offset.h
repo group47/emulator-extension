@@ -17,7 +17,7 @@ struct LoadStoreRegisterOffset{
     bool load_byte : 1;
     enum LoadStore loadStore: 1;
     uint8_t filler0101 : 4;
-};
+}__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_load_store_register_offset(struct LoadStoreRegisterOffset instruction);
 

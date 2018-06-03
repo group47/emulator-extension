@@ -12,7 +12,7 @@
 struct BranchInstruction {
     uint32_t offset : 24;
     bool linkBit : 1;
-    uint8_t filler101_position27;
+    uint8_t filler101_position27 :3;
     enum Cond cond : 4;
 }__attribute__((packed));
 

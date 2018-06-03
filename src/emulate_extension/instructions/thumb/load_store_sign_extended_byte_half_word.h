@@ -16,7 +16,7 @@ struct LoadStoreSignExtendedByteHalfword{
     bool signed_ : 1;
     bool hFlag : 1;
     uint8_t filler1010 : 4;
-};
+}__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_load_store_sign_extended_byte_half_word(struct LoadStoreSignExtendedByteHalfword instruction);
 #endif //SRC_LOAD_STORE_SIGN_EXTENDED_BYTE_HALF_WORD_H
