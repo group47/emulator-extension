@@ -61,7 +61,6 @@ void exception_handler() {
 
 
 
-    setSPSR(state.CPSR, *get_SPSR_by_mode());
 
 
 

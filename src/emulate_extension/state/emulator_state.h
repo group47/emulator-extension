@@ -94,7 +94,7 @@ void change_mode(enum Mode newMode);
 
 enum Mode get_mode();
 
-struct CPSR_Struct* get_SPSR_by_mode();
+struct CPSR_Struct get_SPSR_by_mode();
 
 void change_operating_mode(enum OperatingMode newOperatingMode);
 
@@ -108,7 +108,7 @@ struct CPSR_Struct getCPSR();
 
 void setCPSR(struct CPSR_Struct toSet);
 
-void setSPSR(struct CPSR_Struct old, struct CPSR_Struct new);
+void setSPSR(struct CPSR_Struct toSet);
 
 void init_cpu(void);
 

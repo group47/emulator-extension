@@ -8,7 +8,7 @@
 
 enum ExecutionExitCode execute_instruction_unconditional_branch(const struct UnconditionalBranchInstruction instruction) {
 
-  assert(instruction.filler == 0b11100);
+  assert(instruction.filler11100 == 0b11100);
 
   int16_t offset = (int16_t) (instruction.offset * 2);
 
