@@ -10,6 +10,7 @@
 
 #define IMMEDIATE_BIT_FLAG_SINGLE_DATE_TRANSFER 0
 
+// the abort is handled here
 enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDataTransferInstruction instruction) {
     if (!should_execute(instruction.cond)) {
         return DIDNT_EXECUTE;
@@ -21,6 +22,8 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
     assert(!instruction.immediateOffsetBit &&
            ((struct ImmediateFalseShiftByRegisterTrue*) &assert_var)->Rm != PC_ADDRESS);//todo not sure this is correct
 
+
+    uint8_t oldBase = instruction.Rn;
 
     uint32_t offset;
 
@@ -82,6 +85,11 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
 
     if (instruction.writeBackBit) {
         set_word_in_register(instruction.Rn, address);
+    }
+
+    // if data abort happens, write back modified base registers
+    if (has_exception_flag(DATA_ABORT)) {
+        set_word_in_register(instruction.Rn, oldBase);
     }
 
     // todo: pass other execution exit code
