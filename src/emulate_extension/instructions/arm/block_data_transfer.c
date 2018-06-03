@@ -3,10 +3,12 @@
 //
 
 #include <assert.h>
+#include <string.h>
 #include "block_data_transfer.h"
 #include "../../util/cpsr_util.h"
 #include "../../util/address.h"
 #include "../../state/emulator_state.h"
+
 
 enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataTransferInstruction instruction) {
     if (!should_execute(instruction.cond)) {
@@ -19,10 +21,20 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
 
     WordAddress address = get_word_from_register(instruction.Rn);
 
+    int numOfRegisterUsed = 0;
+
+    for (int i = 0; i < NUM_GENERAL_PURPOSE_REGISTERS_ARM; i++) {
+        if (instruction.registerList & 0x1 << i) {
+            numOfRegisterUsed++;
+        }
+    }
+
+    // if access illegal, set the data abort flag
+    get_word_from_memory(address + 4 * (numOfRegisterUsed - 1));
+
     uint16_t maskPC = 0x1 << 15;
     uint32_t offset = 1 * 4;
 
-    int numOfRegisterUsed = 0;
     bool R15InRegisterList = instruction.registerList & maskPC;
     enum OperatingMode oldMode = get_operating_mode();
     bool userBankTransfer = (!instruction.loadStoreBit
@@ -43,7 +55,6 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
     }
 
     // todo: check if the transfer of banking of register actually fit the specication for this instruction
-
 
 
     for (uint8_t i = 0; i < NUM_REGISTER_IN_REGISTER_LIST; i++) {
@@ -73,7 +84,6 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
                     break;
                 }
             }
-            numOfRegisterUsed++;
         }
     }
 
@@ -91,8 +101,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
         }
     }
 
-    // todo: cycle thing
-
     change_operating_mode(oldMode);
+
     return OK;
 }

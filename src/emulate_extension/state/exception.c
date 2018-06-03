@@ -50,6 +50,17 @@ void handle_exception() {
     } else if (has_exception_flag(DATA_ABORT)) {
         newMode = abt;
         offset = 8;
+//        if (get_mode() == ARM) {
+//            switch (get_decoded_arm()) {
+//                case ARM_SINGLE_DATA_TRANSFER :
+//                    break;
+//                case ARM_SINGLE_DATA_SWAP :
+//                    break;
+//                case ARM_BLOCK_DATA_TRANSFER:
+//                    break;
+//
+//            }
+//        }
 
     } else if (has_exception_flag(FIQ)) {
         assert(get_operating_mode() != usr);

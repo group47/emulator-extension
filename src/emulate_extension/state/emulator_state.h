@@ -40,6 +40,8 @@ enum ExceptionFlag {
 
 #define NUM_GENERAL_PURPOSE_REGISTERS_ARM 16
 #define NUM_GENERAL_PURPOSE_REGISTERS_THUMB 8
+#define SPSR_ADDRESS 17
+#define CPSR_ADDRESS 16
 #define PC_ADDRESS 15
 #define LR_ADDRESS 14
 #define SP_ADDRESS 13
@@ -58,6 +60,7 @@ struct CPSR_Struct {
 }__attribute__((packed));
 
 #define NUM_FIQ_BANKED 7
+#define NUM_FIQ_UNBANKED 8
 #define NUM_SVC_BANKED 2
 #define NUM_ABT_BANKED 2
 #define NUM_IRQ_BANKED 2
@@ -65,7 +68,7 @@ struct CPSR_Struct {
 
 
 struct CPUState {
-  Word general_registers[NUM_GENERAL_PURPOSE_REGISTERS_ARM];
+  Word general_registers[NUM_GENERAL_PURPOSE_REGISTERS_ARM - 1];// -1 for the cpsr
   Word fiq_banked[NUM_FIQ_BANKED];
   Word svc_banked[NUM_SVC_BANKED];
   Word abt_banked[NUM_ABT_BANKED];
@@ -81,8 +84,10 @@ struct CPUState {
   //enum Mode mode;// acctually encoded in cpsr t bit
   enum ExceptionFlag flags;
   bool locked;//todo handle this see 4.12
-  uint32_t fetched;
-  uint32_t decoded;
+  uint32_t fetched_arm;
+  uint32_t decoded_arm;
+  uint16_t fetched_thumb;
+  uint16_t decoded_thumb;
   bool decoded_valid;//= false
   bool fetched_valid;//= false
 };
@@ -92,9 +97,9 @@ Byte get_byte_from_register(RegisterAddress address);
 
 Word get_word_from_register(RegisterAddress address);//todo add spsr restrictions, overridable if accessed from psr instruction
 
-Word set_byte_in_register(RegisterAddress address, Byte byte);
+void set_byte_in_register(RegisterAddress address, Byte byte);
 
-Word set_word_in_register(RegisterAddress address, Word val);
+void set_word_in_register(RegisterAddress address, Word val);
 
 void change_mode(enum Mode newMode);//make sure to trash pipeline
 
@@ -120,13 +125,13 @@ void setSPSR(struct CPSR_Struct toSet);
 
 void init_cpu(void);
 
-struct ArmInstruction get_fetched_arm();
+union RawArmInstruction get_fetched_arm();
 
-struct ThumbInstruction get_fetched_thumb();
+union RawThumbInstruction get_fetched_thumb();
 
-struct ArmInstruction get_decoded_arm();
+union RawArmInstruction get_decoded_arm();
 
-struct ThumbInstruction get_decoded_thumb();
+union RawThumbInstruction get_decoded_thumb();
 
 bool fetched_valid();
 
