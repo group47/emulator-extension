@@ -11,6 +11,7 @@
 #include "instructions/arm/arm_instruction.h"
 #include "util/static_asserts.h"
 #include <limits.h>
+#include <time.h>
 
 
 //enum ArmInstructionType{
@@ -87,7 +88,10 @@ static const char *output_file;
 
 void init_rand(void) {
     const uint32_t seed = 56823605;//from random.org
-    srand(seed);
+    struct timespec spec;
+
+    clock_gettime(CLOCK_REALTIME, &spec);
+    srand(seed + (spec.tv_nsec << 10));
 }
 
 
@@ -144,6 +148,7 @@ enum ArmInstructionType fromString(const char* str){
 #ifdef TEST_SCRIPT_MAIN
 
 int main(uint32_t argc, const char **argv) {
+    init_rand();
     do_asserts();
     assert(argc > 3);
     output_file = argv[1];
