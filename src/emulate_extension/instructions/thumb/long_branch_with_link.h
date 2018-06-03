@@ -10,7 +10,7 @@
 #include "../../util/common_enums.h"
 
 struct LongBranchWithLinkInstruction {
-  uint8_t filler    : 4; //1111
+  uint8_t filler1111    : 4; //1111
   bool lowOffsetBit : 1;
   uint16_t offset   : 11;
 }__attribute__((packed));

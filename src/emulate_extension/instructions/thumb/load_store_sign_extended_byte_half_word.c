@@ -8,7 +8,7 @@
 #include "../../state/memory.h"
 #include "../../state/emulator_state.h"
 
-enum ExecutionExitCode execute_load_store_sign_extended_byte_half_word(struct LoadStoreSignExtendedByteHalfword instruction){
+enum ExecutionExitCode execute_instruction_load_store_sign_extended_byte_half_word(struct LoadStoreSignExtendedByteHalfword instruction){
     ByteAddress final_address = get_word_from_register(instruction.Rb) + get_word_from_register(instruction.Ro);
     if(!instruction.hFlag && !instruction.signed_){
         assert(final_address %2 == 0);

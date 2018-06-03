@@ -14,6 +14,6 @@ struct AddOffsetToStackPointerInstruction {
     uint8_t filler1011_0000 : 8;
 }__attribute__((packed));
 
-enum ExecutionExitCode execution_instruction_add_offset_to_stack_pointer(struct AddOffsetToStackPointerInstruction);
+enum ExecutionExitCode execute_instruction_add_offset_to_stack_pointer(struct AddOffsetToStackPointerInstruction);
 
 #endif //SRC_ADD_OFFSET_TO_STACK_POINTER_H

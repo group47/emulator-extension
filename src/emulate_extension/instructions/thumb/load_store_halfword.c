@@ -7,7 +7,7 @@
 #include "load_store_halfword.h"
 #include "../../state/emulator_state.h"
 
-enum ExecutionExitCode execute_load_store_halfword(struct LoadStoreHalfWord instruction){
+enum ExecutionExitCode execute_instruction_load_store_halfword(struct LoadStoreHalfWord instruction){
     ByteAddress final_address = get_word_from_register(instruction.Rb) + (instruction.offset5 >> 1);
     if(instruction.loadStore == STORE){
         assert(final_address % 2 == 0);

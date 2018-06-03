@@ -19,5 +19,6 @@ struct LoadStoreRegisterOffset{
     uint8_t filler0101 : 4;
 };
 
+enum ExecutionExitCode execute_instruction_load_store_register_offset(struct LoadStoreRegisterOffset instruction);
 
 #endif //SRC_LOAD_STORE_REGISTER_OFFSET_H

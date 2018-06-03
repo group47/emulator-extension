@@ -8,7 +8,7 @@
 #include "../../util/shift_util.h"
 
 
-enum ExecutionExitCode execute_move_shifted_register(struct MoveShiftedRegister instruction){
+enum ExecutionExitCode execute_instruction_move_shifted_register(struct MoveShiftedRegister instruction){
     switch(instruction.Op){
         case THUMB_SHIFTED_REGISTER_LSL:
             set_word_in_register(instruction.Rd,get_word_from_register(instruction.Rs) << instruction.offset5);

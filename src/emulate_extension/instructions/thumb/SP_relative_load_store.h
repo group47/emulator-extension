@@ -11,7 +11,7 @@
 #include "../../basic_typedefs.h"
 
 struct SPRelativeLoadStoreInstruction {
-  uint8_t filler     : 4; //1001
+  uint8_t filler1001     : 4; //1001
   bool loadMemory    : 1;
   RegisterAddress Rd : 3;
   uint8_t word       : 8;

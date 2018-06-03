@@ -10,7 +10,7 @@
 #include "../../util/overflow_util.h"
 
 
-enum ExecutionExitCode execute_move_compare_add_subtract(struct MoveCompareAddSubtract instruction){
+enum ExecutionExitCode execute_instruction_move_compare_add_subtract(struct MoveCompareAddSubtract instruction){
     assert(instruction.filler001 == 0b001);
     uint32_t computation_res;
     bool overflow_occurred = false;

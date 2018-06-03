@@ -18,4 +18,5 @@ struct LoadStoreHalfWord{
     uint8_t filler1000 : 4;
 };
 
+enum ExecutionExitCode execute_instruction_load_store_halfword(struct LoadStoreHalfWord instruction);
 #endif //SRC_LOAD_STORE_HALFWORD_H

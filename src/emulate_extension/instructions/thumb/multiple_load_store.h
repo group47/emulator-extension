@@ -9,7 +9,7 @@
 #include <stdbool.h>
 #include "../../basic_typedefs.h"
 struct MultipleLoadStoreInstruction{
-  uint8_t filler     : 4; //1100
+  uint8_t filler1100     : 4; //1100
   bool loadMemory    : 1;
   RegisterAddress Rb : 3;
   uint8_t RList      : 8;

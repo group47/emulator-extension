@@ -10,7 +10,7 @@
 #include "../../util/common_enums.h"
 
 struct LoadStoreWithImmediateOffsetInstruction {
-  uint8_t filler     : 3; //011
+  uint8_t filler011     : 3; //011
   bool byteTransfer  : 1;
   bool loadMemory    : 1;
   uint8_t offset     : 5;

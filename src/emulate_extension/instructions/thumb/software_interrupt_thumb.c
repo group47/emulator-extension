@@ -8,7 +8,7 @@
 #include "../../state/emulator_state.h"
 #include "../../util/common_enums.h"
 
-enum ExecutionExitCode execute_thumb_software_interrupt(struct SoftwareInterruptThumb instruction){
+enum ExecutionExitCode execute_instruction_thumb_software_interrupt(struct SoftwareInterruptThumb instruction){
     assert (instruction.filler11011111 == 0b11011111);
     add_exception_flag(SOFTWARE_INTERRUPT);
     return OK;

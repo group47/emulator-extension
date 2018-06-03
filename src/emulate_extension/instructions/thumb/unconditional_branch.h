@@ -9,7 +9,7 @@
 #include "../../util/common_enums.h"
 
 struct UnconditionalBranchInstruction {
-  uint8_t filler : 5; //11100
+  uint8_t filler11100 : 5; //11100
   int16_t offset : 11;
 }__attribute__((packed));
 

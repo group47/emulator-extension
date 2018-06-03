@@ -24,4 +24,5 @@ struct MoveCompareAddSubtract{
 }__attribute__((packed));
 
 
+enum ExecutionExitCode execute_instruction_move_compare_add_subtract(struct MoveCompareAddSubtract instruction);
 #endif //SRC_MOVE_COMPARE_ADD_SUBTRACT_H

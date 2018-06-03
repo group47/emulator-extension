@@ -22,4 +22,5 @@ struct MoveShiftedRegister{
     uint8_t filler000: 3;
 };
 
+enum ExecutionExitCode execute_instruction_move_shifted_register(struct MoveShiftedRegister instruction);
 #endif //SRC_MOVE_SHIFTED_REGISTER_H

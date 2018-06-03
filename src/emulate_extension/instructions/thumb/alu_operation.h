@@ -34,4 +34,5 @@ struct ALUOperation{
 
 }__attribute__((packed));
 
+enum ExecutionExitCode execute_instruction_alu_operation(struct ALUOperation instruction);
 #endif //SRC_ALU_OPERATIONS_H

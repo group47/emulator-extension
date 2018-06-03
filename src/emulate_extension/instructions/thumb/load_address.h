@@ -10,7 +10,7 @@
 #include "../../util/common_enums.h"
 
 struct LoadAddressInstruction {
-  uint8_t filler     : 4; //1010
+  uint8_t filler1010     : 4; //1010
   bool stackPointer  : 1;
   RegisterAddress Rd : 3;
   uint8_t word       : 8;

@@ -7,7 +7,7 @@
 #include "../../state/memory.h"
 #include "../../state/emulator_state.h"
 
-enum ExecutionExitCode execute_load_store_register_offset(struct LoadStoreRegisterOffset instruction){
+enum ExecutionExitCode execute_instruction_load_store_register_offset(struct LoadStoreRegisterOffset instruction){
     ByteAddress final_address = get_word_from_register(instruction.Ro) + get_word_from_register(instruction.Rb);//todo is this signed
     if(instruction.loadStore == LOAD){
         if(instruction.load_byte){
