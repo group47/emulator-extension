@@ -48,4 +48,5 @@ void do_asserts(void){
     assert(sizeof(struct SoftwareInterruptThumb) == sizeof(uint16_t));
     assert(sizeof(struct SPRelativeLoadStoreInstruction) == sizeof(uint16_t));
     assert(sizeof(struct UnconditionalBranchInstruction) == sizeof(uint16_t));
+    assert(sizeof(union RawArmInstruction) == sizeof(uint32_t));
 }
