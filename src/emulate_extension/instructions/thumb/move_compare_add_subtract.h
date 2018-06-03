@@ -10,10 +10,10 @@
 
 
 enum MoveCompareAddSubtractOpCode{
-    MOV = 0,
-    CMP = 1,
-    ADD = 2,
-    SUB = 3
+    MOV_MOVECOMPAREADDSUBTRACTOPCODE = 0,
+    CMP_MOVECOMPAREADDSUBTRACTOPCODE = 1,
+    ADD_MOVECOMPAREADDSUBTRACTOPCODE = 2,
+    SUB_MOVECOMPAREADDSUBTRACTOPCODE = 3
 };
 
 struct MoveCompareAddSubtract{

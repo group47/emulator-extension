@@ -28,7 +28,7 @@ struct DataProcessingInstruction {
   RegisterAddress Rd:4;
   RegisterAddress Rn: 4;
   bool setConditionCodes: 1;
-  enum OpCode opcode : 4;
+  enum OpCode opcode : 4;//todo not all opcode done, needs adding
   bool immediateOperand: 1;
   uint8_t filler: 2;//The value of the filler should be 0b000
   enum Cond cond : 4;

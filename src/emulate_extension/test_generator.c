@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
+#include <stdio.h>
 #include "test_generator.h"
 #include "instructions/arm/arm_instruction.h"
 
@@ -37,7 +38,7 @@ static const char *type_to_string[15] = {"ARM_BLOCK_DATA_TRANSFER", "ARM_BRANCH"
                                          "ARM_SOFTWARE_INTERRUPT", "ARM_UNDEFINED"};
 
 
-static const char *output_directory;
+static const char *output_file;
 
 void init_rand(void) {
     const uint32_t seed = 56823605;//from random.org
@@ -71,8 +72,11 @@ struct ArmInstruction get_rand_instruction_of_types(enum ArmInstructionType *typ
 }
 
 
-void write_instructions_to_file(char *name, struct ArmInstruction *instructions, uint32_t num_instructions) {
-
+void write_instructions_to_file(const char *name, struct ArmInstruction *instructions, uint32_t num_instructions) {
+    FILE *fptr;
+    fptr = fopen("fileopen","wb");
+    fwrite(instructions,sizeof(struct ArmInstruction),num_instructions,fptr);
+    fclose(fptr);
 }
 
 enum ArmInstructionType fromString(const char* str){
@@ -84,15 +88,26 @@ enum ArmInstructionType fromString(const char* str){
     assert(false);
 }
 
-int main(const char **argv, uint32_t argc) {
-    assert(argc > 2);
-    output_directory = argv[1];
-    uint32_t num_args = argc - 2;
-    enum ArmInstructionType * types = malloc(1500);//this is a fast script
-    for (int i = 2; i < argc; ++i) {
-        enum ArmInstructionType instructionType = fromString(argv[i]);
-        types[i - 2] = instructionType;
-    }
+#ifdef TEST_SCRIPT_MAIN
 
+int main(const char **argv, uint32_t argc) {
+    assert(argc > 3);
+    output_file = argv[1];
+    assert(strtol(argv[2],NULL,10) > 0);
+    uint64_t num_instructions = strtol(argv[2],NULL,10);
+    uint32_t num_args = argc - 3;
+    enum ArmInstructionType * types = malloc(15*sizeof(enum ArmInstructionType));//this is a fast script
+    for (int i = 3; i < argc; ++i) {
+        enum ArmInstructionType instructionType = fromString(argv[i]);
+        types[i - 3] = instructionType;
+    }
+    struct ArmInstruction* instructions = calloc(num_instructions, sizeof(struct ArmInstruction));
+    for (int i = 0; i < num_instructions; ++i) {
+        instructions[i] = get_rand_instruction_of_types(types,argc - 3);
+    }
+    write_instructions_to_file(output_file,instructions,num_instructions);
+    return 0;
 
 }
+
+#endif

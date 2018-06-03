@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 project(src C)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -g -DUSE_EMULATE_MAIN -fsanitize=address ")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -g -DUSE_EMULATE_MAIN -fsanitize=address -DTEST_SCRIPT_MAIN")
 
 add_executable(assemble
         assemble/assemble.c

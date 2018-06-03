@@ -9,7 +9,7 @@
 
 enum ExecutionExitCode execute_instruction_multiple_load_store(const struct MultipleLoadStoreInstruction instruction) {
 
-  assert(instruction.filler == 0b1100);
+  assert(instruction.filler1100 == 0b1100);
 
   Address address = get_word_from_register(instruction.Rb);
 

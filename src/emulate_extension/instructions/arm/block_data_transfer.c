@@ -15,7 +15,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
 
     assert(instruction.registerList != 0);
     assert(instruction.Rn != PC_ADDRESS);
-    assert(instruction.psrAndForceUserBit && state.operatingMode != usr); // from ARM_doc, 4.11.4
+    assert(instruction.psrAndForceUserBit && get_operating_mode() != usr); // from ARM_doc, 4.11.4
 
     WordAddress address = get_word_from_register(instruction.Rn);
 
@@ -24,7 +24,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
 
     int numOfRegisterUsed = 0;
     bool R15InRegisterList = instruction.registerList & maskPC;
-    enum OperatingMode oldMode = state.operatingMode;
+    enum OperatingMode oldMode = get_operating_mode();
     bool userBankTransfer = (!instruction.loadStoreBit
                             && instruction.psrAndForceUserBit
                             && R15InRegisterList) ||

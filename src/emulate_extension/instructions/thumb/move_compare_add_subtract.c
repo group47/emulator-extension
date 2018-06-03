@@ -16,20 +16,20 @@ enum ExecutionExitCode execute_instruction_move_compare_add_subtract(struct Move
     bool overflow_occurred = false;
     bool borrow_occurred = false;
     switch (instruction.op){
-        case MOV:
+        case MOV_MOVECOMPAREADDSUBTRACTOPCODE:
             computation_res = instruction.offset8;
             set_word_in_register(instruction.Rd,computation_res);
-        case CMP:
-        case SUB:
+        case CMP_MOVECOMPAREADDSUBTRACTOPCODE:
+        case SUB_MOVECOMPAREADDSUBTRACTOPCODE:
             computation_res = get_word_from_register(instruction.Rd) - instruction.offset8;
             if(does_borrow_occur(get_word_from_register(instruction.Rd),instruction.offset8)){
                 borrow_occurred = true;
             }
-            if(instruction.op == SUB){
+            if(instruction.op == SUB_MOVECOMPAREADDSUBTRACTOPCODE){
                 set_word_in_register(instruction.Rd,computation_res);
             }
             break;
-        case ADD:
+        case ADD_MOVECOMPAREADDSUBTRACTOPCODE:
             computation_res = get_word_from_register(instruction.Rd) + instruction.offset8;
             set_word_in_register(instruction.Rd,computation_res);
             if(does_overflow_occur(get_word_from_register(instruction.Rd),instruction.offset8)){

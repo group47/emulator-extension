@@ -90,7 +90,7 @@ struct CPUState {
 //todo: do nothing if exception flag is set
 Byte get_byte_from_register(RegisterAddress address);
 
-Word get_word_from_register(RegisterAddress address);
+Word get_word_from_register(RegisterAddress address);//todo add spsr restrictions, overridable if accessed from psr instruction
 
 Word set_byte_in_register(RegisterAddress address, Byte byte);
 
@@ -103,6 +103,8 @@ enum Mode get_mode();
 struct CPSR_Struct* get_SPSR_by_mode();
 
 void change_operating_mode(enum OperatingMode newOperatingMode);
+
+enum OperatingMode get_operating_mode();
 
 void add_exception_flag(enum ExceptionFlag flag);
 
