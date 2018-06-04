@@ -115,6 +115,10 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
             computation_res = rnVal& ~operand2Val;
             set_word_in_register(instruction.Rd,computation_res);
             break;
+        case mvn:
+            computation_res = ~operand2Val;
+            set_word_in_register(instruction.Rd,computation_res);
+            break;
     }
     high_level_set_CPSR_data_processing(instruction, borrow_occurred, overflow_occurred, computation_res,
                                         shiftCarryOut);

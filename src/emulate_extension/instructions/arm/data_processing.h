@@ -26,7 +26,7 @@ enum OpCode {
     orr = 0b1100,
     mov = 0b1101,
     bic = 0b1110,
-    mvn = 0b111
+    mvn = 0b1111
 };
 
 struct DataProcessingInstruction {

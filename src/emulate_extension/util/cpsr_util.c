@@ -39,7 +39,7 @@ void high_level_set_CPSR_data_processing(const struct DataProcessingInstruction 
                          const bool overflow,
                          const uint32_t computation_res,
                          const uint32_t shiftCarryOut) {
-  return high_level_set_CPSR(instruction.setConditionCodes,is_arithmetic(instruction.opcode),instruction.opcode == add,is_logical(instruction.opcode),borrow,overflow,computation_res,shiftCarryOut);
+  return high_level_set_CPSR(instruction.setConditionCodes,is_arithmetic(instruction.opcode),instruction.opcode == add || instruction.opcode == adc,is_logical(instruction.opcode),borrow,overflow,computation_res,shiftCarryOut);
 }
 
 void high_level_set_CPSR(bool set_condition_codes,bool is_arithmetic,bool is_add,bool is_logical,
