@@ -27,7 +27,7 @@ enum CommandLineFlags parseCommandLine(uint32_t argc, const char **argv){
             binary_path = arg +  sizeof("--binary=")/sizeof(char) - 1;
         } else if(0 == strcmp(arg,"-d") || 0 == strcmp(arg,"--disassemble")){
             flags |= DISASSEMBLE;
-        }else{
+        } else{
             flags |= INVALID;
             invalid_arg = arg;
         }
@@ -56,15 +56,15 @@ int main(uint32_t argc, const char **argv){
         }
         disassemble(fp);
         fclose(fp);
-    }else{
-        //todo
     }
+    main_emulation_entry_point(flags);
 
 
 
 
     //todo a more useful main
 }
+
 #endif
 
 

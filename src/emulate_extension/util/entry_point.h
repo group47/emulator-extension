@@ -5,6 +5,8 @@
 #ifndef SRC_ENTRY_POINT_H
 #define SRC_ENTRY_POINT_H
 
+
+
 enum CommandLineFlags{
     DEBUG_PRINT_REGISTER = 0b0000000000001,
     HELP_MESSAGE         = 0b0000000000010,
@@ -13,5 +15,7 @@ enum CommandLineFlags{
 
 };
 
+
+void main_emulation_entry_point(enum CommandLineFlags flags);
 
 #endif //SRC_ENTRY_POINT_H

@@ -17,7 +17,7 @@ void main_loop(enum CommandLineFlags flags){
 
     while(true){
 
-        if(fetched_valid){
+        if(fetched_valid()){
             if(get_mode() == ARM){
                 const enum ExecutionExitCode exitCode = execute_arm_instruction(ARMfromRaw(get_fetched_arm()));
             }
@@ -34,7 +34,7 @@ void main_loop(enum CommandLineFlags flags){
         }
 
         //this function is used so that the cpu isn't in an inconsistent state in this loop
-        transfer_decoded_to_fetched_and_load_decoded();
+        transfer_fetched_to_decoded_and_load_fetched();
         if(flags & DEBUG_PRINT_REGISTER){
             print_registers();
         }

@@ -117,6 +117,8 @@ void remove_exception_flag(enum ExceptionFlag flag);
 
 bool has_exception_flag(enum ExceptionFlag flag);
 
+enum ExceptionFlag get_exception_flags();
+
 struct CPSR_Struct getCPSR();
 
 void setCPSR(struct CPSR_Struct toSet);
@@ -137,7 +139,7 @@ bool fetched_valid();
 
 bool decoded_valid();
 
-void transfer_decoded_to_fetched_and_load_decoded();//todo
+void transfer_fetched_to_decoded_and_load_fetched();//todo
 
 void print_registers();
 

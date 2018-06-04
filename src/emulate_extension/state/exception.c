@@ -94,5 +94,5 @@ void handle_exception() {
 }
 
 bool has_exceptions(){
-    assert(false);//todo
+    return get_exception_flags() != 0;
 }

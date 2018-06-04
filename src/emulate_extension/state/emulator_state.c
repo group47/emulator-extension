@@ -3,6 +3,7 @@
 //
 #include <assert.h>
 #include <stdio.h>
+#include <memory.h>
 #include "emulator_state.h"
 #include "../instructions/arm/arm_instruction.h"
 #include "../instructions/thumb/thumb_instruction.h"
@@ -46,6 +47,9 @@ Word get_set_word_from_register(RegisterAddress address,bool set, Word val) {
                 if(address == CPSR_ADDRESS){
                     assert(!set);
                     return get_set_register((Word *)&state.CPSR,set,val);
+                }else if(address == PC_ADDRESS){
+                    assert(!set);
+                    return get_set_register(&state.general_registers[address],set,val);
                 }else{
                     assert(false);
                 }
@@ -187,17 +191,11 @@ void change_operating_mode(enum OperatingMode newOperatingMode) {
 }
 
 enum OperatingMode get_operating_mode() {
-    /*
     return state.CPSR.M;
-     */
-    assert(false);
 }
 
 void add_exception_flag(enum ExceptionFlag flag) {
-    /*
     state.flags |= flag;
-     */
-    assert(false);
 }
 
 void remove_exception_flag(enum ExceptionFlag flag) {
@@ -208,17 +206,15 @@ void remove_exception_flag(enum ExceptionFlag flag) {
 }
 
 bool has_exception_flag(enum ExceptionFlag flag) {
-    /*
     return state.flags & flag;
-     */
-    assert(false);
+}
+
+enum ExceptionFlag get_exception_flags(){
+    return state.flags;
 }
 
 struct CPSR_Struct getCPSR() {
-    /*
     return state.CPSR;
-     */
-    assert(false);
 }
 
 void setCPSR(struct CPSR_Struct toSet) {
@@ -229,7 +225,6 @@ void setCPSR(struct CPSR_Struct toSet) {
 }
 
 void setSPSR(struct CPSR_Struct toSet) {
-    /*
     switch (state.CPSR.M) {
         case usr:
             state.CPSR = toSet;
@@ -256,19 +251,17 @@ void setSPSR(struct CPSR_Struct toSet) {
             fprintf(stderr, "unknown operating mode\n");
             assert(false);
     }
-     */
-    assert(false);
 }
 
 void init_cpu(void) {
-    assert(false);
+    memset(&state,0,sizeof(struct CPUState));
+    state.decoded_valid = false;
+    state.fetched_valid = false;
+    state.CPSR.M = usr;
 }
 
 union RawArmInstruction get_fetched_arm() {
-    /*
     return *((union RawArmInstruction*) &state.fetched_arm);
-     */
-    assert(false);
 }
 
 union RawThumbInstruction get_fetched_thumb() {
@@ -293,21 +286,28 @@ union RawThumbInstruction get_decoded_thumb() {
 }
 
 bool fetched_valid() {
-    /*
     return state.fetched_valid;
-     */
-    assert(false);
 }
 
-bool decoded_valid() {
-    /*
-    return state.decoded_valid;
-     */
-    assert(false);
-}
 
-void transfer_decoded_to_fetched_and_load_decoded() {
-    assert(false);
+void transfer_fetched_to_decoded_and_load_fetched() {
+    if(get_mode() == THUMB){
+        state.decoded_thumb = state.fetched_thumb;
+    }else if(get_mode() == ARM){
+        state.decoded_arm = state.fetched_thumb;
+    }else{
+        assert(false);
+    }
+    state.decoded_valid = state.fetched_valid;
+    if(get_mode() == THUMB){
+        state.fetched_thumb = get_half_word_from_memory(get_word_from_register(PC_ADDRESS));
+        state.fetched_thumb = true;
+    }else if(get_mode() == ARM){
+        state.fetched_arm = get_word_from_memory(get_word_from_register(PC_ADDRESS));
+        state.fetched_valid = true;
+    }else{
+        assert(false);
+    }
 }//todo
 
 void print_registers() {
