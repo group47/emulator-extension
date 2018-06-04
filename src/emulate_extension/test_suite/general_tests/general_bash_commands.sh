@@ -1,7 +1,7 @@
 #in no particular order
 
 #gdb scripts
-for i in *.bin; do sed "s/a.out/$(basename $i .bin).actuallyanexecutable/g; s/gdb.log/$i.log/g" < ~/gdb_init_script  > ~/gdb-take-two/arm11_47/src/emulate_extension/test_suite/ARM_MULTIPLY/$(basename "$i" .bin).gdbinit; done
+for i in *.bin; do sed "s/a.out/$(basename $i .bin).actuallyanexecutable/g; s/gdb.log/$i.log/g" < ~/gdb_init_script  > ~/gdb-take-two/arm11_47/src/emulate_extension/test_suite/general_tests/$(basename "$i" .bin).gdbinit; done
 
 #extract useable assembly from disassembly
 for i in *.bin; do objdump -D $i --target=binary --architecture=arm_any| grep -o -P 'm[lu][a-z]+[^A;]+' > $(basename $i .bin).s; done
