@@ -85,7 +85,7 @@ void high_level_set_CPSR(bool set_condition_codes,bool is_arithmetic,bool is_add
   setCPSR(final_res);
 }
 bool is_arithmetic(enum OpCode opCode) {
-  return opCode == add || opCode == sub || opCode == rsb || opCode == cmp;
+  return opCode == add || opCode == sub || opCode == rsb || opCode == cmp || opCode == adc || opCode == cmn || opCode == sbc || opCode == rsc;
 }
 bool is_logical(enum OpCode opCode) {
   return !is_arithmetic(opCode);
