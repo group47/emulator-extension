@@ -11,7 +11,7 @@
 #include "../state/emulator_state.h"
 
 /*TODO: check if shift operator is correctly implemented (could be arithmetic instead of logical)
- * /
+ */
 int get_operand2(uint16_t secondOperand,
                  bool immediate,
                  bool flag,
