@@ -81,8 +81,10 @@ struct CPUState {
   //enum Mode mode;// acctually encoded in cpsr t bit
   enum ExceptionFlag flags;
   bool locked;//todo handle this see 4.12
-  uint32_t fetched;
-  uint32_t decoded;
+  uint32_t fetched_arm;
+  uint32_t decoded_arm;
+  uint16_t fetched_thumb;
+  uint16_t decoded_thumb;
   bool decoded_valid;//= false
   bool fetched_valid;//= false
 };
@@ -120,13 +122,13 @@ void setSPSR(struct CPSR_Struct toSet);
 
 void init_cpu(void);
 
-struct ArmInstruction get_fetched_arm();
+union RawArmInstruction get_fetched_arm();
 
-struct ThumbInstruction get_fetched_thumb();
+union RawThumbInstruction get_fetched_thumb();
 
-struct ArmInstruction get_decoded_arm();
+union RawArmInstruction get_decoded_arm();
 
-struct ThumbInstruction get_decoded_thumb();
+union RawThumbInstruction get_decoded_thumb();
 
 bool fetched_valid();
 
