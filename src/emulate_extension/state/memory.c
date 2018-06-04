@@ -37,12 +37,12 @@ Word get_word_from_memory(Address address){
     int i = 0;
     if (memory.mode == LITTLE_ENDIAN_) {
         while (i < 4) {
-            word |= ((uint32_t)*(memory.contents + address + i)) << 8 * i;
+            word |= (((uint32_t)*(memory.contents + address + i)) << 8 * i);
             i++;
         }
     } else {
         while (i < 4) {
-            word |= ((uint32_t)*(memory.contents + address + (3 - i))) << 8 * i;
+            word |= (((uint32_t)*(memory.contents + address + (3 - i))) << 8 * i);
             i++;
         }
     }
@@ -120,13 +120,13 @@ void set_word_from_memory(Address address, Word val){
     if (memory.mode == LITTLE_ENDIAN_) {
         while (i < 4) {
             *(memory.contents + address + i) =
-                    (Byte) (val & (0x1 << 8 * i));
+                    (Byte) ((val & (0xFF << (8 * i))) >> (8*i));
             i++;
         }
     } else {
         while (i < 4) {
             *(memory.contents + address + (3 - i)) =
-                    (Byte) (val & (0x1 << 8 * i));
+                    (Byte) ((val & (0xFF << (8 * i))) >> (8*i));
             i++;
         }
     }
@@ -138,11 +138,11 @@ void set_half_word_from_memory(HalfWordAddress address, HalfWord val){
         add_exception_flag(DATA_ABORT);
     }
     if (memory.mode == LITTLE_ENDIAN_) {
-        *(memory.contents + address)  = (Byte) (val & 0x0f);
-        *(memory.contents + address + 1) = (Byte) (val & 0xf0);
+        *(memory.contents + address)  = (Byte) (val & 0x00ff);
+        *(memory.contents + address + 1) = (Byte) (val & 0xff00);
     } else {
-        *(memory.contents + address) = (Byte) (val & 0xf0);
-        *(memory.contents + address + 1) = (Byte) (val & 0x0f);
+        *(memory.contents + address) = (Byte) (val & 0xff00);
+        *(memory.contents + address + 1) = (Byte) (val & 0x00ff);
     }
 }
 

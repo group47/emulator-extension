@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <memory.h>
+#include <endian.h>
 #include "emulator_state.h"
 #include "../instructions/arm/arm_instruction.h"
 #include "../instructions/thumb/thumb_instruction.h"
@@ -219,10 +220,7 @@ struct CPSR_Struct getCPSR() {
 }
 
 void setCPSR(struct CPSR_Struct toSet) {
-    /*
     state.CPSR = toSet;
-     */
-    assert(false);
 }
 
 void setSPSR(struct CPSR_Struct toSet) {
@@ -262,7 +260,8 @@ void init_cpu(void) {
 }
 
 union RawArmInstruction get_fetched_arm() {
-    return *((union RawArmInstruction*) &state.fetched_arm);
+    uint32_t lValue = __bswap_32(__bswap_32(state.fetched_arm));
+    return *((union RawArmInstruction*) &lValue);
 }
 
 union RawThumbInstruction get_fetched_thumb() {
