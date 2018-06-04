@@ -22,7 +22,7 @@ struct Memory {
 };
 
 // todo: add memory checks here for out of bound
-void init_memory(uint32_t size, enum MemoryFormat mode);
+void init_memory(size_t size, enum MemoryFormat mode);
 
 Word get_word_from_memory(Address address);
 uint64_t get_word_from_memory_sign_extended(Address address);
@@ -42,6 +42,6 @@ void set_byte_from_memory_sign_extended(ByteAddress address, Byte val);
 Word byte_to_word_sign_extend(Byte byte);
 Word half_word_to_word_sign_extend(HalfWord halfWord);
 void set_mode(enum MemoryFormat mode);
-
+void deallocate_memory();
 
 #endif //SRC_MEMORY_H

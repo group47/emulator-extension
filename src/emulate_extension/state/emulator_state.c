@@ -30,7 +30,7 @@ Word get_set_word_from_register(RegisterAddress address,bool set, Word val) {
         return 0;//don't allow register access if exceptions raised
     }
     RegisterAddress max_valid_register_address;
-    if(get_mode() == THUMB){
+    if(get_mode() == ARM){
         max_valid_register_address = NUM_GENERAL_PURPOSE_REGISTERS_ARM - 1;
     }else {
         max_valid_register_address = NUM_GENERAL_PURPOSE_REGISTERS_THUMB - 1;
@@ -148,6 +148,7 @@ void set_word_in_register(RegisterAddress address, Word val) {
     if(has_exceptions()){
         return;//don't allow register access if exceptions raised
     }
+    get_set_word_from_register(address,true,val);
 }
 
 void change_mode(enum Mode newMode) {
@@ -308,8 +309,27 @@ void transfer_fetched_to_decoded_and_load_fetched() {
     }else{
         assert(false);
     }
+    if(get_mode() == ARM){
+        set_word_in_register(PC_ADDRESS,get_word_from_register(PC_ADDRESS) + sizeof(union RawArmInstruction)/sizeof(unsigned char));
+    }else if(get_mode() == THUMB){
+        set_word_in_register(PC_ADDRESS,get_word_from_register(PC_ADDRESS) + sizeof(union RawThumbInstruction)/sizeof(unsigned char));
+    }
 }//todo
 
 void print_registers() {
-    assert(false);
+    for (uint8_t i = 0; i < 10; ++i) {
+        printf("r%d             %o %d\n",i,get_word_from_register(i),get_word_from_register(i));
+    }
+    for (uint8_t i = 10; i < 13; ++i) {
+        printf("r%d            %o %d\n",i,get_word_from_register(i),get_word_from_register(i));
+    }
+    printf("lr             %o %d\n",get_word_from_register(LR_ADDRESS),get_word_from_register(LR_ADDRESS));
+    printf("pc             %o %d\n",get_word_from_register(PC_ADDRESS),get_word_from_register(PC_ADDRESS));
+    printf("cpsr           %o %d\n",getCPSR(),getCPSR());
+    if(get_operating_mode() == usr || get_operating_mode() == sys){
+        printf("fpscr          %o %d\n",0,0);
+    }else{
+        printf("fpscr          %o %d\n",get_spsr(),get_spsr());
+    }
+
 }

@@ -13,11 +13,17 @@
 
 
 void main_loop(enum CommandLineFlags flags){
-    init_cpu();
-
+    __uint128_t master_instruction_counter = 0;
     while(true){
 
         if(fetched_valid()){
+            union RawArmInstruction instruction = get_fetched_arm();
+            if((flags & TERMINATE_ON__ZERO) && ((*(uint32_t *)&instruction) == 0)){
+                return;
+            }
+            if(flags & TERMINATE_AFTER_200 && master_instruction_counter == 200){
+                return;
+            }
             if(get_mode() == ARM){
                 const enum ExecutionExitCode exitCode = execute_arm_instruction(ARMfromRaw(get_fetched_arm()));
             }
@@ -26,6 +32,7 @@ void main_loop(enum CommandLineFlags flags){
             } else {
                 assert(false);
             }
+            master_instruction_counter++;
         }
 
         //check if exceptions
@@ -35,6 +42,7 @@ void main_loop(enum CommandLineFlags flags){
 
         //this function is used so that the cpu isn't in an inconsistent state in this loop
         transfer_fetched_to_decoded_and_load_fetched();
+
         if(flags & DEBUG_PRINT_REGISTER){
             print_registers();
         }

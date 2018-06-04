@@ -32,6 +32,7 @@ enum CommandLineFlags parseCommandLine(uint32_t argc, const char **argv){
             invalid_arg = arg;
         }
     }
+    flags |= TERMINATE_AFTER_200;//current default
     return flags;
 }
 
@@ -57,8 +58,13 @@ int main(uint32_t argc, const char **argv){
         disassemble(fp);
         fclose(fp);
     }
-    main_emulation_entry_point(flags);
-
+    FILE* fp = fopen(binary_path,"r");
+    if(fp == NULL){
+        fprintf(stderr,"failed to open file\n");
+        return -1;
+    }
+    main_emulation_entry_point(flags,fp);
+    fclose(fp);
 
 
 
