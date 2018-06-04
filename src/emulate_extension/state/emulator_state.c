@@ -14,7 +14,17 @@ Byte get_byte_from_register(RegisterAddress address) {
     return (Byte)get_word_from_register(address);
 }
 
-Word get_word_from_register(RegisterAddress address) {
+Word get_set_register(Word * register_,bool set,Word val){
+    if(set){
+        *register_ = val;
+        return *register_;
+    }
+    else{
+        return *register_;
+    }
+}
+
+Word get_set_word_from_register(RegisterAddress address,bool set, Word val) {
     if(has_exceptions()){
         return 0;//don't allow register access if exceptions raised
     }
@@ -27,30 +37,31 @@ Word get_word_from_register(RegisterAddress address) {
     const RegisterAddress max_unbanked_address_fiq = NUM_FIQ_UNBANKED - 1;
     const RegisterAddress max_banked_address_fiq = NUM_FIQ_UNBANKED + NUM_FIQ_BANKED - 1;
     const RegisterAddress max_banked_address_other = PC_ADDRESS - 1;
-    const RegisterAddress max_unbanked_address_other = PC_ADDRESS - 1 - NUM_IRQ_BANKED;
+    const RegisterAddress max_unbanked_address_other = max_valid_register_address;
     Word *banked_array;
     switch(get_operating_mode()){
         case usr:
         case sys:
             if(address > max_valid_register_address){
                 if(address == CPSR_ADDRESS){
-                    return *(Word *)&state.CPSR;
+                    assert(!set);
+                    return get_set_register((Word *)&state.CPSR,set,val);
                 }else{
                     assert(false);
                 }
             } else{
-                return state.general_registers[address];
+                return get_set_register(&state.general_registers[address],set,val);
             }
             break;
         case fiq:
             if(address > max_unbanked_address_fiq ){
                 if(address <= max_banked_address_fiq ){
-                    return state.fiq_banked[address - NUM_FIQ_UNBANKED];
+                    return get_set_register(&state.fiq_banked[address - NUM_FIQ_UNBANKED],set,val);
                 }else{
                     if(address == PC_ADDRESS){
-                        return state.general_registers[address];
+                        return get_set_register(&state.general_registers[address],set,val);
                     }else if(address == CPSR_ADDRESS){
-                        return *(Word *)&state.CPSR;
+                        return get_set_register((Word *)&state.CPSR,set,val);
                     }else if(address == SPSR_ADDRESS){
                         assert(false);//normal instructions should not need to access the spsr. use get spsrt for internal access.
                     } else{
@@ -58,7 +69,7 @@ Word get_word_from_register(RegisterAddress address) {
                     }
                 }
             }else{
-                return state.general_registers[address];
+                return get_set_register(&state.general_registers[address],set,val);
             }
             break;
         case irq:
@@ -66,8 +77,8 @@ Word get_word_from_register(RegisterAddress address) {
         case und:
         case abt:
             if(address <= max_unbanked_address_other){
-                return state.general_registers[address];
-            }else if(address <= max_valid_register_address){
+                return get_set_register(&state.general_registers[address],set,val);
+            }else if(address <= max_banked_address_other){
                 switch(get_operating_mode()){
                     case irq:
                         banked_array = state.irq_banked;
@@ -83,16 +94,26 @@ Word get_word_from_register(RegisterAddress address) {
                         break;
                     default: assert(false);
                 }
-                return banked_array[address - max_unbanked_address_other];
+                return get_set_register(&banked_array[address - max_unbanked_address_other],set,val);
             }else if(address == PC_ADDRESS || address == CPSR_ADDRESS){
-                return state.general_registers[address];
+                if(get_mode() == THUMB){
+                    assert(address == PC_ADDRESS);
+                }
+                return get_set_register(&state.general_registers[address],set,val);
             } else {
                 assert(false);
             }
         default:
             assert(false);
     }
-}//todo add spsr restrictions, overridable if accessed from psr instruction
+}
+
+Word get_word_from_register(RegisterAddress address){
+    return get_set_word_from_register(address,false,-1);
+}
+
+
+//todo add spsr restrictions, overridable if accessed from psr instruction
 
 struct CPSR_Struct get_spsr(){
     switch (get_operating_mode()){
@@ -115,12 +136,14 @@ struct CPSR_Struct get_spsr(){
     }
 }
 
-Word set_byte_in_register(RegisterAddress address, Byte byte) {
-    assert(false);
+void set_byte_in_register(RegisterAddress address, Byte byte) {
+    set_word_in_register(address,get_byte_from_register(address) | (uint32_t)byte);
 }
 
-Word set_word_in_register(RegisterAddress address, Word val) {
-    assert(false);
+void set_word_in_register(RegisterAddress address, Word val) {
+    if(has_exceptions()){
+        return;//don't allow register access if exceptions raised
+    }
 }
 
 void change_mode(enum Mode newMode) {

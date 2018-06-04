@@ -97,9 +97,9 @@ Byte get_byte_from_register(RegisterAddress address);
 
 Word get_word_from_register(RegisterAddress address);//todo add spsr restrictions, overridable if accessed from psr instruction
 
-Word set_byte_in_register(RegisterAddress address, Byte byte);
+void set_byte_in_register(RegisterAddress address, Byte byte);
 
-Word set_word_in_register(RegisterAddress address, Word val);
+void set_word_in_register(RegisterAddress address, Word val);
 
 void change_mode(enum Mode newMode);//make sure to trash pipeline
 
