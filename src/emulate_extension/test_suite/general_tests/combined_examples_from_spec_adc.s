@@ -1,7 +1,7 @@
-adc r1, r1
-adc r1, r1
-adc r1, r1
-adc r1, r1
+adc r1, r0, r0, lsl #6
+adc r2, r3, r2, lsl #4
+adc r3, r1, r2, asr #6
+adc r0, r1, r3, lsl #5
 adc r1, r1
 adc r2, r1, r1 ,lsl #2
 adc r2, r1, r1 ,lsl #3

@@ -1,7 +1,7 @@
-add r1, r1
-add r1, r1
-add r1, r1
-add r1, r1
+add r1, r0, r0, lsl #6
+add r2, r3, r2, lsl #4
+add r3, r1, r2, asr #6
+add r0, r1, r3, lsl #5
 add r1, r1
 add r2, r1, r1, lsl #2
 add r2, r1, r1, lsl #3
@@ -16,10 +16,10 @@ add r2, r1, r1, asr #3
 add r2, r1, r1, asr #5
 add r2, r1, r1, asr #9
 add r3, pc
-sub r1, r1
-sub r1, r1
-sub r1, r1
-sub r1, r1
+sub r1, r0, r0, lsl #5
+sub r2, r3, r2, lsl #5
+sub r3, r1, r2, asr #5
+sub r0, r1, r3, lsl #5
 sub r1, r1
 sub r2, r1, r1, lsl #2
 sub r2, r1, r1, lsl #3
