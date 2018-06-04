@@ -1,4 +1,4 @@
-add r1, r0, #6 ; need to start out with actual values to have meaningful tests
+add r1, r0, #6    @ need to start out with actual values to have meaningful tests
 add r2, r3, #4
 add r3, r1, #6
 add r0, r1, #5
