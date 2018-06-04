@@ -3,12 +3,28 @@
 //
 
 #include <assert.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "memory.h"
 #include "emulator_state.h"
 
 static struct Memory memory;
 
-void init_memory(uint32_t size, enum MemoryFormat mode);
+
+
+void init_memory(size_t size, enum MemoryFormat mode){
+    memory.size = size;
+    memory.mode = mode;
+    memory.contents = calloc(size,sizeof(unsigned char));
+    if(memory.contents == NULL){
+        fprintf(stderr,"Can't allocated ram, exiting.. \n");
+        exit(-1);
+    }
+}
+void deallocate_memory(){
+    free(memory.contents);
+}
+
 
 Word get_word_from_memory(Address address){
     assert (address % 4 == 0);
