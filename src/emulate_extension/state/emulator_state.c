@@ -6,16 +6,115 @@
 #include "emulator_state.h"
 #include "../instructions/arm/arm_instruction.h"
 #include "../instructions/thumb/thumb_instruction.h"
+#include "exception.h"
 
 static struct CPUState state;
 
 Byte get_byte_from_register(RegisterAddress address) {
-    assert(false);
+    return (Byte)get_word_from_register(address);
 }
 
 Word get_word_from_register(RegisterAddress address) {
-    assert(false);
+    if(has_exceptions()){
+        return 0;//don't allow register access if exceptions raised
+    }
+    RegisterAddress max_valid_register_address;
+    if(get_mode() == THUMB){
+        max_valid_register_address = NUM_GENERAL_PURPOSE_REGISTERS_ARM - 1;
+    }else {
+        max_valid_register_address = NUM_GENERAL_PURPOSE_REGISTERS_THUMB - 1;
+    }
+    const RegisterAddress max_unbanked_address_fiq = NUM_FIQ_UNBANKED - 1;
+    const RegisterAddress max_banked_address_fiq = NUM_FIQ_UNBANKED + NUM_FIQ_BANKED - 1;
+    const RegisterAddress max_banked_address_other = PC_ADDRESS - 1;
+    const RegisterAddress max_unbanked_address_other = PC_ADDRESS - 1 - NUM_IRQ_BANKED;
+    Word *banked_array;
+    switch(get_operating_mode()){
+        case usr:
+        case sys:
+            if(address > max_valid_register_address){
+                if(address == CPSR_ADDRESS){
+                    return *(Word *)&state.CPSR;
+                }else{
+                    assert(false);
+                }
+            } else{
+                return state.general_registers[address];
+            }
+            break;
+        case fiq:
+            if(address > max_unbanked_address_fiq ){
+                if(address <= max_banked_address_fiq ){
+                    return state.fiq_banked[address - NUM_FIQ_UNBANKED];
+                }else{
+                    if(address == PC_ADDRESS){
+                        return state.general_registers[address];
+                    }else if(address == CPSR_ADDRESS){
+                        return *(Word *)&state.CPSR;
+                    }else if(address == SPSR_ADDRESS){
+                        assert(false);//normal instructions should not need to access the spsr. use get spsrt for internal access.
+                    } else{
+                        assert(false);
+                    }
+                }
+            }else{
+                return state.general_registers[address];
+            }
+            break;
+        case irq:
+        case svc:
+        case und:
+        case abt:
+            if(address <= max_unbanked_address_other){
+                return state.general_registers[address];
+            }else if(address <= max_valid_register_address){
+                switch(get_operating_mode()){
+                    case irq:
+                        banked_array = state.irq_banked;
+                        break;
+                    case svc:
+                        banked_array = state.svc_banked;
+                        break;
+                    case abt:
+                        banked_array = state.abt_banked;
+                        break;
+                    case und:
+                        banked_array = state.und_banked;
+                        break;
+                    default: assert(false);
+                }
+                return banked_array[address - max_unbanked_address_other];
+            }else if(address == PC_ADDRESS || address == CPSR_ADDRESS){
+                return state.general_registers[address];
+            } else {
+                assert(false);
+            }
+        default:
+            assert(false);
+    }
 }//todo add spsr restrictions, overridable if accessed from psr instruction
+
+struct CPSR_Struct get_spsr(){
+    switch (get_operating_mode()){
+        case usr:
+            assert(false);//this shouldn't happen
+        case fiq:
+            return state.SPSR_fiq;
+        case irq:
+            return state.SPSR_irq;
+        case svc:
+            return state.SPSR_svc;
+        case abt:
+            return state.SPSR_abt;
+        case sys:
+            assert(false);
+        case und:
+            return state.SPSR_und;
+        default:
+            assert(false);
+    }
+}
+
 Word set_byte_in_register(RegisterAddress address, Byte byte) {
     assert(false);
 }
@@ -26,7 +125,7 @@ Word set_word_in_register(RegisterAddress address, Word val) {
 
 void change_mode(enum Mode newMode) {
     assert(false);
-}//make sure to trash pipeline
+}//make sure to trash pipeline and that this is part of spsr
 enum Mode get_mode() {
     return state.CPSR.T ? THUMB : ARM;
 }

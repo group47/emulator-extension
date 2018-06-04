@@ -40,6 +40,8 @@ enum ExceptionFlag {
 
 #define NUM_GENERAL_PURPOSE_REGISTERS_ARM 16
 #define NUM_GENERAL_PURPOSE_REGISTERS_THUMB 8
+#define SPSR_ADDRESS 17
+#define CPSR_ADDRESS 16
 #define PC_ADDRESS 15
 #define LR_ADDRESS 14
 #define SP_ADDRESS 13
@@ -58,6 +60,7 @@ struct CPSR_Struct {
 }__attribute__((packed));
 
 #define NUM_FIQ_BANKED 7
+#define NUM_FIQ_UNBANKED 8
 #define NUM_SVC_BANKED 2
 #define NUM_ABT_BANKED 2
 #define NUM_IRQ_BANKED 2
@@ -65,7 +68,7 @@ struct CPSR_Struct {
 
 
 struct CPUState {
-  Word general_registers[NUM_GENERAL_PURPOSE_REGISTERS_ARM];
+  Word general_registers[NUM_GENERAL_PURPOSE_REGISTERS_ARM - 1];// -1 for the cpsr
   Word fiq_banked[NUM_FIQ_BANKED];
   Word svc_banked[NUM_SVC_BANKED];
   Word abt_banked[NUM_ABT_BANKED];
