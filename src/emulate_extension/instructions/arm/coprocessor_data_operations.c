@@ -6,14 +6,15 @@
 #include <stdio.h>
 #include "coprocessor_data_operations.h"
 #include "../../util/cpsr_util.h"
+#include "../../util/entry_point.h"
 
 enum ExecutionExitCode execute_instruction_coprocessor_data_operations(struct CoprocessorDataOperationsInstruction instruction) {
     if (!should_execute(instruction.cond)) {
         return DIDNT_EXECUTE;
     }
 
-    fprintf(stderr, "Try to execute coprocessor data operations\n");
-    fprintf(stderr, "Coprocessor number : %d\n", instruction.CoNumber);
+    fprintf(get_logfile(), "Try to execute coprocessor data operations\n");
+    fprintf(get_logfile(), "Coprocessor number : %d\n", instruction.CoNumber);
     assert(false);
 
     // todo: fed the instruction to the coprocessor

@@ -40,7 +40,7 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
         case eor:
             computation_res = rnVal ^ operand2Val;
             set_word_in_register(instruction.Rd, computation_res);
-            return 1; //break instead?
+            break;
         case sub:
             computation_res = rnVal - operand2Val;
             if (does_borrow_occur(rnVal, operand2Val)) {
