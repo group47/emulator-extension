@@ -1190,5 +1190,4 @@ Program terminated with signal SIGILL, Illegal instruction.
 The program no longer exists.
 data_processing_set_flag_with_s_bit.gdbinit:181: Error in sourced command file:
 The program has no registers now.
-(gdb) ^CQuit
-(gdb) quit
+(gdb) 

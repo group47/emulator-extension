@@ -37,7 +37,8 @@ enum ExecutionExitCode execute_instruction_move_compare_add_subtract(struct Move
             }
             break;
     }
-    high_level_set_CPSR_thumb_move_compare_add_sub(instruction,borrow_occurred,overflow_occurred,computation_res,0);
+    bool dummy1;
+    high_level_set_CPSR_thumb_move_compare_add_sub(instruction,borrow_occurred,overflow_occurred,computation_res,dummy1);
     return OK;
 }
 

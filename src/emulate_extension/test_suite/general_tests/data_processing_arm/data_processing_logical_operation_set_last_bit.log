@@ -1090,4 +1090,4 @@ Program terminated with signal SIGSEGV, Segmentation fault.
 The program no longer exists.
 data_processing_logical_operation_set_last_bit.gdbinit:166: Error in sourced command file:
 The program has no registers now.
-(gdb) quit
+(gdb) 

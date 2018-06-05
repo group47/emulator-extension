@@ -81,6 +81,6 @@ bool is_logical(enum OpCode opCode) {
 }
 
 void high_level_set_CPSR_thumb_move_compare_add_sub(struct MoveCompareAddSubtract subtract, bool occurred,
-bool overflow_occurred, uint32_t res, int carryOut) {
-    return;high_level_set_CPSR(true,true,subtract.op == ADD_MOVECOMPAREADDSUBTRACTOPCODE,false,occurred,overflow_occurred,res,carryOut);
+bool overflow_occurred, uint32_t res, bool carryOut) {
+    return;//high_level_set_CPSR(true,true,subtract.op == ADD_MOVECOMPAREADDSUBTRACTOPCODE,false,occurred,overflow_occurred,res,carryOut);
 }
