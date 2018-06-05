@@ -65,7 +65,7 @@ int main(uint32_t argc, const char **argv){
         fprintf(stderr,"failed to open file\n");
         return -1;
     }
-    FILE* logfile = fopen(logfile_path,"w");
+    FILE* logfile = NULL;// = fopen(logfile_path,"w");
     if(logfile == NULL){
         logfile = stderr;
     }

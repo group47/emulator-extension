@@ -47,8 +47,9 @@ void high_level_set_CPSR(bool set_condition_codes,bool is_arithmetic,bool is_add
             bool overflow,
             uint32_t computation_res,
             bool shiftCarryOut) {
-  struct CPSR_Struct final_res = getCPSR();
   if (set_condition_codes) {
+    struct CPSR_Struct final_res = getCPSR();
+    /*
     //set c bit
     if (is_arithmetic) {
       if (is_add) {
@@ -82,14 +83,36 @@ void high_level_set_CPSR(bool set_condition_codes,bool is_arithmetic,bool is_add
     } else {
       final_res.N = false;
     }
+     */
+
+    if (is_arithmetic) {
+      if (is_add) {
+        final_res.C = overflow;
+      } else {
+        final_res.C = !borrow;
+      }
+      //TODO: set V flag if arithmetic
+    } else if (is_logical) {
+      final_res.C = shiftCarryOut;
+    } else {
+      assert(false);
+    }
+
+    final_res.Z = computation_res == 0;
+
+    final_res.N = (computation_res & (0x1 << 31)) != 0;
+
+    setCPSR(final_res);
   }
-  setCPSR(final_res);
 }
+
 bool is_arithmetic(enum OpCode opCode) {
   return opCode == add || opCode == sub || opCode == rsb || opCode == cmp || opCode == adc || opCode == cmn || opCode == sbc || opCode == rsc;
 }
+
 bool is_logical(enum OpCode opCode) {
-  return !is_arithmetic(opCode);
+  //return !is_arithmetic(opCode);
+  return opCode == and || opCode == eor || opCode == tst || opCode == teq || opCode ==orr || opCode == mov || opCode == bic || opCode == mvn;
 }
 
 void high_level_set_CPSR_thumb_move_compare_add_sub(struct MoveCompareAddSubtract subtract, bool occurred,
