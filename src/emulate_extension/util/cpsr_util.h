@@ -19,10 +19,10 @@ void high_level_set_CPSR_data_processing(const struct DataProcessingInstruction 
                                          const bool borrow,
                                          const bool overflow,
                                          const uint32_t computation_res,
-                                         const uint32_t shiftCarryOut);
+                                         const bool shiftCarryOut);
 
 void high_level_set_CPSR(bool set_condition_codes,bool is_arithmetic,bool is_add,bool is_logical, bool borrow_occurred, bool overflow_occurred, uint32_t computation_res,
-    uint32_t shiftCarryOut);
+    bool shiftCarryOut);
 bool is_logical(enum OpCode code);
 bool is_arithmetic(enum OpCode code);
 

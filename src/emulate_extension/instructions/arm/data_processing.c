@@ -14,17 +14,17 @@
 enum ExecutionExitCode execute_instruction_data_processing(const struct DataProcessingInstruction instruction) {
     //todo duplication
 
-    bool overflow_occurred = false;
-    bool borrow_occurred = false;
-
     if (!should_execute(instruction.cond)) {
         return DIDNT_EXECUTE;
     }
+
+    bool overflow_occurred = false;
+    bool borrow_occurred = false;
     const uint32_t rnVal = get_byte_from_register(instruction.Rn);
 
     uint32_t operand2Val;
-    uint32_t shiftCarryOut;
-    get_operand2(instruction.secondOperand, instruction.immediateOperand, 1, &operand2Val, &shiftCarryOut);
+    bool shiftCarryOut;
+    get_operand2(instruction.secondOperand, instruction.immediateOperand, 1, &operand2Val, shiftCarryOut);
 
 
     uint32_t computation_res;
@@ -40,7 +40,7 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
         case eor:
             computation_res = rnVal ^ operand2Val;
             set_word_in_register(instruction.Rd, computation_res);
-            return 1; //break instead?
+            break;
         case sub:
             computation_res = rnVal - operand2Val;
             if (does_borrow_occur(rnVal, operand2Val)) {
@@ -76,7 +76,7 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
             break;
         case orr:
             computation_res = rnVal | operand2Val;
-            set_word_in_register(instruction.Rd, (rnVal | operand2Val));
+            set_word_in_register(instruction.Rd, computation_res);
             break;
         case mov:
             computation_res = operand2Val;

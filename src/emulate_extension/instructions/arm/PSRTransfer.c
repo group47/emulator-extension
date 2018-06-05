@@ -45,8 +45,7 @@ execute_instruction_transfer_register_contents_or_immediate_value_to_psrflag(
     }
 
     Word val = 0;
-    uint32_t dummy;
-    get_operand2(instruction.sourceOperand, instruction.immediateOperand, 1, &val, &dummy);
+    get_operand2(instruction.sourceOperand, instruction.immediateOperand, 1, &val, false); //dummy bool
 
     if (instruction.destinationPSR) {
         setSPSR(*(struct CPSR_Struct*) &val);
