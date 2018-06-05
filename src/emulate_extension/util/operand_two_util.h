@@ -26,7 +26,7 @@ struct ImmediateFalseShiftByRegisterTrue{
     RegisterAddress Rm : 4;
     bool shift_by_register: 1;//should be true
     enum ShiftType shift_type: 2;
-    bool filler:1;
+    bool filler0:1; //should be  0
     RegisterAddress Rs:4;
 }__attribute__((packed));
 

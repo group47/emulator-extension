@@ -294,14 +294,14 @@ void transfer_fetched_to_decoded_and_load_fetched() {
     if(get_mode() == THUMB){
         state.decoded_thumb = state.fetched_thumb;
     }else if(get_mode() == ARM){
-        state.decoded_arm = state.fetched_thumb;
+        state.decoded_arm = state.fetched_arm;
     }else{
         assert(false);
     }
     state.decoded_valid = state.fetched_valid;
     if(get_mode() == THUMB){
         state.fetched_thumb = get_half_word_from_memory(get_word_from_register(PC_ADDRESS));
-        state.fetched_thumb = true;
+        state.fetched_valid = true;
     }else if(get_mode() == ARM){
         state.fetched_arm = get_word_from_memory(get_word_from_register(PC_ADDRESS));
         state.fetched_valid = true;
