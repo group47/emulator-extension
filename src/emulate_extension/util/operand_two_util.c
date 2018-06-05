@@ -7,8 +7,8 @@
 #include <x86intrin.h>
 #include <assert.h>
 #include "operand_two_util.h"
-#include "common_enums.h"
 #include "../state/emulator_state.h"
+
 
 /*TODO: check if shift operator is correctly implemented (could be arithmetic instead of logical)
  */
@@ -34,46 +34,74 @@ int get_operand2(uint16_t secondOperand,
     if (immediateFalse.shift_by_register) {
       struct ImmediateFalseShiftByRegisterTrue
           shiftByRegister = *(struct ImmediateFalseShiftByRegisterTrue *) &secondOperand;
-      shift_amount = (uint8_t) (get_byte_from_register(shiftByRegister.Rs & 0xff)); //last byte//todo is this correct
+
+      assert(shiftByRegister.filler0 == 0b0);
+      assert(shiftByRegister.Rs != PC_ADDRESS);
+
+      shift_amount = (uint8_t) (get_word_from_register(shiftByRegister.Rs) & 0xff); //last byte//todo is this correct
       shift_type = shiftByRegister.shift_type;
-      *operand2_val = get_byte_from_register(shiftByRegister.Rm);
+      *operand2_val = get_word_from_register(shiftByRegister.Rm);
     } else {
       shift_amount = immediateFalse.shift_amount;
       shift_type = immediateFalse.shift_type;
-      *operand2_val = get_byte_from_register(immediateFalse.Rm);
+      *operand2_val = get_word_from_register(immediateFalse.Rm);
     }
 
     //compute immediate false's value
-    if (shift_amount > 0) {
+    if (shift_amount == 0) {
+      *carry_out = getCPSR().C ? 0b1 : 0b0;
+    } else if (shift_amount > 0) {
       uint32_t ar_bit;
       switch (shift_type) {
         case lsl:
-          *operand2_val <<= shift_amount - 1;
-          *carry_out = (*operand2_val >> 31) & 0b1;
-          *operand2_val <<= 1;
+          if (shift_amount < 32) {
+            *operand2_val <<= shift_amount - 1;
+            *carry_out = (*operand2_val >> 31) & 0b1;
+            *operand2_val <<= 1;
+          } else {
+            *operand2_val = 0;
+            *carry_out = (shift_amount == 32) ? (*operand2_val & 0b1) : 0;
+          }
           break;
         case lsr:
-          *operand2_val >>= shift_amount - 1;
-          *carry_out = *operand2_val & 0b1;
-          *operand2_val >>= 1;
+          if (shift_amount < 32) {
+            *operand2_val >>= shift_amount - 1;
+            *carry_out = *operand2_val & 0b1;
+            *operand2_val >>= 1;
+          } else {
+            *operand2_val = 0;
+            *carry_out = (shift_amount == 32) ? ((*operand2_val >> 31) & 0b1) : 0;
+          }
           break;
         case asr:
           ar_bit = *operand2_val & (0b1 << 31);
-          for (int i = 0; i < shift_amount - 1; ++i) {
+          if (shift_amount < 32) {
+            for (int i = 0; i < shift_amount - 1; ++i) {
+              *operand2_val = (*operand2_val >> 1) | ar_bit;
+            }
+            *carry_out = *operand2_val & 0b1;
             *operand2_val = (*operand2_val >> 1) | ar_bit;
+          } else {
+            *operand2_val = ar_bit ? 0xffffffff : 0x0;
+            *carry_out = (ar_bit >> 31) & 0b1;
           }
-          *carry_out = *operand2_val & 0b1;
-          *operand2_val = (*operand2_val >> 1) | ar_bit;
           break;
         case ror:
-          *operand2_val = __rord(*operand2_val, shift_amount - 1);
-          *carry_out = *operand2_val & 0b1;
-          *operand2_val = __rord(*operand2_val, 1);
+          shift_amount %= 32;
+          if (shift_amount == 0) {
+            *carry_out = (*operand2_val >> 31) & 0b1;
+          } else {
+            *operand2_val = __rord(*operand2_val, shift_amount - 1);
+            *carry_out = *operand2_val & 0b1;
+            *operand2_val = __rord(*operand2_val, 1);
+          }
           break;
         default: assert(false);
       }
-      *carry_out <<= 29;
+    } else {
+      assert(false);
     }
+    *carry_out <<= 29;
   }
   return OK;
 

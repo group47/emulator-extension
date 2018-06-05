@@ -23,7 +23,7 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
     const uint32_t rnVal = get_byte_from_register(instruction.Rn);
 
     uint32_t operand2Val;
-    uint32_t shiftCarryOut = 0;
+    uint32_t shiftCarryOut;
     get_operand2(instruction.secondOperand, instruction.immediateOperand, 1, &operand2Val, &shiftCarryOut);
 
 
