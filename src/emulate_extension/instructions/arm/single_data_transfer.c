@@ -30,10 +30,11 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
     if (!instruction.immediateOffsetBit) {
         offset = instruction.offset;
     } else {
+        bool dummy;
         offset = (uint32_t) get_operand2(instruction.offset,
                                          instruction.immediateOffsetBit,
                                          IMMEDIATE_BIT_FLAG_SINGLE_DATE_TRANSFER,
-                                         &offset, false); //dummy bool
+                                         &offset, &dummy); //dummy bool
     }
 
     // pre indexing
