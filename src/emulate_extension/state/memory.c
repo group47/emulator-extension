@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include "memory.h"
 #include "emulator_state.h"
+#include "../util/entry_point.h"
 
 static struct Memory memory;
 
@@ -17,7 +18,7 @@ void init_memory(size_t size, enum MemoryFormat mode){
     memory.mode = mode;
     memory.contents = calloc(size,sizeof(unsigned char));
     if(memory.contents == NULL){
-        fprintf(stderr,"Can't allocated ram, exiting.. \n");
+        fprintf(get_logfile(), "Can't allocated ram, exiting.. \n");
         exit(-1);
     }
 }

@@ -9,6 +9,7 @@
 #include "../instructions/arm/arm_instruction.h"
 #include "../instructions/thumb/thumb_instruction.h"
 #include "exception.h"
+#include "../util/entry_point.h"
 
 static struct CPUState state;
 
@@ -177,7 +178,7 @@ struct CPSR_Struct get_SPSR_by_mode() {
         case sys:
             return state.CPSR;
         default:
-            fprintf(stderr, "unknown operating mode\n");
+            fprintf(get_logfile(), "unknown operating mode\n");
             assert(false);
     }
     */
@@ -247,7 +248,7 @@ void setSPSR(struct CPSR_Struct toSet) {
             state.CPSR = toSet;
             break;
         default:
-            fprintf(stderr, "unknown operating mode\n");
+            fprintf(get_logfile(), "unknown operating mode\n");
             assert(false);
     }
 }
@@ -317,18 +318,20 @@ void transfer_fetched_to_decoded_and_load_fetched() {
 
 void print_registers() {
     for (uint8_t i = 0; i < 10; ++i) {
-        printf("r%d             %x %d\n",i,get_word_from_register(i),get_word_from_register(i));
+        fprintf(get_logfile(),"r%u             0x%x  %d\n",i,get_word_from_register(i),get_word_from_register(i));
     }
     for (uint8_t i = 10; i < 13; ++i) {
-        printf("r%d            %x %d\n",i,get_word_from_register(i),get_word_from_register(i));
+        fprintf(get_logfile(),"r%u            0x%x  %d\n",i,get_word_from_register(i),get_word_from_register(i));
     }
-    printf("lr             %x %d\n",get_word_from_register(LR_ADDRESS),get_word_from_register(LR_ADDRESS));
-    printf("pc             %x %d\n",get_word_from_register(PC_ADDRESS),get_word_from_register(PC_ADDRESS));
-    printf("cpsr           %x %d\n",getCPSR(),getCPSR());
+    fprintf(get_logfile(),"sp             0xbefff2a0  0xbefff2a0\n",get_word_from_register(SP_ADDRESS),get_word_from_register(SP_ADDRESS));
+    fprintf(get_logfile(),"lr             0x%x  %d\n",get_word_from_register(LR_ADDRESS),get_word_from_register(LR_ADDRESS));
+    fprintf(get_logfile(),"pc             0x%x  %d\n",get_word_from_register(PC_ADDRESS),get_word_from_register(PC_ADDRESS));
+    fprintf(get_logfile(),"cpsr           0x%x  %d\n",getCPSR(),getCPSR());
     if(get_operating_mode() == usr || get_operating_mode() == sys){
-        printf("fpscr          %o %x\n",0,0);
+        fprintf(get_logfile(),"fpscr          0x%o  %x\n",0,0);
     }else{
-        printf("fpscr          %o %x\n",get_spsr(),get_spsr());
+        fprintf(get_logfile(),"fpscr          0x%o  %x\n",get_spsr(),get_spsr());
     }
+    fprintf(get_logfile(),"=> \n");
 
 }

@@ -13,7 +13,7 @@
 
 static const char* binary_path;
 static const char* invalid_arg;
-
+static const char* logfile_path;
 
 enum CommandLineFlags parseCommandLine(uint32_t argc, const char **argv){
     enum CommandLineFlags flags = (enum CommandLineFlags)0;
@@ -25,6 +25,8 @@ enum CommandLineFlags parseCommandLine(uint32_t argc, const char **argv){
             flags |= DEBUG_PRINT_REGISTER;
         } else if(arg == strstr(arg,"--binary=")){
             binary_path = arg +  sizeof("--binary=")/sizeof(char) - 1;
+        } else if(arg == strstr(arg,"--logfile=")){
+            logfile_path = arg +  sizeof("--logfile=")/sizeof(char) - 1;
         } else if(0 == strcmp(arg,"-d") || 0 == strcmp(arg,"--disassemble")){
             flags |= DISASSEMBLE;
         } else{
@@ -40,9 +42,9 @@ int main(uint32_t argc, const char **argv){
     do_asserts();
     enum CommandLineFlags flags = parseCommandLine(argc,argv);
     if(flags & INVALID){
-        fprintf(stderr,"Invalid argument:");
-        fprintf(stderr,invalid_arg);
-        fprintf(stderr,"\n");
+        fprintf(get_logfile(),"Invalid argument:");
+        fprintf(get_logfile(),invalid_arg);
+        fprintf(get_logfile(),"\n");
         return -1;
     }
     if(flags & HELP_MESSAGE){
@@ -63,8 +65,15 @@ int main(uint32_t argc, const char **argv){
         fprintf(stderr,"failed to open file\n");
         return -1;
     }
-    main_emulation_entry_point(flags,fp);
+    FILE* logfile = fopen(logfile_path,"w");
+    if(logfile == NULL){
+        logfile = stderr;
+    }
+    main_emulation_entry_point(flags,fp,logfile);
     fclose(fp);
+    if(logfile != stderr){
+        fclose(logfile);
+    }
 
 
 

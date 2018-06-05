@@ -19,6 +19,7 @@ enum CommandLineFlags{
 };
 
 
-void main_emulation_entry_point(enum CommandLineFlags, FILE*);
+void main_emulation_entry_point(enum CommandLineFlags, FILE*,FILE*);
+FILE * get_logfile();
 
 #endif //SRC_ENTRY_POINT_H
