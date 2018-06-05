@@ -24,7 +24,7 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
 
     uint32_t operand2Val;
     bool shiftCarryOut;
-    get_operand2(instruction.secondOperand, instruction.immediateOperand, 1, &operand2Val, shiftCarryOut);
+    get_operand2(instruction.secondOperand, instruction.immediateOperand, 1, &operand2Val, &shiftCarryOut);
 
 
     uint32_t computation_res;

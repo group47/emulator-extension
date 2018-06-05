@@ -16,7 +16,7 @@ int get_operand2(uint16_t secondOperand,
                  bool immediate,
                  bool flag,
                  uint32_t *operand2_val,
-                 bool carry_out) {
+                 bool *carry_out) {
   //todo this needs change in main emulator.
   if (immediate == flag) {
 
@@ -49,28 +49,28 @@ int get_operand2(uint16_t secondOperand,
 
     //compute immediate false's value
     if (shift_amount == 0) {
-      carry_out = getCPSR().C;
+      *carry_out = getCPSR().C;
     } else if (shift_amount > 0) {
       uint32_t ar_bit;
       switch (shift_type) {
         case lsl:
           if (shift_amount < 32) {
             *operand2_val <<= shift_amount - 1;
-            carry_out = (*operand2_val >> 31) != 0;
+            *carry_out = (*operand2_val >> 31) != 0;
             *operand2_val <<= 1;
           } else {
             *operand2_val = 0;
-            carry_out = (shift_amount > 32) || ((*operand2_val & 0x1) != 0);
+            *carry_out = (shift_amount > 32) || ((*operand2_val & 0x1) != 0);
           }
           break;
         case lsr:
           if (shift_amount < 32) {
             *operand2_val >>= shift_amount - 1;
-            carry_out = (*operand2_val & 0x1) != 0;
+            *carry_out = (*operand2_val & 0x1) != 0;
             *operand2_val >>= 1;
           } else {
             *operand2_val = 0;
-            carry_out = (shift_amount > 32) || (((*operand2_val >> 31) & 0x1) != 0);
+            *carry_out = (shift_amount > 32) || (((*operand2_val >> 31) & 0x1) != 0);
           }
           break;
         case asr:
@@ -79,20 +79,20 @@ int get_operand2(uint16_t secondOperand,
             for (int i = 0; i < shift_amount - 1; ++i) {
               *operand2_val = (*operand2_val >> 1) | ar_bit;
             }
-            carry_out = (*operand2_val & 0x1) != 0;
+            *carry_out = (*operand2_val & 0x1) != 0;
             *operand2_val = (*operand2_val >> 1) | ar_bit;
           } else {
             *operand2_val = ar_bit ? 0xffffffff : 0x0;
-            carry_out = ((ar_bit >> 31) & 0x1) != 0;
+            *carry_out = ((ar_bit >> 31) & 0x1) != 0;
           }
           break;
         case ror:
           shift_amount %= 32;
           if (shift_amount == 0) {
-            carry_out = ((*operand2_val >> 31) & 0x1) != 0;
+            *carry_out = ((*operand2_val >> 31) & 0x1) != 0;
           } else {
             *operand2_val = __rord(*operand2_val, shift_amount - 1);
-            carry_out = (*operand2_val & 0x1) != 0;
+            *carry_out = (*operand2_val & 0x1) != 0;
             *operand2_val = __rord(*operand2_val, 1);
           }
           break;
