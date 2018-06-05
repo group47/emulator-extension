@@ -1,3 +1,8 @@
+/home/pi/.gdbinit:5: Error in sourced command file:
+bob.c: No such file or directory.
+
+Program stopped.
+0x00010098 in ?? ()
 0x0001009c in ?? ()
 r0             0x0	0
 r1             0x0	0
@@ -257,7 +262,7 @@ lr             0x0	0
 pc             0x100cc	0x100cc
 cpsr           0x10	16
 fpscr          0x0	0
-=> 0x100cc:	add	r2, r1, r2
+=> 0x100cc:	adds	r2, r1, r2
 0x000100d0 in ?? ()
 r0             0x0	0
 r1             0xffffffff	4294967295
@@ -275,9 +280,9 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x100d0	0x100d0
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
-=> 0x100d0:	add	r3, r1, r4
+=> 0x100d0:	adds	r3, r1, r4
 0x000100d4 in ?? ()
 r0             0x0	0
 r1             0xffffffff	4294967295
@@ -295,15 +300,15 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x100d4	0x100d4
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
-=> 0x100d4:	adc	r4, r1, r5
+=> 0x100d4:	adcs	r4, r1, r5
 0x000100d8 in ?? ()
 r0             0x0	0
 r1             0xffffffff	4294967295
 r2             0x1	1
 r3             0x3	3
-r4             0x4	4
+r4             0x5	5
 r5             0x5	5
 r6             0x6	6
 r7             0x7	7
@@ -315,16 +320,16 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x100d8	0x100d8
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
-=> 0x100d8:	adc	r5, r1, r6
+=> 0x100d8:	adcs	r5, r1, r6
 0x000100dc in ?? ()
 r0             0x0	0
 r1             0xffffffff	4294967295
 r2             0x1	1
 r3             0x3	3
-r4             0x4	4
-r5             0x5	5
+r4             0x5	5
+r5             0x6	6
 r6             0x6	6
 r7             0x7	7
 r8             0x8	8
@@ -335,7 +340,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x100dc	0x100dc
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x100dc:	mov	r0, #0
 0x000100e0 in ?? ()
@@ -343,8 +348,8 @@ r0             0x0	0
 r1             0xffffffff	4294967295
 r2             0x1	1
 r3             0x3	3
-r4             0x4	4
-r5             0x5	5
+r4             0x5	5
+r5             0x6	6
 r6             0x6	6
 r7             0x7	7
 r8             0x8	8
@@ -355,7 +360,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x100e0	0x100e0
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x100e0:	mvn	r1, #0
 0x000100e4 in ?? ()
@@ -363,8 +368,8 @@ r0             0x0	0
 r1             0xffffffff	4294967295
 r2             0x1	1
 r3             0x3	3
-r4             0x4	4
-r5             0x5	5
+r4             0x5	5
+r5             0x6	6
 r6             0x6	6
 r7             0x7	7
 r8             0x8	8
@@ -375,7 +380,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x100e4	0x100e4
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x100e4:	mov	r2, #2
 0x000100e8 in ?? ()
@@ -383,8 +388,8 @@ r0             0x0	0
 r1             0xffffffff	4294967295
 r2             0x2	2
 r3             0x3	3
-r4             0x4	4
-r5             0x5	5
+r4             0x5	5
+r5             0x6	6
 r6             0x6	6
 r7             0x7	7
 r8             0x8	8
@@ -395,7 +400,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x100e8	0x100e8
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x100e8:	mov	r3, #2
 0x000100ec in ?? ()
@@ -403,8 +408,8 @@ r0             0x0	0
 r1             0xffffffff	4294967295
 r2             0x2	2
 r3             0x2	2
-r4             0x4	4
-r5             0x5	5
+r4             0x5	5
+r5             0x6	6
 r6             0x6	6
 r7             0x7	7
 r8             0x8	8
@@ -415,7 +420,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x100ec	0x100ec
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x100ec:	mov	r4, #2
 0x000100f0 in ?? ()
@@ -424,7 +429,7 @@ r1             0xffffffff	4294967295
 r2             0x2	2
 r3             0x2	2
 r4             0x2	2
-r5             0x5	5
+r5             0x6	6
 r6             0x6	6
 r7             0x7	7
 r8             0x8	8
@@ -435,7 +440,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x100f0	0x100f0
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x100f0:	mov	r5, #5
 0x000100f4 in ?? ()
@@ -455,7 +460,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x100f4	0x100f4
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x100f4:	mov	r6, #6
 0x000100f8 in ?? ()
@@ -475,7 +480,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x100f8	0x100f8
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x100f8:	mov	r7, #7
 0x000100fc in ?? ()
@@ -495,7 +500,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x100fc	0x100fc
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x100fc:	mov	r8, #8
 0x00010100 in ?? ()
@@ -515,7 +520,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10100	0x10100
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10100:	mov	r9, #9
 0x00010104 in ?? ()
@@ -535,7 +540,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10104	0x10104
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10104:	mov	r10, #10
 0x00010108 in ?? ()
@@ -555,7 +560,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10108	0x10108
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10108:	mov	r11, #11
 0x0001010c in ?? ()
@@ -575,7 +580,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x1010c	0x1010c
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x1010c:	mov	r12, #12
 0x00010110 in ?? ()
@@ -595,7 +600,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10110	0x10110
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10110:	mul	r0, r2, r1
 0x00010114 in ?? ()
@@ -615,7 +620,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10114	0x10114
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10114:	mul	r4, r5, r6
 0x00010118 in ?? ()
@@ -635,7 +640,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10118	0x10118
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10118:	mla	r0, r2, r3, r1
 0x0001011c in ?? ()
@@ -655,7 +660,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x1011c	0x1011c
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x1011c:	mla	r0, r10, r2, r9
 0x00010120 in ?? ()
@@ -675,7 +680,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10120	0x10120
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10120:	mov	r0, #0
 0x00010124 in ?? ()
@@ -695,7 +700,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10124	0x10124
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10124:	mvn	r1, #0
 0x00010128 in ?? ()
@@ -715,7 +720,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10128	0x10128
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10128:	mov	r2, #2
 0x0001012c in ?? ()
@@ -735,7 +740,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x1012c	0x1012c
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x1012c:	mov	r3, #2
 0x00010130 in ?? ()
@@ -755,7 +760,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10130	0x10130
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10130:	mov	r4, #2
 0x00010134 in ?? ()
@@ -775,7 +780,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10134	0x10134
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10134:	mov	r5, #5
 0x00010138 in ?? ()
@@ -795,7 +800,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10138	0x10138
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10138:	mov	r6, #6
 0x0001013c in ?? ()
@@ -815,7 +820,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x1013c	0x1013c
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x1013c:	mov	r7, #7
 0x00010140 in ?? ()
@@ -835,7 +840,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10140	0x10140
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10140:	mov	r8, #8
 0x00010144 in ?? ()
@@ -855,7 +860,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10144	0x10144
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10144:	mov	r9, #9
 0x00010148 in ?? ()
@@ -875,7 +880,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10148	0x10148
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10148:	mov	r10, #10
 0x0001014c in ?? ()
@@ -895,7 +900,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x1014c	0x1014c
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x1014c:	mov	r11, #11
 0x00010150 in ?? ()
@@ -915,7 +920,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10150	0x10150
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10150:	mov	r12, #12
 0x00010154 in ?? ()
@@ -935,7 +940,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10154	0x10154
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10154:	mvn	r1, r1
 0x00010158 in ?? ()
@@ -955,7 +960,7 @@ r12            0xc	12
 sp             0xbefff260	0xbefff260
 lr             0x0	0
 pc             0x10158	0x10158
-cpsr           0x10	16
+cpsr           0x20000010	536870928
 fpscr          0x0	0
 => 0x10158:	cmp	r1, r0
 0x0001015c in ?? ()

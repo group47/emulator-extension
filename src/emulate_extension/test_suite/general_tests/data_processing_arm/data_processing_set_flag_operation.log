@@ -1010,4 +1010,4 @@ Program terminated with signal SIGILL, Illegal instruction.
 The program no longer exists.
 data_processing_set_flag_operation.gdbinit:154: Error in sourced command file:
 The program has no registers now.
-(gdb) quit
+(gdb) 
