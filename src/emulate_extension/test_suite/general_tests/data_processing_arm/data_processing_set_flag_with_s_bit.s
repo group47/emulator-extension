@@ -14,7 +14,7 @@ mov r12, #12
 adds r12, r2, r3 // normal
 adcs r12, r2, r3
 adds r12, r1, r2 // overflow
-adcs r12, r1,
+adcs r12, r1, r9
 mov r0, #0
 mov r1, #0xffffffff
 mov r2, #2

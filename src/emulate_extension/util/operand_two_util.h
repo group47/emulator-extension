@@ -44,6 +44,6 @@ int get_operand2(uint16_t secondOperand,
                  bool immediate,
                  bool flag,
                  uint32_t *operand2_val,
-                 uint32_t *carry_out);
+                 bool *carry_out);
 
 #endif //SRC_OPERAND_TWO_UTIL_H

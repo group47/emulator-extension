@@ -8,8 +8,10 @@
 #include "../main_loop.h"
 #include "../state/emulator_state.h"
 
+static FILE* logfile;
 
-void main_emulation_entry_point(enum CommandLineFlags flags, FILE* fp) {
+
+void main_emulation_entry_point(enum CommandLineFlags flags, FILE* fp,FILE* logfile_) {
     init_cpu();
     init_memory(1024*1024*1024*sizeof(unsigned char),LITTLE_ENDIAN_);
     Word word;
@@ -18,8 +20,12 @@ void main_emulation_entry_point(enum CommandLineFlags flags, FILE* fp) {
         set_word_from_memory(4*i,word);
         i++;
     }
+    logfile = logfile_;
     main_loop(flags);
     deallocate_memory();
 
 }
 
+FILE* get_logfile(){
+    return logfile;
+}
