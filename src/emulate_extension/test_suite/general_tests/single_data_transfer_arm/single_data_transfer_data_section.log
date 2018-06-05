@@ -1,4 +1,93 @@
 /home/pi/.gdbinit:5: Error in sourced command file:
 bob.c: No such file or directory.
-single_data_transfer_data_section.gdbinit: No such file or directory.
+
+Program stopped.
+0x000100b8 in ?? ()
+0x000100bc in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100bc	0x100bc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100bc:	ldr	r0, [pc, #-12]	; 0x100b8
+0x000100c0 in ?? ()
+r0             0x3	3
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100c0	0x100c0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100c0:	mov	r1, #1
+0x000100c4 in ?? ()
+r0             0x3	3
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100c4	0x100c4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100c4:	str	r1, [r0]
+
+Program received signal SIGSEGV, Segmentation fault.
+0x000100c4 in ?? ()
+r0             0x3	3
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100c4	0x100c4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100c4:	str	r1, [r0]
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
+single_data_transfer_data_section.gdbinit:16: Error in sourced command file:
+The program has no registers now.
 (gdb) quit
