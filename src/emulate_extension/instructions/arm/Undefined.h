@@ -9,7 +9,7 @@
 #include "../../util/common_enums.h"
 
 struct UndefinedInstruction {
-    uint8_t undefined2 : 3;
+    uint8_t undefined2 : 4;
     uint8_t filler1_position4 : 1;
     uint32_t undefined1 : 20;
     uint8_t filler011_position27 : 3;

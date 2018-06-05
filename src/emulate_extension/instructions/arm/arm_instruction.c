@@ -3,7 +3,6 @@
 //
 
 #include <assert.h>
-#include <endian.h>
 #include "arm_instruction.h"
 
 
@@ -48,9 +47,7 @@ struct ArmInstruction ARMfromRaw(union RawArmInstruction raw){
     //todo this needs work because of ambiguities
     struct ArmInstruction res;
     res.rawArmInstruction = raw;
-    if(raw.dataProcessingInstruction.filler == 0b00){//todo check opcode is valid
-        res.type = ARM_DATA_PROCESSING;
-    }else if(raw.multiplyInstruction.filler000000 == 0b000000 && raw.multiplyInstruction.filler1001 == 0b1001){
+    if (raw.multiplyInstruction.filler000000 == 0b000000 && raw.multiplyInstruction.filler1001 == 0b1001) {
         res.type = ARM_MULIPLY;
     }else if(raw.multiplyLongInstruction.filler00001 == 0b0001 && raw.multiplyLongInstruction.filler1001 == 0b1001){
         res.type = ARM_MULTIPLY_LONG;
@@ -66,6 +63,8 @@ struct ArmInstruction ARMfromRaw(union RawArmInstruction raw){
         res.type = ARM_SINGLE_DATA_TRANSFER;
     }else if(raw.undefinedInstruction.filler1_position4 == 0b1 && raw.undefinedInstruction.filler011_position27 == 0b011){
         res.type = ARM_UNDEFINED;
+    } else if (raw.dataProcessingInstruction.filler == 0b00) {//todo check opcode is valid
+        res.type = ARM_DATA_PROCESSING;
     }else if(raw.blockDataTransferInstruction.filler100 == 0b100){
         res.type = ARM_BLOCK_DATA_TRANSFER;
     }else if(raw.branchInstruction.filler101_position27 == 0b101){
