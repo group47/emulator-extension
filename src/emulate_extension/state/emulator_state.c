@@ -334,3 +334,8 @@ void print_registers() {
     fprintf(get_logfile(), "=> \n\n");
 
 }
+
+void invalidate_pipeline() {
+    state.decoded_valid = false;
+    state.fetched_valid = false;
+}

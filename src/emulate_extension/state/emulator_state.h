@@ -143,4 +143,6 @@ void transfer_fetched_to_decoded_and_load_fetched();//todo
 
 void print_registers();
 
+void invalidate_pipeline();
+
 #endif //SRC_EMULATOR_STATE_H
