@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <memory.h>
+#include <endian.h>
 #include "emulator_state.h"
 #include "../instructions/arm/arm_instruction.h"
 #include "../instructions/thumb/thumb_instruction.h"
@@ -219,10 +220,7 @@ struct CPSR_Struct getCPSR() {
 }
 
 void setCPSR(struct CPSR_Struct toSet) {
-    /*
     state.CPSR = toSet;
-     */
-    assert(false);
 }
 
 void setSPSR(struct CPSR_Struct toSet) {
@@ -262,7 +260,8 @@ void init_cpu(void) {
 }
 
 union RawArmInstruction get_fetched_arm() {
-    return *((union RawArmInstruction*) &state.fetched_arm);
+    uint32_t lValue = __bswap_32(__bswap_32(state.fetched_arm));
+    return *((union RawArmInstruction*) &lValue);
 }
 
 union RawThumbInstruction get_fetched_thumb() {
@@ -318,18 +317,18 @@ void transfer_fetched_to_decoded_and_load_fetched() {
 
 void print_registers() {
     for (uint8_t i = 0; i < 10; ++i) {
-        printf("r%d             %o %d\n",i,get_word_from_register(i),get_word_from_register(i));
+        printf("r%d             %x %d\n",i,get_word_from_register(i),get_word_from_register(i));
     }
     for (uint8_t i = 10; i < 13; ++i) {
-        printf("r%d            %o %d\n",i,get_word_from_register(i),get_word_from_register(i));
+        printf("r%d            %x %d\n",i,get_word_from_register(i),get_word_from_register(i));
     }
-    printf("lr             %o %d\n",get_word_from_register(LR_ADDRESS),get_word_from_register(LR_ADDRESS));
-    printf("pc             %o %d\n",get_word_from_register(PC_ADDRESS),get_word_from_register(PC_ADDRESS));
-    printf("cpsr           %o %d\n",getCPSR(),getCPSR());
+    printf("lr             %x %d\n",get_word_from_register(LR_ADDRESS),get_word_from_register(LR_ADDRESS));
+    printf("pc             %x %d\n",get_word_from_register(PC_ADDRESS),get_word_from_register(PC_ADDRESS));
+    printf("cpsr           %x %d\n",getCPSR(),getCPSR());
     if(get_operating_mode() == usr || get_operating_mode() == sys){
-        printf("fpscr          %o %d\n",0,0);
+        printf("fpscr          %o %x\n",0,0);
     }else{
-        printf("fpscr          %o %d\n",get_spsr(),get_spsr());
+        printf("fpscr          %o %x\n",get_spsr(),get_spsr());
     }
 
 }

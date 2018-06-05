@@ -13,7 +13,7 @@ for i in *.s; do gcc -c $i -o $(basename $i .s).realbin; done
 for i in *.realbin; do gcc $i -o $(basename $i .realbin).actuallyanexecutable -nostdlib; done
 
 #run gdb
-for i in *.actuallyanexecutable; do gdb --command=$(basename $i .actuallyanexecutable).gdbinit | grep -v ?? | grep -v "[a-z][a-z][a-z][a-z][a-z][a-z]" | grep -v "\n" | grep -v "GNU" | grep -v "help"> $(basename $i .actuallyanexecutable).log; done
+for i in *.actuallyanexecutable; do gdb --command=$(basename $i .actuallyanexecutable).gdbinit | grep -v ?? | grep -v "[a-z\s][a-z\s][a-z\s][a-z\s][a-z\s][a-z\s][a-z\s][a-z\s][a-z\s][a-z\s]" | grep -v "\n" | grep -v "GNU" | grep -v "help"> $(basename $i .actuallyanexecutable).log; done
 
 #extract bin
 

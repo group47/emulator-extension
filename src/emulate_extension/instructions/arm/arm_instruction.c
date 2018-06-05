@@ -3,6 +3,7 @@
 //
 
 #include <assert.h>
+#include <endian.h>
 #include "arm_instruction.h"
 
 
