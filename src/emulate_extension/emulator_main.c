@@ -4,16 +4,15 @@
 
 #include <memory.h>
 #include <stdio.h>
-#include "emulator_main.h"
 #include "util/static_asserts.h"
 #include "util/entry_point.h"
 #include "dissasemble.h"
 
 #ifdef USE_EMULATOR_MAIN
 
-static const char* binary_path;
-static const char* invalid_arg;
-static const char* logfile_path;
+static const char *binary_path = "";
+static const char *invalid_arg = "";
+static const char *logfile_path = "";
 
 enum CommandLineFlags parseCommandLine(uint32_t argc, const char **argv){
     enum CommandLineFlags flags = (enum CommandLineFlags)0;
@@ -65,7 +64,7 @@ int main(uint32_t argc, const char **argv){
         fprintf(stderr,"failed to open file\n");
         return -1;
     }
-    FILE* logfile = NULL;// = fopen(logfile_path,"w");
+    FILE *logfile = fopen(logfile_path, "w");
     if(logfile == NULL){
         logfile = stderr;
     }

@@ -6,7 +6,6 @@
 #include <memory.h>
 #include <endian.h>
 #include "emulator_state.h"
-#include "../instructions/arm/arm_instruction.h"
 #include "../instructions/thumb/thumb_instruction.h"
 #include "exception.h"
 #include "../util/entry_point.h"
@@ -332,6 +331,6 @@ void print_registers() {
     }else{
         fprintf(get_logfile(),"fpscr          0x%o  %x\n",get_spsr(),get_spsr());
     }
-    fprintf(get_logfile(),"=> \n");
+    fprintf(get_logfile(), "=> \n\n");
 
 }

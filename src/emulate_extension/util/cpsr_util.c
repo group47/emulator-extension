@@ -4,7 +4,6 @@
 
 #include <assert.h>
 #include "cpsr_util.h"
-#include "../instructions/arm/data_processing.h"
 
 
 bool should_execute(enum Cond cond){
@@ -39,7 +38,9 @@ void high_level_set_CPSR_data_processing(const struct DataProcessingInstruction 
                          const bool overflow,
                          const uint32_t computation_res,
                          const bool shiftCarryOut) {
-  return high_level_set_CPSR(instruction.setConditionCodes,is_arithmetic(instruction.opcode),instruction.opcode == add || instruction.opcode == adc,is_logical(instruction.opcode),borrow,overflow,computation_res,shiftCarryOut);
+    return high_level_set_CPSR(instruction.setConditionCodes, is_arithmetic(instruction.opcode),
+                               instruction.opcode == add || instruction.opcode == adc || instruction.opcode == cmn,
+                               is_logical(instruction.opcode), borrow, overflow, computation_res, shiftCarryOut);
 }
 
 void high_level_set_CPSR(bool set_condition_codes,bool is_arithmetic,bool is_add,bool is_logical,
@@ -49,42 +50,6 @@ void high_level_set_CPSR(bool set_condition_codes,bool is_arithmetic,bool is_add
             bool shiftCarryOut) {
   if (set_condition_codes) {
     struct CPSR_Struct final_res = getCPSR();
-    /*
-    //set c bit
-    if (is_arithmetic) {
-      if (is_add) {
-        if (overflow)
-          final_res.C = true;
-        else
-          final_res.C = false;
-      } else {
-        if (borrow) {
-          final_res.C = false;
-        } else {
-          final_res.C = true;
-        }
-
-      }
-    } else if (is_logical) {
-      //*((uint32_t *)&final_res) |= shiftCarryOut;//todo sketchy
-      final_res.C = shiftCarryOut;
-    } else {
-      assert(false);
-    }
-    //set z bit
-    if (computation_res == 0) {
-      final_res.Z = true;
-    } else {
-      final_res.Z = false;
-    }
-    //set n bit
-    if (computation_res & (1 << 31)) {// todo check
-      final_res.N = true;
-    } else {
-      final_res.N = false;
-    }
-     */
-
     if (is_arithmetic) {
       if (is_add) {
         final_res.C = overflow;

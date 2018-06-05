@@ -20,11 +20,11 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
 
     bool overflow_occurred = false;
     bool borrow_occurred = false;
-    const uint32_t rnVal = get_byte_from_register(instruction.Rn);
+    const uint32_t rnVal = get_word_from_register(instruction.Rn);
 
-    uint32_t operand2Val;
-    bool shiftCarryOut;
-    get_operand2(instruction.secondOperand, instruction.immediateOperand, 1, &operand2Val, &shiftCarryOut);
+    uint32_t operand2Val = 0;
+    bool shiftCarryOut = getCPSR().C;
+    get_operand2(instruction.secondOperand, instruction.immediateOperand, true, &operand2Val, &shiftCarryOut);
 
 
     uint32_t computation_res;
@@ -85,22 +85,23 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
         default:
             assert(false);
         case adc:
-            computation_res = rnVal + operand2Val + getCPSR().C;
-            if (does_overflow_occur(operand2Val, rnVal) && does_overflow_occur(operand2Val, rnVal + getCPSR().C)) {
+            computation_res = rnVal + operand2Val + (getCPSR().C ? 1 : 0);
+            if (does_overflow_occur(operand2Val, rnVal) &&
+                does_overflow_occur(operand2Val, rnVal + (getCPSR().C ? 1 : 0))) {
                 overflow_occurred = true;
             }
             set_word_in_register(instruction.Rd,computation_res);
             break;
         case sbc:
-            computation_res = rnVal - operand2Val + getCPSR().C - 1;
+            computation_res = rnVal - operand2Val + (getCPSR().C ? 1 : 0) - 1;
             if(does_borrow_occur(rnVal + getCPSR().C,operand2Val + 1)){
                 borrow_occurred = true;
             }
             set_word_in_register(instruction.Rd,computation_res);
             break;
         case rsc:
-            computation_res = operand2Val - rnVal + getCPSR().C - 1;
-            if(does_borrow_occur(operand2Val + getCPSR().C,rnVal + 1)){
+            computation_res = operand2Val - rnVal + (getCPSR().C ? 1 : 0) - 1;
+            if (does_borrow_occur(operand2Val + (getCPSR().C ? 1 : 0), rnVal + 1)) {
                 borrow_occurred = true;
             }
             set_word_in_register(instruction.Rd,computation_res);
