@@ -18,8 +18,6 @@ void operand_two_asr(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amo
 
 void operand_two_ror(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amount, bool shiftByRegister);
 
-/*TODO: check if shift operator is correctly implemented (could be arithmetic instead of logical)
- */
 int get_operand2(uint16_t secondOperand,
                  bool immediate,
                  bool flag,
@@ -77,7 +75,6 @@ int get_operand2(uint16_t secondOperand,
                     operand_two_asr(operand2_val, carry_out, shift_amount, immediateFalse.shift_by_register);
                     break;
                 case ror:
-                    shift_amount %= 32;
                     operand_two_ror(operand2_val, carry_out, shift_amount, immediateFalse.shift_by_register);
                     break;
                 default:
@@ -90,6 +87,7 @@ int get_operand2(uint16_t secondOperand,
 }
 
 void operand_two_ror(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amount, bool shiftByRegister) {
+    shift_amount %= 32;
     if (shift_amount == 0 && shiftByRegister) {
         *carry_out = ((*operand2_val >> 31) & 0x1) != 0;
     } else {
