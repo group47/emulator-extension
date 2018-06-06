@@ -7,10 +7,10 @@ for i in *.s; do sed "s/a.out/$(basename $i .s).actuallyanexecutable/g; s/gdb.lo
 #for i in *.bin; do objdump -D $i --target=binary --architecture=arm_any| grep -o -P 'm[lu][a-z]+[^A;]+' > $(basename $i .bin).s; done
 
 #assemble
-for i in *.s; do gcc -mthumb -c $i -o $(basename $i .s).realbin -Wl,-mthumb; done
+for i in *.s; do arm-none-eabi-gcc -mthumb -c $i -o $(basename $i .s).realbin -Wl,-mthumb; done
 
 #link
-for i in *.realbin; do gcc -mthumb $i -o $(basename $i .realbin).actuallyanexecutable -nostdlib -Wl,-mthumb; done
+for i in *.realbin; do arm-none-eabi-gcc -mthumb $i -o $(basename $i .realbin).actuallyanexecutable -nostdlib -Wl,-mthumb; done
 
 #run gdb
 for i in *.actuallyanexecutable; do gdb -q --command=$(basename $i .actuallyanexecutable).gdbinit > $(basename $i .actuallyanexecutable).log; done
