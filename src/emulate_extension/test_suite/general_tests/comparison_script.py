@@ -141,6 +141,9 @@ else:
         if show_correct_test_case:
             print_test_case_and_difference(program_blocks[test_case_index], gdb_blocks[test_case_index])
             user_input = input()
+            while user_input not in commands:
+                print("invalid command")
+                user_input = input()
             if user_input is "f":
                 test_case_index = test_case_index + 1
                 show_correct_test_case = True
@@ -153,15 +156,17 @@ else:
             elif user_input is "q":
                 sys.exit()
             else:
-                while user_input not in commands:
-                    print("Invalid command\n")
-                    user_input = input()
+                assert False, "how the hell does this happen?"
+                sys.exit()
         else:
             if not compare_blocks(program_blocks[test_case_index], gdb_blocks[test_case_index]):
                 print("Test case fail")
                 print("Number of test case: " + str(test_case_index + 1))
                 print_test_case_and_difference(program_blocks[test_case_index], gdb_blocks[test_case_index])
                 user_input = input()
+                while user_input not in commands:
+                    print("invalid command")
+                    user_input = input()
                 if user_input is "f":
                     test_case_index = test_case_index + 1
                     show_correct_test_case = True
@@ -174,9 +179,8 @@ else:
                 elif user_input is "q":
                     sys.exit()
                 else:
-                    while user_input not in commands:
-                        print("Invalid command\n")
-                        user_input = input()
+                    assert False, "how the hell does this happen?"
+                    sys.exit()
             else:
                 test_case_index = test_case_index + 1
 
