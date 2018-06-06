@@ -63,7 +63,7 @@ eor r5, r3
 tst r5, r2
 sbc r2, r5
 orr r5, r5
-mul r1, r1
+mul r1, r0
 ror r1, r0
 adc r0, r5
 tst r0, r5
@@ -100,7 +100,7 @@ cmn r0, r4
 orr r5, r6
 and r3, r7
 lsr r5, r5
-mul r3, r3
+mul r3, r4
 adc r6, r4
 bic r3, r2
 asr r4, r4
@@ -130,7 +130,7 @@ cmp r6, r6
 asr r0, r0
 tst r1, r0
 mul r3, r7
-mul r7, r7
+mul r7, r3
 bic r7, r7
 lsr r1, r1
 mul r2, r3
@@ -173,7 +173,7 @@ eor r7, r3
 adc r7, r3
 asr r5, r4
 adc r3, r3
-mul r5, r5
+mul r5, r4
 cmp r2, r3
 cmn r1, r4
 mvn r0, r3
