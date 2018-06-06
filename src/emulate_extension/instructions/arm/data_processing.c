@@ -26,8 +26,9 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
 
     uint32_t operand2Val = 0;
     bool shiftCarryOut = getCPSR().C;
-    get_operand2(instruction.secondOperand, instruction.immediateOperand, true, &operand2Val, &shiftCarryOut);
+    get_operand2(instruction.secondOperand, instruction.immediateOperand, IMMEDIATE_BIT_FLAG_DATA_PROCESSING, &operand2Val, &shiftCarryOut);
 
+    uint32_t carry = (getCPSR().C) ? 1 : 0;
 
     uint32_t computation_res;
     // for distinguishing between operator thing
@@ -87,23 +88,23 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
         default:
             assert(false);
         case adc:
-            computation_res = rnVal + operand2Val + (getCPSR().C ? 1 : 0);
+            computation_res = rnVal + operand2Val + carry;
             if (does_overflow_occur(operand2Val, rnVal) &&
-                does_overflow_occur(operand2Val, rnVal + (getCPSR().C ? 1 : 0))) {
+                does_overflow_occur(operand2Val, rnVal + carry)) {
                 overflow_occurred = true;
             }
             set_word_in_register(instruction.Rd,computation_res);
             break;
         case sbc:
-            computation_res = rnVal - operand2Val + (getCPSR().C ? 1 : 0) - 1;
-            if(does_borrow_occur(rnVal + getCPSR().C,operand2Val + 1)){
+            computation_res = rnVal - operand2Val + carry - 1;
+            if(does_borrow_occur(rnVal + carry, operand2Val + 1)){
                 borrow_occurred = true;
             }
             set_word_in_register(instruction.Rd,computation_res);
             break;
         case rsc:
-            computation_res = operand2Val - rnVal + (getCPSR().C ? 1 : 0) - 1;
-            if (does_borrow_occur(operand2Val + (getCPSR().C ? 1 : 0), rnVal + 1)) {
+            computation_res = operand2Val - rnVal + carry - 1;
+            if (does_borrow_occur(operand2Val + carry, rnVal + 1)) {
                 borrow_occurred = true;
             }
             set_word_in_register(instruction.Rd,computation_res);

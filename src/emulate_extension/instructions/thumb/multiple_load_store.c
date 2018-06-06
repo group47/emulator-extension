@@ -24,7 +24,7 @@ enum ExecutionExitCode execute_instruction_multiple_load_store(const struct Mult
 
     for (RegisterAddress lowRegister = 0; lowRegister < 8; ++lowRegister) {
       if (instruction.RList & (0b1 << lowRegister)) {
-        set_word_from_memory(address, get_word_from_register(lowRegister));
+        set_word_in_memory(address, get_word_from_register(lowRegister));
         ++address;
       }
     }

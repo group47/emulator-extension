@@ -20,17 +20,17 @@ enum ExecutionExitCode execute_instruction_single_data_swap(struct SingleDataSwa
 
     if (instruction.byteWordBit) {
         Byte baseVal = get_byte_from_memory(swapAddress);
-        set_byte_from_memory(swapAddress, get_byte_from_register(instruction.Rm));
+        set_byte_in_memory(swapAddress, get_byte_from_register(instruction.Rm));
         set_byte_in_register(instruction.Rd, baseVal);
     } else {
         Word baseVal = get_word_from_memory(swapAddress);
-        set_word_from_memory(swapAddress, get_word_from_register(instruction.Rm));
+      set_word_in_memory(swapAddress, get_word_from_register(instruction.Rm));
         set_word_in_register(instruction.Rd, baseVal);
     }
 
     // if data abort happens, undo the swap
     if (has_exception_flag(DATA_ABORT)) {
-        set_word_from_memory(swapAddress, oldMemoryVal);
+      set_word_in_memory(swapAddress, oldMemoryVal);
         set_word_in_register(oldRegister, oldRegisterVal);
     }
 
