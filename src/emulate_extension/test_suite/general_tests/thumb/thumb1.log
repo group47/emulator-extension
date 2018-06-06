@@ -1,4 +1,1093 @@
 /home/pi/.gdbinit:5: Error in sourced command file:
 bob.c: No such file or directory.
-thumb1.gdbinit: No such file or directory.
+
+Program stopped.
+0x00010098 in ?? ()
+0x0001009c in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x1009c	0x1009c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1009c:	cmnvs	r5, r0, lsl #2
+0x000100a0 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100a0	0x100a0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100a0:	tsteq	r0, r2, ror #18
+0x000100a4 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100a4	0x100a4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100a4:	andeq	r0, r0, r0, lsl r0
+0x000100a8 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100a8	0x100a8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100a8:	streq	r3, [r0], -r5, lsl #12
+0x000100ac in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100ac	0x100ac
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100ac:	stmdbeq	r1, {r1, r2, r11}
+0x000100b0 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100b0	0x100b0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100b0:	andeq	r0, r2, r1, lsl #20
+0x000100b4 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100b4	0x100b4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100b4:	andeq	r0, r0, r0
+0x000100b8 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100b8	0x100b8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100b8:	andeq	r0, r0, r0
+0x000100bc in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100bc	0x100bc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100bc:	andeq	r0, r0, r0
+0x000100c0 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100c0	0x100c0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100c0:	andeq	r0, r0, r0
+0x000100c4 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100c4	0x100c4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100c4:	andeq	r0, r0, r0
+0x000100c8 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100c8	0x100c8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100c8:	andeq	r0, r1, r4, ror r0
+0x000100cc in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100cc	0x100cc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100cc:	andeq	r0, r0, r0
+0x000100d0 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100d0	0x100d0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100d0:	andeq	r0, r1, r3
+0x000100d4 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100d4	0x100d4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100d4:	andeq	r0, r0, r0
+0x000100d8 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100d8	0x100d8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100d8:	andeq	r0, r0, r0
+0x000100dc in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100dc	0x100dc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100dc:	andeq	r0, r0, r0
+0x000100e0 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100e0	0x100e0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100e0:	andeq	r0, r2, r3
+0x000100e4 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100e4	0x100e4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100e4:	andeq	r0, r0, r0, lsl r0
+0x000100e8 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100e8	0x100e8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100e8:	muleq	r2, r8, r0
+0x000100ec in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100ec	0x100ec
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100ec:	andeq	r0, r0, r0
+0x000100f0 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100f0	0x100f0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100f0:	andeq	r0, r1, r0, lsl r0
+0x000100f4 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100f4	0x100f4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100f4:	andeq	r0, r0, r1
+0x000100f8 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100f8	0x100f8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100f8:	muleq	r2, r8, r0
+0x000100fc in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x100fc	0x100fc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100fc:	andeq	r0, r0, r0
+0x00010100 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10100	0x10100
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10100:	andeq	r0, r1, r0, lsl r0
+0x00010104 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10104	0x10104
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10104:	andeq	r0, r0, pc
+0x00010108 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10108	0x10108
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10108:	muleq	r2, r8, r0
+0x0001010c in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x1010c	0x1010c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1010c:	andeq	r0, r0, r0
+0x00010110 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10110	0x10110
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10110:	andeq	r0, r1, r0, lsl r0
+0x00010114 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10114	0x10114
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10114:	andeq	r0, r0, r0, lsr #32
+0x00010118 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10118	0x10118
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10118:	andeq	r0, r0, r0
+0x0001011c in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x1011c	0x1011c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1011c:	andeq	r0, r0, r0
+0x00010120 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10120	0x10120
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10120:	andeq	r0, r0, r0, lsl r0
+0x00010124 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10124	0x10124
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10124:	andeq	r0, r0, r11, lsl r0
+0x00010128 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10128	0x10128
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10128:	muleq	r2, r8, r0
+0x0001012c in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x1012c	0x1012c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1012c:	andeq	r0, r0, r0
+0x00010130 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10130	0x10130
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10130:	andeq	r0, r1, r0, lsl r0
+0x00010134 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10134	0x10134
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10134:	andeq	r0, r0, r7, lsr #32
+0x00010138 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10138	0x10138
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10138:	muleq	r2, r8, r0
+0x0001013c in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x1013c	0x1013c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1013c:	andeq	r0, r0, r0
+0x00010140 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10140	0x10140
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10140:	andeq	r0, r1, r0, lsl r0
+0x00010144 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10144	0x10144
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10144:	andeq	r0, r0, pc, lsr #32
+0x00010148 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10148	0x10148
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10148:	muleq	r2, r8, r0
+0x0001014c in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x1014c	0x1014c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1014c:	andeq	r0, r0, r0
+0x00010150 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10150	0x10150
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10150:	andeq	r0, r1, r0, lsl r0
+0x00010154 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10154	0x10154
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10154:	andeq	r0, r0, r6, lsr r0
+0x00010158 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10158	0x10158
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10158:	muleq	r2, r8, r0
+0x0001015c in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x1015c	0x1015c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1015c:	andeq	r0, r0, r0
+0x00010160 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10160	0x10160
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10160:	andeq	r0, r1, r0, lsl r0
+0x00010164 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10164	0x10164
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10164:	subsvs	r5, pc, #0, 30
+0x00010168 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x10168	0x10168
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10168:	cmpvc	pc, #-872415231	; 0xcc000001
+0x0001016c in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x1016c	0x1016c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1016c:	ldrbtvc	r6, [r2], #-372	; 0xfffffe8c
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0001016c in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff2b0	0xbefff2b0
+lr             0x0	0
+pc             0x1016c	0x1016c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1016c:	ldrbtvc	r6, [r2], #-372	; 0xfffffe8c
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
+thumb1.gdbinit:166: Error in sourced command file:
+The program has no registers now.
 (gdb) 
