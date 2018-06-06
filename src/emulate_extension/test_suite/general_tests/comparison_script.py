@@ -1,4 +1,12 @@
 import sys
+import os
+from termcolor import colored
+
+tmp_dir_path = "/tmp/arm_project_no_conflict"
+
+if not os.path.exists(tmp_dir_path):
+    os.makedirs(tmp_dir_path)
+
 
 max_len_of_line = 0
 distance_between_block = 5
@@ -39,9 +47,15 @@ def print_test_case_and_difference(program_block, gdb_block):
     num_lines = len(program_block)
     length_of_one_line = max_len_of_line * 2 + 5
     for i in range(0, num_lines):
-        print(program_block[i].rstrip(), end='')
+        if ''.join(program_block[i].split()) != ''.join(gdb_block[i].split()) and "sp" not in program_block[i] and "pc" not in program_block[i]:
+            program_line = colored(program_block[i].rstrip(), 'red', attrs=['reverse', 'blink'])
+            gdb_line     = colored(gdb_block[i].rstrip(), 'red', attrs=['reverse', 'blink'])
+        else:
+            program_line = program_block[i].rstrip()
+            gdb_line     = gdb_block[i].rstrip()
+        print(program_line, end='')
         print(' '*(length_of_one_line - len(program_block[i].rstrip())), end='')
-        print(gdb_block[i].rstrip())
+        print(gdb_line)
     print("\n")
 
 
@@ -50,8 +64,17 @@ length_of_test_case_block = 18
 if len(sys.argv) < 3:
     print("Not enough number of arguments")
 else:
-    program_output = sys.argv[1]
-    gdb_output = sys.argv[2]
+    emulate_executable = sys.argv[1]
+    test_case_binary_path = sys.argv[2]
+    gdb_log_file_path = sys.argv[3]
+    
+    raw_program_output_file_name = (gdb_log_file_path[0:(len(gdb_log_file_path) - 4)] + "_output.log").split('/')
+    program_output_file_name = raw_program_output_file_name[len(raw_program_output_file_name)-1]
+    program_output =  tmp_dir_path + "/" + program_output_file_name
+    gdb_output = gdb_log_file_path
+    command = emulate_executable + " " + "--binary=" + test_case_binary_path + " -p --logfile=" + program_output
+    
+    os.system(command)
 
     with open(program_output) as f:
         program_output = f.readlines()
@@ -86,7 +109,7 @@ else:
         gdb_blocks.append(gdb_parse_result[1])
         count = count+1
 
-    num_test_cases = len(program_blocks)
+    num_test_cases = min(len(program_blocks), len(gdb_blocks))
 
     assert num_test_cases == len(gdb_blocks), \
         "either the number of testcases doesn't match or the parsing part is incorrect"
@@ -96,7 +119,7 @@ else:
     show_correct_test_case = False
     while test_case_index < num_test_cases:
         if show_correct_test_case:
-            print_test_case_and_difference(program_blocks[test_case_index], gdb_output[test_case_index])
+            print_test_case_and_difference(program_blocks[test_case_index], gdb_blocks[test_case_index])
             user_input = input()
             if user_input is "f":
                 test_case_index = test_case_index + 1
@@ -116,6 +139,7 @@ else:
         else:
             if not compare_blocks(program_blocks[test_case_index], gdb_blocks[test_case_index]):
                 print("Test case fail")
+                print("Number of test case: " + str(test_case_index + 1))
                 print_test_case_and_difference(program_blocks[test_case_index], gdb_blocks[test_case_index])
                 user_input = input()
                 if user_input is "f":
@@ -135,4 +159,6 @@ else:
                         user_input = input()
             else:
                 test_case_index = test_case_index + 1
+
+        print("Current test case index : " + str(test_case_index + 1))
     print("test case successful")
