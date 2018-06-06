@@ -49,7 +49,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
     }
 
     if (userBankTransfer) {
-        change_operating_mode(usr);
+        set_operating_mode(usr);
     }
 
     // todo: check if the transfer of banking of register actually fit the specication for this instruction
@@ -100,7 +100,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
         }
     }
 
-    change_operating_mode(oldMode);
+    set_operating_mode(oldMode);
 
     return OK;
 }

@@ -186,12 +186,10 @@ struct CPSR_Struct get_SPSR_by_mode() {
     assert(false);
 }
 
-// change based on mode? ie. change cpsr, spsr ?
-void change_operating_mode(enum OperatingMode newOperatingMode) {
-    /*
-    state.CPSR.M = newOperatingMode;
-     */
-    assert(false);
+void set_operating_mode(enum OperatingMode newOperatingMode) {
+    struct CPSR_Struct new_cpsr = getCPSR();
+    new_cpsr.M = newOperatingMode;
+    setCPSR(new_cpsr);
 }
 
 enum OperatingMode get_operating_mode() {
@@ -268,30 +266,24 @@ union RawArmInstruction get_fetched_arm() {
 }
 
 union RawThumbInstruction get_fetched_thumb() {
-    /*
-    return *((union RawThumbInstruction*) &state.fetched_thumb);
-     */
-    assert(false);
+    return *(union RawThumbInstruction *) &state.fetched_thumb;
 }
 
 union RawArmInstruction get_decoded_arm() {
-    /*
-    return *((union RawArmInstruction*) &state.decoded_arm);
-     */
-    assert(false);
+    return *(union RawArmInstruction *) &state.decoded_arm;
 }
 
 union RawThumbInstruction get_decoded_thumb() {
-    /*
-    return *((union RawThumbInstruction*) &state.decoded_thumb);
-     */
-    assert(false);
+    return *(union RawThumbInstruction *) &state.decoded_thumb;
 }
 
 bool fetched_valid() {
-    return state.fetched_valid;
+    return state.fetched_valid && !state.fetched_prefetch_aborted;
 }
 
+bool prefetch_aborted() {
+    return state.fetched_prefetch_aborted;
+}
 
 void transfer_fetched_to_decoded_and_load_fetched() {
     if(get_mode() == THUMB){
@@ -306,6 +298,7 @@ void transfer_fetched_to_decoded_and_load_fetched() {
     if(get_mode() == THUMB){
         if (memory_access_will_fail(get_word_from_register(PC_ADDRESS))) {
             state.fetched_prefetch_aborted = true;
+            state.fetched_valid = true;
         } else {
             state.fetched_thumb = get_half_word_from_memory(get_word_from_register(PC_ADDRESS));
             state.fetched_valid = true;
@@ -313,6 +306,7 @@ void transfer_fetched_to_decoded_and_load_fetched() {
     }else if(get_mode() == ARM){
         if (memory_access_will_fail(get_word_from_register(PC_ADDRESS))) {
             state.fetched_prefetch_aborted = true;
+            state.fetched_valid = true;
         } else {
             state.fetched_arm = get_word_from_memory(get_word_from_register(PC_ADDRESS));
             state.fetched_valid = true;
@@ -329,14 +323,16 @@ void transfer_fetched_to_decoded_and_load_fetched() {
 
 void print_registers() {
     for (uint8_t i = 0; i < 10; ++i) {
-        fprintf(get_logfile(),"r%u             0x%x  %d\n",i,get_word_from_register(i),get_word_from_register(i));
+        fprintf(get_logfile(), "r%u             0x%x  %u\n", i, get_word_from_register(i), get_word_from_register(i));
     }
     for (uint8_t i = 10; i < 13; ++i) {
-        fprintf(get_logfile(),"r%u            0x%x  %d\n",i,get_word_from_register(i),get_word_from_register(i));
+        fprintf(get_logfile(), "r%u            0x%x  %u\n", i, get_word_from_register(i), get_word_from_register(i));
     }
     fprintf(get_logfile(),"sp             0xbefff2a0  0xbefff2a0\n",get_word_from_register(SP_ADDRESS),get_word_from_register(SP_ADDRESS));
-    fprintf(get_logfile(),"lr             0x%x  %d\n",get_word_from_register(LR_ADDRESS),get_word_from_register(LR_ADDRESS));
-    fprintf(get_logfile(),"pc             0x%x  %d\n",get_word_from_register(PC_ADDRESS),get_word_from_register(PC_ADDRESS));
+    fprintf(get_logfile(), "lr             0x%x  %u\n", get_word_from_register(LR_ADDRESS),
+            get_word_from_register(LR_ADDRESS));
+    fprintf(get_logfile(), "pc             0x%x  %u\n", get_word_from_register(PC_ADDRESS),
+            get_word_from_register(PC_ADDRESS));
     fprintf(get_logfile(),"cpsr           0x%x  %d\n",getCPSR(),getCPSR());
     if(get_operating_mode() == usr || get_operating_mode() == sys){
         fprintf(get_logfile(),"fpscr          0x%o  %x\n",0,0);
@@ -345,6 +341,32 @@ void print_registers() {
     }
     fprintf(get_logfile(), "=> \n\n");
 
+}
+
+void set_spsr_by_mode(struct CPSR_Struct cpsr_struct, enum OperatingMode mode) {
+    switch (mode) {
+        case usr:
+            assert(false);
+            break;
+        case fiq:
+            state.SPSR_fiq = cpsr_struct;
+            break;
+        case irq:
+            state.SPSR_irq = cpsr_struct;
+            break;
+        case svc:
+            state.SPSR_svc = cpsr_struct;
+            break;
+        case abt:
+            state.SPSR_abt = cpsr_struct;
+            break;
+        case sys:
+            assert(false);
+            break;
+        case und:
+            state.SPSR_und = cpsr_struct;
+            break;
+    }
 }
 
 void invalidate_pipeline() {
