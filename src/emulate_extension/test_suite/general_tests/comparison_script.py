@@ -106,7 +106,7 @@ else:
         raw_program_output = get_start_line_of_next_block(program_output)
 
     program_output = get_start_line_of_next_block(program_output)
-
+    program_output = get_start_line_of_next_block(program_output)
     if "r0" not in gdb_output[0]:
         gdb_output = get_start_line_of_next_block(gdb_output)
 
