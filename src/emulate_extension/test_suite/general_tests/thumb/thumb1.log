@@ -3,9 +3,4 @@ bob.c: No such file or directory.
 thumb1.gdbinit: No such file or directory.
 (gdb) ^CQuit
 (gdb) ^CQuit
-(gdb) ^CQuit
-(gdb) ^CQuit
-(gdb) ^CQuit
-(gdb) ^CQuit
-(gdb) ^CQuit
 (gdb) 
