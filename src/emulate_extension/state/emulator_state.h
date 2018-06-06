@@ -109,7 +109,7 @@ enum Mode get_mode();
 
 struct CPSR_Struct get_SPSR_by_mode();
 
-void change_operating_mode(enum OperatingMode newOperatingMode);
+void set_operating_mode(enum OperatingMode newOperatingMode);
 
 enum OperatingMode get_operating_mode();
 
@@ -141,10 +141,14 @@ bool fetched_valid();
 
 bool decoded_valid();
 
-void transfer_fetched_to_decoded_and_load_fetched();//todo
+void transfer_fetched_to_decoded_and_load_fetched();
 
 void print_registers();
 
 void invalidate_pipeline();
+
+bool prefetch_aborted();
+
+void set_spsr_by_mode(struct CPSR_Struct cpsr_struct, enum OperatingMode mode);
 
 #endif //SRC_EMULATOR_STATE_H
