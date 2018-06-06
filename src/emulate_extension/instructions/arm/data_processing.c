@@ -11,7 +11,7 @@
 #include "../../util/operand_two_util.h"
 
 
-bool exception_handler_exit(const struct DataProcessingInstruction instruction, uint32_t operand2Val);
+void exception_handler_exit(const struct DataProcessingInstruction instruction, uint32_t operand2Val);
 
 enum ExecutionExitCode execute_instruction_data_processing(const struct DataProcessingInstruction instruction) {
     //todo duplication
@@ -131,7 +131,7 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
     return OK;
 }
 
-bool exception_handler_exit(const struct DataProcessingInstruction instruction, uint32_t operand2Val) {
+void exception_handler_exit(const struct DataProcessingInstruction instruction, uint32_t operand2Val) {
     //todo clear interrupt disable flags
     if (instruction.Rd == PC_ADDRESS && instruction.Rn == LR_ADDRESS) {
         if (instruction.opcode == mov) {
@@ -148,5 +148,4 @@ bool exception_handler_exit(const struct DataProcessingInstruction instruction, 
 
         }
     }
-    return false;
 }

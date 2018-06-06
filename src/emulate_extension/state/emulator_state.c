@@ -323,14 +323,16 @@ void transfer_fetched_to_decoded_and_load_fetched() {
 
 void print_registers() {
     for (uint8_t i = 0; i < 10; ++i) {
-        fprintf(get_logfile(),"r%u             0x%x  %d\n",i,get_word_from_register(i),get_word_from_register(i));
+        fprintf(get_logfile(), "r%u             0x%x  %u\n", i, get_word_from_register(i), get_word_from_register(i));
     }
     for (uint8_t i = 10; i < 13; ++i) {
-        fprintf(get_logfile(),"r%u            0x%x  %d\n",i,get_word_from_register(i),get_word_from_register(i));
+        fprintf(get_logfile(), "r%u            0x%x  %u\n", i, get_word_from_register(i), get_word_from_register(i));
     }
     fprintf(get_logfile(),"sp             0xbefff2a0  0xbefff2a0\n",get_word_from_register(SP_ADDRESS),get_word_from_register(SP_ADDRESS));
-    fprintf(get_logfile(),"lr             0x%x  %d\n",get_word_from_register(LR_ADDRESS),get_word_from_register(LR_ADDRESS));
-    fprintf(get_logfile(),"pc             0x%x  %d\n",get_word_from_register(PC_ADDRESS),get_word_from_register(PC_ADDRESS));
+    fprintf(get_logfile(), "lr             0x%x  %u\n", get_word_from_register(LR_ADDRESS),
+            get_word_from_register(LR_ADDRESS));
+    fprintf(get_logfile(), "pc             0x%x  %u\n", get_word_from_register(PC_ADDRESS),
+            get_word_from_register(PC_ADDRESS));
     fprintf(get_logfile(),"cpsr           0x%x  %d\n",getCPSR(),getCPSR());
     if(get_operating_mode() == usr || get_operating_mode() == sys){
         fprintf(get_logfile(),"fpscr          0x%o  %x\n",0,0);
