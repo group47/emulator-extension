@@ -80,6 +80,8 @@ else:
     test_case_binary_path = ""
     gdb_log_file_path = ""
     for i in range(1, 4):
+        if i >= len(sys.argv):
+            break
         if sys.argv[i].endswith("emulate_extension"):
             emulate_executable = sys.argv[i]
         if sys.argv[i].endswith(".bin2"):
@@ -87,7 +89,7 @@ else:
         if sys.argv[i].endswith(".log"):
             gdb_log_file_path = sys.argv[i]
     if len(test_case_binary_path) is 0 or len(gdb_log_file_path) is 0:
-        test_case_files = filter(lambda x : "emulate_extension" not in x and ".py" not in x, sys.argv)
+        test_case_files = list(filter(lambda x : "emulate_extension" not in x and ".py" not in x, sys.argv))
         if len(test_case_files) is 0:
             print("I really couldn't guess that file then")
             sys.exit()
