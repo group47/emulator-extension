@@ -62,11 +62,31 @@ def print_test_case_and_difference(program_block, gdb_block):
 
 length_of_test_case_block = 18
 if len(sys.argv) < 3:
-    print("Not enough number of arguments")
+    if sys.argv[1] is "--help" or sys.argv[1] is "-h" or sys.argv[1] is "-help":
+        print("Enter three arguments:")
+        print("    1. emulate_extension path")
+        print("    2. test case binary path")
+        print("    3. gdb log file path")
+        print("")
+        print("Available command:")
+        print("    1. f - move to the next test case")
+        print("    2. b - move to the previous test case")
+        print("    3. c - continue to execute until next fail test case")
+        print("    4. q - quit")
+    else:
+        print("Not enough number of arguments")
 else:
-    emulate_executable = sys.argv[1]
-    test_case_binary_path = sys.argv[2]
-    gdb_log_file_path = sys.argv[3]
+    for i in range(1, 4):
+        if sys.argv[i].endswith("emulate_extension"):
+            emulate_executable = sys.argv[i]
+        if sys.argv[i].endswith(".bin2"):
+            test_case_binary_path = sys.argv[i]
+        if sys.argv[i].endswith(".log"):
+            gdb_log_file_path = sys.argv[i]
+
+    #emulate_executable = sys.argv[1]
+    #test_case_binary_path = sys.argv[2]
+    #gdb_log_file_path = sys.argv[3]
     
     raw_program_output_file_name = (gdb_log_file_path[0:(len(gdb_log_file_path) - 4)] + "_output.log").split('/')
     program_output_file_name = raw_program_output_file_name[len(raw_program_output_file_name)-1]
