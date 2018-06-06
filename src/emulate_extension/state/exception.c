@@ -75,11 +75,22 @@ void handle_exception() {
     }
 
 
-//    setSPSR(getCPSR(oldCPSR));
-
-
 }
 
+
+/**
+ *
+ * exception vectors:
+ * Address Exception Mode on entry
+0x00000000 Reset Supervisor
+0x00000004 Undefined instruction Undefined
+0x00000008 Software interrupt Supervisor
+0x0000000C Abort (prefetch) Abort
+0x00000010 Abort (data) Abort
+0x00000014 Reserved Reserved
+0x00000018 IRQ IRQ
+0x0000001C FIQ FIQ
+ */
 
 /**
  * from spec table 3-2:
@@ -89,11 +100,7 @@ the prefetch abort.
  * @param oldcpsr
  */
 void handle_branch(struct CPSR_Struct oldcpsr) {
-    if (get_mode() == ARM) {
-        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) + 4);
-    } else if (get_mode() == THUMB) {
-        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) + 2);
-    }
+
 
 
 }
@@ -103,31 +110,122 @@ void handle_branch(struct CPSR_Struct oldcpsr) {
  * @param oldcpsr
  */
 void handle_software_interrupt(struct CPSR_Struct oldcpsr) {
+    //preserve address in link register
     if (get_mode() == ARM) {
-        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) + 4);
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) - 8 + 4);
     } else if (get_mode() == THUMB) {
-        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) + 2);
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) - 4 + 2);
+    } else {
+        assert(false);
     }
+    //copy cpsr into spsr
+    set_spsr_by_mode(getCPSR(), svc);
+    //change mode
+    set_operating_mode(svc);
+    //set pc
+    const ByteAddress swi_exception_vector = 0x00000008;
+    set_word_in_register(PC_ADDRESS, swi_exception_vector);
+    invalidate_pipeline();
 }
 
 void handle_undefined(struct CPSR_Struct oldcpsr) {
-
+    //preserve address in link register
+    if (get_mode() == ARM) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) - 8 + 4);
+    } else if (get_mode() == THUMB) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) - 4 + 2);
+    } else {
+        assert(false);
+    }
+    //copy cpsr into spsr
+    set_spsr_by_mode(oldcpsr, und);
+    //change mode
+    set_operating_mode(und);
+    //set pc
+    const ByteAddress undefined_exception_vector = 0x00000004;
+    set_word_in_register(PC_ADDRESS, undefined_exception_vector);
+    invalidate_pipeline();
 }
 
+/**
+ * PABT SUBS PC, R14_abt, #4 PC + 4 PC + 4
+ * here PC is the address of the BL/SWI/Undefined Instruction fetch which had
+the prefetch abort.
+ * @param oldcpsr
+ */
 void handle_prefetch_abort(struct CPSR_Struct oldcpsr) {
-
+    //preserve address in link register
+    if (get_mode() == ARM) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) - 8 + 4);
+    } else if (get_mode() == THUMB) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) - 4 + 4);
+    } else {
+        assert(false);
+    }
+    //copy cpsr into spsr
+    set_spsr_by_mode(oldcpsr, abt);
+    //change mode
+    set_operating_mode(abt);
+    //set pc
+    const ByteAddress prefetch_abort_vector = 0x0000000C;
+    set_word_in_register(PC_ADDRESS, prefetch_abort_vector);
 }
 
 void handle_irq(struct CPSR_Struct oldcpsr) {
-
+    assert(oldcpsr.I == false);
+    //preserve address in link register
+    if (get_mode() == ARM) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) - 8 + 4);
+    } else if (get_mode() == THUMB) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) - 4 + 4);
+    } else {
+        assert(false);
+    }
+    //copy cpsr into spsr
+    set_spsr_by_mode(oldcpsr, irq);
+    //change mode
+    set_operating_mode(irq);
+    //set pc
+    const ByteAddress irq_exception_vector = 0x0000001C;
+    set_word_in_register(PC_ADDRESS, irq_exception_vector);
 }
 
 void handle_fiq(struct CPSR_Struct oldcpsr) {
-
+    assert(oldcpsr.F == false);
+    //preserve address in link register
+    if (get_mode() == ARM) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) - 8 + 4);
+    } else if (get_mode() == THUMB) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) - 4 + 4);
+    } else {
+        assert(false);
+    }
+    //copy cpsr into spsr
+    set_spsr_by_mode(oldcpsr, fiq);
+    //change mode
+    set_operating_mode(fiq);
+    //set pc
+    const ByteAddress fiq_exception_vector = 0x00000018;
+    set_word_in_register(PC_ADDRESS, fiq_exception_vector);
 }
 
 void handle_data_abort(struct CPSR_Struct oldcpsr) {
-
+    assert(oldcpsr.F == false);
+    //preserve address in link register
+    if (get_mode() == ARM) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) - 8 + 8);
+    } else if (get_mode() == THUMB) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) - 4 + 8);
+    } else {
+        assert(false);
+    }
+    //copy cpsr into spsr
+    set_spsr_by_mode(oldcpsr, abt);
+    //change mode
+    set_operating_mode(abt);
+    //set pc
+    const ByteAddress data_abort_exception_vector = 0x00000010;
+    set_word_in_register(PC_ADDRESS, data_abort_exception_vector);
 }
 
 bool has_exceptions(){

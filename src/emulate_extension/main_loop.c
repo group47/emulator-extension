@@ -15,22 +15,28 @@ void main_loop(enum CommandLineFlags flags){
     while(true){
 
         if(fetched_valid()){
-            union RawArmInstruction instruction = get_fetched_arm();
+            union RawArmInstruction instruction = get_decoded_arm();
             if((flags & TERMINATE_ON__ZERO) && ((*(uint32_t *)&instruction) == 0)){
                 return;
             }
             if(flags & TERMINATE_AFTER_200 && master_instruction_counter == 200){
                 return;
             }
+            enum ExecutionExitCode exitCode;
             if(get_mode() == ARM){
-                const enum ExecutionExitCode exitCode = execute_arm_instruction(ARMfromRaw(get_fetched_arm()));
+                exitCode = execute_arm_instruction(ARMfromRaw(get_decoded_arm()));
             }
             else if(get_mode() == THUMB){
-                const enum ExecutionExitCode exitCode = execute_thumb_instruction(ThumbFromRaw(get_fetched_thumb()));
+                exitCode = execute_thumb_instruction(ThumbFromRaw(get_decoded_thumb()));
             } else {
                 assert(false);
             }
+            if (exitCode == BRANCH) {
+                invalidate_pipeline();
+            }
             master_instruction_counter++;
+        } else if (prefetch_aborted()) {
+            add_exception_flag(PREFETCH_ABORT);
         }
 
         //check if exceptions
