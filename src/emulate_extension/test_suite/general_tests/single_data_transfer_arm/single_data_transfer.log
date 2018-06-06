@@ -291,5 +291,4 @@ The program no longer exists.
 single_data_transfer.gdbinit:46: Error in sourced command file:
 The program has no registers now.
 (gdb) ^CQuit
-(gdb) ^CQuit
 (gdb) 
