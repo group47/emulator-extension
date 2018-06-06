@@ -43,7 +43,7 @@ stralb r3, [r1], #4
 str r7, [r1], -r5
 str r5, [r1], r5
 str r6, [r1], r7, lsl #12
-str r9, [r1], -r8, asr #34
+str r9, [r1], -r8, asr #3
 mov r2, #22
 mov r3, #35
 mov r4, #34
