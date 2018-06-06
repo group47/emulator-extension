@@ -1,3 +1,4 @@
+.thumb
 asr r2, r6, #17
 lsr r5, r4, #15
 lsl r4, r2, #18
