@@ -751,4 +751,3 @@ The program no longer exists.
 single_data_transfer_data_section.gdbinit:115: Error in sourced command file:
 The program has no registers now.
 (gdb) 
-(gdb) 
