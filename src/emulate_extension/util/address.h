@@ -7,6 +7,6 @@
 #ifndef SRC_ADDRESS_H
 #define SRC_ADDRESS_H
 
-InstructionAddress get_current_instruction_address();
+ByteAddress get_current_instruction_address();
 
 #endif //SRC_ADDRESS_H

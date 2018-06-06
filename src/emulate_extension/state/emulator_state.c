@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <memory.h>
+#include <endian.h>
 #include "emulator_state.h"
 #include "../instructions/thumb/thumb_instruction.h"
 #include "exception.h"
@@ -154,6 +155,8 @@ void set_word_in_register(RegisterAddress address, Word val) {
 void change_mode(enum Mode newMode) {
     assert(false);
 }//make sure to trash pipeline and that this is part of spsr
+
+
 enum Mode get_mode() {
     return state.CPSR.T ? THUMB : ARM;
 }
@@ -259,6 +262,7 @@ void init_cpu(void) {
 }
 
 union RawArmInstruction get_fetched_arm() {
+    assert(!state.fetched_prefetch_aborted);
     uint32_t lValue = __bswap_32(__bswap_32(state.fetched_arm));
     return *((union RawArmInstruction*) &lValue);
 }
@@ -298,12 +302,21 @@ void transfer_fetched_to_decoded_and_load_fetched() {
         assert(false);
     }
     state.decoded_valid = state.fetched_valid;
+    state.decoded_prefetch_aborted = state.fetched_prefetch_aborted;
     if(get_mode() == THUMB){
-        state.fetched_thumb = get_half_word_from_memory(get_word_from_register(PC_ADDRESS));
-        state.fetched_valid = true;
+        if (memory_access_will_fail(get_word_from_register(PC_ADDRESS))) {
+            state.fetched_prefetch_aborted = true;
+        } else {
+            state.fetched_thumb = get_half_word_from_memory(get_word_from_register(PC_ADDRESS));
+            state.fetched_valid = true;
+        }
     }else if(get_mode() == ARM){
-        state.fetched_arm = get_word_from_memory(get_word_from_register(PC_ADDRESS));
-        state.fetched_valid = true;
+        if (memory_access_will_fail(get_word_from_register(PC_ADDRESS))) {
+            state.fetched_prefetch_aborted = true;
+        } else {
+            state.fetched_arm = get_word_from_memory(get_word_from_register(PC_ADDRESS));
+            state.fetched_valid = true;
+        }
     }else{
         assert(false);
     }
@@ -312,7 +325,7 @@ void transfer_fetched_to_decoded_and_load_fetched() {
     }else if(get_mode() == THUMB){
         set_word_in_register(PC_ADDRESS,get_word_from_register(PC_ADDRESS) + sizeof(union RawThumbInstruction)/sizeof(unsigned char));
     }
-}//todo
+}
 
 void print_registers() {
     for (uint8_t i = 0; i < 10; ++i) {
@@ -337,4 +350,6 @@ void print_registers() {
 void invalidate_pipeline() {
     state.decoded_valid = false;
     state.fetched_valid = false;
+    state.fetched_prefetch_aborted = false;
+    state.decoded_prefetch_aborted = false;
 }

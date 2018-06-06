@@ -3,11 +3,9 @@
 //
 
 #include <assert.h>
-#include <string.h>
 #include "block_data_transfer.h"
 #include "../../util/cpsr_util.h"
 #include "../../util/address.h"
-#include "../../state/emulator_state.h"
 
 
 enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataTransferInstruction instruction) {
@@ -19,7 +17,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
     assert(instruction.Rn != PC_ADDRESS);
     assert(instruction.psrAndForceUserBit && get_operating_mode() != usr); // from ARM_doc, 4.11.4
 
-    WordAddress address = get_word_from_register(instruction.Rn);
+    ByteAddress address = get_word_from_register(instruction.Rn);
 
     int numOfRegisterUsed = 0;
 
@@ -69,9 +67,9 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
                 }
             } else {
                 if (i == PC_ADDRESS) {
-                    set_word_from_memory((Address)i * 4 + address, get_current_instruction_address() + 12);
+                    set_word_from_memory((ByteAddress) i * 4 + address, get_current_instruction_address() + 12);
                 } else {
-                    set_word_from_memory((Address)i * 4 + address, get_word_from_register(i));
+                    set_word_from_memory((ByteAddress) i * 4 + address, get_word_from_register(i));
                 }
             }
 

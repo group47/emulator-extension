@@ -5,13 +5,12 @@
 #include <assert.h>
 #include "multiple_load_store.h"
 #include "../../state/emulator_state.h"
-#include "../../util/common_enums.h"
 
 enum ExecutionExitCode execute_instruction_multiple_load_store(const struct MultipleLoadStoreInstruction instruction) {
 
   assert(instruction.filler1100 == 0b1100);
 
-  Address address = get_word_from_register(instruction.Rb);
+    ByteAddress address = get_word_from_register(instruction.Rb);
 
   if (instruction.loadMemory) {
 

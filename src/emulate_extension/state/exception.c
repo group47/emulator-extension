@@ -7,11 +7,11 @@
 #include "emulator_state.h"
 
 /*
- * MONSTER COMMENT
+ * from the spec
  *
  *
  *
- When handling an exception, the ARM7TDMI:
+ When handling an exception:
 1 Preserves the address of the next instruction in the appropriate Link Register.
 If the exception has been entered from ARM state, then the address of the
 next instruction is copied into the Link Register (that is, current PC + 4 or PC
@@ -34,62 +34,99 @@ switch into ARM state when the PC is loaded with the exception vector address.
  *
  *
  * */
+void handle_data_abort(struct CPSR_Struct oldcpsr);
+
+void handle_fiq(struct CPSR_Struct oldcpsr);
+
+void handle_irq(struct CPSR_Struct oldcpsr);
+
+void handle_prefetch_abort(struct CPSR_Struct oldcpsr);
+
+void handle_undefined(struct CPSR_Struct oldcpsr);
+
+void handle_software_interrupt(struct CPSR_Struct oldcpsr);
+
+void handle_branch(struct CPSR_Struct oldcpsr);
+
 // keeps calling exception_handler until there are no exceptions
 // todo: determine which exception to handle externally
 void handle_exception() {
-    int offset = 0;
-    enum OperatingMode newMode;
 
     struct CPSR_Struct oldCPSR = getCPSR();
-
-    oldCPSR.F = 1;//todo check
-    oldCPSR.I = 1;
 
     if (has_exception_flag(RESET)) {
         assert(false);
     } else if (has_exception_flag(DATA_ABORT)) {
-        newMode = abt;
-        offset = 8;
-//        if (get_mode() == ARM) {
-//            switch (get_decoded_arm()) {
-//                case ARM_SINGLE_DATA_TRANSFER :
-//                    break;
-//                case ARM_SINGLE_DATA_SWAP :
-//                    break;
-//                case ARM_BLOCK_DATA_TRANSFER:
-//                    break;
-//
-//            }
-//        }
-
+        handle_data_abort(oldCPSR);
     } else if (has_exception_flag(FIQ)) {
         assert(get_operating_mode() != usr);
-        newMode = fiq;
-        offset = 4;
-        oldCPSR.F = 0;
-        setCPSR(oldCPSR);
+        handle_fiq(oldCPSR);
     } else if (has_exception_flag(IRQ)) {
         assert(get_operating_mode() != usr);
-        newMode = irq;
-        offset = 4;
-        oldCPSR.I = 0;
-        setCPSR(oldCPSR);
+        handle_irq(oldCPSR);
     } else if (has_exception_flag(PREFETCH_ABORT)) {
-        newMode = abt;
-        offset = 4;
+        handle_prefetch_abort(oldCPSR);
     } else if (has_exception_flag(UNDEFINED)) {
-        newMode = und;
-        offset = get_mode() == ARM ? 4 : 2;
+        handle_undefined(oldCPSR);
     } else if (has_exception_flag(SOFTWARE_INTERRUPT)) {
-        newMode = svc;
-        offset = get_mode() == ARM ? 4 : 2;
-    } else if (has_exception_flag(BRANCH_EXCEPTION)) {
-        //todo
+        handle_software_interrupt(oldCPSR);
+    } else if (has_exception_flag(BRANCH_LINK_EXCEPTION)) {
+        handle_branch(oldCPSR);
     }
 
 
-    setSPSR(getCPSR());
+//    setSPSR(getCPSR(oldCPSR));
 
+
+}
+
+
+/**
+ * from spec table 3-2:
+ * BL MOV PC, R14 PC + 4 PC + 2
+ * Where PC is the address of the BL/SWI/Undefined Instruction fetch which had
+the prefetch abort.
+ * @param oldcpsr
+ */
+void handle_branch(struct CPSR_Struct oldcpsr) {
+    if (get_mode() == ARM) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) + 4);
+    } else if (get_mode() == THUMB) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) + 2);
+    }
+
+
+}
+
+/**
+ * MOVS PC, R14_svc PC + 4 PC + 2
+ * @param oldcpsr
+ */
+void handle_software_interrupt(struct CPSR_Struct oldcpsr) {
+    if (get_mode() == ARM) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) + 4);
+    } else if (get_mode() == THUMB) {
+        set_word_in_register(LR_ADDRESS, get_word_from_register(PC_ADDRESS) + 2);
+    }
+}
+
+void handle_undefined(struct CPSR_Struct oldcpsr) {
+
+}
+
+void handle_prefetch_abort(struct CPSR_Struct oldcpsr) {
+
+}
+
+void handle_irq(struct CPSR_Struct oldcpsr) {
+
+}
+
+void handle_fiq(struct CPSR_Struct oldcpsr) {
+
+}
+
+void handle_data_abort(struct CPSR_Struct oldcpsr) {
 
 }
 

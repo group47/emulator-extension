@@ -34,7 +34,7 @@ enum ExceptionFlag {
   PREFETCH_ABORT     = 0b000010000,
   UNDEFINED          = 0b000001000,
   SOFTWARE_INTERRUPT = 0b000000100,
-  BRANCH_EXCEPTION   = 0b000000010,
+    BRANCH_LINK_EXCEPTION = 0b000000010,
 };
 
 
@@ -90,6 +90,8 @@ struct CPUState {
   uint16_t decoded_thumb;
   bool decoded_valid;//= false
   bool fetched_valid;//= false
+    bool decoded_prefetch_aborted;//false
+    bool fetched_prefetch_aborted;//false
 };
 
 //todo: do nothing if exception flag is set

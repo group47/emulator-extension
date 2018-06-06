@@ -16,7 +16,9 @@ enum ExecutionExitCode execute_instruction_branch_and_exchange_instruction(struc
 
     // todo: the instruction will cause a pipeline flush
 
+    //todo should be off by 8?
     set_word_in_register(PC_ADDRESS, get_word_from_register(instruction.Rn));
+
 
 
     if (instruction.Rn & 0x1) {
@@ -25,7 +27,7 @@ enum ExecutionExitCode execute_instruction_branch_and_exchange_instruction(struc
         change_mode(ARM);
     }
 
-    add_exception_flag(BRANCH_EXCEPTION);
+//    add_exception_flag(BRANCH_LINK_EXCEPTION);
 
     return BRANCH;
 

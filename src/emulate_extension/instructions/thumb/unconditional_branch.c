@@ -14,7 +14,7 @@ enum ExecutionExitCode execute_instruction_unconditional_branch(const struct Unc
 
   set_word_in_register(PC_ADDRESS, get_word_from_register(PC_ADDRESS) - 4 + offset);
 
-  add_exception_flag(BRANCH_EXCEPTION);
+//  add_exception_flag(BRANCH_LINK_EXCEPTION);
 
   return BRANCH;
 

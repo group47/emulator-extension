@@ -11,12 +11,12 @@ enum ExecutionExitCode execute_instruction_long_branch_with_link(const struct Lo
   assert(instruction.filler1111 == 0b1111);
 
   int32_t offset = instruction.offset & 0x7ff;
-  Address PC_result;
+    ByteAddress PC_result;
 
   if (instruction.lowOffsetBit) {
 
     //instruction after BL
-    Address LR_result = get_word_from_register(PC_ADDRESS) - 2;
+      ByteAddress LR_result = get_word_from_register(PC_ADDRESS) - 2;
     //set bit0
     LR_result |= 0b1;
 
@@ -31,10 +31,10 @@ enum ExecutionExitCode execute_instruction_long_branch_with_link(const struct Lo
     offset <<= 12;
     PC_result = get_word_from_register(PC_ADDRESS) + offset;
 
-    set_word_in_register(LR_ADDRESS, PC_result);
+      set_word_in_register(LR_ADDRESS, PC_result);//todo shouldn't do this?
+      add_exception_flag(BRANCH_LINK_EXCEPTION);
   }
 
-  add_exception_flag(BRANCH_EXCEPTION);
 
   return BRANCH;
 }
