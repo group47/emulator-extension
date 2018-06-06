@@ -15,7 +15,7 @@ add r2, r1, r1, asr #2
 add r2, r1, r1, asr #3
 add r2, r1, r1, asr #5
 add r2, r1, r1, asr #9
-add r3, pc
+add r3, r1
 sub r1, r0, r0, lsl #5
 sub r2, r3, r2, lsl #5
 sub r3, r1, r2, asr #5
@@ -33,7 +33,7 @@ sub r2, r1, r1, asr #2
 sub r2, r1, r1, asr #3
 sub r2, r1, r1, asr #5
 sub r2, r1, r1, asr #9
-sub r3, pc
+sub r3, r1
 addeq r1, r1
 addeq r1, r1
 addeq r1, r1
@@ -51,7 +51,7 @@ addeq r2, r1, r1, asr #2
 addeq r2, r1, r1, asr #3
 addeq r2, r1, r1, asr #5
 addeq r2, r1, r1, asr #9
-addeq r3, pc
+addeq r3, r1
 subeq r1, r1
 subeq r1, r1
 subeq r1, r1
@@ -69,7 +69,7 @@ subeq r2, r1, r1, asr #2
 subeq r2, r1, r1, asr #3
 subeq r2, r1, r1, asr #5
 subeq r2, r1, r1, asr #9
-subeq r3, pc
+subeq r3, r1
 addmi r1, r1
 addmi r1, r1
 addmi r1, r1
@@ -87,7 +87,7 @@ addmi r2, r1, r1, asr #2
 addmi r2, r1, r1, asr #3
 addmi r2, r1, r1, asr #5
 addmi r2, r1, r1, asr #9
-addmi r3, pc
+addmi r3, r1
 submi r1, r1
 submi r1, r1
 submi r1, r1
@@ -105,7 +105,7 @@ submi r2, r1, r1, asr #2
 submi r2, r1, r1, asr #3
 submi r2, r1, r1, asr #5
 submi r2, r1, r1, asr #9
-submi r3, pc
+submi r3, r1
 addvs r1, r1
 addls r1, r1
 addvs r1, r1
@@ -140,8 +140,8 @@ addvs r2, r1, r1, asr #5
 addls r2, r1, r1, asr #5
 addvs r2, r1, r1, asr #9
 addls r2, r1, r1, asr #9
-addvs r3, pc
-addls r3, pc
+addvs r3, r1
+addls r3, r1
 subvs r1, r1
 subls r1, r1
 subvs r1, r1
@@ -176,8 +176,8 @@ subvs r2, r1, r1, asr #5
 subls r2, r1, r1, asr #5
 subvs r2, r1, r1, asr #9
 subls r2, r1, r1, asr #9
-subvs r3, pc
-subls r3, pc
+subvs r3, r1
+subls r3, r1
 subvc r2, r1, r1, lsr #20
 subhi r2, r1, r1, lsr #20
 subge r2, r1, r1, lsr #20
