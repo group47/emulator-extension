@@ -1,3 +1,9 @@
+/home/pi/.gdbinit:5: Error in sourced command file:
+bob.c: No such file or directory.
+
+Program stopped.
+0x00008000 in ?? ()
+0x00008002 in ?? ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3976,10 +3982,10 @@ lr             0x0	0
 pc             0x818e	0x818e
 cpsr           0xa0000030	-1610612688
 fpscr          0x0	0
-=> 0x818e:	asrs	r1, r0, #13
+=> 0x818e:	lsls	r5, r3
 0x00008190 in ?? ()
 r0             0x94e1f04	156114692
-r1             0x4a70	19056
+r1             0xa747fc3e	2806512702
 r2             0xfff401e0	4294181344
 r3             0x0	0
 r4             0xffffffff	4294967295
@@ -3994,6 +4000,6 @@ r12            0x0	0
 sp             0xbefff2b0	0xbefff2b0
 lr             0x0	0
 pc             0x8190	0x8190
-cpsr           0x20000030	536870960
+cpsr           0xa0000030	-1610612688
 fpscr          0x0	0
-=> 0x8190:	movs	r0, r0
+=> 0x8190:	asrs	r1, r0, #13
