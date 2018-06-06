@@ -5,7 +5,7 @@ Program stopped.
 0x000100b8 in ?? ()
 0x000100bc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x0	0
 r3             0x0	0
 r4             0x0	0
@@ -25,7 +25,7 @@ fpscr          0x0	0
 => 0x100bc:	mov	r2, #2
 0x000100c0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
 r3             0x0	0
 r4             0x0	0
@@ -42,12 +42,12 @@ lr             0x0	0
 pc             0x100c0	0x100c0
 cpsr           0x10	16
 fpscr          0x0	0
-=> 0x100c0:	str	r2, [r1]
+=> 0x100c0:	mov	r3, #3
 0x000100c4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
+r3             0x3	3
 r4             0x0	0
 r5             0x0	0
 r6             0x0	0
@@ -62,13 +62,13 @@ lr             0x0	0
 pc             0x100c4	0x100c4
 cpsr           0x10	16
 fpscr          0x0	0
-=> 0x100c4:	mov	r0, #0
+=> 0x100c4:	mov	r4, #4
 0x000100c8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
+r3             0x3	3
+r4             0x4	4
 r5             0x0	0
 r6             0x0	0
 r7             0x0	0
@@ -82,14 +82,14 @@ lr             0x0	0
 pc             0x100c8	0x100c8
 cpsr           0x10	16
 fpscr          0x0	0
-=> 0x100c8:	mov	r0, #0
+=> 0x100c8:	mov	r5, #5
 0x000100cc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
 r6             0x0	0
 r7             0x0	0
 r8             0x0	0
@@ -102,15 +102,15 @@ lr             0x0	0
 pc             0x100cc	0x100cc
 cpsr           0x10	16
 fpscr          0x0	0
-=> 0x100cc:	mov	r0, #0
+=> 0x100cc:	mov	r6, #6
 0x000100d0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
 r7             0x0	0
 r8             0x0	0
 r9             0x0	0
@@ -122,16 +122,16 @@ lr             0x0	0
 pc             0x100d0	0x100d0
 cpsr           0x10	16
 fpscr          0x0	0
-=> 0x100d0:	mov	r0, #0
+=> 0x100d0:	mov	r7, #7
 0x000100d4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
 r8             0x0	0
 r9             0x0	0
 r10            0x0	0
@@ -142,17 +142,17 @@ lr             0x0	0
 pc             0x100d4	0x100d4
 cpsr           0x10	16
 fpscr          0x0	0
-=> 0x100d4:	mov	r0, #0
+=> 0x100d4:	mov	r8, #8
 0x000100d8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
 r9             0x0	0
 r10            0x0	0
 r11            0x0	0
@@ -162,18 +162,18 @@ lr             0x0	0
 pc             0x100d8	0x100d8
 cpsr           0x10	16
 fpscr          0x0	0
-=> 0x100d8:	mov	r0, #0
+=> 0x100d8:	mov	r9, #9
 0x000100dc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
 r10            0x0	0
 r11            0x0	0
 r12            0x0	0
@@ -182,19 +182,19 @@ lr             0x0	0
 pc             0x100dc	0x100dc
 cpsr           0x10	16
 fpscr          0x0	0
-=> 0x100dc:	mov	r0, #0
+=> 0x100dc:	mov	r10, #10
 0x000100e0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
 r11            0x0	0
 r12            0x0	0
 sp             0xbefff240	0xbefff240
@@ -202,40 +202,40 @@ lr             0x0	0
 pc             0x100e0	0x100e0
 cpsr           0x10	16
 fpscr          0x0	0
-=> 0x100e0:	mov	r0, #0
+=> 0x100e0:	mov	r11, #11
 0x000100e4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
 pc             0x100e4	0x100e4
 cpsr           0x10	16
 fpscr          0x0	0
-=> 0x100e4:	mov	r0, #0
+=> 0x100e4:	str	r2, [r1]
 0x000100e8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -245,17 +245,17 @@ fpscr          0x0	0
 => 0x100e8:	mov	r0, #0
 0x000100ec in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -265,17 +265,17 @@ fpscr          0x0	0
 => 0x100ec:	mov	r0, #0
 0x000100f0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -285,17 +285,17 @@ fpscr          0x0	0
 => 0x100f0:	mov	r0, #0
 0x000100f4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -305,17 +305,17 @@ fpscr          0x0	0
 => 0x100f4:	mov	r0, #0
 0x000100f8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -325,17 +325,17 @@ fpscr          0x0	0
 => 0x100f8:	mov	r0, #0
 0x000100fc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -345,17 +345,17 @@ fpscr          0x0	0
 => 0x100fc:	mov	r0, #0
 0x00010100 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -365,17 +365,17 @@ fpscr          0x0	0
 => 0x10100:	mov	r0, #0
 0x00010104 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -385,17 +385,17 @@ fpscr          0x0	0
 => 0x10104:	mov	r0, #0
 0x00010108 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -405,17 +405,17 @@ fpscr          0x0	0
 => 0x10108:	mov	r0, #0
 0x0001010c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -425,17 +425,17 @@ fpscr          0x0	0
 => 0x1010c:	mov	r0, #0
 0x00010110 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -445,17 +445,17 @@ fpscr          0x0	0
 => 0x10110:	mov	r0, #0
 0x00010114 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -465,17 +465,17 @@ fpscr          0x0	0
 => 0x10114:	mov	r0, #0
 0x00010118 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -485,17 +485,17 @@ fpscr          0x0	0
 => 0x10118:	mov	r0, #0
 0x0001011c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -505,17 +505,17 @@ fpscr          0x0	0
 => 0x1011c:	mov	r0, #0
 0x00010120 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -525,17 +525,17 @@ fpscr          0x0	0
 => 0x10120:	mov	r0, #0
 0x00010124 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -545,17 +545,17 @@ fpscr          0x0	0
 => 0x10124:	mov	r0, #0
 0x00010128 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -565,17 +565,17 @@ fpscr          0x0	0
 => 0x10128:	mov	r0, #0
 0x0001012c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -585,17 +585,17 @@ fpscr          0x0	0
 => 0x1012c:	mov	r0, #0
 0x00010130 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -605,17 +605,17 @@ fpscr          0x0	0
 => 0x10130:	mov	r0, #0
 0x00010134 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -625,17 +625,17 @@ fpscr          0x0	0
 => 0x10134:	mov	r0, #0
 0x00010138 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -645,17 +645,17 @@ fpscr          0x0	0
 => 0x10138:	mov	r0, #0
 0x0001013c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -665,17 +665,17 @@ fpscr          0x0	0
 => 0x1013c:	mov	r0, #0
 0x00010140 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -685,17 +685,17 @@ fpscr          0x0	0
 => 0x10140:	mov	r0, #0
 0x00010144 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -705,17 +705,17 @@ fpscr          0x0	0
 => 0x10144:	mov	r0, #0
 0x00010148 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -725,17 +725,17 @@ fpscr          0x0	0
 => 0x10148:	mov	r0, #0
 0x0001014c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -745,17 +745,17 @@ fpscr          0x0	0
 => 0x1014c:	mov	r0, #0
 0x00010150 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -765,17 +765,17 @@ fpscr          0x0	0
 => 0x10150:	mov	r0, #0
 0x00010154 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -785,17 +785,17 @@ fpscr          0x0	0
 => 0x10154:	mov	r0, #0
 0x00010158 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -805,17 +805,17 @@ fpscr          0x0	0
 => 0x10158:	mov	r0, #0
 0x0001015c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -825,17 +825,17 @@ fpscr          0x0	0
 => 0x1015c:	mov	r0, #0
 0x00010160 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -845,17 +845,17 @@ fpscr          0x0	0
 => 0x10160:	mov	r0, #0
 0x00010164 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -865,17 +865,17 @@ fpscr          0x0	0
 => 0x10164:	mov	r0, #0
 0x00010168 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -885,17 +885,17 @@ fpscr          0x0	0
 => 0x10168:	mov	r0, #0
 0x0001016c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -905,17 +905,17 @@ fpscr          0x0	0
 => 0x1016c:	mov	r0, #0
 0x00010170 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -925,17 +925,17 @@ fpscr          0x0	0
 => 0x10170:	mov	r0, #0
 0x00010174 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -945,17 +945,17 @@ fpscr          0x0	0
 => 0x10174:	mov	r0, #0
 0x00010178 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -965,17 +965,17 @@ fpscr          0x0	0
 => 0x10178:	mov	r0, #0
 0x0001017c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -985,17 +985,17 @@ fpscr          0x0	0
 => 0x1017c:	mov	r0, #0
 0x00010180 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1005,17 +1005,17 @@ fpscr          0x0	0
 => 0x10180:	mov	r0, #0
 0x00010184 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1025,17 +1025,17 @@ fpscr          0x0	0
 => 0x10184:	mov	r0, #0
 0x00010188 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1045,17 +1045,17 @@ fpscr          0x0	0
 => 0x10188:	mov	r0, #0
 0x0001018c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1065,17 +1065,17 @@ fpscr          0x0	0
 => 0x1018c:	mov	r0, #0
 0x00010190 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1085,17 +1085,17 @@ fpscr          0x0	0
 => 0x10190:	mov	r0, #0
 0x00010194 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1105,17 +1105,17 @@ fpscr          0x0	0
 => 0x10194:	mov	r0, #0
 0x00010198 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1125,17 +1125,17 @@ fpscr          0x0	0
 => 0x10198:	mov	r0, #0
 0x0001019c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1145,17 +1145,17 @@ fpscr          0x0	0
 => 0x1019c:	mov	r0, #0
 0x000101a0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1165,17 +1165,17 @@ fpscr          0x0	0
 => 0x101a0:	mov	r0, #0
 0x000101a4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1185,17 +1185,17 @@ fpscr          0x0	0
 => 0x101a4:	mov	r0, #0
 0x000101a8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1205,17 +1205,17 @@ fpscr          0x0	0
 => 0x101a8:	mov	r0, #0
 0x000101ac in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1225,17 +1225,17 @@ fpscr          0x0	0
 => 0x101ac:	mov	r0, #0
 0x000101b0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1245,17 +1245,17 @@ fpscr          0x0	0
 => 0x101b0:	mov	r0, #0
 0x000101b4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1265,17 +1265,17 @@ fpscr          0x0	0
 => 0x101b4:	mov	r0, #0
 0x000101b8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1285,17 +1285,17 @@ fpscr          0x0	0
 => 0x101b8:	mov	r0, #0
 0x000101bc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1305,17 +1305,17 @@ fpscr          0x0	0
 => 0x101bc:	mov	r0, #0
 0x000101c0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1325,17 +1325,17 @@ fpscr          0x0	0
 => 0x101c0:	mov	r0, #0
 0x000101c4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1345,17 +1345,17 @@ fpscr          0x0	0
 => 0x101c4:	mov	r0, #0
 0x000101c8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1365,17 +1365,17 @@ fpscr          0x0	0
 => 0x101c8:	mov	r0, #0
 0x000101cc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1385,17 +1385,17 @@ fpscr          0x0	0
 => 0x101cc:	mov	r0, #0
 0x000101d0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1405,17 +1405,17 @@ fpscr          0x0	0
 => 0x101d0:	mov	r0, #0
 0x000101d4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1425,17 +1425,17 @@ fpscr          0x0	0
 => 0x101d4:	mov	r0, #0
 0x000101d8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1445,17 +1445,17 @@ fpscr          0x0	0
 => 0x101d8:	mov	r0, #0
 0x000101dc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1465,17 +1465,17 @@ fpscr          0x0	0
 => 0x101dc:	mov	r0, #0
 0x000101e0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1485,17 +1485,17 @@ fpscr          0x0	0
 => 0x101e0:	mov	r0, #0
 0x000101e4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1505,17 +1505,17 @@ fpscr          0x0	0
 => 0x101e4:	mov	r0, #0
 0x000101e8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1525,17 +1525,17 @@ fpscr          0x0	0
 => 0x101e8:	mov	r0, #0
 0x000101ec in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1545,17 +1545,17 @@ fpscr          0x0	0
 => 0x101ec:	mov	r0, #0
 0x000101f0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1565,17 +1565,17 @@ fpscr          0x0	0
 => 0x101f0:	mov	r0, #0
 0x000101f4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1585,17 +1585,17 @@ fpscr          0x0	0
 => 0x101f4:	mov	r0, #0
 0x000101f8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1605,17 +1605,17 @@ fpscr          0x0	0
 => 0x101f8:	mov	r0, #0
 0x000101fc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1625,17 +1625,17 @@ fpscr          0x0	0
 => 0x101fc:	mov	r0, #0
 0x00010200 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1645,17 +1645,17 @@ fpscr          0x0	0
 => 0x10200:	mov	r0, #0
 0x00010204 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1665,17 +1665,17 @@ fpscr          0x0	0
 => 0x10204:	mov	r0, #0
 0x00010208 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1685,17 +1685,17 @@ fpscr          0x0	0
 => 0x10208:	mov	r0, #0
 0x0001020c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1705,17 +1705,17 @@ fpscr          0x0	0
 => 0x1020c:	mov	r0, #0
 0x00010210 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1725,17 +1725,17 @@ fpscr          0x0	0
 => 0x10210:	mov	r0, #0
 0x00010214 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1745,17 +1745,17 @@ fpscr          0x0	0
 => 0x10214:	mov	r0, #0
 0x00010218 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1765,17 +1765,17 @@ fpscr          0x0	0
 => 0x10218:	mov	r0, #0
 0x0001021c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1785,17 +1785,17 @@ fpscr          0x0	0
 => 0x1021c:	mov	r0, #0
 0x00010220 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1805,17 +1805,17 @@ fpscr          0x0	0
 => 0x10220:	mov	r0, #0
 0x00010224 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1825,17 +1825,17 @@ fpscr          0x0	0
 => 0x10224:	mov	r0, #0
 0x00010228 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1845,17 +1845,17 @@ fpscr          0x0	0
 => 0x10228:	mov	r0, #0
 0x0001022c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1865,17 +1865,17 @@ fpscr          0x0	0
 => 0x1022c:	mov	r0, #0
 0x00010230 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1885,17 +1885,17 @@ fpscr          0x0	0
 => 0x10230:	mov	r0, #0
 0x00010234 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1905,17 +1905,17 @@ fpscr          0x0	0
 => 0x10234:	mov	r0, #0
 0x00010238 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1925,17 +1925,17 @@ fpscr          0x0	0
 => 0x10238:	mov	r0, #0
 0x0001023c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1945,17 +1945,17 @@ fpscr          0x0	0
 => 0x1023c:	mov	r0, #0
 0x00010240 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1965,17 +1965,17 @@ fpscr          0x0	0
 => 0x10240:	mov	r0, #0
 0x00010244 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -1985,17 +1985,17 @@ fpscr          0x0	0
 => 0x10244:	mov	r0, #0
 0x00010248 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2005,17 +2005,17 @@ fpscr          0x0	0
 => 0x10248:	mov	r0, #0
 0x0001024c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2025,17 +2025,17 @@ fpscr          0x0	0
 => 0x1024c:	mov	r0, #0
 0x00010250 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2045,17 +2045,17 @@ fpscr          0x0	0
 => 0x10250:	mov	r0, #0
 0x00010254 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2065,17 +2065,17 @@ fpscr          0x0	0
 => 0x10254:	mov	r0, #0
 0x00010258 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2085,17 +2085,17 @@ fpscr          0x0	0
 => 0x10258:	mov	r0, #0
 0x0001025c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2105,17 +2105,17 @@ fpscr          0x0	0
 => 0x1025c:	mov	r0, #0
 0x00010260 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2125,17 +2125,17 @@ fpscr          0x0	0
 => 0x10260:	mov	r0, #0
 0x00010264 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2145,17 +2145,17 @@ fpscr          0x0	0
 => 0x10264:	mov	r0, #0
 0x00010268 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2165,17 +2165,17 @@ fpscr          0x0	0
 => 0x10268:	mov	r0, #0
 0x0001026c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2185,17 +2185,17 @@ fpscr          0x0	0
 => 0x1026c:	mov	r0, #0
 0x00010270 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2205,17 +2205,17 @@ fpscr          0x0	0
 => 0x10270:	mov	r0, #0
 0x00010274 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2225,17 +2225,17 @@ fpscr          0x0	0
 => 0x10274:	mov	r0, #0
 0x00010278 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2245,17 +2245,17 @@ fpscr          0x0	0
 => 0x10278:	mov	r0, #0
 0x0001027c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2265,17 +2265,17 @@ fpscr          0x0	0
 => 0x1027c:	mov	r0, #0
 0x00010280 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2285,17 +2285,17 @@ fpscr          0x0	0
 => 0x10280:	mov	r0, #0
 0x00010284 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2305,17 +2305,17 @@ fpscr          0x0	0
 => 0x10284:	mov	r0, #0
 0x00010288 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2325,17 +2325,17 @@ fpscr          0x0	0
 => 0x10288:	mov	r0, #0
 0x0001028c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2345,17 +2345,17 @@ fpscr          0x0	0
 => 0x1028c:	mov	r0, #0
 0x00010290 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2365,17 +2365,17 @@ fpscr          0x0	0
 => 0x10290:	mov	r0, #0
 0x00010294 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2385,17 +2385,17 @@ fpscr          0x0	0
 => 0x10294:	mov	r0, #0
 0x00010298 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2405,17 +2405,17 @@ fpscr          0x0	0
 => 0x10298:	mov	r0, #0
 0x0001029c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2425,17 +2425,17 @@ fpscr          0x0	0
 => 0x1029c:	mov	r0, #0
 0x000102a0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2445,17 +2445,17 @@ fpscr          0x0	0
 => 0x102a0:	mov	r0, #0
 0x000102a4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2465,17 +2465,17 @@ fpscr          0x0	0
 => 0x102a4:	mov	r0, #0
 0x000102a8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2485,17 +2485,17 @@ fpscr          0x0	0
 => 0x102a8:	mov	r0, #0
 0x000102ac in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2505,17 +2505,17 @@ fpscr          0x0	0
 => 0x102ac:	mov	r0, #0
 0x000102b0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2525,17 +2525,17 @@ fpscr          0x0	0
 => 0x102b0:	mov	r0, #0
 0x000102b4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2545,17 +2545,17 @@ fpscr          0x0	0
 => 0x102b4:	mov	r0, #0
 0x000102b8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2565,17 +2565,17 @@ fpscr          0x0	0
 => 0x102b8:	mov	r0, #0
 0x000102bc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2585,17 +2585,17 @@ fpscr          0x0	0
 => 0x102bc:	mov	r0, #0
 0x000102c0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2605,17 +2605,17 @@ fpscr          0x0	0
 => 0x102c0:	mov	r0, #0
 0x000102c4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2625,17 +2625,17 @@ fpscr          0x0	0
 => 0x102c4:	mov	r0, #0
 0x000102c8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2645,17 +2645,17 @@ fpscr          0x0	0
 => 0x102c8:	mov	r0, #0
 0x000102cc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2665,17 +2665,17 @@ fpscr          0x0	0
 => 0x102cc:	mov	r0, #0
 0x000102d0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2685,17 +2685,17 @@ fpscr          0x0	0
 => 0x102d0:	mov	r0, #0
 0x000102d4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2705,17 +2705,17 @@ fpscr          0x0	0
 => 0x102d4:	mov	r0, #0
 0x000102d8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2725,17 +2725,17 @@ fpscr          0x0	0
 => 0x102d8:	mov	r0, #0
 0x000102dc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2745,17 +2745,17 @@ fpscr          0x0	0
 => 0x102dc:	mov	r0, #0
 0x000102e0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2765,17 +2765,17 @@ fpscr          0x0	0
 => 0x102e0:	mov	r0, #0
 0x000102e4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2785,17 +2785,17 @@ fpscr          0x0	0
 => 0x102e4:	mov	r0, #0
 0x000102e8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2805,17 +2805,17 @@ fpscr          0x0	0
 => 0x102e8:	mov	r0, #0
 0x000102ec in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2825,17 +2825,17 @@ fpscr          0x0	0
 => 0x102ec:	mov	r0, #0
 0x000102f0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2845,17 +2845,17 @@ fpscr          0x0	0
 => 0x102f0:	mov	r0, #0
 0x000102f4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2865,17 +2865,17 @@ fpscr          0x0	0
 => 0x102f4:	mov	r0, #0
 0x000102f8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2885,17 +2885,17 @@ fpscr          0x0	0
 => 0x102f8:	mov	r0, #0
 0x000102fc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2905,17 +2905,17 @@ fpscr          0x0	0
 => 0x102fc:	mov	r0, #0
 0x00010300 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2925,17 +2925,17 @@ fpscr          0x0	0
 => 0x10300:	mov	r0, #0
 0x00010304 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2945,17 +2945,17 @@ fpscr          0x0	0
 => 0x10304:	mov	r0, #0
 0x00010308 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2965,17 +2965,17 @@ fpscr          0x0	0
 => 0x10308:	mov	r0, #0
 0x0001030c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -2985,17 +2985,17 @@ fpscr          0x0	0
 => 0x1030c:	mov	r0, #0
 0x00010310 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3005,17 +3005,17 @@ fpscr          0x0	0
 => 0x10310:	mov	r0, #0
 0x00010314 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3025,17 +3025,17 @@ fpscr          0x0	0
 => 0x10314:	mov	r0, #0
 0x00010318 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3045,17 +3045,17 @@ fpscr          0x0	0
 => 0x10318:	mov	r0, #0
 0x0001031c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3065,17 +3065,17 @@ fpscr          0x0	0
 => 0x1031c:	mov	r0, #0
 0x00010320 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3085,17 +3085,17 @@ fpscr          0x0	0
 => 0x10320:	mov	r0, #0
 0x00010324 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3105,17 +3105,17 @@ fpscr          0x0	0
 => 0x10324:	mov	r0, #0
 0x00010328 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3125,17 +3125,17 @@ fpscr          0x0	0
 => 0x10328:	mov	r0, #0
 0x0001032c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3145,17 +3145,17 @@ fpscr          0x0	0
 => 0x1032c:	mov	r0, #0
 0x00010330 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3165,17 +3165,17 @@ fpscr          0x0	0
 => 0x10330:	mov	r0, #0
 0x00010334 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3185,17 +3185,17 @@ fpscr          0x0	0
 => 0x10334:	mov	r0, #0
 0x00010338 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3205,17 +3205,17 @@ fpscr          0x0	0
 => 0x10338:	mov	r0, #0
 0x0001033c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3225,17 +3225,17 @@ fpscr          0x0	0
 => 0x1033c:	mov	r0, #0
 0x00010340 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3245,17 +3245,17 @@ fpscr          0x0	0
 => 0x10340:	mov	r0, #0
 0x00010344 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3265,17 +3265,17 @@ fpscr          0x0	0
 => 0x10344:	mov	r0, #0
 0x00010348 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3285,17 +3285,17 @@ fpscr          0x0	0
 => 0x10348:	mov	r0, #0
 0x0001034c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3305,17 +3305,17 @@ fpscr          0x0	0
 => 0x1034c:	mov	r0, #0
 0x00010350 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3325,17 +3325,17 @@ fpscr          0x0	0
 => 0x10350:	mov	r0, #0
 0x00010354 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3345,17 +3345,17 @@ fpscr          0x0	0
 => 0x10354:	mov	r0, #0
 0x00010358 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3365,17 +3365,17 @@ fpscr          0x0	0
 => 0x10358:	mov	r0, #0
 0x0001035c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3385,17 +3385,17 @@ fpscr          0x0	0
 => 0x1035c:	mov	r0, #0
 0x00010360 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3405,17 +3405,17 @@ fpscr          0x0	0
 => 0x10360:	mov	r0, #0
 0x00010364 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3425,17 +3425,17 @@ fpscr          0x0	0
 => 0x10364:	mov	r0, #0
 0x00010368 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3445,17 +3445,17 @@ fpscr          0x0	0
 => 0x10368:	mov	r0, #0
 0x0001036c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3465,17 +3465,17 @@ fpscr          0x0	0
 => 0x1036c:	mov	r0, #0
 0x00010370 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3485,17 +3485,17 @@ fpscr          0x0	0
 => 0x10370:	mov	r0, #0
 0x00010374 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3505,17 +3505,17 @@ fpscr          0x0	0
 => 0x10374:	mov	r0, #0
 0x00010378 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3525,17 +3525,17 @@ fpscr          0x0	0
 => 0x10378:	mov	r0, #0
 0x0001037c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3545,17 +3545,17 @@ fpscr          0x0	0
 => 0x1037c:	mov	r0, #0
 0x00010380 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3565,17 +3565,17 @@ fpscr          0x0	0
 => 0x10380:	mov	r0, #0
 0x00010384 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3585,17 +3585,17 @@ fpscr          0x0	0
 => 0x10384:	mov	r0, #0
 0x00010388 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3605,17 +3605,17 @@ fpscr          0x0	0
 => 0x10388:	mov	r0, #0
 0x0001038c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3625,17 +3625,17 @@ fpscr          0x0	0
 => 0x1038c:	mov	r0, #0
 0x00010390 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3645,17 +3645,17 @@ fpscr          0x0	0
 => 0x10390:	mov	r0, #0
 0x00010394 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3665,17 +3665,17 @@ fpscr          0x0	0
 => 0x10394:	mov	r0, #0
 0x00010398 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3685,17 +3685,17 @@ fpscr          0x0	0
 => 0x10398:	mov	r0, #0
 0x0001039c in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3705,17 +3705,17 @@ fpscr          0x0	0
 => 0x1039c:	mov	r0, #0
 0x000103a0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3725,17 +3725,17 @@ fpscr          0x0	0
 => 0x103a0:	mov	r0, #0
 0x000103a4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3745,17 +3745,17 @@ fpscr          0x0	0
 => 0x103a4:	mov	r0, #0
 0x000103a8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3765,17 +3765,17 @@ fpscr          0x0	0
 => 0x103a8:	mov	r0, #0
 0x000103ac in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3785,17 +3785,17 @@ fpscr          0x0	0
 => 0x103ac:	mov	r0, #0
 0x000103b0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3805,17 +3805,17 @@ fpscr          0x0	0
 => 0x103b0:	mov	r0, #0
 0x000103b4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3825,17 +3825,17 @@ fpscr          0x0	0
 => 0x103b4:	mov	r0, #0
 0x000103b8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3845,17 +3845,17 @@ fpscr          0x0	0
 => 0x103b8:	mov	r0, #0
 0x000103bc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3865,17 +3865,17 @@ fpscr          0x0	0
 => 0x103bc:	mov	r0, #0
 0x000103c0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3885,17 +3885,17 @@ fpscr          0x0	0
 => 0x103c0:	mov	r0, #0
 0x000103c4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3905,17 +3905,17 @@ fpscr          0x0	0
 => 0x103c4:	mov	r0, #0
 0x000103c8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3925,17 +3925,17 @@ fpscr          0x0	0
 => 0x103c8:	mov	r0, #0
 0x000103cc in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3945,17 +3945,17 @@ fpscr          0x0	0
 => 0x103cc:	mov	r0, #0
 0x000103d0 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3965,17 +3965,17 @@ fpscr          0x0	0
 => 0x103d0:	mov	r0, #0
 0x000103d4 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
@@ -3985,21 +3985,21 @@ fpscr          0x0	0
 => 0x103d4:	mov	r0, #0
 0x000103d8 in ?? ()
 r0             0x0	0
-r1             0x203dc	132060
+r1             0x203fc	132092
 r2             0x2	2
-r3             0x0	0
-r4             0x0	0
-r5             0x0	0
-r6             0x0	0
-r7             0x0	0
-r8             0x0	0
-r9             0x0	0
-r10            0x0	0
-r11            0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
 r12            0x0	0
 sp             0xbefff240	0xbefff240
 lr             0x0	0
 pc             0x103d8	0x103d8
 cpsr           0x10	16
 fpscr          0x0	0
-=> 0x103d8:	ldrdeq	r0, [r2], -r12
+=> 0x103d8:	mov	r0, #0
