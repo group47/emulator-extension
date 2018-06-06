@@ -88,7 +88,7 @@ lsl r1, r1
 and r3, r0
 cmp r0, r6
 mvn r0, r2
-mul r0, r0
+mul r1, r0
 ror r0, r0
 orr r1, r6
 eor r7, r3
@@ -167,7 +167,7 @@ lsr r7, r5
 bic r4, r6
 adc r2, r3
 mul r5, r2
-mul r5, r5
+mul r4, r5
 sbc r5, r1
 eor r7, r3
 adc r7, r3
@@ -193,4 +193,7 @@ cmn r0, r2
 and r3, r6
 mul r1, r0
 mul r0, r1
+lsl r5, r3
+lsl r5, r3
+lsl r5, r3
 lsl r5, r3
