@@ -1,7 +1,26 @@
 ldr r1, =msg
 mov r2, #2
+mov r3, #3
+mov r4, #4
+mov r5, #5
+mov r6, #6
+mov r7, #7
+mov r8, #8
+mov r9, #9
+mov r10, #10
+mov r11, #11
 str r2, [r1]
-mov r0, #0
+//str r2, [r0, #4]
+//str r3, [r0, #8]
+//str r4, [r0, #12]
+//str r5, [r0, #16]
+//str r6, [r0, #20]
+//str r7, [r0, #24]
+//str r8, [r0, #28]
+//str r9, [r0, #32]
+//str r10, [r0, #36]
+//str r10, [r0, #40]
+//str r11, [r0, #44]
 mov r0, #0
 mov r0, #0
 mov r0, #0
@@ -199,5 +218,5 @@ mov r0, #0
 mov r0, #0
 mov r0, #0
 .data
-msg: .asciz "hello"
+msg: .asciz "hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
 len = .-msg
