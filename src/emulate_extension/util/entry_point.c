@@ -15,9 +15,9 @@ void main_emulation_entry_point(enum CommandLineFlags flags, FILE* fp,FILE* logf
     init_cpu();
     init_memory(1024*1024*1024*sizeof(unsigned char),LITTLE_ENDIAN_);
     Word word;
-    WordAddress i = 0;
+    ByteAddress i = 0;
     while(fread(&word,sizeof(Word),1,fp)){
-        set_word_from_memory(4*i,word);
+      set_word_in_memory(4 * i, word);
         i++;
     }
     logfile = logfile_;

@@ -11,8 +11,8 @@ enum ExecutionExitCode execute_instruction_push_pop_registers(struct PushPopRegi
 
         if (instruction.registerList & 0x1 << i) {
             if (instruction.loadStoreBit == STORE) {
-                set_word_from_memory(get_word_from_register(SP_ADDRESS),
-                                     get_word_from_register(i));
+              set_word_in_memory(get_word_from_register(SP_ADDRESS),
+                                 get_word_from_register(i));
                 set_word_in_register(SP_ADDRESS,
                                      get_word_from_register(SP_ADDRESS) - 4);
 
@@ -27,8 +27,8 @@ enum ExecutionExitCode execute_instruction_push_pop_registers(struct PushPopRegi
 
     if (instruction.PCLRBit) {
         if (instruction.loadStoreBit == STORE) {
-            set_word_from_memory(get_word_from_register(SP_ADDRESS),
-                                     get_word_from_register(LR_ADDRESS));
+          set_word_in_memory(get_word_from_register(SP_ADDRESS),
+                             get_word_from_register(LR_ADDRESS));
                 set_word_in_register(SP_ADDRESS,
                                      get_word_from_register(SP_ADDRESS) - 4);
 

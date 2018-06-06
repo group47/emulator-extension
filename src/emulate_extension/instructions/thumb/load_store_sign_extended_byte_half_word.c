@@ -12,22 +12,22 @@ enum ExecutionExitCode execute_instruction_load_store_sign_extended_byte_half_wo
     ByteAddress final_address = get_word_from_register(instruction.Rb) + get_word_from_register(instruction.Ro);
     if(!instruction.hFlag && !instruction.signed_){
         assert(final_address %2 == 0);
-        set_half_word_from_memory(final_address/2,get_word_from_register(instruction.Rd));
+        set_half_word_in_memory(final_address, get_word_from_register(instruction.Rd));
     }
     if(instruction.hFlag && !instruction.signed_){
         assert(final_address %2 == 0);
         set_word_in_register(instruction.Rd,0);
-        set_word_in_register(instruction.Rd,get_half_word_from_memory(final_address/2));
+        set_word_in_register(instruction.Rd, get_half_word_from_memory(final_address));
     }
     if(!instruction.hFlag && instruction.signed_){
         assert(final_address %2 == 0);
         set_word_in_register(instruction.Rd,0);
-        set_word_in_register(instruction.Rd,get_byte_from_memory_sign_extended(final_address/2));
+        set_word_in_register(instruction.Rd, get_byte_from_memory_sign_extended(final_address));
     }
     if(instruction.hFlag && instruction.signed_){
         assert(final_address %2 == 0);
         set_word_in_register(instruction.Rd,0);
-        set_word_in_register(instruction.Rd,get_half_word_from_memory_sign_extended(final_address/2));
+        set_word_in_register(instruction.Rd, get_half_word_from_memory_sign_extended(final_address));
     }
     return OK;
 }

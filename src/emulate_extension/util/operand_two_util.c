@@ -38,6 +38,9 @@ int get_operand2(uint16_t secondOperand,
         uint32_t shift_amount;
         enum ShiftType shift_type;
         if (immediateFalse.shift_by_register) {
+
+            assert(flag != IMMEDIATE_BIT_FLAG_SINGLE_DATE_TRANSFER);
+
             struct ImmediateFalseShiftByRegisterTrue
                     shiftByRegister = *(struct ImmediateFalseShiftByRegisterTrue *) &secondOperand;
 
@@ -49,6 +52,9 @@ int get_operand2(uint16_t secondOperand,
             shift_type = shiftByRegister.shift_type;
             *operand2_val = get_word_from_register(shiftByRegister.Rm);
         } else {
+
+            assert(flag != IMMEDIATE_BIT_FLAG_SINGLE_DATE_TRANSFER || immediateFalse.Rm != PC_ADDRESS);
+
             shift_amount = immediateFalse.shift_amount;
             shift_type = immediateFalse.shift_type;
             *operand2_val = get_word_from_register(immediateFalse.Rm);

@@ -42,14 +42,16 @@ enum ExecutionExitCode execute_halfword_and_signed_data_transfer_register_offset
     }else if (instruction.loadStore == STORE){
         if(instruction.halfword) {
             if(instruction.signed_){
-                set_half_word_from_memory_sign_extended(final_address,get_word_from_register(instruction.Rd));
+                set_half_word_in_memory_sign_extended(final_address,
+                                                      get_word_from_register(instruction.Rd));
             }else{
-                set_half_word_from_memory(final_address,get_word_from_register(instruction.Rd));
+                set_half_word_in_memory(final_address, get_word_from_register(instruction.Rd));
             }
         }
         else{
             if(instruction.signed_){
-                set_byte_from_memory_sign_extended(final_address,get_word_from_register(instruction.Rd));
+                set_byte_in_memory_sign_extended(final_address,
+                                                 get_word_from_register(instruction.Rd));
             }else{
                 assert(false);
             }
@@ -114,14 +116,16 @@ enum ExecutionExitCode execute_halfword_and_signed_data_transfer_immediate_offse
     }else if (instruction.loadStore == STORE){
         if(instruction.halfword) {
             if(instruction.signed_){
-                set_half_word_from_memory_sign_extended(final_address,get_word_from_register(instruction.Rd));
+                set_half_word_in_memory_sign_extended(final_address,
+                                                      get_word_from_register(instruction.Rd));
             }else{
-                set_half_word_from_memory(final_address,get_word_from_register(instruction.Rd));
+                set_half_word_in_memory(final_address, get_word_from_register(instruction.Rd));
             }
         }
         else{
             if(instruction.signed_){
-                set_byte_from_memory_sign_extended(final_address,get_word_from_register(instruction.Rd));
+                set_byte_in_memory_sign_extended(final_address,
+                                                 get_word_from_register(instruction.Rd));
             }else{
                 assert(false);
             }

@@ -12,6 +12,10 @@ _start:
     beq message
     mov r9, #10
     str r9, [r0]
+    andeq r0, r0 ,r0
+    andeq r0, r0 ,r0
+    andeq r0, r0 ,r0
+    andeq r0, r0 ,r0
 label:
     mov r7, #1
     svc 0

@@ -1,201 +1,203 @@
-.data
-  var1: .word 3
-ldr r0, var1
+ldr r1, =msg
+mov r3, #3
+mov r4, #4
+mov r5, #5
+mov r6, #6
+mov r7, #7
+mov r8, #8
+mov r9, #9
+mov r10, #10
+mov r11, #11
+mov r2, r1
+str r2, [r1]
+str r2, [r1, #4]
+str r3, [r1, #8]
+str r4, [r1, #12]
+str r5, [r1, #16]
+str r6, [r1, #20]!
+str r7, [r1, #24]
+str r8, [r1, #28]
+str r9, [r1, #32]
+stralb r10, [r1, #36]
+str r10, [r1, #40]
+str r11, [r1, #44]
+str r11, [r1, #48]!
+str r9, [r1, #1]
+stralb r9, [r1, #2]
+str r9, [r1, #3]
+str r9, [r1, #4]
+streqb r9, [r1, #5]
+str r9, [r1, #6]
+str r9, [r1, #7]
+str r9, [r1, #8]!
+stral r9, [r1, #4]
+stralb r8, [r1, #8]
+str r4, [r1, -r3, lsl #2]
+str r4, [r1, r3, lsr #5]
+str r5, [r1, r6, ror #2]!
+str r3, [r1], #1
+str r3, [r1], #2
+str r3, [r1], #3
+stralb r3, [r1], #4
+str r7, [r1], -r5
+str r5, [r1], r5
+str r6, [r1], r7, lsl #12
+str r9, [r1], -r8, asr #3
+mov r3, #35
+mov r4, #34
+mov r5, #64
+mov r6, #34
+mov r7, #3
+mov r8, #46
+mov r9, #4
+mov r10, #15
+mov r11, #11
+ldr r3, [r2]
+ldr r3, [r2, #24]
+ldr r4, [r2, #4]!
+ldr r8, [r2, r9, lsl #2]
+ldr r7, [r2, r9, lsl #0]!
+ldr r6, [r2, -r4, asl #4]
+ldr r10, [r2, r7]
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0
+mov r0, #0 
+mov r0, #1
 mov r1, #1
-str r1, [r0]
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-mov r0, #0
-
+.data
+msg: .asciz "f00000000000000000000asdflkasdlkfjsajdflkjasldjflasjdfljsaldjflksadjflkasdlkfjlkdsajflkasdkfjnsadfhsakdfkksadfh0000000000000000000000000000000000000000000000000000000000hello0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000hello0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000hello0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000hello0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000hello0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+len = .-msg

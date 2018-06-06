@@ -1,0 +1,753 @@
+/home/pi/.gdbinit:5: Error in sourced command file:
+bob.c: No such file or directory.
+
+Program stopped.
+0x000100b8 in ?? ()
+0x000100bc in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100bc	0x100bc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100bc:	mov	r3, #3
+0x000100c0 in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x0	0
+r3             0x3	3
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100c0	0x100c0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100c0:	mov	r4, #4
+0x000100c4 in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100c4	0x100c4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100c4:	mov	r5, #5
+0x000100c8 in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100c8	0x100c8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100c8:	mov	r6, #6
+0x000100cc in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100cc	0x100cc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100cc:	mov	r7, #7
+0x000100d0 in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100d0	0x100d0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100d0:	mov	r8, #8
+0x000100d4 in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100d4	0x100d4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100d4:	mov	r9, #9
+0x000100d8 in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100d8	0x100d8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100d8:	mov	r10, #10
+0x000100dc in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100dc	0x100dc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100dc:	mov	r11, #11
+0x000100e0 in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x0	0
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100e0	0x100e0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100e0:	mov	r2, r1
+0x000100e4 in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100e4	0x100e4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100e4:	str	r2, [r1]
+0x000100e8 in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100e8	0x100e8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100e8:	str	r2, [r1, #4]
+0x000100ec in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100ec	0x100ec
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100ec:	str	r3, [r1, #8]
+0x000100f0 in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100f0	0x100f0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100f0:	str	r4, [r1, #12]
+0x000100f4 in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100f4	0x100f4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100f4:	str	r5, [r1, #16]
+0x000100f8 in ?? ()
+r0             0x0	0
+r1             0x203dc	132060
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100f8	0x100f8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100f8:	str	r6, [r1, #20]!
+0x000100fc in ?? ()
+r0             0x0	0
+r1             0x203f0	132080
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x100fc	0x100fc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100fc:	str	r7, [r1, #24]
+0x00010100 in ?? ()
+r0             0x0	0
+r1             0x203f0	132080
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10100	0x10100
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10100:	str	r8, [r1, #28]
+0x00010104 in ?? ()
+r0             0x0	0
+r1             0x203f0	132080
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10104	0x10104
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10104:	str	r9, [r1, #32]
+0x00010108 in ?? ()
+r0             0x0	0
+r1             0x203f0	132080
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10108	0x10108
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10108:	strb	r10, [r1, #36]	; 0x24
+0x0001010c in ?? ()
+r0             0x0	0
+r1             0x203f0	132080
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x1010c	0x1010c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1010c:	str	r10, [r1, #40]	; 0x28
+0x00010110 in ?? ()
+r0             0x0	0
+r1             0x203f0	132080
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10110	0x10110
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10110:	str	r11, [r1, #44]	; 0x2c
+0x00010114 in ?? ()
+r0             0x0	0
+r1             0x203f0	132080
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10114	0x10114
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10114:	str	r11, [r1, #48]!	; 0x30
+0x00010118 in ?? ()
+r0             0x0	0
+r1             0x20420	132128
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10118	0x10118
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10118:	str	r9, [r1, #1]
+0x0001011c in ?? ()
+r0             0x0	0
+r1             0x20420	132128
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x1011c	0x1011c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1011c:	strb	r9, [r1, #2]
+0x00010120 in ?? ()
+r0             0x0	0
+r1             0x20420	132128
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10120	0x10120
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10120:	str	r9, [r1, #3]
+0x00010124 in ?? ()
+r0             0x0	0
+r1             0x20420	132128
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10124	0x10124
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10124:	str	r9, [r1, #4]
+0x00010128 in ?? ()
+r0             0x0	0
+r1             0x20420	132128
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10128	0x10128
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10128:	strbeq	r9, [r1, #5]
+0x0001012c in ?? ()
+r0             0x0	0
+r1             0x20420	132128
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x1012c	0x1012c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1012c:	str	r9, [r1, #6]
+0x00010130 in ?? ()
+r0             0x0	0
+r1             0x20420	132128
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10130	0x10130
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10130:	str	r9, [r1, #7]
+0x00010134 in ?? ()
+r0             0x0	0
+r1             0x20420	132128
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10134	0x10134
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10134:	str	r9, [r1, #8]!
+0x00010138 in ?? ()
+r0             0x0	0
+r1             0x20428	132136
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10138	0x10138
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10138:	str	r9, [r1, #4]
+0x0001013c in ?? ()
+r0             0x0	0
+r1             0x20428	132136
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x1013c	0x1013c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1013c:	strb	r8, [r1, #8]
+0x00010140 in ?? ()
+r0             0x0	0
+r1             0x20428	132136
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10140	0x10140
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10140:	str	r4, [r1, -r3, lsl #2]
+0x00010144 in ?? ()
+r0             0x0	0
+r1             0x20428	132136
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10144	0x10144
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10144:	str	r4, [r1, r3, lsr #5]
+0x00010148 in ?? ()
+r0             0x0	0
+r1             0x20428	132136
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10148	0x10148
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10148:	str	r5, [r1, r6, ror #2]!
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00010148 in ?? ()
+r0             0x0	0
+r1             0x20428	132136
+r2             0x203dc	132060
+r3             0x3	3
+r4             0x4	4
+r5             0x5	5
+r6             0x6	6
+r7             0x7	7
+r8             0x8	8
+r9             0x9	9
+r10            0xa	10
+r11            0xb	11
+r12            0x0	0
+sp             0xbefff240	0xbefff240
+lr             0x0	0
+pc             0x10148	0x10148
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10148:	str	r5, [r1, r6, ror #2]!
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
+single_data_transfer_data_section.gdbinit:115: Error in sourced command file:
+The program has no registers now.
+(gdb) 

@@ -11,6 +11,8 @@
 #include "../../util/operand_two_util.h"
 
 
+void exception_handler_exit(const struct DataProcessingInstruction instruction, uint32_t operand2Val);
+
 enum ExecutionExitCode execute_instruction_data_processing(const struct DataProcessingInstruction instruction) {
     //todo duplication
 
@@ -24,8 +26,9 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
 
     uint32_t operand2Val = 0;
     bool shiftCarryOut = getCPSR().C;
-    get_operand2(instruction.secondOperand, instruction.immediateOperand, true, &operand2Val, &shiftCarryOut);
+    get_operand2(instruction.secondOperand, instruction.immediateOperand, IMMEDIATE_BIT_FLAG_DATA_PROCESSING, &operand2Val, &shiftCarryOut);
 
+    uint32_t carry = (getCPSR().C) ? 1 : 0;
 
     uint32_t computation_res;
     // for distinguishing between operator thing
@@ -85,23 +88,23 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
         default:
             assert(false);
         case adc:
-            computation_res = rnVal + operand2Val + (getCPSR().C ? 1 : 0);
-            if (does_overflow_occur(operand2Val, rnVal) &&
-                does_overflow_occur(operand2Val, rnVal + (getCPSR().C ? 1 : 0))) {
+            computation_res = rnVal + operand2Val + carry;
+            if (does_overflow_occur(operand2Val, rnVal) ||
+                does_overflow_occur(operand2Val, rnVal + carry)) {
                 overflow_occurred = true;
             }
             set_word_in_register(instruction.Rd,computation_res);
             break;
         case sbc:
-            computation_res = rnVal - operand2Val + (getCPSR().C ? 1 : 0) - 1;
-            if(does_borrow_occur(rnVal + getCPSR().C,operand2Val + 1)){
+            computation_res = rnVal - operand2Val + carry - 1;
+            if(does_borrow_occur(rnVal + carry, operand2Val + 1)){
                 borrow_occurred = true;
             }
             set_word_in_register(instruction.Rd,computation_res);
             break;
         case rsc:
-            computation_res = operand2Val - rnVal + (getCPSR().C ? 1 : 0) - 1;
-            if (does_borrow_occur(operand2Val + (getCPSR().C ? 1 : 0), rnVal + 1)) {
+            computation_res = operand2Val - rnVal + carry - 1;
+            if (does_borrow_occur(operand2Val + carry, rnVal + 1)) {
                 borrow_occurred = true;
             }
             set_word_in_register(instruction.Rd,computation_res);
@@ -123,5 +126,27 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
     }
     high_level_set_CPSR_data_processing(instruction, borrow_occurred, overflow_occurred, computation_res,
                                         shiftCarryOut);
+    exception_handler_exit(instruction, operand2Val);
+    if (instruction.Rd == PC_ADDRESS)
+        return BRANCH;
     return OK;
+}
+
+void exception_handler_exit(const struct DataProcessingInstruction instruction, uint32_t operand2Val) {
+    //todo clear interrupt disable flags
+    if (instruction.Rd == PC_ADDRESS && instruction.Rn == LR_ADDRESS) {
+        if (instruction.opcode == mov) {
+            if (instruction.setConditionCodes && get_operating_mode() == und) {
+                setCPSR(get_SPSR_by_mode());
+            }
+        } else if (instruction.opcode == sub) {
+            if ((operand2Val == 4 && get_operating_mode() == irq) ||
+                (operand2Val == 8 && get_operating_mode() == abt) ||
+                (operand2Val == 4 && get_operating_mode() == abt) ||
+                (operand2Val == 4 && get_operating_mode() == fiq)) {
+                setCPSR(get_SPSR_by_mode());
+            }
+
+        }
+    }
 }

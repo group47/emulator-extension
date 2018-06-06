@@ -9,6 +9,7 @@
 #include "../../basic_typedefs.h"
 #include <stdbool.h>
 
+#define IMMEDIATE_BIT_FLAG_DATA_PROCESSING true
 
 enum OpCode {
     and = 0b0000,

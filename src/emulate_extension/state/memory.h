@@ -24,24 +24,33 @@ struct Memory {
 // todo: add memory checks here for out of bound
 void init_memory(size_t size, enum MemoryFormat mode);
 
-Word get_word_from_memory(Address address);
-uint64_t get_word_from_memory_sign_extended(Address address);
-HalfWord get_half_word_from_memory(HalfWordAddress address);
-Word get_half_word_from_memory_sign_extended(HalfWordAddress address);
+Word get_word_from_memory(ByteAddress address);
+
+uint64_t get_word_from_memory_sign_extended(ByteAddress address);
+
+HalfWord get_half_word_from_memory(ByteAddress address);
+
+Word get_half_word_from_memory_sign_extended(ByteAddress address);
 Byte get_byte_from_memory(ByteAddress address);
 Word get_byte_from_memory_sign_extended(ByteAddress address);
 
-void set_word_from_memory(Address address, Word val);
-void set_half_word_from_memory(HalfWordAddress address, HalfWord val);
-void set_byte_from_memory(ByteAddress address, Byte val);
+void set_word_in_memory(ByteAddress address, Word val);
+
+void set_half_word_in_memory(ByteAddress address, HalfWord val);
+void set_byte_in_memory(ByteAddress address, Byte val);
 
 //todo are these the same:
-uint32_t set_word_from_memory_sign_extended(Address address,Word val);
-void set_half_word_from_memory_sign_extended(HalfWordAddress address, HalfWord val);
-void set_byte_from_memory_sign_extended(ByteAddress address, Byte val);
+uint32_t set_word_from_memory_sign_extended(ByteAddress address, Word val);
+
+void set_half_word_in_memory_sign_extended(ByteAddress address, HalfWord val);
+void set_byte_in_memory_sign_extended(ByteAddress address, Byte val);
 Word byte_to_word_sign_extend(Byte byte);
 Word half_word_to_word_sign_extend(HalfWord halfWord);
 void set_mode(enum MemoryFormat mode);
 void deallocate_memory();
+
+
+bool memory_access_will_fail(ByteAddress memoryAddress);
+
 
 #endif //SRC_MEMORY_H

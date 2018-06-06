@@ -16,17 +16,17 @@ enum ExecutionExitCode execute_instruction_load_store_with_immeditate_offset(con
     if (instruction.loadMemory) {
       set_byte_in_register(instruction.Rd, result);
     } else {
-      set_byte_from_memory(result, get_byte_from_register(instruction.Rd));
+      set_byte_in_memory(result, get_byte_from_register(instruction.Rd));
     }
 
   } else {
 
-    Address result = get_word_from_register(instruction.Rb) + offset;
+      ByteAddress result = get_word_from_register(instruction.Rb) + offset;
 
     if (instruction.loadMemory) {
       set_word_in_register(instruction.Rd, result);
     } else {
-      set_word_from_memory(result, get_word_from_register(instruction.Rd));
+      set_word_in_memory(result, get_word_from_register(instruction.Rd));
     }
   }
 

@@ -34,7 +34,7 @@ enum ExceptionFlag {
   PREFETCH_ABORT     = 0b000010000,
   UNDEFINED          = 0b000001000,
   SOFTWARE_INTERRUPT = 0b000000100,
-  BRANCH_EXCEPTION   = 0b000000010,
+    BRANCH_LINK_EXCEPTION = 0b000000010,
 };
 
 
@@ -90,6 +90,8 @@ struct CPUState {
   uint16_t decoded_thumb;
   bool decoded_valid;//= false
   bool fetched_valid;//= false
+    bool decoded_prefetch_aborted;//false
+    bool fetched_prefetch_aborted;//false
 };
 
 //todo: do nothing if exception flag is set
@@ -107,7 +109,7 @@ enum Mode get_mode();
 
 struct CPSR_Struct get_SPSR_by_mode();
 
-void change_operating_mode(enum OperatingMode newOperatingMode);
+void set_operating_mode(enum OperatingMode newOperatingMode);
 
 enum OperatingMode get_operating_mode();
 
@@ -139,10 +141,14 @@ bool fetched_valid();
 
 bool decoded_valid();
 
-void transfer_fetched_to_decoded_and_load_fetched();//todo
+void transfer_fetched_to_decoded_and_load_fetched();
 
 void print_registers();
 
 void invalidate_pipeline();
+
+bool prefetch_aborted();
+
+void set_spsr_by_mode(struct CPSR_Struct cpsr_struct, enum OperatingMode mode);
 
 #endif //SRC_EMULATOR_STATE_H
