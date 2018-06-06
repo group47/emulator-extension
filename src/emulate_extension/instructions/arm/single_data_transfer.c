@@ -3,6 +3,7 @@
 //
 
 #include <assert.h>
+#include <x86intrin.h>
 #include "single_data_transfer.h"
 #include "../../util/cpsr_util.h"
 #include "../../util/operand_two_util.h"
@@ -16,16 +17,20 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
         return DIDNT_EXECUTE;
     }
 
-    // from ARM_doc, 4.9.4
-    assert(instruction.Rn == PC_ADDRESS && instruction.writeBackBit);
-    short assert_var = instruction.offset;
-    assert(!instruction.immediateOffsetBit &&
-           ((struct ImmediateFalseShiftByRegisterTrue*) &assert_var)->Rm != PC_ADDRESS);//todo not sure this is correct
+    // from ARM_doc 4.9.1, "write back bit is set to zero in the case of post-indexed addressing"
+    //assert(!instruction.prePostBit || !instruction.writeBackBit);
+
+    // from ARM_doc, 4.9.4, "write back bit is set to zero when r15 is Rn"
+    assert(!instruction.Rn == PC_ADDRESS || !instruction.writeBackBit);
+
+    // from ARM_doc 4.9.1, "r15 must not be specified as Rm"
+    assert(instruction.immediateOffsetBit ||
+           !((struct ImmediateFalseShiftByRegisterTrue*) &instruction.offset)->Rm == PC_ADDRESS);
 
 
     uint8_t oldBase = instruction.Rn;
-
     uint32_t offset;
+    uint32_t address = get_word_from_register(instruction.Rn);
 
     if (!instruction.immediateOffsetBit) {
         offset = instruction.offset;
@@ -38,8 +43,6 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
     }
 
     // pre indexing
-    uint32_t address = get_word_from_register(instruction.Rn);
-
     if (instruction.prePostBit) {
         if (instruction.upDownBit) {
             address += offset;
@@ -50,16 +53,21 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
 
     // todo: make sure that the load/store function handles the nasty case with the endianess
     // todo: there should be a state to indicate memory access out of bound
-    if (instruction.loadStoreBit) {
+    if (instruction.loadStoreBit == LOAD) {
         if (instruction.byteWordBit) {
             set_byte_in_register(instruction.Rd, get_byte_from_memory(address));
         } else {
-            set_word_in_register(instruction.Rd, get_word_from_memory(address));
+            // from ARM_doc, the doc indicates both rotate and clear higher level if the address is not word aligned
+            // this implementation is based on rotate
+            Word wordInMemory = get_word_from_memory(address);
+            wordInMemory = __rord(wordInMemory, 8 * (address % 4));
+            set_word_in_register(instruction.Rd, wordInMemory);
         }
     } else {
         // from ARM_doc, 4.9.4
         if (instruction.Rd == PC_ADDRESS) {
-            set_word_from_memory(address, get_current_instruction_address());
+            assert(get_current_instruction_address() + 12 == get_word_from_register(instruction.Rd));
+            set_word_from_memory(address, get_current_instruction_address() + 12);
         } else {
             if (instruction.byteWordBit) {
                 set_byte_from_memory(address, get_byte_from_register(address));
@@ -69,13 +77,8 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
         }
     }
 
-    // I need a better solution for this duplication
     // post indexing
     if (!instruction.prePostBit) {
-        // from ARM_doc, 4.9.1
-        // W = 1 is redundant for post addressing index
-        // according to documentation, you cannot have both W = 1 and P = 0
-        assert(!instruction.writeBackBit);
         if (instruction.upDownBit) {
             set_word_in_register(instruction.Rn, address += offset);
         } else {
@@ -92,7 +95,6 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
         set_word_in_register(instruction.Rn, oldBase);
     }
 
-    // todo: pass other execution exit code
     return OK;
 
 }
