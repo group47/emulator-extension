@@ -110,17 +110,17 @@ tst r1, r1
 orr r5, r3
 tst r9, r7
 orr r12, r3
-neg pc, r4
-ror pc, r4
+neg r2, r4
+ror r4, r4
 bic r14, r1
 lsl r0, r6
 eor r3, r5
-asr r3, pc
+asr r3, r4
 neg r1, r3
 ror r4, r6
 cmp r8, r3
 tst r5, r13
-and r5, pc
+and r5, r2
 sbc r0, r2
 eor r11, r4
 eor r6, pc
@@ -136,7 +136,7 @@ mvn r11, pc
 adc r14, r1
 and r2, r5
 tst r11, pc
-mvn r1, pc
+mvn r1, r3
 mul r2, r0
 cmn r7, r1
 sbc r1, r12
@@ -192,10 +192,10 @@ neg r12, r0
 and r9, r4
 lsr r1, r5
 mvn r14, r8
-cmp r9, pc
-cmp r9, pc
-cmp r9, pc
-cmp r9, pc
-cmp r9, pc
-cmp r9, pc
+cmp r9, r6
+cmp r9, r4
+cmp r9, r7
+cmp r9, r8
+cmp r9, r0
+cmp r9, r1
 
