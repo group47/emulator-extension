@@ -16,7 +16,7 @@ enum ExecutionExitCode execute_instruction_SP_relative_load_store(const struct S
   if (instruction.loadMemory) {
     set_word_in_register(instruction.Rd, get_word_from_memory(address));
   } else {
-    set_word_from_memory(address, get_word_from_register(instruction.Rd));
+    set_word_in_memory(address, get_word_from_register(instruction.Rd));
   }
 
   return OK;

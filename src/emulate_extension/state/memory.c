@@ -110,7 +110,7 @@ Word get_byte_from_memory_sign_extended(ByteAddress address){
     return byte_to_word_sign_extend(*(memory.contents + address));
 }
 
-void set_word_from_memory(ByteAddress address, Word val) {
+void set_word_in_memory(ByteAddress address, Word val) {
     assert (address % 4 == 0);
     if (address + 4 > memory.size) {
         add_exception_flag(DATA_ABORT);
@@ -133,7 +133,7 @@ void set_word_from_memory(ByteAddress address, Word val) {
     }
 }
 
-void set_half_word_from_memory(ByteAddress address, HalfWord val) {
+void set_half_word_in_memory(ByteAddress address, HalfWord val) {
     assert (address % 2 == 0);
     if (address + 2 > memory.size) {
         add_exception_flag(DATA_ABORT);
@@ -147,7 +147,7 @@ void set_half_word_from_memory(ByteAddress address, HalfWord val) {
     }
 }
 
-void set_byte_from_memory(ByteAddress address, Byte val){
+void set_byte_in_memory(ByteAddress address, Byte val){
     if (address > memory.size) {
         add_exception_flag(DATA_ABORT);
     }
@@ -162,12 +162,12 @@ uint32_t set_word_from_memory_sign_extended(Address address,Word val){
 }
  */
 
-void set_half_word_from_memory_sign_extended(ByteAddress address, HalfWord val) {
-    set_word_from_memory(address, half_word_to_word_sign_extend(val));
+void set_half_word_in_memory_sign_extended(ByteAddress address, HalfWord val) {
+    set_word_in_memory(address, half_word_to_word_sign_extend(val));
 }
 
-void set_byte_from_memory_sign_extended(ByteAddress address, Byte val){
-    set_word_from_memory(address, byte_to_word_sign_extend(val));
+void set_byte_in_memory_sign_extended(ByteAddress address, Byte val){
+    set_word_in_memory(address, byte_to_word_sign_extend(val));
 }
 
 Word byte_to_word_sign_extend(Byte byte) {
