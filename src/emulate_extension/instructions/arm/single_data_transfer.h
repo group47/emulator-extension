@@ -8,11 +8,14 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "../../util/common_enums.h"
+#include "../../basic_typedefs.h"
+
+#define IMMEDIATE_BIT_FLAG_SINGLE_DATE_TRANSFER false
 
 struct SingleDataTransferInstruction {
-    short offset:12;
-    uint8_t Rd:4;
-    uint8_t Rn:4;
+    uint16_t offset:12;
+    RegisterAddress Rd:4;
+    RegisterAddress Rn:4;
     bool loadStoreBit : 1;
     bool writeBackBit : 1;
     bool byteWordBit : 1;

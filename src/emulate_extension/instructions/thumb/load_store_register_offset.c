@@ -18,10 +18,10 @@ enum ExecutionExitCode execute_instruction_load_store_register_offset(struct Loa
         }
     }else if(instruction.loadStore == STORE){
         if(instruction.load_byte){
-            set_byte_from_memory(final_address,instruction.Rd);
+            set_byte_in_memory(final_address, instruction.Rd);
         }else{
             assert(final_address % 4 == 0);
-            set_word_from_memory(final_address,instruction.Rd);
+          set_word_in_memory(final_address, instruction.Rd);
         }
     }
     else{

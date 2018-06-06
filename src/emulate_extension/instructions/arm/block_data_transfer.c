@@ -67,9 +67,10 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
                 }
             } else {
                 if (i == PC_ADDRESS) {
-                    set_word_from_memory((ByteAddress) i * 4 + address, get_current_instruction_address() + 12);
+                  set_word_in_memory((ByteAddress) i * 4 + address,
+                                     get_current_instruction_address() + 12);
                 } else {
-                    set_word_from_memory((ByteAddress) i * 4 + address, get_word_from_register(i));
+                  set_word_in_memory((ByteAddress) i * 4 + address, get_word_from_register(i));
                 }
             }
 
