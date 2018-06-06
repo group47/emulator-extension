@@ -37,7 +37,7 @@ enum CommandLineFlags parseCommandLine(uint32_t argc, const char **argv){
     return flags;
 }
 
-int main(uint32_t argc, const char **argv){
+int main(int argc, const char **argv){
     do_asserts();
     enum CommandLineFlags flags = parseCommandLine(argc,argv);
     if(flags & INVALID){

@@ -4,7 +4,6 @@
 #include <assert.h>
 #include <stdio.h>
 #include <memory.h>
-#include <endian.h>
 #include "emulator_state.h"
 #include "../instructions/thumb/thumb_instruction.h"
 #include "exception.h"

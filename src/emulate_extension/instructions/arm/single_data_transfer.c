@@ -25,7 +25,7 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
 
     // from ARM_doc 4.9.1, "r15 must not be specified as Rm"
     //assert(instruction.immediateOffsetBit ||
-    //       !((struct ImmediateFalseShiftByRegisterTrue*) &instruction.offset)->Rm == PC_ADDRESS);
+      //     !((struct ImmediateFalseShiftByRegisterTrue*) &(uint8_t)instruction.offset)->Rm == PC_ADDRESS);
 
 
     uint8_t oldBase = instruction.Rn;
