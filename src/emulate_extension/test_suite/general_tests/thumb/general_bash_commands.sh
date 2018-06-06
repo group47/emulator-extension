@@ -10,7 +10,7 @@ for i in *.s; do sed "s/a.out/$(basename $i .s).actuallyanexecutable/g; s/gdb.lo
 for i in *.s; do arm-none-eabi-as -mthumb -c $i -o $(basename $i .s).realbin -Wl,-mthumb; done
 
 #link
-#for i in *.realbin; do arm-none-eabi-gcc -mthumb $i -o $(basename $i .realbin).actuallyanexecutable -nostdlib; done
+for i in *.realbin; do arm-none-eabi-ld -mthumb $i -o $(basename $i .realbin).actuallyanexecutable -nostdlib; done
 
 #run gdb
 for i in *.actuallyanexecutable; do gdb -q --command=$(basename $i .actuallyanexecutable).gdbinit > $(basename $i .actuallyanexecutable).log; done
