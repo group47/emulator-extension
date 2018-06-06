@@ -76,6 +76,9 @@ if len(sys.argv) < 3:
     else:
         print("Not enough number of arguments")
 else:
+    emulate_executable = ""
+    test_case_binary_path = ""
+    gdb_log_file_path = ""
     for i in range(1, 4):
         if sys.argv[i].endswith("emulate_extension"):
             emulate_executable = sys.argv[i]
@@ -83,6 +86,16 @@ else:
             test_case_binary_path = sys.argv[i]
         if sys.argv[i].endswith(".log"):
             gdb_log_file_path = sys.argv[i]
+    if len(test_case_binary_path) is 0 or len(gdb_log_file_path) is 0:
+        test_case_files = filter(lambda x : "emulate_extension" not in x and ".py" not in x, sys.argv)
+        if len(test_case_files) is 0:
+            print("I really couldn't guess that file then")
+            sys.exit()
+        else:
+            test_case_binary_path = test_case_files[0] + ".bin2"
+            gdb_log_file_path = test_case_files[0] + ".log"
+        
+        
 
     #emulate_executable = sys.argv[1]
     #test_case_binary_path = sys.argv[2]
