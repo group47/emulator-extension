@@ -38,7 +38,7 @@ def compare_blocks(program_block, gdb_block):
         if max_len_of_line < len(program_block[i]):
             max_len_of_line = len(program_block[i])
         if "sp" not in program_block[i] and "pc" not in gdb_block[i]:
-            if ''.joint(program_block[i].split()) != ''.join(gdb_block[i].split()):
+            if ''.join(program_block[i].split()) != ''.join(gdb_block[i].split()):
                 return False
     return True
 
