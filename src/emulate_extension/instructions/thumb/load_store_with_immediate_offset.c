@@ -21,7 +21,7 @@ enum ExecutionExitCode execute_instruction_load_store_with_immeditate_offset(con
 
   } else {
 
-    Address result = get_word_from_register(instruction.Rb) + offset;
+      ByteAddress result = get_word_from_register(instruction.Rb) + offset;
 
     if (instruction.loadMemory) {
       set_word_in_register(instruction.Rd, result);

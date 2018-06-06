@@ -13,12 +13,12 @@ enum ExecutionExitCode execute_instruction_branch(struct BranchInstruction instr
     }
 
     if (instruction.linkBit) {
-        set_word_in_register(PC_ADDRESS, get_word_from_register(PC_ADDRESS) +
-                                         (uint32_t) instruction.offset << 2 - 8);
+//        set_word_in_register(PC_ADDRESS, get_word_from_register(PC_ADDRESS) +
+//                                         (uint32_t) instruction.offset << 2 - 8);
+        add_exception_flag(BRANCH_LINK_EXCEPTION);
     } else {
-        assert(false);
+        assert(false);//todo implement
     }
 
-    add_exception_flag(BRANCH_EXCEPTION);
     return BRANCH;
 }

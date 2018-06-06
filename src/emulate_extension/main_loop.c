@@ -5,15 +5,13 @@
 #include <stdbool.h>
 #include <assert.h>
 #include "main_loop.h"
-#include "util/entry_point.h"
 #include "state/emulator_state.h"
 #include "state/exception.h"
-#include "instructions/arm/arm_instruction.h"
 #include "instructions/thumb/thumb_instruction.h"
 
 
 void main_loop(enum CommandLineFlags flags){
-    __uint128_t master_instruction_counter = 0;
+    __uint128_t master_instruction_counter = 0;// this integer size is a bit excessive since it would take more than a century to overflow a uint64_t.
     while(true){
 
         if(fetched_valid()){

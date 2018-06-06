@@ -27,7 +27,7 @@ void deallocate_memory(){
 }
 
 
-Word get_word_from_memory(Address address){
+Word get_word_from_memory(ByteAddress address) {
     assert (address % 4 == 0);
     if (address + 4 > memory.size) {
        add_exception_flag(DATA_ABORT);
@@ -50,7 +50,7 @@ Word get_word_from_memory(Address address){
     return word;
 }
 
-uint64_t get_word_from_memory_sign_extended(Address address){
+uint64_t get_word_from_memory_sign_extended(ByteAddress address) {
     assert (address % 4 == 0);
     if (address + 4 > memory.size) {
        add_exception_flag(DATA_ABORT);
@@ -60,7 +60,7 @@ uint64_t get_word_from_memory_sign_extended(Address address){
     return toExtend & 0x1 << 31 ? toExtend | 0xffff0000 : toExtend;
 }
 
-HalfWord get_half_word_from_memory(HalfWordAddress address){
+HalfWord get_half_word_from_memory(ByteAddress address) {
     assert (address % 2 == 0);
     if (address + 2 > memory.size) {
        add_exception_flag(DATA_ABORT);
@@ -77,7 +77,7 @@ HalfWord get_half_word_from_memory(HalfWordAddress address){
     return halfWord;
 }
 
-Word get_half_word_from_memory_sign_extended(HalfWordAddress address){
+Word get_half_word_from_memory_sign_extended(ByteAddress address) {
     assert (address % 2 == 0);
     if (address + 2 > memory.size) {
        add_exception_flag(DATA_ABORT);
@@ -110,7 +110,7 @@ Word get_byte_from_memory_sign_extended(ByteAddress address){
     return byte_to_word_sign_extend(*(memory.contents + address));
 }
 
-void set_word_from_memory(Address address, Word val){
+void set_word_from_memory(ByteAddress address, Word val) {
     assert (address % 4 == 0);
     if (address + 4 > memory.size) {
         add_exception_flag(DATA_ABORT);
@@ -133,7 +133,7 @@ void set_word_from_memory(Address address, Word val){
     }
 }
 
-void set_half_word_from_memory(HalfWordAddress address, HalfWord val){
+void set_half_word_from_memory(ByteAddress address, HalfWord val) {
     assert (address % 2 == 0);
     if (address + 2 > memory.size) {
         add_exception_flag(DATA_ABORT);
@@ -162,7 +162,7 @@ uint32_t set_word_from_memory_sign_extended(Address address,Word val){
 }
  */
 
-void set_half_word_from_memory_sign_extended(HalfWordAddress address, HalfWord val){
+void set_half_word_from_memory_sign_extended(ByteAddress address, HalfWord val) {
     set_word_from_memory(address, half_word_to_word_sign_extend(val));
 }
 
@@ -178,7 +178,6 @@ Word half_word_to_word_sign_extend(HalfWord halfWord) {
     return halfWord & (0x1 << 15) ? halfWord |= 0xff00 : halfWord;
 }
 
-void set_mode(enum MemoryFormat mode){
-
+bool memory_access_will_fail(ByteAddress memoryAddress) {
+    return memoryAddress < 0 || memoryAddress >= memory.size;
 }
-
