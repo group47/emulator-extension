@@ -95,6 +95,7 @@ struct CPUState {
 };
 
 //todo: do nothing if exception flag is set
+
 Byte get_byte_from_register(RegisterAddress address);
 
 Word get_word_from_register(RegisterAddress address);//todo add spsr restrictions, overridable if accessed from psr instruction

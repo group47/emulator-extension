@@ -39,11 +39,10 @@ int get_operand2(uint16_t secondOperand,
         enum ShiftType shift_type;
         if (immediateFalse.shift_by_register) {
 
-            assert(flag != IMMEDIATE_BIT_FLAG_SINGLE_DATE_TRANSFER);
-
             struct ImmediateFalseShiftByRegisterTrue
                     shiftByRegister = *(struct ImmediateFalseShiftByRegisterTrue *) &secondOperand;
 
+            assert(flag != IMMEDIATE_BIT_FLAG_SINGLE_DATE_TRANSFER);
             assert(shiftByRegister.filler0 == 0b0);
             assert(shiftByRegister.Rs != PC_ADDRESS);
 

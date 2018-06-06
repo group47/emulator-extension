@@ -36,9 +36,9 @@ enum ExecutionExitCode execute_instruction_move_compare_add_subtract(struct Move
                 overflow_occurred = true;
             }
             break;
+        default: assert(false);
     }
-    bool dummy1;
-    high_level_set_CPSR_thumb_move_compare_add_sub(instruction,borrow_occurred,overflow_occurred,computation_res,dummy1);
+    high_level_set_CPSR_thumb_move_compare_add_sub(instruction,borrow_occurred,overflow_occurred,computation_res, getCPSR().C);
     return OK;
 }
 

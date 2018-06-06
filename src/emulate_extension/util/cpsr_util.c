@@ -4,6 +4,7 @@
 
 #include <assert.h>
 #include "cpsr_util.h"
+#include "../instructions/thumb/add_subtract.h"
 
 
 bool should_execute(enum Cond cond){
@@ -43,6 +44,14 @@ void high_level_set_CPSR_data_processing(const struct DataProcessingInstruction 
                                is_logical(instruction.opcode), borrow, overflow, computation_res, shiftCarryOut);
 }
 
+void high_level_set_CPSR_thumb_add_subtract(const struct AddSubtractInstruction instruction,
+                                            const bool borrow,
+                                            const bool overflow,
+                                            const uint32_t computation_res,
+                                            const bool shiftCarryOut) {
+  return high_level_set_CPSR(true, true, instruction.op == ADD, false, borrow, overflow, computation_res, shiftCarryOut);
+}
+
 void high_level_set_CPSR(bool set_condition_codes,bool is_arithmetic,bool is_add,bool is_logical,
             bool borrow,
             bool overflow,
@@ -80,7 +89,8 @@ bool is_logical(enum OpCode opCode) {
   return opCode == and || opCode == eor || opCode == tst || opCode == teq || opCode ==orr || opCode == mov || opCode == bic || opCode == mvn;
 }
 
-void high_level_set_CPSR_thumb_move_compare_add_sub(struct MoveCompareAddSubtract subtract, bool occurred,
-bool overflow_occurred, uint32_t res, bool carryOut) {
-    return;//high_level_set_CPSR(true,true,subtract.op == ADD_MOVECOMPAREADDSUBTRACTOPCODE,false,occurred,overflow_occurred,res,carryOut);
+void high_level_set_CPSR_thumb_move_compare_add_sub(struct MoveCompareAddSubtract instruction, bool borrow,
+bool overflow, uint32_t res, bool carryOut) {
+  return high_level_set_CPSR(true, instruction.op == ADD_MOVECOMPAREADDSUBTRACTOPCODE || instruction.op == SUB_MOVECOMPAREADDSUBTRACTOPCODE || instruction.op == CMP_MOVECOMPAREADDSUBTRACTOPCODE,
+                             instruction.op == ADD_MOVECOMPAREADDSUBTRACTOPCODE, instruction.op == MOV_MOVECOMPAREADDSUBTRACTOPCODE, borrow, overflow, res, carryOut);
 }

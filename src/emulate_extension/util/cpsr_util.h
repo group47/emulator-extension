@@ -12,7 +12,13 @@
 
 bool should_execute(enum Cond cond);
 
-void high_level_set_CPSR_thumb_move_compare_add_sub(struct MoveCompareAddSubtract subtract, bool occurred,
+void high_level_set_CPSR_thumb_add_subtract(const struct AddSubtractInstruction instruction,
+                                            const bool borrow,
+                                            const bool overflow,
+                                            const uint32_t computation_res,
+                                            const bool shiftCarryOut);
+
+void high_level_set_CPSR_thumb_move_compare_add_sub(struct MoveCompareAddSubtract subtract, bool borrow,
                                                     bool overflow_occurred, uint32_t res, bool carry_out);
 
 void high_level_set_CPSR_data_processing(const struct DataProcessingInstruction instruction,
