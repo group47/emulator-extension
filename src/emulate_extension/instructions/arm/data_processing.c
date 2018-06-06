@@ -89,7 +89,7 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
             assert(false);
         case adc:
             computation_res = rnVal + operand2Val + carry;
-            if (does_overflow_occur(operand2Val, rnVal) &&
+            if (does_overflow_occur(operand2Val, rnVal) ||
                 does_overflow_occur(operand2Val, rnVal + carry)) {
                 overflow_occurred = true;
             }
