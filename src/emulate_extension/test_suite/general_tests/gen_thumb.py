@@ -15,7 +15,7 @@ def form_instruction(args):
     return ", ".join([instruction] + args[2:len(args)])
 
 def gen_sharp_expression():
-    return "#"+random.randint(0, 30)
+    return "#"+str(random.randint(0, 30))
 
 def thumb_move_shifted_register():
     op = ["lsl", "lsr", "asr"]
@@ -47,7 +47,7 @@ def thum_balu():
           "mul",
           "bic",
           "mvn"]
-    return form_instruction([random.randint(op), gen_register(), gen_register()])
+    return form_instruction([random.choice(op), gen_register(), gen_register()])
 
 def thumb_register_operation():
     op = ["and",
@@ -69,12 +69,22 @@ def thumb_register_operation():
           "bx",]
     opCode = random.choice(op)
     if "bx" in opCode:
-        return form_instruction(opCode, gen_register_full_range())
+        return form_instruction([opCode, gen_register_full_range()])
     else:
-        return form_instruction(opCode, gen_register_full_range(), gen_register_full_range())
+        return form_instruction([opCode, gen_register_full_range(), gen_register_full_range()])
 
 def thumb_add_offset_to_stack_pointer():
-    return form_instruction("add", "sp", "#"+random.choice(["", "-"])+random.randint(1, 250))
+    return form_instruction(["add", "sp", "#", str(random.choice(["", "-"])),str(random.randint(1, 250))])
 
-
-
+def gen():
+    for i in range(0, 20):
+        print(thumb_move_shifted_register())
+    for i in range(21, 40):
+        print(thumb_add_subtract())
+    for i in range(41, 60):
+        print(thumb_move_shifted_register())
+    for i in range(61, 100):
+        print(thum_balu())
+    for i in range(101, 200):
+        print(thumb_register_operation())
+gen()

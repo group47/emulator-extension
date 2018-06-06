@@ -62,7 +62,7 @@ def print_test_case_and_difference(program_block, gdb_block):
 
 length_of_test_case_block = 18
 if len(sys.argv) < 3:
-    if sys.argv[1] is "--help" or sys.argv[1] is "-h" or sys.argv[1] is "-help":
+    if "--help" in sys.argv[1] or "-h" in sys.argv[1] or "-help" in sys.argv[1]:
         print("Enter three arguments:")
         print("    1. emulate_extension path")
         print("    2. test case binary path")
