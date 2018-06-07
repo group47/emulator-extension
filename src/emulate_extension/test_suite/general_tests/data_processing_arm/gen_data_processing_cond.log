@@ -1,0 +1,4005 @@
+/home/pi/.gdbinit:5: Error in sourced command file:
+bob.c: No such file or directory.
+
+Program stopped.
+0x00010098 in ?? ()
+0x0001009c in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1009c	0x1009c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1009c:	asr	r12, r0, r12
+0x000100a0 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100a0	0x100a0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100a0:	subgt	r12, r10, #155	; 0x9b
+0x000100a4 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff65	4294967141
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100a4	0x100a4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100a4:	subvc	r12, r11, #168	; 0xa8
+0x000100a8 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100a8	0x100a8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100a8:	rsble	r4, r6, #46	; 0x2e
+0x000100ac in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100ac	0x100ac
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100ac:	eor	r7, r3, r2, asr r2
+0x000100b0 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100b0	0x100b0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100b0:	tstmi	r9, r3, asr r2
+0x000100b4 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100b4	0x100b4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100b4:	cmnle	r8, r8, lsr r9
+0x000100b8 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100b8	0x100b8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100b8:	eor	r5, r2, r6, asr r3
+0x000100bc in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100bc	0x100bc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100bc:	adcle	r5, r10, r10, asr r1
+0x000100c0 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100c0	0x100c0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100c0:	rscle	r6, r6, #169	; 0xa9
+0x000100c4 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100c4	0x100c4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100c4:	cmpvc	r3, r4, lsr r8
+0x000100c8 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100c8	0x100c8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100c8:	rscgt	r1, r0, r10, asr r9
+0x000100cc in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100cc	0x100cc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100cc:	cmnhi	r12, r6, asr r12
+0x000100d0 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100d0	0x100d0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100d0:	lslhi	r10, r6, r8
+0x000100d4 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100d4	0x100d4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100d4:	lslgt	r10, r2, r9
+0x000100d8 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100d8	0x100d8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100d8:	eorvc	r7, r3, #9
+0x000100dc in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x9	9
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100dc	0x100dc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100dc:	eormi	r6, r5, r0, lsr r6
+0x000100e0 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x9	9
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100e0	0x100e0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100e0:	teqls	r3, r7, ror r2
+0x000100e4 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x9	9
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100e4	0x100e4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100e4:	tstlt	r3, #195	; 0xc3
+0x000100e8 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x9	9
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100e8	0x100e8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100e8:	rsbls	r7, r0, r6, lsr r4
+0x000100ec in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100ec	0x100ec
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100ec:	rsbls	r9, r2, r6, lsl r4
+0x000100f0 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100f0	0x100f0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100f0:	addlt	r7, r7, #114	; 0x72
+0x000100f4 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100f4	0x100f4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100f4:	teqcc	r7, r3, asr r0
+0x000100f8 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100f8	0x100f8
+cpsr           0x40000010	1073741840
+fpscr          0x0	0
+=> 0x100f8:	tsteq	r0, r5, asr r4
+0x000100fc in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x100fc	0x100fc
+cpsr           0x40000010	1073741840
+fpscr          0x0	0
+=> 0x100fc:	andhi	r2, r9, #34	; 0x22
+0x00010100 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10100	0x10100
+cpsr           0x40000010	1073741840
+fpscr          0x0	0
+=> 0x10100:	tstpl	r5, #54	; 0x36
+0x00010104 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10104	0x10104
+cpsr           0x40000010	1073741840
+fpscr          0x0	0
+=> 0x10104:	sbc	r5, r2, r0, asr r3
+0x00010108 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10108	0x10108
+cpsr           0x40000010	1073741840
+fpscr          0x0	0
+=> 0x10108:	rsble	r6, r5, r5, lsl r1
+0x0001010c in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1010c	0x1010c
+cpsr           0x40000010	1073741840
+fpscr          0x0	0
+=> 0x1010c:	cmnge	r6, r3, lsl r0
+0x00010110 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10110	0x10110
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10110:	addeq	r11, r3, #163	; 0xa3
+0x00010114 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10114	0x10114
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10114:	movvs	r10, #0
+0x00010118 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10118	0x10118
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10118:	andeq	r5, r1, r6, asr r12
+0x0001011c in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1011c	0x1011c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1011c:	mvncc	r1, r2, asr r4
+0x00010120 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10120	0x10120
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10120:	tstlt	r1, #179	; 0xb3
+0x00010124 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffff58	4294967128
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10124	0x10124
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10124:	mvn	r12, r2, asr r2
+0x00010128 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10128	0x10128
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10128:	sublt	r10, r6, r5, asr r7
+0x0001012c in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1012c	0x1012c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1012c:	andcs	r6, r4, r1, ror r0
+0x00010130 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10130	0x10130
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10130:	mvnle	r7, #71	; 0x47
+0x00010134 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10134	0x10134
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10134:	adcgt	r7, r12, #116	; 0x74
+0x00010138 in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x73	115
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10138	0x10138
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10138:	adcvs	r4, r5, #9
+0x0001013c in ?? ()
+r0             0x0	0
+r1             0xffffffff	4294967295
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x73	115
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1013c	0x1013c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1013c:	adcge	r1, r9, r6, lsr r8
+0x00010140 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xffffffff	4294967295
+r6             0x1	1
+r7             0x73	115
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10140	0x10140
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10140:	adccc	r5, r4, #188	; 0xbc
+0x00010144 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x73	115
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10144	0x10144
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10144:	mvnpl	r10, r3, ror r12
+0x00010148 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x73	115
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10148	0x10148
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10148:	teqmi	r8, r9, asr r6
+0x0001014c in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x73	115
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1014c	0x1014c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1014c:	adchi	r5, r3, r5, asr r3
+0x00010150 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x73	115
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10150	0x10150
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10150:	orrlt	r1, r1, #49	; 0x31
+0x00010154 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x73	115
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10154	0x10154
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10154:	eorne	r7, r2, r5, ror r12
+0x00010158 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10158	0x10158
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10158:	tstcs	r6, r7, lsr r9
+0x0001015c in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1015c	0x1015c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1015c:	rsblt	r0, r5, #96	; 0x60
+0x00010160 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10160	0x10160
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10160:	cmp	r9, #50	; 0x32
+0x00010164 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10164	0x10164
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10164:	and	r11, r3, r7, asr r5
+0x00010168 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10168	0x10168
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10168:	adchi	r9, r4, #1
+0x0001016c in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1016c	0x1016c
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1016c:	tstpl	r10, r6, asr r7
+0x00010170 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10170	0x10170
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10170:	cmp	r10, r9, ror r1
+0x00010174 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10174	0x10174
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x10174:	mvnvc	r4, r3, asr r0
+0x00010178 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10178	0x10178
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x10178:	cmpvs	r11, #146	; 0x92
+0x0001017c in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1017c	0x1017c
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x1017c:	tstcs	r5, #84	; 0x54
+0x00010180 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10180	0x10180
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10180:	rsccc	r6, r0, r11, lsl r12
+0x00010184 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10184	0x10184
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10184:	eormi	r8, r7, r3, lsl r2
+0x00010188 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10188	0x10188
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10188:	tstcc	r11, #66	; 0x42
+0x0001018c in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x0	0
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1018c	0x1018c
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x1018c:	sbcvc	r2, r5, r4, lsl r11
+0x00010190 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10190	0x10190
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10190:	adcle	r11, r4, r2, ror r9
+0x00010194 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10194	0x10194
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10194:	bicls	r5, r11, #117	; 0x75
+0x00010198 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10198	0x10198
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10198:	orrvs	r2, r10, r12, ror r2
+0x0001019c in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1019c	0x1019c
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x1019c:	sbcvs	r8, r8, #185	; 0xb9
+0x000101a0 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101a0	0x101a0
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101a0:	tstvc	r8, r10, ror r6
+0x000101a4 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101a4	0x101a4
+cpsr           0x60000010	1610612752
+fpscr          0x0	0
+=> 0x101a4:	tstvs	r12, r11, ror r1
+0x000101a8 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0x176	374
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101a8	0x101a8
+cpsr           0x60000010	1610612752
+fpscr          0x0	0
+=> 0x101a8:	suble	r7, r7, r5, lsl r3
+0x000101ac in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101ac	0x101ac
+cpsr           0x60000010	1610612752
+fpscr          0x0	0
+=> 0x101ac:	teqcs	r2, #71	; 0x47
+0x000101b0 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101b0	0x101b0
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101b0:	cmnmi	r11, #162	; 0xa2
+0x000101b4 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101b4	0x101b4
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101b4:	bicle	r12, r0, #28
+0x000101b8 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x0	0
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101b8	0x101b8
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101b8:	sbcne	r9, r5, r12, asr r11
+0x000101bc in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0xbc	188
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101bc	0x101bc
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101bc:	eorcc	r12, r9, r5, ror r4
+0x000101c0 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0xbc	188
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101c0	0x101c0
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101c0:	andgt	r9, r9, #62	; 0x3e
+0x000101c4 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0xffffffff	4294967295
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x3c	60
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101c4	0x101c4
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101c4:	orrne	r4, r1, #96	; 0x60
+0x000101c8 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x3c	60
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101c8	0x101c8
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101c8:	asreq	r3, r7, r2
+0x000101cc in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0xbc	188
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x3c	60
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101cc	0x101cc
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101cc:	mov	r2, #73	; 0x49
+0x000101d0 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x3c	60
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101d0	0x101d0
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101d0:	cmncc	r6, #37	; 0x25
+0x000101d4 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x3c	60
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101d4	0x101d4
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101d4:	bicls	r3, r4, r8, asr r0
+0x000101d8 in ?? ()
+r0             0x0	0
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x3c	60
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101d8	0x101d8
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101d8:	rsb	r0, r6, #17
+0x000101dc in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x3c	60
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101dc	0x101dc
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101dc:	rschi	r9, r11, #135	; 0x87
+0x000101e0 in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x87	135
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101e0	0x101e0
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x101e0:	teqvc	r6, r3, asr r4
+0x000101e4 in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x87	135
+r10            0xffffffff	4294967295
+r11            0x0	0
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101e4	0x101e4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x101e4:	sbc	r11, r7, r4, ror r1
+0x000101e8 in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x87	135
+r10            0xffffffff	4294967295
+r11            0x8000008a	2147483786
+r12            0xffffffff	4294967295
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101e8	0x101e8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x101e8:	eorvc	r12, r2, r10, lsr r6
+0x000101ec in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x87	135
+r10            0xffffffff	4294967295
+r11            0x8000008a	2147483786
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101ec	0x101ec
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x101ec:	cmnvs	r7, r11, asr r2
+0x000101f0 in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x1	1
+r7             0xbb	187
+r8             0x0	0
+r9             0x87	135
+r10            0xffffffff	4294967295
+r11            0x8000008a	2147483786
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101f0	0x101f0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x101f0:	eorcc	r6, r8, r5, asr r3
+0x000101f4 in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0xbb	187
+r7             0xbb	187
+r8             0x0	0
+r9             0x87	135
+r10            0xffffffff	4294967295
+r11            0x8000008a	2147483786
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101f4	0x101f4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x101f4:	andge	r6, r4, r0, asr r2
+0x000101f8 in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x87	135
+r10            0xffffffff	4294967295
+r11            0x8000008a	2147483786
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101f8	0x101f8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x101f8:	rsb	r9, r3, #139	; 0x8b
+0x000101fc in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x8b	139
+r10            0xffffffff	4294967295
+r11            0x8000008a	2147483786
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x101fc	0x101fc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x101fc:	tst	r11, r10, ror r11
+0x00010200 in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x8b	139
+r10            0xffffffff	4294967295
+r11            0x8000008a	2147483786
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10200	0x10200
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x10200:	suble	r11, r6, #145	; 0x91
+0x00010204 in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x8b	139
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10204	0x10204
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x10204:	tstge	r3, #75	; 0x4b
+0x00010208 in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x8b	139
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10208	0x10208
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x10208:	addpl	r3, r1, #16
+0x0001020c in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x8b	139
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1020c	0x1020c
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x1020c:	lslls	r10, r11, r5
+0x00010210 in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x8b	139
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10210	0x10210
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x10210:	andvs	r3, r1, r10, lsl r11
+0x00010214 in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x8b	139
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10214	0x10214
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x10214:	rsblt	r9, r2, r7, asr r3
+0x00010218 in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10218	0x10218
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x10218:	movgt	r8, #176	; 0xb0
+0x0001021c in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1021c	0x1021c
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x1021c:	teqls	r11, r2, lsr r8
+0x00010220 in ?? ()
+r0             0x10	16
+r1             0x1	1
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10220	0x10220
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x10220:	submi	r1, r1, #169	; 0xa9
+0x00010224 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x49	73
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10224	0x10224
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x10224:	andmi	r2, r4, #20
+0x00010228 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10228	0x10228
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x10228:	cmngt	r10, r4, lsr r10
+0x0001022c in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1022c	0x1022c
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x1022c:	cmnvs	r7, r1, lsr r12
+0x00010230 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10230	0x10230
+cpsr           0xa0000010	-1610612720
+fpscr          0x0	0
+=> 0x10230:	cmpcs	r7, #129	; 0x81
+0x00010234 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10234	0x10234
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10234:	cmnhi	r8, r0, lsr r2
+0x00010238 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10238	0x10238
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10238:	teqvc	r3, #120	; 0x78
+0x0001023c in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1023c	0x1023c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1023c:	eorvc	r8, r6, r3, lsr r3
+0x00010240 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10240	0x10240
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10240:	subhi	r3, r8, #105	; 0x69
+0x00010244 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0xbb	187
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10244	0x10244
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10244:	rsb	r5, r2, #181	; 0xb5
+0x00010248 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0xb5	181
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10248	0x10248
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10248:	mvnvs	r1, #116	; 0x74
+0x0001024c in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0xb5	181
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1024c	0x1024c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1024c:	cmpcs	r9, #149	; 0x95
+0x00010250 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0xb5	181
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffffb6	2147483574
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10250	0x10250
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10250:	bic	r12, r12, #40	; 0x28
+0x00010254 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0xb5	181
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10254	0x10254
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10254:	addvc	r5, r3, #76	; 0x4c
+0x00010258 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10258	0x10258
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10258:	biccs	r4, r8, #15
+0x0001025c in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0x0	0
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1025c	0x1025c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1025c:	adcgt	r3, r6, r1, ror r5
+0x00010260 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10260	0x10260
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10260:	mvnle	r5, #75	; 0x4b
+0x00010264 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10264	0x10264
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10264:	tst	r11, #93	; 0x5d
+0x00010268 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10268	0x10268
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10268:	adceq	r3, r5, r6, lsr r12
+0x0001026c in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1026c	0x1026c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1026c:	cmnmi	r9, r8, ror r6
+0x00010270 in ?? ()
+r0             0x10	16
+r1             0xffffff58	4294967128
+r2             0x0	0
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10270	0x10270
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10270:	orrls	r1, r8, r4, ror r10
+0x00010274 in ?? ()
+r0             0x10	16
+r1             0xc2	194
+r2             0x0	0
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10274	0x10274
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10274:	rscmi	r6, r10, #72	; 0x48
+0x00010278 in ?? ()
+r0             0x10	16
+r1             0xc2	194
+r2             0x0	0
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10278	0x10278
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10278:	cmn	r2, r12, lsl r6
+0x0001027c in ?? ()
+r0             0x10	16
+r1             0xc2	194
+r2             0x0	0
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1027c	0x1027c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1027c:	rsclt	r5, r12, r10, ror r3
+0x00010280 in ?? ()
+r0             0x10	16
+r1             0xc2	194
+r2             0x0	0
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10280	0x10280
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10280:	rsbpl	r2, r12, r6, lsr r3
+0x00010284 in ?? ()
+r0             0x10	16
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10284	0x10284
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10284:	tstle	r12, r7, asr r12
+0x00010288 in ?? ()
+r0             0x10	16
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10288	0x10288
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10288:	rsble	r3, r6, r0, lsr r2
+0x0001028c in ?? ()
+r0             0x10	16
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1028c	0x1028c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1028c:	cmnmi	r5, #59	; 0x3b
+0x00010290 in ?? ()
+r0             0x10	16
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10290	0x10290
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10290:	rsbcs	r7, r12, r2, ror r7
+0x00010294 in ?? ()
+r0             0x10	16
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10294	0x10294
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10294:	cmpeq	r2, #82	; 0x52
+0x00010298 in ?? ()
+r0             0x10	16
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10298	0x10298
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10298:	subgt	r0, r0, r7, ror r10
+0x0001029c in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1029c	0x1029c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1029c:	cmnhi	r11, #74	; 0x4a
+0x000102a0 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xf58fffff	4119855103
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102a0	0x102a0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102a0:	orrvc	r3, r11, r2, asr r0
+0x000102a4 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102a4	0x102a4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102a4:	cmnlt	r7, #146	; 0x92
+0x000102a8 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102a8	0x102a8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102a8:	eorvc	r10, r10, r9, asr r7
+0x000102ac in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102ac	0x102ac
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102ac:	mvnvs	r9, r10, ror r7
+0x000102b0 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102b0	0x102b0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102b0:	bicmi	r9, r12, #18
+0x000102b4 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xbb	187
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102b4	0x102b4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102b4:	eorvc	r7, r8, #102	; 0x66
+0x000102b8 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0x66	102
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102b8	0x102b8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102b8:	cmppl	r8, r0, lsr r11
+0x000102bc in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0x66	102
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102bc	0x102bc
+cpsr           0x60000010	1610612752
+fpscr          0x0	0
+=> 0x102bc:	cmpmi	r8, r8, lsr r10
+0x000102c0 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0x66	102
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102c0	0x102c0
+cpsr           0x60000010	1610612752
+fpscr          0x0	0
+=> 0x102c0:	cmnls	r12, r1, asr r9
+0x000102c4 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0x66	102
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102c4	0x102c4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102c4:	rscle	r4, r6, r10, asr r3
+0x000102c8 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0x66	102
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102c8	0x102c8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102c8:	andls	r8, r12, r5, lsl r1
+0x000102cc in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0x66	102
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102cc	0x102cc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102cc:	rsbcs	r1, r4, #2
+0x000102d0 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0x66	102
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102d0	0x102d0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102d0:	mvnpl	r7, r8, lsr r1
+0x000102d4 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xffffffff	4294967295
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102d4	0x102d4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102d4:	mvneq	r12, #141	; 0x8d
+0x000102d8 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xffffffff	4294967295
+r8             0x0	0
+r9             0x72	114
+r10            0xffffffff	4294967295
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102d8	0x102d8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102d8:	movcc	r10, #17
+0x000102dc in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xffffffff	4294967295
+r8             0x0	0
+r9             0x72	114
+r10            0x11	17
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102dc	0x102dc
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102dc:	mvncc	r10, #158	; 0x9e
+0x000102e0 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0x4c	76
+r6             0x0	0
+r7             0xffffffff	4294967295
+r8             0x0	0
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102e0	0x102e0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102e0:	eorls	r5, r11, #112	; 0x70
+0x000102e4 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0xffffffff	4294967295
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x0	0
+r7             0xffffffff	4294967295
+r8             0x0	0
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102e4	0x102e4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102e4:	subge	r3, r12, r3, lsr r1
+0x000102e8 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x0	0
+r7             0xffffffff	4294967295
+r8             0x0	0
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102e8	0x102e8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x102e8:	teqpl	r2, #74	; 0x4a
+0x000102ec in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x0	0
+r7             0xffffffff	4294967295
+r8             0x0	0
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102ec	0x102ec
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102ec:	cmncs	r9, r7, ror r3
+0x000102f0 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x0	0
+r7             0xffffffff	4294967295
+r8             0x0	0
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102f0	0x102f0
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102f0:	eor	r7, r11, r11, ror r10
+0x000102f4 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x0	0
+r7             0xd8	216
+r8             0x0	0
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102f4	0x102f4
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102f4:	teqcs	r5, r12, lsl r11
+0x000102f8 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x0	0
+r7             0xd8	216
+r8             0x0	0
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102f8	0x102f8
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102f8:	mvnge	r12, #25
+0x000102fc in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x0	0
+r7             0xd8	216
+r8             0x0	0
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x102fc	0x102fc
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102fc:	movvc	r8, #143	; 0x8f
+0x00010300 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x0	0
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10300	0x10300
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10300:	adcge	r12, r2, #46	; 0x2e
+0x00010304 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x0	0
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10304	0x10304
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10304:	mvn	r6, r8, lsl r11
+0x00010308 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10308	0x10308
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10308:	rsbvc	r6, r9, #185	; 0xb9
+0x0001030c in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x47	71
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1030c	0x1030c
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1030c:	teqhi	r3, #177	; 0xb1
+0x00010310 in ?? ()
+r0             0xfffffe9a	4294966938
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x47	71
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10310	0x10310
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10310:	andne	r0, r7, #101	; 0x65
+0x00010314 in ?? ()
+r0             0x40	64
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x47	71
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0xffffff61	4294967137
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10314	0x10314
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10314:	andvc	r10, r10, #82	; 0x52
+0x00010318 in ?? ()
+r0             0x40	64
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x47	71
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10318	0x10318
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10318:	eorpl	r6, r2, r8, lsl r9
+0x0001031c in ?? ()
+r0             0x40	64
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x47	71
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1031c	0x1031c
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1031c:	teq	r9, r0, lsl r6
+0x00010320 in ?? ()
+r0             0x40	64
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x47	71
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10320	0x10320
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10320:	mvneq	r8, r5, lsl r2
+0x00010324 in ?? ()
+r0             0x40	64
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x47	71
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10324	0x10324
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10324:	rsbcs	r6, r6, r7, lsr r3
+0x00010328 in ?? ()
+r0             0x40	64
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x47	71
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10328	0x10328
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10328:	subne	r0, r9, #28
+0x0001032c in ?? ()
+r0             0x56	86
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x47	71
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1032c	0x1032c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1032c:	teqmi	r10, r12, asr r6
+0x00010330 in ?? ()
+r0             0x56	86
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x47	71
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10330	0x10330
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10330:	cmnge	r11, r4, ror r5
+0x00010334 in ?? ()
+r0             0x56	86
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0x47	71
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10334	0x10334
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10334:	orrne	r6, r7, #57	; 0x39
+0x00010338 in ?? ()
+r0             0x56	86
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xffffff1f	4294967071
+r6             0xf9	249
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10338	0x10338
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10338:	eorhi	r5, r6, r9, lsr r1
+0x0001033c in ?? ()
+r0             0x56	86
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xf9	249
+r6             0xf9	249
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1033c	0x1033c
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x1033c:	orrgt	r6, r12, r11, asr r7
+0x00010340 in ?? ()
+r0             0x56	86
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xf9	249
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10340	0x10340
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10340:	eoreq	r8, r8, r3, asr r5
+0x00010344 in ?? ()
+r0             0x56	86
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xf9	249
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10344	0x10344
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10344:	rscvc	r0, r7, #168	; 0xa8
+0x00010348 in ?? ()
+r0             0xffffffd0	4294967248
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xf9	249
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10348	0x10348
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10348:	cmpeq	r5, r2, ror r12
+0x0001034c in ?? ()
+r0             0xffffffd0	4294967248
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xf9	249
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1034c	0x1034c
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x1034c:	suble	r0, r8, r12, ror r4
+0x00010350 in ?? ()
+r0             0xffffffd0	4294967248
+r1             0xc2	194
+r2             0x8000006a	2147483754
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xf9	249
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10350	0x10350
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10350:	adcgt	r2, r3, r6, ror r8
+0x00010354 in ?? ()
+r0             0xffffffd0	4294967248
+r1             0xc2	194
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0xf9	249
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10354	0x10354
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10354:	bic	r5, r12, r5, asr r12
+0x00010358 in ?? ()
+r0             0xffffffd0	4294967248
+r1             0xc2	194
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10358	0x10358
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10358:	orrle	r4, r4, r10, asr r0
+0x0001035c in ?? ()
+r0             0xffffffd0	4294967248
+r1             0xc2	194
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1035c	0x1035c
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x1035c:	adcge	r1, r10, #45	; 0x2d
+0x00010360 in ?? ()
+r0             0xffffffd0	4294967248
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10360	0x10360
+cpsr           0x20000010	536870928
+fpscr          0x0	0
+=> 0x10360:	cmphi	r9, #164	; 0xa4
+0x00010364 in ?? ()
+r0             0xffffffd0	4294967248
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10364	0x10364
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10364:	teq	r8, #7
+0x00010368 in ?? ()
+r0             0xffffffd0	4294967248
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x72	114
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10368	0x10368
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10368:	rsbls	r9, r5, r2, lsl r5
+0x0001036c in ?? ()
+r0             0xffffffd0	4294967248
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1036c	0x1036c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1036c:	addvs	r1, r9, r12, lsr r3
+0x00010370 in ?? ()
+r0             0xffffffd0	4294967248
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10370	0x10370
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10370:	orrge	r0, r11, #178	; 0xb2
+0x00010374 in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10374	0x10374
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10374:	lsrle	r1, r3, r0
+0x00010378 in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10378	0x10378
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10378:	orrlt	r1, r0, r6, ror r4
+0x0001037c in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x40	64
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1037c	0x1037c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1037c:	sbcne	r10, r4, r10, asr r12
+0x00010380 in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10380	0x10380
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10380:	cmple	r1, r2, lsr r7
+0x00010384 in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10384	0x10384
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10384:	orrle	r2, r7, #4
+0x00010388 in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xd8	216
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10388	0x10388
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10388:	add	r7, r8, #25
+0x0001038c in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0x7fffff96	2147483542
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xa8	168
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1038c	0x1038c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1038c:	rsbvc	r3, r0, r4, asr r6
+0x00010390 in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0x1	1
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xa8	168
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10390	0x10390
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10390:	subcc	r3, r7, r7, ror r12
+0x00010394 in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0xfffd60a8	4294795432
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xa8	168
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10394	0x10394
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10394:	addlt	r8, r8, r9, asr r4
+0x00010398 in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0xfffd60a8	4294795432
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xa8	168
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x10398	0x10398
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x10398:	adchi	r9, r10, r6, lsl r6
+0x0001039c in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0xfffd60a8	4294795432
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xa8	168
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x1039c	0x1039c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1039c:	adcpl	r3, r7, #53	; 0x35
+0x000103a0 in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0xdd	221
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xa8	168
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x103a0	0x103a0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x103a0:	tstle	r3, r11, lsr r11
+0x000103a4 in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0xdd	221
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xa8	168
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x103a4	0x103a4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x103a4:	suble	r4, r6, #123	; 0x7b
+0x000103a8 in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0xdd	221
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xa8	168
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x103a8	0x103a8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x103a8:	teqcc	r1, #40	; 0x28
+0x000103ac in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0xdd	221
+r4             0x61	97
+r5             0x7fffff96	2147483542
+r6             0xffffffff	4294967295
+r7             0xa8	168
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x103ac	0x103ac
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x103ac:	sbcpl	r5, r1, r8, lsr r8
+0x000103b0 in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0xdd	221
+r4             0x61	97
+r5             0x6d	109
+r6             0xffffffff	4294967295
+r7             0xa8	168
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x103b0	0x103b0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x103b0:	orrlt	r11, r2, r6, lsr r4
+0x000103b4 in ?? ()
+r0             0xffffffff	4294967295
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0xdd	221
+r4             0x61	97
+r5             0x6d	109
+r6             0xffffffff	4294967295
+r7             0xa8	168
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x103b4	0x103b4
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x103b4:	sbcne	r0, r9, r1, ror r1
+0x000103b8 in ?? ()
+r0             0x7e480069	2118647913
+r1             0x6e	110
+r2             0x7fffff96	2147483542
+r3             0xdd	221
+r4             0x61	97
+r5             0x6d	109
+r6             0xffffffff	4294967295
+r7             0xa8	168
+r8             0x8f	143
+r9             0x8000006a	2147483754
+r10            0x60	96
+r11            0xffffff6f	4294967151
+r12            0x7fffff96	2147483542
+sp             0xbefff260	0xbefff260
+lr             0x0	0
+pc             0x103b8	0x103b8
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x103b8:	andeq	r1, r0, r1, asr #20
