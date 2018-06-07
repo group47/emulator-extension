@@ -74,48 +74,50 @@ struct ThumbInstruction ThumbFromRaw(union RawThumbInstruction instruction) {
     struct ThumbInstruction thumbInstruction;
     thumbInstruction.rawThumbInstruction = instruction;
 
-    if (instruction.moveShiftedRegister.filler000 == 0b000) {
-        thumbInstruction.type = THUMB_MOVE_SHIFTED_REGISTER;
-    } else if (instruction.addSubtractInstruction.shouldBe0b00011 == 0b00011) {
-        thumbInstruction.type = THUMB_ADD_SUBTRACT;
-    } else if (instruction.aluOperation.filler010000 == 0b01000) {
-        thumbInstruction.type = THUMB_ALU_OPERATION;
-    } else if (instruction.moveCompareAddSubtract.filler001 == 0b001) {
-        thumbInstruction.type = THUMB_MOVE_COMPARE_ADD_SUBTRACT;
-    } else if (instruction.hiRegisterOperationsBranchExchangeInstruction.filler010001_position15 == 0b000) {
-        thumbInstruction.type = THUMB_HI_REGISTER_OPERATIONS_BRANCH_EXCHANGE;
-    } else if (instruction.pcRelativeLoadInstruction.filler01001_position15 == 0b01001) {
-        thumbInstruction.type = THUMB_PC_RELATIVE_LOAD;
+    //do not touch the ordering of if/else unless you know whqat you are doing
+
+    if (instruction.longBranchWithLinkInstruction.filler1111 == 0b1111) {
+        thumbInstruction.type = THUMB_LONG_BRANCH_WITH_LINK;
+    } else if (instruction.unconditionalBranchInstruction.filler11100 == 0b11100) {
+        thumbInstruction.type = THUMB_UNCONDITIONAL_BRANCH;
+    } else if (instruction.conditionalBranchInstruction.filler1101 == 0b1101) {
+        thumbInstruction.type = THUMB_CONDITIONAL_BRANCH;
+        if (instruction.softwareInterruptThumb.filler11011111 == 0b11011111) {
+            thumbInstruction.type = THUMB_SOFTWARE_INTERRUPT_THUMB;
+        }
+    } else if (instruction.multipleLoadStoreInstruction.filler1100 == 0b1100) {
+        thumbInstruction.type = THUMB_MULTIPLE_LOAD_STORE;
+    } else if (instruction.pushPopRegistersInstruction.filler10_position10 == 0b10 &&
+               instruction.pushPopRegistersInstruction.filler1011_position15 == 0b1011) {
+        thumbInstruction.type = THUMB_PUSH_POP_REGISTERS;
+    } else if (instruction.addOffsetToStackPointerInstruction.filler1011_0000 == 0b10110000) {
+        thumbInstruction.type = THUMB_ADD_OFFSET_TO_STACK_POINTER;
+    } else if (instruction.loadAddressInstruction.filler1010 == 0b1010) {
+        thumbInstruction.type = THUMB_LOAD_ADDRESS;
+    } else if (instruction.spRelativeLoadStoreInstruction.filler1001 == 0b1001) {
+        thumbInstruction.type = THUMB_SP_RELATIVE_LOAD_STORE;
+    } else if (instruction.loadStoreHalfWord.filler1000 == 0b100) {
+        thumbInstruction.type = THUMB_LOAD_STORE_HALFWORD;
+    } else if (instruction.loadStoreWithImmediateOffsetInstruction.filler011 == 0b011) {
+        thumbInstruction.type = THUMB_LOAD_STORE_WITH_IMMEDIATE;
+    } else if (instruction.loadStoreSignExtendedByteHalfword.filler1 == 0b1 &&
+               instruction.loadStoreSignExtendedByteHalfword.filler1010 == 0b1010) {
+        thumbInstruction.type = THUMB_LOAD_STORE_SIGN_EXTENDED_BYTE_HALFWORD;
     } else if (instruction.loadStoreRegisterOffset.filler0 == 0b0 &&
                instruction.loadStoreRegisterOffset.filler0101 == 0b0101) {
         thumbInstruction.type = THUMB_LOAD_STORE_REGISTER_OFFSET;
-    } else if (instruction.loadStoreSignExtendedByteHalfword.filler1 == 0b1 &&
-            instruction.loadStoreSignExtendedByteHalfword.filler1010 == 0b1010) {
-        thumbInstruction.type = THUMB_LOAD_STORE_SIGN_EXTENDED_BYTE_HALFWORD;
-    } else if (instruction.loadStoreWithImmediateOffsetInstruction.filler011 == 0b011) {
-        thumbInstruction.type = THUMB_LOAD_STORE_WITH_IMMEDIATE;
-    } else if (instruction.loadStoreHalfWord.filler1000 == 0b100) {
-        thumbInstruction.type = THUMB_LOAD_STORE_HALFWORD;
-    } else if (instruction.spRelativeLoadStoreInstruction.filler1001 == 0b1001) {
-        thumbInstruction.type = THUMB_SP_RELATIVE_LOAD_STORE;
-    } else if (instruction.loadAddressInstruction.filler1010 == 0b1010) {
-        thumbInstruction.type = THUMB_LOAD_ADDRESS;
-    } else if (instruction.addOffsetToStackPointerInstruction.filler1011_0000 == 0b10110000) {
-        thumbInstruction.type = THUMB_ADD_OFFSET_TO_STACK_POINTER;
-    } else if (instruction.pushPopRegistersInstruction.filler10_position10 == 0b10) {
-        thumbInstruction.type = THUMB_PUSH_POP_REGISTERS;
-    } else if (instruction.multipleLoadStoreInstruction.filler1100 == 0b1100) {
-        thumbInstruction.type = THUMB_MULTIPLE_LOAD_STORE;
-    } else if (instruction.conditionalBranchInstruction.filler1101 == 0b1101) {
-        thumbInstruction.type = THUMB_CONDITIONAL_BRANCH;
-    } else if (instruction.softwareInterruptThumb.filler11011111 == 0b11011111) {
-        thumbInstruction.type = THUMB_SOFTWARE_INTERRUPT_THUMB;
-    } else if (instruction.unconditionalBranchInstruction.filler11100 == 0b11100) {
-        thumbInstruction.type = THUMB_UNCONDITIONAL_BRANCH;
-    } else if (instruction.longBranchWithLinkInstruction.filler1111 == 0b1111) {
-        thumbInstruction.type = THUMB_LONG_BRANCH_WITH_LINK;
-    } else {
-        assert(false);
+    } else if (instruction.pcRelativeLoadInstruction.filler01001_position15 == 0b01001) {
+        thumbInstruction.type = THUMB_PC_RELATIVE_LOAD;
+    } else if (instruction.hiRegisterOperationsBranchExchangeInstruction.filler010001_position15 == 0b000) {
+        thumbInstruction.type = THUMB_HI_REGISTER_OPERATIONS_BRANCH_EXCHANGE;
+    } else if (instruction.aluOperation.filler010000 == 0b10000) {
+        thumbInstruction.type = THUMB_ALU_OPERATION;
+    } else if (instruction.moveCompareAddSubtract.filler001 == 0b001) {
+        thumbInstruction.type = THUMB_MOVE_COMPARE_ADD_SUBTRACT;
+    } else if (instruction.addSubtractInstruction.shouldBe0b00011 == 0b00011) {
+        thumbInstruction.type = THUMB_ADD_SUBTRACT;
+    } else if (instruction.moveShiftedRegister.filler000 == 0b000) {
+        thumbInstruction.type = THUMB_MOVE_SHIFTED_REGISTER;
     }
 
     return thumbInstruction;
