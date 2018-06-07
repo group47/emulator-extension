@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #/homes/fpn17/CLionProjects/arm11_47/src/cmake-build-debug/emulate_extension
 
 cd test_suite/general_tests;
