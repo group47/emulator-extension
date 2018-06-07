@@ -50,6 +50,8 @@ Word get_set_word_from_register(RegisterAddress address,bool set, Word val) {
                     return get_set_register((Word *)&state.CPSR,set,val);
                 }else if(address == PC_ADDRESS){
                     return get_set_register(&state.general_registers[address],set,val);
+                } else if (address == LR_ADDRESS) {
+                    return get_set_register(&state.general_registers[address], set, val);
                 }else{
                     assert(false);
                 }
