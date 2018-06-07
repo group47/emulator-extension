@@ -5,10 +5,10 @@
 #include <stdio.h>
 #include <memory.h>
 #include <endian.h>
-#include "emulator_state.h"
 #include "../instructions/thumb/thumb_instruction.h"
 #include "exception.h"
 #include "../util/entry_point.h"
+#include "emulator_state.h"
 
 static struct CPUState state;
 
@@ -49,7 +49,6 @@ Word get_set_word_from_register(RegisterAddress address,bool set, Word val) {
                     assert(!set);
                     return get_set_register((Word *)&state.CPSR,set,val);
                 }else if(address == PC_ADDRESS){
-                    assert(!set);
                     return get_set_register(&state.general_registers[address],set,val);
                 }else{
                     assert(false);
@@ -252,11 +251,14 @@ void setSPSR(struct CPSR_Struct toSet) {
     }
 }
 
-void init_cpu(void) {
+void init_cpu(enum CommandLineFlags flags) {
     memset(&state,0,sizeof(struct CPUState));
     state.decoded_valid = false;
     state.fetched_valid = false;
     state.CPSR.M = usr;
+    if (flags & USE_THUMB) {
+        state.CPSR.T = true;
+    }
 }
 
 union RawArmInstruction get_fetched_arm() {
@@ -281,8 +283,12 @@ bool fetched_valid() {
     return state.fetched_valid && !state.fetched_prefetch_aborted;
 }
 
+bool decoded_valid() {
+    return state.decoded_valid && !state.decoded_prefetch_aborted;
+}
+
 bool prefetch_aborted() {
-    return state.fetched_prefetch_aborted;
+    return state.decoded_prefetch_aborted;
 }
 
 void transfer_fetched_to_decoded_and_load_fetched() {
@@ -321,25 +327,50 @@ void transfer_fetched_to_decoded_and_load_fetched() {
     }
 }
 
-void print_registers() {
-    for (uint8_t i = 0; i < 10; ++i) {
-        fprintf(get_logfile(), "r%u             0x%x  %u\n", i, get_word_from_register(i), get_word_from_register(i));
+void print_registers(enum CommandLineFlags flags) {
+    if (flags & USE_THUMB) {
+        for (uint8_t i = 0; i < 8; ++i) {
+            fprintf(get_logfile(), "r%u             0x%x  %u\n", i, get_word_from_register(i),
+                    get_word_from_register(i));
+        }
+//        for (uint8_t i = 10; i < 13; ++i) {
+//            fprintf(get_logfile(), "r%u            0x%x  %u\n", i, get_word_from_register(i), get_word_from_register(i));
+//        }
+//        fprintf(get_logfile(),"sp             0xbefff2a0  0xbefff2a0\n",get_word_from_register(SP_ADDRESS),get_word_from_register(SP_ADDRESS));
+//        fprintf(get_logfile(), "lr             0x%x  %u\n", get_word_from_register(LR_ADDRESS),
+//                get_word_from_register(LR_ADDRESS));
+        fprintf(get_logfile(), "pc             0x%x  %u\n", get_word_from_register(PC_ADDRESS),
+                get_word_from_register(PC_ADDRESS));
+        fprintf(get_logfile(), "cpsr           0x%x  %d\n", getCPSR(), getCPSR());
+        if (get_operating_mode() == usr || get_operating_mode() == sys) {
+            fprintf(get_logfile(), "fpscr          0x%o  %x\n", 0, 0);
+        } else {
+            fprintf(get_logfile(), "fpscr          0x%o  %x\n", get_spsr(), get_spsr());
+        }
+        fprintf(get_logfile(), "=> \n\n");
+    } else {
+        for (uint8_t i = 0; i < 10; ++i) {
+            fprintf(get_logfile(), "r%u             0x%x  %u\n", i, get_word_from_register(i),
+                    get_word_from_register(i));
+        }
+        for (uint8_t i = 10; i < 13; ++i) {
+            fprintf(get_logfile(), "r%u            0x%x  %u\n", i, get_word_from_register(i),
+                    get_word_from_register(i));
+        }
+        fprintf(get_logfile(), "sp             0xbefff2a0  0xbefff2a0\n", get_word_from_register(SP_ADDRESS),
+                get_word_from_register(SP_ADDRESS));
+        fprintf(get_logfile(), "lr             0x%x  %u\n", get_word_from_register(LR_ADDRESS),
+                get_word_from_register(LR_ADDRESS));
+        fprintf(get_logfile(), "pc             0x%x  %u\n", get_word_from_register(PC_ADDRESS),
+                get_word_from_register(PC_ADDRESS));
+        fprintf(get_logfile(), "cpsr           0x%x  %d\n", getCPSR(), getCPSR());
+        if (get_operating_mode() == usr || get_operating_mode() == sys) {
+            fprintf(get_logfile(), "fpscr          0x%o  %x\n", 0, 0);
+        } else {
+            fprintf(get_logfile(), "fpscr          0x%o  %x\n", get_spsr(), get_spsr());
+        }
+        fprintf(get_logfile(), "=> \n\n");
     }
-    for (uint8_t i = 10; i < 13; ++i) {
-        fprintf(get_logfile(), "r%u            0x%x  %u\n", i, get_word_from_register(i), get_word_from_register(i));
-    }
-    fprintf(get_logfile(),"sp             0xbefff2a0  0xbefff2a0\n",get_word_from_register(SP_ADDRESS),get_word_from_register(SP_ADDRESS));
-    fprintf(get_logfile(), "lr             0x%x  %u\n", get_word_from_register(LR_ADDRESS),
-            get_word_from_register(LR_ADDRESS));
-    fprintf(get_logfile(), "pc             0x%x  %u\n", get_word_from_register(PC_ADDRESS),
-            get_word_from_register(PC_ADDRESS));
-    fprintf(get_logfile(),"cpsr           0x%x  %d\n",getCPSR(),getCPSR());
-    if(get_operating_mode() == usr || get_operating_mode() == sys){
-        fprintf(get_logfile(),"fpscr          0x%o  %x\n",0,0);
-    }else{
-        fprintf(get_logfile(),"fpscr          0x%o  %x\n",get_spsr(),get_spsr());
-    }
-    fprintf(get_logfile(), "=> \n\n");
 
 }
 

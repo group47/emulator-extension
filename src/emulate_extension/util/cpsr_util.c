@@ -3,8 +3,8 @@
 //
 
 #include <assert.h>
-#include "cpsr_util.h"
 #include "../instructions/thumb/add_subtract.h"
+#include "cpsr_util.h"
 
 
 bool should_execute(enum Cond cond){

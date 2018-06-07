@@ -12,6 +12,7 @@
 static struct Memory memory;
 
 
+void print_memory();
 
 void init_memory(size_t size, enum MemoryFormat mode){
     memory.size = size;
@@ -180,4 +181,15 @@ Word half_word_to_word_sign_extend(HalfWord halfWord) {
 
 bool memory_access_will_fail(ByteAddress memoryAddress) {
     return memoryAddress < 0 || memoryAddress >= memory.size;
+}
+
+void print_memory() {
+//    for (size_t i = 0; i < 16 * sizeof(char); ++i) {
+//            char* str = malloc(129*sizeof(char));
+//            str[128] = '\0';
+//            memcpy(str,&(memory.contents[128*i ]),128*sizeof(char));
+//            fprintf(stderr,"%s\n",str);
+//            free(str);
+//
+//    }
 }

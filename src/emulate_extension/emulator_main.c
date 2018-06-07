@@ -28,7 +28,11 @@ enum CommandLineFlags parseCommandLine(uint32_t argc, const char **argv){
             logfile_path = arg +  sizeof("--logfile=")/sizeof(char) - 1;
         } else if(0 == strcmp(arg,"-d") || 0 == strcmp(arg,"--disassemble")){
             flags |= DISASSEMBLE;
-        } else{
+        } else if (0 == strcmp(arg, "-m")) {
+            flags |= MEMORY;
+        } else if (0 == strcmp(arg, "--thumb")) {
+            flags |= USE_THUMB;
+        } else {
             flags |= INVALID;
             invalid_arg = arg;
         }
