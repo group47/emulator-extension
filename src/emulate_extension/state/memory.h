@@ -49,6 +49,7 @@ Word half_word_to_word_sign_extend(HalfWord halfWord);
 void set_mode(enum MemoryFormat mode);
 void deallocate_memory();
 
+void print_memory();
 
 bool memory_access_will_fail(ByteAddress memoryAddress);
 

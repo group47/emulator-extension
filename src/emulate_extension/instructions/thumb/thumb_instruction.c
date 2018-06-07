@@ -22,7 +22,6 @@
 #include "software_interrupt_thumb.h"
 #include "SP_relative_load_store.h"
 #include "unconditional_branch.h"
-#include "load_store_halfword.h"
 #include "thumb_instruction.h"
 
 enum ExecutionExitCode execute_thumb_instruction(struct ThumbInstruction thumbInstruction) {
@@ -79,16 +78,16 @@ struct ThumbInstruction ThumbFromRaw(union RawThumbInstruction instruction) {
         thumbInstruction.type = THUMB_MOVE_SHIFTED_REGISTER;
     } else if (instruction.addSubtractInstruction.shouldBe0b00011 == 0b00011) {
         thumbInstruction.type = THUMB_ADD_SUBTRACT;
-    } else if (instruction.moveCompareAddSubtract.filler001 == 0b001) {
-        thumbInstruction.type = THUMB_MOVE_COMPARE_ADD_SUBTRACT;
     } else if (instruction.aluOperation.filler010000 == 0b01000) {
         thumbInstruction.type = THUMB_ALU_OPERATION;
+    } else if (instruction.moveCompareAddSubtract.filler001 == 0b001) {
+        thumbInstruction.type = THUMB_MOVE_COMPARE_ADD_SUBTRACT;
     } else if (instruction.hiRegisterOperationsBranchExchangeInstruction.filler010001_position15 == 0b000) {
         thumbInstruction.type = THUMB_HI_REGISTER_OPERATIONS_BRANCH_EXCHANGE;
     } else if (instruction.pcRelativeLoadInstruction.filler01001_position15 == 0b01001) {
         thumbInstruction.type = THUMB_PC_RELATIVE_LOAD;
     } else if (instruction.loadStoreRegisterOffset.filler0 == 0b0 &&
-            instruction.loadStoreRegisterOffset.filler0101 == 0b0101) {
+               instruction.loadStoreRegisterOffset.filler0101 == 0b0101) {
         thumbInstruction.type = THUMB_LOAD_STORE_REGISTER_OFFSET;
     } else if (instruction.loadStoreSignExtendedByteHalfword.filler1 == 0b1 &&
             instruction.loadStoreSignExtendedByteHalfword.filler1010 == 0b1010) {

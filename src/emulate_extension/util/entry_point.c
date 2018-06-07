@@ -12,7 +12,7 @@ static FILE* logfile;
 
 
 void main_emulation_entry_point(enum CommandLineFlags flags, FILE* fp,FILE* logfile_) {
-    init_cpu();
+    init_cpu(flags);
     init_memory(1024*1024*1024*sizeof(unsigned char),LITTLE_ENDIAN_);
     Word word;
     ByteAddress i = 0;

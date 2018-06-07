@@ -128,7 +128,7 @@ void setCPSR(struct CPSR_Struct toSet);
 
 void setSPSR(struct CPSR_Struct toSet);
 
-void init_cpu(void);
+void init_cpu(enum CommandLineFlags);
 
 union RawArmInstruction get_fetched_arm();
 
@@ -144,7 +144,7 @@ bool decoded_valid();
 
 void transfer_fetched_to_decoded_and_load_fetched();
 
-void print_registers();
+void print_registers(enum CommandLineFlags);
 
 void invalidate_pipeline();
 

@@ -14,7 +14,7 @@ void main_loop(enum CommandLineFlags flags){
     __uint128_t master_instruction_counter = 0;// this integer size is a bit excessive since it would take more than a century to overflow a uint64_t.
     while(true){
 
-        if(fetched_valid()){
+        if (decoded_valid()) {
             union RawArmInstruction instruction = get_decoded_arm();
             if((flags & TERMINATE_ON__ZERO) && ((*(uint32_t *)&instruction) == 0)){
                 return;
@@ -48,8 +48,13 @@ void main_loop(enum CommandLineFlags flags){
         transfer_fetched_to_decoded_and_load_fetched();
 
         if(flags & DEBUG_PRINT_REGISTER){
-            print_registers();
+            print_registers(flags);
+        }
+
+        if (flags & MEMORY) {
+            print_memory();
         }
     }
 
 }
+
