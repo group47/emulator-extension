@@ -437,3 +437,7 @@ void invalidate_pipeline() {
     state.fetched_prefetch_aborted = false;
     state.decoded_prefetch_aborted = false;
 }
+
+struct SystemControlCoprocessor* get_system_control_coprocessor() {
+    return &state.systemControlCoprocessor;
+}

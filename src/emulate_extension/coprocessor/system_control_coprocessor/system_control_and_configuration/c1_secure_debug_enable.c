@@ -3,3 +3,8 @@
 //
 
 #include "c1_secure_debug_enable.h"
+
+
+enum ExecutionExitCode execute_debug_enable_register(struct CoprocessorRegisterTransferInstruction instruction) {
+    return OK;
+}

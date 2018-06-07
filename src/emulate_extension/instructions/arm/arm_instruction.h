@@ -26,7 +26,7 @@ union RawArmInstruction {
     struct BranchAndExchangeInstruction branchAndExchangeInstruction;
     struct CoprocessorDataOperationsInstruction coprocessorDataOperationsInstruction;
     struct CoprocessorDataTransfersInstruction coprocessorDataTransfersInstruction;
-    struct CoProcessorRegisterTransfer coProcessorRegisterTransfer;
+    struct CoprocessorRegisterTransferInstruction coProcessorRegisterTransfer;
     struct DataProcessingInstruction dataProcessingInstruction;
     struct HalfWordAndSignedDataTransferRegisterOffset halfWordAndSignedDataTransferRegisterOffset;
     struct HalfWordAndSignedDataTransferImmediateOffset halfWordAndSignedDataTransferImmediateOffset;
