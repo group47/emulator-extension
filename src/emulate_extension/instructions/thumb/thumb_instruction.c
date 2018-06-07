@@ -96,7 +96,7 @@ struct ThumbInstruction ThumbFromRaw(union RawThumbInstruction instruction) {
         thumbInstruction.type = THUMB_LOAD_ADDRESS;
     } else if (instruction.spRelativeLoadStoreInstruction.filler1001 == 0b1001) {
         thumbInstruction.type = THUMB_SP_RELATIVE_LOAD_STORE;
-    } else if (instruction.loadStoreHalfWord.filler1000 == 0b100) {
+    } else if (instruction.loadStoreHalfWord.filler1000 == 0b1000) {
         thumbInstruction.type = THUMB_LOAD_STORE_HALFWORD;
     } else if (instruction.loadStoreWithImmediateOffsetInstruction.filler011 == 0b011) {
         thumbInstruction.type = THUMB_LOAD_STORE_WITH_IMMEDIATE;
@@ -108,7 +108,7 @@ struct ThumbInstruction ThumbFromRaw(union RawThumbInstruction instruction) {
         thumbInstruction.type = THUMB_LOAD_STORE_REGISTER_OFFSET;
     } else if (instruction.pcRelativeLoadInstruction.filler01001_position15 == 0b01001) {
         thumbInstruction.type = THUMB_PC_RELATIVE_LOAD;
-    } else if (instruction.hiRegisterOperationsBranchExchangeInstruction.filler010001_position15 == 0b000) {
+    } else if (instruction.hiRegisterOperationsBranchExchangeInstruction.filler010001_position15 == 0b010001) {
         thumbInstruction.type = THUMB_HI_REGISTER_OPERATIONS_BRANCH_EXCHANGE;
     } else if (instruction.aluOperation.filler010000 == 0b10000) {
         thumbInstruction.type = THUMB_ALU_OPERATION;

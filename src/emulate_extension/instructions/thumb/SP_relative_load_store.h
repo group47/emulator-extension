@@ -11,10 +11,10 @@
 #include "../../basic_typedefs.h"
 
 struct SPRelativeLoadStoreInstruction {
-  uint8_t filler1001     : 4; //1001
-  bool loadMemory    : 1;
-  RegisterAddress Rd : 3;
-  uint8_t word       : 8;
+    uint8_t word       : 8;
+    RegisterAddress Rd : 3;
+    bool loadMemory    : 1;
+    uint8_t filler1001     : 4; //1001
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_SP_relative_load_store(const struct SPRelativeLoadStoreInstruction);

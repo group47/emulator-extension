@@ -9,8 +9,8 @@
 #include "../../util/common_enums.h"
 
 struct UnconditionalBranchInstruction {
-  uint8_t filler11100 : 5; //11100
   int16_t offset : 11;
+    uint8_t filler11100 : 5; //11100
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_unconditional_branch(const struct UnconditionalBranchInstruction);

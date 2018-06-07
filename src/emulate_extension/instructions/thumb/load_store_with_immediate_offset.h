@@ -10,12 +10,12 @@
 #include "../../util/common_enums.h"
 
 struct LoadStoreWithImmediateOffsetInstruction {
-  uint8_t filler011     : 3; //011
-  bool byteTransfer  : 1;
-  bool loadMemory    : 1;
-  uint8_t offset     : 5;
-  RegisterAddress Rb : 3;
-  RegisterAddress Rd : 3;
+    RegisterAddress Rd : 3;
+    RegisterAddress Rb : 3;
+    uint8_t offset     : 5;
+    bool loadMemory    : 1;
+    bool byteTransfer  : 1;
+    uint8_t filler011     : 3; //011
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_load_store_with_immeditate_offset(const struct LoadStoreWithImmediateOffsetInstruction);

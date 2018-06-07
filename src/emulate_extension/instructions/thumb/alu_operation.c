@@ -22,7 +22,7 @@ bool is_logical_thumb(enum ThumbALUOpCode op){
 
 
 enum ExecutionExitCode execute_instruction_alu_operation(struct ALUOperation instruction){
-    assert(instruction.filler010000 == 0b01000);
+    assert(instruction.filler010000 == 0b10000);
     bool overflow_occurred = false;
     bool borrow_occurred = false;
 
