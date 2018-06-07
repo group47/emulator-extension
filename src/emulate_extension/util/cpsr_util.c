@@ -2,7 +2,6 @@
 // Created by francis on 6/2/18.
 //
 
-#include <assert.h>
 #include "../instructions/thumb/add_subtract.h"
 #include "cpsr_util.h"
 
@@ -52,11 +51,13 @@ void high_level_set_CPSR_thumb_add_subtract(const struct AddSubtractInstruction 
   return high_level_set_CPSR(true, true, instruction.op == ADD, false, borrow, overflow, computation_res, shiftCarryOut);
 }
 
-void high_level_set_CPSR(bool set_condition_codes,bool is_arithmetic,bool is_add,bool is_logical,
-            bool borrow,
-            bool overflow,
-            uint32_t computation_res,
-            bool shiftCarryOut) {
+//0b10000000000000000000000000110000
+//0b10100000000000000000000000110000
+void high_level_set_CPSR(bool set_condition_codes, bool is_arithmetic, bool is_add, bool is_logical,
+                         bool borrow,
+                         bool overflow,
+                         uint32_t computation_res,
+                         bool shiftCarryOut) {
   if (set_condition_codes) {
     struct CPSR_Struct final_res = getCPSR();
     if (is_arithmetic) {
@@ -69,7 +70,7 @@ void high_level_set_CPSR(bool set_condition_codes,bool is_arithmetic,bool is_add
     } else if (is_logical) {
       final_res.C = shiftCarryOut;
     } else {
-      assert(false);
+      //this is multiplication.
     }
 
     final_res.Z = computation_res == 0;

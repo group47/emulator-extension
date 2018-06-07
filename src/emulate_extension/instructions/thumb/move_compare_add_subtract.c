@@ -31,10 +31,10 @@ enum ExecutionExitCode execute_instruction_move_compare_add_subtract(struct Move
             break;
         case ADD_MOVECOMPAREADDSUBTRACTOPCODE:
             computation_res = get_word_from_register(instruction.Rd) + instruction.offset8;
-            set_word_in_register(instruction.Rd,computation_res);
             if(does_overflow_occur(get_word_from_register(instruction.Rd),instruction.offset8)){
                 overflow_occurred = true;
             }
+            set_word_in_register(instruction.Rd, computation_res);
             break;
         default: assert(false);
     }

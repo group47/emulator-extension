@@ -46,4 +46,12 @@ int get_operand2(uint16_t secondOperand,
                  uint32_t *operand2_val,
                  bool *carry_out);
 
+void operand_two_lsl(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amount, bool shiftByRegister);
+
+void operand_two_lsr(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amount, bool shiftByRegister);
+
+void operand_two_asr(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amount, bool shiftByRegister);
+
+void operand_two_ror(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amount, bool shiftByRegister);
+
 #endif //SRC_OPERAND_TWO_UTIL_H

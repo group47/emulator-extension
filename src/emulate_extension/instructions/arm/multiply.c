@@ -38,11 +38,13 @@ enum ExecutionExitCode execute_instruction_multiply(const struct MultiplyInstruc
     struct CPSR_Struct CSPR = getCPSR();
     CSPR.Z = result == 0;
     CSPR.N = result < 0;
+      setCPSR(CSPR);
   }
 
   const uint32_t final_res = (uint32_t) (result & 0xffffffff);
   set_word_in_register(instruction.Rd, final_res);
 
-  return OK;
+
+    return OK;
 
 }

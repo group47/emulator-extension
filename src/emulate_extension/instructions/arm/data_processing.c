@@ -96,7 +96,7 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
             set_word_in_register(instruction.Rd,computation_res);
             break;
         case sbc:
-            computation_res = rnVal - operand2Val + carry - 1;
+            computation_res = rnVal - operand2Val + carry - 1;//todo fix borrow
             if(does_borrow_occur(rnVal + carry, operand2Val + 1)){
                 borrow_occurred = true;
             }
