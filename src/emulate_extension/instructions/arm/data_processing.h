@@ -31,18 +31,17 @@ enum OpCode {
 };
 
 struct DataProcessingInstruction {
-  uint16_t secondOperand : 12;
-  RegisterAddress Rd:4;
-  RegisterAddress Rn: 4;
-  bool setConditionCodes: 1;
-  enum OpCode opcode : 4;//todo not all opcode done, needs adding
-  bool immediateOperand: 1;
-  uint8_t filler: 2;//The value of the filler should be 0b00
-  enum Cond cond : 4;
+    uint16_t secondOperand : 12;
+    RegisterAddress Rd:4;
+    RegisterAddress Rn: 4;
+    bool setConditionCodes: 1;
+    enum OpCode opcode : 4;//todo not all opcode done, needs adding
+    bool immediateOperand: 1;
+    uint8_t filler: 2;//The value of the filler should be 0b00
+    enum Cond cond : 4;
 }__attribute__((packed));//the attribute is required for the compiler to properly place data types
 
 enum ExecutionExitCode execute_instruction_data_processing(struct DataProcessingInstruction);
-
 
 
 #endif //SRC_DATA_PROCESSING_H

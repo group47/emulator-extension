@@ -9,10 +9,10 @@
 #include "../../util/operand_two_util.h"
 
 
-enum ExecutionExitCode execute_instruction_move_shifted_register(struct MoveShiftedRegister instruction){
+enum ExecutionExitCode execute_instruction_move_shifted_register(struct MoveShiftedRegister instruction) {
     struct DataProcessingInstruction armProxy;
     struct ImmediateFalseShiftByRegisterFalse operand2;
-    switch(instruction.Op){
+    switch (instruction.Op) {
         case THUMB_SHIFTED_REGISTER_LSL:
             operand2.shift_type = lsl;
             break;

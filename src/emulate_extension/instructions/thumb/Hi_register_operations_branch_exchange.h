@@ -18,5 +18,7 @@ struct HiRegisterOperationsBranchExchangeInstruction {
     uint8_t filler010001_position15 : 6;
 };
 
-enum ExecutionExitCode execute_instruction_hi_register_operations_branch_exchange(struct HiRegisterOperationsBranchExchangeInstruction);
+enum ExecutionExitCode
+execute_instruction_hi_register_operations_branch_exchange(struct HiRegisterOperationsBranchExchangeInstruction);
+
 #endif //SRC_HI_REGISTER_OPERATIONS_BRANCH_EXCHANGE_H

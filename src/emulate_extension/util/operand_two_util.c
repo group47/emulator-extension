@@ -10,8 +10,6 @@
 #include "../state/emulator_state.h"
 
 
-
-
 int get_operand2(uint16_t secondOperand,
                  bool immediate,
                  bool flag,

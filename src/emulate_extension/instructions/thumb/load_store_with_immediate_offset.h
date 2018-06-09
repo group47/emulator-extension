@@ -18,7 +18,8 @@ struct LoadStoreWithImmediateOffsetInstruction {
     uint8_t filler011     : 3; //011
 }__attribute__((packed));
 
-enum ExecutionExitCode execute_instruction_load_store_with_immeditate_offset(const struct LoadStoreWithImmediateOffsetInstruction);
+enum ExecutionExitCode
+execute_instruction_load_store_with_immeditate_offset(const struct LoadStoreWithImmediateOffsetInstruction);
 
 
 #endif //SRC_LOAD_STORE_WITH_IMMEDIATE_OFFSET_H

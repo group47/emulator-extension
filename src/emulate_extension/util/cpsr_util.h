@@ -32,7 +32,9 @@ void high_level_set_CPSR_data_processing(const struct DataProcessingInstruction 
 void
 high_level_set_CPSR(bool set_condition_codes, bool is_arithmetic, bool is_add, bool is_logical, bool borrow_occurred,
                     bool overflow_occurred, bool signed_overflow, bool shiftCarryOut, uint32_t computation_res);
+
 bool is_logical(enum OpCode code);
+
 bool is_arithmetic(enum OpCode code);
 
 #endif //SRC_CPSR_UTIL_H

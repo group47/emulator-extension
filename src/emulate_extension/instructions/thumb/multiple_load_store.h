@@ -8,7 +8,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "../../basic_typedefs.h"
-struct MultipleLoadStoreInstruction{
+
+struct MultipleLoadStoreInstruction {
     uint8_t RList      : 8;
     RegisterAddress Rb : 3;
     bool loadMemory    : 1;

@@ -8,7 +8,8 @@
 #include "../../util/cpsr_util.h"
 #include "../../util/entry_point.h"
 
-enum ExecutionExitCode execute_instruction_coprocessor_data_operations(struct CoprocessorDataOperationsInstruction instruction) {
+enum ExecutionExitCode
+execute_instruction_coprocessor_data_operations(struct CoprocessorDataOperationsInstruction instruction) {
     if (!should_execute(instruction.cond)) {
         return DIDNT_EXECUTE;
     }

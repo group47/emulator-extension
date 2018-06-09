@@ -7,7 +7,8 @@
 #include "../../util/cpsr_util.h"
 
 
-enum ExecutionExitCode execute_instruction_branch_and_exchange_instruction(struct BranchAndExchangeInstruction instruction) {
+enum ExecutionExitCode
+execute_instruction_branch_and_exchange_instruction(struct BranchAndExchangeInstruction instruction) {
     if (!should_execute(instruction.cond)) {
         return DIDNT_EXECUTE;
     }
@@ -18,7 +19,6 @@ enum ExecutionExitCode execute_instruction_branch_and_exchange_instruction(struc
 
     //todo should be off by 8?
     set_word_in_register(PC_ADDRESS, get_word_from_register(instruction.Rn));
-
 
 
     if (instruction.Rn & 0x1) {

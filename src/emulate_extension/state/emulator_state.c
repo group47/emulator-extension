@@ -13,27 +13,26 @@
 static struct CPUState state;
 
 Byte get_byte_from_register(RegisterAddress address) {
-    return (Byte)get_word_from_register(address);
+    return (Byte) get_word_from_register(address);
 }
 
-Word get_set_register(Word * register_,bool set,Word val){
-    if(set){
+Word get_set_register(Word *register_, bool set, Word val) {
+    if (set) {
         *register_ = val;
         return *register_;
-    }
-    else{
+    } else {
         return *register_;
     }
 }
 
-Word get_set_word_from_register(RegisterAddress address,bool set, Word val) {
-    if(has_exceptions()){
+Word get_set_word_from_register(RegisterAddress address, bool set, Word val) {
+    if (has_exceptions()) {
         return 0;//don't allow register access if exceptions raised
     }
     RegisterAddress max_valid_register_address;
-    if(get_mode() == ARM){
+    if (get_mode() == ARM) {
         max_valid_register_address = NUM_GENERAL_PURPOSE_REGISTERS_ARM - 1;
-    }else {
+    } else {
         max_valid_register_address = NUM_GENERAL_PURPOSE_REGISTERS_THUMB - 1;
     }
     const RegisterAddress max_unbanked_address_fiq = NUM_FIQ_UNBANKED - 1;
@@ -41,51 +40,51 @@ Word get_set_word_from_register(RegisterAddress address,bool set, Word val) {
     const RegisterAddress max_banked_address_other = PC_ADDRESS - 1;
     const RegisterAddress max_unbanked_address_other = max_valid_register_address;
     Word *banked_array;
-    switch(get_operating_mode()){
+    switch (get_operating_mode()) {
         case usr:
         case sys:
-            if(address > max_valid_register_address){
-                if(address == CPSR_ADDRESS){
+            if (address > max_valid_register_address) {
+                if (address == CPSR_ADDRESS) {
                     assert(!set);
-                    return get_set_register((Word *)&state.CPSR,set,val);
-                }else if(address == PC_ADDRESS){
-                    return get_set_register(&state.general_registers[address],set,val);
+                    return get_set_register((Word *) &state.CPSR, set, val);
+                } else if (address == PC_ADDRESS) {
+                    return get_set_register(&state.general_registers[address], set, val);
                 } else if (address == LR_ADDRESS) {
                     return get_set_register(&state.general_registers[address], set, val);
-                }else{
+                } else {
                     assert(false);
                 }
-            } else{
-                return get_set_register(&state.general_registers[address],set,val);
+            } else {
+                return get_set_register(&state.general_registers[address], set, val);
             }
             break;
         case fiq:
-            if(address > max_unbanked_address_fiq ){
-                if(address <= max_banked_address_fiq ){
-                    return get_set_register(&state.fiq_banked[address - NUM_FIQ_UNBANKED],set,val);
-                }else{
-                    if(address == PC_ADDRESS){
-                        return get_set_register(&state.general_registers[address],set,val);
-                    }else if(address == CPSR_ADDRESS){
-                        return get_set_register((Word *)&state.CPSR,set,val);
-                    }else if(address == SPSR_ADDRESS){
+            if (address > max_unbanked_address_fiq) {
+                if (address <= max_banked_address_fiq) {
+                    return get_set_register(&state.fiq_banked[address - NUM_FIQ_UNBANKED], set, val);
+                } else {
+                    if (address == PC_ADDRESS) {
+                        return get_set_register(&state.general_registers[address], set, val);
+                    } else if (address == CPSR_ADDRESS) {
+                        return get_set_register((Word *) &state.CPSR, set, val);
+                    } else if (address == SPSR_ADDRESS) {
                         assert(false);//normal instructions should not need to access the spsr. use get spsrt for internal access.
-                    } else{
+                    } else {
                         assert(false);
                     }
                 }
-            }else{
-                return get_set_register(&state.general_registers[address],set,val);
+            } else {
+                return get_set_register(&state.general_registers[address], set, val);
             }
             break;
         case irq:
         case svc:
         case und:
         case abt:
-            if(address <= max_unbanked_address_other){
-                return get_set_register(&state.general_registers[address],set,val);
-            }else if(address <= max_banked_address_other){
-                switch(get_operating_mode()){
+            if (address <= max_unbanked_address_other) {
+                return get_set_register(&state.general_registers[address], set, val);
+            } else if (address <= max_banked_address_other) {
+                switch (get_operating_mode()) {
                     case irq:
                         banked_array = state.irq_banked;
                         break;
@@ -98,14 +97,15 @@ Word get_set_word_from_register(RegisterAddress address,bool set, Word val) {
                     case und:
                         banked_array = state.und_banked;
                         break;
-                    default: assert(false);
+                    default:
+                        assert(false);
                 }
-                return get_set_register(&banked_array[address - max_unbanked_address_other],set,val);
-            }else if(address == PC_ADDRESS || address == CPSR_ADDRESS){
-                if(get_mode() == THUMB){
+                return get_set_register(&banked_array[address - max_unbanked_address_other], set, val);
+            } else if (address == PC_ADDRESS || address == CPSR_ADDRESS) {
+                if (get_mode() == THUMB) {
                     assert(address == PC_ADDRESS);
                 }
-                return get_set_register(&state.general_registers[address],set,val);
+                return get_set_register(&state.general_registers[address], set, val);
             } else {
                 assert(false);
             }
@@ -114,15 +114,15 @@ Word get_set_word_from_register(RegisterAddress address,bool set, Word val) {
     }
 }
 
-Word get_word_from_register(RegisterAddress address){
-    return get_set_word_from_register(address,false,-1);
+Word get_word_from_register(RegisterAddress address) {
+    return get_set_word_from_register(address, false, -1);
 }
 
 
 //todo add spsr restrictions, overridable if accessed from psr instruction
 
-struct CPSR_Struct get_spsr(){
-    switch (get_operating_mode()){
+struct CPSR_Struct get_spsr() {
+    switch (get_operating_mode()) {
         case usr:
             assert(false);//this shouldn't happen
         case fiq:
@@ -143,14 +143,14 @@ struct CPSR_Struct get_spsr(){
 }
 
 void set_byte_in_register(RegisterAddress address, Byte byte) {
-    set_word_in_register(address,get_byte_from_register(address) | (uint32_t)byte);
+    set_word_in_register(address, get_byte_from_register(address) | (uint32_t) byte);
 }
 
 void set_word_in_register(RegisterAddress address, Word val) {
-    if(has_exceptions()){
+    if (has_exceptions()) {
         return;//don't allow register access if exceptions raised
     }
-    get_set_word_from_register(address,true,val);
+    get_set_word_from_register(address, true, val);
 }
 
 void change_mode(enum Mode newMode) {
@@ -212,7 +212,7 @@ bool has_exception_flag(enum ExceptionFlag flag) {
     return state.flags & flag;
 }
 
-enum ExceptionFlag get_exception_flags(){
+enum ExceptionFlag get_exception_flags() {
     return state.flags;
 }
 
@@ -254,7 +254,7 @@ void setSPSR(struct CPSR_Struct toSet) {
 }
 
 void init_cpu(enum CommandLineFlags flags) {
-    memset(&state,0,sizeof(struct CPUState));
+    memset(&state, 0, sizeof(struct CPUState));
     state.decoded_valid = false;
     state.fetched_valid = false;
     state.CPSR.M = usr;
@@ -266,7 +266,7 @@ void init_cpu(enum CommandLineFlags flags) {
 union RawArmInstruction get_fetched_arm() {
     assert(!state.fetched_prefetch_aborted);
     uint32_t lValue = __bswap_32(__bswap_32(state.fetched_arm));
-    return *((union RawArmInstruction*) &lValue);
+    return *((union RawArmInstruction *) &lValue);
 }
 
 union RawThumbInstruction get_fetched_thumb() {
@@ -294,16 +294,16 @@ bool prefetch_aborted() {
 }
 
 void transfer_fetched_to_decoded_and_load_fetched() {
-    if(get_mode() == THUMB){
+    if (get_mode() == THUMB) {
         state.decoded_thumb = state.fetched_thumb;
-    }else if(get_mode() == ARM){
+    } else if (get_mode() == ARM) {
         state.decoded_arm = state.fetched_arm;
-    }else{
+    } else {
         assert(false);
     }
     state.decoded_valid = state.fetched_valid;
     state.decoded_prefetch_aborted = state.fetched_prefetch_aborted;
-    if(get_mode() == THUMB){
+    if (get_mode() == THUMB) {
         if (memory_access_will_fail(get_word_from_register(PC_ADDRESS))) {
             state.fetched_prefetch_aborted = true;
             state.fetched_valid = true;
@@ -311,7 +311,7 @@ void transfer_fetched_to_decoded_and_load_fetched() {
             state.fetched_thumb = get_half_word_from_memory(get_word_from_register(PC_ADDRESS));
             state.fetched_valid = true;
         }
-    }else if(get_mode() == ARM){
+    } else if (get_mode() == ARM) {
         if (memory_access_will_fail(get_word_from_register(PC_ADDRESS))) {
             state.fetched_prefetch_aborted = true;
             state.fetched_valid = true;
@@ -319,13 +319,15 @@ void transfer_fetched_to_decoded_and_load_fetched() {
             state.fetched_arm = get_word_from_memory(get_word_from_register(PC_ADDRESS));
             state.fetched_valid = true;
         }
-    }else{
+    } else {
         assert(false);
     }
-    if(get_mode() == ARM){
-        set_word_in_register(PC_ADDRESS,get_word_from_register(PC_ADDRESS) + sizeof(union RawArmInstruction)/sizeof(unsigned char));
-    }else if(get_mode() == THUMB){
-        set_word_in_register(PC_ADDRESS,get_word_from_register(PC_ADDRESS) + sizeof(union RawThumbInstruction)/sizeof(unsigned char));
+    if (get_mode() == ARM) {
+        set_word_in_register(PC_ADDRESS, get_word_from_register(PC_ADDRESS) +
+                                         sizeof(union RawArmInstruction) / sizeof(unsigned char));
+    } else if (get_mode() == THUMB) {
+        set_word_in_register(PC_ADDRESS, get_word_from_register(PC_ADDRESS) +
+                                         sizeof(union RawThumbInstruction) / sizeof(unsigned char));
     }
 }
 

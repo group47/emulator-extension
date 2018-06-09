@@ -1,4 +1,5 @@
 import sys
+
 import os
 from termcolor import colored
 
@@ -7,11 +8,11 @@ tmp_dir_path = "/tmp/arm_project_no_conflict"
 if not os.path.exists(tmp_dir_path):
     os.makedirs(tmp_dir_path)
 
-
 max_len_of_line = 0
 distance_between_block = 5
 
 commands = ["f", "b", "c", "q"]
+
 
 def get_start_line_of_next_block(output):
     output = output[1:len(output)]
@@ -22,13 +23,15 @@ def get_start_line_of_next_block(output):
             output = output[1:len(output)]
     return output
 
+
 def get_and_remove_test_case(lines):
-    #assert len(lines) > 0 or "r0" in lines[0], "the test case block is not in the correct format"
+    # assert len(lines) > 0 or "r0" in lines[0], "the test case block is not in the correct format"
     test_case_block = []
     while len(lines) > 0 and "fpscr" not in lines[0]:
         test_case_block.append(lines[0])
         lines = lines[1:len(lines)]
     return [lines, test_case_block]
+
 
 def compare_blocks(program_block, gdb_block):
     global max_len_of_line
@@ -42,22 +45,23 @@ def compare_blocks(program_block, gdb_block):
                 return False
     return True
 
+
 def print_test_case_and_difference(program_block, gdb_block):
     assert max_len_of_line > 0, "you should have the most updated max length of line"
     num_lines = len(program_block)
     length_of_one_line = max_len_of_line * 2 + 5
     for i in range(0, num_lines):
-        if ''.join(program_block[i].split()) != ''.join(gdb_block[i].split()) and "sp" not in program_block[i] and "pc" not in program_block[i]:
+        if ''.join(program_block[i].split()) != ''.join(gdb_block[i].split()) and "sp" not in program_block[
+            i] and "pc" not in program_block[i]:
             program_line = colored(program_block[i].rstrip(), 'red', attrs=['reverse', 'blink'])
-            gdb_line     = colored(gdb_block[i].rstrip(), 'red', attrs=['reverse', 'blink'])
+            gdb_line = colored(gdb_block[i].rstrip(), 'red', attrs=['reverse', 'blink'])
         else:
             program_line = program_block[i].rstrip()
-            gdb_line     = gdb_block[i].rstrip()
+            gdb_line = gdb_block[i].rstrip()
         print(program_line, end='')
-        print(' '*(length_of_one_line - len(program_block[i].rstrip())), end='')
+        print(' ' * (length_of_one_line - len(program_block[i].rstrip())), end='')
         print(gdb_line)
     print("\n")
-
 
 
 length_of_test_case_block = 18
@@ -89,26 +93,24 @@ else:
         if sys.argv[i].endswith(".log"):
             gdb_log_file_path = sys.argv[i]
     if len(test_case_binary_path) is 0 or len(gdb_log_file_path) is 0:
-        test_case_files = list(filter(lambda x : "emulate_extension" not in x and ".py" not in x, sys.argv))
+        test_case_files = list(filter(lambda x: "emulate_extension" not in x and ".py" not in x, sys.argv))
         if len(test_case_files) is 0:
             print("I really couldn't guess that file then")
             sys.exit()
         else:
             test_case_binary_path = test_case_files[0] + ".bin2"
             gdb_log_file_path = test_case_files[0] + ".log"
-        
-        
 
-    #emulate_executable = sys.argv[1]
-    #test_case_binary_path = sys.argv[2]
-    #gdb_log_file_path = sys.argv[3]
-    
+    # emulate_executable = sys.argv[1]
+    # test_case_binary_path = sys.argv[2]
+    # gdb_log_file_path = sys.argv[3]
+
     raw_program_output_file_name = (gdb_log_file_path[0:(len(gdb_log_file_path) - 4)] + "_output.log").split('/')
-    program_output_file_name = raw_program_output_file_name[len(raw_program_output_file_name)-1]
-    program_output =  tmp_dir_path + "/" + program_output_file_name
+    program_output_file_name = raw_program_output_file_name[len(raw_program_output_file_name) - 1]
+    program_output = tmp_dir_path + "/" + program_output_file_name
     gdb_output = gdb_log_file_path
     command = emulate_executable + " " + "--binary=" + test_case_binary_path + " -p --logfile=" + program_output
-    
+
     os.system(command)
 
     with open(program_output) as f:
@@ -124,7 +126,6 @@ else:
     program_output = get_start_line_of_next_block(program_output)
     if "r0" not in gdb_output[0]:
         gdb_output = get_start_line_of_next_block(gdb_output)
-
 
     # We are testing
 
@@ -142,7 +143,7 @@ else:
         gdb_parse_result = get_and_remove_test_case(gdb_output)
         gdb_output = get_start_line_of_next_block(gdb_parse_result[0])
         gdb_blocks.append(gdb_parse_result[1])
-        count = count+1
+        count = count + 1
 
     num_test_cases = min(len(program_blocks), len(gdb_blocks))
 

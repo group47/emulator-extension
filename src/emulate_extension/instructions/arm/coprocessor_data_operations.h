@@ -23,4 +23,5 @@ struct CoprocessorDataOperationsInstruction {
 
 
 enum ExecutionExitCode execute_instruction_coprocessor_data_operations(struct CoprocessorDataOperationsInstruction);
+
 #endif //SRC_COPROCESSOR_DATA_OPERATIONS_H

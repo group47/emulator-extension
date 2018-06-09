@@ -102,7 +102,6 @@ the prefetch abort.
 void handle_branch(struct CPSR_Struct oldcpsr) {
 
 
-
 }
 
 /**
@@ -228,6 +227,6 @@ void handle_data_abort(struct CPSR_Struct oldcpsr) {
     set_word_in_register(PC_ADDRESS, data_abort_exception_vector);
 }
 
-bool has_exceptions(){
+bool has_exceptions() {
     return get_exception_flags() != 0;
 }

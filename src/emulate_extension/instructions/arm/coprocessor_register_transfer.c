@@ -5,7 +5,7 @@
 #include <assert.h>
 #include "coprocessor_register_transfer.h"
 
-enum ExecutionExitCode execute_copprocessor_register_transfer(struct CoProcessorRegisterTransfer instruction){
+enum ExecutionExitCode execute_copprocessor_register_transfer(struct CoProcessorRegisterTransfer instruction) {
     assert(false);
     return OK;
 }

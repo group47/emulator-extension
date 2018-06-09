@@ -12,17 +12,17 @@
 #include "../../util/operand_two_util.h"
 
 
-bool is_arithmetic_thumb(enum ThumbALUOpCode op){
+bool is_arithmetic_thumb(enum ThumbALUOpCode op) {
     return op == ADC_THUMB_ALU || op == SBC_THUMB_ALU || op == NEQ_THUMB_ALU || op == CMP_THUMB_ALU ||
            op == CMN_THUMB_ALU;
 }
 
-bool is_logical_thumb(enum ThumbALUOpCode op){
+bool is_logical_thumb(enum ThumbALUOpCode op) {
     return !is_arithmetic_thumb(op) && op != MUL_THUMB_ALU;
 }
 
 
-enum ExecutionExitCode execute_instruction_alu_operation(struct ALUOperation instruction){
+enum ExecutionExitCode execute_instruction_alu_operation(struct ALUOperation instruction) {
     assert(instruction.filler010000 == 0b10000);
     bool overflow_occurred = false;
     bool borrow_occurred = false;
@@ -34,32 +34,32 @@ enum ExecutionExitCode execute_instruction_alu_operation(struct ALUOperation ins
     uint32_t Rs_val = get_word_from_register(instruction.Rs);
     uint32_t Rd_val = get_word_from_register(instruction.Rd);
 
-    switch(instruction.Op){
+    switch (instruction.Op) {
         case AND_THUMB_ALU:
             res = Rd_val & Rs_val;
-            set_word_in_register(instruction.Rd,res);
+            set_word_in_register(instruction.Rd, res);
             break;
         case EOR_THUMB_ALU:
             res = Rd_val ^ Rs_val;
-            set_word_in_register(instruction.Rd,res);
+            set_word_in_register(instruction.Rd, res);
             break;
         case LSL_THUMB_ALU:
             Rs_val &= 0xff;
             operand_two_lsl(&Rd_val, &shift_carry_out, Rs_val, true);
             res = Rd_val;
-            set_word_in_register(instruction.Rd,res);
+            set_word_in_register(instruction.Rd, res);
             break;
         case LSR_THUMB_ALU:
             Rs_val &= 0xff;
             operand_two_lsr(&Rd_val, &shift_carry_out, Rs_val, true);
             res = Rd_val;
-            set_word_in_register(instruction.Rd,res);
+            set_word_in_register(instruction.Rd, res);
             break;
         case ASR_THUMB_ALU:
             Rs_val &= 0xff;
             operand_two_asr(&(Rd_val), &shift_carry_out, Rs_val, true);
             res = Rd_val;
-            set_word_in_register(instruction.Rd,res);
+            set_word_in_register(instruction.Rd, res);
             break;
         case ADC_THUMB_ALU:
             res = Rd_val + Rs_val +
@@ -68,53 +68,53 @@ enum ExecutionExitCode execute_instruction_alu_operation(struct ALUOperation ins
                                 || does_overflow_occur(Rd_val + Rs_val, (getCPSR().C ? 1 : 0));
             signed_overflow_occurred = does_signed_overflow(Rd_val, Rs_val)
                                        || does_signed_overflow(Rd_val + Rs_val, (getCPSR().C ? 1 : 0));
-            set_word_in_register(instruction.Rd,res);
+            set_word_in_register(instruction.Rd, res);
             break;
         case SBC_THUMB_ALU:
             res = Rd_val - Rs_val - ((~getCPSR().C) ? 1 : 0);
             borrow_occurred = does_borrow_occur(Rd_val, Rs_val)
                               || does_borrow_occur(Rd_val - Rs_val, ((~getCPSR().C) ? 1 : 0));
-            set_word_in_register(instruction.Rd,res);
+            set_word_in_register(instruction.Rd, res);
             break;
         case ROR_THUMB_ALU:
             operand_two_ror(&Rd_val, &shift_carry_out, Rs_val, true);
             res = Rd_val;
-            set_word_in_register(instruction.Rd,res);
+            set_word_in_register(instruction.Rd, res);
             break;
         case TST_THUMB_ALU:
-            res =  Rd_val & Rs_val;
+            res = Rd_val & Rs_val;
             break;
         case NEQ_THUMB_ALU:
             res = -Rs_val;
-            set_word_in_register(instruction.Rd,res);
+            set_word_in_register(instruction.Rd, res);
             borrow_occurred = does_borrow_occur(0, Rs_val);
             signed_overflow_occurred = does_signed_overflow(0, Rs_val);
             break;
         case CMP_THUMB_ALU:
             res = Rd_val - Rs_val;
-            borrow_occurred = does_borrow_occur(Rd_val,Rs_val);
+            borrow_occurred = does_borrow_occur(Rd_val, Rs_val);
             signed_overflow_occurred = does_signed_overflow(Rd_val, Rs_val);
             break;
         case CMN_THUMB_ALU:
             res = Rd_val + Rs_val;
-            overflow_occurred = does_overflow_occur(Rd_val,Rs_val);
+            overflow_occurred = does_overflow_occur(Rd_val, Rs_val);
             signed_overflow_occurred = does_signed_overflow(Rd_val, Rs_val);
             break;
         case ORR_THUMB_ALU:
             res = Rd_val | Rs_val;
-            set_word_in_register(instruction.Rd,res);
+            set_word_in_register(instruction.Rd, res);
             break;
         case MUL_THUMB_ALU:
-            res = Rd_val*Rs_val;
-            set_word_in_register(instruction.Rd,res);
+            res = Rd_val * Rs_val;
+            set_word_in_register(instruction.Rd, res);
             break;
         case BIC_THUMB_ALU:
             res = Rd_val & ~Rs_val;
-            set_word_in_register(instruction.Rd,res);
+            set_word_in_register(instruction.Rd, res);
             break;
         case MVN_THUMB_ALU:
             res = ~Rs_val;
-            set_word_in_register(instruction.Rd,res);
+            set_word_in_register(instruction.Rd, res);
             break;
         default:
             assert(false);

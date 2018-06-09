@@ -23,4 +23,5 @@ struct SingleDataSwapInstruction {
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_single_data_swap(struct SingleDataSwapInstruction);
+
 #endif //SRC_SINGLE_DATA_SWAP_H

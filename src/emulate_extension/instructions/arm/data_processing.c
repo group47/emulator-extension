@@ -27,7 +27,8 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
 
     uint32_t operand2Val = 0;
     bool shiftCarryOut = getCPSR().C;
-    get_operand2(instruction.secondOperand, instruction.immediateOperand, IMMEDIATE_BIT_FLAG_DATA_PROCESSING, &operand2Val, &shiftCarryOut);
+    get_operand2(instruction.secondOperand, instruction.immediateOperand, IMMEDIATE_BIT_FLAG_DATA_PROCESSING,
+                 &operand2Val, &shiftCarryOut);
 
     uint32_t carry = (getCPSR().C) ? 1 : 0;
 
@@ -90,7 +91,7 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
                     does_overflow_occur(operand2Val, rnVal) || does_overflow_occur(operand2Val, rnVal + carry);
             signed_overflow_occurred =
                     does_signed_overflow(rnVal, operand2Val) || does_overflow_occur(rnVal + operand2Val, carry);
-            set_word_in_register(instruction.Rd,computation_res);
+            set_word_in_register(instruction.Rd, computation_res);
             break;
         case sbc:
             computation_res = rnVal - operand2Val + carry - 1;
@@ -98,14 +99,14 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
                                                                1);//todo what if rnVal + carry overflows and should we care
             signed_overflow_occurred =
                     does_signed_overflow(rnVal, operand2Val) || does_signed_overflow(rnVal + operand2Val, carry - 1);
-            set_word_in_register(instruction.Rd,computation_res);
+            set_word_in_register(instruction.Rd, computation_res);
             break;
         case rsc:
             computation_res = operand2Val - rnVal + carry - 1;
             borrow_occurred = does_borrow_occur(operand2Val + carry, rnVal + 1);
             signed_overflow_occurred =
                     does_signed_overflow(rnVal, operand2Val) || does_signed_overflow(-rnVal + operand2Val, carry - 1);
-            set_word_in_register(instruction.Rd,computation_res);
+            set_word_in_register(instruction.Rd, computation_res);
             break;
         case cmn:
             computation_res = operand2Val + rnVal;
@@ -113,12 +114,12 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
             signed_overflow_occurred = does_signed_overflow(rnVal, operand2Val);
             break;
         case bic:
-            computation_res = rnVal& ~operand2Val;
-            set_word_in_register(instruction.Rd,computation_res);
+            computation_res = rnVal & ~operand2Val;
+            set_word_in_register(instruction.Rd, computation_res);
             break;
         case mvn:
             computation_res = ~operand2Val;
-            set_word_in_register(instruction.Rd,computation_res);
+            set_word_in_register(instruction.Rd, computation_res);
             break;
     }
     high_level_set_CPSR_data_processing(instruction, borrow_occurred, overflow_occurred, signed_overflow_occurred,

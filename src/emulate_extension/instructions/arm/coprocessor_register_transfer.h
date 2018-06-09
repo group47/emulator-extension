@@ -9,8 +9,8 @@
 #include <stdbool.h>
 #include "../../util/common_enums.h"
 
-struct CoProcessorRegisterTransfer{
-    uint8_t  CRm : 4;
+struct CoProcessorRegisterTransfer {
+    uint8_t CRm : 4;
     bool filler1:1;
     uint8_t CP : 3;
     uint8_t CPNum : 4;

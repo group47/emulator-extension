@@ -15,4 +15,5 @@ struct BranchAndExchangeInstruction {
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_branch_and_exchange_instruction(struct BranchAndExchangeInstruction);
+
 #endif //SRC_BRANCH_AND_EXCHANGE_H

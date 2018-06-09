@@ -9,20 +9,20 @@
 
 
 enum ShiftType {
-  lsl = 0b00,
-  lsr = 0b01,
-  asr = 0b10,
-  ror = 0b11
+    lsl = 0b00,
+    lsr = 0b01,
+    asr = 0b10,
+    ror = 0b11
 };
 
 
-struct ImmediateTrue{
+struct ImmediateTrue {
     uint8_t Imm: 8;
     uint8_t rotate: 4;
 }__attribute__((packed));
 
 
-struct ImmediateFalseShiftByRegisterTrue{
+struct ImmediateFalseShiftByRegisterTrue {
     RegisterAddress Rm : 4;
     bool shift_by_register: 1;//should be true
     enum ShiftType shift_type: 2;
@@ -31,13 +31,12 @@ struct ImmediateFalseShiftByRegisterTrue{
 }__attribute__((packed));
 
 
-struct ImmediateFalseShiftByRegisterFalse{
+struct ImmediateFalseShiftByRegisterFalse {
     RegisterAddress Rm : 4;
     bool shift_by_register: 1;//should be false
     enum ShiftType shift_type: 2;
     uint8_t shift_amount: 5;
 }__attribute__((packed));
-
 
 
 int get_operand2(uint16_t secondOperand,

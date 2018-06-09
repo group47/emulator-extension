@@ -7,10 +7,8 @@
 #include <assert.h>
 #include <string.h>
 #include <stdio.h>
-#include "test_generator.h"
 #include "instructions/arm/arm_instruction.h"
 #include "util/static_asserts.h"
-#include <limits.h>
 #include <time.h>
 
 
@@ -116,9 +114,10 @@ struct ArmInstruction get_rand_instruction_of_types(enum ArmInstructionType *typ
             if (type[i] == instruction.type) {
                 return instruction;
             }
-            if(get_rand_num() < INT32_MAX/4){
-                uint32_t val = ((*(uint32_t *)&instruction.rawArmInstruction) & ~(filler_mask[type[i]]) | filler_expected_values[type[i]]);
-                return ARMfromRaw(*(union RawArmInstruction *)&val);
+            if (get_rand_num() < INT32_MAX / 4) {
+                uint32_t val = ((*(uint32_t *) &instruction.rawArmInstruction) & ~(filler_mask[type[i]]) |
+                                filler_expected_values[type[i]]);
+                return ARMfromRaw(*(union RawArmInstruction *) &val);
 
             }
         }
@@ -128,17 +127,17 @@ struct ArmInstruction get_rand_instruction_of_types(enum ArmInstructionType *typ
 
 void write_instructions_to_file(const char *name, struct ArmInstruction *instructions, uint32_t num_instructions) {
     FILE *fptr;
-    fptr = fopen(name,"wb");
+    fptr = fopen(name, "wb");
     for (int i = 0; i < num_instructions; ++i) {
 
-        fwrite(&(instructions[i].rawArmInstruction),sizeof(union RawArmInstruction),1,fptr);
+        fwrite(&(instructions[i].rawArmInstruction), sizeof(union RawArmInstruction), 1, fptr);
     }
     fclose(fptr);
 }
 
-enum ArmInstructionType fromString(const char* str){
+enum ArmInstructionType fromString(const char *str) {
     for (int i = 0; i < 15; ++i) {
-        if(strcmp(str,type_to_string[i]) == 0){
+        if (strcmp(str, type_to_string[i]) == 0) {
             return (enum ArmInstructionType) i;
         }
     }
