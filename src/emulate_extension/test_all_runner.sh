@@ -5,4 +5,6 @@ cd data_processing_arm;
 ./runall.sh;
 cd ../thumb;
 ./runall.sh;
+cd ./single_data_transfer_arm;
+./runall.sh;
 cd ../../../;

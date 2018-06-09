@@ -84,7 +84,7 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
 
     // if data abort happens, write back modified base registers
     if (has_exception_flag(DATA_ABORT)) {
-        //todo this won't work, becuase registers will no longer allow writing.
+        //todo this won't work, because registers will no longer allow writing.
         set_word_in_register(instruction.Rn, fixed_rn_val_clone);
     }
 
