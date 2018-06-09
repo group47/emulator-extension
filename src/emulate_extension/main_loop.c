@@ -11,7 +11,7 @@
 
 
 void main_loop(enum CommandLineFlags flags) {
-    __uint128_t master_instruction_counter = 0;// this integer size is a bit excessive since it would take more than a century to overflow a uint64_t.
+    uint64_t master_instruction_counter = 0;
     while (true) {
 
         if (decoded_valid()) {
