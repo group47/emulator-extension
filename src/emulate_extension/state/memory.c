@@ -113,7 +113,9 @@ Word get_byte_from_memory_sign_extended(ByteAddress address) {
 }
 
 void set_word_in_memory(ByteAddress address, Word val) {
-    assert (address % 4 == 0);
+//    assert (address % 4 == 0);//todo
+    address /= 4;
+    address *= 4;
     if (address + 4 > memory.size) {
         add_exception_flag(DATA_ABORT);
         return;
