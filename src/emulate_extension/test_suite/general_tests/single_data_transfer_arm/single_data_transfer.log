@@ -1,4 +1,0 @@
-/home/pi/.gdbinit:5: Error in sourced command file:
-bob.c: No such file or directory.
-single_data_transfer.gdbinit: No such file or directory.
-(gdb) quit
