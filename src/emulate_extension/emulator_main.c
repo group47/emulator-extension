@@ -4,8 +4,10 @@
 
 #include <memory.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "util/static_asserts.h"
 #include "util/entry_point.h"
+#include "emulator_main.h"
 #include "dissasemble.h"
 
 #ifdef USE_EMULATOR_MAIN
@@ -13,8 +15,11 @@
 static const char *binary_path = "";
 static const char *invalid_arg = "";
 static const char *logfile_path = "";
+static const char *sp_print_offset = "0";
+static const char *pc_print_offset = "0";
+static enum CommandLineFlags globalFlags;
 
-enum CommandLineFlags parseCommandLine(uint32_t argc, const char **argv) {
+enum CommandLineFlags parseCommandLine(int argc, const char **argv) {
     enum CommandLineFlags flags = (enum CommandLineFlags) 0;
     for (int i = 1; i < argc; ++i) {
         const char *arg = argv[i];
@@ -32,6 +37,12 @@ enum CommandLineFlags parseCommandLine(uint32_t argc, const char **argv) {
             flags |= MEMORY;
         } else if (0 == strcmp(arg, "--thumb")) {
             flags |= USE_THUMB;
+        } else if (arg == strstr(arg, "--sp-print-offset=")) {
+            sp_print_offset = arg + sizeof("--sp-print-offset=") / sizeof(char) - 1;
+            flags |= SP_PRINT_OFFSET_SET;
+        } else if (arg == strstr(arg, "--pc-print-offset=")) {
+            pc_print_offset = arg + sizeof("--pc-print-offset=") / sizeof(char) - 1;
+            flags |= PC_PRINT_OFFSET_SET;
         } else {
             flags |= INVALID;
             invalid_arg = arg;
@@ -44,6 +55,7 @@ enum CommandLineFlags parseCommandLine(uint32_t argc, const char **argv) {
 int main(int argc, const char **argv) {
     do_asserts();
     enum CommandLineFlags flags = parseCommandLine(argc, argv);
+    globalFlags = flags;
     if (flags & INVALID) {
         fprintf(get_logfile(), "Invalid argument:");
         fprintf(get_logfile(), invalid_arg);
@@ -77,12 +89,28 @@ int main(int argc, const char **argv) {
     if (logfile != stderr) {
         fclose(logfile);
     }
-
-
-
-    //todo a more useful main
 }
 
 #endif
+
+
+long parse_num(char *str) {
+    char *check_valid = "\0";
+    long res = strtol(str, &check_valid, 10);
+    if (check_valid[0] != '\0') {
+        fprintf(stderr, "Warning: Invalid numeric parameter passed.");
+        return 0;
+    }
+    return res;
+}
+
+long get_sp_offset() {
+    return parse_num((char *) sp_print_offset);
+}
+
+
+long get_pc_offset() {
+    return parse_num((char *) pc_print_offset);
+}
 
 

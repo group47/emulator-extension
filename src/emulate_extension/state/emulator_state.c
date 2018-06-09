@@ -9,6 +9,7 @@
 #include "exception.h"
 #include "../util/entry_point.h"
 #include "emulator_state.h"
+#include "../emulator_main.h"
 
 static struct CPUState state;
 
@@ -50,6 +51,8 @@ Word get_set_word_from_register(RegisterAddress address, bool set, Word val) {
                 } else if (address == PC_ADDRESS) {
                     return get_set_register(&state.general_registers[address], set, val);
                 } else if (address == LR_ADDRESS) {
+                    return get_set_register(&state.general_registers[address], set, val);
+                } else if (address == SP_ADDRESS) {
                     return get_set_register(&state.general_registers[address], set, val);
                 } else {
                     assert(false);
@@ -340,9 +343,13 @@ void print_registers(enum CommandLineFlags flags) {
         for (uint8_t i = 8; i < 13; ++i) {
             fprintf(get_logfile(), "r%u            0x%x  %u\n", i, 0, 0);
         }
-        fprintf(get_logfile(), "sp             0xbefff2a0  0xbefff2a0\n");
+        fprintf(get_logfile(), "sp             0x%x  %u\n",
+                (uint32_t) (get_word_from_register(SP_ADDRESS) + get_sp_offset()),
+                (uint32_t) (get_word_from_register(SP_ADDRESS) + get_sp_offset()));
         fprintf(get_logfile(), "lr             0x%x  %u\n", 0, 0);
-        fprintf(get_logfile(), "pc             0x%x  %u\n", 0, 0);
+        fprintf(get_logfile(), "pc             0x%x  %u\n",
+                (uint32_t) (get_word_from_register(PC_ADDRESS) + get_pc_offset()),
+                (uint32_t) (get_word_from_register(PC_ADDRESS) + get_pc_offset()));
         fprintf(get_logfile(), "cpsr           0x%x  %d\n", getCPSR(), getCPSR());
         if (get_operating_mode() == usr || get_operating_mode() == sys) {
             fprintf(get_logfile(), "fpscr          0x%o  %x\n", 0, 0);
@@ -359,12 +366,14 @@ void print_registers(enum CommandLineFlags flags) {
             fprintf(get_logfile(), "r%u            0x%x  %u\n", i, get_word_from_register(i),
                     get_word_from_register(i));
         }
-        fprintf(get_logfile(), "sp             0xbefff2a0  0xbefff2a0\n", get_word_from_register(SP_ADDRESS),
-                get_word_from_register(SP_ADDRESS));
+        fprintf(get_logfile(), "sp             0x%x  %u\n",
+                (uint32_t) (get_word_from_register(SP_ADDRESS) + get_sp_offset()),
+                (uint32_t) (get_word_from_register(SP_ADDRESS) + get_sp_offset()));
         fprintf(get_logfile(), "lr             0x%x  %u\n", get_word_from_register(LR_ADDRESS),
                 get_word_from_register(LR_ADDRESS));
-        fprintf(get_logfile(), "pc             0x%x  %u\n", get_word_from_register(PC_ADDRESS),
-                get_word_from_register(PC_ADDRESS));
+        fprintf(get_logfile(), "pc             0x%x  %u\n",
+                (uint32_t) (get_word_from_register(PC_ADDRESS) + get_pc_offset()),
+                (uint32_t) (get_word_from_register(PC_ADDRESS) + get_pc_offset()));
         fprintf(get_logfile(), "cpsr           0x%x  %d\n", getCPSR(), getCPSR());
         if (get_operating_mode() == usr || get_operating_mode() == sys) {
             fprintf(get_logfile(), "fpscr          0x%o  %x\n", 0, 0);
