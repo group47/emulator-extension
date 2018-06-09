@@ -26,6 +26,11 @@ Word get_set_register(Word *register_, bool set, Word val) {
     }
 }
 
+void increment_pc(enum Mode thumb_mode) {
+    state.general_registers[PC_ADDRESS] = state.general_registers[PC_ADDRESS] + (thumb_mode == THUMB ? 2 : 4);
+}
+
+
 Word get_set_pc(bool set, Word val) {
     if (set) {
         invalidate_pipeline();
@@ -346,13 +351,7 @@ void transfer_fetched_to_decoded_and_load_fetched() {
     } else {
         assert(false);
     }
-    if (get_mode() == ARM) {
-        set_word_in_register(PC_ADDRESS, get_word_from_register(PC_ADDRESS) +
-                                         sizeof(union RawArmInstruction) / sizeof(unsigned char));
-    } else if (get_mode() == THUMB) {
-        set_word_in_register(PC_ADDRESS, get_word_from_register(PC_ADDRESS) +
-                                         sizeof(union RawThumbInstruction) / sizeof(unsigned char));
-    }
+    increment_pc(get_mode());
 }
 
 void print_registers(enum CommandLineFlags flags) {

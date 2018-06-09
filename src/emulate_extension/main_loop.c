@@ -19,7 +19,7 @@ void main_loop(enum CommandLineFlags flags) {
             if ((flags & TERMINATE_ON__ZERO) && ((*(uint32_t *) &instruction) == 0)) {
                 return;
             }
-            if (flags & TERMINATE_AFTER_200 && master_instruction_counter == 200) {
+            if ((flags & TERMINATE_AFTER_200) && master_instruction_counter == 200) {
                 return;
             }
             enum ExecutionExitCode exitCode;

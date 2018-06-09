@@ -153,4 +153,6 @@ bool prefetch_aborted();
 
 void set_spsr_by_mode(struct CPSR_Struct cpsr_struct, enum OperatingMode mode);
 
+void increment_pc(enum Mode thumb_mode);
+
 #endif //SRC_EMULATOR_STATE_H
