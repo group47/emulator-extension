@@ -198,3 +198,4 @@ lsl r5, r3
 lsl r5, r3
 lsl r5, r3
 lsl r5, r3
+lsl r5, r3
