@@ -26,10 +26,59 @@ Word get_set_register(Word *register_, bool set, Word val) {
     }
 }
 
+Word get_set_pc(bool set, Word val) {
+    if (set) {
+        invalidate_pipeline();
+    }
+    return get_set_register(&state.general_registers[PC_ADDRESS], set, val);
+}
+
+Word *get_banked_array_by_operating_mode();
+
+Word get_set_sp_or_lr(RegisterAddress address, bool set, Word val) {
+    if (get_operating_mode() == usr || get_operating_mode() == sys) {
+        return get_set_register(&state.general_registers[SP_ADDRESS], set, val);
+    } else if (get_operating_mode() != fiq) {
+        Word *banked_array = get_banked_array_by_operating_mode();
+        return get_set_register(&banked_array[address - SP_ADDRESS], set, val);
+    } else if (get_operating_mode() == fiq) {
+        return get_set_register(&state.fiq_banked[address - 8], set, val);
+    } else {
+        assert(false);
+    }
+}
+
+Word get_set_cpsr(bool set, Word val) {
+    assert(!set);
+    return get_set_register((Word *) &(state.CPSR), set, val);
+}
+
+
+Word get_set_word_from_special_register(RegisterAddress address, bool set, Word val) {
+    switch (address) {
+        case PC_ADDRESS:
+            return get_set_pc(set, val);
+        case SP_ADDRESS:
+            return get_set_sp_or_lr(address, set, val);
+        case LR_ADDRESS:
+            return get_set_sp_or_lr(address, set, val);
+        case CPSR_ADDRESS:
+            return get_set_cpsr(set, val);
+            break;
+        default:
+            assert(false);
+    }
+}
+
 Word get_set_word_from_register(RegisterAddress address, bool set, Word val) {
     if (has_exceptions()) {
         return 0;//don't allow register access if exceptions raised
     }
+    assert(address != SPSR_ADDRESS);
+    if (address == PC_ADDRESS || address == SP_ADDRESS || address == CPSR_ADDRESS || address == LR_ADDRESS) {
+        return get_set_word_from_special_register(address, set, val);
+    }
+
     RegisterAddress max_valid_register_address;
     if (get_mode() == ARM) {
         max_valid_register_address = NUM_GENERAL_PURPOSE_REGISTERS_ARM - 1;
@@ -44,42 +93,18 @@ Word get_set_word_from_register(RegisterAddress address, bool set, Word val) {
     switch (get_operating_mode()) {
         case usr:
         case sys:
-            if (address > max_valid_register_address) {
-                if (address == CPSR_ADDRESS) {
-                    assert(!set);
-                    return get_set_register((Word *) &state.CPSR, set, val);
-                } else if (address == PC_ADDRESS) {
-                    return get_set_register(&state.general_registers[address], set, val);
-                } else if (address == LR_ADDRESS) {
-                    return get_set_register(&state.general_registers[address], set, val);
-                } else if (address == SP_ADDRESS) {
-                    return get_set_register(&state.general_registers[address], set, val);
+            assert (address <= max_valid_register_address);
+            return get_set_register(&state.general_registers[address], set, val);
+        case fiq:
+            if (address > max_unbanked_address_fiq) {
+                if (address <= max_banked_address_fiq) {
+                    return get_set_register(&state.fiq_banked[address - NUM_FIQ_UNBANKED], set, val);
                 } else {
                     assert(false);
                 }
             } else {
                 return get_set_register(&state.general_registers[address], set, val);
             }
-            break;
-        case fiq:
-            if (address > max_unbanked_address_fiq) {
-                if (address <= max_banked_address_fiq) {
-                    return get_set_register(&state.fiq_banked[address - NUM_FIQ_UNBANKED], set, val);
-                } else {
-                    if (address == PC_ADDRESS) {
-                        return get_set_register(&state.general_registers[address], set, val);
-                    } else if (address == CPSR_ADDRESS) {
-                        return get_set_register((Word *) &state.CPSR, set, val);
-                    } else if (address == SPSR_ADDRESS) {
-                        assert(false);//normal instructions should not need to access the spsr. use get spsrt for internal access.
-                    } else {
-                        assert(false);
-                    }
-                }
-            } else {
-                return get_set_register(&state.general_registers[address], set, val);
-            }
-            break;
         case irq:
         case svc:
         case und:
@@ -87,28 +112,8 @@ Word get_set_word_from_register(RegisterAddress address, bool set, Word val) {
             if (address <= max_unbanked_address_other) {
                 return get_set_register(&state.general_registers[address], set, val);
             } else if (address <= max_banked_address_other) {
-                switch (get_operating_mode()) {
-                    case irq:
-                        banked_array = state.irq_banked;
-                        break;
-                    case svc:
-                        banked_array = state.svc_banked;
-                        break;
-                    case abt:
-                        banked_array = state.abt_banked;
-                        break;
-                    case und:
-                        banked_array = state.und_banked;
-                        break;
-                    default:
-                        assert(false);
-                }
+                banked_array = get_banked_array_by_operating_mode();
                 return get_set_register(&banked_array[address - max_unbanked_address_other], set, val);
-            } else if (address == PC_ADDRESS || address == CPSR_ADDRESS) {
-                if (get_mode() == THUMB) {
-                    assert(address == PC_ADDRESS);
-                }
-                return get_set_register(&state.general_registers[address], set, val);
             } else {
                 assert(false);
             }
@@ -116,6 +121,22 @@ Word get_set_word_from_register(RegisterAddress address, bool set, Word val) {
             assert(false);
     }
 }
+
+Word *get_banked_array_by_operating_mode() {
+    switch (get_operating_mode()) {
+        case irq:
+            return state.irq_banked;
+        case svc:
+            return state.svc_banked;
+        case abt:
+            return state.abt_banked;
+        case und:
+            return state.und_banked;
+        default:
+            assert(false);
+    }
+}
+
 
 Word get_word_from_register(RegisterAddress address) {
     return get_set_word_from_register(address, false, -1);
