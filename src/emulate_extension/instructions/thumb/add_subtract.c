@@ -23,6 +23,7 @@ enum ExecutionExitCode execute_instruction_add_subtract(const struct AddSubtract
 
   const bool borrow = does_borrow_occur(first_operand, second_operand) ;
   const bool overflow = does_overflow_occur(first_operand, second_operand);
+    const bool signed_overflow = does_signed_overflow(first_operand, second_operand);
 
   if (instruction.op == ADD) {
     first_operand += second_operand;
@@ -34,7 +35,8 @@ enum ExecutionExitCode execute_instruction_add_subtract(const struct AddSubtract
 
   set_word_in_register(instruction.Rd, first_operand);
 
-  high_level_set_CPSR_thumb_add_subtract(instruction, borrow, overflow, first_operand, getCPSR().C);//getCPSR().C
+    high_level_set_CPSR_thumb_add_subtract(instruction, borrow, overflow, signed_overflow, first_operand,
+                                           getCPSR().C);//getCPSR().C
   //shift_cary_out could be anything as arithmetic doesnt care about it
 
   return OK;
