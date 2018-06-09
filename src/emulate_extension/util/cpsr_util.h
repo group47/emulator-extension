@@ -15,6 +15,7 @@ bool should_execute(enum Cond cond);
 void high_level_set_CPSR_thumb_add_subtract(const struct AddSubtractInstruction instruction,
                                             const bool borrow,
                                             const bool overflow,
+                                            const bool signed_overflow,
                                             const uint32_t computation_res,
                                             const bool shiftCarryOut);
 
@@ -24,11 +25,13 @@ void high_level_set_CPSR_thumb_move_compare_add_sub(struct MoveCompareAddSubtrac
 void high_level_set_CPSR_data_processing(const struct DataProcessingInstruction instruction,
                                          const bool borrow,
                                          const bool overflow,
+                                         const bool signed_overflow,
                                          const uint32_t computation_res,
                                          const bool shiftCarryOut);
 
-void high_level_set_CPSR(bool set_condition_codes,bool is_arithmetic,bool is_add,bool is_logical, bool borrow_occurred, bool overflow_occurred, uint32_t computation_res,
-    bool shiftCarryOut);
+void
+high_level_set_CPSR(bool set_condition_codes, bool is_arithmetic, bool is_add, bool is_logical, bool borrow_occurred,
+                    bool overflow_occurred, bool signed_overflow, bool shiftCarryOut, uint32_t computation_res);
 bool is_logical(enum OpCode code);
 bool is_arithmetic(enum OpCode code);
 

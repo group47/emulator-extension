@@ -26,6 +26,7 @@ enum ExecutionExitCode execute_instruction_alu_operation(struct ALUOperation ins
     assert(instruction.filler010000 == 0b10000);
     bool overflow_occurred = false;
     bool borrow_occurred = false;
+    bool signed_overflow_occurred = getCPSR().V;
 
     bool shift_carry_out = getCPSR().C ? 1 : 0;
     int32_t res;
@@ -63,14 +64,16 @@ enum ExecutionExitCode execute_instruction_alu_operation(struct ALUOperation ins
         case ADC_THUMB_ALU:
             res = Rd_val + Rs_val +
                   (getCPSR().C ? 1 : 0);//todo unclear if Rs_val + C can overflow, and if we should care
-            overflow_occurred =
-                    does_overflow_occur(Rd_val, Rs_val) || does_overflow_occur(Rd_val + Rs_val, (getCPSR().C ? 1 : 0));
+            overflow_occurred = does_overflow_occur(Rd_val, Rs_val)
+                                || does_overflow_occur(Rd_val + Rs_val, (getCPSR().C ? 1 : 0));
+            signed_overflow_occurred = does_signed_overflow(Rd_val, Rs_val)
+                                       || does_signed_overflow(Rd_val + Rs_val, (getCPSR().C ? 1 : 0));
             set_word_in_register(instruction.Rd,res);
             break;
         case SBC_THUMB_ALU:
             res = Rd_val - Rs_val - ((~getCPSR().C) ? 1 : 0);
-            borrow_occurred =
-                    does_borrow_occur(Rd_val, Rs_val) || does_borrow_occur(Rd_val - Rs_val, ((~getCPSR().C) ? 1 : 0));
+            borrow_occurred = does_borrow_occur(Rd_val, Rs_val)
+                              || does_borrow_occur(Rd_val - Rs_val, ((~getCPSR().C) ? 1 : 0));
             set_word_in_register(instruction.Rd,res);
             break;
         case ROR_THUMB_ALU:
@@ -85,14 +88,17 @@ enum ExecutionExitCode execute_instruction_alu_operation(struct ALUOperation ins
             res = -Rs_val;
             set_word_in_register(instruction.Rd,res);
             borrow_occurred = does_borrow_occur(0, Rs_val);
+            signed_overflow_occurred = does_signed_overflow(0, Rs_val);
             break;
         case CMP_THUMB_ALU:
             res = Rd_val - Rs_val;
             borrow_occurred = does_borrow_occur(Rd_val,Rs_val);
+            signed_overflow_occurred = does_signed_overflow(Rd_val, Rs_val);
             break;
         case CMN_THUMB_ALU:
             res = Rd_val + Rs_val;
             overflow_occurred = does_overflow_occur(Rd_val,Rs_val);
+            signed_overflow_occurred = does_signed_overflow(Rd_val, Rs_val);
             break;
         case ORR_THUMB_ALU:
             res = Rd_val | Rs_val;
@@ -110,8 +116,14 @@ enum ExecutionExitCode execute_instruction_alu_operation(struct ALUOperation ins
             res = ~Rs_val;
             set_word_in_register(instruction.Rd,res);
             break;
+        default:
+            assert(false);
     }
 
-    high_level_set_CPSR(true,is_arithmetic_thumb(instruction.Op),instruction.Op == CMN_THUMB_ALU || instruction.Op == ADC_THUMB_ALU,is_logical_thumb(instruction.Op),borrow_occurred,overflow_occurred,res,shift_carry_out);
+    high_level_set_CPSR(true, is_arithmetic_thumb(instruction.Op),
+                        instruction.Op == CMN_THUMB_ALU || instruction.Op == ADC_THUMB_ALU,
+                        is_logical_thumb(instruction.Op), borrow_occurred, overflow_occurred, signed_overflow_occurred,
+                        shift_carry_out,
+                        res);
     return OK;
 }
