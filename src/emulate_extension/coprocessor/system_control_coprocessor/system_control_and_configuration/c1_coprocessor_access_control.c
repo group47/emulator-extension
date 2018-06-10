@@ -3,3 +3,7 @@
 //
 
 #include "c1_coprocessor_access_control.h"
+
+enum ExecutionExitCode execute_coprocessor_access_control(struct CoprocessorDataTransfersInstruction instruction) {
+    return OK;
+}

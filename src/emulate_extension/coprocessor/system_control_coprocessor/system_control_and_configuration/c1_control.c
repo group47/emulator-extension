@@ -3,3 +3,7 @@
 //
 
 #include "c1_control.h"
+
+enum ExecutionExitCode execute_control_register(struct CoProcessorRegisterTransfer instruction) {
+
+}
