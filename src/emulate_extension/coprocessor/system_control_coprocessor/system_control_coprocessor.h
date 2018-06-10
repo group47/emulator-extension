@@ -30,7 +30,6 @@ struct SystemControlCoprocessor {
     struct C0_cpuid_register c0_cpuid_register;
 };
 
-S 
 
 void set_word_in_system_control_coprocessor_register(Word val);
 

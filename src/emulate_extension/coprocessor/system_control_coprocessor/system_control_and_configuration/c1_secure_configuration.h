@@ -7,7 +7,6 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "../../../../emulate/emulate_main.h"
 #include "../../../instructions/arm/coprocessor_register_transfer.h"
 
 struct C1_secure_configuration_register {

@@ -4,11 +4,11 @@
 
 #include <assert.h>
 #include <stdio.h>
-#include "coprocessor_register_transfer.h"
 #include "../../util/entry_point.h"
 #include "../../util/cpsr_util.h"
 
-enum ExecutionExitCode execute_copprocessor_register_transfer(struct CoProcessorRegisterTransfer instruction) {
+enum ExecutionExitCode
+execute_copprocessor_register_transfer(struct CoprocessorRegisterTransferInstruction instruction) {
     if (!should_execute(instruction.cond)) {
         return DIDNT_EXECUTE;
     }
@@ -65,6 +65,6 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct CoProcessor
 
 
     CPNum15_CPOpc0_CRm3_7:
-
+    assert(false);//todo implment
 
 }
