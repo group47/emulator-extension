@@ -23,3 +23,5 @@ struct C1_auxiliary_control_register {
     bool fio : 1;
 }__attribute__((packed));
 #endif //SRC_C1_AUXILIARY_CONTROL_H
+
+enum ExecutionExitCode execute_co_auxiliary_control_register(struct CoProcessorRegisterTransfer);

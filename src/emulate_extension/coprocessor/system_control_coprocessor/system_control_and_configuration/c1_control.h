@@ -7,6 +7,7 @@
 
 #include <stdbool.h>
 #include <tiff.h>
+#include "../../../instructions/arm/coprocessor_data_transfers.h"
 
 struct C1_control_register {
     bool m : 1;
@@ -38,4 +39,5 @@ struct C1_control_register {
     uint8 sbz_size2_position_31 : 2;
 }__attribute__((packed));
 
+enum ExecutionExitCode execute_control_register(struct CoProcessorRegisterTransfer);
 #endif //SRC_CONTROL_H
