@@ -9,7 +9,7 @@
 #include <stdbool.h>
 #include "../../util/common_enums.h"
 
-struct CoProcessorRegisterTransfer{
+struct CoprocessorRegisterTransferInstruction{
     uint8_t  CRm : 4;
     bool filler1:1;
     uint8_t CP : 3;
@@ -22,6 +22,6 @@ struct CoProcessorRegisterTransfer{
     enum Cond cond:4;
 };
 
-enum ExecutionExitCode execute_copprocessor_register_transfer(struct CoProcessorRegisterTransfer instruction);
+enum ExecutionExitCode execute_copprocessor_register_transfer(struct CoprocessorRegisterTransferInstruction instruction);
 
 #endif //SRC_COPROCESSOR_REGISTER_TRANSFER_H

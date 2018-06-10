@@ -19,7 +19,7 @@ void do_asserts(void){
     assert(sizeof(struct BranchAndExchangeInstruction )== sizeof(uint32_t));
     assert(sizeof(struct CoprocessorDataOperationsInstruction )== sizeof(uint32_t));
     assert(sizeof(struct CoprocessorDataTransfersInstruction )== sizeof(uint32_t));
-    assert(sizeof(struct CoProcessorRegisterTransfer )== sizeof(uint32_t));
+    assert(sizeof(struct CoprocessorRegisterTransferInstruction )== sizeof(uint32_t));
     assert(sizeof(struct DataProcessingInstruction )== sizeof(uint32_t));
     assert(sizeof(struct HalfWordAndSignedDataTransferRegisterOffset )== sizeof(uint32_t));
     assert(sizeof(struct HalfWordAndSignedDataTransferImmediateOffset )== sizeof(uint32_t));

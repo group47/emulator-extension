@@ -11,6 +11,7 @@
 #include "../basic_typedefs.h"
 #include "memory.h"
 #include "../instructions/arm/arm_instruction.h"
+#include "../coprocessor/system_control_coprocessor/system_control_coprocessor.h"
 
 enum Mode {
   THUMB, ARM
@@ -92,6 +93,8 @@ struct CPUState {
   bool fetched_valid;//= false
     bool decoded_prefetch_aborted;//false
     bool fetched_prefetch_aborted;//false
+    struct SystemControlCoprocessor systemControlCoprocessor;
+
 };
 
 //todo: do nothing if exception flag is set
@@ -151,5 +154,7 @@ void invalidate_pipeline();
 bool prefetch_aborted();
 
 void set_spsr_by_mode(struct CPSR_Struct cpsr_struct, enum OperatingMode mode);
+
+struct SystemControlCoprocessor* get_system_control_coprocessor();
 
 #endif //SRC_EMULATOR_STATE_H
