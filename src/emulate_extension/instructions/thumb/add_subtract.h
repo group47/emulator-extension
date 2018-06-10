@@ -8,17 +8,17 @@
 #include <stdbool.h>
 #include "../../basic_typedefs.h"
 
-enum AddSubtractOp{
-  ADD = 0,SUB = 1
+enum AddSubtractOp {
+    ADD = 0, SUB = 1
 };
 
-struct AddSubtractInstruction{
-  RegisterAddress Rd : 3;
-  RegisterAddress Rs : 3;
-  uint8_t RnOffset3: 3;
-  enum AddSubtractOp op: 1;
-  bool immediate : 1;
-  uint8_t shouldBe0b00011: 5;
+struct AddSubtractInstruction {
+    RegisterAddress Rd : 3;
+    RegisterAddress Rs : 3;
+    uint8_t RnOffset3: 3;
+    enum AddSubtractOp op: 1;
+    bool immediate : 1;
+    uint8_t shouldBe0b00011: 5;
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_add_subtract(const struct AddSubtractInstruction instruction);

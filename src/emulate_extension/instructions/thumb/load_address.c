@@ -7,15 +7,15 @@
 
 enum ExecutionExitCode execute_instruction_load_address(const struct LoadAddressInstruction instruction) {
 
-  Word Rs;
-  if (instruction.stackPointer) {
-    Rs = get_word_from_register(SP_ADDRESS);
-  } else {
-    Rs = get_word_from_register(PC_ADDRESS) - 4;
-  }
-  uint16_t imm = (uint16_t) (instruction.word * 4);
+    Word Rs;
+    if (instruction.stackPointer) {
+        Rs = get_word_from_register(SP_ADDRESS);
+    } else {
+        Rs = get_word_from_register(PC_ADDRESS) - 4;
+    }
+    uint16_t imm = (uint16_t) (instruction.word * 4);
 
-  set_word_in_register(instruction.Rd, Rs + imm);
+    set_word_in_register(instruction.Rd, Rs + imm);
 
-  return OK;
+    return OK;
 }

@@ -20,7 +20,7 @@
 #include "software_interrupt.h"
 #include "Undefined.h"
 
-union RawArmInstruction{
+union RawArmInstruction {
     struct BlockDataTransferInstruction blockDataTransferInstruction;
     struct BranchInstruction branchInstruction;
     struct BranchAndExchangeInstruction branchAndExchangeInstruction;
@@ -39,7 +39,7 @@ union RawArmInstruction{
 };
 
 
-enum ArmInstructionType{
+enum ArmInstructionType {
     ARM_BLOCK_DATA_TRANSFER = 0,
     ARM_BRANCH = 1,
     ARM_BRANCH_AND_EXCHANGE = 2,
@@ -48,7 +48,7 @@ enum ArmInstructionType{
     ARM_COPROCESSOR_REGISTER_TRANSFER = 5,
     ARM_DATA_PROCESSING = 6,
     ARM_HALFWORD_AND_SIGNED_DATA_TRANSFER_REGISTER_OFFSET = 7,
-    ARM_HALFWORD_AND_SIGNED_DATA_TRANSFER_IMMEDIATE_OFFSET= 8,
+    ARM_HALFWORD_AND_SIGNED_DATA_TRANSFER_IMMEDIATE_OFFSET = 8,
     ARM_MULIPLY = 9,
     ARM_MULTIPLY_LONG = 10,
     ARM_SINGLE_DATA_SWAP = 11,
@@ -59,11 +59,13 @@ enum ArmInstructionType{
 };
 
 
-struct ArmInstruction{
+struct ArmInstruction {
     enum ArmInstructionType type;
     union RawArmInstruction rawArmInstruction;
 };
+
 struct ArmInstruction ARMfromRaw(union RawArmInstruction raw);
+
 enum ExecutionExitCode execute_arm_instruction(struct ArmInstruction armInstruction);
 
 #endif //SRC_ARM_INSTRUCTION_H

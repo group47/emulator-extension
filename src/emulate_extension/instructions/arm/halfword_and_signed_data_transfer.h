@@ -9,7 +9,7 @@
 #include "../../basic_typedefs.h"
 #include "../../util/common_enums.h"
 
-struct HalfWordAndSignedDataTransferRegisterOffset{
+struct HalfWordAndSignedDataTransferRegisterOffset {
     RegisterAddress Rm:4;
     bool shouldBe1:1;
     bool halfword: 1;
@@ -26,10 +26,11 @@ struct HalfWordAndSignedDataTransferRegisterOffset{
     enum Cond cond : 4;
 }__attribute((packed));
 
-enum ExecutionExitCode execute_halfword_and_signed_data_transfer_register_offset(struct HalfWordAndSignedDataTransferRegisterOffset);
+enum ExecutionExitCode
+execute_halfword_and_signed_data_transfer_register_offset(struct HalfWordAndSignedDataTransferRegisterOffset);
 
 
-struct HalfWordAndSignedDataTransferImmediateOffset{
+struct HalfWordAndSignedDataTransferImmediateOffset {
     uint8_t offsetLowNibble : 4;
     bool filler1position4 :1;
     bool halfword: 1;
@@ -48,9 +49,10 @@ struct HalfWordAndSignedDataTransferImmediateOffset{
 }__attribute((packed));
 
 
-enum ExecutionExitCode execute_halfword_and_signed_data_transfer_immediate_offset(struct HalfWordAndSignedDataTransferImmediateOffset);
+enum ExecutionExitCode
+execute_halfword_and_signed_data_transfer_immediate_offset(struct HalfWordAndSignedDataTransferImmediateOffset);
 
-const ByteAddress getFinalAddress(bool, ByteAddress, ByteAddress );
+const ByteAddress getFinalAddress(bool, ByteAddress, ByteAddress);
 
 const ByteAddress get_offset(struct HalfWordAndSignedDataTransferImmediateOffset);
 

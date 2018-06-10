@@ -4,6 +4,7 @@
 
 #ifndef SRC_THUMB_INSTRUCTION_H
 #define SRC_THUMB_INSTRUCTION_H
+
 #include "add_offset_to_stack_pointer.h"
 #include "add_subtract.h"
 #include "alu_operation.h"
@@ -75,6 +76,7 @@ struct ThumbInstruction {
 };
 
 enum ExecutionExitCode execute_thumb_instruction(struct ThumbInstruction thumbInstruction);
+
 struct ThumbInstruction ThumbFromRaw(union RawThumbInstruction instruction);
 
 

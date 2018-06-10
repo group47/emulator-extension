@@ -39,8 +39,11 @@ struct TransferRegisterContentsOrImmediateValueToPSRFlag {
 };
 
 enum ExecutionExitCode execute_instruction_transfer_psr_contents_to_register(struct TransferPSRContentsToRegister);
+
 enum ExecutionExitCode execute_instruction_transfer_register_contents_to_psr(struct TransferRegisterContentsToPSR);
-enum ExecutionExitCode execute_instruction_transfer_register_contents_or_immediate_value_to_psrflag(struct TransferRegisterContentsOrImmediateValueToPSRFlag);
+
+enum ExecutionExitCode execute_instruction_transfer_register_contents_or_immediate_value_to_psrflag(
+        struct TransferRegisterContentsOrImmediateValueToPSRFlag);
 
 
 #endif //SRC_PSRTRANSFER_H

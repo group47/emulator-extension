@@ -32,7 +32,8 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
         offset = instruction.offset;
     } else {
         bool dummy;
-        get_operand2(instruction.offset, instruction.immediateOffsetBit, IMMEDIATE_BIT_FLAG_SINGLE_DATE_TRANSFER, &offset, &dummy);
+        get_operand2(instruction.offset, instruction.immediateOffsetBit, IMMEDIATE_BIT_FLAG_SINGLE_DATE_TRANSFER,
+                     &offset, &dummy);
     }
 
     // pre indexing
@@ -83,6 +84,7 @@ enum ExecutionExitCode execute_instruction_single_data_transfer(struct SingleDat
 
     // if data abort happens, write back modified base registers
     if (has_exception_flag(DATA_ABORT)) {
+        //todo this won't work, because registers will no longer allow writing.
         set_word_in_register(instruction.Rn, fixed_rn_val_clone);
     }
 

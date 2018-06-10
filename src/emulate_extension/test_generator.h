@@ -6,5 +6,4 @@
 #define SRC_TEST_GENERATOR_H
 
 
-
 #endif //SRC_TEST_GENERATOR_H

@@ -8,11 +8,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "../../basic_typedefs.h"
-struct MultipleLoadStoreInstruction{
-  uint8_t filler1100     : 4; //1100
-  bool loadMemory    : 1;
-  RegisterAddress Rb : 3;
-  uint8_t RList      : 8;
+
+struct MultipleLoadStoreInstruction {
+    uint8_t RList      : 8;
+    RegisterAddress Rb : 3;
+    bool loadMemory    : 1;
+    uint8_t filler1100     : 4; //1100
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_multiple_load_store(const struct MultipleLoadStoreInstruction);

@@ -16,4 +16,5 @@ struct SoftWareInterruptInstruction {
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_software_interrupt(struct SoftWareInterruptInstruction);
+
 #endif //SRC_SOFTWARE_INTERRUPT_H

@@ -17,7 +17,7 @@ struct CoprocessorDataTransfersInstruction {
     RegisterAddress baseRegister : 4;
     enum LoadStore loadStoreBit : 1;
     bool writeBackBit : 1;
-    bool transferLength : 1;
+    bool transferLength : 1;//todo is transfer length meant to be one bit
     bool upDownBit : 1;
     bool prePostIndexingBit : 1;
     uint8_t filler110_position27 : 3;

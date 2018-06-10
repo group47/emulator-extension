@@ -10,10 +10,10 @@
 #include "../../util/common_enums.h"
 
 struct LoadAddressInstruction {
-  uint8_t filler1010     : 4; //1010
-  bool stackPointer  : 1;
-  RegisterAddress Rd : 3;
-  uint8_t word       : 8;
+    uint8_t word       : 8;
+    RegisterAddress Rd : 3;
+    bool stackPointer  : 1;
+    uint8_t filler1010     : 4; //1010
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_load_address(const struct LoadAddressInstruction);

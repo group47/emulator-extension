@@ -7,7 +7,7 @@
 
 #include "../../basic_typedefs.h"
 
-enum ThumbALUOpCode{
+enum ThumbALUOpCode {
     AND_THUMB_ALU = 0b0000,
     EOR_THUMB_ALU = 0b0001,
     LSL_THUMB_ALU = 0b0010,
@@ -26,7 +26,7 @@ enum ThumbALUOpCode{
     MVN_THUMB_ALU = 0b1111
 };
 
-struct ALUOperation{
+struct ALUOperation {
     RegisterAddress Rd:3;
     RegisterAddress Rs:3;
     enum ThumbALUOpCode Op:4;
@@ -35,4 +35,5 @@ struct ALUOperation{
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_alu_operation(struct ALUOperation instruction);
+
 #endif //SRC_ALU_OPERATIONS_H

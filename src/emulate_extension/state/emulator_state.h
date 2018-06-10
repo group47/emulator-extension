@@ -155,6 +155,4 @@ bool prefetch_aborted();
 
 void set_spsr_by_mode(struct CPSR_Struct cpsr_struct, enum OperatingMode mode);
 
-struct SystemControlCoprocessor* get_system_control_coprocessor();
-
 #endif //SRC_EMULATOR_STATE_H

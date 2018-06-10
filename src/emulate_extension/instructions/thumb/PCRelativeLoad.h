@@ -15,4 +15,5 @@ struct PCRelativeLoadInstruction {
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_PCRelativeLoad(struct PCRelativeLoadInstruction);
+
 #endif //SRC_PCRELATIVELOAD_H

@@ -9,7 +9,8 @@
 #include "../../util/cpsr_util.h"
 
 
-enum ExecutionExitCode execute_instruction_hi_register_operations_branch_exchange(struct HiRegisterOperationsBranchExchangeInstruction instruction) {
+enum ExecutionExitCode execute_instruction_hi_register_operations_branch_exchange(
+        struct HiRegisterOperationsBranchExchangeInstruction instruction) {
     if (instruction.H1 == 0 && instruction.H2 == 0) {
         assert(instruction.Op == 0b11);
     }

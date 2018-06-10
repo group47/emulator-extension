@@ -10,9 +10,9 @@
 #include "../../util/common_enums.h"
 
 struct LongBranchWithLinkInstruction {
-  uint8_t filler1111    : 4; //1111
-  bool lowOffsetBit : 1;
-  uint16_t offset   : 11;
+    uint16_t offset   : 11;
+    bool lowOffsetBit : 1;
+    uint8_t filler1111    : 4; //1111
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_long_branch_with_link(const struct LongBranchWithLinkInstruction);

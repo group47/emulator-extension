@@ -36,9 +36,9 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
     bool R15InRegisterList = instruction.registerList & maskPC;
     enum OperatingMode oldMode = get_operating_mode();
     bool userBankTransfer = (!instruction.loadStoreBit
-                            && instruction.psrAndForceUserBit
-                            && R15InRegisterList) ||
-            (!R15InRegisterList && instruction.psrAndForceUserBit);
+                             && instruction.psrAndForceUserBit
+                             && R15InRegisterList) ||
+                            (!R15InRegisterList && instruction.psrAndForceUserBit);
 
     if (instruction.prePostIndexingBit) {
         if (instruction.upDownBit) {
@@ -67,10 +67,10 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
                 }
             } else {
                 if (i == PC_ADDRESS) {
-                  set_word_in_memory((ByteAddress) i * 4 + address,
-                                     get_current_instruction_address() + 12);
+                    set_word_in_memory((ByteAddress) i * 4 + address,
+                                       get_current_instruction_address() + 12);
                 } else {
-                  set_word_in_memory((ByteAddress) i * 4 + address, get_word_from_register(i));
+                    set_word_in_memory((ByteAddress) i * 4 + address, get_word_from_register(i));
                 }
             }
 
@@ -94,9 +94,9 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
         }
     } else {
         if (instruction.upDownBit) {
-            set_word_in_register(instruction.Rn, address + (numOfRegisterUsed - 1)* 4);
+            set_word_in_register(instruction.Rn, address + (numOfRegisterUsed - 1) * 4);
         } else {
-            set_word_in_register(instruction.Rn, address - (numOfRegisterUsed - 1)* 4);
+            set_word_in_register(instruction.Rn, address - (numOfRegisterUsed - 1) * 4);
         }
     }
 

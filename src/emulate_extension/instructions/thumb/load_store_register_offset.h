@@ -9,7 +9,7 @@
 #include "../../basic_typedefs.h"
 #include "../../util/common_enums.h"
 
-struct LoadStoreRegisterOffset{
+struct LoadStoreRegisterOffset {
     RegisterAddress Rd:3;
     RegisterAddress Rb:3;
     RegisterAddress Ro:3;

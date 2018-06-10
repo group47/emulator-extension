@@ -10,14 +10,6 @@
 #include "../state/emulator_state.h"
 
 
-void operand_two_lsl(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amount, bool shiftByRegister);
-
-void operand_two_lsr(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amount, bool shiftByRegister);
-
-void operand_two_asr(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amount, bool shiftByRegister);
-
-void operand_two_ror(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amount, bool shiftByRegister);
-
 int get_operand2(uint16_t secondOperand,
                  bool immediate,
                  bool flag,
@@ -103,6 +95,9 @@ void operand_two_ror(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amo
 }
 
 void operand_two_asr(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amount, bool shiftByRegister) {
+    if (shift_amount == 0 && shiftByRegister) {
+        return;
+    }
     uint32_t ar_bit = *operand2_val & (0b1 << 31);
     if (shift_amount < 32 || !shiftByRegister) {
         for (int i = 0; i < shift_amount - 1; ++i) {
@@ -117,6 +112,9 @@ void operand_two_asr(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amo
 }
 
 void operand_two_lsr(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amount, bool shiftByRegister) {
+    if (shift_amount == 0) {
+        return;
+    }
     if (shift_amount < 32 || !shiftByRegister) {
         *operand2_val >>= shift_amount - 1;
         *carry_out = (*operand2_val & 0x1) != 0;
@@ -128,6 +126,9 @@ void operand_two_lsr(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amo
 }
 
 void operand_two_lsl(uint32_t *operand2_val, bool *carry_out, uint32_t shift_amount, bool shiftByRegister) {
+    if (shift_amount == 0) {
+        return;
+    }
     if (shift_amount < 32 || !shiftByRegister) {
         *operand2_val <<= shift_amount - 1;
         *carry_out = (*operand2_val >> 31) != 0;
