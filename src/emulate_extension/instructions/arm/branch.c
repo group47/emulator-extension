@@ -31,7 +31,7 @@ enum ExecutionExitCode execute_instruction_branch(struct BranchInstruction instr
         offset |= 0xfc000000;
     }
 
-    set_word_in_register(PC_ADDRESS, get_word_from_register(PC_ADDRESS) + offset - 8);
+    set_word_in_register(PC_ADDRESS, get_word_from_register(PC_ADDRESS) + offset);
 
     //}
 
