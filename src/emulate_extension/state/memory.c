@@ -8,6 +8,7 @@
 #include "memory.h"
 #include "emulator_state.h"
 #include "../util/entry_point.h"
+#include "../mmu/serial_console.h"
 
 static struct Memory memory;
 
@@ -28,8 +29,10 @@ void deallocate_memory() {
     free(memory.contents);
 }
 
-
 Word get_word_from_memory(ByteAddress address) {
+    if (address == MAGIC_CONSOLE_ADDRESS) {
+        console_handler(address, false, (Word) -1);
+    }
     assert (address % 4 == 0);
     if (address + 4 > memory.size) {
         add_exception_flag(DATA_ABORT);
@@ -63,6 +66,9 @@ uint64_t get_word_from_memory_sign_extended(ByteAddress address) {
 }
 
 HalfWord get_half_word_from_memory(ByteAddress address) {
+    if (address == MAGIC_CONSOLE_ADDRESS) {
+        console_handler(address, false, (Word) -1);
+    }
     assert (address % 2 == 0);
     if (address + 2 > memory.size) {
         add_exception_flag(DATA_ABORT);
@@ -80,6 +86,9 @@ HalfWord get_half_word_from_memory(ByteAddress address) {
 }
 
 Word get_half_word_from_memory_sign_extended(ByteAddress address) {
+    if (address == MAGIC_CONSOLE_ADDRESS) {
+        console_handler(address, false, (Word) -1);
+    }
     assert (address % 2 == 0);
     if (address + 2 > memory.size) {
         add_exception_flag(DATA_ABORT);
@@ -97,6 +106,9 @@ Word get_half_word_from_memory_sign_extended(ByteAddress address) {
 }
 
 Byte get_byte_from_memory(ByteAddress address) {
+    if (address == MAGIC_CONSOLE_ADDRESS) {
+        console_handler(address, false, (Word) -1);
+    }
     if (address > memory.size) {
         add_exception_flag(DATA_ABORT);
         return 0;
@@ -105,6 +117,9 @@ Byte get_byte_from_memory(ByteAddress address) {
 }
 
 Word get_byte_from_memory_sign_extended(ByteAddress address) {
+    if (address == MAGIC_CONSOLE_ADDRESS) {
+        console_handler(address, false, (Word) -1);
+    }
     if (address > memory.size) {
         add_exception_flag(DATA_ABORT);
         return 0;
@@ -114,6 +129,9 @@ Word get_byte_from_memory_sign_extended(ByteAddress address) {
 
 void set_word_in_memory(ByteAddress address, Word val) {
 //    assert (address % 4 == 0);//todo
+    if (address == MAGIC_CONSOLE_ADDRESS) {
+        console_handler(address, true, val);
+    }
     address /= 4;
     address *= 4;
     if (address + 4 > memory.size) {
@@ -139,6 +157,9 @@ void set_word_in_memory(ByteAddress address, Word val) {
 
 void set_half_word_in_memory(ByteAddress address, HalfWord val) {
     assert (address % 2 == 0);
+    if (address == MAGIC_CONSOLE_ADDRESS) {
+        console_handler(address, true, val);
+    }
     if (address + 2 > memory.size) {
         add_exception_flag(DATA_ABORT);
     }
@@ -152,6 +173,9 @@ void set_half_word_in_memory(ByteAddress address, HalfWord val) {
 }
 
 void set_byte_in_memory(ByteAddress address, Byte val) {
+    if (address == MAGIC_CONSOLE_ADDRESS) {
+        console_handler(address, true, val);
+    }
     if (address > memory.size) {
         add_exception_flag(DATA_ABORT);
     }
