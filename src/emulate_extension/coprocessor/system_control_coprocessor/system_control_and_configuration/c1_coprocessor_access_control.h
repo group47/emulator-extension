@@ -26,6 +26,6 @@ struct C1_coprocessor_access_control_register {
    uint8_t sbz_unp : 4;
 }__attribute__((packed));
 
-enum ExecutionExitCode execute_coprocessor_access_control(struct CoprocessorDataTransfersInstruction);
+enum ExecutionExitCode execute_coprocessor_access_control(struct CoprocessorRegisterTransferInstruction);
 
 #endif //SRC_C1_COPROCESSOR_ACCESS_CONTROL_H

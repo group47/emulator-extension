@@ -10,6 +10,7 @@
 #include <stdbool.h>
 #include "../basic_typedefs.h"
 #include "memory.h"
+#include "emulator_state.h"
 #include "../instructions/arm/arm_instruction.h"
 #include "../coprocessor/system_control_coprocessor/system_control_coprocessor.h"
 

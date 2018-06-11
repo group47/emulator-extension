@@ -7,7 +7,6 @@
 #include "coprocessor_register_transfer.h"
 #include "../../util/entry_point.h"
 #include "../../util/cpsr_util.h"
-#include "../../coprocessor/system_control_coprocessor/mmu_control_and_configuration"
 
 enum ExecutionExitCode execute_copprocessor_register_transfer(struct CoprocessorRegisterTransferInstruction instruction) {
     if (!should_execute(instruction.cond)) {
@@ -117,7 +116,7 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
 
     CPNum15_CRn7:
     switch (instruction.CPOpc) {
-        case 0;
+        case 0:
             goto CPNum15_CRn7_CPOpc0;
         default:
             assert(false);
