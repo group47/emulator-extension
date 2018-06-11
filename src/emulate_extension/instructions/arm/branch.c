@@ -18,7 +18,7 @@ enum ExecutionExitCode execute_instruction_branch(struct BranchInstruction instr
 
         assert((get_word_from_register(LR_ADDRESS) & 0x2) == 0);
 
-        add_exception_flag(BRANCH_LINK_EXCEPTION);
+//        add_exception_flag(BRANCH_LINK_EXCEPTION);
 
     }
     //} else {

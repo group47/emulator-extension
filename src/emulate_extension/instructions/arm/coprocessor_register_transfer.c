@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include "coprocessor_register_transfer.h"
 #include "../../util/entry_point.h"
+#include "../../coprocessor/system_control_coprocessor/system_control_coprocessor.h"
 #include "../../util/cpsr_util.h"
 
 enum ExecutionExitCode execute_copprocessor_register_transfer(struct CoprocessorRegisterTransferInstruction instruction) {
@@ -21,7 +22,8 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
     fprintf(get_logfile(), "Coprocessor load/store bit: %d\n", instruction.loadStore);
     fprintf(get_logfile(), "Coprocessor Rd: %d\n", instruction.Rd);
 
-    assert(false);
+//    assert(false);
+//    return OK;
     switch (instruction.CPNum) {
         case 15:
             goto CPNum15;

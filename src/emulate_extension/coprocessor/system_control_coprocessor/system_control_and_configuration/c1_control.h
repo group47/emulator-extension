@@ -7,6 +7,11 @@
 
 #include <stdbool.h>
 #include "../../../instructions/arm/coprocessor_data_transfers.h"
+#include "../../../basic_typedefs.h"
+#include "../../../util/common_enums.h"
+#include "../../../instructions/arm/coprocessor_register_transfer.h"
+
+enum ExecutionExitCode execute_control_register(struct CoprocessorRegisterTransferInstruction);
 
 struct C1_control_register {
     bool m : 1;
@@ -37,6 +42,4 @@ struct C1_control_register {
     bool fa : 1;
     uint8_t sbz_size2_position_31 : 2;
 }__attribute__((packed));
-
-enum ExecutionExitCode execute_control_register(struct CoprocessorRegisterTransferInstruction);
 #endif //SRC_CONTROL_H

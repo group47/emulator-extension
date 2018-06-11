@@ -7,6 +7,7 @@
 
 
 enum ExecutionExitCode execute_arm_instruction(struct ArmInstruction armInstruction) {
+
     switch (armInstruction.type) {
         case ARM_BLOCK_DATA_TRANSFER:
             return execute_instruction_block_data_transfer(
@@ -48,6 +49,17 @@ enum ExecutionExitCode execute_arm_instruction(struct ArmInstruction armInstruct
             return execute_instruction_undefined(armInstruction.rawArmInstruction.undefinedInstruction);
         default:
             assert(false);
+        case ARM_INVALID:
+            assert(false);
+        case ARM_TRANSFER_PSR_TO_REGISTER:
+            return execute_instruction_transfer_psr_contents_to_register(
+                    armInstruction.rawArmInstruction.transferPSRContentsToRegister);
+        case ARM_TRANSFER_REGISTER_CONTENTS_TO_PSR:
+            return execute_instruction_transfer_register_contents_to_psr(
+                    armInstruction.rawArmInstruction.transferRegisterContentsToPSR);
+        case ARM_TRANSFER_REGISTER_CONTENTS_OR_IMMEDIATE_VALUE_TO_PSR_FLAG:
+            return execute_instruction_transfer_register_contents_or_immediate_value_to_psrflag(
+                    armInstruction.rawArmInstruction.transferRegisterContentsOrImmediateValueToPSRFlag);
     }
 }
 
@@ -82,6 +94,17 @@ struct ArmInstruction ARMfromRaw(union RawArmInstruction raw) {
     } else if (raw.undefinedInstruction.filler1_position4 == 0b1 &&
                raw.undefinedInstruction.filler011_position27 == 0b011) {
         res.type = ARM_UNDEFINED;
+    } else if (raw.transferPSRContentsToRegister.filler0000_0000_0000_position11 == 0b000000000000 &&
+               raw.transferPSRContentsToRegister.filler00010_position27 == 0b00010 &&
+               raw.transferPSRContentsToRegister.filler001111_position21 == 0b001111) {
+        res.type = ARM_TRANSFER_PSR_TO_REGISTER;
+    } else if (raw.transferRegisterContentsToPSR.filler00010_position27 == 0b00010 &&
+               raw.transferRegisterContentsToPSR.filler1010_0111_1100_0000_00_position_21 == 0b101001111100000000) {
+        res.type = ARM_TRANSFER_REGISTER_CONTENTS_TO_PSR;
+    } else if (raw.transferRegisterContentsOrImmediateValueToPSRFlag.filler00_position27 == 0b00 &&
+               raw.transferRegisterContentsOrImmediateValueToPSRFlag.filler10_position24 == 0b10 &&
+               raw.transferRegisterContentsOrImmediateValueToPSRFlag.filler1010_0011_11_position21 == 0b1010001111) {
+        res.type = ARM_TRANSFER_REGISTER_CONTENTS_OR_IMMEDIATE_VALUE_TO_PSR_FLAG;
     } else if (raw.dataProcessingInstruction.filler == 0b00) {//todo check opcode is valid
         res.type = ARM_DATA_PROCESSING;
     } else if (raw.blockDataTransferInstruction.filler100 == 0b100) {

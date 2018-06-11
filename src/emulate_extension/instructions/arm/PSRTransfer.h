@@ -36,7 +36,7 @@ struct TransferRegisterContentsOrImmediateValueToPSRFlag {
     bool immediateOperand : 1;
     uint8_t filler00_position27 : 2;
     enum Cond cond : 4;
-};
+}__attribute__((packed));
 
 enum ExecutionExitCode execute_instruction_transfer_psr_contents_to_register(struct TransferPSRContentsToRegister);
 

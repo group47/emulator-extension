@@ -3,9 +3,9 @@
 //
 
 #include <assert.h>
-#include "c1_auxiliary_control.h"
 #include "../../../instructions/arm/coprocessor_register_transfer.h"
 #include "../../../state/emulator_state.h"
+#include "c1_auxiliary_control.h"
 
 enum ExecutionExitCode execute_co_auxiliary_control_register(struct CoprocessorRegisterTransferInstruction instruction) {
     /*
@@ -18,5 +18,5 @@ enum ExecutionExitCode execute_co_auxiliary_control_register(struct CoprocessorR
     }
     return OK;
      */
-    assert(false);.
+    assert(false);
 }

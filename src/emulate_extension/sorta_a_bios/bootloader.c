@@ -13,7 +13,7 @@ static struct Memory prepared_ram;
 static size_t atag_i = 0;
 
 void append_atag(struct ATAG cmdline) {
-    memcpy((Word *) (&prepared_ram.contents) + PARAMETER_BLOCK_START_ADDRESS + atag_i, &cmdline,
+    memcpy((prepared_ram.contents) + PARAMETER_BLOCK_START_ADDRESS + atag_i, &cmdline,
            cmdline.header.size * sizeof(Word));
     atag_i += cmdline.header.size * sizeof(Word);
 }
@@ -89,16 +89,16 @@ bool check_magic_number(Word val) {
 }
 
 void copy_kernel_into_ram(FILE *kernel) {
-    Word current_word;
+    Byte current_word;
     uint32_t ram_i = 0;
-    while (fread(&current_word, sizeof(Word), 1, kernel)) {
-        if (ram_i == MAGIC_NUMBER_LOCATION) {
-            if (check_magic_number(((uint32_t *) prepared_ram.contents)[ram_i + KERNEL_LOAD_TO_ADDRESS])) {
-                fprintf(stderr, "BAD MAGIC NUMBER");
-                exit(-1);
-            }
-        }
-        ((uint32_t *) prepared_ram.contents)[ram_i + KERNEL_LOAD_TO_ADDRESS] = current_word;
+    while (fread(&current_word, sizeof(Byte), 1, kernel)) {
+//        if (ram_i == MAGIC_NUMBER_LOCATION) {
+////            if (check_magic_number(((uint32_t *) prepared_ram.contents)[ram_i + KERNEL_LOAD_TO_ADDRESS])) {
+////                fprintf(stderr, "BAD MAGIC NUMBER");
+////                exit(-1);
+////            }
+//        }
+        (prepared_ram.contents)[ram_i + KERNEL_LOAD_TO_ADDRESS] = current_word;
         ram_i++;
     }
 
@@ -125,8 +125,8 @@ void init_registers(struct CPUState *state) {
 
 void boot(FILE *kernel, enum CommandLineFlags flags) {
     init_prepared_ram(kernel);
-    init_atags();
     init_registers(getCPUState());
+    set_memory(prepared_ram);
     main_loop(flags);
 }
 

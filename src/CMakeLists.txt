@@ -269,4 +269,15 @@ add_executable(emulate_extension
         emulate_extension/mmu/serial_console.h
         emulate_extension/instructions/thumb/add_offset_to_stack_pointer.h
         emulate_extension/instructions/thumb/add_offset_to_stack_pointer.c
+        emulate_extension/instructions/arm/coprocessor_register_transfer.c
+        emulate_extension/instructions/arm/coprocessor_register_transfer.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_control.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_control.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_auxiliary_control.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_auxiliary_control.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_coprocessor_access_control.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_coprocessor_access_control.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_secure_configuration.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_secure_configuration.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_non_secure_access_control.c
         )

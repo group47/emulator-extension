@@ -84,6 +84,7 @@ int main(int argc, const char **argv) {
     }
     if (flags & KERNEL) {
         boot_loader_entry_point(kernel_path, flags);
+        return 0;
     }
     FILE *fp = fopen(binary_path, "r");
     if (fp == NULL) {

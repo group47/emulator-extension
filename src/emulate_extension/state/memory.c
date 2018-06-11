@@ -207,7 +207,7 @@ Word half_word_to_word_sign_extend(HalfWord halfWord) {
 }
 
 bool memory_access_will_fail(ByteAddress memoryAddress) {
-    return memoryAddress < 0 || memoryAddress >= memory.size;
+    return memoryAddress <= 0 || memoryAddress >= memory.size;
 }
 
 void print_memory() {

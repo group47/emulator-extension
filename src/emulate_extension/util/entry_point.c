@@ -27,5 +27,5 @@ void main_emulation_entry_point(enum CommandLineFlags flags, FILE *fp, FILE *log
 }
 
 FILE *get_logfile() {
-    return logfile;
+    return logfile == NULL ? stderr : logfile;
 }

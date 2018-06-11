@@ -24,7 +24,8 @@ execute_instruction_branch_and_exchange_instruction(struct BranchAndExchangeInst
     if (instruction.Rn & 0x1) {
         change_mode(THUMB);
     } else {
-        change_mode(ARM);
+        if (get_mode() != ARM)
+            change_mode(ARM);
     }
 
 //    add_exception_flag(BRANCH_LINK_EXCEPTION);

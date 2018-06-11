@@ -61,5 +61,5 @@ void print_memory();
 
 bool memory_access_will_fail(ByteAddress memoryAddress);
 
-
+void set_memory(struct Memory memory1);
 #endif //SRC_MEMORY_H
