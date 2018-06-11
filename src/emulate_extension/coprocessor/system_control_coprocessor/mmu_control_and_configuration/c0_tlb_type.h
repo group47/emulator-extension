@@ -16,6 +16,6 @@ struct C0_tlb_type_register {
     uint8_t sbz_unp_size8_posistion_: 8;
 }__attribute__((packed));
 
-
+enum ExecutionExitCode execute_tlb_type_register(struct CoprocessorRegisterTransferInstruction);
 
 #endif //SRC_C0_TLB_TYPE_H

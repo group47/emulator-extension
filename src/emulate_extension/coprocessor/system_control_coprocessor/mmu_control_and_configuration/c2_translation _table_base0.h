@@ -9,7 +9,6 @@
 #include <stdint.h>
 
 
-static int N_C2_translation_table_register0;
 
 struct C2_translation_table_base_register0 {
     bool C : 1;
