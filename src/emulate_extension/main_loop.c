@@ -33,9 +33,6 @@ void main_loop(enum CommandLineFlags flags) {
             if (exitCode == BRANCH) {
                 invalidate_pipeline();
             }
-            if (flags & DEBUG_PRINT_REGISTER) {
-                print_registers(flags);
-            }
             master_instruction_counter++;
         } else if (prefetch_aborted()) {
             add_exception_flag(PREFETCH_ABORT);
@@ -52,6 +49,9 @@ void main_loop(enum CommandLineFlags flags) {
 
         if (flags & MEMORY) {
             print_memory();
+        }
+        if (flags & DEBUG_PRINT_REGISTER) {
+            print_registers(flags);
         }
     }
 
