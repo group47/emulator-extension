@@ -6,7 +6,6 @@
 #define SRC_C1_COPROCESSOR_ACCESS_CONTROL_H
 
 #include <stdint.h>
-#include "../../../../emulate/emulate_main.h"
 #include "../../../instructions/arm/coprocessor_data_transfers.h"
 
 struct C1_coprocessor_access_control_register {

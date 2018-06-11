@@ -33,6 +33,9 @@ void main_loop(enum CommandLineFlags flags) {
             if (exitCode == BRANCH) {
                 invalidate_pipeline();
             }
+            if (flags & DEBUG_PRINT_REGISTER) {
+                print_registers(flags);
+            }
             master_instruction_counter++;
         } else if (prefetch_aborted()) {
             add_exception_flag(PREFETCH_ABORT);
@@ -46,9 +49,6 @@ void main_loop(enum CommandLineFlags flags) {
         //this function is used so that the cpu isn't in an inconsistent state in this loop
         transfer_fetched_to_decoded_and_load_fetched();
 
-        if (flags & DEBUG_PRINT_REGISTER) {
-            print_registers(flags);
-        }
 
         if (flags & MEMORY) {
             print_memory();
