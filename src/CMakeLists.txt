@@ -133,12 +133,6 @@ add_executable(emulate_extension
         emulate_extension/instructions/thumb/unconditional_branch.c
         emulate_extension/instructions/thumb/unconditional_branch.h
         emulate_extension/instructions/arm/branch_and_exchange.h
-        emulate_extension/instructions/thumb/move_shifted_register.c
-        emulate_extension/instructions/thumb/move_shifted_register.h
-        emulate_extension/util/shift_util.c
-        emulate_extension/util/shift_util.h
-        emulate_extension/instructions/thumb/add_offset_to_stack_pointer.c
-        emulate_extension/instructions/thumb/add_offset_to_stack_pointer.h
         emulate_extension/instructions/thumb/push_pop_registers.c
         emulate_extension/instructions/thumb/push_pop_registers.h
         emulate_extension/instructions/arm/coprocessor_data_operations.c
@@ -146,10 +140,6 @@ add_executable(emulate_extension
         emulate_extension/instructions/arm/coprocessor_data_transfers.c
         emulate_extension/instructions/arm/coprocessor_data_transfers.h
         emulate_extension/instructions/arm/branch_and_exchange.h
-        emulate_extension/instructions/thumb/move_shifted_register.c
-        emulate_extension/instructions/thumb/move_shifted_register.h
-        emulate_extension/util/shift_util.c
-        emulate_extension/util/shift_util.h
         emulate_extension/instructions/thumb/move_compare_add_subtract.c
         emulate_extension/instructions/thumb/move_compare_add_subtract.h
         emulate_extension/instructions/thumb/alu_operation.c
@@ -168,10 +158,6 @@ add_executable(emulate_extension
         emulate_extension/instructions/thumb/load_store_halfword.c
         emulate_extension/instructions/thumb/load_store_halfword.h
         emulate_extension/instructions/arm/branch_and_exchange.h
-        emulate_extension/instructions/thumb/move_shifted_register.c
-        emulate_extension/instructions/thumb/move_shifted_register.h
-        emulate_extension/util/shift_util.c
-        emulate_extension/util/shift_util.h
         emulate_extension/instructions/thumb/move_compare_add_subtract.c
         emulate_extension/instructions/thumb/move_compare_add_subtract.h
         emulate_extension/instructions/thumb/conditional_branch.c
@@ -179,16 +165,8 @@ add_executable(emulate_extension
         emulate_extension/instructions/thumb/unconditional_branch.c
         emulate_extension/instructions/thumb/unconditional_branch.h
         emulate_extension/instructions/arm/branch_and_exchange.h
-        emulate_extension/instructions/thumb/move_shifted_register.c
-        emulate_extension/instructions/thumb/move_shifted_register.h
-        emulate_extension/util/shift_util.c
-        emulate_extension/util/shift_util.h
-        emulate_extension/instructions/thumb/add_offset_to_stack_pointer.c
-        emulate_extension/instructions/thumb/add_offset_to_stack_pointer.h
         emulate_extension/instructions/thumb/push_pop_registers.c
         emulate_extension/instructions/thumb/push_pop_registers.h
-        emulate_extension/instructions/arm/coprocessor_data_operations.c
-        emulate_extension/instructions/arm/coprocessor_data_operations.h
         emulate_extension/instructions/arm/coprocessor_data_transfers.c
         emulate_extension/instructions/arm/coprocessor_data_transfers.h
         emulate_extension/instructions/thumb/PCRelativeLoad.c
@@ -200,16 +178,8 @@ add_executable(emulate_extension
         emulate_extension/instructions/thumb/load_store_sign_extended_byte_half_word.c
         emulate_extension/instructions/thumb/load_store_sign_extended_byte_half_word.h
         emulate_extension/instructions/arm/branch_and_exchange.h
-        emulate_extension/instructions/thumb/move_shifted_register.c
-        emulate_extension/instructions/thumb/move_shifted_register.h
-        emulate_extension/util/shift_util.c
-        emulate_extension/util/shift_util.h
-        emulate_extension/instructions/thumb/add_offset_to_stack_pointer.c
-        emulate_extension/instructions/thumb/add_offset_to_stack_pointer.h
         emulate_extension/instructions/thumb/push_pop_registers.c
         emulate_extension/instructions/thumb/push_pop_registers.h
-        emulate_extension/instructions/arm/coprocessor_data_operations.c
-        emulate_extension/instructions/arm/coprocessor_data_operations.h
         emulate_extension/instructions/arm/coprocessor_data_transfers.c
         emulate_extension/instructions/arm/coprocessor_data_transfers.h
         emulate_extension/instructions/thumb/PCRelativeLoad.c
@@ -221,8 +191,6 @@ add_executable(emulate_extension
         emulate_extension/instructions/arm/branch_and_exchange.h
         emulate_extension/instructions/thumb/move_shifted_register.c
         emulate_extension/instructions/thumb/move_shifted_register.h
-        emulate_extension/util/shift_util.c
-        emulate_extension/util/shift_util.h
         emulate_extension/instructions/thumb/move_compare_add_subtract.c
         emulate_extension/instructions/thumb/move_compare_add_subtract.h
         emulate_extension/instructions/thumb/conditional_branch.c
