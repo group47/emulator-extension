@@ -292,6 +292,18 @@ void init_cpu(enum CommandLineFlags flags) {
     }
 }
 
+void init_system_control_coprocessor() {
+    state.systemControlCoprocessor.c0_main_id_register.implementor = 0x41;
+    state.systemControlCoprocessor.c0_main_id_register.variant_number = 0x0;
+    state.systemControlCoprocessor.c0_main_id_register.architecture = 0xF;
+    state.systemControlCoprocessor.c0_main_id_register.primary_part_number = 0x876;
+    state.systemControlCoprocessor.c0_main_id_register.revision = 0x7;
+}
+
+void init_coprocessors() {
+    init_system_control_coprocessor();
+}
+
 union RawArmInstruction get_fetched_arm() {
     assert(!state.fetched_prefetch_aborted);
     uint32_t lValue = __bswap_32(__bswap_32(state.fetched_arm));

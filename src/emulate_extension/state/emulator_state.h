@@ -134,6 +134,10 @@ void setSPSR(struct CPSR_Struct toSet);
 
 void init_cpu(enum CommandLineFlags);
 
+void init_coprocessors();
+
+void init_system_control_coprocessor();
+
 union RawArmInstruction get_fetched_arm();
 
 union RawThumbInstruction get_fetched_thumb();
