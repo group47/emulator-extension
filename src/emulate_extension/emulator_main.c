@@ -9,10 +9,12 @@
 #include "util/entry_point.h"
 #include "emulator_main.h"
 #include "dissasemble.h"
+#include "sorta_a_bios/bootloader.h"
 
 #ifdef USE_EMULATOR_MAIN
 
 static const char *binary_path = "";
+static const char *kernel_path = "";
 static const char *invalid_arg = "";
 static const char *logfile_path = "";
 static const char *sp_print_offset = "0";
@@ -43,6 +45,10 @@ enum CommandLineFlags parseCommandLine(int argc, const char **argv) {
         } else if (arg == strstr(arg, "--pc-print-offset=")) {
             pc_print_offset = arg + sizeof("--pc-print-offset=") / sizeof(char) - 1;
             flags |= PC_PRINT_OFFSET_SET;
+        } else if (arg == strstr(arg, "--kernel=")) {
+            flags |= KERNEL;
+        } else if (0 == strcmp(arg, "--zimage")) {
+            flags |= ZIMAGE;
         } else {
             flags |= INVALID;
             invalid_arg = arg;
@@ -74,6 +80,9 @@ int main(int argc, const char **argv) {
         }
         disassemble(fp);
         fclose(fp);
+    }
+    if (flags & KERNEL) {
+        boot_loader_entry_point(kernel_path, flags);
     }
     FILE *fp = fopen(binary_path, "r");
     if (fp == NULL) {

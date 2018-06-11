@@ -220,3 +220,11 @@ void print_memory() {
 //
 //    }
 }
+
+/**
+ *This function should only be used by the bootloader.
+ */
+void set_memory(struct Memory memory1) {
+    memory = memory1;
+
+}

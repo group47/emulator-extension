@@ -7,12 +7,14 @@
 #include "bootloader.h"
 #include "../state/emulator_state.h"
 #include "../mmu/serial_console.h"
+#include "../main_loop.h"
 
-static uint32_t *prepared_ram;
+static struct Memory prepared_ram;
 static size_t atag_i = 0;
 
 void append_atag(struct ATAG cmdline) {
-    memcpy(prepared_ram + PARAMETER_BLOCK_START_ADDRESS + atag_i, &cmdline, cmdline.header.size * sizeof(Word));
+    memcpy((Word *) (&prepared_ram.contents) + PARAMETER_BLOCK_START_ADDRESS + atag_i, &cmdline,
+           cmdline.header.size * sizeof(Word));
     atag_i += cmdline.header.size * sizeof(Word);
 }
 
@@ -31,7 +33,7 @@ void init_mem() {
     struct ATAG mem;
     mem.header.tag = ATAG_TAG_MEM;
     mem.header.size = 4;
-    mem.mem.size = 1024 * 1024 * 1024 * 8;//one gigabyte
+    mem.mem.size = 1024 * 1024 * 1024;//one gigabyte
     mem.mem.start = 0x0;
     append_atag(mem);
 }
@@ -82,8 +84,31 @@ void init_atags() {
     init_atag_none();
 }
 
-void init_prepared_ram() {
-    prepared_ram = calloc(1024 * 1024 * 1024, sizeof(uint8_t));
+bool check_magic_number(Word val) {
+    return val == MAGIC_ARM_BOOT_NUMBER;
+}
+
+void copy_kernel_into_ram(FILE *kernel) {
+    Word current_word;
+    uint32_t ram_i = 0;
+    while (fread(&current_word, sizeof(Word), 1, kernel)) {
+        if (ram_i == MAGIC_NUMBER_LOCATION) {
+            if (check_magic_number(((uint32_t *) prepared_ram.contents)[ram_i + KERNEL_LOAD_TO_ADDRESS])) {
+                fprintf(stderr, "BAD MAGIC NUMBER");
+                exit(-1);
+            }
+        }
+        ((uint32_t *) prepared_ram.contents)[ram_i] = current_word;
+        ram_i++;
+    }
+
+}
+
+void init_prepared_ram(FILE *kernel) {
+    prepared_ram.contents = calloc(1024 * 1024 * 1024, sizeof(uint8_t));
+    prepared_ram.size = 1024 * 1024 * 1024 * sizeof(uint8_t);
+    prepared_ram.mode = LITTLE_ENDIAN_;
+    copy_kernel_into_ram(kernel);
     init_atags();
 }
 
@@ -94,27 +119,18 @@ void init_registers(struct CPUState *state) {
     //todo mmu and instruction/data cache turn off.
     state->CPSR.M = svc;
     //todo disable interrupts
-
+    set_word_in_register(15, KERNEL_LOAD_TO_ADDRESS);
 }
 
 
-
-
-#define MAGIC_ARM_BOOT_NUMBER 0x016F2818
-#define MAGIC_NUMBER_LOCATION 0x24
-
-bool check_magic_number(Word val) {
-    return val == MAGIC_ARM_BOOT_NUMBER;
-}
-//why did people think magic numbers where a good way of doing this?
-
-
-void copy_kernel_into_ram(FILE *kernel) {
-
-}
-
-void boot(FILE *kernel) {
-    init_prepared_ram();
+void boot(FILE *kernel, enum CommandLineFlags flags) {
+    init_prepared_ram(kernel);
     init_atags();
-    init_registers(NULL);//todo
+    init_registers(getCPUState());
+    main_loop(flags);
+}
+
+void boot_loader_entry_point(const char *image_path, enum CommandLineFlags flags) {
+    FILE *img = fopen(image_path, "rb+");
+    boot(img, flags);
 }

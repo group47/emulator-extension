@@ -441,3 +441,11 @@ void invalidate_pipeline() {
 struct SystemControlCoprocessor* get_system_control_coprocessor() {
     return &state.systemControlCoprocessor;
 }
+
+/**
+ * should only be used by bootloader
+ * @return
+ */
+struct CPUState *getCPUState() {
+    return &state;
+}

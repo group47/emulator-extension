@@ -102,10 +102,6 @@ add_executable(emulate_extension
         emulate_extension/util/overflow_util.h
         emulate_extension/util/cpsr_util.c
         emulate_extension/util/cpsr_util.h
-        emulate_extension/util/operand_two_util.c
-        emulate_extension/util/operand_two_util.h
-        emulate_extension/util/common_enums.c
-        emulate_extension/util/common_enums.h
         emulate_extension/instructions/thumb/add_subtract.c
         emulate_extension/instructions/thumb/add_subtract.h
         emulate_extension/util/static_asserts.c
@@ -165,10 +161,6 @@ add_executable(emulate_extension
         emulate_extension/instructions/thumb/unconditional_branch.c
         emulate_extension/instructions/thumb/unconditional_branch.h
         emulate_extension/instructions/arm/branch_and_exchange.h
-        emulate_extension/instructions/thumb/push_pop_registers.c
-        emulate_extension/instructions/thumb/push_pop_registers.h
-        emulate_extension/instructions/arm/coprocessor_data_transfers.c
-        emulate_extension/instructions/arm/coprocessor_data_transfers.h
         emulate_extension/instructions/thumb/PCRelativeLoad.c
         emulate_extension/instructions/thumb/PCRelativeLoad.h
         emulate_extension/instructions/thumb/Hi_register_operations_branch_exchange.c
@@ -178,10 +170,6 @@ add_executable(emulate_extension
         emulate_extension/instructions/thumb/load_store_sign_extended_byte_half_word.c
         emulate_extension/instructions/thumb/load_store_sign_extended_byte_half_word.h
         emulate_extension/instructions/arm/branch_and_exchange.h
-        emulate_extension/instructions/thumb/push_pop_registers.c
-        emulate_extension/instructions/thumb/push_pop_registers.h
-        emulate_extension/instructions/arm/coprocessor_data_transfers.c
-        emulate_extension/instructions/arm/coprocessor_data_transfers.h
         emulate_extension/instructions/thumb/PCRelativeLoad.c
         emulate_extension/instructions/thumb/PCRelativeLoad.h
         emulate_extension/instructions/thumb/Hi_register_operations_branch_exchange.c
@@ -220,20 +208,6 @@ add_executable(emulate_extension
         emulate_extension/instructions/thumb/move_shifted_register.h
         emulate_extension/util/shift_util.c
         emulate_extension/util/shift_util.h
-        emulate_extension/instructions/thumb/move_compare_add_subtract.c
-        emulate_extension/instructions/thumb/move_compare_add_subtract.h
-        emulate_extension/instructions/thumb/conditional_branch.c
-        emulate_extension/instructions/thumb/conditional_branch.h
-        emulate_extension/instructions/thumb/unconditional_branch.c
-        emulate_extension/instructions/thumb/unconditional_branch.h
-        emulate_extension/instructions/thumb/SP_relative_load_store.c
-        emulate_extension/instructions/thumb/SP_relative_load_store.h
-        emulate_extension/instructions/thumb/multiple_load_store.c
-        emulate_extension/instructions/thumb/multiple_load_store.h
-        emulate_extension/instructions/thumb/long_branch_with_link.c
-        emulate_extension/instructions/thumb/long_branch_with_link.h
-        emulate_extension/instructions/thumb/load_store_with_immediate_offset.c
-        emulate_extension/instructions/thumb/load_store_with_immediate_offset.h
         emulate_extension/state/exception.c
         emulate_extension/state/exception.h
         emulate_extension/main_loop.c
@@ -292,4 +266,7 @@ add_executable(emulate_extension
         emulate_extension/sorta_a_bios/bootloader.c
         emulate_extension/sorta_a_bios/bootloader.h
         emulate_extension/mmu/serial_console.c
-        emulate_extension/mmu/serial_console.h)
+        emulate_extension/mmu/serial_console.h
+        emulate_extension/instructions/thumb/add_offset_to_stack_pointer.h
+        emulate_extension/instructions/thumb/add_offset_to_stack_pointer.c
+        )

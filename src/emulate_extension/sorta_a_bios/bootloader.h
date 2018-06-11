@@ -7,14 +7,17 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include "../util/entry_point.h"
 
 #define START_ADDRESS_LOCATION_KERNEL 0x28
 #define END_ADDRESS_LOCATION_KERNEL 0x2C
 #define KERNEL_LOAD_TO_ADDRESS 0x8000
 #define PARAMETER_BLOCK_START_ADDRESS 0x100
+#define MAGIC_ARM_BOOT_NUMBER 0x016F2818
+#define MAGIC_NUMBER_LOCATION 0x24
 
 
-void boot(FILE *kernel_binary);
+void boot(FILE *kernel_binary, enum CommandLineFlags);
 
 struct ATAG_CORE {
     uint32_t flags;
@@ -112,5 +115,7 @@ struct ATAG {
     };
 };
 
+
+void boot_loader_entry_point(const char *image_path, enum CommandLineFlags flags);
 
 #endif //SRC_BOOTLOADER_H
