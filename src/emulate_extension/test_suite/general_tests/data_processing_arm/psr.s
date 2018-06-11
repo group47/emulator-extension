@@ -13,7 +13,7 @@ sub r7,#2
 msr CPSR_x,r7
 msr CPSR_s,r5
 msr CPSR_c,#5
-mrs r9,CPSR
+mrs CPSR,r9
 bic r9,r9,#0x1f
 orr r9,r9,#0x13
 msr CPSR_c,r9
