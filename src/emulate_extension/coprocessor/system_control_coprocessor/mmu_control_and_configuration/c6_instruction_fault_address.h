@@ -17,3 +17,5 @@ struct C6_instruction_fault_address_register {
 }__attribute__((packed));
 
 #endif //SRC_C6_INSTRUCTION_FAULT_ADDRESS_H
+
+enum ExecutionExitCode execute_instruction_fault_address_register(struct CoprocessorRegisterTransferInstruction);

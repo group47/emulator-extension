@@ -39,5 +39,5 @@ struct C1_control_register {
     uint8 sbz_size2_position_31 : 2;
 }__attribute__((packed));
 
-enum ExecutionExitCode execute_control_register(struct CoProcessorRegisterTransfer);
+enum ExecutionExitCode execute_control_register(struct CoprocessorRegisterTransferInstruction);
 #endif //SRC_CONTROL_H

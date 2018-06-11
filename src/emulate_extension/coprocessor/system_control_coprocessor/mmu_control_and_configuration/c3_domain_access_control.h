@@ -27,3 +27,5 @@ struct C3_domain_access_control_register {
 }__attribute__((packed));
 
 #endif //SRC_C3_DOMAIN_ACCESS_CONTROL_H
+
+enum ExecutionExitCode execute_domain_access_control_register(struct CoprocessorRegisterTransferInstruction);

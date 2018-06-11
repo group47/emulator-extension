@@ -16,3 +16,5 @@ struct C6_watchpoint_fault_address_register {
 }__attribute__((packed));
 
 #endif //SRC_C6_WATCHPOINT_FAULT_ADDRESS_H
+
+enum ExecutionExitCode execute_watchpoint_fault_address_register(struct CoprocessorRegisterTransferInstruction);

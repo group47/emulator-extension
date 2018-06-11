@@ -39,7 +39,7 @@ struct TerminateInstruction {
 };
 
 
-#include "emulate_main.h"
+#include "../emulate_extension/emulator_main.h"
 #include "data_processing_instruction.h"
 #include "multiply_instruction.h"
 #include "single_data_transfer_instruction.h"

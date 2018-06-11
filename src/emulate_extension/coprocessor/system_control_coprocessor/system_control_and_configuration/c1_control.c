@@ -3,7 +3,8 @@
 //
 
 #include "c1_control.h"
+#include "../../../instructions/arm/coprocessor_register_transfer.h"
 
-enum ExecutionExitCode execute_control_register(struct CoProcessorRegisterTransfer instruction) {
+enum ExecutionExitCode execute_control_register(struct CoprocessorRegisterTransferInstruction instruction) {
 
 }
