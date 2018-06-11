@@ -281,5 +281,36 @@ add_executable(emulate_extension
         emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_secure_configuration.h
         emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_non_secure_access_control.c
         emulate_extension/mmu/serial_console.h
-        emulate_extension/instructions/thumb/load_address.h emulate_extension/instructions/thumb/thumb_instruction.h emulate_extension/instructions/arm/PSRTransfer.c emulate_extension/instructions/arm/PSRTransfer.h emulate_extension/dissasemble.c emulate_extension/dissasemble.h emulate_extension/mmu/mmu_main.c emulate_extension/mmu/mmu_main.h emulate_extension/mmu/domain.c emulate_extension/mmu/domain.h emulate_extension/mmu/supersection.c emulate_extension/mmu/supersection.h emulate_extension/mmu/coarse_page_table.c emulate_extension/mmu/coarse_page_table.h emulate_extension/mmu/section.c emulate_extension/mmu/section.h emulate_extension/mmu/extended_small_page.c emulate_extension/mmu/extended_small_page.h emulate_extension/mmu/small_page.c emulate_extension/mmu/small_page.h emulate_extension/mmu/large_page.c emulate_extension/mmu/large_page.h emulate_extension/persistant_storage/persistent_disk.c emulate_extension/persistant_storage/persistent_disk.h emulate_extension/sorta_a_bios/bootloader.c emulate_extension/sorta_a_bios/bootloader.h emulate_extension/serial_console.c emulate_extension/serial_console.h
-        emulate_extension/mmu/serial_console.c emulate_extension/mmu/v6_first_level_descriptor_format.c emulate_extension/mmu/v6_first_level_descriptor_format.h emulate_extension/mmu/backwards_first_level_descriptor_format.c emulate_extension/mmu/backwards_first_level_descriptor_format.h emulate_extension/mmu/backwards_second_level_descriptor.c emulate_extension/mmu/backwards_second_level_descriptor.h)
+        emulate_extension/instructions/thumb/load_address.h
+        emulate_extension/instructions/thumb/thumb_instruction.h
+        emulate_extension/instructions/arm/PSRTransfer.c
+        emulate_extension/instructions/arm/PSRTransfer.h
+        emulate_extension/dissasemble.c
+        emulate_extension/dissasemble.h
+        emulate_extension/mmu/mmu_main.c
+        emulate_extension/mmu/mmu_main.h
+        emulate_extension/mmu/domain.c
+        emulate_extension/mmu/domain.h
+        emulate_extension/mmu/supersection.c
+        emulate_extension/mmu/supersection.h
+        emulate_extension/mmu/coarse_page_table.c
+        emulate_extension/mmu/coarse_page_table.h
+        emulate_extension/mmu/section.c
+        emulate_extension/mmu/section.h
+        emulate_extension/mmu/extended_small_page.c
+        emulate_extension/mmu/extended_small_page.h
+        emulate_extension/mmu/small_page.c
+        emulate_extension/mmu/small_page.h
+        emulate_extension/mmu/large_page.c
+        emulate_extension/mmu/large_page.h
+        emulate_extension/persistant_storage/persistent_disk.c
+        emulate_extension/persistant_storage/persistent_disk.h
+        emulate_extension/sorta_a_bios/bootloader.c
+        emulate_extension/sorta_a_bios/bootloader.h
+        emulate_extension/mmu/serial_console.c
+        emulate_extension/mmu/v6_first_level_descriptor_format.c
+        emulate_extension/mmu/v6_first_level_descriptor_format.h
+        emulate_extension/mmu/backwards_first_level_descriptor_format.c
+        emulate_extension/mmu/backwards_first_level_descriptor_format.h
+        emulate_extension/mmu/backwards_second_level_descriptor.c
+        emulate_extension/mmu/backwards_second_level_descriptor.h)
