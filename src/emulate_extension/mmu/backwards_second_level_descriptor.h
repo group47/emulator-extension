@@ -5,9 +5,12 @@
 #ifndef SRC_BACKWARDS_SECOND_LEVEL_DESCRIPTOR_H
 #define SRC_BACKWARDS_SECOND_LEVEL_DESCRIPTOR_H
 
+#include <stdint.h>
+#include <stdbool.h>
+
 struct Backwards_sd_translation_fault {
     uint8_t filler00: 2;
-    uint8_t ignored : 30;
+    uint32_t ignored : 30;
 }__attribute__((packed));
 
 struct Backwards_sd_large_page {
