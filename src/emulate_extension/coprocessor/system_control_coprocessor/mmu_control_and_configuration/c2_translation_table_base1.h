@@ -8,7 +8,6 @@
 #endif //SRC_C2_TRANSLATION_TABLE_BASE1_H
 
 
-static int N_C2_translation_table_register1;
 
 struct C2_translation_table_base_register1 {
     bool C : 1;
