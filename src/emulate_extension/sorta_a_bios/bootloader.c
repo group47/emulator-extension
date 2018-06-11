@@ -98,7 +98,7 @@ void copy_kernel_into_ram(FILE *kernel) {
                 exit(-1);
             }
         }
-        ((uint32_t *) prepared_ram.contents)[ram_i] = current_word;
+        ((uint32_t *) prepared_ram.contents)[ram_i + KERNEL_LOAD_TO_ADDRESS] = current_word;
         ram_i++;
     }
 
@@ -119,7 +119,7 @@ void init_registers(struct CPUState *state) {
     //todo mmu and instruction/data cache turn off.
     state->CPSR.M = svc;
     //todo disable interrupts
-    set_word_in_register(15, KERNEL_LOAD_TO_ADDRESS);
+    set_word_in_register(PC_ADDRESS, KERNEL_LOAD_TO_ADDRESS);
 }
 
 

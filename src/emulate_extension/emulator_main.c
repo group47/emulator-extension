@@ -46,6 +46,7 @@ enum CommandLineFlags parseCommandLine(int argc, const char **argv) {
             pc_print_offset = arg + sizeof("--pc-print-offset=") / sizeof(char) - 1;
             flags |= PC_PRINT_OFFSET_SET;
         } else if (arg == strstr(arg, "--kernel=")) {
+            kernel_path = arg + sizeof("--kernel=") / sizeof(char) - 1;
             flags |= KERNEL;
         } else if (0 == strcmp(arg, "--zimage")) {
             flags |= ZIMAGE;
