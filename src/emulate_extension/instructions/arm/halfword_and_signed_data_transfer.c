@@ -141,6 +141,7 @@ enum ExecutionExitCode execute_halfword_and_signed_data_transfer_immediate_offse
     return OK;
 }
 
+//TODO: endian
 const ByteAddress get_offset(struct HalfWordAndSignedDataTransferImmediateOffset instruction) {
     return (instruction.offsetHighNibble << 4) + instruction.offsetLowNibble;
 }
