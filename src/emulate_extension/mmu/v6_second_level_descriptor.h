@@ -1,0 +1,49 @@
+//
+// Created by qs4617 on 12/06/18.
+//
+
+#ifndef SRC_V6_SECOND_LEVEL_DESCRIPTOR_H
+#define SRC_V6_SECOND_LEVEL_DESCRIPTOR_H
+
+#include <stdint.h>
+#include <stdbool.h>
+
+struct V6_sd_translation_fault {
+    uint8_t filler00: 2;
+    uint32_t ignored : 30;
+}__attribute__((packed));
+
+struct V6_sd_large_page {
+    uint8_t filler01: 2;
+    bool B: 1;
+    bool C : 1;
+    uint8_t ap : 2;
+    uint8_t sbz : 3;
+    bool apx : 1;
+    bool s : 1;
+    bool ng : 1;
+    uint8_t tex : 3;
+    bool xn : 1;
+    uint16_t large_page_base_address : 16;
+}__attribute__((packed));
+
+struct V6_sd_extended_small_page {
+    bool xn : 1;
+    bool filler0: 1;
+    bool B: 1;
+    bool C: 1;
+    uint8_t ap : 2;
+    uint8_t tex : 3;
+    bool apx : 1;
+    bool s : 1;
+    bool ng : 1;
+    uint32_t extended_small_page_address : 20;
+}__attribute__((packed));
+
+struct V6_second_level_descriptor {
+    struct V6_sd_translation_fault v6_sd_translation_fault;
+    struct V6_sd_large_page v6_sd_large_page;
+    struct V6_sd_extended_small_page v6_sd_extended_small_page;
+}__attribute__((packed));
+
+#endif //SRC_V6_SECOND_LEVEL_DESCRIPTOR_H

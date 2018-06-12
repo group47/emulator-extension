@@ -5,6 +5,9 @@
 #ifndef SRC_BACKWARDS_FIRST_LEVEL_DESCRIPTOR_FORMAT_H
 #define SRC_BACKWARDS_FIRST_LEVEL_DESCRIPTOR_FORMAT_H
 
+#include <stdbool.h>
+#include <stdint.h>
+
 struct Backwards_fd_ignored {
     uint8_t filler00 : 2;
     uint32_t ignored : 30;
@@ -24,13 +27,13 @@ struct Backwards_fd_section {
     uint8_t filler10 : 2;
     bool B : 1;
     bool C : 1;
-    bool filler0 : 1;
+    bool filler0_position4 : 1;
     uint8_t domain : 4;
     bool P : 1;
     uint8_t ap : 2;
     uint8_t tex : 3;
     uint8_t sbz : 3;
-    bool filler0 : 1;
+    bool filler0_position18 : 1;
     bool ns : 1;
     uint8_t section_base_address : 12;
 }__attribute__((packed));
@@ -45,7 +48,7 @@ struct Backwards_fd_supersection {
     uint8_t ap : 2;
     uint8_t tex : 3;
     uint8_t sbz_sized3_position17 : 3;
-    bool filler0 : 1;
+    bool filler1 : 1;
     bool ns : 1;
     uint8_t sbz_size3_position23 : 3;
     uint8_t supersection_base_address : 8;
