@@ -29,4 +29,6 @@ void main_emulation_entry_point(enum CommandLineFlags, FILE *, FILE *);
 
 FILE *get_logfile();
 
+void set_logfile(FILE *fp);
+
 #endif //SRC_ENTRY_POINT_H
