@@ -1,7 +1,7 @@
 ldr r1, =msg
 ldrh r2, [r1, #0]
 ldrh r3, [r1, #2]
-mov r4, =num
+ldr r4, =num
 strh r4, [r2]
 strh r4, [r2, #2]
 ldrh r3, [r1, #2]
