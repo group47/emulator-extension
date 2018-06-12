@@ -1,4 +1,5 @@
 ldr r1, =msg
+ldr r2, [r1]
 ldrh r2, [r1, #0]
 ldrh r3, [r1, #2]
 ldr r5, =num
@@ -205,6 +206,6 @@ mov r2, #1
 mov r3, #1
 ldmdb r13!, {r0-r3, r15}
 .data
-num: .int 0x01ff, 0
-msg: .asciz "hellowrldelloworlelloworlelloworllowolowolowolowolowolowolowowolowolowowolowoloowolowoloowolowolowhelloworldellohelloworldellowwo"
+msg: .asciz "helo"
 len = .-msg
+num: .int 0x01ff, 0
