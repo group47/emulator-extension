@@ -10,11 +10,11 @@ ldrsb r6, [r5, #0]
 ldrsb r7, [r5, #1]
 ldrsb r8, [r5, #2]
 ldrsb r9, [r5, #3]
-strsb r6, [r5, #4]
-strsb r7, [r5, #5]
-strsb r8, [r5, #6]
-strsb r9, [r5, #7]
-strsb r6, [r5, #4]!
+strb r6, [r5, #4]
+strb r7, [r5, #5]
+strb r8, [r5, #6]
+strb r9, [r5, #7]
+strb r6, [r5, #4]!
 mov r0, #0
 mov r1, #0
 mov r2, #0
