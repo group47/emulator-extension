@@ -205,6 +205,6 @@ mov r2, #1
 mov r3, #1
 ldmdb r13!, {r0-r3, r15}
 .data
-num: .int 0x01ff, 0
 msg: .asciz "hellowrldelloworlelloworlelloworllowolowolowolowolowolowolowowolowolowowolowoloowolowoloowolowolowhelloworldellohelloworldellowwo"
 len = .-msg
+num: .int 0x01ff, 0
