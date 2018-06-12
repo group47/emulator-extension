@@ -1,8 +1,8 @@
 ldr r1, =msg
 ldrh r2, [r1, #0]
 ldrh r3, [r1, #2]
-mov r4, 0x11000101
-strh r4, [r2],
+mov r4, #0x11000101
+strh r4, [r2]
 strh r4, [r2, #2]
 ldrh r3, [r1, #2]
 ldr r5, =num
