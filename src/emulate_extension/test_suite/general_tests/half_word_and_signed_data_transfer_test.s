@@ -45,7 +45,6 @@ mov r0, #10
 mov r1, #-12
 ldr r2, =msg
 ldr r3, =num
-b somefun
 bl somefun
 mov r0, #0
 mov r0, #0
