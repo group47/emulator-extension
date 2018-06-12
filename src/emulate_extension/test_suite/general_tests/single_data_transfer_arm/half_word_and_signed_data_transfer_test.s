@@ -1,4 +1,5 @@
 ldr r1, =msg
+ldr r2, [r1]
 ldrh r2, [r1, #0]
 ldrh r3, [r1, #2]
 ldr r5, =num
