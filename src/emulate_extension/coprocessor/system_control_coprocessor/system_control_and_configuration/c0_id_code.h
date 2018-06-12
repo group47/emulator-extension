@@ -19,4 +19,6 @@ struct C0_main_id_register {
 
 enum ExecutionExitCode execute_co_main_id_register(struct CoprocessorRegisterTransferInstruction);
 
+struct C0_main_id_register get_main_id_register();
+
 #endif //SRC_C0_ID_CODE_H

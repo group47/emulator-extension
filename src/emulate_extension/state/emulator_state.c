@@ -192,7 +192,7 @@ enum Mode get_mode() {
 }
 
 struct CPSR_Struct get_SPSR_by_mode() {
-    /*
+
     switch (state.CPSR.M) {
         case usr:
             return state.CPSR;
@@ -212,8 +212,6 @@ struct CPSR_Struct get_SPSR_by_mode() {
             fprintf(get_logfile(), "unknown operating mode\n");
             assert(false);
     }
-    */
-    assert(false);
 }
 
 void set_operating_mode(enum OperatingMode newOperatingMode) {

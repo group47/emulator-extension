@@ -455,7 +455,11 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
 
     CPNum15_CRn0_CPOpc0_CRm0:
     switch (instruction.CP) {
-        case 0:
+        case 0: {
+            struct C0_main_id_register val = get_main_id_register();
+            set_word_in_register(instruction.Rd, *(uint32_t *) &val);
+            return OK;
+        }
         case 1:
         case 2:
         case 3:

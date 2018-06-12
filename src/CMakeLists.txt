@@ -313,4 +313,6 @@ add_executable(emulate_extension
         emulate_extension/mmu/backwards_first_level_descriptor_format.c
         emulate_extension/mmu/backwards_first_level_descriptor_format.h
         emulate_extension/mmu/backwards_second_level_descriptor.c
-        emulate_extension/mmu/backwards_second_level_descriptor.h)
+        emulate_extension/mmu/backwards_second_level_descriptor.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_id_code.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_id_code.h emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_cache_type_register.c emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_cache_type_register.h)
