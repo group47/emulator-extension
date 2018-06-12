@@ -1,20 +1,16 @@
 ldr r1, =msg
 ldrh r2, [r1, #0]
 ldrh r3, [r1, #2]
-ldr r4, =num
-strh r4, [r2]
-strh r4, [r2, #2]
-ldrh r3, [r1, #2]
 ldr r5, =num
 ldrsb r6, [r5, #0]
 ldrsb r7, [r5, #1]
 ldrsb r8, [r5, #2]
 ldrsb r9, [r5, #3]
-strb r6, [r5, #4]
-strb r7, [r5, #5]
-strb r8, [r5, #6]
-strb r9, [r5, #7]
-strb r6, [r5, #4]!
+strb r6, [r1, #4]
+strb r7, [r1, #5]
+strb r8, [r1, #6]
+strb r9, [r1, #7]
+strb r6, [r1, #4]!
 mov r0, #0
 mov r1, #0
 mov r2, #0
