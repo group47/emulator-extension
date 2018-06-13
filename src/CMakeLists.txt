@@ -34,7 +34,7 @@ add_executable(assemble
         assemble/parseSpecial.c
         assemble/parseSpecial.h
         assemble/parseUtility.c
-        assemble/parseUtility.h emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_control.c emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_control.h emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_auxiliary_control.c emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_auxiliary_control.h emulate_extension/coprocessor/system_control_coprocessor/instructions/MRC_MCR.c emulate_extension/coprocessor/system_control_coprocessor/instructions/MRC_MCR.h emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_secure_configuration.c emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_secure_configuration.h emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_secure_debug_enable.c emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_secure_debug_enable.h emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_non_secure_access_control.c emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_non_secure_access_control.h emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_coprocessor_access_control.c emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_coprocessor_access_control.h emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c12_secure_or_non_secure_vector_base_address.c emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c12_secure_or_non_secure_vector_base_address.h emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c12_monitor_vector_base_address.c emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c12_monitor_vector_base_address.h emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_id_code.c emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_id_code.h emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_feature_id_cpuid_scheme.c emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_feature_id_cpuid_scheme.h)
+        assemble/parseUtility.h)
 
 add_executable(emulate
         emulate/branch_instruction.c
@@ -315,5 +315,33 @@ add_executable(emulate_extension
         emulate_extension/mmu/backwards_second_level_descriptor.c
         emulate_extension/mmu/backwards_second_level_descriptor.h
         emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_id_code.c
-        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_id_code.h emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_cache_type_register.c emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_cache_type_register.h
-        emulate_extension/mmu/backwards_second_level_descriptor.h emulate_extension/mmu/v6_second_level_descriptor.c emulate_extension/mmu/v6_second_level_descriptor.h emulate_extension/mmu/translation.c emulate_extension/mmu/translation.h emulate_extension/mmu/address.c emulate_extension/mmu/address.h)
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_id_code.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_cache_type_register.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_cache_type_register.h
+        emulate_extension/mmu/backwards_second_level_descriptor.h
+        emulate_extension/mmu/v6_second_level_descriptor.c
+        emulate_extension/mmu/v6_second_level_descriptor.h
+        emulate_extension/mmu/translation.c
+        emulate_extension/mmu/translation.h
+        emulate_extension/mmu/address.c
+        emulate_extension/mmu/address.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_control.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_control.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_auxiliary_control.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_auxiliary_control.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_secure_configuration.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_secure_configuration.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_secure_debug_enable.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_secure_debug_enable.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_non_secure_access_control.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_non_secure_access_control.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_coprocessor_access_control.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c1_coprocessor_access_control.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c12_secure_or_non_secure_vector_base_address.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c12_secure_or_non_secure_vector_base_address.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c12_monitor_vector_base_address.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c12_monitor_vector_base_address.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_id_code.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_id_code.h
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_feature_id_cpuid_scheme.c
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_feature_id_cpuid_scheme.h)
