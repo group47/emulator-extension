@@ -7,7 +7,7 @@
 
 #include "../basic_typedefs.h"
 
-#define MAGIC_CONSOLE_ADDRESS (1024*1024*1024 + 100)
+#define MAGIC_CONSOLE_ADDRESS (/*1024*1024*1024 +*/ 100)
 
 void console_handler(ByteAddress address, bool set, Word val);
 

@@ -10,6 +10,7 @@
 #include <stddef.h>
 #include "../basic_typedefs.h"
 
+#define MEMORY_OFFSET 0x40000000
 
 enum MemoryFormat {
     BIG_ENDIAN_, LITTLE_ENDIAN_// underscores are placed after names, becuase BIG_ENDIAN is used internally in libc

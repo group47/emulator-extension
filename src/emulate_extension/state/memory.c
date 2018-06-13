@@ -33,6 +33,7 @@ Word get_word_from_memory(ByteAddress address) {
     if (address == MAGIC_CONSOLE_ADDRESS) {
         console_handler(address, false, (Word) -1);
     }
+    address -= MEMORY_OFFSET;
     assert (address % 4 == 0);
     if (address + 4 > memory.size) {
         add_exception_flag(DATA_ABORT);
@@ -57,6 +58,7 @@ Word get_word_from_memory(ByteAddress address) {
 
 uint64_t get_word_from_memory_sign_extended(ByteAddress address) {
     assert (address % 4 == 0);
+    address -= MEMORY_OFFSET;
     if (address + 4 > memory.size) {
         add_exception_flag(DATA_ABORT);
         return 0;
@@ -69,6 +71,7 @@ HalfWord get_half_word_from_memory(ByteAddress address) {
     if (address == MAGIC_CONSOLE_ADDRESS) {
         console_handler(address, false, (Word) -1);
     }
+    address -= MEMORY_OFFSET;
     assert (address % 2 == 0);
     if (address + 2 > memory.size) {
         add_exception_flag(DATA_ABORT);
@@ -89,6 +92,7 @@ Word get_half_word_from_memory_sign_extended(ByteAddress address) {
     if (address == MAGIC_CONSOLE_ADDRESS) {
         console_handler(address, false, (Word) -1);
     }
+    address -= MEMORY_OFFSET;
     assert (address % 2 == 0);
     if (address + 2 > memory.size) {
         add_exception_flag(DATA_ABORT);
@@ -109,6 +113,7 @@ Byte get_byte_from_memory(ByteAddress address) {
     if (address == MAGIC_CONSOLE_ADDRESS) {
         console_handler(address, false, (Word) -1);
     }
+    address -= MEMORY_OFFSET;
     if (address > memory.size) {
         add_exception_flag(DATA_ABORT);
         return 0;
@@ -120,6 +125,7 @@ Word get_byte_from_memory_sign_extended(ByteAddress address) {
     if (address == MAGIC_CONSOLE_ADDRESS) {
         console_handler(address, false, (Word) -1);
     }
+    address -= MEMORY_OFFSET;
     if (address > memory.size) {
         add_exception_flag(DATA_ABORT);
         return 0;
@@ -132,6 +138,7 @@ void set_word_in_memory(ByteAddress address, Word val) {
     if (address == MAGIC_CONSOLE_ADDRESS) {
         console_handler(address, true, val);
     }
+    address -= MEMORY_OFFSET;
     address /= 4;
     address *= 4;
     if (address + 4 > memory.size) {
@@ -160,6 +167,7 @@ void set_half_word_in_memory(ByteAddress address, HalfWord val) {
     if (address == MAGIC_CONSOLE_ADDRESS) {
         console_handler(address, true, val);
     }
+    address -= MEMORY_OFFSET;
     if (address + 2 > memory.size) {
         add_exception_flag(DATA_ABORT);
     }
@@ -176,6 +184,7 @@ void set_byte_in_memory(ByteAddress address, Byte val) {
     if (address == MAGIC_CONSOLE_ADDRESS) {
         console_handler(address, true, val);
     }
+    address -= MEMORY_OFFSET;
     if (address > memory.size) {
         add_exception_flag(DATA_ABORT);
     }
@@ -207,6 +216,7 @@ Word half_word_to_word_sign_extend(HalfWord halfWord) {
 }
 
 bool memory_access_will_fail(ByteAddress memoryAddress) {
+    memoryAddress -= MEMORY_OFFSET;
     return memoryAddress < 0 || memoryAddress >= memory.size;
 }
 

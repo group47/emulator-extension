@@ -92,12 +92,6 @@ void copy_kernel_into_ram(FILE *kernel) {
     Byte current_word;
     uint32_t ram_i = 0;
     while (fread(&current_word, sizeof(Byte), 1, kernel)) {
-//        if (ram_i == MAGIC_NUMBER_LOCATION) {
-////            if (check_magic_number(((uint32_t *) prepared_ram.contents)[ram_i + KERNEL_LOAD_TO_ADDRESS])) {
-////                fprintf(stderr, "BAD MAGIC NUMBER");
-////                exit(-1);
-////            }
-//        }
         (prepared_ram.contents)[ram_i + KERNEL_LOAD_TO_ADDRESS] = current_word;
         ram_i++;
     }
@@ -114,12 +108,14 @@ void init_prepared_ram(FILE *kernel) {
 
 void init_registers(struct CPUState *state) {
     state->general_registers[0] = 0;
-    state->general_registers[1] = 0;//todo machine type?
+    state->general_registers[1] = (uint32_t) -1;
     state->general_registers[2] = PARAMETER_BLOCK_START_ADDRESS;
     //todo mmu and instruction/data cache turn off.
     state->CPSR.M = svc;
-    //todo disable interrupts
-    set_word_in_register(PC_ADDRESS, KERNEL_LOAD_TO_ADDRESS);
+    state->CPSR.I = true;
+    state->CPSR.F = true;
+    state->CPSR.Z = true;//no idea why this is needed, but linux expects it so...
+    set_word_in_register(PC_ADDRESS, KERNEL_LOAD_TO_ADDRESS + MEMORY_OFFSET);
 }
 
 

@@ -50,6 +50,8 @@ enum CommandLineFlags parseCommandLine(int argc, const char **argv) {
             flags |= KERNEL;
         } else if (0 == strcmp(arg, "--zimage")) {
             flags |= ZIMAGE;
+        } else if (0 == strcmp(arg, "--qemu-print")) {
+            flags |= QEMU_PRINT;
         } else {
             flags |= INVALID;
             invalid_arg = arg;
