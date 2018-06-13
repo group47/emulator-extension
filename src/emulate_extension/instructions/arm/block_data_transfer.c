@@ -56,22 +56,23 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
     // todo: check if the transfer of banking of register actually fit the specication for this instruction
 
 
+    uint8_t registers_used = 0;
     for (uint8_t i = 0; i < NUM_REGISTER_IN_REGISTER_LIST; i++) {
         if (instruction.registerList & (0x1 << i)) {
 
             R15InRegisterList = i == PC_ADDRESS ? true : R15InRegisterList;
 
             if (instruction.loadStoreBit) {
-                set_word_in_register(i, get_word_from_memory(address));
+                set_word_in_register(i, get_word_from_memory(address + (ByteAddress) registers_used * 4));
                 if (instruction.psrAndForceUserBit && i == PC_ADDRESS) {
                     setCPSR(get_SPSR_by_mode());
                 }
             } else {
                 if (i == PC_ADDRESS) {
-                    set_word_in_memory((ByteAddress) i * 4 + address,
+                    set_word_in_memory((ByteAddress) registers_used * 4 + address,
                                        get_current_instruction_address() + 12);
                 } else {
-                    set_word_in_memory((ByteAddress) i * 4 + address, get_word_from_register(i));
+                    set_word_in_memory((ByteAddress) registers_used * 4 + address, get_word_from_register(i));
                 }
             }
 
@@ -84,6 +85,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
                     break;
                 }
             }
+            registers_used++;
         }
     }
 
