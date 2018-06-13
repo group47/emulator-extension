@@ -388,10 +388,11 @@ void print_registers(enum CommandLineFlags flags) {
         }
         fprintf(get_logfile(), "=> \n\n");
     } else if (flags & QEMU_PRINT) {
-        for (uint8_t i = 0; i < 16; ++i) {
+        for (uint8_t i = 0; i < 15; ++i) {
             fprintf(get_logfile(), "R%02d=%08x\n", i, get_word_from_register(i));
         }
-        fprintf(get_logfile(), "PSR=%0x\n", getCPSR());
+        fprintf(get_logfile(), "R%02d=%08x\n", 15, get_word_from_register(15) - 8);
+        fprintf(get_logfile(), "PSR=%08x\n", getCPSR());
         fprintf(get_logfile(), "-Z--\nA\nsvc32\n");
     } else {
         for (uint8_t i = 0; i < 10; ++i) {

@@ -15,6 +15,9 @@ void main_loop(enum CommandLineFlags flags) {
     while (true) {
 
         if (decoded_valid()) {
+            if (flags & DEBUG_PRINT_REGISTER) {
+                print_registers(flags);
+            }
             union RawArmInstruction instruction = get_decoded_arm();
             if ((flags & TERMINATE_ON__ZERO) && ((*(uint32_t *) &instruction) == 0)) {
                 return;
@@ -49,9 +52,6 @@ void main_loop(enum CommandLineFlags flags) {
 
         if (flags & MEMORY) {
             print_memory();
-        }
-        if (flags & DEBUG_PRINT_REGISTER) {
-            print_registers(flags);
         }
     }
 

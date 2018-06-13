@@ -13,7 +13,7 @@ static struct Memory prepared_ram;
 static size_t atag_i = 0;
 
 void append_atag(struct ATAG cmdline) {
-    memcpy((prepared_ram.contents) + PARAMETER_BLOCK_START_ADDRESS + atag_i, &cmdline,
+    memcpy((prepared_ram.contents) + (PARAMETER_BLOCK_START_ADDRESS - MEMORY_OFFSET) + atag_i, &cmdline,
            cmdline.header.size * sizeof(Word));
     atag_i += cmdline.header.size * sizeof(Word);
 }
@@ -115,6 +115,7 @@ void init_registers(struct CPUState *state) {
     state->CPSR.I = true;
     state->CPSR.F = true;
     state->CPSR.Z = true;//no idea why this is needed, but linux expects it so...
+    state->CPSR.reserved = 1;//this doesn't do anything, but makes comparing with expected results easier easier
     set_word_in_register(PC_ADDRESS, KERNEL_LOAD_TO_ADDRESS + MEMORY_OFFSET);
 }
 
