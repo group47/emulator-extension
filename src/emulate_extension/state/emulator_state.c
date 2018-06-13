@@ -192,7 +192,7 @@ enum Mode get_mode() {
 }
 
 struct CPSR_Struct get_SPSR_by_mode() {
-    /*
+
     switch (state.CPSR.M) {
         case usr:
             return state.CPSR;
@@ -212,8 +212,6 @@ struct CPSR_Struct get_SPSR_by_mode() {
             fprintf(get_logfile(), "unknown operating mode\n");
             assert(false);
     }
-    */
-    assert(false);
 }
 
 void set_operating_mode(enum OperatingMode newOperatingMode) {
@@ -293,11 +291,11 @@ void init_cpu(enum CommandLineFlags flags) {
 }
 
 void init_system_control_coprocessor() {
-    state.systemControlCoprocessor.c0_main_id_register.implementor = 0x41;
-    state.systemControlCoprocessor.c0_main_id_register.variant_number = 0x0;
-    state.systemControlCoprocessor.c0_main_id_register.architecture = 0xF;
-    state.systemControlCoprocessor.c0_main_id_register.primary_part_number = 0x876;
-    state.systemControlCoprocessor.c0_main_id_register.revision = 0x7;
+//    state.systemControlCoprocessor.c0_main_id_register.implementor = 0x41;
+//    state.systemControlCoprocessor.c0_main_id_register.variant_number = 0x0;
+//    state.systemControlCoprocessor.c0_main_id_register.architecture = 0xF;
+//    state.systemControlCoprocessor.c0_main_id_register.primary_part_number = 0x876;
+//    state.systemControlCoprocessor.c0_main_id_register.revision = 0x7;
 }
 
 void init_coprocessors() {
@@ -450,9 +448,6 @@ void invalidate_pipeline() {
     state.decoded_prefetch_aborted = false;
 }
 
-struct SystemControlCoprocessor* get_system_control_coprocessor() {
-    return &state.systemControlCoprocessor;
-}
 
 /**
  * should only be used by bootloader

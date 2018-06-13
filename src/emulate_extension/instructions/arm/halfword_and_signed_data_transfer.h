@@ -22,7 +22,7 @@ struct HalfWordAndSignedDataTransferRegisterOffset {
     bool shouldBe0 : 1;
     bool upDown:1;
     enum PrePostIndexing indexing: 1;
-    uint8_t shouldBe0b000 : 1;
+    uint8_t shouldBe0b000 : 3;
     enum Cond cond : 4;
 }__attribute((packed));
 
@@ -44,7 +44,7 @@ struct HalfWordAndSignedDataTransferImmediateOffset {
     bool filler1Position22 : 1;
     bool upDown:1;
     enum PrePostIndexing indexing: 1;
-    uint8_t shouldBe0b000 : 1;
+    uint8_t shouldBe0b000 : 3;
     enum Cond cond : 4;
 }__attribute((packed));
 

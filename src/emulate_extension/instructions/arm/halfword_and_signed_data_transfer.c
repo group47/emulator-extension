@@ -96,7 +96,7 @@ enum ExecutionExitCode execute_halfword_and_signed_data_transfer_immediate_offse
 
     ByteAddress final_address = baseAddress;
     if (instruction.indexing == PRE) {
-        final_address = getFinalAddress(instruction.upDown, baseAddress, offset);
+        final_address = getFinalAddress(instruction.upDown, baseAddress, offset) - 0x10000;
     }
     if (instruction.loadStore == LOAD) {
         if (instruction.halfword) {

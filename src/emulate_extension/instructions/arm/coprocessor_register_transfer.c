@@ -8,6 +8,7 @@
 #include "../../util/entry_point.h"
 #include "../../coprocessor/system_control_coprocessor/system_control_coprocessor.h"
 #include "../../util/cpsr_util.h"
+#include "../../coprocessor/system_control_coprocessor/system_control_and_configuration/c0_cache_type_register.h"
 
 enum ExecutionExitCode execute_copprocessor_register_transfer(struct CoprocessorRegisterTransferInstruction instruction) {
     if (!should_execute(instruction.cond)) {
@@ -455,8 +456,16 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
 
     CPNum15_CRn0_CPOpc0_CRm0:
     switch (instruction.CP) {
-        case 0:
-        case 1:
+        case 0: {
+            struct C0_main_id_register val = get_main_id_register();
+            set_word_in_register(instruction.Rd, *(uint32_t *) &val);
+            return OK;
+        }
+        case 1: {
+            struct C0_cache_type_register val = get_C0_cache_type_register();
+            set_word_in_register(instruction.Rd, *(uint32_t *) &val);
+            return OK;
+        }
         case 2:
         case 3:
         default:
@@ -568,6 +577,10 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
     CPNum15_CRn7_COpc0_CRm5:
     switch (instruction.CP) {
         case 0:
+            //Invalidate Entire Instruction Cache
+            //We don't emulate the cache anyway so ...
+            //todo perhaps we should invalidate prefetch and decoded
+            return OK;
         case 1:
         case 2:
         case 3:
@@ -581,6 +594,9 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
     CPNum15_CRn7_COpc0_CRm6:
     switch (instruction.CP) {
         case 0:
+            //Invalidate Entire Data Cache
+            //we don't emulate cache so there's nothing to invalidate
+            return OK;
         case 1:
         case 2:
         default:
@@ -606,6 +622,9 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
         case 1:
         case 2:
         case 4:
+            //Clean Entire Data Cache
+            //no cache so ...
+            return OK;
         case 5:
         case 6:
         default:

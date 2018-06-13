@@ -55,7 +55,7 @@ enum CommandLineFlags parseCommandLine(int argc, const char **argv) {
             invalid_arg = arg;
         }
     }
-    flags |= TERMINATE_AFTER_200;//current default
+//    flags |= TERMINATE_AFTER_200;//current default
     return flags;
 }
 
@@ -82,7 +82,12 @@ int main(int argc, const char **argv) {
         disassemble(fp);
         fclose(fp);
     }
+    FILE *logfile = fopen(logfile_path, "w");
+    if (logfile == NULL) {
+        logfile = stderr;
+    }
     if (flags & KERNEL) {
+        set_logfile(logfile);
         boot_loader_entry_point(kernel_path, flags);
         return 0;
     }
@@ -90,10 +95,6 @@ int main(int argc, const char **argv) {
     if (fp == NULL) {
         fprintf(stderr, "failed to open file\n");
         return -1;
-    }
-    FILE *logfile = fopen(logfile_path, "w");
-    if (logfile == NULL) {
-        logfile = stderr;
     }
     main_emulation_entry_point(flags, fp, logfile);
     fclose(fp);

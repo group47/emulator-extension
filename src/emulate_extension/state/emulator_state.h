@@ -94,7 +94,6 @@ struct CPUState {
   bool fetched_valid;//= false
     bool decoded_prefetch_aborted;//false
     bool fetched_prefetch_aborted;//false
-    struct SystemControlCoprocessor systemControlCoprocessor;
 
 };
 
