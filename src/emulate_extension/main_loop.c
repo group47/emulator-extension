@@ -10,6 +10,77 @@
 #include "instructions/thumb/thumb_instruction.h"
 
 
+void print_debug() {
+    static const char *type_to_string_[18] = {"ARM_BLOCK_DATA_TRANSFER",
+                                              "ARM_BRANCH",
+                                              "ARM_BRANCH_AND_EXCHANGE",
+                                              "ARM_COPROCESSOR_DATA_OPERATIONS",
+                                              "ARM_COPROCESSOR_DATA_TRANSFER",
+                                              "ARM_COPROCESSOR_REGISTER_TRANSFER",
+                                              "ARM_DATA_PROCESSING",
+                                              "ARM_HALFWORD_AND_SIGNED_DATA_TRANSFER_REGISTER_OFFSET",
+                                              "ARM_HALFWORD_AND_SIGNED_DATA_TRANSFER_IMMEDIATE_OFFSET",
+                                              "ARM_MULTIPLY",
+                                              "ARM_MULTIPLY_LONG",
+                                              "ARM_SINGLE_DATA_SWAP",
+                                              "ARM_SINGLE_DATA_TRANSFER",
+                                              "ARM_SOFTWARE_INTERRUPT",
+                                              "ARM_UNDEFINED", " ", " ", " ", " "};
+
+    uint32_t rd = -1;
+    uint32_t rn = -1;
+    struct ArmInstruction instruct = ARMfromRaw(get_decoded_arm());
+    switch (instruct.type) {
+        case ARM_BLOCK_DATA_TRANSFER:
+            rn = instruct.rawArmInstruction.blockDataTransferInstruction.Rn;
+            break;
+        case ARM_BRANCH:
+            break;
+        case ARM_BRANCH_AND_EXCHANGE:
+            rn = instruct.rawArmInstruction.branchAndExchangeInstruction.Rn;
+            break;
+        case ARM_COPROCESSOR_DATA_OPERATIONS:
+        case ARM_COPROCESSOR_DATA_TRANSFER:
+        case ARM_COPROCESSOR_REGISTER_TRANSFER:
+            break;
+        case ARM_DATA_PROCESSING:
+            rd = instruct.rawArmInstruction.dataProcessingInstruction.Rd;
+            rn = instruct.rawArmInstruction.dataProcessingInstruction.Rn;
+            break;
+        case ARM_HALFWORD_AND_SIGNED_DATA_TRANSFER_REGISTER_OFFSET:
+            rn = instruct.rawArmInstruction.halfWordAndSignedDataTransferRegisterOffset.Rn;
+            rd = instruct.rawArmInstruction.halfWordAndSignedDataTransferRegisterOffset.Rd;
+            break;
+        case ARM_HALFWORD_AND_SIGNED_DATA_TRANSFER_IMMEDIATE_OFFSET:
+            rn = instruct.rawArmInstruction.halfWordAndSignedDataTransferImmediateOffset.Rn;
+            rd = instruct.rawArmInstruction.halfWordAndSignedDataTransferImmediateOffset.Rd;
+            break;
+        case ARM_MULIPLY:
+            rn = instruct.rawArmInstruction.multiplyInstruction.Rn;
+            rd = instruct.rawArmInstruction.multiplyInstruction.Rd;
+            break;
+        case ARM_MULTIPLY_LONG:
+            break;
+        case ARM_SINGLE_DATA_SWAP:
+            rn = instruct.rawArmInstruction.dataSwapInstruction.Rn;
+            rd = instruct.rawArmInstruction.dataSwapInstruction.Rd;
+            break;
+        case ARM_SINGLE_DATA_TRANSFER:
+            rn = instruct.rawArmInstruction.singleDataTransferInstruction.Rn;
+            rd = instruct.rawArmInstruction.singleDataTransferInstruction.Rd;
+            break;
+        case ARM_SOFTWARE_INTERRUPT:
+        case ARM_UNDEFINED:
+        case ARM_INVALID:
+            break;
+        case ARM_TRANSFER_PSR_TO_REGISTER:
+        case ARM_TRANSFER_REGISTER_CONTENTS_TO_PSR:
+        case ARM_TRANSFER_REGISTER_CONTENTS_OR_IMMEDIATE_VALUE_TO_PSR_FLAG:
+            break;
+    }
+    fprintf(get_logfile(), "%s Rd:%d Rn:%d \n", type_to_string_[ARMfromRaw(get_decoded_arm()).type], rd, rn);
+}
+
 void main_loop(enum CommandLineFlags flags) {
     uint64_t master_instruction_counter = 0;
     while (true) {
@@ -28,6 +99,7 @@ void main_loop(enum CommandLineFlags flags) {
             enum ExecutionExitCode exitCode;
             if (get_mode() == ARM) {
                 exitCode = execute_arm_instruction(ARMfromRaw(get_decoded_arm()));
+                print_debug();
             } else if (get_mode() == THUMB) {
                 exitCode = execute_thumb_instruction(ThumbFromRaw(get_decoded_thumb()));
             } else {
