@@ -89,17 +89,11 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
         }
     }
 
-    if (instruction.prePostIndexingBit) {
+    if (!instruction.prePostIndexingBit) {
         if (instruction.upDownBit) {
             set_word_in_register(instruction.Rn, address + numOfRegisterUsed * 4);
         } else {
             set_word_in_register(instruction.Rn, address - numOfRegisterUsed * 4);
-        }
-    } else {
-        if (instruction.upDownBit) {
-            set_word_in_register(instruction.Rn, address + (numOfRegisterUsed - 1) * 4);
-        } else {
-            set_word_in_register(instruction.Rn, address - (numOfRegisterUsed - 1) * 4);
         }
     }
 
