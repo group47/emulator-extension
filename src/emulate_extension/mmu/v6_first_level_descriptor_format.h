@@ -37,7 +37,7 @@ struct V6_fd_section {
     bool ng : 1;
     bool filler0_position18 : 1;
     bool ns : 1;
-    uint8_t section_base_address : 12;
+    uint16_t section_base_address : 12;
 }__attribute__((packed));
 
 struct V6_fd_supersection {

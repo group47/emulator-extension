@@ -7,7 +7,6 @@
 
 #include <malloc.h>
 #include <stdbool.h>
-#include "cpsr_overflow_detection.h"
 #include "instructions.h"
 #include "emulate_main.h"
 struct DataProcessingInstruction {
