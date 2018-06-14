@@ -10,7 +10,7 @@
 enum ExecutionExitCode execute_halfword_and_signed_data_transfer_register_offset(
         struct HalfWordAndSignedDataTransferRegisterOffset instruction) {
     //todo dupe
-    assert(!instruction.signed_ && !instruction.halfword);
+    assert(instruction.signed_ || instruction.halfword);
     assert(instruction.shouldBe0 == 0b0);
     assert(instruction.shouldBe0b000 == 0b000);
     assert(instruction.shouldBe00001 == 0b00001);
