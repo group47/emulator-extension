@@ -23,6 +23,7 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
     fprintf(get_logfile(), "Coprocessor load/store bit: %d\n", instruction.loadStore);
     fprintf(get_logfile(), "Coprocessor Rd: %d\n", instruction.Rd);
 
+    assert(instruction.Rd != PC_ADDRESS);//this has special behavior which we don't want to implement unless necessary
 //    assert(false);
 //    return OK;
     switch (instruction.CPNum) {
@@ -457,11 +458,13 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
     CPNum15_CRn0_CPOpc0_CRm0:
     switch (instruction.CP) {
         case 0: {
+            assert(instruction.loadStore == LOAD);
             struct C0_main_id_register val = get_main_id_register();
             set_word_in_register(instruction.Rd, *(uint32_t *) &val);
             return OK;
         }
         case 1: {
+            assert(instruction.loadStore == LOAD);
             struct C0_cache_type_register val = get_C0_cache_type_register();
             set_word_in_register(instruction.Rd, *(uint32_t *) &val);
             return OK;
@@ -502,7 +505,7 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
     CPNum15_CRn1_CPOpc0_CRm0:
     switch (instruction.CP) {
         case 0:
-            return execute_control_register(instruction);
+            return execute_c1_control_register(instruction);
         case 1:
             return execute_co_auxiliary_control_register(instruction);
         case 2:

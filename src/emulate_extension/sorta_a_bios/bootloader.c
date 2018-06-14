@@ -108,15 +108,17 @@ void init_prepared_ram(FILE *kernel) {
 
 void init_registers(struct CPUState *state) {
     state->general_registers[0] = 0;
-    state->general_registers[1] = (uint32_t) -1;
+    state->general_registers[1] = (uint32_t) 0x00000183;//pretent to be a versatilepb for testing
     state->general_registers[2] = PARAMETER_BLOCK_START_ADDRESS;
     //todo mmu and instruction/data cache turn off.
     state->CPSR.M = svc;
     state->CPSR.I = true;
     state->CPSR.F = true;
     state->CPSR.Z = true;//no idea why this is needed, but linux expects it so...
-    state->CPSR.reserved = 1;//this doesn't do anything, but makes comparing with expected results easier easier
+    state->CPSR.reserved = 1;//this doesn't do anything, but makes comparing with expected results easier
     set_word_in_register(PC_ADDRESS, KERNEL_LOAD_TO_ADDRESS + MEMORY_OFFSET);
+    init_c1_control_register();
+
 }
 
 

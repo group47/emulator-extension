@@ -24,6 +24,6 @@ struct C0_main_id_register get_main_id_register() {
 //    c0_main_id_register.primary_part_number = 0xB76;
 //    c0_main_id_register.revision = 0x7;
 //    return c0_main_id_register;
-    uint32_t val = 0x412fc0f1;
+    uint32_t val = 0x4117b363;//pretend to be versatilepb for now.
     return *(struct C0_main_id_register *) &val;
 }

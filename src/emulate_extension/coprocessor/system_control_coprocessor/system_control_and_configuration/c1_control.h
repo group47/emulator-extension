@@ -11,7 +11,9 @@
 #include "../../../util/common_enums.h"
 #include "../../../instructions/arm/coprocessor_register_transfer.h"
 
-enum ExecutionExitCode execute_control_register(struct CoprocessorRegisterTransferInstruction);
+enum ExecutionExitCode execute_c1_control_register(struct CoprocessorRegisterTransferInstruction);
+
+void init_c1_control_register();
 
 struct C1_control_register {
     bool m : 1;
@@ -43,3 +45,5 @@ struct C1_control_register {
     uint8_t sbz_size2_position_31 : 2;
 }__attribute__((packed));
 #endif //SRC_CONTROL_H
+
+
