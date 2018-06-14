@@ -7,6 +7,8 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include "../../../util/common_enums.h"
+#include "../../../instructions/arm/coprocessor_register_transfer.h"
 
 
 
