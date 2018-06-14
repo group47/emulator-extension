@@ -9,6 +9,7 @@
 #include "../mmu/serial_console.h"
 #include "../main_loop.h"
 #include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.h"
+#include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.h"
 
 static struct Memory prepared_ram;
 static size_t atag_i = 0;
@@ -120,6 +121,7 @@ void init_registers(struct CPUState *state) {
     set_word_in_register(PC_ADDRESS, KERNEL_LOAD_TO_ADDRESS + MEMORY_OFFSET);
     init_c1_control_register();
     init_c2_translation_table_base_register0();
+    init_C3_domain_access_control_register();
 
 }
 

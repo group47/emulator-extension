@@ -6,6 +6,8 @@
 #define SRC_C3_DOMAIN_ACCESS_CONTROL_H
 
 #include <stdint.h>
+#include "../../../basic_typedefs.h"
+#include "../../../instructions/arm/coprocessor_register_transfer.h"
 
 struct C3_domain_access_control_register {
    uint8_t d0 : 2;
@@ -29,3 +31,5 @@ struct C3_domain_access_control_register {
 #endif //SRC_C3_DOMAIN_ACCESS_CONTROL_H
 
 enum ExecutionExitCode execute_domain_access_control_register(struct CoprocessorRegisterTransferInstruction);
+
+void init_C3_domain_access_control_register();
