@@ -24,7 +24,7 @@ mov r0, #3
 mov r0, #4
 mov r0, #43
 mov r0, #432
-mov r0, #
+mov r0, #0
 mov r0, #5
 mov r0, #58
 mov r0, #9
