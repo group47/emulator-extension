@@ -45,4 +45,5 @@ struct C1_control_register {
 #endif //SRC_CONTROL_H
 
 struct C1_control_register get_word_control_register();
-struct C1_control_register set_word_control_register(Word);
+
+void set_word_control_register(Word);

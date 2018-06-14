@@ -328,4 +328,13 @@ add_executable(emulate_extension
         emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_id_code.c
         emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_id_code.h
         emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_feature_id_cpuid_scheme.c
-        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_feature_id_cpuid_scheme.h)
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_feature_id_cpuid_scheme.h
+        emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.c
+        emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.h
+        emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.h
+        emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.c
+        emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base_control.c
+        emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base_control.h
+        emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base1.c
+        emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base1.h
+        )
