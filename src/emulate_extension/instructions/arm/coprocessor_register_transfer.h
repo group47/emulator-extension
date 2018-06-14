@@ -14,7 +14,7 @@ struct CoprocessorRegisterTransferInstruction{
     bool filler1:1;
     uint8_t CP : 3;
     uint8_t CPNum : 4;
-    uint8_t Rd : 3;
+    uint8_t Rd : 4;
     uint8_t CRn: 4;
     enum LoadStore loadStore : 1;
     uint8_t CPOpc : 3;

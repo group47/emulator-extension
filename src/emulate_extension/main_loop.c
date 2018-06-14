@@ -25,8 +25,23 @@ void print_debug() {
                                               "ARM_SINGLE_DATA_SWAP",
                                               "ARM_SINGLE_DATA_TRANSFER",
                                               "ARM_SOFTWARE_INTERRUPT",
-                                              "ARM_UNDEFINED", " ", " ", " ", " "};
-
+                                              "ARM_UNDEFINED", " ", " ", " "};
+    static const char *opcode_to_string[18] = {"and",
+                                               "eor",
+                                               "sub",
+                                               "rsb",
+                                               "add",
+                                               "adc",
+                                               "sbc",
+                                               "rsc",
+                                               "tst",
+                                               "teq",
+                                               "cmp",
+                                               "cmn",
+                                               "orr",
+                                               "mov",
+                                               "bic", "mvn", " ", " "};
+    const char *extra = "";
     uint32_t rd = -1;
     uint32_t rn = -1;
     struct ArmInstruction instruct = ARMfromRaw(get_decoded_arm());
@@ -46,6 +61,7 @@ void print_debug() {
         case ARM_DATA_PROCESSING:
             rd = instruct.rawArmInstruction.dataProcessingInstruction.Rd;
             rn = instruct.rawArmInstruction.dataProcessingInstruction.Rn;
+            extra = opcode_to_string[instruct.rawArmInstruction.dataProcessingInstruction.opcode];
             break;
         case ARM_HALFWORD_AND_SIGNED_DATA_TRANSFER_REGISTER_OFFSET:
             rn = instruct.rawArmInstruction.halfWordAndSignedDataTransferRegisterOffset.Rn;
@@ -68,6 +84,11 @@ void print_debug() {
         case ARM_SINGLE_DATA_TRANSFER:
             rn = instruct.rawArmInstruction.singleDataTransferInstruction.Rn;
             rd = instruct.rawArmInstruction.singleDataTransferInstruction.Rd;
+            if (instruct.rawArmInstruction.singleDataTransferInstruction.loadStoreBit) {
+                extra = "ldr";
+            } else {
+                extra = "str";
+            }
             break;
         case ARM_SOFTWARE_INTERRUPT:
         case ARM_UNDEFINED:
@@ -78,7 +99,8 @@ void print_debug() {
         case ARM_TRANSFER_REGISTER_CONTENTS_OR_IMMEDIATE_VALUE_TO_PSR_FLAG:
             break;
     }
-    fprintf(get_logfile(), "%s Rd:%d Rn:%d \n", type_to_string_[ARMfromRaw(get_decoded_arm()).type], rd, rn);
+    fprintf(get_logfile(), "%s Rd:%d Rn:%d extra:%s\n", type_to_string_[ARMfromRaw(get_decoded_arm()).type], rd, rn,
+            extra);
 }
 
 void main_loop(enum CommandLineFlags flags) {
