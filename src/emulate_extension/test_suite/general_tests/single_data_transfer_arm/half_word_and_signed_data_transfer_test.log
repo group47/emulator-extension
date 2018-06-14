@@ -19,7 +19,7 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff230	0xbefff230
 lr             0x0	0
-pc             0x100bc	0x100bc3
+pc             0x100bc	0x100bc
 cpsr           0x10	16
 fpscr          0x0	0
 => 0x100bc:	ldr	r2, [r1]

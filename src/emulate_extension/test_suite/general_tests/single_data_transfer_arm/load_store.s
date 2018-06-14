@@ -7,7 +7,7 @@ mov r0, #0
 mov r0, #0
 mov r0, #0
 mov r0, #0
-ldr r0, [r15, #-40]
+sub r0, r15, #40
 mov r1, #0x1100
 mov r2, #0x0100
 strh r1, [r0], #2
