@@ -19,3 +19,5 @@ struct C2_translation_table_base_register1 {
 
 
 enum ExecutionExitCode execute_translation_table_base_register1(struct CoprocessorRegisterTransferInstruction);
+Word get_word_translation_table_base_register1();
+void set_word_translation_table_base_register1(Word);

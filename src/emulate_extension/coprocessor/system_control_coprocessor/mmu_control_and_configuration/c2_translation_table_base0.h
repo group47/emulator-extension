@@ -7,8 +7,6 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "../../../util/common_enums.h"
-#include "../../../instructions/arm/coprocessor_register_transfer.h"
 
 
 
@@ -22,6 +20,8 @@ struct C2_translation_table_base_register0 {
 
 
 enum ExecutionExitCode execute_translation_table_base_register0(struct CoprocessorRegisterTransferInstruction);
+Word get_word_translation_table_base_register0();
+void set_word_translation_table_base_register0(Word);
 
 void init_c2_translation_table_base_register0();
 
