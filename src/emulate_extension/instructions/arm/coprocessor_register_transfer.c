@@ -9,6 +9,7 @@
 #include "../../coprocessor/system_control_coprocessor/system_control_coprocessor.h"
 #include "../../util/cpsr_util.h"
 #include "../../coprocessor/system_control_coprocessor/system_control_and_configuration/c0_cache_type_register.h"
+#include "../../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.h"
 
 enum ExecutionExitCode execute_copprocessor_register_transfer(struct CoprocessorRegisterTransferInstruction instruction) {
     if (!should_execute(instruction.cond)) {
@@ -532,6 +533,7 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
     CPNum15_CRn2_CPOpc0_CRm0:
     switch (instruction.CP) {
         case 0:
+            return execute_translation_table_base_register0(instruction);
         case 1:
         case 2:
         default:

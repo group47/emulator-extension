@@ -5,8 +5,6 @@
 #include <assert.h>
 #include <string.h>
 #include "c2_translation_table_base0.h"
-#include "../../../util/common_enums.h"
-#include "../../../instructions/arm/coprocessor_register_transfer.h"
 #include "c2_translation_table_base_control.h"
 #include "../../../state/emulator_state.h"
 
@@ -18,9 +16,11 @@ execute_translation_table_base_register0(struct CoprocessorRegisterTransferInstr
         case LOAD:
             set_word_in_register(instruction.Rd, *(uint32_t *) &c2_translation_table_base_register0);
             return OK;
-        case STORE:
-            *(uint32_t *) &c2_translation_table_base_register0 = get_word_from_register(instruction.Rd);
+        case STORE: {
+            uint32_t val = get_word_from_register(instruction.Rd);
+            c2_translation_table_base_register0 = *(struct C2_translation_table_base_register0 *) &val;
             return OK;
+        }
         default:
             assert(false);
     }
