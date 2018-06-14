@@ -12,6 +12,7 @@ strb r7, [r1, #5]
 strb r8, [r1, #6]
 strb r9, [r1, #7]
 strb r6, [r1, #4]!
+
 mov r0, #0
 mov r1, #0
 mov r2, #0

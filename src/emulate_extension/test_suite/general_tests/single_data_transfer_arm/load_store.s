@@ -1,6 +1,6 @@
 mov r0, #0x1000
 mov r1, #0x1100
-mov r2, #0x1010
+mov r2, #0x0100
 strh r1, [r0], #2
 strh r2, [r0], #2
 ldrh r3, [r0, #0]
@@ -54,10 +54,6 @@ mov r3, #3
 mov r4, #3
 ldmda r13!, {r0-r4}
 mov r5, #14
-swp r6, r5, [r0]
-swp r5, r6, [r0]
-swpb r6, r5, [r0]
-swpb r5, r6, [r0]
 mov r0, #0
 mov r1, #0
 mov r2, #0
