@@ -11,9 +11,7 @@
 #include "../../../util/common_enums.h"
 #include "../../../instructions/arm/coprocessor_register_transfer.h"
 
-enum ExecutionExitCode execute_c1_control_register(struct CoprocessorRegisterTransferInstruction);
-
-void init_c1_control_register();
+enum ExecutionExitCode execute_control_register(struct CoprocessorRegisterTransferInstruction);
 
 struct C1_control_register {
     bool m : 1;
@@ -31,19 +29,20 @@ struct C1_control_register {
     bool rr : 1;
     bool l4 : 1;
     bool dt : 1;
-    bool raz_size1_position17 : 1;
+    bool sbz_size1_position17 : 1;
     bool it : 1;
-    uint8_t raz_size2_position20 : 2;
+    uint8_t sbz_size2_position20 : 2;
     bool fi : 1;
     bool u : 1;
     bool xp : 1;
     bool ve : 1;
     bool ee : 1;
-    uint8_t raz_size2_position_27 : 2;
-    bool tre : 1;
-    bool afe : 1;
-    uint8_t raz_size2_position_31 : 2;
+    uint8_t sbz_size2_position_27 : 2;
+    bool tr : 1;
+    bool fa : 1;
+    uint8_t sbz_size2_position_31 : 2;
 }__attribute__((packed));
 #endif //SRC_CONTROL_H
 
-
+struct C1_control_register get_word_control_register();
+struct C1_control_register set_word_control_register(Word);
