@@ -222,9 +222,9 @@ lr             0x0	0
 pc             0x100d0	0x100d0 <just_jump+4>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x100d0 <just_jump+4>:	mov	r0, #0
-0x000100d4 in just_jump ()
-r0             0x0	0
+=> 0x100d0 <just_jump+4>:	mov	r0, #1
+0x000100d4 in branch_with_link_target ()
+r0             0x1	1
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -239,12 +239,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x100d4	0x100d4 <just_jump+8>
+pc             0x100d4	0x100d4 <branch_with_link_target>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x100d4 <just_jump+8>:	mov	r0, #0
-0x000100d8 in just_jump ()
-r0             0x0	0
+=> 0x100d4 <branch_with_link_target>:	mov	r0, #2
+0x000100d8 in branch_with_link_target ()
+r0             0x2	2
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -259,12 +259,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x100d8	0x100d8 <just_jump+12>
+pc             0x100d8	0x100d8 <branch_with_link_target+4>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x100d8 <just_jump+12>:	mov	r0, #0
-0x000100dc in just_jump ()
-r0             0x0	0
+=> 0x100d8 <branch_with_link_target+4>:	mov	r0, #3
+0x000100dc in branch_with_link_target ()
+r0             0x3	3
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -279,12 +279,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x100dc	0x100dc <just_jump+16>
+pc             0x100dc	0x100dc <branch_with_link_target+8>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x100dc <just_jump+16>:	mov	r0, #0
-0x000100e0 in just_jump ()
-r0             0x0	0
+=> 0x100dc <branch_with_link_target+8>:	mov	r0, #4
+0x000100e0 in branch_with_link_target ()
+r0             0x4	4
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -299,12 +299,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x100e0	0x100e0 <just_jump+20>
+pc             0x100e0	0x100e0 <branch_with_link_target+12>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x100e0 <just_jump+20>:	mov	r0, #0
-0x000100e4 in just_jump ()
-r0             0x0	0
+=> 0x100e0 <branch_with_link_target+12>:	mov	r0, #43	; 0x2b
+0x000100e4 in branch_with_link_target ()
+r0             0x2b	43
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -319,12 +319,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x100e4	0x100e4 <just_jump+24>
+pc             0x100e4	0x100e4 <branch_with_link_target+16>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x100e4 <just_jump+24>:	mov	r0, #0
-0x000100e8 in just_jump ()
-r0             0x0	0
+=> 0x100e4 <branch_with_link_target+16>:	mov	r0, #432	; 0x1b0
+0x000100e8 in branch_with_link_target ()
+r0             0x1b0	432
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -339,11 +339,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x100e8	0x100e8 <just_jump+28>
+pc             0x100e8	0x100e8 <branch_with_link_target+20>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x100e8 <just_jump+28>:	mov	r0, #0
-0x000100ec in just_jump ()
+=> 0x100e8 <branch_with_link_target+20>:	mov	r0, #0
+0x000100ec in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -359,12 +359,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x100ec	0x100ec <just_jump+32>
+pc             0x100ec	0x100ec <branch_with_link_target+24>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x100ec <just_jump+32>:	mov	r0, #0
-0x000100f0 in just_jump ()
-r0             0x0	0
+=> 0x100ec <branch_with_link_target+24>:	mov	r0, #5
+0x000100f0 in branch_with_link_target ()
+r0             0x5	5
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -379,12 +379,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x100f0	0x100f0 <just_jump+36>
+pc             0x100f0	0x100f0 <branch_with_link_target+28>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x100f0 <just_jump+36>:	mov	r0, #0
-0x000100f4 in just_jump ()
-r0             0x0	0
+=> 0x100f0 <branch_with_link_target+28>:	mov	r0, #58	; 0x3a
+0x000100f4 in branch_with_link_target ()
+r0             0x3a	58
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -399,12 +399,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x100f4	0x100f4 <just_jump+40>
+pc             0x100f4	0x100f4 <branch_with_link_target+32>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x100f4 <just_jump+40>:	mov	r0, #0
-0x000100f8 in just_jump ()
-r0             0x0	0
+=> 0x100f4 <branch_with_link_target+32>:	mov	r0, #9
+0x000100f8 in branch_with_link_target ()
+r0             0x9	9
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -419,12 +419,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x100f8	0x100f8 <just_jump+44>
+pc             0x100f8	0x100f8 <branch_with_link_target+36>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x100f8 <just_jump+44>:	mov	r0, #0
-0x000100fc in just_jump ()
-r0             0x0	0
+=> 0x100f8 <branch_with_link_target+36>:	mov	r0, #94	; 0x5e
+0x000100fc in branch_with_link_target ()
+r0             0x5e	94
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -439,12 +439,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x100fc	0x100fc <just_jump+48>
+pc             0x100fc	0x100fc <branch_with_link_target+40>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x100fc <just_jump+48>:	mov	r0, #0
-0x00010100 in just_jump ()
-r0             0x0	0
+=> 0x100fc <branch_with_link_target+40>:	mov	r0, #43	; 0x2b
+0x00010100 in branch_with_link_target ()
+r0             0x2b	43
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -459,12 +459,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10100	0x10100 <just_jump+52>
+pc             0x10100	0x10100 <branch_with_link_target+44>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10100 <just_jump+52>:	mov	r0, #0
-0x00010104 in just_jump ()
-r0             0x0	0
+=> 0x10100 <branch_with_link_target+44>:	mov	r0, #2
+0x00010104 in branch_with_link_target ()
+r0             0x2	2
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -479,12 +479,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10104	0x10104 <just_jump+56>
+pc             0x10104	0x10104 <branch_with_link_target+48>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10104 <just_jump+56>:	mov	r0, #0
-0x00010108 in just_jump ()
-r0             0x0	0
+=> 0x10104 <branch_with_link_target+48>:	mov	r0, #24
+0x00010108 in branch_with_link_target ()
+r0             0x18	24
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -499,12 +499,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10108	0x10108 <just_jump+60>
+pc             0x10108	0x10108 <branch_with_link_target+52>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10108 <just_jump+60>:	mov	r0, #0
-0x0001010c in just_jump ()
-r0             0x0	0
+=> 0x10108 <branch_with_link_target+52>:	mov	r0, #247	; 0xf7
+0x0001010c in branch_with_link_target ()
+r0             0xf7	247
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -519,12 +519,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1010c	0x1010c <just_jump+64>
+pc             0x1010c	0x1010c <branch_with_link_target+56>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1010c <just_jump+64>:	mov	r0, #0
-0x00010110 in just_jump ()
-r0             0x0	0
+=> 0x1010c <branch_with_link_target+56>:	mov	r0, #6
+0x00010110 in branch_with_link_target ()
+r0             0x6	6
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -539,12 +539,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10110	0x10110 <just_jump+68>
+pc             0x10110	0x10110 <branch_with_link_target+60>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10110 <just_jump+68>:	mov	r0, #0
-0x00010114 in just_jump ()
-r0             0x0	0
+=> 0x10110 <branch_with_link_target+60>:	mov	r0, #65	; 0x41
+0x00010114 in branch_with_link_target ()
+r0             0x41	65
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -559,12 +559,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10114	0x10114 <just_jump+72>
+pc             0x10114	0x10114 <branch_with_link_target+64>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10114 <just_jump+72>:	mov	r0, #0
-0x00010118 in just_jump ()
-r0             0x0	0
+=> 0x10114 <branch_with_link_target+64>:	mov	r0, #54	; 0x36
+0x00010118 in branch_with_link_target ()
+r0             0x36	54
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -579,12 +579,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10118	0x10118 <just_jump+76>
+pc             0x10118	0x10118 <branch_with_link_target+68>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10118 <just_jump+76>:	mov	r0, #0
-0x0001011c in just_jump ()
-r0             0x0	0
+=> 0x10118 <branch_with_link_target+68>:	mov	r0, #41	; 0x29
+0x0001011c in branch_with_link_target ()
+r0             0x29	41
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -599,12 +599,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1011c	0x1011c <just_jump+80>
+pc             0x1011c	0x1011c <branch_with_link_target+72>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1011c <just_jump+80>:	mov	r0, #0
-0x00010120 in just_jump ()
-r0             0x0	0
+=> 0x1011c <branch_with_link_target+72>:	mov	r0, #1
+0x00010120 in branch_with_link_target ()
+r0             0x1	1
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -619,12 +619,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10120	0x10120 <just_jump+84>
+pc             0x10120	0x10120 <branch_with_link_target+76>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10120 <just_jump+84>:	mov	r0, #0
-0x00010124 in just_jump ()
-r0             0x0	0
+=> 0x10120 <branch_with_link_target+76>:	mov	r0, #1
+0x00010124 in branch_with_link_target ()
+r0             0x1	1
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -639,12 +639,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10124	0x10124 <just_jump+88>
+pc             0x10124	0x10124 <branch_with_link_target+80>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10124 <just_jump+88>:	mov	r0, #0
-0x00010128 in just_jump ()
-r0             0x0	0
+=> 0x10124 <branch_with_link_target+80>:	mov	r0, #11
+0x00010128 in branch_with_link_target ()
+r0             0xb	11
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -659,12 +659,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10128	0x10128 <just_jump+92>
+pc             0x10128	0x10128 <branch_with_link_target+84>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10128 <just_jump+92>:	mov	r0, #0
-0x0001012c in just_jump ()
-r0             0x0	0
+=> 0x10128 <branch_with_link_target+84>:	mov	r0, #1
+0x0001012c in branch_with_link_target ()
+r0             0x1	1
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -679,11 +679,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1012c	0x1012c <just_jump+96>
+pc             0x1012c	0x1012c <branch_with_link_target+88>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1012c <just_jump+96>:	mov	r0, #0
-0x00010130 in just_jump ()
+=> 0x1012c <branch_with_link_target+88>:	mov	r0, #0
+0x00010130 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -699,12 +699,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10130	0x10130 <just_jump+100>
+pc             0x10130	0x10130 <branch_with_link_target+92>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10130 <just_jump+100>:	mov	r0, #0
-0x00010134 in just_jump ()
-r0             0x0	0
+=> 0x10130 <branch_with_link_target+92>:	mov	r0, #41	; 0x29
+0x00010134 in branch_with_link_target ()
+r0             0x29	41
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -719,12 +719,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10134	0x10134 <just_jump+104>
+pc             0x10134	0x10134 <branch_with_link_target+96>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10134 <just_jump+104>:	mov	r0, #0
-0x00010138 in just_jump ()
-r0             0x0	0
+=> 0x10134 <branch_with_link_target+96>:	mov	r0, #11
+0x00010138 in branch_with_link_target ()
+r0             0xb	11
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -739,12 +739,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10138	0x10138 <just_jump+108>
+pc             0x10138	0x10138 <branch_with_link_target+100>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10138 <just_jump+108>:	mov	r0, #0
-0x0001013c in just_jump ()
-r0             0x0	0
+=> 0x10138 <branch_with_link_target+100>:	mov	r0, #11
+0x0001013c in branch_with_link_target ()
+r0             0xb	11
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -759,12 +759,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1013c	0x1013c <just_jump+112>
+pc             0x1013c	0x1013c <branch_with_link_target+104>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1013c <just_jump+112>:	mov	r0, #0
-0x00010140 in just_jump ()
-r0             0x0	0
+=> 0x1013c <branch_with_link_target+104>:	mov	r0, #4
+0x00010140 in branch_with_link_target ()
+r0             0x4	4
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -779,12 +779,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10140	0x10140 <just_jump+116>
+pc             0x10140	0x10140 <branch_with_link_target+108>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10140 <just_jump+116>:	mov	r0, #0
-0x00010144 in just_jump ()
-r0             0x0	0
+=> 0x10140 <branch_with_link_target+108>:	mov	r0, #1
+0x00010144 in branch_with_link_target ()
+r0             0x1	1
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -799,12 +799,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10144	0x10144 <just_jump+120>
+pc             0x10144	0x10144 <branch_with_link_target+112>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10144 <just_jump+120>:	mov	r0, #0
-0x00010148 in just_jump ()
-r0             0x0	0
+=> 0x10144 <branch_with_link_target+112>:	mov	r0, #1
+0x00010148 in branch_with_link_target ()
+r0             0x1	1
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -819,12 +819,12 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10148	0x10148 <just_jump+124>
+pc             0x10148	0x10148 <branch_with_link_target+116>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10148 <just_jump+124>:	mov	r0, #0
-0x0001014c in just_jump ()
-r0             0x0	0
+=> 0x10148 <branch_with_link_target+116>:	mov	r0, #1
+0x0001014c in branch_with_link_target ()
+r0             0x1	1
 r1             0x0	0
 r2             0x0	0
 r3             0x0	0
@@ -839,11 +839,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1014c	0x1014c <just_jump+128>
+pc             0x1014c	0x1014c <branch_with_link_target+120>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1014c <just_jump+128>:	mov	r0, #0
-0x00010150 in just_jump ()
+=> 0x1014c <branch_with_link_target+120>:	mov	r0, #0
+0x00010150 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -859,11 +859,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10150	0x10150 <just_jump+132>
+pc             0x10150	0x10150 <branch_with_link_target+124>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10150 <just_jump+132>:	mov	r0, #0
-0x00010154 in just_jump ()
+=> 0x10150 <branch_with_link_target+124>:	mov	r0, #0
+0x00010154 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -879,11 +879,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10154	0x10154 <just_jump+136>
+pc             0x10154	0x10154 <branch_with_link_target+128>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10154 <just_jump+136>:	mov	r0, #0
-0x00010158 in just_jump ()
+=> 0x10154 <branch_with_link_target+128>:	mov	r0, #0
+0x00010158 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -899,11 +899,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10158	0x10158 <just_jump+140>
+pc             0x10158	0x10158 <branch_with_link_target+132>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10158 <just_jump+140>:	mov	r0, #0
-0x0001015c in just_jump ()
+=> 0x10158 <branch_with_link_target+132>:	mov	r0, #0
+0x0001015c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -919,11 +919,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1015c	0x1015c <just_jump+144>
+pc             0x1015c	0x1015c <branch_with_link_target+136>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1015c <just_jump+144>:	mov	r0, #0
-0x00010160 in just_jump ()
+=> 0x1015c <branch_with_link_target+136>:	mov	r0, #0
+0x00010160 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -939,11 +939,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10160	0x10160 <just_jump+148>
+pc             0x10160	0x10160 <branch_with_link_target+140>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10160 <just_jump+148>:	mov	r0, #0
-0x00010164 in just_jump ()
+=> 0x10160 <branch_with_link_target+140>:	mov	r0, #0
+0x00010164 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -959,11 +959,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10164	0x10164 <just_jump+152>
+pc             0x10164	0x10164 <branch_with_link_target+144>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10164 <just_jump+152>:	mov	r0, #0
-0x00010168 in just_jump ()
+=> 0x10164 <branch_with_link_target+144>:	mov	r0, #0
+0x00010168 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -979,11 +979,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10168	0x10168 <just_jump+156>
+pc             0x10168	0x10168 <branch_with_link_target+148>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10168 <just_jump+156>:	mov	r0, #0
-0x0001016c in just_jump ()
+=> 0x10168 <branch_with_link_target+148>:	mov	r0, #0
+0x0001016c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -999,11 +999,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1016c	0x1016c <just_jump+160>
+pc             0x1016c	0x1016c <branch_with_link_target+152>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1016c <just_jump+160>:	mov	r0, #0
-0x00010170 in just_jump ()
+=> 0x1016c <branch_with_link_target+152>:	mov	r0, #0
+0x00010170 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1019,11 +1019,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10170	0x10170 <just_jump+164>
+pc             0x10170	0x10170 <branch_with_link_target+156>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10170 <just_jump+164>:	mov	r0, #0
-0x00010174 in just_jump ()
+=> 0x10170 <branch_with_link_target+156>:	mov	r0, #0
+0x00010174 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1039,11 +1039,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10174	0x10174 <just_jump+168>
+pc             0x10174	0x10174 <branch_with_link_target+160>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10174 <just_jump+168>:	mov	r0, #0
-0x00010178 in just_jump ()
+=> 0x10174 <branch_with_link_target+160>:	mov	r0, #0
+0x00010178 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1059,11 +1059,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10178	0x10178 <just_jump+172>
+pc             0x10178	0x10178 <branch_with_link_target+164>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10178 <just_jump+172>:	mov	r0, #0
-0x0001017c in just_jump ()
+=> 0x10178 <branch_with_link_target+164>:	mov	r0, #0
+0x0001017c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1079,11 +1079,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1017c	0x1017c <just_jump+176>
+pc             0x1017c	0x1017c <branch_with_link_target+168>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1017c <just_jump+176>:	mov	r0, #0
-0x00010180 in just_jump ()
+=> 0x1017c <branch_with_link_target+168>:	mov	r0, #0
+0x00010180 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1099,11 +1099,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10180	0x10180 <just_jump+180>
+pc             0x10180	0x10180 <branch_with_link_target+172>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10180 <just_jump+180>:	mov	r0, #0
-0x00010184 in just_jump ()
+=> 0x10180 <branch_with_link_target+172>:	mov	r0, #0
+0x00010184 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1119,11 +1119,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10184	0x10184 <just_jump+184>
+pc             0x10184	0x10184 <branch_with_link_target+176>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10184 <just_jump+184>:	mov	r0, #0
-0x00010188 in just_jump ()
+=> 0x10184 <branch_with_link_target+176>:	mov	r0, #0
+0x00010188 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1139,11 +1139,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10188	0x10188 <just_jump+188>
+pc             0x10188	0x10188 <branch_with_link_target+180>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10188 <just_jump+188>:	mov	r0, #0
-0x0001018c in just_jump ()
+=> 0x10188 <branch_with_link_target+180>:	mov	r0, #0
+0x0001018c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1159,11 +1159,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1018c	0x1018c <just_jump+192>
+pc             0x1018c	0x1018c <branch_with_link_target+184>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1018c <just_jump+192>:	mov	r0, #0
-0x00010190 in just_jump ()
+=> 0x1018c <branch_with_link_target+184>:	mov	r0, #0
+0x00010190 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1179,11 +1179,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10190	0x10190 <just_jump+196>
+pc             0x10190	0x10190 <branch_with_link_target+188>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10190 <just_jump+196>:	mov	r0, #0
-0x00010194 in just_jump ()
+=> 0x10190 <branch_with_link_target+188>:	mov	r0, #0
+0x00010194 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1199,11 +1199,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10194	0x10194 <just_jump+200>
+pc             0x10194	0x10194 <branch_with_link_target+192>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10194 <just_jump+200>:	mov	r0, #0
-0x00010198 in just_jump ()
+=> 0x10194 <branch_with_link_target+192>:	mov	r0, #0
+0x00010198 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1219,11 +1219,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10198	0x10198 <just_jump+204>
+pc             0x10198	0x10198 <branch_with_link_target+196>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10198 <just_jump+204>:	mov	r0, #0
-0x0001019c in just_jump ()
+=> 0x10198 <branch_with_link_target+196>:	mov	r0, #0
+0x0001019c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1239,11 +1239,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1019c	0x1019c <just_jump+208>
+pc             0x1019c	0x1019c <branch_with_link_target+200>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1019c <just_jump+208>:	mov	r0, #0
-0x000101a0 in just_jump ()
+=> 0x1019c <branch_with_link_target+200>:	mov	r0, #0
+0x000101a0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1259,11 +1259,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101a0	0x101a0 <just_jump+212>
+pc             0x101a0	0x101a0 <branch_with_link_target+204>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101a0 <just_jump+212>:	mov	r0, #0
-0x000101a4 in just_jump ()
+=> 0x101a0 <branch_with_link_target+204>:	mov	r0, #0
+0x000101a4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1279,11 +1279,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101a4	0x101a4 <just_jump+216>
+pc             0x101a4	0x101a4 <branch_with_link_target+208>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101a4 <just_jump+216>:	mov	r0, #0
-0x000101a8 in just_jump ()
+=> 0x101a4 <branch_with_link_target+208>:	mov	r0, #0
+0x000101a8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1299,11 +1299,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101a8	0x101a8 <just_jump+220>
+pc             0x101a8	0x101a8 <branch_with_link_target+212>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101a8 <just_jump+220>:	mov	r0, #0
-0x000101ac in just_jump ()
+=> 0x101a8 <branch_with_link_target+212>:	mov	r0, #0
+0x000101ac in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1319,11 +1319,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101ac	0x101ac <just_jump+224>
+pc             0x101ac	0x101ac <branch_with_link_target+216>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101ac <just_jump+224>:	mov	r0, #0
-0x000101b0 in just_jump ()
+=> 0x101ac <branch_with_link_target+216>:	mov	r0, #0
+0x000101b0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1339,11 +1339,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101b0	0x101b0 <just_jump+228>
+pc             0x101b0	0x101b0 <branch_with_link_target+220>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101b0 <just_jump+228>:	mov	r0, #0
-0x000101b4 in just_jump ()
+=> 0x101b0 <branch_with_link_target+220>:	mov	r0, #0
+0x000101b4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1359,11 +1359,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101b4	0x101b4 <just_jump+232>
+pc             0x101b4	0x101b4 <branch_with_link_target+224>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101b4 <just_jump+232>:	mov	r0, #0
-0x000101b8 in just_jump ()
+=> 0x101b4 <branch_with_link_target+224>:	mov	r0, #0
+0x000101b8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1379,11 +1379,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101b8	0x101b8 <just_jump+236>
+pc             0x101b8	0x101b8 <branch_with_link_target+228>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101b8 <just_jump+236>:	mov	r0, #0
-0x000101bc in just_jump ()
+=> 0x101b8 <branch_with_link_target+228>:	mov	r0, #0
+0x000101bc in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1399,11 +1399,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101bc	0x101bc <just_jump+240>
+pc             0x101bc	0x101bc <branch_with_link_target+232>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101bc <just_jump+240>:	mov	r0, #0
-0x000101c0 in just_jump ()
+=> 0x101bc <branch_with_link_target+232>:	mov	r0, #0
+0x000101c0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1419,11 +1419,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101c0	0x101c0 <just_jump+244>
+pc             0x101c0	0x101c0 <branch_with_link_target+236>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101c0 <just_jump+244>:	mov	r0, #0
-0x000101c4 in just_jump ()
+=> 0x101c0 <branch_with_link_target+236>:	mov	r0, #0
+0x000101c4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1439,11 +1439,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101c4	0x101c4 <just_jump+248>
+pc             0x101c4	0x101c4 <branch_with_link_target+240>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101c4 <just_jump+248>:	mov	r0, #0
-0x000101c8 in just_jump ()
+=> 0x101c4 <branch_with_link_target+240>:	mov	r0, #0
+0x000101c8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1459,11 +1459,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101c8	0x101c8 <just_jump+252>
+pc             0x101c8	0x101c8 <branch_with_link_target+244>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101c8 <just_jump+252>:	mov	r0, #0
-0x000101cc in just_jump ()
+=> 0x101c8 <branch_with_link_target+244>:	mov	r0, #0
+0x000101cc in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1479,11 +1479,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101cc	0x101cc <just_jump+256>
+pc             0x101cc	0x101cc <branch_with_link_target+248>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101cc <just_jump+256>:	mov	r0, #0
-0x000101d0 in just_jump ()
+=> 0x101cc <branch_with_link_target+248>:	mov	r0, #0
+0x000101d0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1499,11 +1499,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101d0	0x101d0 <just_jump+260>
+pc             0x101d0	0x101d0 <branch_with_link_target+252>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101d0 <just_jump+260>:	mov	r0, #0
-0x000101d4 in just_jump ()
+=> 0x101d0 <branch_with_link_target+252>:	mov	r0, #0
+0x000101d4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1519,11 +1519,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101d4	0x101d4 <just_jump+264>
+pc             0x101d4	0x101d4 <branch_with_link_target+256>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101d4 <just_jump+264>:	mov	r0, #0
-0x000101d8 in just_jump ()
+=> 0x101d4 <branch_with_link_target+256>:	mov	r0, #0
+0x000101d8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1539,11 +1539,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101d8	0x101d8 <just_jump+268>
+pc             0x101d8	0x101d8 <branch_with_link_target+260>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101d8 <just_jump+268>:	mov	r0, #0
-0x000101dc in just_jump ()
+=> 0x101d8 <branch_with_link_target+260>:	mov	r0, #0
+0x000101dc in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1559,11 +1559,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101dc	0x101dc <just_jump+272>
+pc             0x101dc	0x101dc <branch_with_link_target+264>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101dc <just_jump+272>:	mov	r0, #0
-0x000101e0 in just_jump ()
+=> 0x101dc <branch_with_link_target+264>:	mov	r0, #0
+0x000101e0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1579,11 +1579,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101e0	0x101e0 <just_jump+276>
+pc             0x101e0	0x101e0 <branch_with_link_target+268>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101e0 <just_jump+276>:	mov	r0, #0
-0x000101e4 in just_jump ()
+=> 0x101e0 <branch_with_link_target+268>:	mov	r0, #0
+0x000101e4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1599,11 +1599,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101e4	0x101e4 <just_jump+280>
+pc             0x101e4	0x101e4 <branch_with_link_target+272>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101e4 <just_jump+280>:	mov	r0, #0
-0x000101e8 in just_jump ()
+=> 0x101e4 <branch_with_link_target+272>:	mov	r0, #0
+0x000101e8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1619,11 +1619,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101e8	0x101e8 <just_jump+284>
+pc             0x101e8	0x101e8 <branch_with_link_target+276>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101e8 <just_jump+284>:	mov	r0, #0
-0x000101ec in just_jump ()
+=> 0x101e8 <branch_with_link_target+276>:	mov	r0, #0
+0x000101ec in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1639,11 +1639,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101ec	0x101ec <just_jump+288>
+pc             0x101ec	0x101ec <branch_with_link_target+280>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101ec <just_jump+288>:	mov	r0, #0
-0x000101f0 in just_jump ()
+=> 0x101ec <branch_with_link_target+280>:	mov	r0, #0
+0x000101f0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1659,11 +1659,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101f0	0x101f0 <just_jump+292>
+pc             0x101f0	0x101f0 <branch_with_link_target+284>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101f0 <just_jump+292>:	mov	r0, #0
-0x000101f4 in just_jump ()
+=> 0x101f0 <branch_with_link_target+284>:	mov	r0, #0
+0x000101f4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1679,11 +1679,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101f4	0x101f4 <just_jump+296>
+pc             0x101f4	0x101f4 <branch_with_link_target+288>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101f4 <just_jump+296>:	mov	r0, #0
-0x000101f8 in just_jump ()
+=> 0x101f4 <branch_with_link_target+288>:	mov	r0, #0
+0x000101f8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1699,11 +1699,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101f8	0x101f8 <just_jump+300>
+pc             0x101f8	0x101f8 <branch_with_link_target+292>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101f8 <just_jump+300>:	mov	r0, #0
-0x000101fc in just_jump ()
+=> 0x101f8 <branch_with_link_target+292>:	mov	r0, #0
+0x000101fc in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1719,11 +1719,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x101fc	0x101fc <just_jump+304>
+pc             0x101fc	0x101fc <branch_with_link_target+296>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x101fc <just_jump+304>:	mov	r0, #0
-0x00010200 in just_jump ()
+=> 0x101fc <branch_with_link_target+296>:	mov	r0, #0
+0x00010200 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1739,11 +1739,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10200	0x10200 <just_jump+308>
+pc             0x10200	0x10200 <branch_with_link_target+300>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10200 <just_jump+308>:	mov	r0, #0
-0x00010204 in just_jump ()
+=> 0x10200 <branch_with_link_target+300>:	mov	r0, #0
+0x00010204 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1759,11 +1759,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10204	0x10204 <just_jump+312>
+pc             0x10204	0x10204 <branch_with_link_target+304>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10204 <just_jump+312>:	mov	r0, #0
-0x00010208 in just_jump ()
+=> 0x10204 <branch_with_link_target+304>:	mov	r0, #0
+0x00010208 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1779,11 +1779,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10208	0x10208 <just_jump+316>
+pc             0x10208	0x10208 <branch_with_link_target+308>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10208 <just_jump+316>:	mov	r0, #0
-0x0001020c in just_jump ()
+=> 0x10208 <branch_with_link_target+308>:	mov	r0, #0
+0x0001020c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1799,11 +1799,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1020c	0x1020c <just_jump+320>
+pc             0x1020c	0x1020c <branch_with_link_target+312>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1020c <just_jump+320>:	mov	r0, #0
-0x00010210 in just_jump ()
+=> 0x1020c <branch_with_link_target+312>:	mov	r0, #0
+0x00010210 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1819,11 +1819,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10210	0x10210 <just_jump+324>
+pc             0x10210	0x10210 <branch_with_link_target+316>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10210 <just_jump+324>:	mov	r0, #0
-0x00010214 in just_jump ()
+=> 0x10210 <branch_with_link_target+316>:	mov	r0, #0
+0x00010214 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1839,11 +1839,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10214	0x10214 <just_jump+328>
+pc             0x10214	0x10214 <branch_with_link_target+320>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10214 <just_jump+328>:	mov	r0, #0
-0x00010218 in just_jump ()
+=> 0x10214 <branch_with_link_target+320>:	mov	r0, #0
+0x00010218 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1859,11 +1859,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10218	0x10218 <just_jump+332>
+pc             0x10218	0x10218 <branch_with_link_target+324>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10218 <just_jump+332>:	mov	r0, #0
-0x0001021c in just_jump ()
+=> 0x10218 <branch_with_link_target+324>:	mov	r0, #0
+0x0001021c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1879,11 +1879,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1021c	0x1021c <just_jump+336>
+pc             0x1021c	0x1021c <branch_with_link_target+328>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1021c <just_jump+336>:	mov	r0, #0
-0x00010220 in just_jump ()
+=> 0x1021c <branch_with_link_target+328>:	mov	r0, #0
+0x00010220 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1899,11 +1899,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10220	0x10220 <just_jump+340>
+pc             0x10220	0x10220 <branch_with_link_target+332>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10220 <just_jump+340>:	mov	r0, #0
-0x00010224 in just_jump ()
+=> 0x10220 <branch_with_link_target+332>:	mov	r0, #0
+0x00010224 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1919,11 +1919,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10224	0x10224 <just_jump+344>
+pc             0x10224	0x10224 <branch_with_link_target+336>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10224 <just_jump+344>:	mov	r0, #0
-0x00010228 in just_jump ()
+=> 0x10224 <branch_with_link_target+336>:	mov	r0, #0
+0x00010228 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1939,11 +1939,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10228	0x10228 <just_jump+348>
+pc             0x10228	0x10228 <branch_with_link_target+340>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10228 <just_jump+348>:	mov	r0, #0
-0x0001022c in just_jump ()
+=> 0x10228 <branch_with_link_target+340>:	mov	r0, #0
+0x0001022c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1959,11 +1959,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1022c	0x1022c <just_jump+352>
+pc             0x1022c	0x1022c <branch_with_link_target+344>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1022c <just_jump+352>:	mov	r0, #0
-0x00010230 in just_jump ()
+=> 0x1022c <branch_with_link_target+344>:	mov	r0, #0
+0x00010230 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1979,11 +1979,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10230	0x10230 <just_jump+356>
+pc             0x10230	0x10230 <branch_with_link_target+348>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10230 <just_jump+356>:	mov	r0, #0
-0x00010234 in just_jump ()
+=> 0x10230 <branch_with_link_target+348>:	mov	r0, #0
+0x00010234 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -1999,11 +1999,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10234	0x10234 <just_jump+360>
+pc             0x10234	0x10234 <branch_with_link_target+352>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10234 <just_jump+360>:	mov	r0, #0
-0x00010238 in just_jump ()
+=> 0x10234 <branch_with_link_target+352>:	mov	r0, #0
+0x00010238 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2019,11 +2019,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10238	0x10238 <just_jump+364>
+pc             0x10238	0x10238 <branch_with_link_target+356>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10238 <just_jump+364>:	mov	r0, #0
-0x0001023c in just_jump ()
+=> 0x10238 <branch_with_link_target+356>:	mov	r0, #0
+0x0001023c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2039,11 +2039,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1023c	0x1023c <just_jump+368>
+pc             0x1023c	0x1023c <branch_with_link_target+360>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1023c <just_jump+368>:	mov	r0, #0
-0x00010240 in just_jump ()
+=> 0x1023c <branch_with_link_target+360>:	mov	r0, #0
+0x00010240 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2059,11 +2059,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10240	0x10240 <just_jump+372>
+pc             0x10240	0x10240 <branch_with_link_target+364>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10240 <just_jump+372>:	mov	r0, #0
-0x00010244 in just_jump ()
+=> 0x10240 <branch_with_link_target+364>:	mov	r0, #0
+0x00010244 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2079,11 +2079,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10244	0x10244 <just_jump+376>
+pc             0x10244	0x10244 <branch_with_link_target+368>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10244 <just_jump+376>:	mov	r0, #0
-0x00010248 in just_jump ()
+=> 0x10244 <branch_with_link_target+368>:	mov	r0, #0
+0x00010248 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2099,11 +2099,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10248	0x10248 <just_jump+380>
+pc             0x10248	0x10248 <branch_with_link_target+372>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10248 <just_jump+380>:	mov	r0, #0
-0x0001024c in just_jump ()
+=> 0x10248 <branch_with_link_target+372>:	mov	r0, #0
+0x0001024c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2119,11 +2119,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1024c	0x1024c <just_jump+384>
+pc             0x1024c	0x1024c <branch_with_link_target+376>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1024c <just_jump+384>:	mov	r0, #0
-0x00010250 in just_jump ()
+=> 0x1024c <branch_with_link_target+376>:	mov	r0, #0
+0x00010250 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2139,11 +2139,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10250	0x10250 <just_jump+388>
+pc             0x10250	0x10250 <branch_with_link_target+380>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10250 <just_jump+388>:	mov	r0, #0
-0x00010254 in just_jump ()
+=> 0x10250 <branch_with_link_target+380>:	mov	r0, #0
+0x00010254 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2159,11 +2159,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10254	0x10254 <just_jump+392>
+pc             0x10254	0x10254 <branch_with_link_target+384>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10254 <just_jump+392>:	mov	r0, #0
-0x00010258 in just_jump ()
+=> 0x10254 <branch_with_link_target+384>:	mov	r0, #0
+0x00010258 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2179,11 +2179,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10258	0x10258 <just_jump+396>
+pc             0x10258	0x10258 <branch_with_link_target+388>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10258 <just_jump+396>:	mov	r0, #0
-0x0001025c in just_jump ()
+=> 0x10258 <branch_with_link_target+388>:	mov	r0, #0
+0x0001025c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2199,11 +2199,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1025c	0x1025c <just_jump+400>
+pc             0x1025c	0x1025c <branch_with_link_target+392>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1025c <just_jump+400>:	mov	r0, #0
-0x00010260 in just_jump ()
+=> 0x1025c <branch_with_link_target+392>:	mov	r0, #0
+0x00010260 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2219,11 +2219,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10260	0x10260 <just_jump+404>
+pc             0x10260	0x10260 <branch_with_link_target+396>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10260 <just_jump+404>:	mov	r0, #0
-0x00010264 in just_jump ()
+=> 0x10260 <branch_with_link_target+396>:	mov	r0, #0
+0x00010264 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2239,11 +2239,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10264	0x10264 <just_jump+408>
+pc             0x10264	0x10264 <branch_with_link_target+400>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10264 <just_jump+408>:	mov	r0, #0
-0x00010268 in just_jump ()
+=> 0x10264 <branch_with_link_target+400>:	mov	r0, #0
+0x00010268 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2259,11 +2259,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10268	0x10268 <just_jump+412>
+pc             0x10268	0x10268 <branch_with_link_target+404>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10268 <just_jump+412>:	mov	r0, #0
-0x0001026c in just_jump ()
+=> 0x10268 <branch_with_link_target+404>:	mov	r0, #0
+0x0001026c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2279,11 +2279,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1026c	0x1026c <just_jump+416>
+pc             0x1026c	0x1026c <branch_with_link_target+408>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1026c <just_jump+416>:	mov	r0, #0
-0x00010270 in just_jump ()
+=> 0x1026c <branch_with_link_target+408>:	mov	r0, #0
+0x00010270 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2299,11 +2299,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10270	0x10270 <just_jump+420>
+pc             0x10270	0x10270 <branch_with_link_target+412>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10270 <just_jump+420>:	mov	r0, #0
-0x00010274 in just_jump ()
+=> 0x10270 <branch_with_link_target+412>:	mov	r0, #0
+0x00010274 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2319,11 +2319,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10274	0x10274 <just_jump+424>
+pc             0x10274	0x10274 <branch_with_link_target+416>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10274 <just_jump+424>:	mov	r0, #0
-0x00010278 in just_jump ()
+=> 0x10274 <branch_with_link_target+416>:	mov	r0, #0
+0x00010278 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2339,11 +2339,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10278	0x10278 <just_jump+428>
+pc             0x10278	0x10278 <branch_with_link_target+420>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10278 <just_jump+428>:	mov	r0, #0
-0x0001027c in just_jump ()
+=> 0x10278 <branch_with_link_target+420>:	mov	r0, #0
+0x0001027c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2359,11 +2359,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1027c	0x1027c <just_jump+432>
+pc             0x1027c	0x1027c <branch_with_link_target+424>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1027c <just_jump+432>:	mov	r0, #0
-0x00010280 in just_jump ()
+=> 0x1027c <branch_with_link_target+424>:	mov	r0, #0
+0x00010280 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2379,11 +2379,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10280	0x10280 <just_jump+436>
+pc             0x10280	0x10280 <branch_with_link_target+428>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10280 <just_jump+436>:	mov	r0, #0
-0x00010284 in just_jump ()
+=> 0x10280 <branch_with_link_target+428>:	mov	r0, #0
+0x00010284 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2399,11 +2399,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10284	0x10284 <just_jump+440>
+pc             0x10284	0x10284 <branch_with_link_target+432>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10284 <just_jump+440>:	mov	r0, #0
-0x00010288 in just_jump ()
+=> 0x10284 <branch_with_link_target+432>:	mov	r0, #0
+0x00010288 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2419,11 +2419,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10288	0x10288 <just_jump+444>
+pc             0x10288	0x10288 <branch_with_link_target+436>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10288 <just_jump+444>:	mov	r0, #0
-0x0001028c in just_jump ()
+=> 0x10288 <branch_with_link_target+436>:	mov	r0, #0
+0x0001028c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2439,11 +2439,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1028c	0x1028c <just_jump+448>
+pc             0x1028c	0x1028c <branch_with_link_target+440>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1028c <just_jump+448>:	mov	r0, #0
-0x00010290 in just_jump ()
+=> 0x1028c <branch_with_link_target+440>:	mov	r0, #0
+0x00010290 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2459,11 +2459,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10290	0x10290 <just_jump+452>
+pc             0x10290	0x10290 <branch_with_link_target+444>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10290 <just_jump+452>:	mov	r0, #0
-0x00010294 in just_jump ()
+=> 0x10290 <branch_with_link_target+444>:	mov	r0, #0
+0x00010294 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2479,11 +2479,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10294	0x10294 <just_jump+456>
+pc             0x10294	0x10294 <branch_with_link_target+448>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10294 <just_jump+456>:	mov	r0, #0
-0x00010298 in just_jump ()
+=> 0x10294 <branch_with_link_target+448>:	mov	r0, #0
+0x00010298 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2499,11 +2499,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10298	0x10298 <just_jump+460>
+pc             0x10298	0x10298 <branch_with_link_target+452>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10298 <just_jump+460>:	mov	r0, #0
-0x0001029c in just_jump ()
+=> 0x10298 <branch_with_link_target+452>:	mov	r0, #0
+0x0001029c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2519,11 +2519,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1029c	0x1029c <just_jump+464>
+pc             0x1029c	0x1029c <branch_with_link_target+456>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1029c <just_jump+464>:	mov	r0, #0
-0x000102a0 in just_jump ()
+=> 0x1029c <branch_with_link_target+456>:	mov	r0, #0
+0x000102a0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2539,11 +2539,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102a0	0x102a0 <just_jump+468>
+pc             0x102a0	0x102a0 <branch_with_link_target+460>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102a0 <just_jump+468>:	mov	r0, #0
-0x000102a4 in just_jump ()
+=> 0x102a0 <branch_with_link_target+460>:	mov	r0, #0
+0x000102a4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2559,11 +2559,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102a4	0x102a4 <just_jump+472>
+pc             0x102a4	0x102a4 <branch_with_link_target+464>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102a4 <just_jump+472>:	mov	r0, #0
-0x000102a8 in just_jump ()
+=> 0x102a4 <branch_with_link_target+464>:	mov	r0, #0
+0x000102a8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2579,11 +2579,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102a8	0x102a8 <just_jump+476>
+pc             0x102a8	0x102a8 <branch_with_link_target+468>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102a8 <just_jump+476>:	mov	r0, #0
-0x000102ac in just_jump ()
+=> 0x102a8 <branch_with_link_target+468>:	mov	r0, #0
+0x000102ac in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2599,11 +2599,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102ac	0x102ac <just_jump+480>
+pc             0x102ac	0x102ac <branch_with_link_target+472>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102ac <just_jump+480>:	mov	r0, #0
-0x000102b0 in just_jump ()
+=> 0x102ac <branch_with_link_target+472>:	mov	r0, #0
+0x000102b0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2619,11 +2619,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102b0	0x102b0 <just_jump+484>
+pc             0x102b0	0x102b0 <branch_with_link_target+476>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102b0 <just_jump+484>:	mov	r0, #0
-0x000102b4 in just_jump ()
+=> 0x102b0 <branch_with_link_target+476>:	mov	r0, #0
+0x000102b4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2639,11 +2639,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102b4	0x102b4 <just_jump+488>
+pc             0x102b4	0x102b4 <branch_with_link_target+480>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102b4 <just_jump+488>:	mov	r0, #0
-0x000102b8 in just_jump ()
+=> 0x102b4 <branch_with_link_target+480>:	mov	r0, #0
+0x000102b8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2659,11 +2659,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102b8	0x102b8 <just_jump+492>
+pc             0x102b8	0x102b8 <branch_with_link_target+484>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102b8 <just_jump+492>:	mov	r0, #0
-0x000102bc in just_jump ()
+=> 0x102b8 <branch_with_link_target+484>:	mov	r0, #0
+0x000102bc in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2679,11 +2679,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102bc	0x102bc <just_jump+496>
+pc             0x102bc	0x102bc <branch_with_link_target+488>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102bc <just_jump+496>:	mov	r0, #0
-0x000102c0 in just_jump ()
+=> 0x102bc <branch_with_link_target+488>:	mov	r0, #0
+0x000102c0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2699,11 +2699,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102c0	0x102c0 <just_jump+500>
+pc             0x102c0	0x102c0 <branch_with_link_target+492>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102c0 <just_jump+500>:	mov	r0, #0
-0x000102c4 in just_jump ()
+=> 0x102c0 <branch_with_link_target+492>:	mov	r0, #0
+0x000102c4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2719,11 +2719,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102c4	0x102c4 <just_jump+504>
+pc             0x102c4	0x102c4 <branch_with_link_target+496>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102c4 <just_jump+504>:	mov	r0, #0
-0x000102c8 in just_jump ()
+=> 0x102c4 <branch_with_link_target+496>:	mov	r0, #0
+0x000102c8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2739,11 +2739,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102c8	0x102c8 <just_jump+508>
+pc             0x102c8	0x102c8 <branch_with_link_target+500>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102c8 <just_jump+508>:	mov	r0, #0
-0x000102cc in just_jump ()
+=> 0x102c8 <branch_with_link_target+500>:	mov	r0, #0
+0x000102cc in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2759,11 +2759,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102cc	0x102cc <just_jump+512>
+pc             0x102cc	0x102cc <branch_with_link_target+504>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102cc <just_jump+512>:	mov	r0, #0
-0x000102d0 in just_jump ()
+=> 0x102cc <branch_with_link_target+504>:	mov	r0, #0
+0x000102d0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2779,11 +2779,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102d0	0x102d0 <just_jump+516>
+pc             0x102d0	0x102d0 <branch_with_link_target+508>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102d0 <just_jump+516>:	mov	r0, #0
-0x000102d4 in just_jump ()
+=> 0x102d0 <branch_with_link_target+508>:	mov	r0, #0
+0x000102d4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2799,11 +2799,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102d4	0x102d4 <just_jump+520>
+pc             0x102d4	0x102d4 <branch_with_link_target+512>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102d4 <just_jump+520>:	mov	r0, #0
-0x000102d8 in just_jump ()
+=> 0x102d4 <branch_with_link_target+512>:	mov	r0, #0
+0x000102d8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2819,11 +2819,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102d8	0x102d8 <just_jump+524>
+pc             0x102d8	0x102d8 <branch_with_link_target+516>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102d8 <just_jump+524>:	mov	r0, #0
-0x000102dc in just_jump ()
+=> 0x102d8 <branch_with_link_target+516>:	mov	r0, #0
+0x000102dc in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2839,11 +2839,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102dc	0x102dc <just_jump+528>
+pc             0x102dc	0x102dc <branch_with_link_target+520>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102dc <just_jump+528>:	mov	r0, #0
-0x000102e0 in just_jump ()
+=> 0x102dc <branch_with_link_target+520>:	mov	r0, #0
+0x000102e0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2859,11 +2859,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102e0	0x102e0 <just_jump+532>
+pc             0x102e0	0x102e0 <branch_with_link_target+524>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102e0 <just_jump+532>:	mov	r0, #0
-0x000102e4 in just_jump ()
+=> 0x102e0 <branch_with_link_target+524>:	mov	r0, #0
+0x000102e4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2879,11 +2879,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102e4	0x102e4 <just_jump+536>
+pc             0x102e4	0x102e4 <branch_with_link_target+528>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102e4 <just_jump+536>:	mov	r0, #0
-0x000102e8 in just_jump ()
+=> 0x102e4 <branch_with_link_target+528>:	mov	r0, #0
+0x000102e8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2899,11 +2899,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102e8	0x102e8 <just_jump+540>
+pc             0x102e8	0x102e8 <branch_with_link_target+532>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102e8 <just_jump+540>:	mov	r0, #0
-0x000102ec in just_jump ()
+=> 0x102e8 <branch_with_link_target+532>:	mov	r0, #0
+0x000102ec in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2919,11 +2919,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102ec	0x102ec <just_jump+544>
+pc             0x102ec	0x102ec <branch_with_link_target+536>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102ec <just_jump+544>:	mov	r0, #0
-0x000102f0 in just_jump ()
+=> 0x102ec <branch_with_link_target+536>:	mov	r0, #0
+0x000102f0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2939,11 +2939,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102f0	0x102f0 <just_jump+548>
+pc             0x102f0	0x102f0 <branch_with_link_target+540>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102f0 <just_jump+548>:	mov	r0, #0
-0x000102f4 in just_jump ()
+=> 0x102f0 <branch_with_link_target+540>:	mov	r0, #0
+0x000102f4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2959,11 +2959,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102f4	0x102f4 <just_jump+552>
+pc             0x102f4	0x102f4 <branch_with_link_target+544>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102f4 <just_jump+552>:	mov	r0, #0
-0x000102f8 in just_jump ()
+=> 0x102f4 <branch_with_link_target+544>:	mov	r0, #0
+0x000102f8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2979,11 +2979,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102f8	0x102f8 <just_jump+556>
+pc             0x102f8	0x102f8 <branch_with_link_target+548>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102f8 <just_jump+556>:	mov	r0, #0
-0x000102fc in just_jump ()
+=> 0x102f8 <branch_with_link_target+548>:	mov	r0, #0
+0x000102fc in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -2999,11 +2999,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x102fc	0x102fc <just_jump+560>
+pc             0x102fc	0x102fc <branch_with_link_target+552>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x102fc <just_jump+560>:	mov	r0, #0
-0x00010300 in just_jump ()
+=> 0x102fc <branch_with_link_target+552>:	mov	r0, #0
+0x00010300 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3019,11 +3019,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10300	0x10300 <just_jump+564>
+pc             0x10300	0x10300 <branch_with_link_target+556>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10300 <just_jump+564>:	mov	r0, #0
-0x00010304 in just_jump ()
+=> 0x10300 <branch_with_link_target+556>:	mov	r0, #0
+0x00010304 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3039,11 +3039,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10304	0x10304 <just_jump+568>
+pc             0x10304	0x10304 <branch_with_link_target+560>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10304 <just_jump+568>:	mov	r0, #0
-0x00010308 in just_jump ()
+=> 0x10304 <branch_with_link_target+560>:	mov	r0, #0
+0x00010308 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3059,11 +3059,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10308	0x10308 <just_jump+572>
+pc             0x10308	0x10308 <branch_with_link_target+564>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10308 <just_jump+572>:	mov	r0, #0
-0x0001030c in just_jump ()
+=> 0x10308 <branch_with_link_target+564>:	mov	r0, #0
+0x0001030c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3079,11 +3079,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1030c	0x1030c <just_jump+576>
+pc             0x1030c	0x1030c <branch_with_link_target+568>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1030c <just_jump+576>:	mov	r0, #0
-0x00010310 in just_jump ()
+=> 0x1030c <branch_with_link_target+568>:	mov	r0, #0
+0x00010310 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3099,11 +3099,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10310	0x10310 <just_jump+580>
+pc             0x10310	0x10310 <branch_with_link_target+572>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10310 <just_jump+580>:	mov	r0, #0
-0x00010314 in just_jump ()
+=> 0x10310 <branch_with_link_target+572>:	mov	r0, #0
+0x00010314 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3119,11 +3119,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10314	0x10314 <just_jump+584>
+pc             0x10314	0x10314 <branch_with_link_target+576>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10314 <just_jump+584>:	mov	r0, #0
-0x00010318 in just_jump ()
+=> 0x10314 <branch_with_link_target+576>:	mov	r0, #0
+0x00010318 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3139,11 +3139,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10318	0x10318 <just_jump+588>
+pc             0x10318	0x10318 <branch_with_link_target+580>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10318 <just_jump+588>:	mov	r0, #0
-0x0001031c in just_jump ()
+=> 0x10318 <branch_with_link_target+580>:	mov	r0, #0
+0x0001031c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3159,11 +3159,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1031c	0x1031c <just_jump+592>
+pc             0x1031c	0x1031c <branch_with_link_target+584>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1031c <just_jump+592>:	mov	r0, #0
-0x00010320 in just_jump ()
+=> 0x1031c <branch_with_link_target+584>:	mov	r0, #0
+0x00010320 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3179,11 +3179,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10320	0x10320 <just_jump+596>
+pc             0x10320	0x10320 <branch_with_link_target+588>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10320 <just_jump+596>:	mov	r0, #0
-0x00010324 in just_jump ()
+=> 0x10320 <branch_with_link_target+588>:	mov	r0, #0
+0x00010324 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3199,11 +3199,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10324	0x10324 <just_jump+600>
+pc             0x10324	0x10324 <branch_with_link_target+592>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10324 <just_jump+600>:	mov	r0, #0
-0x00010328 in just_jump ()
+=> 0x10324 <branch_with_link_target+592>:	mov	r0, #0
+0x00010328 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3219,11 +3219,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10328	0x10328 <just_jump+604>
+pc             0x10328	0x10328 <branch_with_link_target+596>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10328 <just_jump+604>:	mov	r0, #0
-0x0001032c in just_jump ()
+=> 0x10328 <branch_with_link_target+596>:	mov	r0, #0
+0x0001032c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3239,11 +3239,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1032c	0x1032c <just_jump+608>
+pc             0x1032c	0x1032c <branch_with_link_target+600>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1032c <just_jump+608>:	mov	r0, #0
-0x00010330 in just_jump ()
+=> 0x1032c <branch_with_link_target+600>:	mov	r0, #0
+0x00010330 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3259,11 +3259,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10330	0x10330 <just_jump+612>
+pc             0x10330	0x10330 <branch_with_link_target+604>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10330 <just_jump+612>:	mov	r0, #0
-0x00010334 in just_jump ()
+=> 0x10330 <branch_with_link_target+604>:	mov	r0, #0
+0x00010334 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3279,11 +3279,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10334	0x10334 <just_jump+616>
+pc             0x10334	0x10334 <branch_with_link_target+608>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10334 <just_jump+616>:	mov	r0, #0
-0x00010338 in just_jump ()
+=> 0x10334 <branch_with_link_target+608>:	mov	r0, #0
+0x00010338 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3299,11 +3299,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10338	0x10338 <just_jump+620>
+pc             0x10338	0x10338 <branch_with_link_target+612>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10338 <just_jump+620>:	mov	r0, #0
-0x0001033c in just_jump ()
+=> 0x10338 <branch_with_link_target+612>:	mov	r0, #0
+0x0001033c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3319,11 +3319,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1033c	0x1033c <just_jump+624>
+pc             0x1033c	0x1033c <branch_with_link_target+616>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1033c <just_jump+624>:	mov	r0, #0
-0x00010340 in just_jump ()
+=> 0x1033c <branch_with_link_target+616>:	mov	r0, #0
+0x00010340 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3339,11 +3339,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10340	0x10340 <just_jump+628>
+pc             0x10340	0x10340 <branch_with_link_target+620>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10340 <just_jump+628>:	mov	r0, #0
-0x00010344 in just_jump ()
+=> 0x10340 <branch_with_link_target+620>:	mov	r0, #0
+0x00010344 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3359,11 +3359,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10344	0x10344 <just_jump+632>
+pc             0x10344	0x10344 <branch_with_link_target+624>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10344 <just_jump+632>:	mov	r0, #0
-0x00010348 in just_jump ()
+=> 0x10344 <branch_with_link_target+624>:	mov	r0, #0
+0x00010348 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3379,11 +3379,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10348	0x10348 <just_jump+636>
+pc             0x10348	0x10348 <branch_with_link_target+628>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10348 <just_jump+636>:	mov	r0, #0
-0x0001034c in just_jump ()
+=> 0x10348 <branch_with_link_target+628>:	mov	r0, #0
+0x0001034c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3399,11 +3399,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1034c	0x1034c <just_jump+640>
+pc             0x1034c	0x1034c <branch_with_link_target+632>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1034c <just_jump+640>:	mov	r0, #0
-0x00010350 in just_jump ()
+=> 0x1034c <branch_with_link_target+632>:	mov	r0, #0
+0x00010350 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3419,11 +3419,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10350	0x10350 <just_jump+644>
+pc             0x10350	0x10350 <branch_with_link_target+636>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10350 <just_jump+644>:	mov	r0, #0
-0x00010354 in just_jump ()
+=> 0x10350 <branch_with_link_target+636>:	mov	r0, #0
+0x00010354 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3439,11 +3439,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10354	0x10354 <just_jump+648>
+pc             0x10354	0x10354 <branch_with_link_target+640>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10354 <just_jump+648>:	mov	r0, #0
-0x00010358 in just_jump ()
+=> 0x10354 <branch_with_link_target+640>:	mov	r0, #0
+0x00010358 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3459,11 +3459,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10358	0x10358 <just_jump+652>
+pc             0x10358	0x10358 <branch_with_link_target+644>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10358 <just_jump+652>:	mov	r0, #0
-0x0001035c in just_jump ()
+=> 0x10358 <branch_with_link_target+644>:	mov	r0, #0
+0x0001035c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3479,11 +3479,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1035c	0x1035c <just_jump+656>
+pc             0x1035c	0x1035c <branch_with_link_target+648>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1035c <just_jump+656>:	mov	r0, #0
-0x00010360 in just_jump ()
+=> 0x1035c <branch_with_link_target+648>:	mov	r0, #0
+0x00010360 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3499,11 +3499,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10360	0x10360 <just_jump+660>
+pc             0x10360	0x10360 <branch_with_link_target+652>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10360 <just_jump+660>:	mov	r0, #0
-0x00010364 in just_jump ()
+=> 0x10360 <branch_with_link_target+652>:	mov	r0, #0
+0x00010364 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3519,11 +3519,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10364	0x10364 <just_jump+664>
+pc             0x10364	0x10364 <branch_with_link_target+656>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10364 <just_jump+664>:	mov	r0, #0
-0x00010368 in just_jump ()
+=> 0x10364 <branch_with_link_target+656>:	mov	r0, #0
+0x00010368 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3539,11 +3539,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10368	0x10368 <just_jump+668>
+pc             0x10368	0x10368 <branch_with_link_target+660>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10368 <just_jump+668>:	mov	r0, #0
-0x0001036c in just_jump ()
+=> 0x10368 <branch_with_link_target+660>:	mov	r0, #0
+0x0001036c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3559,11 +3559,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1036c	0x1036c <just_jump+672>
+pc             0x1036c	0x1036c <branch_with_link_target+664>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1036c <just_jump+672>:	mov	r0, #0
-0x00010370 in just_jump ()
+=> 0x1036c <branch_with_link_target+664>:	mov	r0, #0
+0x00010370 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3579,11 +3579,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10370	0x10370 <just_jump+676>
+pc             0x10370	0x10370 <branch_with_link_target+668>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10370 <just_jump+676>:	mov	r0, #0
-0x00010374 in just_jump ()
+=> 0x10370 <branch_with_link_target+668>:	mov	r0, #0
+0x00010374 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3599,11 +3599,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10374	0x10374 <just_jump+680>
+pc             0x10374	0x10374 <branch_with_link_target+672>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10374 <just_jump+680>:	mov	r0, #0
-0x00010378 in just_jump ()
+=> 0x10374 <branch_with_link_target+672>:	mov	r0, #0
+0x00010378 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3619,11 +3619,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10378	0x10378 <just_jump+684>
+pc             0x10378	0x10378 <branch_with_link_target+676>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10378 <just_jump+684>:	mov	r0, #0
-0x0001037c in just_jump ()
+=> 0x10378 <branch_with_link_target+676>:	mov	r0, #0
+0x0001037c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3639,11 +3639,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1037c	0x1037c <just_jump+688>
+pc             0x1037c	0x1037c <branch_with_link_target+680>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1037c <just_jump+688>:	mov	r0, #0
-0x00010380 in just_jump ()
+=> 0x1037c <branch_with_link_target+680>:	mov	r0, #0
+0x00010380 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3659,11 +3659,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10380	0x10380 <just_jump+692>
+pc             0x10380	0x10380 <branch_with_link_target+684>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10380 <just_jump+692>:	mov	r0, #0
-0x00010384 in just_jump ()
+=> 0x10380 <branch_with_link_target+684>:	mov	r0, #0
+0x00010384 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3679,11 +3679,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10384	0x10384 <just_jump+696>
+pc             0x10384	0x10384 <branch_with_link_target+688>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10384 <just_jump+696>:	mov	r0, #0
-0x00010388 in just_jump ()
+=> 0x10384 <branch_with_link_target+688>:	mov	r0, #0
+0x00010388 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3699,11 +3699,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10388	0x10388 <just_jump+700>
+pc             0x10388	0x10388 <branch_with_link_target+692>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10388 <just_jump+700>:	mov	r0, #0
-0x0001038c in just_jump ()
+=> 0x10388 <branch_with_link_target+692>:	mov	r0, #0
+0x0001038c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3719,11 +3719,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1038c	0x1038c <just_jump+704>
+pc             0x1038c	0x1038c <branch_with_link_target+696>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1038c <just_jump+704>:	mov	r0, #0
-0x00010390 in just_jump ()
+=> 0x1038c <branch_with_link_target+696>:	mov	r0, #0
+0x00010390 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3739,11 +3739,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10390	0x10390 <just_jump+708>
+pc             0x10390	0x10390 <branch_with_link_target+700>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10390 <just_jump+708>:	mov	r0, #0
-0x00010394 in just_jump ()
+=> 0x10390 <branch_with_link_target+700>:	mov	r0, #0
+0x00010394 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3759,11 +3759,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10394	0x10394 <just_jump+712>
+pc             0x10394	0x10394 <branch_with_link_target+704>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10394 <just_jump+712>:	mov	r0, #0
-0x00010398 in just_jump ()
+=> 0x10394 <branch_with_link_target+704>:	mov	r0, #0
+0x00010398 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3779,11 +3779,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x10398	0x10398 <just_jump+716>
+pc             0x10398	0x10398 <branch_with_link_target+708>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x10398 <just_jump+716>:	mov	r0, #0
-0x0001039c in just_jump ()
+=> 0x10398 <branch_with_link_target+708>:	mov	r0, #0
+0x0001039c in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3799,11 +3799,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x1039c	0x1039c <just_jump+720>
+pc             0x1039c	0x1039c <branch_with_link_target+712>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x1039c <just_jump+720>:	mov	r0, #0
-0x000103a0 in just_jump ()
+=> 0x1039c <branch_with_link_target+712>:	mov	r0, #0
+0x000103a0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3819,11 +3819,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x103a0	0x103a0 <just_jump+724>
+pc             0x103a0	0x103a0 <branch_with_link_target+716>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x103a0 <just_jump+724>:	mov	r0, #0
-0x000103a4 in ?? ()
+=> 0x103a0 <branch_with_link_target+716>:	mov	r0, #0
+0x000103a4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3839,11 +3839,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x103a4	0x103a4
+pc             0x103a4	0x103a4 <branch_with_link_target+720>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x103a4:	andeq	r1, r0, r1, asr #20
-0x000103a8 in ?? ()
+=> 0x103a4 <branch_with_link_target+720>:	mov	r0, #0
+0x000103a8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3859,11 +3859,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x103a8	0x103a8
+pc             0x103a8	0x103a8 <branch_with_link_target+724>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x103a8:	cmnvs	r5, r0, lsl #2
-0x000103ac in ?? ()
+=> 0x103a8 <branch_with_link_target+724>:	mov	r0, #0
+0x000103ac in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3879,11 +3879,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x103ac	0x103ac
+pc             0x103ac	0x103ac <branch_with_link_target+728>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x103ac:	tsteq	r0, r2, ror #18
-0x000103b0 in ?? ()
+=> 0x103ac <branch_with_link_target+728>:	mov	r0, #0
+0x000103b0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3899,11 +3899,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x103b0	0x103b0
+pc             0x103b0	0x103b0 <branch_with_link_target+732>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x103b0:	andeq	r0, r0, r0, lsl r0
-0x000103b4 in ?? ()
+=> 0x103b0 <branch_with_link_target+732>:	mov	r0, #0
+0x000103b4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3919,11 +3919,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x103b4	0x103b4
+pc             0x103b4	0x103b4 <branch_with_link_target+736>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x103b4:	streq	r3, [r0], -r5, lsl #12
-0x000103b8 in ?? ()
+=> 0x103b4 <branch_with_link_target+736>:	mov	r0, #0
+0x000103b8 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3939,11 +3939,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x103b8	0x103b8
+pc             0x103b8	0x103b8 <branch_with_link_target+740>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x103b8:	stmdbeq	r1, {r1, r2, r11}
-0x000103bc in ?? ()
+=> 0x103b8 <branch_with_link_target+740>:	mov	r0, #0
+0x000103bc in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3959,11 +3959,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x103bc	0x103bc
+pc             0x103bc	0x103bc <branch_with_link_target+744>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x103bc:	andeq	r0, r2, r1, lsl #20
-0x000103c0 in ?? ()
+=> 0x103bc <branch_with_link_target+744>:	mov	r0, #0
+0x000103c0 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3979,11 +3979,11 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x103c0	0x103c0
+pc             0x103c0	0x103c0 <branch_with_link_target+748>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x103c0:	andeq	r0, r0, r0
-0x000103c4 in ?? ()
+=> 0x103c0 <branch_with_link_target+748>:	mov	r0, #0
+0x000103c4 in branch_with_link_target ()
 r0             0x0	0
 r1             0x0	0
 r2             0x0	0
@@ -3999,7 +3999,7 @@ r11            0x0	0
 r12            0x0	0
 sp             0xbefff290	0xbefff290
 lr             0x0	0
-pc             0x103c4	0x103c4
+pc             0x103c4	0x103c4 <branch_with_link_target+752>
 cpsr           0x80000010	-2147483632
 fpscr          0x0	0
-=> 0x103c4:	andeq	r0, r0, r0
+=> 0x103c4 <branch_with_link_target+752>:	mov	r0, #0
