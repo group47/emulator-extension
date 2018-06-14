@@ -52,6 +52,8 @@ enum CommandLineFlags parseCommandLine(int argc, const char **argv) {
             flags |= ZIMAGE;
         } else if (0 == strcmp(arg, "--qemu-print")) {
             flags |= QEMU_PRINT;
+        } else if (0 == strcmp(arg, "--mmap")) {
+            flags |= MMAP;
         } else {
             flags |= INVALID;
             invalid_arg = arg;

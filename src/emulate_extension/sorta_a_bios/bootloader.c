@@ -10,6 +10,9 @@
 #include "../main_loop.h"
 #include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.h"
 #include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.h"
+#include <sys/mman.h>
+#include <fcntl.h>
+#include <zconf.h>
 
 static struct Memory prepared_ram;
 static size_t atag_i = 0;
@@ -100,8 +103,21 @@ void copy_kernel_into_ram(FILE *kernel) {
 
 }
 
-void init_prepared_ram(FILE *kernel) {
-    prepared_ram.contents = calloc(1024 * 1024 * 1024, sizeof(uint8_t));
+#define MEM_SIZE (1024 * 1024 * 1024)
+
+void init_prepared_ram(FILE *kernel, enum CommandLineFlags flags) {
+    if (flags & MMAP) {
+        int fd = open("mem.bin", O_RDWR | O_CREAT, (mode_t) 0600);
+        lseek(fd, MEM_SIZE * sizeof(uint8_t), SEEK_SET);
+        write(fd, " ", 1);//create 1G file
+        close(fd);
+        fd = open("mem.bin", O_RDWR | O_CREAT, (mode_t) 0600);
+        void *map = mmap(NULL, MEM_SIZE * sizeof(uint8_t), PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+        prepared_ram.contents = map;
+        memset(prepared_ram.contents, 0, MEM_SIZE * sizeof(uint8_t));
+    } else {
+        prepared_ram.contents = calloc(MEM_SIZE, sizeof(uint8_t));
+    }
     prepared_ram.size = 1024 * 1024 * 1024 * sizeof(uint8_t);
     prepared_ram.mode = LITTLE_ENDIAN_;
     copy_kernel_into_ram(kernel);
@@ -127,7 +143,7 @@ void init_registers(struct CPUState *state) {
 
 
 void boot(FILE *kernel, enum CommandLineFlags flags) {
-    init_prepared_ram(kernel);
+    init_prepared_ram(kernel, flags);
     init_registers(getCPUState());
     set_memory(prepared_ram);
     main_loop(flags);
