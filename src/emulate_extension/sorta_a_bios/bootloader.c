@@ -8,6 +8,7 @@
 #include "../state/emulator_state.h"
 #include "../mmu/serial_console.h"
 #include "../main_loop.h"
+#include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.h"
 
 static struct Memory prepared_ram;
 static size_t atag_i = 0;
@@ -118,6 +119,7 @@ void init_registers(struct CPUState *state) {
     state->CPSR.reserved = 1;//this doesn't do anything, but makes comparing with expected results easier
     set_word_in_register(PC_ADDRESS, KERNEL_LOAD_TO_ADDRESS + MEMORY_OFFSET);
     init_c1_control_register();
+    init_c2_translation_table_base_register0();
 
 }
 

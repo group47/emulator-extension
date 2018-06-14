@@ -21,4 +21,6 @@ struct C2_translation_table_base_register0 {
 
 enum ExecutionExitCode execute_translation_table_base_register0(struct CoprocessorRegisterTransferInstruction);
 
+void init_c2_translation_table_base_register0();
+
 #endif //SRC_C2_TRANSLATION_TABLE_BASE0_H

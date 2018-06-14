@@ -122,22 +122,16 @@ add_executable(emulate_extension
         emulate_extension/instructions/thumb/move_shifted_register.h
         emulate_extension/util/shift_util.c
         emulate_extension/util/shift_util.h
-        emulate_extension/instructions/thumb/move_compare_add_subtract.c
-        emulate_extension/instructions/thumb/move_compare_add_subtract.h
         emulate_extension/instructions/thumb/conditional_branch.c
         emulate_extension/instructions/thumb/conditional_branch.h
         emulate_extension/instructions/thumb/unconditional_branch.c
         emulate_extension/instructions/thumb/unconditional_branch.h
-        emulate_extension/instructions/arm/branch_and_exchange.h
         emulate_extension/instructions/thumb/push_pop_registers.c
         emulate_extension/instructions/thumb/push_pop_registers.h
         emulate_extension/instructions/arm/coprocessor_data_operations.c
         emulate_extension/instructions/arm/coprocessor_data_operations.h
         emulate_extension/instructions/arm/coprocessor_data_transfers.c
         emulate_extension/instructions/arm/coprocessor_data_transfers.h
-        emulate_extension/instructions/arm/branch_and_exchange.h
-        emulate_extension/instructions/thumb/move_compare_add_subtract.c
-        emulate_extension/instructions/thumb/move_compare_add_subtract.h
         emulate_extension/instructions/thumb/alu_operation.c
         emulate_extension/instructions/thumb/alu_operation.h
         emulate_extension/instructions/thumb/software_interrupt_thumb.c
@@ -153,7 +147,6 @@ add_executable(emulate_extension
         emulate_extension/instructions/thumb/load_store_register_offset.h
         emulate_extension/instructions/thumb/load_store_halfword.c
         emulate_extension/instructions/thumb/load_store_halfword.h
-        emulate_extension/instructions/arm/branch_and_exchange.h
         emulate_extension/instructions/thumb/move_compare_add_subtract.c
         emulate_extension/instructions/thumb/move_compare_add_subtract.h
         emulate_extension/instructions/thumb/conditional_branch.c
@@ -344,4 +337,7 @@ add_executable(emulate_extension
         emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_id_code.c
         emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_id_code.h
         emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_feature_id_cpuid_scheme.c
-        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_feature_id_cpuid_scheme.h)
+        emulate_extension/coprocessor/system_control_coprocessor/system_control_and_configuration/c0_feature_id_cpuid_scheme.h
+        emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.c
+        emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.h
+        )

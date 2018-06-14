@@ -671,6 +671,7 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
     CPNum15_CRn8_COpc0_CRm7:
     switch (instruction.CP) {
         case 0:
+            return OK;//this is an invalidate tlb cache, which we will happily do since we don't have a cache
         case 1:
         case 2:
         default:

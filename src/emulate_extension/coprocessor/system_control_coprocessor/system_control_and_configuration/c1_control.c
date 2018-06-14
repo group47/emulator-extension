@@ -18,6 +18,7 @@ enum ExecutionExitCode execute_c1_control_register(struct CoprocessorRegisterTra
         assert(get_operating_mode() != usr);
         Word val = get_word_from_register(instruction.Rd);
         c1_control_register = *(struct C1_control_register *) &val;
+        assert(!c1_control_register.m);
     } else {
         assert(false);
     }
