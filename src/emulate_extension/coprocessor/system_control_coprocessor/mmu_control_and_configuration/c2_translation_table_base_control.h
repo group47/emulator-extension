@@ -7,6 +7,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "../../../basic_typedefs.h"
 
 struct C2_translation_table_base_control_register {
     uint8_t n : 2;

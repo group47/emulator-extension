@@ -45,8 +45,8 @@ struct Second_level_descriptor_address {
 
 
 struct PhysicalAddress_1MB_section {
-    uint16_t section_index : 20;
-    uint32_t section_base_address : 12;
+    uint32_t section_index : 20;
+    uint16_t section_base_address : 12;
 }__attribute__((packed));
 
 struct PhysicalAddress_large_page {

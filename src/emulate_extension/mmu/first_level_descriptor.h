@@ -92,7 +92,7 @@ struct Backwards_fd_section {
     uint8_t sbz : 3;
     bool filler0_position18 : 1;
     bool ns : 1;
-    uint8_t section_base_address : 12;
+    uint16_t section_base_address : 12;
 }__attribute__((packed));
 
 struct Backwards_fd_supersection {
