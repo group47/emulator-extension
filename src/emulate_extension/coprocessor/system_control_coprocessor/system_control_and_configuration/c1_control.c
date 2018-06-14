@@ -33,9 +33,10 @@ enum ExecutionExitCode execute_c1_control_register(struct CoprocessorRegisterTra
 //0x02450078 0x02452078
 
 void init_c1_control_register() {
-    memset(&c1_control_register, 0, sizeof(struct C1_control_register));
-    c1_control_register.ee = 1;
-    c1_control_register.u = 1;
-    c1_control_register.b = 0;
+    uint32_t val = 0x00050078;//this is what qemu expects. this hardcode is not ideal todo
+    memcpy(&c1_control_register, &val, sizeof(struct C1_control_register));
+//    c1_control_register.ee = 1;
+//    c1_control_register.u = 1;
+//    c1_control_register.b = 0;
 
 }
