@@ -1,4 +1,4 @@
-mov r0, #0x1000
+mov r0, #824
 mov r1, #0x1100
 mov r2, #0x0100
 strh r1, [r0], #2
