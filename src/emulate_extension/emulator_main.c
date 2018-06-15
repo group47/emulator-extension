@@ -11,7 +11,6 @@
 #include "dissasemble.h"
 #include "sorta_a_bios/bootloader.h"
 
-#ifdef USE_EMULATOR_MAIN
 
 static const char *binary_path = "";
 static const char *kernel_path = "";
@@ -107,7 +106,6 @@ int main(int argc, const char **argv) {
     }
 }
 
-#endif
 
 
 long parse_num(char *str) {

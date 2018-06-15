@@ -4,7 +4,6 @@
 
 #include "../instructions/thumb/add_subtract.h"
 #include "cpsr_util.h"
-#include "enums.h"
 
 
 bool should_execute(enum Cond cond) {
