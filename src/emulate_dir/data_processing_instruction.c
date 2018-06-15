@@ -1,9 +1,8 @@
 //
 // Created by francis on 5/27/18.
 //
-
-#include "../shared/data_processing_instruction.h"
 #include "cpsr_overflow_detection.h"
+#include "data_processing_instruction.h"
 
 int execute_instruction_data_processing(struct EmulatorState *state,
                                         const struct DataProcessingInstruction instruction) {

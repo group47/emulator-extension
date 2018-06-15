@@ -3,7 +3,7 @@
 //
 
 #include <stdbool.h>
-#include <elf.h>
+#include <stdint.h>
 #include "cpsr_overflow_detection.h"
 
 bool does_overflow_occur(uint32_t a, uint32_t b) {

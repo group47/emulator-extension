@@ -10,7 +10,6 @@
 #include "../../util/overflow_util.h"
 #include "../../util/operand_two_util.h"
 
-
 void exception_handler_exit(const struct DataProcessingInstruction instruction, uint32_t operand2Val);
 
 enum ExecutionExitCode execute_instruction_data_processing(const struct DataProcessingInstruction instruction) {

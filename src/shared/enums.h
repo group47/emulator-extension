@@ -34,4 +34,17 @@ enum ShiftType {
   ror = 0b11
 };
 
+enum OpCode {
+    and = 0b0000,
+    eor = 0b0001,
+    sub = 0b0010,
+    rsb = 0b0011,
+    add = 0b0100,
+    tst = 0b1000,
+    teq = 0b1001,
+    cmp = 0b1010,
+    orr = 0b1100,
+    mov = 0b1101,
+    invalidOpcode
+};
 #endif //SRC_ENUMS_H

@@ -8,11 +8,8 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include "common_structs.h"
 #include "enums.h"
-#include "data_processing_instruction.h"
-#include "multiply_instruction.h"
-#include "single_data_transfer_instruction.h"
-#include "branch_instruction.h"
 
 struct ImmediateTrue{
   uint8_t Imm: 8;

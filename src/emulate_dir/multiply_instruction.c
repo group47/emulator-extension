@@ -2,7 +2,7 @@
 // Created by francis on 5/27/18.
 //
 
-#include "../shared/instructions.h"
+#include "multiply_instruction.h"
 
 int
 execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruction instruction) {

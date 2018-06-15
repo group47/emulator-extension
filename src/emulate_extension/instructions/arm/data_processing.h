@@ -12,11 +12,6 @@
 #define IMMEDIATE_BIT_FLAG_DATA_PROCESSING true
 
 enum OpCode {
-    and = 0b0000,
-    eor = 0b0001,
-    sub = 0b0010,
-    rsb = 0b0011,
-    add = 0b0100,
     adc = 0b0101,
     sbc = 0b0110,
     rsc = 0b0111,

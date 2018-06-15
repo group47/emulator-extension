@@ -35,7 +35,7 @@ add_executable(assemble
         assemble_dir/parseSpecial.h
         assemble_dir/parseUtility.c
         assemble_dir/parseUtility.h
-        emulate_dir/emulate_main.h)
+        emulate_dir/emulate_main.h shared/common_structs.h)
 
 add_executable(emulate
         emulate_dir/branch_instruction.c
@@ -52,7 +52,7 @@ add_executable(emulate
         shared/multiply_instruction.h
         emulate_dir/single_data_transfer_instruction.c
         shared/single_data_transfer_instruction.h
-        shared/enums.h)
+        shared/enums.h shared/common_structs.h)
 
 
 add_executable(emulate_extension_

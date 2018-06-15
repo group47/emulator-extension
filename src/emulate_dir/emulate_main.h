@@ -1,21 +1,16 @@
 //
 
 #ifndef EMULATE_EMULATE_MAIN_H
+#define EMULATE_EMULATE_MAIN_H
 //
 // Created by francis on 5/23/18.
-enum OpCode {
-  and = 0b0000,
-  eor = 0b0001,
-  sub = 0b0010,
-  rsb = 0b0011,
-  add = 0b0100,
-  tst = 0b1000,
-  teq = 0b1001,
-  cmp = 0b1010,
-  orr = 0b1100,
-  mov = 0b1101,
-  invalidOpcode
-};
+#include <stdbool.h>
+#include <stdint.h>
+#include "../shared/common_structs.h"
+
+#define MEMORY_SIZE 65536
+#define MAX_INSTRUCTION_INPUT_FILE_SIZE 1000
+#define NUM_REGISTERS 17
 
 enum CPSR {
   CPSR_N = 0x80000000,
@@ -23,11 +18,7 @@ enum CPSR {
   CPSR_C = 0x20000000,
   CPSR_V = 0x10000000
 };
-#define EMULATE_EMULATE_MAIN_H
-#define MEMORY_SIZE 65536
-#define MAX_INSTRUCTION_INPUT_FILE_SIZE 1000
-#define NUM_REGISTERS 17
-#include "stdint-gcc.h"
+
 struct EmulatorState {
   union {
     uint8_t memory[MEMORY_SIZE];
@@ -43,9 +34,6 @@ struct EmulatorState {
   uint8_t pinClearingBits[4];
   uint8_t pinTurnOnBits[4];
 };
-#include <stdbool.h>
-#include "../shared/instructions.h"
-#include "../shared/data_processing_instruction.h"
 
 int execute_instruction(struct EmulatorState *, struct Instruction);
 void print_registers(struct EmulatorState *);

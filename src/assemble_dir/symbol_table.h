@@ -14,7 +14,6 @@
 #include <stdint.h>
 #include "../shared/enums.h"
 #include "../shared/instructions.h"
-#include <../emulate_dir/emulate_main.h>
 
 struct InstructionInfo {
     char* mnemonics;

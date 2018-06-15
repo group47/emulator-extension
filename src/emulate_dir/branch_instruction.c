@@ -2,7 +2,7 @@
 // Created by francis on 5/27/18.
 //
 
-#include "../shared/instructions.h"
+#include "emulate_main.h"
 
 
 int execute_instruction_branch(struct EmulatorState *state,

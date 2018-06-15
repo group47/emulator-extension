@@ -2,8 +2,7 @@
 // Created by francis on 5/27/18.
 //
 
-#include "../shared/instructions.h"
-
+#include "single_data_transfer_instruction.h"
 
 int execute_instruction_single_data_transfer(struct EmulatorState *state,
                                              struct SingleDataTransferInstruction instruction) {

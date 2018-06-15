@@ -3,7 +3,7 @@
 //
 
 #include <stdbool.h>
-#include "emulate_main.h"
+#include "../shared/enums.h"
 
 bool is_arithmetic(enum OpCode opCode) {
   return opCode == add || opCode == sub || opCode == rsb || opCode == cmp;

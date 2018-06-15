@@ -1,13 +1,16 @@
 
-#include <stdint-gcc.h>
+#include <stdint.h>
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
 #include <x86intrin.h>
-#include "unistd.h"
-#include "emulate_main.h"
+#include "../shared/instructions.h"
+#include "data_processing_instruction.h"
+#include "single_data_transfer_instruction.h"
+#include "multiply_instruction.h"
+#include "branch_instruction.h"
 
 
 void emulate(struct EmulatorState *state,
