@@ -6,6 +6,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <x86intrin.h>
+#include <zconf.h>
 #include "../shared/instructions.h"
 #include "data_processing_instruction.h"
 #include "single_data_transfer_instruction.h"
@@ -32,7 +33,6 @@ struct Instruction rawInstructionToInstruction(union RawInstruction rawInstructi
       singleDataTransferInstruction = rawInstruction.singleDataTransferInstruction;
   const struct DataProcessingInstruction
       dataProcessingInstruction = rawInstruction.dataProcessingInstruction;
-  const struct TerminateInstruction terminateInstruction = rawInstruction.terminateInstruction;
   const uint32_t asInt = *((uint32_t *) (&(rawInstruction)));
   memcpy(&(res.rawInstruction), &(rawInstruction), sizeof(union RawInstruction));
   //todo magic constants
@@ -182,30 +182,6 @@ int getOperand2Val(struct EmulatorState *state,
           break;
       }
     } else {
-      /*
-      switch (immediateFalse.shift_type) {
-        case lsl:
-          *carryOut = immediateFalse.integer == 0 ? 0 :
-                      (((0x1) << (32 - immediateFalse.integer) & immediateFalse.Rm) % 2);
-          *operand2 = (state->registers[immediateFalse.Rm]) << immediateFalse.integer;
-          break;
-        case lsr:
-          *carryOut = immediateFalse.integer == 0 ? 0 :
-                      (((0x1) << (immediateFalse.integer - 1) & immediateFalse.Rm) % 2);
-          *operand2 = (state->registers[immediateFalse.Rm]) >> immediateFalse.integer;
-          break;
-        case asr: //This looks wrong
-          *carryOut = immediateFalse.integer == 0 ? 0 :
-                      (((0x1) << (immediateFalse.integer - 1) & immediateFalse.Rm) % 2);
-          *operand2 = (int32_t) ((state->registers[immediateFalse.Rm]) >> immediateFalse.integer);
-          break;
-        case ror:
-          *carryOut = immediateFalse.integer == 0 ? 0 :
-                      (((0x1) << (immediateFalse.integer - 1) & immediateFalse.Rm) % 2);
-          *operand2 = __rord((uint32_t) immediateFalse.Rm, immediateFalse.integer);
-          break;
-        default: assert(false);
-      }*/
       *operand2 = state->registers[immediateFalse.Rm];
       uint32_t ar_bit;
       if (immediateFalse.integer != 0) {
@@ -354,7 +330,6 @@ void print_registers(struct EmulatorState *state) {
   }
 }
 
-#ifdef USE_EMULATE_MAIN
 int main(int argc, char **argv) {
   if (argc != 2) {
     fprintf(stderr,
@@ -387,11 +362,9 @@ int main(int argc, char **argv) {
   memset(rawData + amountRead / sizeof(uint32_t), 0, 4);
   //rawData[amountRead / sizeof(uint32_t)] = 0;
   emulate(state,
-          rawData,
+          (uint8_t *) rawData,
           (unsigned int) (amountRead / sizeof(uint32_t)) + 1);
   close(fileDescriptor);
   free(state);
   free(rawData);
 }
-
-#endif

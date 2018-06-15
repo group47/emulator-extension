@@ -2,13 +2,12 @@ cmake_minimum_required(VERSION 3.5)
 project(src C)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -g -DUSE_EMULATE_MAIN -fsanitize=address -DUSE_EMULATOR_MAIN -O0 -Werror")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -g -fsanitize=address -O0 -Werror ")
 
 add_executable(assemble
         assemble_dir/assemble.c
         assemble_dir/binary_file_writer.c
         assemble_dir/binary_file_writer.h
-        assemble_dir/list.h
         assemble_dir/tokenizer.c
         assemble_dir/tokenizer.h
         shared/enums.h

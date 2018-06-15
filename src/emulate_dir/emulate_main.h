@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "../shared/common_structs.h"
+#include "../shared/instructions.h"
 
 #define MEMORY_SIZE 65536
 #define MAX_INSTRUCTION_INPUT_FILE_SIZE 1000

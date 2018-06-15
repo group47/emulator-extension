@@ -1,6 +1,7 @@
 //
 // Created by francis on 5/27/18.
 //
+#include <assert.h>
 #include "cpsr_overflow_detection.h"
 #include "data_processing_instruction.h"
 
@@ -76,7 +77,8 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       computation_res = operand2Val;
       state->registers[instruction.Rd] = operand2Val;
       break;
-    //default?
+      default:
+          assert(false);
   }
   return setCPSR(state, instruction, borrow_occurred, overflow_occurred, computation_res,
                  shiftCarryOut);
