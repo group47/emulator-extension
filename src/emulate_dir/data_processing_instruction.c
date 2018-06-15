@@ -67,7 +67,7 @@ int execute_instruction_data_processing(struct EmulatorState *state,
       computation_res = rnVal - operand2Val;
       if (does_borrow_occur(rnVal, operand2Val)) {
         borrow_occurred = true;
-      }//todo duplication with sub, use fallthrough
+      }
       break;
     case orr:
       computation_res = rnVal | operand2Val;

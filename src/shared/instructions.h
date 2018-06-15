@@ -29,7 +29,7 @@ struct ImmediateFalseShiftByRegisterFalse{
   uint8_t Rm : 4;
   bool shift_by_register: 1;//should be 0
   enum ShiftType shift_type: 2;
-  uint8_t integer: 5;
+    uint8_t shift_amount: 5;
 }__attribute__((packed));
 
 struct TerminateInstruction {

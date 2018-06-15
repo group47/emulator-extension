@@ -12,6 +12,7 @@
 #include "single_data_transfer_instruction.h"
 #include "multiply_instruction.h"
 #include "branch_instruction.h"
+#include "operand_two.h"
 
 
 void emulate(struct EmulatorState *state,
@@ -168,44 +169,47 @@ int getOperand2Val(struct EmulatorState *state,
       switch (shiftByRegister.shift_type){
         case lsl:
           *operand2 = rm_val << shift_amount;
-          //todo carry
+              *carryOut = ((rm_val << (shift_amount - 1)) >> 31) & 0b1;
           break;
         case lsr:
           *operand2 = rm_val >> shift_amount;
+              *carryOut = ((rm_val >> (shift_amount - 1)) << 31) & 0b1;
           break;
         case asr:
-          //todo implement
-          assert(false);
+          *operand2 = (uint32_t) (((int32_t) rm_val) >> shift_amount);
+              *carryOut = (uint32_t) ((((int32_t) rm_val >> (shift_amount - 1)) << 31) & 0b1);
           break;
         case ror:
-          *operand2 = __rord(rm_val,shift_amount);
+          *operand2 = __rord(rm_val, shift_amount - 1);
+              *carryOut = *operand2 & 0b1;
+              *operand2 = __rord(*operand2, 1);
           break;
       }
     } else {
       *operand2 = state->registers[immediateFalse.Rm];
       uint32_t ar_bit;
-      if (immediateFalse.integer != 0) {
+      if (immediateFalse.shift_amount != 0) {
         switch (immediateFalse.shift_type) {
           case lsl:
-            *operand2 <<= immediateFalse.integer - 1;
+            *operand2 <<= immediateFalse.shift_amount - 1;
             *carryOut = (*operand2 >> 31) & 0b1;
             *operand2 <<= 1;
             break;
           case lsr:
-            *operand2 >>= immediateFalse.integer - 1;
+            *operand2 >>= immediateFalse.shift_amount - 1;
             *carryOut = *operand2 & 0b1;
             *operand2 >>= 1;
             break;
           case asr:
             ar_bit = *operand2 & (0b1 << 31);
-            for (int i = 0; i < immediateFalse.integer - 1; ++i) {
+                for (int i = 0; i < immediateFalse.shift_amount - 1; ++i) {
               *operand2 = (*operand2 >> 1) | ar_bit;
             }
             *carryOut = *operand2 & 0b1;
             *operand2 = (*operand2 >> 1) | ar_bit;
             break;
           case ror:
-            *operand2 = __rord(*operand2, immediateFalse.integer - 1);
+            *operand2 = __rord(*operand2, immediateFalse.shift_amount - 1);
             *carryOut = *operand2 & 0b1;
             *operand2 = __rord(*operand2, 1);
             break;
@@ -316,7 +320,7 @@ void print_registers(struct EmulatorState *state) {
            state->registers[i],
            state->registers[i]);
   }
-  printf("PC_ADDRESS  : %10d (0x%08x)\n", state->PC, state->PC);
+  printf("PC  : %10d (0x%08x)\n", state->PC, state->PC);
   printf("CPSR: %10d (0x%08x)\n", state->CPSR, state->CPSR);
   printf("Non-zero memory:\n");
   for (int i = 0; i < MEMORY_SIZE / 4; i++) {

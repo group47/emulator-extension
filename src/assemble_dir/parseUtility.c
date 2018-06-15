@@ -56,7 +56,7 @@ struct Instruction parseShiftedRegister(char** tokens, int tokenOffset, struct T
                 ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->shift_type = shiftType;
                 ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->Rm = token->Rm;
                 ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->shift_by_register = false;
-                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->integer =
+                ((struct ImmediateFalseShiftByRegisterFalse *) &shiftedRegister)->shift_amount =
                         (uint8_t) strtolWrapper(registerOrExpression);
             } else {
                 assert(false);
