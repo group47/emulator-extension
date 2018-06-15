@@ -11,11 +11,11 @@
 #include "../shared/enums.h"
 #include "../shared/instructions.h"
 #include "tokenizer.h"
-#include "parseDataProcessing.h"
-#include "parseMultiply.h"
-#include "parseSingleDataTransfer.h"
-#include "parseBranch.h"
-#include "parseSpecial.h"
+#include "parse/parseDataProcessing.h"
+#include "parse/parseMultiply.h"
+#include "parse/parseSingleDataTransfer.h"
+#include "parse/parseBranch.h"
+#include "parse/parseSpecial.h"
 
 bool secondToLastCharIs(const char *target, char c);
 struct Entry* find(struct SymbolTable* symbolTable, char* target) {

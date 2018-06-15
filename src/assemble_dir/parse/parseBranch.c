@@ -4,9 +4,8 @@
 
 #include <assert.h>
 #include <memory.h>
-#include "tokenizer.h"
+#include "../tokenizer.h"
 #include "parseBranch.h"
-#include "symbol_table.h"
 
 struct Instruction assembleBranchInstruction(struct Token* token) {
     struct BranchInstruction binary;

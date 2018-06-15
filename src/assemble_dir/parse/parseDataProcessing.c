@@ -5,12 +5,12 @@
 #include <assert.h>
 #include <memory.h>
 #include <stdio.h>
-#include "../shared/enums.h"
-#include "../shared/instructions.h"
-#include "symbol_table.h"
-#include "tokenizer.h"
+#include "../../shared/enums.h"
+#include "../../shared/instructions.h"
+#include "../symbol_table.h"
+#include "../tokenizer.h"
 #include "parseDataProcessing.h"
-#include "utility.h"
+#include "../utility.h"
 #include "parseUtility.h"
 
 struct Instruction assembleDataProcessingInstruction(struct Token* token) {

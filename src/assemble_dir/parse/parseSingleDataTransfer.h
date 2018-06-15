@@ -6,8 +6,8 @@
 #define SRC_PARSESINGLEDATATRANSFER_H
 
 
-#include "../shared/instructions.h"
-#include "tokenizer.h"
+#include "../../shared/instructions.h"
+#include "../tokenizer.h"
 
 struct Instruction assembleSingleDataInstruction(struct Token*);
 struct Instruction parseSingleDataTransferAddress(char**, int, struct Token*);

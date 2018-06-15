@@ -12,7 +12,6 @@
 #include "single_data_transfer_instruction.h"
 #include "multiply_instruction.h"
 #include "branch_instruction.h"
-#include "operand_two.h"
 
 
 void emulate(struct EmulatorState *state,

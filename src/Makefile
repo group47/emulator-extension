@@ -230,167 +230,167 @@ assemble_dir/extra_data.c.s:
 	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/extra_data.c.s
 .PHONY : assemble_dir/extra_data.c.s
 
-assemble_dir/parseBranch.o: assemble_dir/parseBranch.c.o
+assemble_dir/parse/parseBranch.o: assemble_dir/parse/parseBranch.c.o
 
-.PHONY : assemble_dir/parseBranch.o
-
-# target to build an object file
-assemble_dir/parseBranch.c.o:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseBranch.c.o
-.PHONY : assemble_dir/parseBranch.c.o
-
-assemble_dir/parseBranch.i: assemble_dir/parseBranch.c.i
-
-.PHONY : assemble_dir/parseBranch.i
-
-# target to preprocess a source file
-assemble_dir/parseBranch.c.i:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseBranch.c.i
-.PHONY : assemble_dir/parseBranch.c.i
-
-assemble_dir/parseBranch.s: assemble_dir/parseBranch.c.s
-
-.PHONY : assemble_dir/parseBranch.s
-
-# target to generate assembly for a file
-assemble_dir/parseBranch.c.s:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseBranch.c.s
-.PHONY : assemble_dir/parseBranch.c.s
-
-assemble_dir/parseDataProcessing.o: assemble_dir/parseDataProcessing.c.o
-
-.PHONY : assemble_dir/parseDataProcessing.o
+.PHONY : assemble_dir/parse/parseBranch.o
 
 # target to build an object file
-assemble_dir/parseDataProcessing.c.o:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseDataProcessing.c.o
-.PHONY : assemble_dir/parseDataProcessing.c.o
+assemble_dir/parse/parseBranch.c.o:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseBranch.c.o
+.PHONY : assemble_dir/parse/parseBranch.c.o
 
-assemble_dir/parseDataProcessing.i: assemble_dir/parseDataProcessing.c.i
+assemble_dir/parse/parseBranch.i: assemble_dir/parse/parseBranch.c.i
 
-.PHONY : assemble_dir/parseDataProcessing.i
+.PHONY : assemble_dir/parse/parseBranch.i
 
 # target to preprocess a source file
-assemble_dir/parseDataProcessing.c.i:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseDataProcessing.c.i
-.PHONY : assemble_dir/parseDataProcessing.c.i
+assemble_dir/parse/parseBranch.c.i:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseBranch.c.i
+.PHONY : assemble_dir/parse/parseBranch.c.i
 
-assemble_dir/parseDataProcessing.s: assemble_dir/parseDataProcessing.c.s
+assemble_dir/parse/parseBranch.s: assemble_dir/parse/parseBranch.c.s
 
-.PHONY : assemble_dir/parseDataProcessing.s
+.PHONY : assemble_dir/parse/parseBranch.s
 
 # target to generate assembly for a file
-assemble_dir/parseDataProcessing.c.s:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseDataProcessing.c.s
-.PHONY : assemble_dir/parseDataProcessing.c.s
+assemble_dir/parse/parseBranch.c.s:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseBranch.c.s
+.PHONY : assemble_dir/parse/parseBranch.c.s
 
-assemble_dir/parseMultiply.o: assemble_dir/parseMultiply.c.o
+assemble_dir/parse/parseDataProcessing.o: assemble_dir/parse/parseDataProcessing.c.o
 
-.PHONY : assemble_dir/parseMultiply.o
+.PHONY : assemble_dir/parse/parseDataProcessing.o
 
 # target to build an object file
-assemble_dir/parseMultiply.c.o:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseMultiply.c.o
-.PHONY : assemble_dir/parseMultiply.c.o
+assemble_dir/parse/parseDataProcessing.c.o:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseDataProcessing.c.o
+.PHONY : assemble_dir/parse/parseDataProcessing.c.o
 
-assemble_dir/parseMultiply.i: assemble_dir/parseMultiply.c.i
+assemble_dir/parse/parseDataProcessing.i: assemble_dir/parse/parseDataProcessing.c.i
 
-.PHONY : assemble_dir/parseMultiply.i
+.PHONY : assemble_dir/parse/parseDataProcessing.i
 
 # target to preprocess a source file
-assemble_dir/parseMultiply.c.i:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseMultiply.c.i
-.PHONY : assemble_dir/parseMultiply.c.i
+assemble_dir/parse/parseDataProcessing.c.i:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseDataProcessing.c.i
+.PHONY : assemble_dir/parse/parseDataProcessing.c.i
 
-assemble_dir/parseMultiply.s: assemble_dir/parseMultiply.c.s
+assemble_dir/parse/parseDataProcessing.s: assemble_dir/parse/parseDataProcessing.c.s
 
-.PHONY : assemble_dir/parseMultiply.s
+.PHONY : assemble_dir/parse/parseDataProcessing.s
 
 # target to generate assembly for a file
-assemble_dir/parseMultiply.c.s:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseMultiply.c.s
-.PHONY : assemble_dir/parseMultiply.c.s
+assemble_dir/parse/parseDataProcessing.c.s:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseDataProcessing.c.s
+.PHONY : assemble_dir/parse/parseDataProcessing.c.s
 
-assemble_dir/parseSingleDataTransfer.o: assemble_dir/parseSingleDataTransfer.c.o
+assemble_dir/parse/parseMultiply.o: assemble_dir/parse/parseMultiply.c.o
 
-.PHONY : assemble_dir/parseSingleDataTransfer.o
+.PHONY : assemble_dir/parse/parseMultiply.o
 
 # target to build an object file
-assemble_dir/parseSingleDataTransfer.c.o:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseSingleDataTransfer.c.o
-.PHONY : assemble_dir/parseSingleDataTransfer.c.o
+assemble_dir/parse/parseMultiply.c.o:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseMultiply.c.o
+.PHONY : assemble_dir/parse/parseMultiply.c.o
 
-assemble_dir/parseSingleDataTransfer.i: assemble_dir/parseSingleDataTransfer.c.i
+assemble_dir/parse/parseMultiply.i: assemble_dir/parse/parseMultiply.c.i
 
-.PHONY : assemble_dir/parseSingleDataTransfer.i
+.PHONY : assemble_dir/parse/parseMultiply.i
 
 # target to preprocess a source file
-assemble_dir/parseSingleDataTransfer.c.i:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseSingleDataTransfer.c.i
-.PHONY : assemble_dir/parseSingleDataTransfer.c.i
+assemble_dir/parse/parseMultiply.c.i:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseMultiply.c.i
+.PHONY : assemble_dir/parse/parseMultiply.c.i
 
-assemble_dir/parseSingleDataTransfer.s: assemble_dir/parseSingleDataTransfer.c.s
+assemble_dir/parse/parseMultiply.s: assemble_dir/parse/parseMultiply.c.s
 
-.PHONY : assemble_dir/parseSingleDataTransfer.s
+.PHONY : assemble_dir/parse/parseMultiply.s
 
 # target to generate assembly for a file
-assemble_dir/parseSingleDataTransfer.c.s:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseSingleDataTransfer.c.s
-.PHONY : assemble_dir/parseSingleDataTransfer.c.s
+assemble_dir/parse/parseMultiply.c.s:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseMultiply.c.s
+.PHONY : assemble_dir/parse/parseMultiply.c.s
 
-assemble_dir/parseSpecial.o: assemble_dir/parseSpecial.c.o
+assemble_dir/parse/parseSingleDataTransfer.o: assemble_dir/parse/parseSingleDataTransfer.c.o
 
-.PHONY : assemble_dir/parseSpecial.o
+.PHONY : assemble_dir/parse/parseSingleDataTransfer.o
 
 # target to build an object file
-assemble_dir/parseSpecial.c.o:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseSpecial.c.o
-.PHONY : assemble_dir/parseSpecial.c.o
+assemble_dir/parse/parseSingleDataTransfer.c.o:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseSingleDataTransfer.c.o
+.PHONY : assemble_dir/parse/parseSingleDataTransfer.c.o
 
-assemble_dir/parseSpecial.i: assemble_dir/parseSpecial.c.i
+assemble_dir/parse/parseSingleDataTransfer.i: assemble_dir/parse/parseSingleDataTransfer.c.i
 
-.PHONY : assemble_dir/parseSpecial.i
+.PHONY : assemble_dir/parse/parseSingleDataTransfer.i
 
 # target to preprocess a source file
-assemble_dir/parseSpecial.c.i:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseSpecial.c.i
-.PHONY : assemble_dir/parseSpecial.c.i
+assemble_dir/parse/parseSingleDataTransfer.c.i:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseSingleDataTransfer.c.i
+.PHONY : assemble_dir/parse/parseSingleDataTransfer.c.i
 
-assemble_dir/parseSpecial.s: assemble_dir/parseSpecial.c.s
+assemble_dir/parse/parseSingleDataTransfer.s: assemble_dir/parse/parseSingleDataTransfer.c.s
 
-.PHONY : assemble_dir/parseSpecial.s
+.PHONY : assemble_dir/parse/parseSingleDataTransfer.s
 
 # target to generate assembly for a file
-assemble_dir/parseSpecial.c.s:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseSpecial.c.s
-.PHONY : assemble_dir/parseSpecial.c.s
+assemble_dir/parse/parseSingleDataTransfer.c.s:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseSingleDataTransfer.c.s
+.PHONY : assemble_dir/parse/parseSingleDataTransfer.c.s
 
-assemble_dir/parseUtility.o: assemble_dir/parseUtility.c.o
+assemble_dir/parse/parseSpecial.o: assemble_dir/parse/parseSpecial.c.o
 
-.PHONY : assemble_dir/parseUtility.o
+.PHONY : assemble_dir/parse/parseSpecial.o
 
 # target to build an object file
-assemble_dir/parseUtility.c.o:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseUtility.c.o
-.PHONY : assemble_dir/parseUtility.c.o
+assemble_dir/parse/parseSpecial.c.o:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseSpecial.c.o
+.PHONY : assemble_dir/parse/parseSpecial.c.o
 
-assemble_dir/parseUtility.i: assemble_dir/parseUtility.c.i
+assemble_dir/parse/parseSpecial.i: assemble_dir/parse/parseSpecial.c.i
 
-.PHONY : assemble_dir/parseUtility.i
+.PHONY : assemble_dir/parse/parseSpecial.i
 
 # target to preprocess a source file
-assemble_dir/parseUtility.c.i:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseUtility.c.i
-.PHONY : assemble_dir/parseUtility.c.i
+assemble_dir/parse/parseSpecial.c.i:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseSpecial.c.i
+.PHONY : assemble_dir/parse/parseSpecial.c.i
 
-assemble_dir/parseUtility.s: assemble_dir/parseUtility.c.s
+assemble_dir/parse/parseSpecial.s: assemble_dir/parse/parseSpecial.c.s
 
-.PHONY : assemble_dir/parseUtility.s
+.PHONY : assemble_dir/parse/parseSpecial.s
 
 # target to generate assembly for a file
-assemble_dir/parseUtility.c.s:
-	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parseUtility.c.s
-.PHONY : assemble_dir/parseUtility.c.s
+assemble_dir/parse/parseSpecial.c.s:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseSpecial.c.s
+.PHONY : assemble_dir/parse/parseSpecial.c.s
+
+assemble_dir/parse/parseUtility.o: assemble_dir/parse/parseUtility.c.o
+
+.PHONY : assemble_dir/parse/parseUtility.o
+
+# target to build an object file
+assemble_dir/parse/parseUtility.c.o:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseUtility.c.o
+.PHONY : assemble_dir/parse/parseUtility.c.o
+
+assemble_dir/parse/parseUtility.i: assemble_dir/parse/parseUtility.c.i
+
+.PHONY : assemble_dir/parse/parseUtility.i
+
+# target to preprocess a source file
+assemble_dir/parse/parseUtility.c.i:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseUtility.c.i
+.PHONY : assemble_dir/parse/parseUtility.c.i
+
+assemble_dir/parse/parseUtility.s: assemble_dir/parse/parseUtility.c.s
+
+.PHONY : assemble_dir/parse/parseUtility.s
+
+# target to generate assembly for a file
+assemble_dir/parse/parseUtility.c.s:
+	$(MAKE) -f CMakeFiles/assemble.dir/build.make CMakeFiles/assemble.dir/assemble_dir/parse/parseUtility.c.s
+.PHONY : assemble_dir/parse/parseUtility.c.s
 
 assemble_dir/symbol_table.o: assemble_dir/symbol_table.c.o
 
@@ -2815,24 +2815,24 @@ help:
 	@echo "... assemble_dir/extra_data.o"
 	@echo "... assemble_dir/extra_data.i"
 	@echo "... assemble_dir/extra_data.s"
-	@echo "... assemble_dir/parseBranch.o"
-	@echo "... assemble_dir/parseBranch.i"
-	@echo "... assemble_dir/parseBranch.s"
-	@echo "... assemble_dir/parseDataProcessing.o"
-	@echo "... assemble_dir/parseDataProcessing.i"
-	@echo "... assemble_dir/parseDataProcessing.s"
-	@echo "... assemble_dir/parseMultiply.o"
-	@echo "... assemble_dir/parseMultiply.i"
-	@echo "... assemble_dir/parseMultiply.s"
-	@echo "... assemble_dir/parseSingleDataTransfer.o"
-	@echo "... assemble_dir/parseSingleDataTransfer.i"
-	@echo "... assemble_dir/parseSingleDataTransfer.s"
-	@echo "... assemble_dir/parseSpecial.o"
-	@echo "... assemble_dir/parseSpecial.i"
-	@echo "... assemble_dir/parseSpecial.s"
-	@echo "... assemble_dir/parseUtility.o"
-	@echo "... assemble_dir/parseUtility.i"
-	@echo "... assemble_dir/parseUtility.s"
+	@echo "... assemble_dir/parse/parseBranch.o"
+	@echo "... assemble_dir/parse/parseBranch.i"
+	@echo "... assemble_dir/parse/parseBranch.s"
+	@echo "... assemble_dir/parse/parseDataProcessing.o"
+	@echo "... assemble_dir/parse/parseDataProcessing.i"
+	@echo "... assemble_dir/parse/parseDataProcessing.s"
+	@echo "... assemble_dir/parse/parseMultiply.o"
+	@echo "... assemble_dir/parse/parseMultiply.i"
+	@echo "... assemble_dir/parse/parseMultiply.s"
+	@echo "... assemble_dir/parse/parseSingleDataTransfer.o"
+	@echo "... assemble_dir/parse/parseSingleDataTransfer.i"
+	@echo "... assemble_dir/parse/parseSingleDataTransfer.s"
+	@echo "... assemble_dir/parse/parseSpecial.o"
+	@echo "... assemble_dir/parse/parseSpecial.i"
+	@echo "... assemble_dir/parse/parseSpecial.s"
+	@echo "... assemble_dir/parse/parseUtility.o"
+	@echo "... assemble_dir/parse/parseUtility.i"
+	@echo "... assemble_dir/parse/parseUtility.s"
 	@echo "... assemble_dir/symbol_table.o"
 	@echo "... assemble_dir/symbol_table.i"
 	@echo "... assemble_dir/symbol_table.s"

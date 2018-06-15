@@ -5,8 +5,8 @@
 #ifndef SRC_PARSEMULTIPLY_H
 #define SRC_PARSEMULTIPLY_H
 
-#include "../shared/instructions.h"
-#include "tokenizer.h"
+#include "../../shared/instructions.h"
+#include "../tokenizer.h"
 struct Instruction assembleMultiplyInstruction(struct Token*);
 struct Instruction parseMultiply1(char **, int, struct Token *);
 struct Instruction parseMultiply2(char **, int, struct Token *);

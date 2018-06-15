@@ -4,10 +4,10 @@
 #include <stdio.h>
 #include <memory.h>
 #include <assert.h>
-#include "extra_data.h"
-#include "utility.h"
-#include "symbol_table.h"
-#include "tokenizer.h"
+#include "../extra_data.h"
+#include "../utility.h"
+#include "../symbol_table.h"
+#include "../tokenizer.h"
 #include "parseSingleDataTransfer.h"
 #include "parseUtility.h"
 #include "parseDataProcessing.h"

@@ -4,8 +4,8 @@
 
 
 #include <memory.h>
-#include "symbol_table.h"
-#include "tokenizer.h"
+#include "../symbol_table.h"
+#include "../tokenizer.h"
 #include "parseDataProcessing.h"
 
 // for lsl

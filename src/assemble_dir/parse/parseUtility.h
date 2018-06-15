@@ -5,8 +5,8 @@
 #ifndef SRC_PARSEUTILITY_H
 #define SRC_PARSEUTILITY_H
 
-#include "../shared/instructions.h"
-#include "tokenizer.h"
+#include "../../shared/instructions.h"
+#include "../tokenizer.h"
 struct Instruction parseExpression(char**, int, struct Token*);
 struct Instruction parseShiftedRegister(char**, int, struct Token*);
 struct Instruction parseRmShiftedRegister(char**, int, struct Token*);

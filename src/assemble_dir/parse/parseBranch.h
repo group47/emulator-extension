@@ -5,8 +5,8 @@
 #ifndef SRC_PARSEBRANCH_H
 #define SRC_PARSEBRANCH_H
 
-#include "../shared/instructions.h"
-#include "tokenizer.h"
+#include "../../shared/instructions.h"
+#include "../tokenizer.h"
 struct Instruction assembleBranchInstruction(struct Token*);
 struct Instruction parseBranch1(char **, int, struct Token *);
 

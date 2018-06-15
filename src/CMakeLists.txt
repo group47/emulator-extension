@@ -18,18 +18,18 @@ add_executable(assemble
         assemble_dir/extra_data.h
         assemble_dir/utility.c
         assemble_dir/utility.h
-        assemble_dir/parseDataProcessing.c
-        assemble_dir/parseDataProcessing.h
-        assemble_dir/parseSingleDataTransfer.c
-        assemble_dir/parseSingleDataTransfer.h
-        assemble_dir/parseBranch.c
-        assemble_dir/parseBranch.h
-        assemble_dir/parseMultiply.c
-        assemble_dir/parseMultiply.h
-        assemble_dir/parseSpecial.c
-        assemble_dir/parseSpecial.h
-        assemble_dir/parseUtility.c
-        assemble_dir/parseUtility.h
+        assemble_dir/parse/parseDataProcessing.c
+        assemble_dir/parse/parseDataProcessing.h
+        assemble_dir/parse/parseSingleDataTransfer.c
+        assemble_dir/parse/parseSingleDataTransfer.h
+        assemble_dir/parse/parseBranch.c
+        assemble_dir/parse/parseBranch.h
+        assemble_dir/parse/parseMultiply.c
+        assemble_dir/parse/parseMultiply.h
+        assemble_dir/parse/parseSpecial.c
+        assemble_dir/parse/parseSpecial.h
+        assemble_dir/parse/parseUtility.c
+        assemble_dir/parse/parseUtility.h
         emulate_dir/emulate_main.h
         shared/common_structs.h assemble_dir/token.h)
 

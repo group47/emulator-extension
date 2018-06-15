@@ -5,8 +5,8 @@
 #ifndef SRC_PARSEDATAPROCESSING_H
 #define SRC_PARSEDATAPROCESSING_H
 
-#include "../shared/instructions.h"
-#include "tokenizer.h"
+#include "../../shared/instructions.h"
+#include "../tokenizer.h"
 struct Instruction assembleDataProcessingInstruction(struct Token*);
 struct Instruction parseDataProcessingOperand2(char**, int, struct Token*);
 struct Instruction parseDataProcessing1(char **, int, struct Token *);

@@ -7,10 +7,10 @@
 #include <memory.h>
 #include <assert.h>
 #include <stdio.h>
-#include "../shared/instructions.h"
-#include "symbol_table.h"
-#include "utility.h"
-#include "tokenizer.h"
+#include "../../shared/instructions.h"
+#include "../symbol_table.h"
+#include "../utility.h"
+#include "../tokenizer.h"
 
 struct Instruction assembleMultiplyInstruction(struct Token* token) {
     struct MultiplyInstruction binary;
