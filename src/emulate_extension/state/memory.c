@@ -25,6 +25,8 @@ void init_memory(size_t size, enum MemoryFormat mode) {
     }
 }
 
+//todo wire in mmu.
+
 void deallocate_memory() {
     free(memory.contents);
 }

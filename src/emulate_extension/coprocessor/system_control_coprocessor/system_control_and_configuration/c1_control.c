@@ -50,3 +50,7 @@ struct C1_control_register get_word_control_register() {
 void set_word_control_register(Word word) {
     c1_control_register = *(struct C1_control_register *) &word;
 }
+
+bool is_mmu_enabled() {
+    return c1_control_register.m;
+}
