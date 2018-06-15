@@ -13,12 +13,9 @@ add_executable(assemble
         assemble_dir/tokenizer.c
         assemble_dir/tokenizer.h
         shared/enums.h
-        shared/branch_instruction.h
-        shared/data_processing_instruction.h
         shared/instructions.h
         assemble_dir/symbol_table.h
         assemble_dir/symbol_table.c
-        shared/single_data_transfer_instruction.h
         assemble_dir/extra_data.c
         assemble_dir/extra_data.h
         assemble_dir/utility.c
@@ -35,24 +32,22 @@ add_executable(assemble
         assemble_dir/parseSpecial.h
         assemble_dir/parseUtility.c
         assemble_dir/parseUtility.h
-        emulate_dir/emulate_main.h shared/common_structs.h)
+        emulate_dir/emulate_main.h
+        shared/common_structs.h)
 
 add_executable(emulate
         emulate_dir/branch_instruction.c
-        shared/branch_instruction.h
         emulate_dir/cpsr_overflow_detection.c
         emulate_dir/cpsr_overflow_detection.h
         emulate_dir/data_processing_instruction.c
-        shared/data_processing_instruction.h
         emulate_dir/emulate_main.c
         emulate_dir/emulate_main.h
         emulate_dir/instructions.c
         shared/instructions.h
         emulate_dir/multiply_instruction.c
-        shared/multiply_instruction.h
         emulate_dir/single_data_transfer_instruction.c
-        shared/single_data_transfer_instruction.h
-        shared/enums.h shared/common_structs.h)
+        shared/enums.h
+        shared/common_structs.h)
 
 
 add_executable(emulate_extension_
