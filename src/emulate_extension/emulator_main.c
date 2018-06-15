@@ -10,6 +10,7 @@
 #include "emulator_main.h"
 #include "dissasemble.h"
 #include "sorta_a_bios/bootloader.h"
+#include "util/logger.h"
 
 
 static const char *binary_path = "";
@@ -18,6 +19,8 @@ static const char *invalid_arg = "";
 static const char *logfile_path = "";
 static const char *sp_print_offset = "0";
 static const char *pc_print_offset = "0";
+static const char *log_start = "0";
+static const char *log_end = "0";
 static enum CommandLineFlags globalFlags;
 
 enum CommandLineFlags parseCommandLine(int argc, const char **argv) {
@@ -53,12 +56,19 @@ enum CommandLineFlags parseCommandLine(int argc, const char **argv) {
             flags |= QEMU_PRINT;
         } else if (0 == strcmp(arg, "--mmap")) {
             flags |= MMAP;
+        } else if (0 == strcmp(arg, "--big-logs") || 0 == strcmp(arg, "--the-logs-are-big-and-full-off-terrors")) {
+            flags |= BIG_LOGS_MODE;
+        } else if (arg == strstr(arg, "--start=")) {
+            log_start = arg + sizeof("--start=") / sizeof(char) - 1;
+        } else if (arg == strstr(arg, "--end=")) {
+            log_start = arg + sizeof("--end=") / sizeof(char) - 1;
         } else {
             flags |= INVALID;
             invalid_arg = arg;
         }
     }
-//    flags |= TERMINATE_AFTER_200;//current default
+    if (!(flags | KERNEL))
+        flags |= TERMINATE_AFTER_200;//current default
     return flags;
 }
 
@@ -72,6 +82,7 @@ int main(int argc, const char **argv) {
         fprintf(get_logfile(), "\n");
         return -1;
     }
+    init_logging(flags);
     if (flags & HELP_MESSAGE) {
         printf("Sorry no help message for now. look at the file emulator_main.c from the source.");//todo
         return 0;
@@ -125,6 +136,14 @@ long get_sp_offset() {
 
 long get_pc_offset() {
     return parse_num((char *) pc_print_offset);
+}
+
+long get_log_start() {
+    return parse_num((char *) log_start);
+}
+
+long get_log_end() {
+    return parse_num((char *) log_end);
 }
 
 

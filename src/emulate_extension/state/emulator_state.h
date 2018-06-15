@@ -94,7 +94,6 @@ struct CPUState {
   bool fetched_valid;//= false
     bool decoded_prefetch_aborted;//false
     bool fetched_prefetch_aborted;//false
-
 };
 
 //todo: do nothing if exception flag is set
@@ -106,6 +105,8 @@ Word get_word_from_register(RegisterAddress address);//todo add spsr restriction
 void set_byte_in_register(RegisterAddress address, Byte byte);
 
 void set_word_in_register(RegisterAddress address, Word val);
+
+Word get_set_word_from_register(RegisterAddress address, bool set, Word val, struct CPUState *state);
 
 void change_mode(enum Mode newMode);//make sure to trash pipeline
 
@@ -126,6 +127,8 @@ bool has_exception_flag(enum ExceptionFlag flag);
 enum ExceptionFlag get_exception_flags();
 
 struct CPSR_Struct getCPSR();
+
+struct CPSR_Struct get_past_CPSR(struct CPUState);
 
 void setCPSR(struct CPSR_Struct toSet);
 
@@ -149,9 +152,9 @@ bool fetched_valid();
 
 bool decoded_valid();
 
-void transfer_fetched_to_decoded_and_load_fetched();
+bool past_decoded_valid(struct CPUState state);
 
-void print_registers(enum CommandLineFlags);
+void transfer_fetched_to_decoded_and_load_fetched();
 
 void invalidate_pipeline();
 

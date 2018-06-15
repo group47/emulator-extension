@@ -9,5 +9,8 @@ long get_sp_offset();
 
 long get_pc_offset();
 
+long get_log_start();
+
+long get_log_end();
 
 #endif //SRC_EMULATOR_MAIN_H

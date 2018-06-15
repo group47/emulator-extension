@@ -9,7 +9,6 @@
 #include "exception.h"
 #include "../util/entry_point.h"
 #include "emulator_state.h"
-#include "../emulator_main.h"
 
 static struct CPUState state;
 
@@ -75,7 +74,7 @@ Word get_set_word_from_special_register(RegisterAddress address, bool set, Word 
     }
 }
 
-Word get_set_word_from_register(RegisterAddress address, bool set, Word val) {
+Word get_set_word_from_register(RegisterAddress address, bool set, Word val, struct CPUState *state) {
     if (has_exceptions()) {
         return 0;//don't allow register access if exceptions raised
     }
@@ -99,23 +98,23 @@ Word get_set_word_from_register(RegisterAddress address, bool set, Word val) {
         case usr:
         case sys:
             assert (address <= max_valid_register_address);
-            return get_set_register(&state.general_registers[address], set, val);
+            return get_set_register(&(state->general_registers[address]), set, val);
         case fiq:
             if (address > max_unbanked_address_fiq) {
                 if (address <= max_banked_address_fiq) {
-                    return get_set_register(&state.fiq_banked[address - NUM_FIQ_UNBANKED], set, val);
+                    return get_set_register(&(state->fiq_banked[address - NUM_FIQ_UNBANKED]), set, val);
                 } else {
                     assert(false);
                 }
             } else {
-                return get_set_register(&state.general_registers[address], set, val);
+                return get_set_register(&(state->general_registers[address]), set, val);
             }
         case irq:
         case svc:
         case und:
         case abt:
             if (address <= max_unbanked_address_other) {
-                return get_set_register(&state.general_registers[address], set, val);
+                return get_set_register(&(state->general_registers[address]), set, val);
             } else if (address <= max_banked_address_other) {
                 banked_array = get_banked_array_by_operating_mode();
                 return get_set_register(&banked_array[address - max_unbanked_address_other], set, val);
@@ -144,7 +143,7 @@ Word *get_banked_array_by_operating_mode() {
 
 
 Word get_word_from_register(RegisterAddress address) {
-    return get_set_word_from_register(address, false, -1);
+    return get_set_word_from_register(address, false, -1, &state);
 }
 
 
@@ -179,7 +178,7 @@ void set_word_in_register(RegisterAddress address, Word val) {
     if (has_exceptions()) {
         return;//don't allow register access if exceptions raised
     }
-    get_set_word_from_register(address, true, val);
+    get_set_word_from_register(address, true, val, NULL);
 }
 
 void change_mode(enum Mode newMode) {
@@ -244,6 +243,10 @@ enum ExceptionFlag get_exception_flags() {
 }
 
 struct CPSR_Struct getCPSR() {
+    return state.CPSR;
+}
+
+struct CPSR_Struct get_past_CPSR(struct CPUState state) {
     return state.CPSR;
 }
 
@@ -324,8 +327,12 @@ bool fetched_valid() {
     return state.fetched_valid && !state.fetched_prefetch_aborted;
 }
 
-bool decoded_valid() {
+bool past_decoded_valid(struct CPUState state) {
     return state.decoded_valid && !state.decoded_prefetch_aborted;
+}
+
+bool decoded_valid() {
+    return past_decoded_valid(state);
 }
 
 bool prefetch_aborted() {
@@ -362,64 +369,6 @@ void transfer_fetched_to_decoded_and_load_fetched() {
         assert(false);
     }
     increment_pc(get_mode());
-}
-
-void print_registers(enum CommandLineFlags flags) {
-    if (flags & USE_THUMB) {
-        for (uint8_t i = 0; i < 8; ++i) {
-            fprintf(get_logfile(), "r%u             0x%x  %u\n", i, get_word_from_register(i),
-                    get_word_from_register(i));
-        }
-        for (uint8_t i = 8; i < 13; ++i) {
-            fprintf(get_logfile(), "r%u            0x%x  %u\n", i, 0, 0);
-        }
-        fprintf(get_logfile(), "sp             0x%x  %u\n",
-                (uint32_t) (get_word_from_register(SP_ADDRESS) + get_sp_offset()),
-                (uint32_t) (get_word_from_register(SP_ADDRESS) + get_sp_offset()));
-        fprintf(get_logfile(), "lr             0x%x  %u\n", 0, 0);
-        fprintf(get_logfile(), "pc             0x%x  %u\n",
-                (uint32_t) (get_word_from_register(PC_ADDRESS) + get_pc_offset()),
-                (uint32_t) (get_word_from_register(PC_ADDRESS) + get_pc_offset()));
-        fprintf(get_logfile(), "cpsr           0x%x  %d\n", getCPSR(), getCPSR());
-        if (get_operating_mode() == usr || get_operating_mode() == sys) {
-            fprintf(get_logfile(), "fpscr          0x%o  %x\n", 0, 0);
-        } else {
-            fprintf(get_logfile(), "fpscr          0x%o  %x\n", get_spsr(), get_spsr());
-        }
-        fprintf(get_logfile(), "=> \n\n");
-    } else if (flags & QEMU_PRINT) {
-        for (uint8_t i = 0; i < 15; ++i) {
-            fprintf(get_logfile(), "R%02d=%08x\n", i, get_word_from_register(i));
-        }
-        fprintf(get_logfile(), "R%02d=%08x\n", 15, get_word_from_register(15) - 8);
-        fprintf(get_logfile(), "PSR=%08x\n", getCPSR());
-        fprintf(get_logfile(), "-Z--\nA\nsvc32\n");
-    } else {
-        for (uint8_t i = 0; i < 10; ++i) {
-            fprintf(get_logfile(), "r%u             0x%x  %u\n", i, get_word_from_register(i),
-                    get_word_from_register(i));
-        }
-        for (uint8_t i = 10; i < 13; ++i) {
-            fprintf(get_logfile(), "r%u            0x%x  %u\n", i, get_word_from_register(i),
-                    get_word_from_register(i));
-        }
-        fprintf(get_logfile(), "sp             0x%x  %u\n",
-                (uint32_t) (get_word_from_register(SP_ADDRESS) + get_sp_offset()),
-                (uint32_t) (get_word_from_register(SP_ADDRESS) + get_sp_offset()));
-        fprintf(get_logfile(), "lr             0x%x  %u\n", get_word_from_register(LR_ADDRESS),
-                get_word_from_register(LR_ADDRESS));
-        fprintf(get_logfile(), "pc             0x%x  %u\n",
-                (uint32_t) (get_word_from_register(PC_ADDRESS) + get_pc_offset()),
-                (uint32_t) (get_word_from_register(PC_ADDRESS) + get_pc_offset()));
-        fprintf(get_logfile(), "cpsr           0x%x  %d\n", getCPSR(), getCPSR());
-        if (get_operating_mode() == usr || get_operating_mode() == sys) {
-            fprintf(get_logfile(), "fpscr          0x%o  %x\n", 0, 0);
-        } else {
-            fprintf(get_logfile(), "fpscr          0x%o  %x\n", get_spsr(), get_spsr());
-        }
-        fprintf(get_logfile(), "=> \n\n");
-    }
-
 }
 
 void set_spsr_by_mode(struct CPSR_Struct cpsr_struct, enum OperatingMode mode) {
