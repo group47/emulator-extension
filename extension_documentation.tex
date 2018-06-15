@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\begin{document}
+\title{Extension Documentation}
+\date{\vspace{-5ex}}
+\maketitle
+
+\section{Main}
+
+\subsection{Options}
+The emulator could be run under different options passed to the program as arguments.\\
+
+OPTIONS [-p][-d][--binary=$<$path$>$][--logfile=$<$path$>$][--kernel=$<$path$>$][--thumb]
+\begin{tabbing}
+--binary \= Directory of the source binary file to run. \\
+--logfile \> Directory of the destination log file which record the state of registers during the run. \\
+--kernel \> Boot the kernel in source directory \\
+--thumb \> Interpret instructions as THUMB instructions if enabled, otherwise instructions are interpreted \\\> as ARM instructions by default.\\
+-p \> Print the state of registers after each executed instruction. \\
+-d \> Print the type of the instruction being executed. \\
+\end{tabbing} 
+
+\subsection{Initialisation}
+Initialise the static variables:
+
+\begin{description}
+\item[CPU state] which is a struct contains the following information:
+\begin{itemize}
+\item Registers: 37 registers in total, with 16 registers for each operating mode, as shown in ARM\_doc figure 3-3.
+\item Pipeline: The fetch-execute cycle is part of processor state with variables encoding the instructions in the pipeline .
+\end{itemize}
+
+\item[Memory] virtual memory, default in little endian format.
+
+\item[Log file] recording registers' state after each executing instruction.
+\end{description}
+
+After initialization, the fetch-execute cycle is executed infinitely. If execution is interrupted, the memory is then deallocated.
+
+\subsection{Fetch-execute cycle}
+At the moment, the cycle is terminated after 200 instructions.
+Exception handle: Not working at the moment, but cycle is interrupted if exception happens.
+
+\section{Instruction}
+Every instruction is a 32-bit (ARM) or 16-bit (THUMB) packed struct with bit  fields. Each instruction type has a corresponding .c and .h file and contains all the code necessary to execute the instruction in question.
+
+\subsection{ARM}
+\subsubsection{Data Processing and PSR instructions}
+Probably the most complex of ARM instructions. We have implemented this instruction fully, including a number of special cases. We have conducted fairly comprehensive testing, however there may still be bugs, particularly bugs relating to the CPSR. Various special cases of data processing instructions are used to implement PSR transfer instructions which allow user code to access program status register, these instructions have been fully implemented in our extension.
+\subsubsection{Coprocessor instructions}
+This family of instructions allows for the CPU to interact with various coprocessors. We have a partial implementation of the system control coprocessor, which is the only coprocessor required to boot. We decided to create a partial implementation, which allows us to implement new co-processor features as they are needed. 
+\subsubsection{Data transfer}
+This family of instructions allow for access to RAM. They are fully implemented in our extension, but have not been extensively tested, due to technical difficulties in creating test cases. Exception handling in the event of a data abort is also implemented.
+\subsubsection{Branch instructions}
+This family of instructions includes all instructions that branch. These are tested, however branch and exchange and branch with link needs more comprehensive testing. 
+
+\subsection{THUMB}
+Currently all THUMB instructions are implemented, but only instructions equivalent to ARM data processing instructions have been tested. We hope to rewrite all THUMB instructions, so that they are implemented as there ARM counterparts, which will reduce the amount of code in our extension. 
+
+\subsection{Interrupts}
+Our extension has the capability to emulate exceptions and interrupts, however it cannot recieve any interrupts from external sources. The software interrupt instruction OS fully implemented. 
+
+\subsection{Limitations}
+We did not implement a FPU, or Jazelle. Both of these are fairly standard features on ARMv6. Jazelle is proprietary, and has near to no documentation publicly available. An FPU would be possible to implement with more time. 
+
+
+\end{document}
+

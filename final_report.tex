@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\begin{document}
+
+\section{Assembler}
+The first part of the assembler is the main function which is a 2-pass parser to interpret the given file in assembly language. It first scans the file to extract mappings from the labels to their addresses, which are stored in a symbol table. The second pass reads each instruction. The instruction string is tokenised. An instance of instructionInfo is identified by doing a search in the symbol table using the mnemonics. The tokenised result and the instructionInfo is passed to parsing and assembling part. The final result is written to the file at the end of assembling, and then the next instruction is fetched to be assembled.\newline
+The symbol table is implemented in an array for efficiency. \
+We didn't follow the design from the spec because to assemble a given instruction, only the instruction type is needed, which could be identified by doing one match of the mnemonics. Hence, we created a symbol table that maps from mnemonics string to struct instructionInfo, which contains the enum instructionType, and pointer to function that parses and assembles the given type of instruction.
+
+
+\section{Extension}
+
+For our extension we decided to enhance the emulator by implementing the full ARM instruction set, also adding support for the THUMB instruction set. We also emulate different CPU operating modes, which are needed for exception and interrupt handling. We hope to be able to boot an operating system on top of this enhanced emulator. As of Friday 15th, the extended emulator, correctly loads a kernel image, and runs the kernel image until the MMU is enabled by the kernel. The implementation of the MMU is a work in progress and therefore the kernel is unable to fully boot. We have included additional documentation for our extension in a file called `extension\_documentation` in the top level directory of our project.
+
+\section{Challenges of Extension}
+
+As of now we have not succeeded in booting Linux, and are still working on debugging the MMU. One of the many challenges we faced was testing our implementation of the full instruction set. Our emulator only emulated the execution of raw binaries and was therefore unable to handle formats like elf executables. Since various open source compilers and assemblers generate elf executables or similar formats we had to manipulate generated elf files to binaries suitable for our emulator. Figuring out the details of this took a considerable amount of time. Another challenge was the quantity of registers in the system control coprocessor. Although most system control coprocessor registers affect cache behavior, which we do not need to emulate, they still need to provide meaningful results to the OS, and therefore still need partial implementations. Finally we were missing on group members, who would have been helpful during both the debugging process of the emulator and assembler, as well as during the implementation process of the extension. 
+
+\section{Testing of Extension}
+
+In order to test our extension we first created a number of assembly files that test various parts of the ARM instruction set. We then assembled these files and ran them on gdb within QEMU. We generated logs of register contents after each instruction, and then compared the logs with the output of our emulator. We automated this process via combination of python, bash and gdbinit scripts.
+Although we were able to create test cases for our instructions it is difficult to determine whether our test cases are comprehensive. Additionally we had difficulties extracting the relevant data sections for executables, which made testing instructions which interact with RAM difficult. Overfall our extension could have included more in depth test-cases. Our test cases for data processing found many bugs, particularly bugs relating to the cpsr register. 
+
+
+\section{Group Reflection}
+
+Two members of our group where unresponsive and we therefore only had three members working on the emulator, assembler and extension. Although we had limited manpower, we achieved good results. Two members of the group had prior C experience, and one member did not. All three of us where proficient in C by the end of the project. We sometimes had git messages that where not meaningful. Initially we were going to rebase onto master, and in the process add more meaningful messages, however this never happened. 
+
+\section{Individual Reflection}
+
+\subsection{Francis Nixon}
+
+If I could redo this group project I would have worked on the emulator and assembler for slightly longer, and used a better development process, added more comments, better git messages, etc. I would also have spent less time trying to find ways of testing the extension, because testing took up far more time than actual implementation, and often revealed bugs that would have been caught when trying to boot a kernel. I would also decide on exactly which processor we where going to emulate early during the extension, because there are small but important differences between the various ARMv6 processors.I learned a lot about how the lower level parts of a computer work, and although I found this project interesting, However I do no think that this project will impact what classes I take as options in second/third/fourth years. Although I knew C before this project, my C skills have improved during this project. I would be curious to see other groups implementations, and particularly whether they used packed structs, since I think packed structs greatly simplified the implementation emulator and assembler of various features. Although I enjoyed this project, I still believe that C is a far inferior language to many of its more modern alternatives.
+
+\subsubsection{Qianyi Shu}
+I enjoy this group project.
+First of all, I have learn many new things as the working of assembler and emulator, git usage, ARM processor and so on. The project involves researching and putting theory in practice.
+Second, I experience what it's like to work in a group. We plan the project and solve problems together.
+Hence, in general, I learned many things from this group project. 
+
+\subsection{Minh Hieu Le}
+I have great experience during this group project. 
+Translating ARM documents into codes and debugging said codes give me better understanding of how emulator and assembler works. My teamwork skill got better as I converse with my teammate and learned to use tools that help improve efficiency. 
+I have wonderful teammate with great idea and design, making group work interesting.
+Although we could do better if not due to some circumstances, in general, I am quite satisfied with what we have done so far during this project.
+
+
+\section{Interim Report Contribution}
+
+One group member made a skeleton for the emulator, which defined basic structs and functions for interpreting specific instructions. We then split up the implementation of various functions among group members. Discussion and work are done in lab for better team work and coordination. Each member also worked individually at home.
+
+\section{Interim Report Group}
+
+In the beginning, work was done more slowly, because some members were not familiar with C. Additionally a group member was unable to work due to illness. For the later part, we expect everyone in the group to become more skilled at c, and more able to contribute. In order to coordinate the whole group we use a group chat. 
+
+\section{Interim Report Emulator}
+
+Our emulator uses several packed structs with bitfields. This allows us to easily extract values from the binary. Using the values extracted by the packed structs, we interpret each instruction in accordance with the specification. Different types of instructions are separated in different sources. The header files contain functions and struct declarations, while the source files contain a function for interpreting the instruction. The state of the emulator is represented in a struct containing the contents of ram, and register values. Our memory is represented as an array in the struct. Likewise, the first 15 registers are stored in an array, while the program counter and CSPR register are stored as struct members.The condition code and opcode of instructions are represented using enums.  We have an initial working implementation of the assembler. In our initial implementation we reused our packed structs, in order to easily output a binary, as well as reusing our enums. 
+
+\section{Interim Report Assembler}
+
+Implementing the assembler included working with IO and tokenizing inputs, which adds more bugs and more complex error handling. Although we are allowed to make assumptions about the inputs, we need to concern ourselves about how to handle those inputs, which includes adding more checks and potentially imposes pre-condition and post-condition on functions.
+
+The second challenge is memory usage and string manipulation. During the process of tokenizing string, we need to dynamically allocate memory to contain the tokens, which might then be passed to parsing process. Hence, we must be careful with keeping track of the pointers to enable the memory to be freed. We intend to design the assembler in a way so that all the memory allocation and deallocation happen as close to the top of the call stack as possible. This idea was tested during the first implementation of the assembler, which we hope will reduce the number of memory leaks. 
+
+A third challenge relates to the design of tokenizing, parsing and assembling part. We intend to write the program in a way so that each of the logic and tasks of these parts are separated, which make the program more manageable. This is difficult since we are initially not that familiar with assembly so it takes time to learn the language. In addition, since assembly is different than higher level programming languages, we need to also consider how to manage the special cases instructions, andeq and lsl, in a way that doesn't compromise the whole structure. We intend to manage it by creating struct that contains all the necessary information.
+
+
+
+
+\end{document}
+
+
