@@ -14,6 +14,7 @@
 #include <stdint.h>
 #include "../shared/enums.h"
 #include "../shared/instructions.h"
+#include "token.h"
 
 struct InstructionInfo {
     char* mnemonics;

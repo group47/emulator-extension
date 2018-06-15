@@ -16,17 +16,16 @@
 #include "parseSingleDataTransfer.h"
 #include "parseBranch.h"
 #include "parseSpecial.h"
-#include "symbol_table.h"
 
 bool secondToLastCharIs(const char *target, char c);
 struct Entry* find(struct SymbolTable* symbolTable, char* target) {
     for (int i = 0; i < symbolTable->size; i++) {
         char* key;
         if (symbolTable->entries[i].entryType == INSTRUCTION_INFO) {
-            struct InstructionInfo* instructionInfo = &symbolTable->entries[i].rawEntry;
+            struct InstructionInfo *instructionInfo = (struct InstructionInfo *) &symbolTable->entries[i].rawEntry;
             key = instructionInfo->mnemonics;
         } else if (symbolTable->entries[i].entryType == LABEL) {
-            struct Label* label = &symbolTable->entries[i].rawEntry;
+            struct Label *label = (struct Label *) &symbolTable->entries[i].rawEntry;
             key = label->label;
         } else {
             assert(false);

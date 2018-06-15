@@ -8,8 +8,6 @@
 #include <stdint.h>
 
 void set_extra_data_location(uint32_t val);
-static uint32_t extra_data_i = 0;
-static uint32_t extra_data[100];
 
 uint32_t add_extra_data(uint32_t);
 void write_extra_data(FILE *pFILE);

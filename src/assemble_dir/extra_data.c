@@ -6,6 +6,10 @@
 #include "extra_data.h"
 #include "binary_file_writer.h"
 
+static uint32_t extra_data_i = 0;
+static uint32_t extra_data[100];
+
+
 static uint32_t extra_data_location = (uint32_t)-1;
 
 void set_extra_data_location(uint32_t val){

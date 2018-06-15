@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <x86intrin.h>
-#include "../shared/instructions.h"
 
 long strtolWrapper(char* str) {
     while (!isdigit(*str)) {
@@ -24,17 +23,14 @@ long strtolWrapper(char* str) {
 }
 
 uint16_t getOperand2Immediate(long operand2Val) {
-    bool found = false;
     uint32_t result = (uint32_t)operand2Val;
     uint32_t count;
     for (count = 0; count < 16; ++count) {
         if ((0x000000ff & result) == result) {
-            found = true;
             break;
         }
         result = __rold(result, 2);
     }
-    //assert(found);
     result |= count << 8;
     return (uint16_t) result;
 

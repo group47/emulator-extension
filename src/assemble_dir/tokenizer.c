@@ -59,7 +59,6 @@ int separateSpecialCharacters(char** newTokens,
                               char** tokens,
                               int numTokens,
                               char* characters) {
-    int n = 0;
     int sum = 0;
     for (int i = 0; i < numTokens; i++) {
         //char* p = tokens[i];
@@ -72,7 +71,7 @@ int separateSpecialCharacters(char** newTokens,
 }
 
 struct Instruction tokenizer(struct Token* token,
-                             const char* instruction,
+                             char *instruction,
                              struct SymbolTable *symbolTable,
                              struct SymbolTable* labelAddress,
                              uint16_t current_address) {
@@ -132,14 +131,14 @@ struct Instruction tokenizer(struct Token* token,
     }
 
     char** tokens2 = calloc(100,sizeof(char*));
-    memset(tokens2,NULL,100*sizeof(char));
+    memset(tokens2, 0, 100 * sizeof(char));
     for (int i = 0; i < 100; i++) {
         tokens2[i] = calloc(500, sizeof(char));
         memset(tokens2[i],'\0',500*sizeof(char));
         assert(tokens2[i] != NULL);
     }
 
-    int numTokens = separateSpecialCharacters(tokens2, tokens, countFirstPass, symbols);
+    separateSpecialCharacters(tokens2, tokens, countFirstPass, symbols);
 
     instructionInfo = entry->rawEntry.instructionInfo;
     instructionInfo.symbolTable = symbolTable;
