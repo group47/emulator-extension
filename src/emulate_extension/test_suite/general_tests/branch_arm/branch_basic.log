@@ -1,0 +1,4005 @@
+/home/pi/.gdbinit:5: Error in sourced command file:
+bob.c: No such file or directory.
+
+Program stopped.
+0x00010098 in ?? ()
+0x0001009c in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1009c	0x1009c
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x1009c:	mov	r2, #0
+0x000100a0 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100a0	0x100a0
+cpsr           0x10	16
+fpscr          0x0	0
+=> 0x100a0:	cmp	r1, r2
+0x000100a4 in ?? ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100a4	0x100a4
+cpsr           0x60000010	1610612752
+fpscr          0x0	0
+=> 0x100a4:	beq	0x100ac <mov4>
+0x000100ac in mov4 ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x0	0
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100ac	0x100ac <mov4>
+cpsr           0x60000010	1610612752
+fpscr          0x0	0
+=> 0x100ac <mov4>:	mov	r4, #4
+0x000100b0 in mov4 ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x4	4
+r5             0x0	0
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100b0	0x100b0 <mov4+4>
+cpsr           0x60000010	1610612752
+fpscr          0x0	0
+=> 0x100b0 <mov4+4>:	mov	r5, #5
+0x000100b4 in mov4 ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x4	4
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100b4	0x100b4 <mov4+8>
+cpsr           0x60000010	1610612752
+fpscr          0x0	0
+=> 0x100b4 <mov4+8>:	cmp	r4, r5
+0x000100b8 in mov4 ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x4	4
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100b8	0x100b8 <mov4+12>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100b8 <mov4+12>:	bne	0x100c0 <mov7>
+0x000100c0 in mov7 ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x4	4
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x0	0
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100c0	0x100c0 <mov7>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100c0 <mov7>:	mov	r9, #9
+0x000100c4 in mov7 ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x4	4
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100c4	0x100c4 <mov7+4>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100c4 <mov7+4>:	b	0x100cc <just_jump>
+0x000100cc in just_jump ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x4	4
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100cc	0x100cc <just_jump>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100cc <just_jump>:	mov	r4, #98	; 0x62
+0x000100d0 in just_jump ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100d0	0x100d0 <just_jump+4>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100d0 <just_jump+4>:	mov	r0, #1
+0x000100d4 in branch_with_link_target ()
+r0             0x1	1
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100d4	0x100d4 <branch_with_link_target>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100d4 <branch_with_link_target>:	mov	r0, #2
+0x000100d8 in branch_with_link_target ()
+r0             0x2	2
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100d8	0x100d8 <branch_with_link_target+4>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100d8 <branch_with_link_target+4>:	mov	r0, #3
+0x000100dc in branch_with_link_target ()
+r0             0x3	3
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100dc	0x100dc <branch_with_link_target+8>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100dc <branch_with_link_target+8>:	mov	r0, #4
+0x000100e0 in branch_with_link_target ()
+r0             0x4	4
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100e0	0x100e0 <branch_with_link_target+12>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100e0 <branch_with_link_target+12>:	mov	r0, #43	; 0x2b
+0x000100e4 in branch_with_link_target ()
+r0             0x2b	43
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100e4	0x100e4 <branch_with_link_target+16>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100e4 <branch_with_link_target+16>:	mov	r0, #432	; 0x1b0
+0x000100e8 in branch_with_link_target ()
+r0             0x1b0	432
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100e8	0x100e8 <branch_with_link_target+20>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100e8 <branch_with_link_target+20>:	mov	r0, #0
+0x000100ec in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100ec	0x100ec <branch_with_link_target+24>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100ec <branch_with_link_target+24>:	mov	r0, #5
+0x000100f0 in branch_with_link_target ()
+r0             0x5	5
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100f0	0x100f0 <branch_with_link_target+28>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100f0 <branch_with_link_target+28>:	mov	r0, #58	; 0x3a
+0x000100f4 in branch_with_link_target ()
+r0             0x3a	58
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100f4	0x100f4 <branch_with_link_target+32>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100f4 <branch_with_link_target+32>:	mov	r0, #9
+0x000100f8 in branch_with_link_target ()
+r0             0x9	9
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100f8	0x100f8 <branch_with_link_target+36>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100f8 <branch_with_link_target+36>:	mov	r0, #94	; 0x5e
+0x000100fc in branch_with_link_target ()
+r0             0x5e	94
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x100fc	0x100fc <branch_with_link_target+40>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x100fc <branch_with_link_target+40>:	mov	r0, #43	; 0x2b
+0x00010100 in branch_with_link_target ()
+r0             0x2b	43
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10100	0x10100 <branch_with_link_target+44>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10100 <branch_with_link_target+44>:	mov	r0, #2
+0x00010104 in branch_with_link_target ()
+r0             0x2	2
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10104	0x10104 <branch_with_link_target+48>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10104 <branch_with_link_target+48>:	mov	r0, #24
+0x00010108 in branch_with_link_target ()
+r0             0x18	24
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10108	0x10108 <branch_with_link_target+52>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10108 <branch_with_link_target+52>:	mov	r0, #247	; 0xf7
+0x0001010c in branch_with_link_target ()
+r0             0xf7	247
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1010c	0x1010c <branch_with_link_target+56>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1010c <branch_with_link_target+56>:	mov	r0, #6
+0x00010110 in branch_with_link_target ()
+r0             0x6	6
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10110	0x10110 <branch_with_link_target+60>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10110 <branch_with_link_target+60>:	mov	r0, #65	; 0x41
+0x00010114 in branch_with_link_target ()
+r0             0x41	65
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10114	0x10114 <branch_with_link_target+64>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10114 <branch_with_link_target+64>:	mov	r0, #54	; 0x36
+0x00010118 in branch_with_link_target ()
+r0             0x36	54
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10118	0x10118 <branch_with_link_target+68>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10118 <branch_with_link_target+68>:	mov	r0, #41	; 0x29
+0x0001011c in branch_with_link_target ()
+r0             0x29	41
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1011c	0x1011c <branch_with_link_target+72>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1011c <branch_with_link_target+72>:	mov	r0, #1
+0x00010120 in branch_with_link_target ()
+r0             0x1	1
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10120	0x10120 <branch_with_link_target+76>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10120 <branch_with_link_target+76>:	mov	r0, #1
+0x00010124 in branch_with_link_target ()
+r0             0x1	1
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10124	0x10124 <branch_with_link_target+80>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10124 <branch_with_link_target+80>:	mov	r0, #11
+0x00010128 in branch_with_link_target ()
+r0             0xb	11
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10128	0x10128 <branch_with_link_target+84>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10128 <branch_with_link_target+84>:	mov	r0, #1
+0x0001012c in branch_with_link_target ()
+r0             0x1	1
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1012c	0x1012c <branch_with_link_target+88>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1012c <branch_with_link_target+88>:	mov	r0, #0
+0x00010130 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10130	0x10130 <branch_with_link_target+92>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10130 <branch_with_link_target+92>:	mov	r0, #41	; 0x29
+0x00010134 in branch_with_link_target ()
+r0             0x29	41
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10134	0x10134 <branch_with_link_target+96>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10134 <branch_with_link_target+96>:	mov	r0, #11
+0x00010138 in branch_with_link_target ()
+r0             0xb	11
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10138	0x10138 <branch_with_link_target+100>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10138 <branch_with_link_target+100>:	mov	r0, #11
+0x0001013c in branch_with_link_target ()
+r0             0xb	11
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1013c	0x1013c <branch_with_link_target+104>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1013c <branch_with_link_target+104>:	mov	r0, #4
+0x00010140 in branch_with_link_target ()
+r0             0x4	4
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10140	0x10140 <branch_with_link_target+108>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10140 <branch_with_link_target+108>:	mov	r0, #1
+0x00010144 in branch_with_link_target ()
+r0             0x1	1
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10144	0x10144 <branch_with_link_target+112>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10144 <branch_with_link_target+112>:	mov	r0, #1
+0x00010148 in branch_with_link_target ()
+r0             0x1	1
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10148	0x10148 <branch_with_link_target+116>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10148 <branch_with_link_target+116>:	mov	r0, #1
+0x0001014c in branch_with_link_target ()
+r0             0x1	1
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1014c	0x1014c <branch_with_link_target+120>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1014c <branch_with_link_target+120>:	mov	r0, #0
+0x00010150 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10150	0x10150 <branch_with_link_target+124>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10150 <branch_with_link_target+124>:	mov	r0, #0
+0x00010154 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10154	0x10154 <branch_with_link_target+128>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10154 <branch_with_link_target+128>:	mov	r0, #0
+0x00010158 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10158	0x10158 <branch_with_link_target+132>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10158 <branch_with_link_target+132>:	mov	r0, #0
+0x0001015c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1015c	0x1015c <branch_with_link_target+136>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1015c <branch_with_link_target+136>:	mov	r0, #0
+0x00010160 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10160	0x10160 <branch_with_link_target+140>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10160 <branch_with_link_target+140>:	mov	r0, #0
+0x00010164 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10164	0x10164 <branch_with_link_target+144>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10164 <branch_with_link_target+144>:	mov	r0, #0
+0x00010168 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10168	0x10168 <branch_with_link_target+148>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10168 <branch_with_link_target+148>:	mov	r0, #0
+0x0001016c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1016c	0x1016c <branch_with_link_target+152>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1016c <branch_with_link_target+152>:	mov	r0, #0
+0x00010170 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10170	0x10170 <branch_with_link_target+156>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10170 <branch_with_link_target+156>:	mov	r0, #0
+0x00010174 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10174	0x10174 <branch_with_link_target+160>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10174 <branch_with_link_target+160>:	mov	r0, #0
+0x00010178 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10178	0x10178 <branch_with_link_target+164>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10178 <branch_with_link_target+164>:	mov	r0, #0
+0x0001017c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1017c	0x1017c <branch_with_link_target+168>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1017c <branch_with_link_target+168>:	mov	r0, #0
+0x00010180 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10180	0x10180 <branch_with_link_target+172>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10180 <branch_with_link_target+172>:	mov	r0, #0
+0x00010184 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10184	0x10184 <branch_with_link_target+176>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10184 <branch_with_link_target+176>:	mov	r0, #0
+0x00010188 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10188	0x10188 <branch_with_link_target+180>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10188 <branch_with_link_target+180>:	mov	r0, #0
+0x0001018c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1018c	0x1018c <branch_with_link_target+184>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1018c <branch_with_link_target+184>:	mov	r0, #0
+0x00010190 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10190	0x10190 <branch_with_link_target+188>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10190 <branch_with_link_target+188>:	mov	r0, #0
+0x00010194 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10194	0x10194 <branch_with_link_target+192>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10194 <branch_with_link_target+192>:	mov	r0, #0
+0x00010198 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10198	0x10198 <branch_with_link_target+196>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10198 <branch_with_link_target+196>:	mov	r0, #0
+0x0001019c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1019c	0x1019c <branch_with_link_target+200>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1019c <branch_with_link_target+200>:	mov	r0, #0
+0x000101a0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101a0	0x101a0 <branch_with_link_target+204>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101a0 <branch_with_link_target+204>:	mov	r0, #0
+0x000101a4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101a4	0x101a4 <branch_with_link_target+208>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101a4 <branch_with_link_target+208>:	mov	r0, #0
+0x000101a8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101a8	0x101a8 <branch_with_link_target+212>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101a8 <branch_with_link_target+212>:	mov	r0, #0
+0x000101ac in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101ac	0x101ac <branch_with_link_target+216>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101ac <branch_with_link_target+216>:	mov	r0, #0
+0x000101b0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101b0	0x101b0 <branch_with_link_target+220>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101b0 <branch_with_link_target+220>:	mov	r0, #0
+0x000101b4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101b4	0x101b4 <branch_with_link_target+224>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101b4 <branch_with_link_target+224>:	mov	r0, #0
+0x000101b8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101b8	0x101b8 <branch_with_link_target+228>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101b8 <branch_with_link_target+228>:	mov	r0, #0
+0x000101bc in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101bc	0x101bc <branch_with_link_target+232>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101bc <branch_with_link_target+232>:	mov	r0, #0
+0x000101c0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101c0	0x101c0 <branch_with_link_target+236>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101c0 <branch_with_link_target+236>:	mov	r0, #0
+0x000101c4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101c4	0x101c4 <branch_with_link_target+240>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101c4 <branch_with_link_target+240>:	mov	r0, #0
+0x000101c8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101c8	0x101c8 <branch_with_link_target+244>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101c8 <branch_with_link_target+244>:	mov	r0, #0
+0x000101cc in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101cc	0x101cc <branch_with_link_target+248>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101cc <branch_with_link_target+248>:	mov	r0, #0
+0x000101d0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101d0	0x101d0 <branch_with_link_target+252>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101d0 <branch_with_link_target+252>:	mov	r0, #0
+0x000101d4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101d4	0x101d4 <branch_with_link_target+256>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101d4 <branch_with_link_target+256>:	mov	r0, #0
+0x000101d8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101d8	0x101d8 <branch_with_link_target+260>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101d8 <branch_with_link_target+260>:	mov	r0, #0
+0x000101dc in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101dc	0x101dc <branch_with_link_target+264>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101dc <branch_with_link_target+264>:	mov	r0, #0
+0x000101e0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101e0	0x101e0 <branch_with_link_target+268>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101e0 <branch_with_link_target+268>:	mov	r0, #0
+0x000101e4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101e4	0x101e4 <branch_with_link_target+272>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101e4 <branch_with_link_target+272>:	mov	r0, #0
+0x000101e8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101e8	0x101e8 <branch_with_link_target+276>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101e8 <branch_with_link_target+276>:	mov	r0, #0
+0x000101ec in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101ec	0x101ec <branch_with_link_target+280>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101ec <branch_with_link_target+280>:	mov	r0, #0
+0x000101f0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101f0	0x101f0 <branch_with_link_target+284>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101f0 <branch_with_link_target+284>:	mov	r0, #0
+0x000101f4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101f4	0x101f4 <branch_with_link_target+288>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101f4 <branch_with_link_target+288>:	mov	r0, #0
+0x000101f8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101f8	0x101f8 <branch_with_link_target+292>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101f8 <branch_with_link_target+292>:	mov	r0, #0
+0x000101fc in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x101fc	0x101fc <branch_with_link_target+296>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x101fc <branch_with_link_target+296>:	mov	r0, #0
+0x00010200 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10200	0x10200 <branch_with_link_target+300>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10200 <branch_with_link_target+300>:	mov	r0, #0
+0x00010204 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10204	0x10204 <branch_with_link_target+304>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10204 <branch_with_link_target+304>:	mov	r0, #0
+0x00010208 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10208	0x10208 <branch_with_link_target+308>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10208 <branch_with_link_target+308>:	mov	r0, #0
+0x0001020c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1020c	0x1020c <branch_with_link_target+312>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1020c <branch_with_link_target+312>:	mov	r0, #0
+0x00010210 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10210	0x10210 <branch_with_link_target+316>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10210 <branch_with_link_target+316>:	mov	r0, #0
+0x00010214 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10214	0x10214 <branch_with_link_target+320>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10214 <branch_with_link_target+320>:	mov	r0, #0
+0x00010218 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10218	0x10218 <branch_with_link_target+324>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10218 <branch_with_link_target+324>:	mov	r0, #0
+0x0001021c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1021c	0x1021c <branch_with_link_target+328>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1021c <branch_with_link_target+328>:	mov	r0, #0
+0x00010220 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10220	0x10220 <branch_with_link_target+332>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10220 <branch_with_link_target+332>:	mov	r0, #0
+0x00010224 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10224	0x10224 <branch_with_link_target+336>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10224 <branch_with_link_target+336>:	mov	r0, #0
+0x00010228 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10228	0x10228 <branch_with_link_target+340>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10228 <branch_with_link_target+340>:	mov	r0, #0
+0x0001022c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1022c	0x1022c <branch_with_link_target+344>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1022c <branch_with_link_target+344>:	mov	r0, #0
+0x00010230 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10230	0x10230 <branch_with_link_target+348>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10230 <branch_with_link_target+348>:	mov	r0, #0
+0x00010234 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10234	0x10234 <branch_with_link_target+352>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10234 <branch_with_link_target+352>:	mov	r0, #0
+0x00010238 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10238	0x10238 <branch_with_link_target+356>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10238 <branch_with_link_target+356>:	mov	r0, #0
+0x0001023c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1023c	0x1023c <branch_with_link_target+360>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1023c <branch_with_link_target+360>:	mov	r0, #0
+0x00010240 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10240	0x10240 <branch_with_link_target+364>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10240 <branch_with_link_target+364>:	mov	r0, #0
+0x00010244 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10244	0x10244 <branch_with_link_target+368>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10244 <branch_with_link_target+368>:	mov	r0, #0
+0x00010248 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10248	0x10248 <branch_with_link_target+372>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10248 <branch_with_link_target+372>:	mov	r0, #0
+0x0001024c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1024c	0x1024c <branch_with_link_target+376>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1024c <branch_with_link_target+376>:	mov	r0, #0
+0x00010250 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10250	0x10250 <branch_with_link_target+380>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10250 <branch_with_link_target+380>:	mov	r0, #0
+0x00010254 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10254	0x10254 <branch_with_link_target+384>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10254 <branch_with_link_target+384>:	mov	r0, #0
+0x00010258 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10258	0x10258 <branch_with_link_target+388>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10258 <branch_with_link_target+388>:	mov	r0, #0
+0x0001025c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1025c	0x1025c <branch_with_link_target+392>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1025c <branch_with_link_target+392>:	mov	r0, #0
+0x00010260 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10260	0x10260 <branch_with_link_target+396>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10260 <branch_with_link_target+396>:	mov	r0, #0
+0x00010264 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10264	0x10264 <branch_with_link_target+400>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10264 <branch_with_link_target+400>:	mov	r0, #0
+0x00010268 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10268	0x10268 <branch_with_link_target+404>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10268 <branch_with_link_target+404>:	mov	r0, #0
+0x0001026c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1026c	0x1026c <branch_with_link_target+408>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1026c <branch_with_link_target+408>:	mov	r0, #0
+0x00010270 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10270	0x10270 <branch_with_link_target+412>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10270 <branch_with_link_target+412>:	mov	r0, #0
+0x00010274 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10274	0x10274 <branch_with_link_target+416>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10274 <branch_with_link_target+416>:	mov	r0, #0
+0x00010278 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10278	0x10278 <branch_with_link_target+420>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10278 <branch_with_link_target+420>:	mov	r0, #0
+0x0001027c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1027c	0x1027c <branch_with_link_target+424>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1027c <branch_with_link_target+424>:	mov	r0, #0
+0x00010280 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10280	0x10280 <branch_with_link_target+428>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10280 <branch_with_link_target+428>:	mov	r0, #0
+0x00010284 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10284	0x10284 <branch_with_link_target+432>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10284 <branch_with_link_target+432>:	mov	r0, #0
+0x00010288 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10288	0x10288 <branch_with_link_target+436>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10288 <branch_with_link_target+436>:	mov	r0, #0
+0x0001028c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1028c	0x1028c <branch_with_link_target+440>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1028c <branch_with_link_target+440>:	mov	r0, #0
+0x00010290 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10290	0x10290 <branch_with_link_target+444>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10290 <branch_with_link_target+444>:	mov	r0, #0
+0x00010294 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10294	0x10294 <branch_with_link_target+448>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10294 <branch_with_link_target+448>:	mov	r0, #0
+0x00010298 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10298	0x10298 <branch_with_link_target+452>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10298 <branch_with_link_target+452>:	mov	r0, #0
+0x0001029c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1029c	0x1029c <branch_with_link_target+456>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1029c <branch_with_link_target+456>:	mov	r0, #0
+0x000102a0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102a0	0x102a0 <branch_with_link_target+460>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102a0 <branch_with_link_target+460>:	mov	r0, #0
+0x000102a4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102a4	0x102a4 <branch_with_link_target+464>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102a4 <branch_with_link_target+464>:	mov	r0, #0
+0x000102a8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102a8	0x102a8 <branch_with_link_target+468>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102a8 <branch_with_link_target+468>:	mov	r0, #0
+0x000102ac in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102ac	0x102ac <branch_with_link_target+472>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102ac <branch_with_link_target+472>:	mov	r0, #0
+0x000102b0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102b0	0x102b0 <branch_with_link_target+476>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102b0 <branch_with_link_target+476>:	mov	r0, #0
+0x000102b4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102b4	0x102b4 <branch_with_link_target+480>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102b4 <branch_with_link_target+480>:	mov	r0, #0
+0x000102b8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102b8	0x102b8 <branch_with_link_target+484>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102b8 <branch_with_link_target+484>:	mov	r0, #0
+0x000102bc in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102bc	0x102bc <branch_with_link_target+488>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102bc <branch_with_link_target+488>:	mov	r0, #0
+0x000102c0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102c0	0x102c0 <branch_with_link_target+492>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102c0 <branch_with_link_target+492>:	mov	r0, #0
+0x000102c4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102c4	0x102c4 <branch_with_link_target+496>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102c4 <branch_with_link_target+496>:	mov	r0, #0
+0x000102c8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102c8	0x102c8 <branch_with_link_target+500>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102c8 <branch_with_link_target+500>:	mov	r0, #0
+0x000102cc in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102cc	0x102cc <branch_with_link_target+504>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102cc <branch_with_link_target+504>:	mov	r0, #0
+0x000102d0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102d0	0x102d0 <branch_with_link_target+508>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102d0 <branch_with_link_target+508>:	mov	r0, #0
+0x000102d4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102d4	0x102d4 <branch_with_link_target+512>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102d4 <branch_with_link_target+512>:	mov	r0, #0
+0x000102d8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102d8	0x102d8 <branch_with_link_target+516>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102d8 <branch_with_link_target+516>:	mov	r0, #0
+0x000102dc in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102dc	0x102dc <branch_with_link_target+520>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102dc <branch_with_link_target+520>:	mov	r0, #0
+0x000102e0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102e0	0x102e0 <branch_with_link_target+524>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102e0 <branch_with_link_target+524>:	mov	r0, #0
+0x000102e4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102e4	0x102e4 <branch_with_link_target+528>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102e4 <branch_with_link_target+528>:	mov	r0, #0
+0x000102e8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102e8	0x102e8 <branch_with_link_target+532>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102e8 <branch_with_link_target+532>:	mov	r0, #0
+0x000102ec in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102ec	0x102ec <branch_with_link_target+536>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102ec <branch_with_link_target+536>:	mov	r0, #0
+0x000102f0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102f0	0x102f0 <branch_with_link_target+540>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102f0 <branch_with_link_target+540>:	mov	r0, #0
+0x000102f4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102f4	0x102f4 <branch_with_link_target+544>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102f4 <branch_with_link_target+544>:	mov	r0, #0
+0x000102f8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102f8	0x102f8 <branch_with_link_target+548>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102f8 <branch_with_link_target+548>:	mov	r0, #0
+0x000102fc in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x102fc	0x102fc <branch_with_link_target+552>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x102fc <branch_with_link_target+552>:	mov	r0, #0
+0x00010300 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10300	0x10300 <branch_with_link_target+556>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10300 <branch_with_link_target+556>:	mov	r0, #0
+0x00010304 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10304	0x10304 <branch_with_link_target+560>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10304 <branch_with_link_target+560>:	mov	r0, #0
+0x00010308 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10308	0x10308 <branch_with_link_target+564>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10308 <branch_with_link_target+564>:	mov	r0, #0
+0x0001030c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1030c	0x1030c <branch_with_link_target+568>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1030c <branch_with_link_target+568>:	mov	r0, #0
+0x00010310 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10310	0x10310 <branch_with_link_target+572>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10310 <branch_with_link_target+572>:	mov	r0, #0
+0x00010314 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10314	0x10314 <branch_with_link_target+576>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10314 <branch_with_link_target+576>:	mov	r0, #0
+0x00010318 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10318	0x10318 <branch_with_link_target+580>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10318 <branch_with_link_target+580>:	mov	r0, #0
+0x0001031c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1031c	0x1031c <branch_with_link_target+584>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1031c <branch_with_link_target+584>:	mov	r0, #0
+0x00010320 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10320	0x10320 <branch_with_link_target+588>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10320 <branch_with_link_target+588>:	mov	r0, #0
+0x00010324 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10324	0x10324 <branch_with_link_target+592>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10324 <branch_with_link_target+592>:	mov	r0, #0
+0x00010328 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10328	0x10328 <branch_with_link_target+596>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10328 <branch_with_link_target+596>:	mov	r0, #0
+0x0001032c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1032c	0x1032c <branch_with_link_target+600>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1032c <branch_with_link_target+600>:	mov	r0, #0
+0x00010330 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10330	0x10330 <branch_with_link_target+604>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10330 <branch_with_link_target+604>:	mov	r0, #0
+0x00010334 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10334	0x10334 <branch_with_link_target+608>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10334 <branch_with_link_target+608>:	mov	r0, #0
+0x00010338 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10338	0x10338 <branch_with_link_target+612>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10338 <branch_with_link_target+612>:	mov	r0, #0
+0x0001033c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1033c	0x1033c <branch_with_link_target+616>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1033c <branch_with_link_target+616>:	mov	r0, #0
+0x00010340 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10340	0x10340 <branch_with_link_target+620>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10340 <branch_with_link_target+620>:	mov	r0, #0
+0x00010344 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10344	0x10344 <branch_with_link_target+624>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10344 <branch_with_link_target+624>:	mov	r0, #0
+0x00010348 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10348	0x10348 <branch_with_link_target+628>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10348 <branch_with_link_target+628>:	mov	r0, #0
+0x0001034c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1034c	0x1034c <branch_with_link_target+632>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1034c <branch_with_link_target+632>:	mov	r0, #0
+0x00010350 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10350	0x10350 <branch_with_link_target+636>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10350 <branch_with_link_target+636>:	mov	r0, #0
+0x00010354 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10354	0x10354 <branch_with_link_target+640>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10354 <branch_with_link_target+640>:	mov	r0, #0
+0x00010358 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10358	0x10358 <branch_with_link_target+644>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10358 <branch_with_link_target+644>:	mov	r0, #0
+0x0001035c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1035c	0x1035c <branch_with_link_target+648>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1035c <branch_with_link_target+648>:	mov	r0, #0
+0x00010360 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10360	0x10360 <branch_with_link_target+652>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10360 <branch_with_link_target+652>:	mov	r0, #0
+0x00010364 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10364	0x10364 <branch_with_link_target+656>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10364 <branch_with_link_target+656>:	mov	r0, #0
+0x00010368 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10368	0x10368 <branch_with_link_target+660>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10368 <branch_with_link_target+660>:	mov	r0, #0
+0x0001036c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1036c	0x1036c <branch_with_link_target+664>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1036c <branch_with_link_target+664>:	mov	r0, #0
+0x00010370 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10370	0x10370 <branch_with_link_target+668>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10370 <branch_with_link_target+668>:	mov	r0, #0
+0x00010374 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10374	0x10374 <branch_with_link_target+672>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10374 <branch_with_link_target+672>:	mov	r0, #0
+0x00010378 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10378	0x10378 <branch_with_link_target+676>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10378 <branch_with_link_target+676>:	mov	r0, #0
+0x0001037c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1037c	0x1037c <branch_with_link_target+680>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1037c <branch_with_link_target+680>:	mov	r0, #0
+0x00010380 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10380	0x10380 <branch_with_link_target+684>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10380 <branch_with_link_target+684>:	mov	r0, #0
+0x00010384 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10384	0x10384 <branch_with_link_target+688>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10384 <branch_with_link_target+688>:	mov	r0, #0
+0x00010388 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10388	0x10388 <branch_with_link_target+692>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10388 <branch_with_link_target+692>:	mov	r0, #0
+0x0001038c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1038c	0x1038c <branch_with_link_target+696>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1038c <branch_with_link_target+696>:	mov	r0, #0
+0x00010390 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10390	0x10390 <branch_with_link_target+700>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10390 <branch_with_link_target+700>:	mov	r0, #0
+0x00010394 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10394	0x10394 <branch_with_link_target+704>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10394 <branch_with_link_target+704>:	mov	r0, #0
+0x00010398 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x10398	0x10398 <branch_with_link_target+708>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x10398 <branch_with_link_target+708>:	mov	r0, #0
+0x0001039c in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x1039c	0x1039c <branch_with_link_target+712>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x1039c <branch_with_link_target+712>:	mov	r0, #0
+0x000103a0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x103a0	0x103a0 <branch_with_link_target+716>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x103a0 <branch_with_link_target+716>:	mov	r0, #0
+0x000103a4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x103a4	0x103a4 <branch_with_link_target+720>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x103a4 <branch_with_link_target+720>:	mov	r0, #0
+0x000103a8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x103a8	0x103a8 <branch_with_link_target+724>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x103a8 <branch_with_link_target+724>:	mov	r0, #0
+0x000103ac in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x103ac	0x103ac <branch_with_link_target+728>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x103ac <branch_with_link_target+728>:	mov	r0, #0
+0x000103b0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x103b0	0x103b0 <branch_with_link_target+732>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x103b0 <branch_with_link_target+732>:	mov	r0, #0
+0x000103b4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x103b4	0x103b4 <branch_with_link_target+736>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x103b4 <branch_with_link_target+736>:	mov	r0, #0
+0x000103b8 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x103b8	0x103b8 <branch_with_link_target+740>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x103b8 <branch_with_link_target+740>:	mov	r0, #0
+0x000103bc in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x103bc	0x103bc <branch_with_link_target+744>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x103bc <branch_with_link_target+744>:	mov	r0, #0
+0x000103c0 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x103c0	0x103c0 <branch_with_link_target+748>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x103c0 <branch_with_link_target+748>:	mov	r0, #0
+0x000103c4 in branch_with_link_target ()
+r0             0x0	0
+r1             0x0	0
+r2             0x0	0
+r3             0x0	0
+r4             0x62	98
+r5             0x5	5
+r6             0x0	0
+r7             0x0	0
+r8             0x0	0
+r9             0x9	9
+r10            0x0	0
+r11            0x0	0
+r12            0x0	0
+sp             0xbefff290	0xbefff290
+lr             0x0	0
+pc             0x103c4	0x103c4 <branch_with_link_target+752>
+cpsr           0x80000010	-2147483632
+fpscr          0x0	0
+=> 0x103c4 <branch_with_link_target+752>:	mov	r0, #0

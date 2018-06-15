@@ -342,7 +342,7 @@ void print_registers(struct EmulatorState *state) {
            state->registers[i],
            state->registers[i]);
   }
-  printf("PC  : %10d (0x%08x)\n", state->PC, state->PC);
+  printf("PC_ADDRESS  : %10d (0x%08x)\n", state->PC, state->PC);
   printf("CPSR: %10d (0x%08x)\n", state->CPSR, state->CPSR);
   printf("Non-zero memory:\n");
   for (int i = 0; i < MEMORY_SIZE / 4; i++) {

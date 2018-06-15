@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv) {
   if(argc != 2){
-    fprintf(stderr,
+    fprintf(get_logfile(),
             "the end of the world has come, or you entered the wrong number of arguments");
     return -100000;
   }
@@ -12,7 +12,7 @@ int main(int argc, char **argv) {
   const char *filename = argv[1];
   int fileDescriptor = open(filename, O_RDONLY);
   if (fileDescriptor == -1) {
-    fprintf(stderr,
+    fprintf(get_logfile(),
             "the end of the world has come, or you entered the wrong filename");
     return -100000;
   }

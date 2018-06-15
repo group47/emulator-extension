@@ -1,6 +1,7 @@
 //
 // Created by francis on 5/28/18.
 //
+#pragma once
 
 #ifndef SRC_ENUMS_H
 #define SRC_ENUMS_H

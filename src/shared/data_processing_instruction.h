@@ -6,7 +6,6 @@
 #define EMULATE_DATA_PROCESSING_INSTRUCTION_H
 
 #include <stdbool.h>
-#include "cpsr_overflow_detection.h"
 #include "instructions.h"
 #include "emulate_main.h"
 struct DataProcessingInstruction {
