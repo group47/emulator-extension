@@ -1,59 +1,61 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.5)
 project(src C)
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -g -DUSE_EMULATE_MAIN -fsanitize=address -DUSE_EMULATOR_MAIN -O0")
 
 add_executable(assemble
-        assemble/assemble.c
-        assemble/binary_file_writer.c
-        assemble/binary_file_writer.h
-        assemble/list.c
-        assemble/list.h
-        assemble/tokenizer.c
-        assemble/tokenizer.h
+        assemble_dir/assemble.c
+        assemble_dir/binary_file_writer.c
+        assemble_dir/binary_file_writer.h
+        assemble_dir/list.c
+        assemble_dir/list.h
+        assemble_dir/tokenizer.c
+        assemble_dir/tokenizer.h
         shared/enums.h
         shared/branch_instruction.h
         shared/data_processing_instruction.h
         shared/instructions.h
-        assemble/symbol_table.h
-        assemble/symbol_table.c
+        assemble_dir/symbol_table.h
+        assemble_dir/symbol_table.c
         shared/single_data_transfer_instruction.h
-        assemble/extra_data.c
-        assemble/extra_data.h
-        assemble/utility.c
-        assemble/utility.h
-        assemble/parseDataProcessing.c
-        assemble/parseDataProcessing.h
-        assemble/parseSingleDataTransfer.c
-        assemble/parseSingleDataTransfer.h
-        assemble/parseBranch.c
-        assemble/parseBranch.h
-        assemble/parseMultiply.c
-        assemble/parseMultiply.h
-        assemble/parseSpecial.c
-        assemble/parseSpecial.h
-        assemble/parseUtility.c
-        assemble/parseUtility.h)
+        assemble_dir/extra_data.c
+        assemble_dir/extra_data.h
+        assemble_dir/utility.c
+        assemble_dir/utility.h
+        assemble_dir/parseDataProcessing.c
+        assemble_dir/parseDataProcessing.h
+        assemble_dir/parseSingleDataTransfer.c
+        assemble_dir/parseSingleDataTransfer.h
+        assemble_dir/parseBranch.c
+        assemble_dir/parseBranch.h
+        assemble_dir/parseMultiply.c
+        assemble_dir/parseMultiply.h
+        assemble_dir/parseSpecial.c
+        assemble_dir/parseSpecial.h
+        assemble_dir/parseUtility.c
+        assemble_dir/parseUtility.h
+        emulate_dir/emulate_main.h)
 
 add_executable(emulate
-        emulate/branch_instruction.c
+        emulate_dir/branch_instruction.c
         shared/branch_instruction.h
-        emulate/cpsr_overflow_detection.c
-        emulate/cpsr_overflow_detection.h
-        emulate/data_processing_instruction.c
+        emulate_dir/cpsr_overflow_detection.c
+        emulate_dir/cpsr_overflow_detection.h
+        emulate_dir/data_processing_instruction.c
         shared/data_processing_instruction.h
-        emulate/emulate_main.c
-        emulate/emulate_main.h
-        emulate/instructions.c
+        emulate_dir/emulate_main.c
+        emulate_dir/emulate_main.h
+        emulate_dir/instructions.c
         shared/instructions.h
-        emulate/multiply_instruction.c
+        emulate_dir/multiply_instruction.c
         shared/multiply_instruction.h
-        emulate/single_data_transfer_instruction.c
-        shared/single_data_transfer_instruction.h shared/enums.h)
+        emulate_dir/single_data_transfer_instruction.c
+        shared/single_data_transfer_instruction.h
+        shared/enums.h)
 
 
-add_executable(emulate_extension
+add_executable(emulate_extension_
         emulate_extension/emulator_main.c
         emulate_extension/emulator_main.h
         emulate_extension/state/memory.c

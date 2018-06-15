@@ -8,7 +8,6 @@
 #include "symbol_table.h"
 #include "tokenizer.h"
 #include "utility.h"
-#include "../shared/enums.h"
 #include "parseUtility.h"
 
 struct Instruction parseExpression(char** tokens, int tokenOffset, struct Token* token) {

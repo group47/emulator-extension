@@ -2,8 +2,6 @@
 // Created by francis on 5/27/18.
 //
 
-#include "../shared/instructions.h"
-#include "emulate_main.h"
 #include "../shared/data_processing_instruction.h"
 #include "cpsr_overflow_detection.h"
 

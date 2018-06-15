@@ -3,8 +3,6 @@
 //
 
 #include "../shared/instructions.h"
-#include "emulate_main.h"
-#include "../shared/branch_instruction.h"
 
 
 int execute_instruction_branch(struct EmulatorState *state,

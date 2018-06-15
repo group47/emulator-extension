@@ -6,7 +6,6 @@
 #include <memory.h>
 #include "tokenizer.h"
 #include "parseBranch.h"
-#include "../shared/branch_instruction.h"
 #include "symbol_table.h"
 
 struct Instruction assembleBranchInstruction(struct Token* token) {

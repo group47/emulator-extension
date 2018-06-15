@@ -12,10 +12,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include <emulate_main.h>
-
 #include "../shared/enums.h"
 #include "../shared/instructions.h"
+#include <../emulate_dir/emulate_main.h>
 
 struct InstructionInfo {
     char* mnemonics;

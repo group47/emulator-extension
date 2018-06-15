@@ -12,7 +12,8 @@ struct BranchInstruction {
   uint8_t filler2: 3;//should be 0b101
   enum Cond cond:4;
 }__attribute__((packed));
-#include "emulate_main.h"
+
+#include "../emulate_dir/emulate_main.h"
 int execute_instruction_branch(struct EmulatorState *state,
                                struct BranchInstruction instruction);
 

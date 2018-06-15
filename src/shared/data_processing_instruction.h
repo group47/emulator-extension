@@ -6,8 +6,9 @@
 #define EMULATE_DATA_PROCESSING_INSTRUCTION_H
 
 #include <stdbool.h>
+#include "../emulate_dir/emulate_main.h"
 #include "instructions.h"
-#include "emulate_main.h"
+
 struct DataProcessingInstruction {
   uint16_t secondOperand : 12;
   uint8_t Rd:4;

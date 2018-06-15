@@ -7,11 +7,12 @@
 
 
 #include <stdbool.h>
-#include <stdint-gcc.h>
+#include <stdint.h>
 #include "enums.h"
-//todo ImmediateFalseShiftByRegisterTrue:
-#include "enums.h"
-
+#include "data_processing_instruction.h"
+#include "multiply_instruction.h"
+#include "single_data_transfer_instruction.h"
+#include "branch_instruction.h"
 
 struct ImmediateTrue{
   uint8_t Imm: 8;
@@ -38,12 +39,6 @@ struct TerminateInstruction {
   uint32_t filler : 32;
 };
 
-
-#include "../emulate_extension/emulator_main.h"
-#include "data_processing_instruction.h"
-#include "multiply_instruction.h"
-#include "single_data_transfer_instruction.h"
-#include "branch_instruction.h"
 
 // Can't have the InstructionType in the struct becuase the structs need to be
 // in main memory with a size of 32 bits. Also need to be interpreted from main memory.

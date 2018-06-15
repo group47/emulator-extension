@@ -3,8 +3,6 @@
 //
 
 #include "../shared/instructions.h"
-#include "emulate_main.h"
-#include "../shared/multiply_instruction.h"
 
 int
 execute_instruction_multiply(struct EmulatorState *state, struct MultiplyInstruction instruction) {

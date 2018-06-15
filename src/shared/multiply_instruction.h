@@ -16,7 +16,7 @@ struct MultiplyInstruction {
   enum Cond cond : 4;
 }__attribute__((packed));
 #include <stdbool.h>
-#include "emulate_main.h"
+#include "../emulate_dir/emulate_main.h"
 int execute_instruction_multiply(struct EmulatorState *,
                                  const struct MultiplyInstruction);
 #endif //EMULATE_MULTIPLY_INSTRUCTION_H

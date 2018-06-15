@@ -17,7 +17,7 @@ struct SingleDataTransferInstruction {
   enum Cond cond:4;
 }__attribute__((packed));
 #include <stdbool.h>
-#include "emulate_main.h"
+#include "../emulate_dir/emulate_main.h"
 int execute_instruction_single_data_transfer(struct EmulatorState *,
                                              const struct SingleDataTransferInstruction);
 

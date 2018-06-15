@@ -3,16 +3,12 @@
 //
 
 #include <ctype.h>
-#include <assert.h>
 #include <lzma.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <x86intrin.h>
-#include "../shared/enums.h"
 #include "../shared/instructions.h"
-#include "tokenizer.h"
-#include "assemble.h"
 
 long strtolWrapper(char* str) {
     while (!isdigit(*str)) {
