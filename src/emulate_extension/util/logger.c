@@ -10,7 +10,7 @@
 
 
 //We almost exceed a million unique states, just to setup a page table, so this value is not at all excessive
-#define MAX_LOGGER_ENTRIES (1024*1024*32)
+#define MAX_LOGGER_ENTRIES (1024*1024*8)
 //todo if logs become unmanageable again, implement a system which only shows the last value of a loop similar to qemu
 
 static struct LogEntry *entries;

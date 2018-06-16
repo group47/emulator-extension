@@ -17,7 +17,7 @@ struct C2_translation_table_base_register0 {
     bool S : 1;
     bool P : 1;
     uint8_t rgn : 2;
-    uint32_t translation_table_base_0_unp_sbz : 17;
+    uint32_t translation_table_base_0_unp_sbz : 27;
 }__attribute__((packed));
 
 
