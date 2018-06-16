@@ -13,8 +13,8 @@
 #include "second_level_descriptor.h"
 #include "../coprocessor/system_control_coprocessor/system_control_and_configuration/c1_control.h"
 
-#include "../basic_typedefs.h"
 #include "../state/memory.h"
+#include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.h"
 
 
 union First_level_descriptor get_frist_level_descriptor(struct First_level_descriptor_address fd_address) {
@@ -27,9 +27,26 @@ union Second_level_descriptor get_second_level_descriptor(struct Second_level_de
     //assert(false);
 }
 
+#define FSCEMULTIPLIER (32*1024*1024)
+
+union ModifiedVirtualAddress modify_virtual(VirtualAddress virtualAddress) {
+    if (virtualAddress < FSCEMULTIPLIER) {
+        const VirtualAddress mva = virtualAddress + FSCEMULTIPLIER * (get_c3_context_id_register().procid);
+        return *(union ModifiedVirtualAddress *) &mva;
+    } else {
+        return *(union ModifiedVirtualAddress *) &virtualAddress;
+    }
+}
+
+
+union PhysicalAddress translate_address(VirtualAddress virtualAddress) {
+    return translation(modify_virtual(virtualAddress));
+}
+
+
 
 // If you figured out how to get the mva, then you should be able to get the physical address
-// I'm gonna assume it's all correct, there are many checks to be mad
+// I'm gonna assume it's all correct, there are many checks to be made
 union PhysicalAddress translation(union ModifiedVirtualAddress mva) {
     Word ttbcr = get_word_translation_table_base_control_register();
 

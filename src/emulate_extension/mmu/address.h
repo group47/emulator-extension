@@ -29,7 +29,7 @@ union ModifiedVirtualAddress {
     struct ModifiedVirtualAddressFd mvafd;
     struct ModifiedVirtualAddressSd1 mvasd1;
     struct ModifiedVirtualAddressSd2 mvasd2;
-};
+}__attribute__((packed));
 
 struct First_level_descriptor_address {
     uint8_t filler00: 2;
@@ -63,6 +63,8 @@ union PhysicalAddress {
     struct PhysicalAddress_1MB_section physicalAddress_1MB_section;
     struct PhysicalAddress_small_page physicalAddress_small_page;
     struct PhysicalAddress_large_page physicalAddress_large_page;
-};
+}__attribute__((packed));
+
+union PhysicalAddress translation(union ModifiedVirtualAddress mva);
 
 #endif //SRC_ADDRESS_H

@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/lib/clion-2017.1.2/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -742,6 +742,33 @@ emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configu
 emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base_control.c.s:
 	$(MAKE) -f CMakeFiles/emulate_extension_.dir/build.make CMakeFiles/emulate_extension_.dir/emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base_control.c.s
 .PHONY : emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base_control.c.s
+
+emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.o: emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c.o
+
+.PHONY : emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.o
+
+# target to build an object file
+emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c.o:
+	$(MAKE) -f CMakeFiles/emulate_extension_.dir/build.make CMakeFiles/emulate_extension_.dir/emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c.o
+.PHONY : emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c.o
+
+emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.i: emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c.i
+
+.PHONY : emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.i
+
+# target to preprocess a source file
+emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c.i:
+	$(MAKE) -f CMakeFiles/emulate_extension_.dir/build.make CMakeFiles/emulate_extension_.dir/emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c.i
+.PHONY : emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c.i
+
+emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.s: emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c.s
+
+.PHONY : emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.s
+
+# target to generate assembly for a file
+emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c.s:
+	$(MAKE) -f CMakeFiles/emulate_extension_.dir/build.make CMakeFiles/emulate_extension_.dir/emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c.s
+.PHONY : emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c.s
 
 emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.o: emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.c.o
 
@@ -2899,6 +2926,9 @@ help:
 	@echo "... emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base_control.o"
 	@echo "... emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base_control.i"
 	@echo "... emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base_control.s"
+	@echo "... emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.o"
+	@echo "... emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.i"
+	@echo "... emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.s"
 	@echo "... emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.o"
 	@echo "... emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.i"
 	@echo "... emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.s"

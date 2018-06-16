@@ -5,4 +5,8 @@
 #ifndef SRC_TRANSLATION_H
 #define SRC_TRANSLATION_H
 
+typedef uint32_t VirtualAddress;
+
+union PhysicalAddress translate_address(VirtualAddress virtualAddress);
+
 #endif //SRC_TRANSLATION_H

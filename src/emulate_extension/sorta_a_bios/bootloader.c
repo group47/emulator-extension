@@ -10,6 +10,7 @@
 #include "../main_loop.h"
 #include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.h"
 #include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.h"
+#include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.h"
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <zconf.h>
@@ -18,7 +19,7 @@ static struct Memory prepared_ram;
 static size_t atag_i = 0;
 
 void append_atag(struct ATAG cmdline) {
-    memcpy((prepared_ram.contents) + (PARAMETER_BLOCK_START_ADDRESS - MEMORY_OFFSET) + atag_i, &cmdline,
+    memcpy((prepared_ram.contents) + (PARAMETER_BLOCK_START_ADDRESS) + atag_i, &cmdline,
            cmdline.header.size * sizeof(Word));
     atag_i += cmdline.header.size * sizeof(Word);
 }
@@ -134,8 +135,9 @@ void init_registers(struct CPUState *state) {
     state->CPSR.F = true;
     state->CPSR.Z = true;//no idea why this is needed, but linux expects it so...
     state->CPSR.reserved = 1;//this doesn't do anything, but makes comparing with expected results easier
-    set_word_in_register(PC_ADDRESS, KERNEL_LOAD_TO_ADDRESS + MEMORY_OFFSET);
+    set_word_in_register(PC_ADDRESS, KERNEL_LOAD_TO_ADDRESS);
     init_c1_control_register();
+    init_c3_context_id_register();
     init_c2_translation_table_base_register0();
     init_C3_domain_access_control_register();
 
