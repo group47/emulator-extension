@@ -30,57 +30,59 @@ void increment_pc(enum Mode thumb_mode) {
 }
 
 
-Word get_set_pc(bool set, Word val) {
+Word get_set_pc(bool set, Word val, struct CPUState *state_in) {
     if (set) {
         invalidate_pipeline();
     }
-    return get_set_register(&state.general_registers[PC_ADDRESS], set, val);
+    return get_set_register(&(state_in->general_registers[PC_ADDRESS]), set, val);
 }
 
 Word *get_banked_array_by_operating_mode();
 
-Word get_set_sp_or_lr(RegisterAddress address, bool set, Word val) {
+Word *get_banked_array_by_operating_mode_prev(struct CPUState *state_in);
+
+Word get_set_sp_or_lr(RegisterAddress address, bool set, Word val, struct CPUState *state_in) {
     if (get_operating_mode() == usr || get_operating_mode() == sys) {
-        return get_set_register(&state.general_registers[SP_ADDRESS], set, val);
+        return get_set_register(&(state_in->general_registers[SP_ADDRESS]), set, val);
     } else if (get_operating_mode() != fiq) {
-        Word *banked_array = get_banked_array_by_operating_mode();
+        Word *banked_array = get_banked_array_by_operating_mode_prev(state_in);
         return get_set_register(&banked_array[address - SP_ADDRESS], set, val);
     } else if (get_operating_mode() == fiq) {
-        return get_set_register(&state.fiq_banked[address - 8], set, val);
+        return get_set_register(&(state_in->fiq_banked[address - 8]), set, val);
     } else {
         assert(false);
     }
 }
 
-Word get_set_cpsr(bool set, Word val) {
+Word get_set_cpsr(bool set, Word val, struct CPUState *state_in) {
     assert(!set);
     return get_set_register((Word *) &(state.CPSR), set, val);
 }
 
 
-Word get_set_word_from_special_register(RegisterAddress address, bool set, Word val) {
+Word get_set_word_from_special_register(RegisterAddress address, bool set, Word val, struct CPUState *state_in) {
     switch (address) {
         case PC_ADDRESS:
-            return get_set_pc(set, val);
+            return get_set_pc(set, val, state_in);
         case SP_ADDRESS:
-            return get_set_sp_or_lr(address, set, val);
+            return get_set_sp_or_lr(address, set, val, state_in);
         case LR_ADDRESS:
-            return get_set_sp_or_lr(address, set, val);
+            return get_set_sp_or_lr(address, set, val, state_in);
         case CPSR_ADDRESS:
-            return get_set_cpsr(set, val);
+            return get_set_cpsr(set, val, state_in);
             break;
         default:
             assert(false);
     }
 }
 
-Word get_set_word_from_register(RegisterAddress address, bool set, Word val, struct CPUState *state) {
+Word get_set_word_from_register(RegisterAddress address, bool set, Word val, struct CPUState *state_in) {
     if (has_exceptions()) {
         return 0;//don't allow register access if exceptions raised
     }
     assert(address != SPSR_ADDRESS);
     if (address == PC_ADDRESS || address == SP_ADDRESS || address == CPSR_ADDRESS || address == LR_ADDRESS) {
-        return get_set_word_from_special_register(address, set, val);
+        return get_set_word_from_special_register(address, set, val, state_in);
     }
 
     RegisterAddress max_valid_register_address;
@@ -98,25 +100,25 @@ Word get_set_word_from_register(RegisterAddress address, bool set, Word val, str
         case usr:
         case sys:
             assert (address <= max_valid_register_address);
-            return get_set_register(&(state->general_registers[address]), set, val);
+            return get_set_register(&(state_in->general_registers[address]), set, val);
         case fiq:
             if (address > max_unbanked_address_fiq) {
                 if (address <= max_banked_address_fiq) {
-                    return get_set_register(&(state->fiq_banked[address - NUM_FIQ_UNBANKED]), set, val);
+                    return get_set_register(&(state_in->fiq_banked[address - NUM_FIQ_UNBANKED]), set, val);
                 } else {
                     assert(false);
                 }
             } else {
-                return get_set_register(&(state->general_registers[address]), set, val);
+                return get_set_register(&(state_in->general_registers[address]), set, val);
             }
         case irq:
         case svc:
         case und:
         case abt:
             if (address <= max_unbanked_address_other) {
-                return get_set_register(&(state->general_registers[address]), set, val);
+                return get_set_register(&(state_in->general_registers[address]), set, val);
             } else if (address <= max_banked_address_other) {
-                banked_array = get_banked_array_by_operating_mode();
+                banked_array = get_banked_array_by_operating_mode_prev(state_in);
                 return get_set_register(&banked_array[address - max_unbanked_address_other], set, val);
             } else {
                 assert(false);
@@ -126,19 +128,26 @@ Word get_set_word_from_register(RegisterAddress address, bool set, Word val, str
     }
 }
 
-Word *get_banked_array_by_operating_mode() {
-    switch (get_operating_mode()) {
+enum OperatingMode get_past_operating_mode(struct CPUState *state_in);
+
+Word *get_banked_array_by_operating_mode_prev(struct CPUState *state_in) {
+    switch (get_past_operating_mode(state_in)) {
         case irq:
-            return state.irq_banked;
+            return state_in->irq_banked;
         case svc:
-            return state.svc_banked;
+            return state_in->svc_banked;
         case abt:
-            return state.abt_banked;
+            return state_in->abt_banked;
         case und:
-            return state.und_banked;
+            return state_in->und_banked;
         default:
             assert(false);
     }
+}
+
+
+Word *get_banked_array_by_operating_mode() {
+    return get_banked_array_by_operating_mode_prev(&state);
 }
 
 
@@ -219,8 +228,12 @@ void set_operating_mode(enum OperatingMode newOperatingMode) {
     setCPSR(new_cpsr);
 }
 
+enum OperatingMode get_past_operating_mode(struct CPUState *state_in) {
+    return state_in->CPSR.M;
+}
+
 enum OperatingMode get_operating_mode() {
-    return state.CPSR.M;
+    return get_past_operating_mode(&state);
 }
 
 void add_exception_flag(enum ExceptionFlag flag) {

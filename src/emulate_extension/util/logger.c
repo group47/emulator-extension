@@ -13,7 +13,7 @@
 #define MAX_LOGGER_ENTRIES (1024*1024*32)
 //todo if logs become unmanageable again, implement a system which only shows the last value of a loop similar to qemu
 
-static struct LogEntry *past_states;
+static struct LogEntry *entries;
 static uint32_t past_states_i = 0;
 
 void print_past_registers(struct CPUState state) {
@@ -48,15 +48,15 @@ void print_entry(struct LogEntry entry) {
 }
 
 void add_to_log(struct LogEntry entry) {
-    past_states[past_states_i] = entry;
+    entries[past_states_i] = entry;
     past_states_i++;
 }
 
 static void print_logs(int signal) {
     bool should_print = false;
     for (unsigned long i = 0; i < past_states_i; ++i) {
-        if (past_states[i].type == CPUSTATE_LOGENTRY) {
-            const uint32_t pc = get_set_word_from_register(PC_ADDRESS, false, -1, &(past_states[i].state));
+        if (entries[i].type == CPUSTATE_LOGENTRY) {
+            const uint32_t pc = get_set_word_from_register(PC_ADDRESS, false, -1, &(entries[i].state));
             if (pc >= get_log_start() && pc <= get_log_end()) {
                 should_print = true;
             } else {
@@ -64,7 +64,7 @@ static void print_logs(int signal) {
             }
         }
         if (should_print) {
-            print_entry(past_states[i]);
+            print_entry(entries[i]);
         }
     }
 }
@@ -78,7 +78,7 @@ void init_logging(enum CommandLineFlags flags) {
     signal(SIGQUIT, print_logs);
     if (flags & BIG_LOGS_MODE) {
         assert(flags & QEMU_PRINT);
-        past_states = calloc(MAX_LOGGER_ENTRIES, sizeof(struct LogEntry));
+        entries = calloc(MAX_LOGGER_ENTRIES, sizeof(struct LogEntry));
 
     }
 

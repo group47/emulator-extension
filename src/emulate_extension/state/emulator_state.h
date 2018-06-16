@@ -106,7 +106,7 @@ void set_byte_in_register(RegisterAddress address, Byte byte);
 
 void set_word_in_register(RegisterAddress address, Word val);
 
-Word get_set_word_from_register(RegisterAddress address, bool set, Word val, struct CPUState *state);
+Word get_set_word_from_register(RegisterAddress address, bool set, Word val, struct CPUState *state_in);
 
 void change_mode(enum Mode newMode);//make sure to trash pipeline
 
