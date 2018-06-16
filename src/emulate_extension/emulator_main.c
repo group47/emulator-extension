@@ -20,7 +20,7 @@ static const char *logfile_path = "";
 static const char *sp_print_offset = "0";
 static const char *pc_print_offset = "0";
 static const char *log_start = "0";
-static const char *log_end = "10000000";
+static const char *log_end = "0x10000000";
 static enum CommandLineFlags globalFlags;
 
 enum CommandLineFlags parseCommandLine(int argc, const char **argv) {
@@ -121,7 +121,7 @@ int main(int argc, const char **argv) {
 
 long parse_num(char *str) {
     char *check_valid = "\0";
-    long res = strtol(str, &check_valid, 10);
+    long res = strtol(str, &check_valid, 0);
     if (check_valid[0] != '\0') {
         fprintf(stderr, "Warning: Invalid numeric parameter passed.");
         return 0;

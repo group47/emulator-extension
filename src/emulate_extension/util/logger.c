@@ -35,6 +35,15 @@ void print_entry(struct LogEntry entry) {
             }
             print_past_registers(entry.state);
             break;
+        case COPROCESSOR_REGISTER_TRANSFER_LOGENTRY:
+            print_debug_coprocessor_register_transfer(entry.registerTransferInstruction);
+            break;
+        case COPROCESSOR_DATA_TRANSFER_LOGENTRY:
+            print_debug_coprocessor_data_transfer(entry.dataTransfersInstruction);
+            break;
+        case COPROCESSOR_DATA_OPERATION_LOG_ENTRY:
+            print_debug_coprocessor_data_operations(entry.dataOperationsInstruction);
+            break;
     }
 }
 
@@ -44,8 +53,19 @@ void add_to_log(struct LogEntry entry) {
 }
 
 static void print_logs(int signal) {
-    for (unsigned long i = (unsigned long) get_log_start(); i < get_log_end(); ++i) {
-        print_entry(past_states[i]);
+    bool should_print = false;
+    for (unsigned long i = 0; i < past_states_i; ++i) {
+        if (past_states[i].type == CPUSTATE_LOGENTRY) {
+            const uint32_t pc = get_set_word_from_register(PC_ADDRESS, false, -1, &(past_states[i].state));
+            if (pc >= get_log_start() && pc <= get_log_end()) {
+                should_print = true;
+            } else {
+                should_print = false;
+            }
+        }
+        if (should_print) {
+            print_entry(past_states[i]);
+        }
     }
 }
 
