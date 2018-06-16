@@ -18,6 +18,18 @@ static struct Memory memory;
 
 void print_memory();
 
+void set_word_in_memory_raw(ByteAddress address, Word val);
+
+void set_half_word_in_memory_raw(ByteAddress address, HalfWord val);
+
+void set_byte_in_memory_raw(ByteAddress address, Byte val);
+
+Byte get_byte_from_memory_raw(ByteAddress address);
+
+HalfWord get_halfword_from_memory_raw(ByteAddress address);
+
+Word get_word_from_memory_raw(ByteAddress address);
+
 void init_memory(size_t size, enum MemoryFormat mode) {
     memory.size = size;
     memory.mode = mode;
@@ -48,34 +60,7 @@ Word get_word_from_memory(ByteAddress address) {
         return 0;
     }
 
-    Word word = 0;
-    int i = 0;
-    if (memory.mode == LITTLE_ENDIAN_) {
-        while (i < 4) {
-            word |= (((uint32_t) *(memory.contents + address + i)) << 8 * i);
-            i++;
-        }
-    } else {
-        while (i < 4) {
-            word |= (((uint32_t) *(memory.contents + address + (3 - i))) << 8 * i);
-            i++;
-        }
-    }
-    return word;
-}
-
-uint64_t get_word_from_memory_sign_extended(ByteAddress address) {
-    if (is_mmu_enabled()) {
-        const union PhysicalAddress physicalAddress = translate_address(address);
-        address = *(uint32_t *) &physicalAddress;
-    }
-    assert (address % 4 == 0);
-    if (address + 4 > memory.size) {
-        add_exception_flag(DATA_ABORT);
-        return 0;
-    }
-    uint64_t toExtend = *(memory.contents + address);
-    return toExtend & 0x1 << 31 ? toExtend | 0xffff0000 : toExtend;
+    return get_word_from_memory_raw(address);
 }
 
 HalfWord get_half_word_from_memory(ByteAddress address) {
@@ -91,39 +76,11 @@ HalfWord get_half_word_from_memory(ByteAddress address) {
         add_exception_flag(DATA_ABORT);
         return 0;
     }
-    HalfWord halfWord;
-    if (memory.mode == LITTLE_ENDIAN_) {
-        halfWord = *(memory.contents + address);
-        halfWord |= ((uint16_t) *(memory.contents + address + 1)) << 8;
-    } else {
-        halfWord = *(memory.contents + address + 1);
-        halfWord |= ((uint16_t) *(memory.contents + address)) << 8;
-    }
-    return halfWord;
+    return get_halfword_from_memory_raw(address);
 }
 
 Word get_half_word_from_memory_sign_extended(ByteAddress address) {
-    if (is_mmu_enabled()) {
-        const union PhysicalAddress physicalAddress = translate_address(address);
-        address = *(uint32_t *) &physicalAddress;
-    }
-    if (address == MAGIC_CONSOLE_ADDRESS) {
-        console_handler(address, false, (Word) -1);
-    }
-    assert (address % 2 == 0);
-    if (address + 2 > memory.size) {
-        add_exception_flag(DATA_ABORT);
-        return 0;
-    }
-    HalfWord halfWord;
-    if (memory.mode == LITTLE_ENDIAN_) {
-        halfWord = *(memory.contents + address);
-        halfWord |= ((uint16_t) *(memory.contents + address + 1)) << 8;
-    } else {
-        halfWord = *(memory.contents + address + 1);
-        halfWord |= ((uint16_t) *(memory.contents + address)) << 8;
-    }
-    return half_word_to_word_sign_extend(halfWord);
+    return half_word_to_word_sign_extend(get_half_word_from_memory(address));
 }
 
 Byte get_byte_from_memory(ByteAddress address) {
@@ -138,22 +95,11 @@ Byte get_byte_from_memory(ByteAddress address) {
         add_exception_flag(DATA_ABORT);
         return 0;
     }
-    return (uint8_t) *(memory.contents + address);
+    return get_byte_from_memory_raw(address);
 }
 
 Word get_byte_from_memory_sign_extended(ByteAddress address) {
-    if (is_mmu_enabled()) {
-        const union PhysicalAddress physicalAddress = translate_address(address);
-        address = *(uint32_t *) &physicalAddress;
-    }
-    if (address == MAGIC_CONSOLE_ADDRESS) {
-        console_handler(address, false, (Word) -1);
-    }
-    if (address > memory.size) {
-        add_exception_flag(DATA_ABORT);
-        return 0;
-    }
-    return byte_to_word_sign_extend(*(memory.contents + address));
+    return byte_to_word_sign_extend(get_byte_from_memory(address));
 }
 
 void set_word_in_memory(ByteAddress address, Word val) {
@@ -171,57 +117,37 @@ void set_word_in_memory(ByteAddress address, Word val) {
         add_exception_flag(DATA_ABORT);
         return;
     }
-
-    int i = 0;
-    if (memory.mode == LITTLE_ENDIAN_) {
-        while (i < 4) {
-            *(memory.contents + address + i) =
-                    (Byte) ((val & (0xFF << (8 * i))) >> (8 * i));
-            i++;
-        }
-    } else {
-        while (i < 4) {
-            *(memory.contents + address + (3 - i)) =
-                    (Byte) ((val & (0xFF << (8 * i))) >> (8 * i));
-            i++;
-        }
-    }
+    set_word_in_memory_raw(address, val);
 }
 
 void set_half_word_in_memory(ByteAddress address, HalfWord val) {
     assert (address % 2 == 0);
+    if (is_mmu_enabled()) {
+        const union PhysicalAddress physicalAddress = translate_address(address);
+        address = *(uint32_t *) &physicalAddress;
+    }
     if (address == MAGIC_CONSOLE_ADDRESS) {
         console_handler(address, true, val);
     }
     if (address + 2 > memory.size) {
         add_exception_flag(DATA_ABORT);
     }
-    if (memory.mode == LITTLE_ENDIAN_) {
-        *(memory.contents + address) = (Byte) (val & 0x00ff);
-        *(memory.contents + address + 1) = (Byte) (val & 0xff00);
-    } else {
-        *(memory.contents + address) = (Byte) (val & 0xff00);
-        *(memory.contents + address + 1) = (Byte) (val & 0x00ff);
-    }
+    set_half_word_in_memory_raw(address, val);
 }
 
 void set_byte_in_memory(ByteAddress address, Byte val) {
+    if (is_mmu_enabled()) {
+        const union PhysicalAddress physicalAddress = translate_address(address);
+        address = *(uint32_t *) &physicalAddress;
+    }
     if (address == MAGIC_CONSOLE_ADDRESS) {
         console_handler(address, true, val);
     }
     if (address > memory.size) {
         add_exception_flag(DATA_ABORT);
     }
-    *(memory.contents + address) = val;
+    set_byte_in_memory_raw(address, val);
 }
-
-//todo are these the same:
-
-/*
-uint32_t set_word_from_memory_sign_extended(Address address,Word val){
-
-}
- */
 
 void set_half_word_in_memory_sign_extended(ByteAddress address, HalfWord val) {
     set_word_in_memory(address, half_word_to_word_sign_extend(val));
@@ -260,4 +186,66 @@ void print_memory() {
 void set_memory(struct Memory memory1) {
     memory = memory1;
 
+}
+
+// the following functions are for use by the mmu/hardware. These do not remap addresses
+
+void set_word_in_memory_raw(ByteAddress address, Word val) {
+    int i = 0;
+    if (memory.mode == LITTLE_ENDIAN_) {
+        while (i < 4) {
+            *(memory.contents + address + i) =
+                    (Byte) ((val & (0xFF << (8 * i))) >> (8 * i));
+            i++;
+        }
+    } else {
+        while (i < 4) {
+            *(memory.contents + address + (3 - i)) =
+                    (Byte) ((val & (0xFF << (8 * i))) >> (8 * i));
+            i++;
+        }
+    }
+}
+
+void set_half_word_in_memory_raw(ByteAddress address, HalfWord val) {
+    if (memory.mode == LITTLE_ENDIAN_) {
+        *(memory.contents + address) = (Byte) (val & 0x00ff);
+        *(memory.contents + address + 1) = (Byte) (val & 0xff00);
+    } else {
+        *(memory.contents + address) = (Byte) (val & 0xff00);
+        *(memory.contents + address + 1) = (Byte) (val & 0x00ff);
+    }
+}
+
+void set_byte_in_memory_raw(ByteAddress address, Byte val) { *(memory.contents + address) = val; }
+
+Byte get_byte_from_memory_raw(ByteAddress address) { return (uint8_t) *(memory.contents + address); }
+
+HalfWord get_halfword_from_memory_raw(ByteAddress address) {
+    HalfWord halfWord;
+    if (memory.mode == LITTLE_ENDIAN_) {
+        halfWord = *(memory.contents + address);
+        halfWord |= ((uint16_t) *(memory.contents + address + 1)) << 8;
+    } else {
+        halfWord = *(memory.contents + address + 1);
+        halfWord |= ((uint16_t) *(memory.contents + address)) << 8;
+    }
+    return halfWord;
+}
+
+Word get_word_from_memory_raw(ByteAddress address) {
+    Word word = 0;
+    int i = 0;
+    if (memory.mode == LITTLE_ENDIAN_) {
+        while (i < 4) {
+            word |= (((uint32_t) *(memory.contents + address + i)) << 8 * i);
+            i++;
+        }
+    } else {
+        while (i < 4) {
+            word |= (((uint32_t) *(memory.contents + address + (3 - i))) << 8 * i);
+            i++;
+        }
+    }
+    return word;
 }

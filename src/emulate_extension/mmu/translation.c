@@ -18,12 +18,14 @@
 
 
 union First_level_descriptor get_frist_level_descriptor(struct First_level_descriptor_address fd_address) {
-    get_word_from_memory(*((uint32_t *)&fd_address));
+    uint32_t fld = get_word_from_memory_raw(*((uint32_t *) &fd_address));
+    return *(union First_level_descriptor *) &fld;
     //assert(false);
 }
 
 union Second_level_descriptor get_second_level_descriptor(struct Second_level_descriptor_address sd_address) {
-    get_word_from_memory(*((uint32_t *)&sd_address));
+    uint32_t sld = get_word_from_memory_raw(*((uint32_t *) &sd_address));
+    return *(union Second_level_descriptor *) &sld;
     //assert(false);
 }
 

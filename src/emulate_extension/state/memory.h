@@ -62,4 +62,16 @@ void print_memory();
 bool memory_access_will_fail(ByteAddress memoryAddress);
 
 void set_memory(struct Memory memory1);
+
+void set_word_in_memory_raw(ByteAddress address, Word val);
+
+void set_half_word_in_memory_raw(ByteAddress address, HalfWord val);
+
+void set_byte_in_memory_raw(ByteAddress address, Byte val);
+
+Byte get_byte_from_memory_raw(ByteAddress address);
+
+HalfWord get_halfword_from_memory_raw(ByteAddress address);
+
+Word get_word_from_memory_raw(ByteAddress address);
 #endif //SRC_MEMORY_H

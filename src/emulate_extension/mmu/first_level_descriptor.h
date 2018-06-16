@@ -128,6 +128,6 @@ union First_level_descriptor {
     struct Backwards_fd_reserved backwards_fd_reserved;
     struct Backwards_fd_section backwards_fd_section;
     struct Backwards_fd_supersection backwards_fd_supersection;
-};
+}__attribute__((packed));
 
 #endif //SRC_FIRST_LEVEL_DESCRIPTOR_H
