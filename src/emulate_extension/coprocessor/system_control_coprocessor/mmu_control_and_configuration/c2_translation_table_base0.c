@@ -26,6 +26,10 @@ uint32_t get_word_translation_table_base_register0() {
     return *(uint32_t *) &c2_translation_table_base_register0;
 }
 
+struct C2_translation_table_base_register0 get_translation_table_base_register0() {
+    return c2_translation_table_base_register0;
+}
+
 void init_c2_translation_table_base_register0() {
     memset(&c2_translation_table_base_register0, 0, sizeof(struct C2_translation_table_base_register0));
 }

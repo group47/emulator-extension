@@ -17,13 +17,14 @@ struct C2_translation_table_base_register0 {
     bool S : 1;
     bool P : 1;
     uint8_t rgn : 2;
-    uint32_t translation_table_base_0_unp_sbz : 27;
+    uint32_t translation_table_base_0_unp_sbz: 27;
 }__attribute__((packed));
 
 
 enum ExecutionExitCode execute_translation_table_base_register0(struct CoprocessorRegisterTransferInstruction);
 void init_c2_translation_table_base_register0();
 
+struct C2_translation_table_base_register0 get_translation_table_base_register0();
 uint32_t get_word_translation_table_base_register0();
 
 
