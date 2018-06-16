@@ -17,7 +17,7 @@
 #include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.h"
 
 
-union First_level_descriptor get_frist_level_descriptor(struct First_level_descriptor_address fd_address) {
+union First_level_descriptor get_first_level_descriptor(struct First_level_descriptor_address fd_address) {
     uint32_t fld = get_word_from_memory_raw(*((uint32_t *) &fd_address));
     return *(union First_level_descriptor *) &fld;
     //assert(false);
@@ -77,7 +77,7 @@ union PhysicalAddress translation(union ModifiedVirtualAddress mva) {
     fd_address.first_level_table_index = mva.mvafd.first_level_table_index;
     fd_address.translation_base = (*(struct C2_translation_table_base_register0 *) &ttbr).translation_table_base_0_unp_sbz;
 
-    union First_level_descriptor fd = get_frist_level_descriptor(fd_address);
+    union First_level_descriptor fd = get_first_level_descriptor(fd_address);
 
     // todo: determine between v6 and backward compatible format
     union Second_level_descriptor sd;
