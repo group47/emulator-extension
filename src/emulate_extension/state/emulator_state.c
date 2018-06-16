@@ -178,7 +178,7 @@ void set_word_in_register(RegisterAddress address, Word val) {
     if (has_exceptions()) {
         return;//don't allow register access if exceptions raised
     }
-    get_set_word_from_register(address, true, val, NULL);
+    get_set_word_from_register(address, true, val, &state);
 }
 
 void change_mode(enum Mode newMode) {
@@ -406,7 +406,8 @@ void invalidate_pipeline() {
 
 
 /**
- * should only be used by bootloader
+ * primarily used by bootloader
+ * please use this function sparingly
  * @return
  */
 struct CPUState *getCPUState() {

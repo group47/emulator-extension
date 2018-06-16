@@ -20,7 +20,7 @@ static const char *logfile_path = "";
 static const char *sp_print_offset = "0";
 static const char *pc_print_offset = "0";
 static const char *log_start = "0";
-static const char *log_end = "0";
+static const char *log_end = "10000000";
 static enum CommandLineFlags globalFlags;
 
 enum CommandLineFlags parseCommandLine(int argc, const char **argv) {

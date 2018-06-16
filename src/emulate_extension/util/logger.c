@@ -14,6 +14,7 @@
 //todo if logs become unmanageable again, implement a system which only shows the last value of a loop similar to qemu
 
 static struct LogEntry *past_states;
+static uint32_t past_states_i = 0;
 
 void print_past_registers(struct CPUState state) {
     for (uint8_t i = 0; i < 15; ++i) {
@@ -34,6 +35,11 @@ void print_entry(struct LogEntry entry) {
             print_past_registers(entry.state);
             break;
     }
+}
+
+void add_to_log(struct LogEntry entry) {
+    past_states[past_states_i] = entry;
+    past_states_i++;
 }
 
 static void print_logs(int signal) {
@@ -174,6 +180,11 @@ void print_registers(enum CommandLineFlags flags) {
             fprintf(get_logfile(), "fpscr          0x%o  %x\n", get_SPSR_by_mode(), get_SPSR_by_mode());
         }
         fprintf(get_logfile(), "=> \n\n");
+    } else if (flags & BIG_LOGS_MODE) {
+        struct LogEntry entry;
+        entry.type = CPUSTATE;
+        entry.state = *getCPUState();
+        add_to_log(entry);
     } else if (flags & QEMU_PRINT) {
         for (uint8_t i = 0; i < 15; ++i) {
             fprintf(get_logfile(), "R%02d=%08x\n", i, get_word_from_register(i));

@@ -7,7 +7,6 @@
 
 
 #include "entry_point.h"
-#include "emulator_state.c"
 #include "../state/emulator_state.h"
 
 enum LogEntryType {
