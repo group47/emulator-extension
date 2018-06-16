@@ -5,6 +5,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <memory.h>
 #include "memory.h"
 #include "emulator_state.h"
 #include "../util/entry_point.h"
@@ -223,14 +224,14 @@ bool memory_access_will_fail(ByteAddress memoryAddress) {
 }
 
 void print_memory() {
-//    for (size_t i = 0; i < 16 * sizeof(char); ++i) {
-//            char* str = malloc(129*sizeof(char));
-//            str[128] = '\0';
-//            memcpy(str,&(memory.contents[128*i ]),128*sizeof(char));
-//            fprintf(stderr,"%s\n",str);
-//            free(str);
-//
-//    }
+    for (size_t i = 0; i < 16 * sizeof(char); ++i) {
+        char *str = malloc(129 * sizeof(char));
+        str[128] = '\0';
+        memcpy(str, &(memory.contents[128 * i]), 128 * sizeof(char));
+        fprintf(stderr, "%s\n", str);
+        free(str);
+
+    }
 }
 
 /**

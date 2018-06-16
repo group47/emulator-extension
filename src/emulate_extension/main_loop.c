@@ -29,7 +29,6 @@ void main_loop(enum CommandLineFlags flags) {
             enum ExecutionExitCode exitCode;
             if (get_mode() == ARM) {
                 exitCode = execute_arm_instruction(ARMfromRaw(get_decoded_arm()));
-                print_debug_coprocessor();
             } else if (get_mode() == THUMB) {
                 exitCode = execute_thumb_instruction(ThumbFromRaw(get_decoded_thumb()));
             } else {

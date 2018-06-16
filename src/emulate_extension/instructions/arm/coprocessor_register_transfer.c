@@ -3,27 +3,23 @@
 //
 
 #include <assert.h>
-#include <stdio.h>
 #include "coprocessor_register_transfer.h"
-#include "../../util/entry_point.h"
 #include "../../coprocessor/system_control_coprocessor/system_control_coprocessor.h"
 #include "../../util/cpsr_util.h"
 #include "../../coprocessor/system_control_coprocessor/system_control_and_configuration/c0_cache_type_register.h"
 #include "../../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.h"
 #include "../../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.h"
+#include "../../util/logger.h"
 
 enum ExecutionExitCode execute_copprocessor_register_transfer(struct CoprocessorRegisterTransferInstruction instruction) {
     if (!should_execute(instruction.cond)) {
         return DIDNT_EXECUTE;
     }
 
-    fprintf(get_logfile(), "Coprocessor CP: %d\n", instruction.CP);
-    fprintf(get_logfile(), "Coprocessor CPNum: %d\n", instruction.CPNum);
-    fprintf(get_logfile(), "Coprocessor CPOpc: %d\n", instruction.CPOpc);
-    fprintf(get_logfile(), "Coprocessor CRm: %d\n", instruction.CRm);
-    fprintf(get_logfile(), "Coprocessor CRn: %d\n", instruction.CRn);
-    fprintf(get_logfile(), "Coprocessor load/store bit: %d\n", instruction.loadStore);
-    fprintf(get_logfile(), "Coprocessor Rd: %d\n", instruction.Rd);
+    struct LogEntry entry;
+    entry.type = COPROCESSOR_REGISTER_TRANSFER_LOGENTRY;
+    entry.registerTransferInstruction = instruction;
+    add_to_log(entry);
 
     assert(instruction.Rd != PC_ADDRESS);//this has special behavior which we don't want to implement unless necessary
 //    assert(false);

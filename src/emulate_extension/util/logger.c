@@ -17,6 +17,7 @@ static struct LogEntry *past_states;
 static uint32_t past_states_i = 0;
 
 void print_past_registers(struct CPUState state) {
+    print_debug_instruction(state);
     for (uint8_t i = 0; i < 15; ++i) {
         fprintf(get_logfile(), "R%02d=%08x\n", i, get_set_word_from_register(i, false, -1, &state));
     }
@@ -28,7 +29,7 @@ void print_past_registers(struct CPUState state) {
 
 void print_entry(struct LogEntry entry) {
     switch (entry.type) {
-        case CPUSTATE:
+        case CPUSTATE_LOGENTRY:
             if (!past_decoded_valid(entry.state)) {
                 return;
             }
@@ -63,7 +64,41 @@ void init_logging(enum CommandLineFlags flags) {
 
 }
 
-void print_debug_coprocessor() {
+
+void print_debug_coprocessor_register_transfer(struct CoprocessorRegisterTransferInstruction instruction) {
+    fprintf(get_logfile(), "Coprocessor CP: %d\n", instruction.CP);
+    fprintf(get_logfile(), "Coprocessor CPNum: %d\n", instruction.CPNum);
+    fprintf(get_logfile(), "Coprocessor CPOpc: %d\n", instruction.CPOpc);
+    fprintf(get_logfile(), "Coprocessor CRm: %d\n", instruction.CRm);
+    fprintf(get_logfile(), "Coprocessor CRn: %d\n", instruction.CRn);
+    fprintf(get_logfile(), "Coprocessor load/store bit: %d\n", instruction.loadStore);
+    fprintf(get_logfile(), "Coprocessor Rd: %d\n", instruction.Rd);
+}
+
+void print_debug_coprocessor_data_transfer(struct CoprocessorDataTransfersInstruction instruction) {
+    fprintf(get_logfile(), "Coprocesor number %d\n", instruction.CoNumber);
+    fprintf(get_logfile(), "Coprocesor base register %d\n", instruction.baseRegister);
+    fprintf(get_logfile(), "Coprocesor source destination register %d\n", instruction.CoSourceDestinationRegister);
+    fprintf(get_logfile(), "Coprocesor load store bit %d\n", instruction.loadStoreBit);
+    fprintf(get_logfile(), "Coprocesor offset %d\n", instruction.offset);
+    fprintf(get_logfile(), "Coprocesor pre post indexing %d\n", instruction.prePostIndexingBit);
+    fprintf(get_logfile(), "Coprocesor transfer length %d\n", instruction.transferLength);
+    fprintf(get_logfile(), "Coprocesor up down bit %d\n", instruction.upDownBit);
+    fprintf(get_logfile(), "Coprocesor write back bit %d\n", instruction.writeBackBit);
+}
+
+void print_debug_coprocessor_data_operations(struct CoprocessorDataOperationsInstruction instruction) {
+    fprintf(get_logfile(), "Try to execute coprocessor data operations\n");
+    fprintf(get_logfile(), "Coprocessor number : %d\n", instruction.CoNumber);
+    fprintf(get_logfile(), "Coprocessor destination register: %d\n", instruction.CoDestinationRegister);
+    fprintf(get_logfile(), "Coprocessor cooperand register position 3: %d\n", instruction.CoOperandRegister_position3);
+    fprintf(get_logfile(), "Coprocessor cooperand register position 19: %d\n",
+            instruction.CoOperandRegister_position19);
+    fprintf(get_logfile(), "Coprocessor operation code: %d\n", instruction.CoOperationCode);
+    fprintf(get_logfile(), "Coprocessor information: %d\n", instruction.CoInformation);
+}
+
+void print_debug_instruction(struct CPUState state) {
     static const char *type_to_string_[18] = {"ARM_BLOCK_DATA_TRANSFER",
                                               "ARM_BRANCH",
                                               "ARM_BRANCH_AND_EXCHANGE",
@@ -97,7 +132,7 @@ void print_debug_coprocessor() {
     const char *extra = "";
     uint32_t rd = -1;
     uint32_t rn = -1;
-    struct ArmInstruction instruct = ARMfromRaw(get_decoded_arm());
+    struct ArmInstruction instruct = ARMfromRaw(*(union RawArmInstruction *) &state.decoded_arm);
     switch (instruct.type) {
         case ARM_BLOCK_DATA_TRANSFER:
             rn = instruct.rawArmInstruction.blockDataTransferInstruction.Rn;
@@ -182,14 +217,14 @@ void print_registers(enum CommandLineFlags flags) {
         fprintf(get_logfile(), "=> \n\n");
     } else if (flags & BIG_LOGS_MODE) {
         struct LogEntry entry;
-        entry.type = CPUSTATE;
+        entry.type = CPUSTATE_LOGENTRY;
         entry.state = *getCPUState();
         add_to_log(entry);
     } else if (flags & QEMU_PRINT) {
         for (uint8_t i = 0; i < 15; ++i) {
             fprintf(get_logfile(), "R%02d=%08x\n", i, get_word_from_register(i));
         }
-        fprintf(get_logfile(), "R%02d=%08x\n", 15, get_word_from_register(15) - 8);
+        fprintf(get_logfile(), "R%02d=%08x\n", PC_ADDRESS, get_word_from_register(PC_ADDRESS) - 8);
         fprintf(get_logfile(), "PSR=%08x\n", getCPSR());
         fprintf(get_logfile(), "-Z--\nA\nsvc32\n");
     } else {
