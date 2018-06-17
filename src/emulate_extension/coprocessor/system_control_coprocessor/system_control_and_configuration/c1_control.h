@@ -44,7 +44,7 @@ struct C1_control_register {
 }__attribute__((packed));
 #endif //SRC_CONTROL_H
 
-struct C1_control_register get_word_control_register();
+struct C1_control_register get_control_register();
 
 void set_word_control_register(Word);
 

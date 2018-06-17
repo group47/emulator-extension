@@ -44,7 +44,7 @@ void init_c1_control_register() {
 }
 
 
-struct C1_control_register get_word_control_register() {
+struct C1_control_register get_control_register() {
     return c1_control_register;
 }
 
