@@ -4,7 +4,6 @@
 
 #include <assert.h>
 #include "exception.h"
-#include "emulator_state.h"
 
 /*
  * from the spec
@@ -229,4 +228,8 @@ void handle_data_abort(struct CPSR_Struct oldcpsr) {
 
 bool has_exceptions() {
     return get_exception_flags() != 0;
+}
+
+bool has_exceptions_prev(struct CPUState *state_in) {
+    return get_exception_flags_prev(state_in) != 0;
 }

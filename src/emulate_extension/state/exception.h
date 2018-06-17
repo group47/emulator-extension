@@ -7,8 +7,11 @@
 
 
 #include <stdbool.h>
+#include "emulator_state.h"
 
 bool has_exceptions();
+
+bool has_exceptions_prev(struct CPUState *state);
 
 void handle_exception();
 

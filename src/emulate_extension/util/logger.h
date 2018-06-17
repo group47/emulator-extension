@@ -41,4 +41,8 @@ void print_debug_coprocessor_data_transfer(struct CoprocessorDataTransfersInstru
 
 void print_debug_coprocessor_data_operations(struct CoprocessorDataOperationsInstruction instruction);
 
+void enable_log();
+
+void disable_log();
+
 #endif //SRC_LOGGER_H

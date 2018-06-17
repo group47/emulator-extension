@@ -15,6 +15,7 @@
 
 static struct LogEntry *entries;
 static uint32_t past_states_i = 0;
+static bool log_disabled = true;
 
 void print_past_registers(struct CPUState state) {
     print_debug_instruction(state);
@@ -47,7 +48,18 @@ void print_entry(struct LogEntry entry) {
     }
 }
 
+void disable_log() {
+    log_disabled = true;
+}
+
+void enable_log() {
+    log_disabled = false;
+}
+
 void add_to_log(struct LogEntry entry) {
+    if (log_disabled) {
+        return;
+    }
     entries[past_states_i] = entry;
     past_states_i++;
 }
@@ -208,7 +220,8 @@ void print_debug_instruction(struct CPUState state) {
         case ARM_TRANSFER_REGISTER_CONTENTS_OR_IMMEDIATE_VALUE_TO_PSR_FLAG:
             break;
     }
-    fprintf(get_logfile(), "%s Rd:%d Rn:%d extra:%s\n", type_to_string_[ARMfromRaw(get_decoded_arm()).type], rd, rn,
+    fprintf(get_logfile(), "%s Rd:%d Rn:%d extra:%s\n",
+            type_to_string_[ARMfromRaw(*(union RawArmInstruction *) &state.decoded_arm).type], rd, rn,
             extra);
 }
 
