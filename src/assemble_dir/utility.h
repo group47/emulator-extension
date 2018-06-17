@@ -8,10 +8,14 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-long strtolWrapper(char*);
+long strtolWrapper(char *);
+
 uint16_t getOperand2Immediate(long);
-bool isNegative(char*);
-bool secondToLastCharIs(const char *,char);
-bool isRegister(char*);
+
+bool isNegative(char *);
+
+bool secondToLastCharIs(const char *, char);
+
+bool isRegister(char *);
 
 #endif //SRC_UTILITY_H

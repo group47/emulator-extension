@@ -17,4 +17,5 @@ struct C1_secure_debug_enable_register {
 
 
 enum ExecutionExitCode execute_debug_enable_register(struct CoprocessorRegisterTransferInstruction);
+
 #endif //SRC_C1_SECURE_DEBUG_ENABLE_H

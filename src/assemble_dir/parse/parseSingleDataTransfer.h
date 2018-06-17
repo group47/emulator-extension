@@ -9,7 +9,10 @@
 #include "../../shared/instructions.h"
 #include "../tokenizer.h"
 
-struct Instruction assembleSingleDataInstruction(struct Token*);
-struct Instruction parseSingleDataTransferAddress(char**, int, struct Token*);
+struct Instruction assembleSingleDataInstruction(struct Token *);
+
+struct Instruction parseSingleDataTransferAddress(char **, int, struct Token *);
+
 struct Instruction parseSingleDataTransfer1(char **, int, struct Token *);
+
 #endif //SRC_PARSESINGLEDATATRANSFER_H

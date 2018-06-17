@@ -32,4 +32,5 @@ struct C1_none_secure_access_control_register {
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_none_secure_access_control_register(struct CoprocessorRegisterTransferInstruction);
+
 #endif //SRC_C1_NON_SECURE_ACCESS_CONTROL_H

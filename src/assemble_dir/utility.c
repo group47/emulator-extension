@@ -9,7 +9,7 @@
 #include <stdbool.h>
 #include <x86intrin.h>
 
-long strtolWrapper(char* str) {
+long strtolWrapper(char *str) {
     while (!isdigit(*str)) {
         str++;
     }
@@ -23,7 +23,7 @@ long strtolWrapper(char* str) {
 }
 
 uint16_t getOperand2Immediate(long operand2Val) {
-    uint32_t result = (uint32_t)operand2Val;
+    uint32_t result = (uint32_t) operand2Val;
     uint32_t count;
     for (count = 0; count < 16; ++count) {
         if ((0x000000ff & result) == result) {
@@ -36,7 +36,7 @@ uint16_t getOperand2Immediate(long operand2Val) {
 
 }
 
-bool isNegative(char* number) {
+bool isNegative(char *number) {
     for (int i = 0; i < 3; i++) {
         if (number[i] == '-') {
             return true;
@@ -49,13 +49,13 @@ bool isNegative(char* number) {
 }
 
 bool secondToLastCharIs(const char *target, char c) {
-    if(strlen(target) < 2)
+    if (strlen(target) < 2)
         return false;
     return target[strlen(target) - 2] == c;
 }
 
 // post-condition: true for formats as 'r0' and '-r0'
-bool isRegister(char* token) {
+bool isRegister(char *token) {
     return token[0] == 'r' || token[1] == 'r';
 }
 

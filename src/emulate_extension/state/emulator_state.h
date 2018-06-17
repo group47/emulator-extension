@@ -15,27 +15,27 @@
 #include "../coprocessor/system_control_coprocessor/system_control_coprocessor.h"
 
 enum Mode {
-  THUMB, ARM
+    THUMB, ARM
 };
 
 enum OperatingMode {
-  usr = 0b10000,
-  fiq = 0b10001,
-  irq = 0b10010,
-  svc = 0b10011,
-  abt = 0b10111,
-  sys = 0b11111,
-  und = 0b11011
+    usr = 0b10000,
+    fiq = 0b10001,
+    irq = 0b10010,
+    svc = 0b10011,
+    abt = 0b10111,
+    sys = 0b11111,
+    und = 0b11011
 };
 
 enum ExceptionFlag {
-  RESET              = 0b100000000,
-  DATA_ABORT         = 0b010000000,
-  FIQ                = 0b001000000,
-  IRQ                = 0b000100000,
-  PREFETCH_ABORT     = 0b000010000,
-  UNDEFINED          = 0b000001000,
-  SOFTWARE_INTERRUPT = 0b000000100,
+    RESET = 0b100000000,
+    DATA_ABORT = 0b010000000,
+    FIQ = 0b001000000,
+    IRQ = 0b000100000,
+    PREFETCH_ABORT = 0b000010000,
+    UNDEFINED = 0b000001000,
+    SOFTWARE_INTERRUPT = 0b000000100,
     BRANCH_LINK_EXCEPTION = 0b000000010,
 };
 
@@ -49,15 +49,15 @@ enum ExceptionFlag {
 #define SP_ADDRESS 13
 
 struct CPSR_Struct {
-  enum OperatingMode M : 5;
-  bool T:1;
-  bool F:1;
-  bool I:1;
-  uint32_t reserved: 20;
-  bool V:1;
-  bool C:1;
-  bool Z:1;
-  bool N:1;
+    enum OperatingMode M : 5;
+    bool T:1;
+    bool F:1;
+    bool I:1;
+    uint32_t reserved: 20;
+    bool V:1;
+    bool C:1;
+    bool Z:1;
+    bool N:1;
 
 }__attribute__((packed));
 
@@ -70,28 +70,28 @@ struct CPSR_Struct {
 
 
 struct CPUState {
-  Word general_registers[NUM_GENERAL_PURPOSE_REGISTERS_ARM - 1];// -1 for the cpsr
-  Word fiq_banked[NUM_FIQ_BANKED];
-  Word svc_banked[NUM_SVC_BANKED];
-  Word abt_banked[NUM_ABT_BANKED];
-  Word irq_banked[NUM_IRQ_BANKED];
-  Word und_banked[NUM_UND_BANKED];
-  struct CPSR_Struct CPSR;
-  struct CPSR_Struct SPSR_svc;
-  struct CPSR_Struct SPSR_irq;
-  struct CPSR_Struct SPSR_fiq;
-  struct CPSR_Struct SPSR_abt;
-  struct CPSR_Struct SPSR_und;
+    Word general_registers[NUM_GENERAL_PURPOSE_REGISTERS_ARM - 1];// -1 for the cpsr
+    Word fiq_banked[NUM_FIQ_BANKED];
+    Word svc_banked[NUM_SVC_BANKED];
+    Word abt_banked[NUM_ABT_BANKED];
+    Word irq_banked[NUM_IRQ_BANKED];
+    Word und_banked[NUM_UND_BANKED];
+    struct CPSR_Struct CPSR;
+    struct CPSR_Struct SPSR_svc;
+    struct CPSR_Struct SPSR_irq;
+    struct CPSR_Struct SPSR_fiq;
+    struct CPSR_Struct SPSR_abt;
+    struct CPSR_Struct SPSR_und;
 //  enum OperatingMode operatingMode; // actually in cpsr
-  //enum Mode mode;// acctually encoded in cpsr t bit
-  enum ExceptionFlag flags;
-  bool locked;//todo handle this see 4.12
-  uint32_t fetched_arm;
-  uint32_t decoded_arm;
-  uint16_t fetched_thumb;
-  uint16_t decoded_thumb;
-  bool decoded_valid;//= false
-  bool fetched_valid;//= false
+    //enum Mode mode;// acctually encoded in cpsr t bit
+    enum ExceptionFlag flags;
+    bool locked;//todo handle this see 4.12
+    uint32_t fetched_arm;
+    uint32_t decoded_arm;
+    uint16_t fetched_thumb;
+    uint16_t decoded_thumb;
+    bool decoded_valid;//= false
+    bool fetched_valid;//= false
     bool decoded_prefetch_aborted;//false
     bool fetched_prefetch_aborted;//false
 };
@@ -100,7 +100,8 @@ struct CPUState {
 
 Byte get_byte_from_register(RegisterAddress address);
 
-Word get_word_from_register(RegisterAddress address);//todo add spsr restrictions, overridable if accessed from psr instruction
+Word get_word_from_register(
+        RegisterAddress address);//todo add spsr restrictions, overridable if accessed from psr instruction
 
 void set_byte_in_register(RegisterAddress address, Byte byte);
 

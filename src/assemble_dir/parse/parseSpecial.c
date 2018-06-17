@@ -9,21 +9,21 @@
 #include "parseDataProcessing.h"
 
 // for lsl
-struct Instruction parseSpecial1(char **tokens, int tokenOffset, struct Token * token) {
+struct Instruction parseSpecial1(char **tokens, int tokenOffset, struct Token *token) {
 
 
-    char* op = calloc(20, sizeof(char));
-    char* Rn1 = calloc(20, sizeof(char));
-    char* Rn2 = calloc(20, sizeof(char));
-    char* shiftname = calloc(20, sizeof(char));
-    char* sharp = calloc(20, sizeof(char));
-    char* expr = calloc(20, sizeof(char));
+    char *op = calloc(20, sizeof(char));
+    char *Rn1 = calloc(20, sizeof(char));
+    char *Rn2 = calloc(20, sizeof(char));
+    char *shiftname = calloc(20, sizeof(char));
+    char *sharp = calloc(20, sizeof(char));
+    char *expr = calloc(20, sizeof(char));
     memcpy(op, "mov", 4);
-    memcpy(Rn1, tokens[1], strlen(tokens[1])+1);
-    memcpy(Rn2, tokens[1], strlen(tokens[1])+1);
+    memcpy(Rn1, tokens[1], strlen(tokens[1]) + 1);
+    memcpy(Rn2, tokens[1], strlen(tokens[1]) + 1);
     memcpy(shiftname, "lsl", 4);
     memcpy(sharp, "#", 2);
-    memcpy(expr, tokens[3], strlen(tokens[3])+1);
+    memcpy(expr, tokens[3], strlen(tokens[3]) + 1);
 
     for (int i = 0; i < 6; i++) {
         free(tokens[i]);

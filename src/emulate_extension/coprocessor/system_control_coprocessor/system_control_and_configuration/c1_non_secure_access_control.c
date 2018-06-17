@@ -4,6 +4,7 @@
 
 #include "c1_non_secure_access_control.h"
 
-enum ExecutionExitCode execute_none_secure_access_control_register(struct CoprocessorRegisterTransferInstruction instruction) {
+enum ExecutionExitCode
+execute_none_secure_access_control_register(struct CoprocessorRegisterTransferInstruction instruction) {
     return OK;
 }

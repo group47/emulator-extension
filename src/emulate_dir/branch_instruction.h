@@ -6,6 +6,7 @@
 #define EMULATE_BRANCH_INSTRUCTION_H
 
 #include "../emulate_dir/emulate_main.h"
+
 int execute_instruction_branch(struct EmulatorState *state,
                                struct BranchInstruction instruction);
 

@@ -21,4 +21,5 @@ struct C1_secure_configuration_register {
 } __attribute__((packed));
 
 enum ExecutionExitCode execute_secure_configuration_register(struct CoprocessorRegisterTransferInstruction);
+
 #endif //SRC_C1_SECURE_CONFIGURATION_H

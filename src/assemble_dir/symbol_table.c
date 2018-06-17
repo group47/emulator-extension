@@ -18,9 +18,10 @@
 #include "parse/parseSpecial.h"
 
 bool secondToLastCharIs(const char *target, char c);
-struct Entry* find(struct SymbolTable* symbolTable, char* target) {
+
+struct Entry *find(struct SymbolTable *symbolTable, char *target) {
     for (int i = 0; i < symbolTable->size; i++) {
-        char* key;
+        char *key;
         if (symbolTable->entries[i].entryType == INSTRUCTION_INFO) {
             struct InstructionInfo *instructionInfo = (struct InstructionInfo *) &symbolTable->entries[i].rawEntry;
             key = instructionInfo->mnemonics;
@@ -39,9 +40,9 @@ struct Entry* find(struct SymbolTable* symbolTable, char* target) {
 }
 
 
-bool addLabel(struct SymbolTable* symbolTable, char* label, uint16_t address) {
-    char * label_copy = calloc(100, sizeof(char));//todo memory leak
-    memcpy(label_copy,label,(strlen(label)+1)* sizeof(char));
+bool addLabel(struct SymbolTable *symbolTable, char *label, uint16_t address) {
+    char *label_copy = calloc(100, sizeof(char));//todo memory leak
+    memcpy(label_copy, label, (strlen(label) + 1) * sizeof(char));
 
     symbolTable->entries[symbolTable->size].rawEntry.label.label = label_copy;
     symbolTable->entries[symbolTable->size].rawEntry.label.address = address;
@@ -50,20 +51,21 @@ bool addLabel(struct SymbolTable* symbolTable, char* label, uint16_t address) {
     return true;
 }
 
-bool addInstruction(struct SymbolTable* symbolTable,
+bool addInstruction(struct SymbolTable *symbolTable,
                     enum InstructionType instructionType,
-                    char* mnemonics,
+                    char *mnemonics,
                     enum Cond condCode,
                     enum OpCode opCode,
-                    struct Instruction (*tokenize) (char**,int,struct Token*),
-                    struct Instruction (*assemble)(struct Token*)) {
+                    struct Instruction (*tokenize)(char **, int, struct Token *),
+                    struct Instruction (*assemble)(struct Token *)) {
 
     assert (symbolTable->size <= 511);
 
     symbolTable->entries[symbolTable->size].entryType = INSTRUCTION_INFO;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics = calloc(400, sizeof(char));//todo
 
-    memcpy(symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics, mnemonics, strlen(mnemonics) + 1);
+    memcpy(symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.mnemonics, mnemonics,
+           strlen(mnemonics) + 1);
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.instructionType = instructionType;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.condCode = condCode;
     symbolTable->entries[symbolTable->size].rawEntry.instructionInfo.opCode = opCode;
@@ -77,7 +79,7 @@ bool addInstruction(struct SymbolTable* symbolTable,
 }
 
 
-void initializeInstructionCodeTable(struct SymbolTable * table) {
+void initializeInstructionCodeTable(struct SymbolTable *table) {
     table->size = 0;
     addInstruction(table, DATA_PROCESSING, "add", al, add, &parseDataProcessing1, &assembleDataProcessingInstruction);
     addInstruction(table, DATA_PROCESSING, "sub", al, sub, &parseDataProcessing1, &assembleDataProcessingInstruction);
@@ -91,14 +93,16 @@ void initializeInstructionCodeTable(struct SymbolTable * table) {
     addInstruction(table, DATA_PROCESSING, "cmp", al, cmp, &parseDataProcessing3, &assembleDataProcessingInstruction);
     addInstruction(table, MULTIPLY, "mul", al, invalidOpcode, &parseMultiply1, &assembleMultiplyInstruction);
     addInstruction(table, MULTIPLY, "mla", al, invalidOpcode, &parseMultiply2, &assembleMultiplyInstruction);
-    addInstruction(table, SINGLE_DATA_TRANSFER, "ldr", al, invalidOpcode, &parseSingleDataTransfer1, &assembleSingleDataInstruction);
-    addInstruction(table, SINGLE_DATA_TRANSFER, "str", al, invalidOpcode, &parseSingleDataTransfer1, &assembleSingleDataInstruction);
+    addInstruction(table, SINGLE_DATA_TRANSFER, "ldr", al, invalidOpcode, &parseSingleDataTransfer1,
+                   &assembleSingleDataInstruction);
+    addInstruction(table, SINGLE_DATA_TRANSFER, "str", al, invalidOpcode, &parseSingleDataTransfer1,
+                   &assembleSingleDataInstruction);
     addInstruction(table, BRANCH_INSTRUCTION, "beq", eq, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
     addInstruction(table, BRANCH_INSTRUCTION, "bne", ne, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
     addInstruction(table, BRANCH_INSTRUCTION, "bge", ge, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
-    addInstruction(table, BRANCH_INSTRUCTION,"blt", lt, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
+    addInstruction(table, BRANCH_INSTRUCTION, "blt", lt, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
     addInstruction(table, BRANCH_INSTRUCTION, "ble", le, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
-    addInstruction(table, BRANCH_INSTRUCTION,"b", al, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
-    addInstruction(table, DATA_PROCESSING,"lsl", al, invalidOpcode, &parseSpecial1, NULL);
+    addInstruction(table, BRANCH_INSTRUCTION, "b", al, invalidOpcode, &parseBranch1, &assembleBranchInstruction);
+    addInstruction(table, DATA_PROCESSING, "lsl", al, invalidOpcode, &parseSpecial1, NULL);
     addInstruction(table, DATA_PROCESSING, "andeq", eq, and, &parseDataProcessing1, &assembleDataProcessingInstruction);
 }

@@ -199,7 +199,7 @@ MB_section_table_walk(union ModifiedVirtualAddress mva, union First_level_descri
 union PhysicalAddress backwards_compatible_MB_section_table_walk(union ModifiedVirtualAddress mva,
                                                                  union First_level_descriptor fd);
 
-union PhysicalAddress second_level_walk(union ModifiedVirtualAddress mva, union Second_level_descriptor descriptor) ;
+union PhysicalAddress second_level_walk(union ModifiedVirtualAddress mva, union Second_level_descriptor descriptor);
 
 // If you figured out how to get the mva, then you should be able to get the physical address
 // I'm gonna assume it's all correct, there are many checks to be made
@@ -217,13 +217,13 @@ union PhysicalAddress translation(union ModifiedVirtualAddress mva) {
             //todo: if data, data abort
             assert(false);
             break;
-        case 0b01:{
+        case 0b01: {
             union Second_level_descriptor sd;
             sd_address.filler00 = 0;
             sd_address.coarse_page_table_base_address = fd.v6_fd_coarse_page_table.coarse_page_table_base_address;
             sd_address.second_level_table_index = mva.mvasd1.second_level_table_index;
             sd = get_second_level_descriptor(sd_address);
-            return second_level_walk(mva,sd);
+            return second_level_walk(mva, sd);
         }
         case 0b10:
             //implementation is same for backwards compatible or otherwise.
@@ -263,19 +263,19 @@ union PhysicalAddress second_level_walk(union ModifiedVirtualAddress mva, union 
             assert(false);//todo translation fault
         case 0b01:
             //large page, should be backwards compatible without changes
-            return second_level_large_page_walk(mva,descriptor);
+            return second_level_large_page_walk(mva, descriptor);
         case 0b10:
             //small page if backwards compatible otherwise extended small page
             if (backward_compatible_mode) {
-                return second_level_small_page_walk(mva,descriptor);
+                return second_level_small_page_walk(mva, descriptor);
             } else {
-                return second_level_extended_small_page(mva,descriptor);
+                return second_level_extended_small_page(mva, descriptor);
             }
             break;
         case 0b11:
             assert(backward_compatible_mode);//todo what about non-backwards compatible
             //extended small page
-            return second_level_extended_small_page(mva,descriptor);
+            return second_level_extended_small_page(mva, descriptor);
         default:
             assert(false);
     }
@@ -285,7 +285,7 @@ union PhysicalAddress
 second_level_extended_small_page(union ModifiedVirtualAddress mva, union Second_level_descriptor descriptor) {
     union PhysicalAddress result;
     result.physicalAddress_small_page.page_base_address = descriptor.backwards_sd_extended_small_page.extended_small_page_base_address;
-    result.physicalAddress_small_page.page_index= mva.mvasd1.filler;
+    result.physicalAddress_small_page.page_index = mva.mvasd1.filler;
     return result;
 }
 

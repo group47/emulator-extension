@@ -4,7 +4,9 @@
 
 #ifndef EMULATE_SINGLE_DATA_TRANSFER_INSTRUCTION_H
 #define EMULATE_SINGLE_DATA_TRANSFER_INSTRUCTION_H
+
 #include "../emulate_dir/emulate_main.h"
+
 int execute_instruction_single_data_transfer(struct EmulatorState *,
                                              const struct SingleDataTransferInstruction);
 

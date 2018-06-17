@@ -12,8 +12,11 @@
 #include "symbol_table.h"
 
 struct Instruction tokenizer(struct Token *, char *, struct SymbolTable *, struct SymbolTable *, uint16_t);
-struct Token* initializeToken(struct Token *);
-int separateString2(char**, char*, char*);
-int separateSpecialCharacters(char**, char**, int, char*);
+
+struct Token *initializeToken(struct Token *);
+
+int separateString2(char **, char *, char *);
+
+int separateSpecialCharacters(char **, char **, int, char *);
 
 #endif //ASSEMBLE_TOKENIZER_H

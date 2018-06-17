@@ -7,9 +7,15 @@
 
 #include "../../shared/instructions.h"
 #include "../tokenizer.h"
-struct Instruction assembleDataProcessingInstruction(struct Token*);
-struct Instruction parseDataProcessingOperand2(char**, int, struct Token*);
+
+struct Instruction assembleDataProcessingInstruction(struct Token *);
+
+struct Instruction parseDataProcessingOperand2(char **, int, struct Token *);
+
 struct Instruction parseDataProcessing1(char **, int, struct Token *);
+
 struct Instruction parseDataProcessing2(char **, int, struct Token *);
+
 struct Instruction parseDataProcessing3(char **, int, struct Token *);
+
 #endif //SRC_PARSEDATAPROCESSING_H

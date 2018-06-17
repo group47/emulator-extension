@@ -12,7 +12,7 @@
 #include "parseUtility.h"
 #include "parseDataProcessing.h"
 
-struct Instruction assembleSingleDataInstruction(struct Token* token) {
+struct Instruction assembleSingleDataInstruction(struct Token *token) {
     struct SingleDataTransferInstruction binary;
     struct Instruction instruction;
     instruction.type = SINGLE_DATA_TRANSFER;
@@ -22,25 +22,25 @@ struct Instruction assembleSingleDataInstruction(struct Token* token) {
     binary.immediateOffset = token->offsetIsImmediate;
     binary.prePostIndexingBit = token->isPreIndexing;
     binary.upBit = !token->offsetIsNegative;
-    binary.loadStore = strcmp((char*)token->instructionInfo->mnemonics, "ldr") == 0;
+    binary.loadStore = strcmp((char *) token->instructionInfo->mnemonics, "ldr") == 0;
     binary.Rn = token->Rn;
     binary.Rd = token->Rd;
-    if(token->use_extra_data){
-        assert(token->offset > 0x00ff );
+    if (token->use_extra_data) {
+        assert(token->offset > 0x00ff);
         assert(!binary.immediateOffset);
         binary.Rn = 0b1111;//the program counter
-        uint32_t  extra_data_address = 4*add_extra_data(token->offset);
-        binary.offset = (uint16_t)(extra_data_address - 4*token->instructionInfo->address - 8);//todo check
-    } else{
-        binary.offset = (uint16_t)(0x0fff & token->offset);
+        uint32_t extra_data_address = 4 * add_extra_data(token->offset);
+        binary.offset = (uint16_t) (extra_data_address - 4 * token->instructionInfo->address - 8);//todo check
+    } else {
+        binary.offset = (uint16_t) (0x0fff & token->offset);
     }
-    instruction.rawInstruction = *(union RawInstruction *)&binary;
+    instruction.rawInstruction = *(union RawInstruction *) &binary;
     return instruction;
 }
 
 
 // single data transfer syntax 1 : <ldr/str> Rd, <address>
-struct Instruction parseSingleDataTransfer1(char **tokens, int tokenOffset, struct Token * token) {
+struct Instruction parseSingleDataTransfer1(char **tokens, int tokenOffset, struct Token *token) {
     if (!isRegister(*(tokens + tokenOffset))) {
         fprintf(stderr, "Rd is not a register for single data transfer\n");
         assert(false);
@@ -52,7 +52,7 @@ struct Instruction parseSingleDataTransfer1(char **tokens, int tokenOffset, stru
 // pre-condition
 // For data processing only, immediate flag should be true
 
-struct Instruction parseSingleDataTransferAddress(char** tokens, int tokenOffset, struct Token* token) {
+struct Instruction parseSingleDataTransferAddress(char **tokens, int tokenOffset, struct Token *token) {
     if (strcmp(*(tokens + tokenOffset), "=") == 0) {
         token->isPreIndexing = true;
         token->offsetIsImmediate = false;

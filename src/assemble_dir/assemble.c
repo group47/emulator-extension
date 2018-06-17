@@ -12,7 +12,7 @@
 #include "binary_file_writer.h"
 #include "assemble.h"
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
 
     if (argc != 3) {
         fprintf(stderr,
@@ -20,11 +20,11 @@ int main(int argc, char** argv) {
         return -100000;
     }
 
-    const char* sourceFileName = argv[1];
-    const char* outputFileName = argv[2];
+    const char *sourceFileName = argv[1];
+    const char *outputFileName = argv[2];
 
-    FILE* fpSource = fopen(sourceFileName, "r");
-    FILE* fpOutput = fopen(outputFileName, "w");
+    FILE *fpSource = fopen(sourceFileName, "r");
+    FILE *fpOutput = fopen(outputFileName, "w");
 
     if (fpSource == NULL) {
         fprintf(stderr,
@@ -36,22 +36,23 @@ int main(int argc, char** argv) {
                 "the end of the world has come, or you entered the wrong output filename\n");
     }
 
-    char* instruction = NULL;
+    char *instruction = NULL;
     size_t instructionLength = 0;
     struct SymbolTable instructionCode;
     initializeInstructionCodeTable(&instructionCode);
     struct SymbolTable labelAddress;
-    memset(&labelAddress,0, sizeof(struct SymbolTable));
+    memset(&labelAddress, 0, sizeof(struct SymbolTable));
 
     uint16_t offset = 0;
     uint16_t current_address = 0;
     // build labelAddress table
     struct Token newToken;
-    while(getline(&instruction, &instructionLength, fpSource)!= -1){//todo alloc
+    while (getline(&instruction, &instructionLength, fpSource) != -1) {//todo alloc
         initializeToken(&newToken);
-        struct Instruction token = tokenizer(&newToken, instruction, &instructionCode,&labelAddress,current_address);//todo make this faster kuyg
+        struct Instruction token = tokenizer(&newToken, instruction, &instructionCode, &labelAddress,
+                                             current_address);//todo make this faster kuyg
         if (token.type == INVALID) {
-            if(secondToLastCharIs(instruction, ':')){
+            if (secondToLastCharIs(instruction, ':')) {
                 char colonRemoved[100];
                 int i = 0;
                 while (i < strlen(instruction) - 2) {
@@ -59,23 +60,23 @@ int main(int argc, char** argv) {
                     ++i;
                 }
                 colonRemoved[i] = '\0';
-                addLabel(&labelAddress,colonRemoved,current_address);
+                addLabel(&labelAddress, colonRemoved, current_address);
             }
-        } else{
+        } else {
             current_address++;
         }
     }
     fclose(fpSource);
     set_extra_data_location(current_address);
-    FILE* fpSource2 = fopen(sourceFileName, "r");
+    FILE *fpSource2 = fopen(sourceFileName, "r");
     current_address = 0;
-    while (getline(&instruction, &instructionLength, fpSource2)!= -1) {
+    while (getline(&instruction, &instructionLength, fpSource2) != -1) {
         initializeToken(&newToken);
         instruction[strlen(instruction)] = '\0';
-        struct Instruction token = tokenizer(&newToken, instruction, &instructionCode,&labelAddress,current_address);
+        struct Instruction token = tokenizer(&newToken, instruction, &instructionCode, &labelAddress, current_address);
 
-        if(token.type != INVALID){
-            binary_file_writer32(fpOutput,*(uint32_t*)&token.rawInstruction);
+        if (token.type != INVALID) {
+            binary_file_writer32(fpOutput, *(uint32_t *) &token.rawInstruction);
             fflush(fpOutput);
             current_address++;
         }
@@ -95,15 +96,15 @@ int main(int argc, char** argv) {
 
 void free_symbol_table(struct SymbolTable table) {
     for (int i = 0; i < table.size; ++i) {
-        if(table.entries[i].entryType == INSTRUCTION_INFO){
-            char * ptr = table.entries[i].rawEntry.instructionInfo.mnemonics;
-            if(ptr != NULL)
+        if (table.entries[i].entryType == INSTRUCTION_INFO) {
+            char *ptr = table.entries[i].rawEntry.instructionInfo.mnemonics;
+            if (ptr != NULL)
                 free(ptr);
-        }else if(table.entries[i].entryType == LABEL){
+        } else if (table.entries[i].entryType == LABEL) {
             char *ptr = table.entries[i].rawEntry.label.label;
-            if(ptr != NULL)
+            if (ptr != NULL)
                 free(ptr);
-        } else{
+        } else {
             assert(false);
         }
     }
@@ -112,8 +113,8 @@ void free_symbol_table(struct SymbolTable table) {
 
 bool is_label(char *instruction) {
     int i = 0;
-    while (instruction[i] != '\0'){
-        if(instruction[i] == ':')
+    while (instruction[i] != '\0') {
+        if (instruction[i] == ':')
             return true;
         i++;
     }

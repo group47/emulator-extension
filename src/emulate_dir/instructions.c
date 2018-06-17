@@ -6,9 +6,10 @@
 #include "../shared/enums.h"
 
 bool is_arithmetic(enum OpCode opCode) {
-  return opCode == add || opCode == sub || opCode == rsb || opCode == cmp;
+    return opCode == add || opCode == sub || opCode == rsb || opCode == cmp;
 }
+
 bool is_logical(enum OpCode opCode) {
-  return !is_arithmetic(opCode);
+    return !is_arithmetic(opCode);
 }
 

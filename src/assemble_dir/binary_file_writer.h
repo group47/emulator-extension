@@ -8,6 +8,6 @@
 #define ASSEMBLE_BINARY_FILE_WRITER_H
 
 
-void binary_file_writer32(FILE*, int32_t);
+void binary_file_writer32(FILE *, int32_t);
 
 #endif //ASSEMBLE_BINARY_FILE_WRITER_H

@@ -11,7 +11,8 @@
 #include "../../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.h"
 #include "../../util/logger.h"
 
-enum ExecutionExitCode execute_copprocessor_register_transfer(struct CoprocessorRegisterTransferInstruction instruction) {
+enum ExecutionExitCode
+execute_copprocessor_register_transfer(struct CoprocessorRegisterTransferInstruction instruction) {
     if (!should_execute(instruction.cond)) {
         return DIDNT_EXECUTE;
     }
@@ -84,7 +85,7 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
         default:
             assert(false);
     }
-    
+
     CPNum15_CRn2:
     switch (instruction.CPOpc) {
         case 0:
@@ -208,7 +209,7 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
         case 2:
             goto CPNum15_CRn0_CPOpc0_CRm2;
         default:
-            if (instruction.CRm < 0|| instruction.CRm >= 7) {
+            if (instruction.CRm < 0 || instruction.CRm >= 7) {
                 goto CPNum15_CRn0_CPOpc0_CRm3_7;
             }
             return OK;
@@ -216,19 +217,18 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
 
 
     CPNum15_CRn1_CPOpc0:
-      switch (instruction.CRm) {
-          case 0:
-              goto CPNum15_CRn1_CPOpc0_CRm0;
-          case 1:
-              goto CPNum15_CRn1_CPOpc0_CRm1;
-          default:
-              assert(false);
-      }
-
+    switch (instruction.CRm) {
+        case 0:
+            goto CPNum15_CRn1_CPOpc0_CRm0;
+        case 1:
+            goto CPNum15_CRn1_CPOpc0_CRm1;
+        default:
+            assert(false);
+    }
 
 
     CPNum15_CRn1_CPOpc1:
-    switch(instruction.CRm) {
+    switch (instruction.CRm) {
         case 0:
             goto CPNum15_CRn1_CPOpc0_CRm0;
         case 1:
@@ -524,7 +524,6 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
         default:
             assert(false);
     }
-
 
 
     CPNum15_CRn2_CPOpc0_CRm0:
@@ -915,8 +914,6 @@ enum ExecutionExitCode execute_copprocessor_register_transfer(struct Coprocessor
         default:
             assert(false);
     }
-
-
 
 
 }

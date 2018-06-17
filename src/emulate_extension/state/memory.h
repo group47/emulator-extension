@@ -74,4 +74,5 @@ Byte get_byte_from_memory_raw(ByteAddress address);
 HalfWord get_halfword_from_memory_raw(ByteAddress address);
 
 Word get_word_from_memory_raw(ByteAddress address);
+
 #endif //SRC_MEMORY_H

@@ -17,5 +17,4 @@
 #include "../../basic_typedefs.h"
 
 
-
 #endif //SRC_SYSTEM_CONTROL_COPROCESSOR_H

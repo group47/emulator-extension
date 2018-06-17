@@ -118,7 +118,6 @@ int main(int argc, const char **argv) {
 }
 
 
-
 long parse_num(char *str) {
     char *check_valid = "\0";
     long res = strtol(str, &check_valid, 0);

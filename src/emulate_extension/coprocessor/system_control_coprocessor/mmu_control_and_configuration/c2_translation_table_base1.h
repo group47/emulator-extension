@@ -11,7 +11,6 @@
 #endif //SRC_C2_TRANSLATION_TABLE_BASE1_H
 
 
-
 struct C2_translation_table_base_register1 {
     bool C : 1;
     bool S : 1;
@@ -24,7 +23,9 @@ struct C2_translation_table_base_register1 {
 
 enum ExecutionExitCode
 execute_translation_table_base_register1(struct CoprocessorRegisterTransferInstruction instruction);
+
 Word get_word_translation_table_base_register1();
 
 struct C2_translation_table_base_register1 get_translation_table_base_register1();
+
 void set_word_translation_table_base_register1(Word);

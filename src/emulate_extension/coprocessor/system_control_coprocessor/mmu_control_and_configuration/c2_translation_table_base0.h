@@ -11,7 +11,6 @@
 #include "../../../instructions/arm/coprocessor_register_transfer.h"
 
 
-
 struct C2_translation_table_base_register0 {
     bool C : 1;
     bool S : 1;
@@ -22,9 +21,11 @@ struct C2_translation_table_base_register0 {
 
 
 enum ExecutionExitCode execute_translation_table_base_register0(struct CoprocessorRegisterTransferInstruction);
+
 void init_c2_translation_table_base_register0();
 
 struct C2_translation_table_base_register0 get_translation_table_base_register0();
+
 uint32_t get_word_translation_table_base_register0();
 
 

@@ -8,7 +8,7 @@
 // todo: try to combine two access mode of register
 
 static bool BY_MVA; // access mode for accessing register
-                    // different access mode lead to different field of register
+// different access mode lead to different field of register
 
 
 struct C8_tlb_operations_register {

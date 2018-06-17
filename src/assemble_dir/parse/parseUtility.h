@@ -7,7 +7,11 @@
 
 #include "../../shared/instructions.h"
 #include "../tokenizer.h"
-struct Instruction parseExpression(char**, int, struct Token*);
-struct Instruction parseShiftedRegister(char**, int, struct Token*);
-struct Instruction parseRmShiftedRegister(char**, int, struct Token*);
+
+struct Instruction parseExpression(char **, int, struct Token *);
+
+struct Instruction parseShiftedRegister(char **, int, struct Token *);
+
+struct Instruction parseRmShiftedRegister(char **, int, struct Token *);
+
 #endif //SRC_PARSEUTILITY_H

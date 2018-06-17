@@ -16,8 +16,8 @@ const int MAX_TOKENS = 32;
 // Might need to distinguish them later
 
 
-int separateString2(char** tokens, char* str, char* characters) {
-    char* buffer = calloc(200, sizeof(char));
+int separateString2(char **tokens, char *str, char *characters) {
+    char *buffer = calloc(200, sizeof(char));
     int count = 0;
     int bufferLength = 0;
     int strLength = strlen(str);
@@ -55,10 +55,10 @@ int separateString2(char** tokens, char* str, char* characters) {
 }
 
 
-int separateSpecialCharacters(char** newTokens,
-                              char** tokens,
+int separateSpecialCharacters(char **newTokens,
+                              char **tokens,
                               int numTokens,
-                              char* characters) {
+                              char *characters) {
     int sum = 0;
     for (int i = 0; i < numTokens; i++) {
         //char* p = tokens[i];
@@ -70,20 +70,20 @@ int separateSpecialCharacters(char** newTokens,
     return sum;
 }
 
-struct Instruction tokenizer(struct Token* token,
+struct Instruction tokenizer(struct Token *token,
                              char *instruction,
                              struct SymbolTable *symbolTable,
-                             struct SymbolTable* labelAddress,
+                             struct SymbolTable *labelAddress,
                              uint16_t current_address) {
-    if (instruction == NULL){
+    if (instruction == NULL) {
         assert(false);
     }
     // Breaking the lines into tokens
 
-    char* symbols = "-=#[]";
-    char** tokens = calloc(100, sizeof(char*));//todo
+    char *symbols = "-=#[]";
+    char **tokens = calloc(100, sizeof(char *));//todo
 
-    char* token1;
+    char *token1;
 
     token1 = strtok(instruction, ", ");
 
@@ -112,29 +112,28 @@ struct Instruction tokenizer(struct Token* token,
 
     if (tokens[0] == NULL) {
         for (int i = 0; i < countFirstPass; i++) {
-                free(tokens[i]);
+            free(tokens[i]);
         }
         free(tokens);
         return badValue;
     }
-
 
 
     struct Entry *entry = find(symbolTable, tokens[0]);
     struct InstructionInfo instructionInfo;
     if (entry == NULL) {
         for (int i = 0; i < countFirstPass; i++) {
-                free(tokens[i]);
+            free(tokens[i]);
         }
         free(tokens);
         return badValue;
     }
 
-    char** tokens2 = calloc(100,sizeof(char*));
+    char **tokens2 = calloc(100, sizeof(char *));
     memset(tokens2, 0, 100 * sizeof(char));
     for (int i = 0; i < 100; i++) {
         tokens2[i] = calloc(500, sizeof(char));
-        memset(tokens2[i],'\0',500*sizeof(char));
+        memset(tokens2[i], '\0', 500 * sizeof(char));
         assert(tokens2[i] != NULL);
     }
 
@@ -151,7 +150,7 @@ struct Instruction tokenizer(struct Token* token,
     struct Instruction result = entry->rawEntry.instructionInfo.tokenize(tokens2, 1, token);
 
     for (int i = 0; i < countFirstPass; i++) {
-            free(tokens[i]);
+        free(tokens[i]);
     }
     free(tokens);
 
@@ -164,7 +163,7 @@ struct Instruction tokenizer(struct Token* token,
     return result;
 }
 
-struct Token* initializeToken(struct Token* token) {
+struct Token *initializeToken(struct Token *token) {
     // Clearing the field is necessary, as not all of them are assigned
     /*
     if (token->instructionInfo != NULL) {

@@ -7,7 +7,8 @@
 #include "../../../state/emulator_state.h"
 #include "c1_auxiliary_control.h"
 
-enum ExecutionExitCode execute_co_auxiliary_control_register(struct CoprocessorRegisterTransferInstruction instruction) {
+enum ExecutionExitCode
+execute_co_auxiliary_control_register(struct CoprocessorRegisterTransferInstruction instruction) {
     /*
     if (instruction.loadStore == LOAD) {
         set_word_in_register(instruction.Rd, *((uint32_t*) &get_system_control_coprocessor()->c1_auxiliary_control_register));

@@ -14,5 +14,7 @@ struct C12_secure_or_non_secure_vector_base_address_register {
 }__attribute__((packed));
 
 
-enum ExecutionExitCode execute_secure_or_none_secure_vector_base_address_register(struct CoprocessorRegisterTransferInstruction);
+enum ExecutionExitCode
+execute_secure_or_none_secure_vector_base_address_register(struct CoprocessorRegisterTransferInstruction);
+
 #endif //SRC_C12_SECURE_OR_NON_SECURE_VECTOR_BASE_ADDRESS_H

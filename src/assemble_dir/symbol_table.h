@@ -17,20 +17,23 @@
 #include "token.h"
 
 struct InstructionInfo {
-    char* mnemonics;
+    char *mnemonics;
     enum InstructionType instructionType;
     enum Cond condCode;
     enum OpCode opCode;
     uint16_t address;
-    struct Instruction (*tokenize) (char**, int, struct Token*);
-    struct Instruction (*assemble)(struct Token*);
-    struct SymbolTable* symbolTable;
-    struct SymbolTable* labelAddress;
+
+    struct Instruction (*tokenize)(char **, int, struct Token *);
+
+    struct Instruction (*assemble)(struct Token *);
+
+    struct SymbolTable *symbolTable;
+    struct SymbolTable *labelAddress;
 };
 
 //
 struct Label {
-    char* label;
+    char *label;
     uint16_t address;
 };
 
@@ -55,16 +58,20 @@ struct SymbolTable {
 };
 
 
-bool addLabel(struct SymbolTable*, char*, uint16_t);
-struct InstructionInfo* intializeInstructionInfo();
-struct Entry* find(struct SymbolTable*, char*);
-bool addInstruction(struct SymbolTable*,
+bool addLabel(struct SymbolTable *, char *, uint16_t);
+
+struct InstructionInfo *intializeInstructionInfo();
+
+struct Entry *find(struct SymbolTable *, char *);
+
+bool addInstruction(struct SymbolTable *,
                     enum InstructionType,
-                    char*,
+                    char *,
                     enum Cond,
                     enum OpCode,
-                    struct Instruction (*tokenize) (char**,int, struct Token*),
-                    struct Instruction (*assemble)(struct Token*));
+                    struct Instruction (*tokenize)(char **, int, struct Token *),
+                    struct Instruction (*assemble)(struct Token *));
+
 void initializeInstructionCodeTable(struct SymbolTable *);
 
 #endif //ASSEMBLE_SYMBOL_TABLE_H

@@ -7,7 +7,9 @@
 
 #include "../../shared/instructions.h"
 #include "../tokenizer.h"
-struct Instruction assembleBranchInstruction(struct Token*);
+
+struct Instruction assembleBranchInstruction(struct Token *);
+
 struct Instruction parseBranch1(char **, int, struct Token *);
 
 #endif //SRC_PARSEBRANCH_H

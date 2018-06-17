@@ -13,4 +13,5 @@ struct C10_tlb_lockdown_register {
 }__attribute__((packed));
 
 enum ExecutionExitCode execute_tlb_lockdown_register(struct CoprocessorRegisterTransferInstruction);
+
 #endif //SRC_C10_TLB_LOCKDOWN_H
