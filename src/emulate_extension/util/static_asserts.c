@@ -6,6 +6,7 @@
 #include "../instructions/arm/arm_instruction.h"
 #include "../instructions/thumb/thumb_instruction.h"
 #include "../mmu/address.h"
+#include "../mmu/first_level_descriptor.h"
 
 /**
  * these assertions act as basic sanity checks on struct declarations.
@@ -69,4 +70,24 @@ void do_asserts(void) {
     assert(sizeof(union PhysicalAddress) == sizeof(uint32_t));
     assert(sizeof(union PhysicalAddress) == sizeof(uint32_t));
     assert(sizeof(union ModifiedVirtualAddress) == sizeof(uint32_t));
+    assert(sizeof(struct V6_fd_translation_fault00) == sizeof(uint32_t));
+    assert(sizeof(struct V6_fd_coarse_page_table) == sizeof(uint32_t));
+    assert(sizeof(struct V6_fd_section) == sizeof(uint32_t));
+    assert(sizeof(struct V6_fd_supersection) == sizeof(uint32_t));
+    assert(sizeof(struct V6_fd_translation_fault11) == sizeof(uint32_t));
+    assert(sizeof(struct Backwards_fd_ignored) == sizeof(uint32_t));
+    assert(sizeof(struct Backwards_fd_course_page_table) == sizeof(uint32_t));
+    assert(sizeof(struct Backwards_fd_section) == sizeof(uint32_t));
+    assert(sizeof(struct Backwards_fd_supersection) == sizeof(uint32_t));
+    assert(sizeof(struct Backwards_fd_reserved) == sizeof(uint32_t));
+    assert(sizeof(struct V6_fd_section) == sizeof(uint32_t));
+    assert(sizeof(struct V6_fd_coarse_page_table) == sizeof(uint32_t));
+    assert(sizeof(struct V6_fd_supersection) == sizeof(uint32_t));
+    assert(sizeof(struct V6_fd_translation_fault00) == sizeof(uint32_t));
+    assert(sizeof(struct V6_fd_translation_fault11) == sizeof(uint32_t));
+    assert(sizeof(struct Backwards_fd_course_page_table) == sizeof(uint32_t));
+    assert(sizeof(struct Backwards_fd_ignored) == sizeof(uint32_t));
+    assert(sizeof(struct Backwards_fd_reserved) == sizeof(uint32_t));
+    assert(sizeof(struct Backwards_fd_section) == sizeof(uint32_t));
+    assert(sizeof(struct Backwards_fd_supersection) == sizeof(uint32_t));
 }
