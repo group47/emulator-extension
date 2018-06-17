@@ -60,6 +60,11 @@ int get_operand2(uint16_t secondOperand,
                     *operand2_val |= (0x1 << 31);
                 }
             }
+            if(shift_type == lsr){
+                //this means lsr #32
+                *carry_out = (*operand2_val & 0xf0000000) ? true: false;
+                *operand2_val = 0;
+            }
         } else {
             switch (shift_type) {
                 case lsl:
