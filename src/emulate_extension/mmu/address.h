@@ -40,7 +40,7 @@ struct First_level_descriptor_address {
 struct Second_level_descriptor_address {
     uint8_t filler00 : 2;
     uint16_t second_level_table_index : 8;
-    uint32_t coarse_page_table_base_address : 12;
+    uint32_t coarse_page_table_base_address : 22;
 }__attribute__((packed));
 
 

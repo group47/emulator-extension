@@ -11,6 +11,7 @@
 #include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.h"
 #include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.h"
 #include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.h"
+#include "../util/static_asserts.h"
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <zconf.h>
@@ -145,6 +146,7 @@ void init_registers(struct CPUState *state) {
 
 
 void boot(FILE *kernel, enum CommandLineFlags flags) {
+    do_asserts();
     init_prepared_ram(kernel, flags);
     init_registers(getCPUState());
     set_memory(prepared_ram);
