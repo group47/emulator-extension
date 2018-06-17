@@ -4,6 +4,7 @@
 
 #include <stdint.h>
 #include <assert.h>
+#include <string.h>
 #include "translation.h"
 #include "address.h"
 #include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base_control.h"
@@ -48,6 +49,24 @@ union PhysicalAddress translate_address(VirtualAddress virtualAddress) {
 
 #define KILOBYTE 1024
 
+enum TableType which_table(union ModifiedVirtualAddress modifiedVirtualAddress){
+    struct C2_translation_table_base_control_register ttbcr = get_translation_table_base_control_register();
+    const uint32_t n = ttbcr.n;
+    const uint32_t mva_as_word = *(uint32_t*)&modifiedVirtualAddress;
+    assert(n >= 0 && n <= 7);
+    if(n == 0){
+        return TABLE_0;
+    }else{
+        if((mva_as_word >> (32 - n)) == 0){//todo off by one?
+            return TABLE_0;
+        }else{
+            return TABLE_1;
+        }
+
+    }
+}
+
+
 /**
  * calculates page size based on the N in the Translation Table Base Control Register
  * @return the page size for table base 0
@@ -88,7 +107,7 @@ ByteAddress get_page_table_boundary_size_table_base_0(){
  *      else: use table base register 1
  * @return
  */
-ByteAddress get_translation_table_base(union ModifiedVirtualAddress modifiedVirtualAddress){
+ByteAddress get_translation_table_base(enum TableType table){
     /*
      * Comment by Rory:
      * If N is zero, translation table base register0 is used for all addresses
@@ -99,11 +118,6 @@ ByteAddress get_translation_table_base(union ModifiedVirtualAddress modifiedVirt
      * there are two table base registers at all times, which can be used by either the os or
      * the user,however table base 1 is preferred for the os. The size of one can be set to zero if desired.
      * */
-    struct C2_translation_table_base_control_register ttbcr = get_translation_table_base_control_register();
-    const uint32_t n = ttbcr.n;
-    const uint32_t mva_as_word = *(uint32_t*)&modifiedVirtualAddress;
-    assert(n >= 0 && n <= 7);
-
 //    bool one_base_for_all_address = !(*(struct C2_translation_table_base_control_register *)&ttbcr).n;
 
     // whether a process in virtual space or os is access the memory
@@ -118,17 +132,13 @@ ByteAddress get_translation_table_base(union ModifiedVirtualAddress modifiedVirt
 //        return get_word_translation_table_base_register1();
 //    }
 
-    if(n == 0){
+    if(table == TABLE_0){
         return get_page_table_boundary_size_table_base_0()*(get_translation_table_base_register0().translation_table_base_0_unp_sbz >> 9);// 9 is the isize of unp/spz
     }
     else{
-        if((mva_as_word >> (32 - n)) == 0){//todo off by one?
-            return get_page_table_boundary_size_table_base_0()*(get_translation_table_base_register0().translation_table_base_0_unp_sbz >> (9 - n));
-        }
-        else{
-            //here we can just return the value in the register, with the s/c bits masked, since the size of the table base does not change
-            return get_word_translation_table_base_register1() & 0xff;
-        }
+        //here we can just return the value in the register, with the s/c bits masked, since the size of the table base does not change
+        return get_word_translation_table_base_register1() & 0xff;
+
     }
 
     /**
@@ -139,18 +149,46 @@ ByteAddress get_translation_table_base(union ModifiedVirtualAddress modifiedVirt
 }
 
 
+
+/**
+ * this effectively implements diagram 6-11 from the arm1136 documentation
+ * @return
+ */
+struct First_level_descriptor_address calculate_first_level_descriptor_address(
+    union ModifiedVirtualAddress mva,enum TableType table){
+    const uint8_t  N = get_translation_table_base_control_register().n;
+    struct First_level_descriptor_address res;
+    if(table == TABLE_0){
+        /**
+         * we take the translation table base address and with first level table index from the mva
+         */
+        //todo chek this in debugger
+        memset(&res,0, sizeof(struct First_level_descriptor_address));
+        uint32_t val = ((*(uint32_t*)&res) | get_word_translation_table_base_register0());
+        res = *(struct First_level_descriptor_address *)&val;
+        const uint32_t first_level_index = (mva.mvafd.first_level_table_index >> N);
+        res.filler00 = 0;
+        res.first_level_table_index = 0;
+        res.first_level_table_index |= first_level_index;
+    }else if(table == TABLE_1){
+        res.filler00 = 0;
+        res.translation_base = get_translation_table_base_register1().translation_table_base_1;
+        res.first_level_table_index = mva.mvafd.first_level_table_index;
+    }else{
+        assert(false);
+    }
+    return res;
+}
+
 // If you figured out how to get the mva, then you should be able to get the physical address
 // I'm gonna assume it's all correct, there are many checks to be made
 union PhysicalAddress translation(union ModifiedVirtualAddress mva) {
-    Word ttbr = get_translation_table_base(mva);
+    const enum TableType tableType = which_table(mva);
+    const Word ttbr = get_translation_table_base(tableType);
 
-    struct First_level_descriptor_address fd_address;
-    fd_address.filler00 = 0;
-    fd_address.first_level_table_index = mva.mvafd.first_level_table_index;
-    fd_address.translation_base = (*(struct C2_translation_table_base_register0 *) &ttbr).translation_table_base_0_unp_sbz;
-
-    union First_level_descriptor fd = get_first_level_descriptor(fd_address);
-
+    const struct First_level_descriptor_address fd_address = calculate_first_level_descriptor_address(mva,
+                                                                                                tableType);
+    const union First_level_descriptor fd = get_first_level_descriptor(fd_address);
     // todo: determine between v6 and backward compatible format
     union Second_level_descriptor sd;
     struct Second_level_descriptor_address sd_address;

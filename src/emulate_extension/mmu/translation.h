@@ -6,6 +6,9 @@
 #define SRC_TRANSLATION_H
 
 typedef uint32_t VirtualAddress;
+enum TableType{
+  TABLE_0,TABLE_1
+};
 
 union PhysicalAddress translate_address(VirtualAddress virtualAddress);
 
