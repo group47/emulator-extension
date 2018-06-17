@@ -250,7 +250,10 @@ union PhysicalAddress
 second_level_large_page_walk(union ModifiedVirtualAddress mva, union Second_level_descriptor descriptor);
 
 union PhysicalAddress
-second_level_small_page_walk(union ModifiedVirtualAddress address, union Second_level_descriptor descriptor);
+second_level_small_page_walk(union ModifiedVirtualAddress mva, union Second_level_descriptor descriptor);
+
+union PhysicalAddress
+second_level_extended_small_page(union ModifiedVirtualAddress mva, union Second_level_descriptor descriptor);
 
 union PhysicalAddress second_level_walk(union ModifiedVirtualAddress mva, union Second_level_descriptor descriptor) {
     const bool backward_compatible_mode = get_control_register().xp == 0;
@@ -266,16 +269,24 @@ union PhysicalAddress second_level_walk(union ModifiedVirtualAddress mva, union 
             if (backward_compatible_mode) {
                 return second_level_small_page_walk(mva,descriptor);
             } else {
-                //todo
+                return second_level_extended_small_page(mva,descriptor);
             }
             break;
         case 0b11:
-            assert(backward_compatible_mode);
+            assert(backward_compatible_mode);//todo what about non-backwards compatible
             //extended small page
-            //todo
+            return second_level_extended_small_page(mva,descriptor);
         default:
             assert(false);
     }
+}
+
+union PhysicalAddress
+second_level_extended_small_page(union ModifiedVirtualAddress mva, union Second_level_descriptor descriptor) {
+    union PhysicalAddress result;
+    result.physicalAddress_small_page.page_base_address = descriptor.backwards_sd_extended_small_page.extended_small_page_base_address;
+    result.physicalAddress_small_page.page_index= mva.mvasd1.filler;
+    return result;
 }
 
 union PhysicalAddress
