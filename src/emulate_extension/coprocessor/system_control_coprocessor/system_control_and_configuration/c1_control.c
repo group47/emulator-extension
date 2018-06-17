@@ -6,6 +6,7 @@
 #include <assert.h>
 #include "c1_control.h"
 #include "../../../state/emulator_state.h"
+#include "../../../util/logger.h"
 
 
 static struct C1_control_register c1_control_register;
@@ -19,6 +20,11 @@ enum ExecutionExitCode execute_c1_control_register(struct CoprocessorRegisterTra
         Word val = get_word_from_register(instruction.Rd);
         c1_control_register = *(struct C1_control_register *) &val;
 //        assert(!c1_control_register.m);
+        if (c1_control_register.m) {
+            enable_log();
+        } else {
+            disable_log();
+        }
     } else {
         assert(false);
     }

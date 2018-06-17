@@ -1,14 +1,14 @@
 //
 // Created by francis on 6/1/18.
 //
+#include "../util/entry_point.h"
 #include <assert.h>
-#include <stdio.h>
 #include <memory.h>
 #include <endian.h>
 #include "../instructions/thumb/thumb_instruction.h"
 #include "exception.h"
-#include "../util/entry_point.h"
-#include "emulator_state.h"
+#include "../mmu/translation.h"
+#include "../mmu/address.h"
 
 static struct CPUState state;
 
@@ -77,7 +77,7 @@ Word get_set_word_from_special_register(RegisterAddress address, bool set, Word 
 }
 
 Word get_set_word_from_register(RegisterAddress address, bool set, Word val, struct CPUState *state_in) {
-    if (has_exceptions()) {
+    if (has_exceptions_prev(state_in)) {
         return 0;//don't allow register access if exceptions raised
     }
     assert(address != SPSR_ADDRESS);
@@ -255,6 +255,11 @@ enum ExceptionFlag get_exception_flags() {
     return state.flags;
 }
 
+enum ExceptionFlag get_exception_flags_prev(struct CPUState *state_in) {
+    return state_in->flags;
+}
+
+
 struct CPSR_Struct getCPSR() {
     return state.CPSR;
 }
@@ -371,11 +376,12 @@ void transfer_fetched_to_decoded_and_load_fetched() {
             state.fetched_valid = true;
         }
     } else if (get_mode() == ARM) {
-        if (memory_access_will_fail(get_word_from_register(PC_ADDRESS))) {
+        const union PhysicalAddress address = translate_address(get_word_from_register(PC_ADDRESS));
+        if (memory_access_will_fail(*(uint32_t *) &address)) {
             state.fetched_prefetch_aborted = true;
             state.fetched_valid = true;
         } else {
-            state.fetched_arm = get_word_from_memory(get_word_from_register(PC_ADDRESS));
+            state.fetched_arm = get_word_from_memory(*(uint32_t *) &address);
             state.fetched_valid = true;
         }
     } else {
