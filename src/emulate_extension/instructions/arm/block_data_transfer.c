@@ -18,9 +18,10 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
     if (instruction.psrAndForceUserBit)
         assert(get_operating_mode() != usr); // from ARM_doc, 4.11.4
 
-    ByteAddress address = get_word_from_register(instruction.Rn);
+    const ByteAddress rn_val = get_word_from_register(instruction.Rn);
+    ByteAddress address = rn_val;
 
-    int numOfRegisterUsed = 0;
+    uint32_t numOfRegisterUsed = 0;
 
     for (int i = 0; i < NUM_GENERAL_PURPOSE_REGISTERS_ARM; i++) {
         if (instruction.registerList & 0x1 << i) {
@@ -32,7 +33,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
     get_word_from_memory(address + 4 * (numOfRegisterUsed - 1));
 
     uint16_t maskPC = 0x1 << 15;
-    uint32_t offset = 1 * 4;
+    uint32_t offset = numOfRegisterUsed * 4;
 
     bool R15InRegisterList = instruction.registerList & maskPC;
     enum OperatingMode oldMode = get_operating_mode();
@@ -89,11 +90,11 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
         }
     }
 
-    if (!instruction.prePostIndexingBit && instruction.writeBackBit) {//todo this instruction could need checking
+    if (instruction.writeBackBit) {
         if (instruction.upDownBit) {
-            set_word_in_register(instruction.Rn, address + numOfRegisterUsed * 4);
+            set_word_in_register(instruction.Rn, rn_val + (numOfRegisterUsed)* 4);
         } else {
-            set_word_in_register(instruction.Rn, address - numOfRegisterUsed * 4);
+            set_word_in_register(instruction.Rn, rn_val - (numOfRegisterUsed)* 4);
         }
     }
 
