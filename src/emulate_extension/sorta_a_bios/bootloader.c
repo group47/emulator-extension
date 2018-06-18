@@ -130,6 +130,11 @@ void init_registers(struct CPUState *state) {
     state->general_registers[0] = 0;
     state->general_registers[1] = (uint32_t) 0x00000183;//pretent to be a versatilepb for testing
     state->general_registers[2] = PARAMETER_BLOCK_START_ADDRESS;
+    state->SPSR_abt.M = abt;
+    state->SPSR_fiq.M = fiq;
+    state->SPSR_svc.M = svc;
+    state->SPSR_irq.M = irq;
+    state->SPSR_und.M = und;
     //todo mmu and instruction/data cache turn off.
     state->CPSR.M = svc;
     state->CPSR.I = true;
