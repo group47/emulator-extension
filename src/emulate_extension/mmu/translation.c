@@ -175,7 +175,7 @@ struct First_level_descriptor_address calculate_first_level_descriptor_address(
         uint32_t val = get_word_translation_table_base_register0();
         val >>= (14 - N);
         val <<= (14 - N);
-        const uint32_t first_level_index = ((*(uint32_t *) &mva) << N) >> (18 + N) & 0b00;
+        const uint32_t first_level_index = (((*(uint32_t *) &mva) << N) >> (18 + N)) & 0xfffffffc;
         val |= first_level_index;
         res = *(struct First_level_descriptor_address *) &val;
         assert(res.filler00 == 0);
