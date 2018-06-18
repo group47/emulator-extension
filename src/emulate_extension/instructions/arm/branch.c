@@ -9,7 +9,7 @@
 
 enum ExecutionExitCode execute_instruction_branch(struct BranchInstruction instruction) {
     if (!should_execute(instruction.cond)) {
-        if(get_word_from_register(PC_ADDRESS) - 8 == 0x10184){
+        if(get_word_from_register(PC_ADDRESS) - 4 == 0x10184){
             enable_log();
         }
         return DIDNT_EXECUTE;
