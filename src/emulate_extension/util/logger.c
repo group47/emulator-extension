@@ -146,7 +146,7 @@ void print_debug_instruction(struct CPUState state) {
                                               "ARM_SINGLE_DATA_SWAP",
                                               "ARM_SINGLE_DATA_TRANSFER",
                                               "ARM_SOFTWARE_INTERRUPT",
-                                              "ARM_UNDEFINED", " ", " ", " "};
+                                              "ARM_UNDEFINED", "ARM_TRANSFER_PSR_TO_REGISTER", "ARM_TRANSFER_REGISTER_CONTENTS_TO_PSR", "ARM_TRANSFER_REGISTER_CONTENTS_OR_IMMEDIATE_VALUE_TO_PSR_FLAG"};
     static const char *opcode_to_string[18] = {"and",
                                                "eor",
                                                "sub",
@@ -216,7 +216,10 @@ void print_debug_instruction(struct CPUState state) {
         case ARM_INVALID:
             break;
         case ARM_TRANSFER_PSR_TO_REGISTER:
+            rd = instruct.rawArmInstruction.transferPSRContentsToRegister.Rd;
+            break;
         case ARM_TRANSFER_REGISTER_CONTENTS_TO_PSR:
+            break;
         case ARM_TRANSFER_REGISTER_CONTENTS_OR_IMMEDIATE_VALUE_TO_PSR_FLAG:
             break;
     }
