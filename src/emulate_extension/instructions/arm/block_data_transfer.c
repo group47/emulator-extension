@@ -89,7 +89,7 @@ enum ExecutionExitCode execute_instruction_block_data_transfer(struct BlockDataT
         }
     }
 
-    if (!instruction.prePostIndexingBit) {
+    if (!instruction.prePostIndexingBit && instruction.writeBackBit) {//todo this instruction could need checking
         if (instruction.upDownBit) {
             set_word_in_register(instruction.Rn, address + numOfRegisterUsed * 4);
         } else {
