@@ -18,13 +18,13 @@ static uint32_t past_states_i = 0;
 static bool log_disabled = true;
 
 void print_past_registers(struct CPUState state) {
-    print_debug_instruction(state);
     for (uint8_t i = 0; i < 15; ++i) {
         fprintf(get_logfile(), "R%02d=%08x\n", i, get_set_word_from_register(i, false, -1, &state));
     }
     fprintf(get_logfile(), "R%02d=%08x\n", PC_ADDRESS, get_set_word_from_register(PC_ADDRESS, false, -1, &state) - 8);
     fprintf(get_logfile(), "PSR=%08x\n", get_past_CPSR(state));
     fprintf(get_logfile(), "-Z--\nA\nsvc32\n");
+    print_debug_instruction(state);
 }
 
 
