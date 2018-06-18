@@ -11,6 +11,7 @@
 #include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.h"
 #include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_domain_access_control.h"
 #include "../coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.h"
+#include "../coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.h"
 #include "../util/static_asserts.h"
 #include <sys/mman.h>
 #include <fcntl.h>
@@ -146,6 +147,7 @@ void init_registers(struct CPUState *state) {
     init_c3_context_id_register();
     init_c2_translation_table_base_register0();
     init_C3_domain_access_control_register();
+    init_c7_cache_dirty_status_register();
 
 }
 
