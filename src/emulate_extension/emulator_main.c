@@ -71,8 +71,11 @@ enum CommandLineFlags parseCommandLine(int argc, const char **argv) {
             invalid_arg = arg;
         }
     }
-    if (!(flags | KERNEL))
+    if (flags & KERNEL) {
+    } else {
         flags |= TERMINATE_AFTER_200;//current default
+
+    }
     return flags;
 }
 
