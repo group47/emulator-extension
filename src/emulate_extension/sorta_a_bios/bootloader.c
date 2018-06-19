@@ -74,7 +74,7 @@ void init_atag_none() {
 
 void atag_ramdisk(FILE *initrd) {
     Byte *current_kilobyte = calloc(1024, sizeof(Byte));//read one kilobyte at once
-    Byte *temp_initrd = calloc(1024 * 1024, sizeof(Byte));//hopefully nobody wants to load a initrd > 1 megabyte
+    Byte *temp_initrd = calloc(32 * 1024 * 1024, sizeof(Byte));//hopefully nobody wants to load a initrd > 32 megabyte
     size_t current_size = 0;
     while (fread(current_kilobyte, sizeof(Byte), 1024, initrd)) {
         memcpy(temp_initrd + current_size, current_kilobyte, 1024 * sizeof(Byte));
