@@ -22,8 +22,8 @@ execute_translation_table_base_register0(struct CoprocessorRegisterTransferInstr
     return OK;
 }
 
-uint32_t get_word_translation_table_base_register0() {
-    return *(uint32_t *) &c2_translation_table_base_register0;
+Word get_word_translation_table_base_register0() {
+    return *(Word *) &c2_translation_table_base_register0;
 }
 
 struct C2_translation_table_base_register0 get_translation_table_base_register0() {

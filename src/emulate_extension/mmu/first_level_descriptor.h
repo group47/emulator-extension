@@ -116,7 +116,6 @@ struct Backwards_fd_reserved {
     uint32_t nothing : 30;
 }__attribute__((packed));
 
-
 union First_level_descriptor {
     struct V6_fd_section v6_fd_section;
     struct V6_fd_coarse_page_table v6_fd_coarse_page_table;
