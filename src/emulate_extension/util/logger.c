@@ -15,15 +15,16 @@
 
 static struct LogEntry *entries;
 static uint32_t past_states_i = 0;
+static bool log_disabled = true;
 
 void print_past_registers(struct CPUState state) {
-    print_debug_instruction(state);
     for (uint8_t i = 0; i < 15; ++i) {
         fprintf(get_logfile(), "R%02d=%08x\n", i, get_set_word_from_register(i, false, -1, &state));
     }
     fprintf(get_logfile(), "R%02d=%08x\n", PC_ADDRESS, get_set_word_from_register(PC_ADDRESS, false, -1, &state) - 8);
     fprintf(get_logfile(), "PSR=%08x\n", get_past_CPSR(state));
     fprintf(get_logfile(), "-Z--\nA\nsvc32\n");
+    print_debug_instruction(state);
 }
 
 
@@ -47,7 +48,18 @@ void print_entry(struct LogEntry entry) {
     }
 }
 
+void disable_log() {
+    log_disabled = true;
+}
+
+void enable_log() {
+    log_disabled = false;
+}
+
 void add_to_log(struct LogEntry entry) {
+    if (log_disabled) {
+        return;
+    }
     entries[past_states_i] = entry;
     past_states_i++;
 }
@@ -134,7 +146,7 @@ void print_debug_instruction(struct CPUState state) {
                                               "ARM_SINGLE_DATA_SWAP",
                                               "ARM_SINGLE_DATA_TRANSFER",
                                               "ARM_SOFTWARE_INTERRUPT",
-                                              "ARM_UNDEFINED", " ", " ", " "};
+                                              "ARM_UNDEFINED", "ARM_TRANSFER_PSR_TO_REGISTER", "ARM_TRANSFER_REGISTER_CONTENTS_TO_PSR", "ARM_TRANSFER_REGISTER_CONTENTS_OR_IMMEDIATE_VALUE_TO_PSR_FLAG"};
     static const char *opcode_to_string[18] = {"and",
                                                "eor",
                                                "sub",
@@ -204,11 +216,15 @@ void print_debug_instruction(struct CPUState state) {
         case ARM_INVALID:
             break;
         case ARM_TRANSFER_PSR_TO_REGISTER:
+            rd = instruct.rawArmInstruction.transferPSRContentsToRegister.Rd;
+            break;
         case ARM_TRANSFER_REGISTER_CONTENTS_TO_PSR:
+            break;
         case ARM_TRANSFER_REGISTER_CONTENTS_OR_IMMEDIATE_VALUE_TO_PSR_FLAG:
             break;
     }
-    fprintf(get_logfile(), "%s Rd:%d Rn:%d extra:%s\n", type_to_string_[ARMfromRaw(get_decoded_arm()).type], rd, rn,
+    fprintf(get_logfile(), "%s Rd:%d Rn:%d extra:%s\n",
+            type_to_string_[ARMfromRaw(*(union RawArmInstruction *) &state.decoded_arm).type], rd, rn,
             extra);
 }
 

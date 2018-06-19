@@ -165,6 +165,8 @@ void set_spsr_by_mode(struct CPSR_Struct cpsr_struct, enum OperatingMode mode);
 
 struct CPUState *getCPUState();
 
+enum ExceptionFlag get_exception_flags_prev(struct CPUState *state_in);
+
 #endif //SRC_EMULATOR_STATE_H
 
 //void set_word_in_system_control_coprocessor_register(enum CoprocessorRegisterType, Word val);

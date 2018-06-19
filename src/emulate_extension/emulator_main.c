@@ -16,6 +16,7 @@
 
 static const char *binary_path = "";
 static const char *kernel_path = "";
+static const char *initrd_path = "";
 static const char *invalid_arg = "";
 static const char *logfile_path = "";
 static const char *sp_print_offset = "0";
@@ -51,6 +52,9 @@ enum CommandLineFlags parseCommandLine(int argc, const char **argv) {
         } else if (arg == strstr(arg, "--kernel=")) {
             kernel_path = arg + sizeof("--kernel=") / sizeof(char) - 1;
             flags |= KERNEL;
+        } else if (arg == strstr(arg, "--initrd=")) {
+            initrd_path = arg + sizeof("--initrd=") / sizeof(char) - 1;
+            flags |= INITRD;
         } else if (0 == strcmp(arg, "--zimage")) {
             flags |= ZIMAGE;
         } else if (0 == strcmp(arg, "--qemu-print")) {
@@ -68,8 +72,11 @@ enum CommandLineFlags parseCommandLine(int argc, const char **argv) {
             invalid_arg = arg;
         }
     }
-    if (!(flags | KERNEL))
+    if (flags & KERNEL) {
+    } else {
         flags |= TERMINATE_AFTER_200;//current default
+
+    }
     return flags;
 }
 
@@ -103,7 +110,7 @@ int main(int argc, const char **argv) {
     }
     if (flags & KERNEL) {
         set_logfile(logfile);
-        boot_loader_entry_point(kernel_path, flags);
+        boot_loader_entry_point(kernel_path, initrd_path, flags);
         return 0;
     }
     FILE *fp = fopen(binary_path, "r");

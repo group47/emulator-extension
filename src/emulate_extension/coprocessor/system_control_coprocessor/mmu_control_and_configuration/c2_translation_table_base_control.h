@@ -10,11 +10,8 @@
 #include "../../../basic_typedefs.h"
 
 struct C2_translation_table_base_control_register {
-    uint8_t n : 2;
-    bool sbz : 1;
-    bool pd0 : 1;
-    bool pd1 : 1;
-    uint32_t unp_sbz : 27;
+    uint8_t n : 3;
+    uint32_t unp_sbz : 29;
 }__attribute__((packed));
 #endif //SRC_C2_TRANSLATION_TABLE_BASE_CONTROL_H
 

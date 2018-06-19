@@ -8,7 +8,7 @@
 
 bool should_execute(enum Cond cond) {
     //todo check this is correct with main spec
-    const bool unsignedHigher = getCPSR().C && !getCPSR().Z;
+    const bool unsignedHigher = getCPSR().C && !(getCPSR().Z);
     const bool greaterOrEqual = getCPSR().N == getCPSR().V;
     const bool greater = !getCPSR().Z && greaterOrEqual;
     switch (cond) {

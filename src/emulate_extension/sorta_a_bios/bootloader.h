@@ -17,7 +17,7 @@
 #define MAGIC_NUMBER_LOCATION 0x24
 
 
-void boot(FILE *kernel_binary, enum CommandLineFlags);
+void boot(FILE *kernel_binary, FILE *initrd_binary, enum CommandLineFlags);
 
 struct ATAG_CORE {
     uint32_t flags;
@@ -116,6 +116,6 @@ struct ATAG {
 };
 
 
-void boot_loader_entry_point(const char *image_path, enum CommandLineFlags flags);
+void boot_loader_entry_point(const char *image_path, const char *initrd, enum CommandLineFlags flags);
 
 #endif //SRC_BOOTLOADER_H

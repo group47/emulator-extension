@@ -43,7 +43,10 @@ union ModifiedVirtualAddress modify_virtual(VirtualAddress virtualAddress) {
 
 
 union PhysicalAddress translate_address(VirtualAddress virtualAddress) {
-    return translation(modify_virtual(virtualAddress));
+    if (is_mmu_enabled()) {
+        return translation(modify_virtual(virtualAddress));
+    } else
+        return *(union PhysicalAddress *) &virtualAddress;
 }
 
 
@@ -169,12 +172,13 @@ struct First_level_descriptor_address calculate_first_level_descriptor_address(
          */
         //todo chek this in debugger
         memset(&res, 0, sizeof(struct First_level_descriptor_address));
-        uint32_t val = ((*(uint32_t *) &res) | get_word_translation_table_base_register0());
+        uint32_t val = get_word_translation_table_base_register0();
+        val >>= (14 - N);
+        val <<= (14 - N);
+        const uint32_t first_level_index = (((*(uint32_t *) &mva) << N) >> (18 + N)) & 0xfffffffc;
+        val |= first_level_index;
         res = *(struct First_level_descriptor_address *) &val;
-        const uint32_t first_level_index = (mva.mvafd.first_level_table_index >> N);
-        res.filler00 = 0;
-        res.first_level_table_index = 0;
-        res.first_level_table_index |= first_level_index;
+        assert(res.filler00 == 0);
     } else if (table == TABLE_1) {
         res.filler00 = 0;
         res.translation_base = get_translation_table_base_register1().translation_table_base_1;

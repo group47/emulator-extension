@@ -46,9 +46,12 @@ int get_operand2(uint16_t secondOperand,
             assert(shiftByRegister.Rs != PC_ADDRESS);
 
             shift_amount = (uint8_t) (get_word_from_register(shiftByRegister.Rs) &
-                                      0xff); //last byte//todo is this correct
+                                      0xff); //last byte
             shift_type = shiftByRegister.shift_type;
             *operand2_val = get_word_from_register(shiftByRegister.Rm);
+            if(shiftByRegister.Rm == PC_ADDRESS){// If pc is used the pc is one byte further ahead.
+                *operand2_val += 4;
+            }
         } else {
 
             assert(flag != IMMEDIATE_BIT_FLAG_SINGLE_DATE_TRANSFER || immediateFalse.Rm != PC_ADDRESS);

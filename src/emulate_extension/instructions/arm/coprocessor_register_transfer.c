@@ -285,7 +285,8 @@ execute_copprocessor_register_transfer(struct CoprocessorRegisterTransferInstruc
         case 14:
             goto CPNum15_CRn7_COpc0_CRm14;
         default:
-            assert(false);
+            return OK; //defined as nop  see page 3-94 ofarm1136 doc
+//            assert(false);
     }
 
     CPNum15_CRn8_CPOpc0:
@@ -643,6 +644,7 @@ execute_copprocessor_register_transfer(struct CoprocessorRegisterTransferInstruc
     CPNum15_CRn7_COpc0_CRm14:
     switch (instruction.CP) {
         case 0:
+            return OK;
         case 1:
         case 2:
         default:
