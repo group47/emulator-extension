@@ -5,6 +5,7 @@
 #include <memory.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "util/static_asserts.h"
 #include "util/entry_point.h"
 #include "emulator_main.h"
