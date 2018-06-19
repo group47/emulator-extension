@@ -3,11 +3,11 @@
 //
 
 #include <ctype.h>
-#include <lzma.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <x86intrin.h>
+#include <stdint.h>
 
 long strtolWrapper(char *str) {
     while (!isdigit(*str)) {

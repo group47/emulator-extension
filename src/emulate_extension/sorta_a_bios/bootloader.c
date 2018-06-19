@@ -17,6 +17,8 @@
 #include <fcntl.h>
 #include <zconf.h>
 
+//We have tons of ram theres no need to put the initrd at low memory addresses.
+#define INITRD_ADDRESS 0x400000
 static struct Memory prepared_ram;
 static size_t atag_i = 0;
 
@@ -70,8 +72,25 @@ void init_atag_none() {
     append_atag(none);
 }
 
-void atag_ramdisk() {
-    //todo
+void atag_ramdisk(FILE *initrd) {
+    Byte *current_kilobyte = calloc(1024, sizeof(Byte));//read one kilobyte at once
+    Byte *temp_initrd = calloc(1024 * 1024, sizeof(Byte));//hopefully nobody wants to load a initrd > 1 megabyte
+    size_t current_size = 0;
+    while (fread(current_kilobyte, sizeof(Byte), 1024, initrd)) {
+        memcpy(temp_initrd + current_size, current_kilobyte, 1024 * sizeof(Byte));
+        memset(temp_initrd, 0, 1024 * sizeof(Byte));
+        current_size += 1024 * sizeof(Byte);
+    }
+
+    memcpy(prepared_ram.contents + INITRD_ADDRESS, temp_initrd, current_size);
+
+    struct ATAG ramdisk;
+    ramdisk.header.tag = ATAG_TAG_RAMDISK;
+    ramdisk.header.size = 5;
+    ramdisk.ramdisk.flags = 0;
+    ramdisk.ramdisk.size = current_size;// clion warns about reciever type issues. clion is wrong.
+    ramdisk.ramdisk.start = INITRD_ADDRESS;
+    append_atag(ramdisk);
 }
 
 void init_serial_revision() {
@@ -82,13 +101,15 @@ void init_serial_revision() {
     append_atag(serial);
 }
 
-void init_atags() {
+void init_atags(FILE *initrd) {
     init_core();
     init_mem();
     init_cmdline();
     init_serial();
     init_serial_revision();
-    atag_ramdisk();
+    if (initrd != NULL) {
+        atag_ramdisk(initrd);
+    }
     init_atag_none();
 }
 
@@ -103,12 +124,11 @@ void copy_kernel_into_ram(FILE *kernel) {
         (prepared_ram.contents)[ram_i + KERNEL_LOAD_TO_ADDRESS] = current_word;
         ram_i++;
     }
-
 }
 
 #define MEM_SIZE (1024 * 1024 * 1024)
 
-void init_prepared_ram(FILE *kernel, enum CommandLineFlags flags) {
+void init_prepared_ram(FILE *kernel, FILE *initrd, enum CommandLineFlags flags) {
     if (flags & MMAP) {
         int fd = open("mem.bin", O_RDWR | O_CREAT, (mode_t) 0600);
         lseek(fd, MEM_SIZE * sizeof(uint8_t), SEEK_SET);
@@ -124,7 +144,7 @@ void init_prepared_ram(FILE *kernel, enum CommandLineFlags flags) {
     prepared_ram.size = 1024 * 1024 * 1024 * sizeof(uint8_t);
     prepared_ram.mode = LITTLE_ENDIAN_;
     copy_kernel_into_ram(kernel);
-    init_atags();
+    init_atags(initrd);
 }
 
 void init_registers(struct CPUState *state) {
@@ -152,15 +172,20 @@ void init_registers(struct CPUState *state) {
 }
 
 
-void boot(FILE *kernel, enum CommandLineFlags flags) {
+void boot(FILE *kernel, FILE *initrd_binary, enum CommandLineFlags flags) {
     do_asserts();
-    init_prepared_ram(kernel, flags);
+    init_prepared_ram(kernel, initrd_binary, flags);
     init_registers(getCPUState());
     set_memory(prepared_ram);
     main_loop(flags);
 }
 
-void boot_loader_entry_point(const char *image_path, enum CommandLineFlags flags) {
+void boot_loader_entry_point(const char *image_path, const char *initrd_path, enum CommandLineFlags flags) {
     FILE *img = fopen(image_path, "rb+");
-    boot(img, flags);
+    FILE *initrd_fp = fopen(initrd_path, "rb+");
+    if (initrd_fp == NULL) {
+        fprintf(stderr,
+                "You are trying to boot an os without a hard drive or ram disk. I can't see this going well.\n");
+    }
+    boot(img, initrd_fp, flags);
 }

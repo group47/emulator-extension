@@ -662,6 +662,33 @@ emulate_dir/single_data_transfer_instruction.c.s:
 	$(MAKE) -f CMakeFiles/emulate.dir/build.make CMakeFiles/emulate.dir/emulate_dir/single_data_transfer_instruction.c.s
 .PHONY : emulate_dir/single_data_transfer_instruction.c.s
 
+emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.o: emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c.o
+
+.PHONY : emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.o
+
+# target to build an object file
+emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c.o:
+	$(MAKE) -f CMakeFiles/emulate_extension_.dir/build.make CMakeFiles/emulate_extension_.dir/emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c.o
+.PHONY : emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c.o
+
+emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.i: emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c.i
+
+.PHONY : emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.i
+
+# target to preprocess a source file
+emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c.i:
+	$(MAKE) -f CMakeFiles/emulate_extension_.dir/build.make CMakeFiles/emulate_extension_.dir/emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c.i
+.PHONY : emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c.i
+
+emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.s: emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c.s
+
+.PHONY : emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.s
+
+# target to generate assembly for a file
+emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c.s:
+	$(MAKE) -f CMakeFiles/emulate_extension_.dir/build.make CMakeFiles/emulate_extension_.dir/emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c.s
+.PHONY : emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c.s
+
 emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.o: emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.c.o
 
 .PHONY : emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.o
@@ -2917,6 +2944,9 @@ help:
 	@echo "... emulate_dir/single_data_transfer_instruction.o"
 	@echo "... emulate_dir/single_data_transfer_instruction.i"
 	@echo "... emulate_dir/single_data_transfer_instruction.s"
+	@echo "... emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.o"
+	@echo "... emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.i"
+	@echo "... emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.s"
 	@echo "... emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.o"
 	@echo "... emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.i"
 	@echo "... emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base0.s"
