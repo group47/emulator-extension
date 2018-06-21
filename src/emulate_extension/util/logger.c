@@ -15,7 +15,7 @@
 
 static struct LogEntry *entries;
 static uint32_t past_states_i = 0;
-static bool log_disabled = true;
+static bool log_disabled = false;
 
 void print_past_registers(struct CPUState state) {
     for (uint8_t i = 0; i < 15; ++i) {
@@ -34,7 +34,7 @@ void print_entry(struct LogEntry entry) {
             if (!past_decoded_valid(entry.state)) {
                 return;
             }
-            print_past_registers(entry.state);
+//            print_past_registers(entry.state);
             break;
         case COPROCESSOR_REGISTER_TRANSFER_LOGENTRY:
             print_debug_coprocessor_register_transfer(entry.registerTransferInstruction);
@@ -44,6 +44,15 @@ void print_entry(struct LogEntry entry) {
             break;
         case COPROCESSOR_DATA_OPERATION_LOG_ENTRY:
             print_debug_coprocessor_data_operations(entry.dataOperationsInstruction);
+            break;
+        case SECTION_META_DATA:
+            if (entry.sectionMetaData.first) {
+                print_past_registers(entry.sectionMetaData.state);
+            } else {
+                print_debug_instruction(entry.sectionMetaData.state);
+            }
+            break;
+        case SECTION_DESCRIPTOR:
             break;
     }
 }
@@ -65,7 +74,7 @@ void add_to_log(struct LogEntry entry) {
 }
 
 static void print_logs(int signal) {
-    bool should_print = false;
+    bool should_print = true;
     for (unsigned long i = 0; i < past_states_i; ++i) {
         if (entries[i].type == CPUSTATE_LOGENTRY) {
             const uint32_t pc = get_set_word_from_register(PC_ADDRESS, false, -1, &(entries[i].state));

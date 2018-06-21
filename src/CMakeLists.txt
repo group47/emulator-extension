@@ -333,4 +333,9 @@ add_executable(emulate_extension_
         emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base1.c
         emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c2_translation_table_base1.h
         emulate_extension/mmu/first_level_descriptor.h
-        emulate_extension/util/logger.c emulate_extension/util/logger.h emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.h emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.h)
+        emulate_extension/util/logger.c
+        emulate_extension/util/logger.h
+        emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.c
+        emulate_extension/coprocessor/system_control_coprocessor/mmu_control_and_configuration/c3_context_id_register.h
+        emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.c
+        emulate_extension/coprocessor/system_control_coprocessor/cache_and_control_configuration/c7_cache_dirty_status_register.h)

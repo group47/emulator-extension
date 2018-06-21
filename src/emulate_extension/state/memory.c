@@ -210,9 +210,9 @@ void set_word_in_memory_raw(ByteAddress address, Word val) {
 void set_half_word_in_memory_raw(ByteAddress address, HalfWord val) {
     if (memory.mode == LITTLE_ENDIAN_) {
         *(memory.contents + address) = (Byte) (val & 0x00ff);
-        *(memory.contents + address + 1) = (Byte) (val & 0xff00);
+        *(memory.contents + address + 1) = (Byte) ((val & 0xff00) >> 8);
     } else {
-        *(memory.contents + address) = (Byte) (val & 0xff00);
+        *(memory.contents + address) = (Byte) ((val & 0xff00) >> 8);
         *(memory.contents + address + 1) = (Byte) (val & 0x00ff);
     }
 }

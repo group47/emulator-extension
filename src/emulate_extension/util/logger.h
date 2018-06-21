@@ -9,11 +9,24 @@
 #include "entry_point.h"
 #include "../state/emulator_state.h"
 
+
+struct SectionDescriptor {
+    struct CPUState state;
+};
+
+struct SectionMetaData {
+    bool first;
+    struct CPUState state;
+};
+
+
 enum LogEntryType {
     CPUSTATE_LOGENTRY,
     COPROCESSOR_REGISTER_TRANSFER_LOGENTRY,
     COPROCESSOR_DATA_TRANSFER_LOGENTRY,
-    COPROCESSOR_DATA_OPERATION_LOG_ENTRY
+    COPROCESSOR_DATA_OPERATION_LOG_ENTRY,
+    SECTION_META_DATA,
+    SECTION_DESCRIPTOR,
 };
 
 struct LogEntry {
@@ -23,6 +36,8 @@ struct LogEntry {
         struct CoprocessorRegisterTransferInstruction registerTransferInstruction;
         struct CoprocessorDataOperationsInstruction dataOperationsInstruction;
         struct CoprocessorDataTransfersInstruction dataTransfersInstruction;
+        struct SectionMetaData sectionMetaData;
+        struct SectionDescriptor sectionDescriptor;
     };
 };
 

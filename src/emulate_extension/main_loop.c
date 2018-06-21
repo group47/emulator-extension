@@ -13,11 +13,20 @@
 
 void main_loop(enum CommandLineFlags flags) {
     uint64_t master_instruction_counter = 0;
+    bool first = true;
     while (true) {
 
         if (decoded_valid()) {
             if (flags & DEBUG_PRINT_REGISTER) {
                 print_registers(flags);
+                struct SectionMetaData metaData;
+                metaData.state = *getCPUState();
+                struct LogEntry logEntry;
+                logEntry.sectionMetaData = metaData;
+                logEntry.sectionMetaData.first = first;
+                logEntry.type = SECTION_META_DATA;
+                first = false;
+                add_to_log(logEntry);
             }
             union RawArmInstruction instruction = get_decoded_arm();
             if ((flags & TERMINATE_ON__ZERO) && ((*(uint32_t *) &instruction) == 0)) {
@@ -35,6 +44,15 @@ void main_loop(enum CommandLineFlags flags) {
                 assert(false);
             }
             if (exitCode == BRANCH) {
+                if (flags & DEBUG_PRINT_REGISTER) {
+                    first = true;
+                    struct SectionDescriptor sectionDescriptor;
+                    sectionDescriptor.state = *getCPUState();
+                    struct LogEntry logEntry;
+                    logEntry.sectionDescriptor = sectionDescriptor;
+                    logEntry.type = SECTION_DESCRIPTOR;
+                    add_to_log(logEntry);
+                }
                 invalidate_pipeline();
             }
             master_instruction_counter++;

@@ -126,8 +126,10 @@ enum ExecutionExitCode execute_instruction_data_processing(const struct DataProc
                                         computation_res,
                                         shiftCarryOut);
     exception_handler_exit(instruction, operand2Val);
-    if (instruction.Rd == PC_ADDRESS)
+    if (instruction.Rd == PC_ADDRESS) {
+//        invalidate_pipeline();
         return BRANCH;
+    }
     return OK;
 }
 

@@ -357,7 +357,9 @@ bool prefetch_aborted() {
     return state.decoded_prefetch_aborted;
 }
 
+//static Word curent = (uint32_t)-1;
 void transfer_fetched_to_decoded_and_load_fetched() {
+
     if (get_mode() == THUMB) {
         state.decoded_thumb = state.fetched_thumb;
     } else if (get_mode() == ARM) {
@@ -387,7 +389,15 @@ void transfer_fetched_to_decoded_and_load_fetched() {
     } else {
         assert(false);
     }
+    uint32_t val = get_word_from_memory(get_word_from_register(PC_ADDRESS) - 8);
+    struct ArmInstruction instruction = ARMfromRaw(*(union RawArmInstruction *) &val);
+//    Word prev = curent;
     increment_pc(get_mode());
+//    curent = get_word_from_register(PC_ADDRESS);
+//    if (curent == prev) {
+//        return ;
+//    }
+//    assert(curent != prev);//implies infinite loop.
 }
 
 void set_spsr_by_mode(struct CPSR_Struct cpsr_struct, enum OperatingMode mode) {
